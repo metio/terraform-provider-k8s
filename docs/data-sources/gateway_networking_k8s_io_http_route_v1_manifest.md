@@ -111,15 +111,15 @@ Required:
 
 Optional:
 
-- `extension_ref` (Attributes) ExtensionRef is an optional, implementation-specific extension to the'filter' behavior.  For example, resource 'myroutefilter' in group'networking.example.net'). ExtensionRef MUST NOT be used for core andextended filters.This filter can be used multiple times within the same rule.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--extension_ref))
-- `request_header_modifier` (Attributes) RequestHeaderModifier defines a schema for a filter that modifies requestheaders.Support: Core (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_header_modifier))
-- `request_mirror` (Attributes) RequestMirror defines a schema for a filter that mirrors requests.Requests are sent to the specified destination, but responses fromthat destination are ignored.This filter can be used multiple times within the same rule. Note thatnot all implementations will be able to support mirroring to multiplebackends.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_mirror))
-- `request_redirect` (Attributes) RequestRedirect defines a schema for a filter that responds to therequest with an HTTP redirection.Support: Core (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_redirect))
-- `response_header_modifier` (Attributes) ResponseHeaderModifier defines a schema for a filter that modifies responseheaders.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--response_header_modifier))
-- `url_rewrite` (Attributes) URLRewrite defines a schema for a filter that modifies a request during forwarding.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--url_rewrite))
+- `extension_ref` (Attributes) ExtensionRef is an optional, implementation-specific extension to the'filter' behavior.  For example, resource 'myroutefilter' in group'networking.example.net'). ExtensionRef MUST NOT be used for core andextended filters.This filter can be used multiple times within the same rule.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--extension_ref))
+- `request_header_modifier` (Attributes) RequestHeaderModifier defines a schema for a filter that modifies requestheaders.Support: Core (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_header_modifier))
+- `request_mirror` (Attributes) RequestMirror defines a schema for a filter that mirrors requests.Requests are sent to the specified destination, but responses fromthat destination are ignored.This filter can be used multiple times within the same rule. Note thatnot all implementations will be able to support mirroring to multiplebackends.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_mirror))
+- `request_redirect` (Attributes) RequestRedirect defines a schema for a filter that responds to therequest with an HTTP redirection.Support: Core (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_redirect))
+- `response_header_modifier` (Attributes) ResponseHeaderModifier defines a schema for a filter that modifies responseheaders.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--response_header_modifier))
+- `url_rewrite` (Attributes) URLRewrite defines a schema for a filter that modifies a request during forwarding.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--url_rewrite))
 
-<a id="nestedatt--spec--rules--backend_refs--weight--extension_ref"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.extension_ref`
+<a id="nestedatt--spec--rules--backend_refs--filters--extension_ref"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.extension_ref`
 
 Required:
 
@@ -128,26 +128,17 @@ Required:
 - `name` (String) Name is the name of the referent.
 
 
-<a id="nestedatt--spec--rules--backend_refs--weight--request_header_modifier"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier`
+<a id="nestedatt--spec--rules--backend_refs--filters--request_header_modifier"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_header_modifier`
 
 Optional:
 
-- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_header_modifier--add))
+- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_header_modifier--add))
 - `remove` (List of String) Remove the given header(s) from the HTTP request before the action. Thevalue of Remove is a list of HTTP header names. Note that the headernames are case-insensitive (seehttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).Input:  GET /foo HTTP/1.1  my-header1: foo  my-header2: bar  my-header3: bazConfig:  remove: ['my-header1', 'my-header3']Output:  GET /foo HTTP/1.1  my-header2: bar
-- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_header_modifier--set))
+- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_header_modifier--set))
 
-<a id="nestedatt--spec--rules--backend_refs--weight--request_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.add`
-
-Required:
-
-- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, the first entry withan equivalent name MUST be considered for a match. Subsequent entrieswith an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.
-- `value` (String) Value is the value of HTTP Header to be matched.
-
-
-<a id="nestedatt--spec--rules--backend_refs--weight--request_header_modifier--set"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.set`
+<a id="nestedatt--spec--rules--backend_refs--filters--request_header_modifier--add"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_header_modifier.add`
 
 Required:
 
@@ -155,16 +146,25 @@ Required:
 - `value` (String) Value is the value of HTTP Header to be matched.
 
 
-
-<a id="nestedatt--spec--rules--backend_refs--weight--request_mirror"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_mirror`
+<a id="nestedatt--spec--rules--backend_refs--filters--request_header_modifier--set"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_header_modifier.set`
 
 Required:
 
-- `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_mirror--backend_ref))
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, the first entry withan equivalent name MUST be considered for a match. Subsequent entrieswith an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.
+- `value` (String) Value is the value of HTTP Header to be matched.
 
-<a id="nestedatt--spec--rules--backend_refs--weight--request_mirror--backend_ref"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_mirror.backend_ref`
+
+
+<a id="nestedatt--spec--rules--backend_refs--filters--request_mirror"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_mirror`
+
+Required:
+
+- `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_mirror--backend_ref))
+
+<a id="nestedatt--spec--rules--backend_refs--filters--request_mirror--backend_ref"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_mirror.backend_ref`
 
 Required:
 
@@ -179,19 +179,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--backend_refs--weight--request_redirect"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_redirect`
+<a id="nestedatt--spec--rules--backend_refs--filters--request_redirect"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_redirect`
 
 Optional:
 
 - `hostname` (String) Hostname is the hostname to be used in the value of the 'Location'header in the response.When empty, the hostname in the 'Host' header of the request is used.Support: Core
-- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the 'Location' header. Whenempty, the request path is used as-is.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_redirect--path))
+- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the 'Location' header. Whenempty, the request path is used as-is.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_redirect--path))
 - `port` (Number) Port is the port to be used in the value of the 'Location'header in the response.If no port is specified, the redirect port MUST be derived using thefollowing rules:* If redirect scheme is not-empty, the redirect port MUST be the well-known  port associated with the redirect scheme. Specifically 'http' to port 80  and 'https' to port 443. If the redirect scheme does not have a  well-known port, the listener port of the Gateway SHOULD be used.* If redirect scheme is empty, the redirect port MUST be the Gateway  Listener port.Implementations SHOULD NOT add the port number in the 'Location'header in the following cases:* A Location header that will use HTTP (whether that is determined via  the Listener protocol or the Scheme field) _and_ use port 80.* A Location header that will use HTTPS (whether that is determined via  the Listener protocol or the Scheme field) _and_ use port 443.Support: Extended
 - `scheme` (String) Scheme is the scheme to be used in the value of the 'Location' header inthe response. When empty, the scheme of the request is used.Scheme redirects can affect the port of the redirect, for more information,refer to the documentation for the port field of this filter.Note that values may be added to this enum, implementationsmust ensure that unknown values will not cause a crash.Unknown values here must result in the implementation setting theAccepted Condition for the Route to 'status: False', with aReason of 'UnsupportedValue'.Support: Extended
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.Note that values may be added to this enum, implementationsmust ensure that unknown values will not cause a crash.Unknown values here must result in the implementation setting theAccepted Condition for the Route to 'status: False', with aReason of 'UnsupportedValue'.Support: Core
 
-<a id="nestedatt--spec--rules--backend_refs--weight--request_redirect--path"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_redirect.path`
+<a id="nestedatt--spec--rules--backend_refs--filters--request_redirect--path"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_redirect.path`
 
 Required:
 
@@ -204,26 +204,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--backend_refs--weight--response_header_modifier"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier`
+<a id="nestedatt--spec--rules--backend_refs--filters--response_header_modifier"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.response_header_modifier`
 
 Optional:
 
-- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--response_header_modifier--add))
+- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--response_header_modifier--add))
 - `remove` (List of String) Remove the given header(s) from the HTTP request before the action. Thevalue of Remove is a list of HTTP header names. Note that the headernames are case-insensitive (seehttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).Input:  GET /foo HTTP/1.1  my-header1: foo  my-header2: bar  my-header3: bazConfig:  remove: ['my-header1', 'my-header3']Output:  GET /foo HTTP/1.1  my-header2: bar
-- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--response_header_modifier--set))
+- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--response_header_modifier--set))
 
-<a id="nestedatt--spec--rules--backend_refs--weight--response_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.add`
-
-Required:
-
-- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, the first entry withan equivalent name MUST be considered for a match. Subsequent entrieswith an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.
-- `value` (String) Value is the value of HTTP Header to be matched.
-
-
-<a id="nestedatt--spec--rules--backend_refs--weight--response_header_modifier--set"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.set`
+<a id="nestedatt--spec--rules--backend_refs--filters--response_header_modifier--add"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.response_header_modifier.add`
 
 Required:
 
@@ -231,17 +222,26 @@ Required:
 - `value` (String) Value is the value of HTTP Header to be matched.
 
 
+<a id="nestedatt--spec--rules--backend_refs--filters--response_header_modifier--set"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.response_header_modifier.set`
 
-<a id="nestedatt--spec--rules--backend_refs--weight--url_rewrite"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.url_rewrite`
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, the first entry withan equivalent name MUST be considered for a match. Subsequent entrieswith an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+
+
+<a id="nestedatt--spec--rules--backend_refs--filters--url_rewrite"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.url_rewrite`
 
 Optional:
 
 - `hostname` (String) Hostname is the value to be used to replace the Host header value duringforwarding.Support: Extended
-- `path` (Attributes) Path defines a path rewrite.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--url_rewrite--path))
+- `path` (Attributes) Path defines a path rewrite.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--url_rewrite--path))
 
-<a id="nestedatt--spec--rules--backend_refs--weight--url_rewrite--path"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.url_rewrite.path`
+<a id="nestedatt--spec--rules--backend_refs--filters--url_rewrite--path"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.url_rewrite.path`
 
 Required:
 
@@ -287,12 +287,12 @@ Required:
 
 Optional:
 
-- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--add))
+- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--filters--request_header_modifier--add))
 - `remove` (List of String) Remove the given header(s) from the HTTP request before the action. Thevalue of Remove is a list of HTTP header names. Note that the headernames are case-insensitive (seehttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).Input:  GET /foo HTTP/1.1  my-header1: foo  my-header2: bar  my-header3: bazConfig:  remove: ['my-header1', 'my-header3']Output:  GET /foo HTTP/1.1  my-header2: bar
-- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--set))
+- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--filters--request_header_modifier--set))
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.add`
+<a id="nestedatt--spec--rules--filters--request_header_modifier--add"></a>
+### Nested Schema for `spec.rules.filters.request_header_modifier.add`
 
 Required:
 
@@ -300,8 +300,8 @@ Required:
 - `value` (String) Value is the value of HTTP Header to be matched.
 
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--set"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.set`
+<a id="nestedatt--spec--rules--filters--request_header_modifier--set"></a>
+### Nested Schema for `spec.rules.filters.request_header_modifier.set`
 
 Required:
 
@@ -315,10 +315,10 @@ Required:
 
 Required:
 
-- `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--backend_ref))
+- `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--filters--request_mirror--backend_ref))
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--backend_ref"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.backend_ref`
+<a id="nestedatt--spec--rules--filters--request_mirror--backend_ref"></a>
+### Nested Schema for `spec.rules.filters.request_mirror.backend_ref`
 
 Required:
 
@@ -339,13 +339,13 @@ Optional:
 Optional:
 
 - `hostname` (String) Hostname is the hostname to be used in the value of the 'Location'header in the response.When empty, the hostname in the 'Host' header of the request is used.Support: Core
-- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the 'Location' header. Whenempty, the request path is used as-is.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--path))
+- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the 'Location' header. Whenempty, the request path is used as-is.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--filters--request_redirect--path))
 - `port` (Number) Port is the port to be used in the value of the 'Location'header in the response.If no port is specified, the redirect port MUST be derived using thefollowing rules:* If redirect scheme is not-empty, the redirect port MUST be the well-known  port associated with the redirect scheme. Specifically 'http' to port 80  and 'https' to port 443. If the redirect scheme does not have a  well-known port, the listener port of the Gateway SHOULD be used.* If redirect scheme is empty, the redirect port MUST be the Gateway  Listener port.Implementations SHOULD NOT add the port number in the 'Location'header in the following cases:* A Location header that will use HTTP (whether that is determined via  the Listener protocol or the Scheme field) _and_ use port 80.* A Location header that will use HTTPS (whether that is determined via  the Listener protocol or the Scheme field) _and_ use port 443.Support: Extended
 - `scheme` (String) Scheme is the scheme to be used in the value of the 'Location' header inthe response. When empty, the scheme of the request is used.Scheme redirects can affect the port of the redirect, for more information,refer to the documentation for the port field of this filter.Note that values may be added to this enum, implementationsmust ensure that unknown values will not cause a crash.Unknown values here must result in the implementation setting theAccepted Condition for the Route to 'status: False', with aReason of 'UnsupportedValue'.Support: Extended
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.Note that values may be added to this enum, implementationsmust ensure that unknown values will not cause a crash.Unknown values here must result in the implementation setting theAccepted Condition for the Route to 'status: False', with aReason of 'UnsupportedValue'.Support: Core
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--path"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.path`
+<a id="nestedatt--spec--rules--filters--request_redirect--path"></a>
+### Nested Schema for `spec.rules.filters.request_redirect.path`
 
 Required:
 
@@ -363,12 +363,12 @@ Optional:
 
 Optional:
 
-- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--add))
+- `add` (Attributes List) Add adds the given header(s) (name, value) to the requestbefore the action. It appends to any existing values associatedwith the header name.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  add:  - name: 'my-header'    value: 'bar,baz'Output:  GET /foo HTTP/1.1  my-header: foo,bar,baz (see [below for nested schema](#nestedatt--spec--rules--filters--response_header_modifier--add))
 - `remove` (List of String) Remove the given header(s) from the HTTP request before the action. Thevalue of Remove is a list of HTTP header names. Note that the headernames are case-insensitive (seehttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).Input:  GET /foo HTTP/1.1  my-header1: foo  my-header2: bar  my-header3: bazConfig:  remove: ['my-header1', 'my-header3']Output:  GET /foo HTTP/1.1  my-header2: bar
-- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite--set))
+- `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--filters--response_header_modifier--set))
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.add`
+<a id="nestedatt--spec--rules--filters--response_header_modifier--add"></a>
+### Nested Schema for `spec.rules.filters.response_header_modifier.add`
 
 Required:
 
@@ -376,8 +376,8 @@ Required:
 - `value` (String) Value is the value of HTTP Header to be matched.
 
 
-<a id="nestedatt--spec--rules--filters--url_rewrite--set"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite.set`
+<a id="nestedatt--spec--rules--filters--response_header_modifier--set"></a>
+### Nested Schema for `spec.rules.filters.response_header_modifier.set`
 
 Required:
 

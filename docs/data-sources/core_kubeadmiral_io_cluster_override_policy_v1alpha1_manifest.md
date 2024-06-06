@@ -116,15 +116,15 @@ Optional:
 
 Required:
 
-- `operations` (Attributes List) Operations are the specific operations to be performed on ContainerNames or ImagePath. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--labels--operations))
+- `operations` (Attributes List) Operations are the specific operations to be performed on ContainerNames or ImagePath. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image--operations))
 
 Optional:
 
 - `container_names` (List of String) ContainerNames are ignored when ImagePath is set. If empty, the image override rule applies to all containers. Otherwise, this override targets the specified container(s) or init container(s) in the pod template.
 - `image_path` (String) ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image  If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.
 
-<a id="nestedatt--spec--override_rules--overriders--labels--operations"></a>
-### Nested Schema for `spec.override_rules.overriders.labels.operations`
+<a id="nestedatt--spec--override_rules--overriders--image--operations"></a>
+### Nested Schema for `spec.override_rules.overriders.image.operations`
 
 Required:
 
@@ -177,11 +177,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of cluster selector requirements by cluster labels. (see [below for nested schema](#nestedatt--spec--override_rules--target_clusters--clusters--match_expressions))
-- `match_fields` (Attributes List) A list of cluster selector requirements by cluster fields. (see [below for nested schema](#nestedatt--spec--override_rules--target_clusters--clusters--match_fields))
+- `match_expressions` (Attributes List) A list of cluster selector requirements by cluster labels. (see [below for nested schema](#nestedatt--spec--override_rules--target_clusters--cluster_affinity--match_expressions))
+- `match_fields` (Attributes List) A list of cluster selector requirements by cluster fields. (see [below for nested schema](#nestedatt--spec--override_rules--target_clusters--cluster_affinity--match_fields))
 
-<a id="nestedatt--spec--override_rules--target_clusters--clusters--match_expressions"></a>
-### Nested Schema for `spec.override_rules.target_clusters.clusters.match_expressions`
+<a id="nestedatt--spec--override_rules--target_clusters--cluster_affinity--match_expressions"></a>
+### Nested Schema for `spec.override_rules.target_clusters.cluster_affinity.match_expressions`
 
 Required:
 
@@ -190,8 +190,8 @@ Required:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--override_rules--target_clusters--clusters--match_fields"></a>
-### Nested Schema for `spec.override_rules.target_clusters.clusters.match_fields`
+<a id="nestedatt--spec--override_rules--target_clusters--cluster_affinity--match_fields"></a>
+### Nested Schema for `spec.override_rules.target_clusters.cluster_affinity.match_fields`
 
 Required:
 

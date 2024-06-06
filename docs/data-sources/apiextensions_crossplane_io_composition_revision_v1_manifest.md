@@ -108,14 +108,14 @@ Required:
 
 Optional:
 
-- `match_labels` (Attributes List) MatchLabels ensures an object with matching labels is selected. (see [below for nested schema](#nestedatt--spec--environment--environment_configs--type--match_labels))
+- `match_labels` (Attributes List) MatchLabels ensures an object with matching labels is selected. (see [below for nested schema](#nestedatt--spec--environment--environment_configs--selector--match_labels))
 - `max_match` (Number) MaxMatch specifies the number of extracted EnvironmentConfigs in Multiple mode, extracts all if nil.
 - `min_match` (Number) MinMatch specifies the required minimum of extracted EnvironmentConfigs in Multiple mode.
 - `mode` (String) Mode specifies retrieval strategy: 'Single' or 'Multiple'.
 - `sort_by_field_path` (String) SortByFieldPath is the path to the field based on which list of EnvironmentConfigs is alphabetically sorted.
 
-<a id="nestedatt--spec--environment--environment_configs--type--match_labels"></a>
-### Nested Schema for `spec.environment.environment_configs.type.match_labels`
+<a id="nestedatt--spec--environment--environment_configs--selector--match_labels"></a>
+### Nested Schema for `spec.environment.environment_configs.selector.match_labels`
 
 Required:
 
@@ -149,22 +149,22 @@ Optional:
 Required:
 
 - `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--environment--patches--type--variables))
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string))
+- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--string))
 
-<a id="nestedatt--spec--environment--patches--type--variables"></a>
-### Nested Schema for `spec.environment.patches.type.variables`
+<a id="nestedatt--spec--environment--patches--combine--variables"></a>
+### Nested Schema for `spec.environment.patches.combine.variables`
 
 Required:
 
 - `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
 
 
-<a id="nestedatt--spec--environment--patches--type--string"></a>
-### Nested Schema for `spec.environment.patches.type.string`
+<a id="nestedatt--spec--environment--patches--combine--string"></a>
+### Nested Schema for `spec.environment.patches.combine.string`
 
 Required:
 
@@ -178,10 +178,10 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--environment--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--environment--patches--policy--merge_options))
 
-<a id="nestedatt--spec--environment--patches--type--merge_options"></a>
-### Nested Schema for `spec.environment.patches.type.merge_options`
+<a id="nestedatt--spec--environment--patches--policy--merge_options"></a>
+### Nested Schema for `spec.environment.patches.policy.merge_options`
 
 Optional:
 
@@ -199,14 +199,14 @@ Required:
 
 Optional:
 
-- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--environment--patches--type--convert))
+- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
-- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--environment--patches--type--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--environment--patches--type--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string))
+- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--match))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string))
 
-<a id="nestedatt--spec--environment--patches--type--convert"></a>
-### Nested Schema for `spec.environment.patches.type.convert`
+<a id="nestedatt--spec--environment--patches--transforms--convert"></a>
+### Nested Schema for `spec.environment.patches.transforms.convert`
 
 Required:
 
@@ -217,17 +217,17 @@ Optional:
 - `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
 
 
-<a id="nestedatt--spec--environment--patches--type--match"></a>
-### Nested Schema for `spec.environment.patches.type.match`
+<a id="nestedatt--spec--environment--patches--transforms--match"></a>
+### Nested Schema for `spec.environment.patches.transforms.match`
 
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
 - `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--environment--patches--type--match--patterns))
+- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--match--patterns))
 
-<a id="nestedatt--spec--environment--patches--type--match--patterns"></a>
-### Nested Schema for `spec.environment.patches.type.match.patterns`
+<a id="nestedatt--spec--environment--patches--transforms--match--patterns"></a>
+### Nested Schema for `spec.environment.patches.transforms.match.patterns`
 
 Required:
 
@@ -241,8 +241,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--environment--patches--type--math"></a>
-### Nested Schema for `spec.environment.patches.type.math`
+<a id="nestedatt--spec--environment--patches--transforms--math"></a>
+### Nested Schema for `spec.environment.patches.transforms.math`
 
 Optional:
 
@@ -252,28 +252,28 @@ Optional:
 - `type` (String) Type of the math transform to be run.
 
 
-<a id="nestedatt--spec--environment--patches--type--string"></a>
-### Nested Schema for `spec.environment.patches.type.string`
+<a id="nestedatt--spec--environment--patches--transforms--string"></a>
+### Nested Schema for `spec.environment.patches.transforms.string`
 
 Optional:
 
 - `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
-- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string--join))
-- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string--regexp))
+- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string--join))
+- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
 - `type` (String) Type of the string transform to be run.
 
-<a id="nestedatt--spec--environment--patches--type--string--join"></a>
-### Nested Schema for `spec.environment.patches.type.string.join`
+<a id="nestedatt--spec--environment--patches--transforms--string--join"></a>
+### Nested Schema for `spec.environment.patches.transforms.string.join`
 
 Required:
 
 - `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
 
 
-<a id="nestedatt--spec--environment--patches--type--string--regexp"></a>
-### Nested Schema for `spec.environment.patches.type.string.regexp`
+<a id="nestedatt--spec--environment--patches--transforms--string--regexp"></a>
+### Nested Schema for `spec.environment.patches.transforms.string.regexp`
 
 Required:
 
@@ -324,22 +324,22 @@ Optional:
 Required:
 
 - `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--variables))
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string))
+- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--string))
 
-<a id="nestedatt--spec--patch_sets--patches--type--variables"></a>
-### Nested Schema for `spec.patch_sets.patches.type.variables`
+<a id="nestedatt--spec--patch_sets--patches--combine--variables"></a>
+### Nested Schema for `spec.patch_sets.patches.combine.variables`
 
 Required:
 
 - `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
 
 
-<a id="nestedatt--spec--patch_sets--patches--type--string"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string`
+<a id="nestedatt--spec--patch_sets--patches--combine--string"></a>
+### Nested Schema for `spec.patch_sets.patches.combine.string`
 
 Required:
 
@@ -353,10 +353,10 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--policy--merge_options))
 
-<a id="nestedatt--spec--patch_sets--patches--type--merge_options"></a>
-### Nested Schema for `spec.patch_sets.patches.type.merge_options`
+<a id="nestedatt--spec--patch_sets--patches--policy--merge_options"></a>
+### Nested Schema for `spec.patch_sets.patches.policy.merge_options`
 
 Optional:
 
@@ -374,14 +374,14 @@ Required:
 
 Optional:
 
-- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--convert))
+- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
-- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string))
+- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--match))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string))
 
-<a id="nestedatt--spec--patch_sets--patches--type--convert"></a>
-### Nested Schema for `spec.patch_sets.patches.type.convert`
+<a id="nestedatt--spec--patch_sets--patches--transforms--convert"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.convert`
 
 Required:
 
@@ -392,17 +392,17 @@ Optional:
 - `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
 
 
-<a id="nestedatt--spec--patch_sets--patches--type--match"></a>
-### Nested Schema for `spec.patch_sets.patches.type.match`
+<a id="nestedatt--spec--patch_sets--patches--transforms--match"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.match`
 
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
 - `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--match--patterns))
+- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--match--patterns))
 
-<a id="nestedatt--spec--patch_sets--patches--type--match--patterns"></a>
-### Nested Schema for `spec.patch_sets.patches.type.match.patterns`
+<a id="nestedatt--spec--patch_sets--patches--transforms--match--patterns"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.match.patterns`
 
 Required:
 
@@ -416,8 +416,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--patch_sets--patches--type--math"></a>
-### Nested Schema for `spec.patch_sets.patches.type.math`
+<a id="nestedatt--spec--patch_sets--patches--transforms--math"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.math`
 
 Optional:
 
@@ -427,28 +427,28 @@ Optional:
 - `type` (String) Type of the math transform to be run.
 
 
-<a id="nestedatt--spec--patch_sets--patches--type--string"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string`
+<a id="nestedatt--spec--patch_sets--patches--transforms--string"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.string`
 
 Optional:
 
 - `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
-- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string--join))
-- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string--regexp))
+- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string--join))
+- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
 - `type` (String) Type of the string transform to be run.
 
-<a id="nestedatt--spec--patch_sets--patches--type--string--join"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string.join`
+<a id="nestedatt--spec--patch_sets--patches--transforms--string--join"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.string.join`
 
 Required:
 
 - `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
 
 
-<a id="nestedatt--spec--patch_sets--patches--type--string--regexp"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string.regexp`
+<a id="nestedatt--spec--patch_sets--patches--transforms--string--regexp"></a>
+### Nested Schema for `spec.patch_sets.patches.transforms.string.regexp`
 
 Required:
 
@@ -560,22 +560,22 @@ Optional:
 Required:
 
 - `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--resources--patches--type--variables))
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string))
+- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--string))
 
-<a id="nestedatt--spec--resources--patches--type--variables"></a>
-### Nested Schema for `spec.resources.patches.type.variables`
+<a id="nestedatt--spec--resources--patches--combine--variables"></a>
+### Nested Schema for `spec.resources.patches.combine.variables`
 
 Required:
 
 - `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
 
 
-<a id="nestedatt--spec--resources--patches--type--string"></a>
-### Nested Schema for `spec.resources.patches.type.string`
+<a id="nestedatt--spec--resources--patches--combine--string"></a>
+### Nested Schema for `spec.resources.patches.combine.string`
 
 Required:
 
@@ -589,10 +589,10 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--resources--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--resources--patches--policy--merge_options))
 
-<a id="nestedatt--spec--resources--patches--type--merge_options"></a>
-### Nested Schema for `spec.resources.patches.type.merge_options`
+<a id="nestedatt--spec--resources--patches--policy--merge_options"></a>
+### Nested Schema for `spec.resources.patches.policy.merge_options`
 
 Optional:
 
@@ -610,14 +610,14 @@ Required:
 
 Optional:
 
-- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--resources--patches--type--convert))
+- `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
-- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--resources--patches--type--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--resources--patches--type--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string))
+- `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--match))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string))
 
-<a id="nestedatt--spec--resources--patches--type--convert"></a>
-### Nested Schema for `spec.resources.patches.type.convert`
+<a id="nestedatt--spec--resources--patches--transforms--convert"></a>
+### Nested Schema for `spec.resources.patches.transforms.convert`
 
 Required:
 
@@ -628,17 +628,17 @@ Optional:
 - `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
 
 
-<a id="nestedatt--spec--resources--patches--type--match"></a>
-### Nested Schema for `spec.resources.patches.type.match`
+<a id="nestedatt--spec--resources--patches--transforms--match"></a>
+### Nested Schema for `spec.resources.patches.transforms.match`
 
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
 - `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--resources--patches--type--match--patterns))
+- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--match--patterns))
 
-<a id="nestedatt--spec--resources--patches--type--match--patterns"></a>
-### Nested Schema for `spec.resources.patches.type.match.patterns`
+<a id="nestedatt--spec--resources--patches--transforms--match--patterns"></a>
+### Nested Schema for `spec.resources.patches.transforms.match.patterns`
 
 Required:
 
@@ -652,8 +652,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--resources--patches--type--math"></a>
-### Nested Schema for `spec.resources.patches.type.math`
+<a id="nestedatt--spec--resources--patches--transforms--math"></a>
+### Nested Schema for `spec.resources.patches.transforms.math`
 
 Optional:
 
@@ -663,28 +663,28 @@ Optional:
 - `type` (String) Type of the math transform to be run.
 
 
-<a id="nestedatt--spec--resources--patches--type--string"></a>
-### Nested Schema for `spec.resources.patches.type.string`
+<a id="nestedatt--spec--resources--patches--transforms--string"></a>
+### Nested Schema for `spec.resources.patches.transforms.string`
 
 Optional:
 
 - `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
-- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string--join))
-- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string--regexp))
+- `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string--join))
+- `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
 - `type` (String) Type of the string transform to be run.
 
-<a id="nestedatt--spec--resources--patches--type--string--join"></a>
-### Nested Schema for `spec.resources.patches.type.string.join`
+<a id="nestedatt--spec--resources--patches--transforms--string--join"></a>
+### Nested Schema for `spec.resources.patches.transforms.string.join`
 
 Required:
 
 - `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
 
 
-<a id="nestedatt--spec--resources--patches--type--string--regexp"></a>
-### Nested Schema for `spec.resources.patches.type.string.regexp`
+<a id="nestedatt--spec--resources--patches--transforms--string--regexp"></a>
+### Nested Schema for `spec.resources.patches.transforms.string.regexp`
 
 Required:
 

@@ -92,19 +92,19 @@ Required:
 
 Optional:
 
-- `ip_block` (Attributes) IPBlock defines an IPBlock peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--ip_block))
-- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--security_group))
+- `ip_block` (Attributes) IPBlock defines an IPBlock peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--ip_block))
+- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--security_group))
 
-<a id="nestedatt--spec--networking--ingress--ports--ip_block"></a>
-### Nested Schema for `spec.networking.ingress.ports.ip_block`
+<a id="nestedatt--spec--networking--ingress--from--ip_block"></a>
+### Nested Schema for `spec.networking.ingress.from.ip_block`
 
 Required:
 
 - `cidr` (String) CIDR is the network CIDR.Both IPV4 or IPV6 CIDR are accepted.
 
 
-<a id="nestedatt--spec--networking--ingress--ports--security_group"></a>
-### Nested Schema for `spec.networking.ingress.ports.security_group`
+<a id="nestedatt--spec--networking--ingress--from--security_group"></a>
+### Nested Schema for `spec.networking.ingress.from.security_group`
 
 Required:
 

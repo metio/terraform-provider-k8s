@@ -117,11 +117,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--caching_server--allowed_vary_headers--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--caching_server--allowed_vary_headers--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--caching_server--allowed_vary_headers--suffix--google_re2"></a>
-### Nested Schema for `spec.caching_server.allowed_vary_headers.suffix.google_re2`
+<a id="nestedatt--spec--caching_server--allowed_vary_headers--safe_regex--google_re2"></a>
+### Nested Schema for `spec.caching_server.allowed_vary_headers.safe_regex.google_re2`
 
 Optional:
 
@@ -323,29 +323,29 @@ Optional:
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns))
 
-<a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns`
+<a id="nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns"></a>
+### Nested Schema for `spec.ext_proc.forward_rules.allowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.ext_proc.forward_rules.allowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.ext_proc.forward_rules.allowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -378,11 +378,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -428,10 +428,10 @@ Optional:
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--grpc_service--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--grpc_service--retry_policy--retry_back_off))
 
-<a id="nestedatt--spec--ext_proc--grpc_service--timeout--retry_back_off"></a>
-### Nested Schema for `spec.ext_proc.grpc_service.timeout.retry_back_off`
+<a id="nestedatt--spec--ext_proc--grpc_service--retry_policy--retry_back_off"></a>
+### Nested Schema for `spec.ext_proc.grpc_service.retry_policy.retry_back_off`
 
 Optional:
 
@@ -459,11 +459,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--mutation_rules--allow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--ext_proc--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.ext_proc.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--ext_proc--mutation_rules--allow_expression--google_re2"></a>
+### Nested Schema for `spec.ext_proc.mutation_rules.allow_expression.google_re2`
 
 Optional:
 
@@ -476,11 +476,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--mutation_rules--disallow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--ext_proc--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.ext_proc.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--ext_proc--mutation_rules--disallow_expression--google_re2"></a>
+### Nested Schema for `spec.ext_proc.mutation_rules.disallow_expression.google_re2`
 
 Optional:
 

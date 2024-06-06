@@ -154,11 +154,11 @@ Optional:
 
 - `op` (String)
 - `set` (List of String)
-- `subject` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--remote_addrs--subject))
+- `subject` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--exprs--subject))
 - `value` (String)
 
-<a id="nestedatt--spec--http--match--remote_addrs--subject"></a>
-### Nested Schema for `spec.http.match.remote_addrs.subject`
+<a id="nestedatt--spec--http--match--exprs--subject"></a>
+### Nested Schema for `spec.http.match.exprs.subject`
 
 Required:
 

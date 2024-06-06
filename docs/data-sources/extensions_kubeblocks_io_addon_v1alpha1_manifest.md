@@ -206,29 +206,29 @@ Required:
 
 Optional:
 
-- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--json_map))
-- `resources` (Attributes) Sets resources related mapping keys. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--resources))
-- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--value_map))
+- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--json_map))
+- `resources` (Attributes) Sets resources related mapping keys. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--resources))
+- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--value_map))
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--json_map"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.json_map`
+<a id="nestedatt--spec--helm--values_mapping--extras--json_map"></a>
+### Nested Schema for `spec.helm.values_mapping.extras.json_map`
 
 Optional:
 
 - `tolerations` (String) Specifies the toleration mapping key.
 
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--resources"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.resources`
+<a id="nestedatt--spec--helm--values_mapping--extras--resources"></a>
+### Nested Schema for `spec.helm.values_mapping.extras.resources`
 
 Optional:
 
-- `cpu` (Attributes) Specifies the key used for mapping both CPU requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--resources--cpu))
-- `memory` (Attributes) Specifies the key used for mapping both Memory requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--resources--memory))
+- `cpu` (Attributes) Specifies the key used for mapping both CPU requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--resources--cpu))
+- `memory` (Attributes) Specifies the key used for mapping both Memory requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--resources--memory))
 - `storage` (String) Specifies the key used for mapping the storage size value.
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--resources--cpu"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.resources.cpu`
+<a id="nestedatt--spec--helm--values_mapping--extras--resources--cpu"></a>
+### Nested Schema for `spec.helm.values_mapping.extras.resources.cpu`
 
 Optional:
 
@@ -236,8 +236,8 @@ Optional:
 - `requests` (String) Specifies the mapping key for the request value.
 
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--resources--memory"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.resources.memory`
+<a id="nestedatt--spec--helm--values_mapping--extras--resources--memory"></a>
+### Nested Schema for `spec.helm.values_mapping.extras.resources.memory`
 
 Optional:
 
@@ -246,8 +246,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--value_map"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.value_map`
+<a id="nestedatt--spec--helm--values_mapping--extras--value_map"></a>
+### Nested Schema for `spec.helm.values_mapping.extras.value_map`
 
 Optional:
 
@@ -270,12 +270,12 @@ Optional:
 
 Optional:
 
-- `cpu` (Attributes) Specifies the key used for mapping both CPU requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--cpu))
-- `memory` (Attributes) Specifies the key used for mapping both Memory requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map--memory))
+- `cpu` (Attributes) Specifies the key used for mapping both CPU requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--resources--cpu))
+- `memory` (Attributes) Specifies the key used for mapping both Memory requests and limits. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--resources--memory))
 - `storage` (String) Specifies the key used for mapping the storage size value.
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--cpu"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.cpu`
+<a id="nestedatt--spec--helm--values_mapping--resources--cpu"></a>
+### Nested Schema for `spec.helm.values_mapping.resources.cpu`
 
 Optional:
 
@@ -283,8 +283,8 @@ Optional:
 - `requests` (String) Specifies the mapping key for the request value.
 
 
-<a id="nestedatt--spec--helm--values_mapping--value_map--memory"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.memory`
+<a id="nestedatt--spec--helm--values_mapping--resources--memory"></a>
+### Nested Schema for `spec.helm.values_mapping.resources.memory`
 
 Optional:
 

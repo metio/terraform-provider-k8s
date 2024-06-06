@@ -202,11 +202,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--datasource--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.datasource.oauth2.scopes.config_map`
+<a id="nestedatt--spec--datasource--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.datasource.oauth2.client_id.config_map`
 
 Required:
 
@@ -218,8 +218,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--datasource--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.datasource.oauth2.scopes.secret`
+<a id="nestedatt--spec--datasource--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.datasource.oauth2.client_id.secret`
 
 Required:
 
@@ -390,11 +390,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--notifier--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.notifier.oauth2.scopes.config_map`
+<a id="nestedatt--spec--notifier--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.notifier.oauth2.client_id.config_map`
 
 Required:
 
@@ -406,8 +406,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--notifier--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.notifier.oauth2.scopes.secret`
+<a id="nestedatt--spec--notifier--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.notifier.oauth2.client_id.secret`
 
 Required:
 
@@ -447,11 +447,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--notifier--selector--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--notifier--selector--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--notifier--selector--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.notifier.selector.namespace_selector.match_expressions`
+<a id="nestedatt--spec--notifier--selector--label_selector--match_expressions"></a>
+### Nested Schema for `spec.notifier.selector.label_selector.match_expressions`
 
 Required:
 
@@ -572,11 +572,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--notifiers--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.notifiers.oauth2.scopes.config_map`
+<a id="nestedatt--spec--notifiers--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.notifiers.oauth2.client_id.config_map`
 
 Required:
 
@@ -588,8 +588,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--notifiers--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.notifiers.oauth2.scopes.secret`
+<a id="nestedatt--spec--notifiers--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.notifiers.oauth2.client_id.secret`
 
 Required:
 
@@ -629,11 +629,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--notifiers--selector--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--notifiers--selector--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--notifiers--selector--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.notifiers.selector.namespace_selector.match_expressions`
+<a id="nestedatt--spec--notifiers--selector--label_selector--match_expressions"></a>
+### Nested Schema for `spec.notifiers.selector.label_selector.match_expressions`
 
 Required:
 
@@ -772,11 +772,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--remote_read--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.remote_read.oauth2.scopes.config_map`
+<a id="nestedatt--spec--remote_read--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.remote_read.oauth2.client_id.config_map`
 
 Required:
 
@@ -788,8 +788,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--remote_read--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.remote_read.oauth2.scopes.secret`
+<a id="nestedatt--spec--remote_read--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.remote_read.oauth2.client_id.secret`
 
 Required:
 
@@ -907,11 +907,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--remote_write--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes.config_map`
+<a id="nestedatt--spec--remote_write--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.config_map`
 
 Required:
 
@@ -923,8 +923,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--remote_write--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes.secret`
+<a id="nestedatt--spec--remote_write--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.secret`
 
 Required:
 

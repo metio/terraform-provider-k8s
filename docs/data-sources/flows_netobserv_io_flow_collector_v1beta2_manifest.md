@@ -98,53 +98,53 @@ Optional:
 Optional:
 
 - `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
-- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling))
+- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling`
 
 Optional:
 
-- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--affinity))
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity))
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 - `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
-- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations))
+- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--tolerations))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--affinity"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--node_affinity))
-- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_affinity))
-- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity))
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--node_affinity"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.node_affinity`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -156,51 +156,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
-
-Required:
-
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
-
-Optional:
-
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
-
-
-
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
-
-Optional:
-
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
-
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -214,25 +171,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_affinity"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -240,22 +240,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -268,16 +268,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -292,8 +292,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -301,22 +301,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -329,16 +329,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -353,24 +353,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -378,22 +378,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -406,16 +406,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -430,8 +430,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -439,22 +439,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -467,16 +467,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -492,8 +492,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations`
+<a id="nestedatt--spec--agent--ebpf--advanced--scheduling--tolerations"></a>
+### Nested Schema for `spec.agent.ebpf.advanced.scheduling.tolerations`
 
 Optional:
 
@@ -531,28 +531,28 @@ Optional:
 
 - `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
 - `enable` (Boolean) Set 'enable' to 'true' to enable eBPF agent metrics collection.
-- `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server))
+- `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server`
+<a id="nestedatt--spec--agent--ebpf--metrics--server"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server`
 
 Optional:
 
 - `port` (Number) The prometheus HTTP port
-- `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls))
+- `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls`
 
 Optional:
 
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
-- `provided` (Attributes) TLS configuration when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided))
-- `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided_ca_file))
+- `provided` (Attributes) TLS configuration when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided))
+- `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file))
 - `type` (String) Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls--provided"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls.provided`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls.provided`
 
 Optional:
 
@@ -563,8 +563,8 @@ Optional:
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls--provided_ca_file"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls.provided_ca_file`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls.provided_ca_file`
 
 Optional:
 
@@ -582,12 +582,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--agent--ebpf--sampling--claims"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.claims`
+<a id="nestedatt--spec--agent--ebpf--resources--claims"></a>
+### Nested Schema for `spec.agent.ebpf.resources.claims`
 
 Required:
 
@@ -678,27 +678,27 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -710,8 +710,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -725,23 +725,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -753,8 +753,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
@@ -774,19 +774,19 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -794,22 +794,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -822,16 +822,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -846,8 +846,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -855,22 +855,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -883,16 +883,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -920,11 +920,11 @@ Optional:
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -932,22 +932,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -960,16 +960,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1004,11 +1004,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1026,11 +1026,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1079,23 +1079,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource))
-- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external))
-- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object))
-- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods))
-- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String)
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -1109,16 +1109,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric`
 
 Required:
 
@@ -1126,18 +1126,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -1151,8 +1151,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.target`
 
 Required:
 
@@ -1166,17 +1166,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--described_object))
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.described_object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -1188,8 +1188,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric`
 
 Required:
 
@@ -1197,18 +1197,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -1222,8 +1222,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.target`
 
 Required:
 
@@ -1237,16 +1237,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -1254,18 +1254,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -1279,8 +1279,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.target`
 
 Required:
 
@@ -1294,16 +1294,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource.target`
 
 Required:
 
@@ -1403,12 +1403,12 @@ Optional:
 
 Optional:
 
-- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_id_reference))
-- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_secret_reference))
+- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_id_reference))
+- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_secret_reference))
 - `type` (String) Type of SASL authentication to use, or 'Disabled' if SASL is not used
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_id_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_id_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_id_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_id_reference`
 
 Optional:
 
@@ -1418,8 +1418,8 @@ Optional:
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_secret_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_secret_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_secret_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_secret_reference`
 
 Optional:
 
@@ -1603,13 +1603,13 @@ Optional:
 
 Optional:
 
-- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--manual--tls--ca_cert))
+- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--manual--status_tls--ca_cert))
 - `enable` (Boolean) Enable TLS
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
-- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--manual--tls--user_cert))
+- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--manual--status_tls--user_cert))
 
-<a id="nestedatt--spec--loki--manual--tls--ca_cert"></a>
-### Nested Schema for `spec.loki.manual.tls.ca_cert`
+<a id="nestedatt--spec--loki--manual--status_tls--ca_cert"></a>
+### Nested Schema for `spec.loki.manual.status_tls.ca_cert`
 
 Optional:
 
@@ -1620,8 +1620,8 @@ Optional:
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--loki--manual--tls--user_cert"></a>
-### Nested Schema for `spec.loki.manual.tls.user_cert`
+<a id="nestedatt--spec--loki--manual--status_tls--user_cert"></a>
+### Nested Schema for `spec.loki.manual.status_tls.user_cert`
 
 Optional:
 
@@ -1729,13 +1729,13 @@ Optional:
 
 Optional:
 
-- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--monolithic--url--ca_cert))
+- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--monolithic--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
-- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--monolithic--url--user_cert))
+- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--monolithic--tls--user_cert))
 
-<a id="nestedatt--spec--loki--monolithic--url--ca_cert"></a>
-### Nested Schema for `spec.loki.monolithic.url.ca_cert`
+<a id="nestedatt--spec--loki--monolithic--tls--ca_cert"></a>
+### Nested Schema for `spec.loki.monolithic.tls.ca_cert`
 
 Optional:
 
@@ -1746,8 +1746,8 @@ Optional:
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--loki--monolithic--url--user_cert"></a>
-### Nested Schema for `spec.loki.monolithic.url.user_cert`
+<a id="nestedatt--spec--loki--monolithic--tls--user_cert"></a>
+### Nested Schema for `spec.loki.monolithic.tls.user_cert`
 
 Optional:
 
@@ -1821,27 +1821,27 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -1853,8 +1853,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -1868,23 +1868,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1896,8 +1896,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
@@ -1917,19 +1917,19 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1937,22 +1937,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1965,16 +1965,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1989,8 +1989,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1998,22 +1998,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -2026,16 +2026,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -2063,11 +2063,11 @@ Optional:
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2075,22 +2075,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -2103,16 +2103,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -2147,11 +2147,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -2169,11 +2169,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -2222,23 +2222,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource))
-- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external))
-- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object))
-- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods))
-- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String)
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -2252,16 +2252,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric`
 
 Required:
 
@@ -2269,18 +2269,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -2294,8 +2294,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.target`
 
 Required:
 
@@ -2309,17 +2309,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object))
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.described_object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -2331,8 +2331,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric`
 
 Required:
 
@@ -2340,18 +2340,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -2365,8 +2365,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.target`
 
 Required:
 
@@ -2380,16 +2380,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -2397,18 +2397,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -2422,8 +2422,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.target`
 
 Required:
 
@@ -2437,16 +2437,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource.target`
 
 Required:
 

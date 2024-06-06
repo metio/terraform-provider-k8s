@@ -353,11 +353,11 @@ Optional:
 
 Optional:
 
-- `limits` (Attributes) ImageResource resources for container image. (see [below for nested schema](#nestedatt--spec--packages--controller--tag--limits))
-- `requests` (Attributes) Requests for image resources (see [below for nested schema](#nestedatt--spec--packages--controller--tag--requests))
+- `limits` (Attributes) ImageResource resources for container image. (see [below for nested schema](#nestedatt--spec--packages--controller--resources--limits))
+- `requests` (Attributes) Requests for image resources (see [below for nested schema](#nestedatt--spec--packages--controller--resources--requests))
 
-<a id="nestedatt--spec--packages--controller--tag--limits"></a>
-### Nested Schema for `spec.packages.controller.tag.limits`
+<a id="nestedatt--spec--packages--controller--resources--limits"></a>
+### Nested Schema for `spec.packages.controller.resources.limits`
 
 Optional:
 
@@ -365,8 +365,8 @@ Optional:
 - `memory` (String) Memory image memory
 
 
-<a id="nestedatt--spec--packages--controller--tag--requests"></a>
-### Nested Schema for `spec.packages.controller.tag.requests`
+<a id="nestedatt--spec--packages--controller--resources--requests"></a>
+### Nested Schema for `spec.packages.controller.resources.requests`
 
 Optional:
 

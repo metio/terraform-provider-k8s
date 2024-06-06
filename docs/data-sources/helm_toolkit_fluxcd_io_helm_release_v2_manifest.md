@@ -132,10 +132,10 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--chart--spec--version--secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--chart--spec--verify--secret_ref))
 
-<a id="nestedatt--spec--chart--spec--version--secret_ref"></a>
-### Nested Schema for `spec.chart.spec.version.secret_ref`
+<a id="nestedatt--spec--chart--spec--verify--secret_ref"></a>
+### Nested Schema for `spec.chart.spec.verify.secret_ref`
 
 Required:
 

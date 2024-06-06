@@ -325,11 +325,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secretMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--cephfs--secret_ref))
 - `user` (String) user is optional: User is the rados user name, default is adminMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -348,10 +348,10 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connectto OpenStack. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connectto OpenStack. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.cinder.secret_ref`
 
 Optional:
 
@@ -365,12 +365,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--envoy--extra_volumes--config_map--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.config_map.items`
 
 Required:
 
@@ -393,12 +393,12 @@ Required:
 Optional:
 
 - `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'.If not provided, the empty value is passed to the associated CSI driverwhich will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) readOnly specifies a read-only configuration for the volume.Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSIdriver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -412,10 +412,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be aOptional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--downward_api--items))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--envoy--extra_volumes--downward_api--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.downward_api.items`
 
 Required:
 
@@ -423,12 +423,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -439,8 +439,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -468,36 +468,36 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -509,8 +509,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -523,8 +523,8 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -532,16 +532,16 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--envoy--extra_volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -581,10 +581,10 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -671,10 +671,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport.Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.
-- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -738,21 +738,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources))
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--cluster_trust_bundle))
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -760,21 +760,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.
 - `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.
 - `signer_name` (String) Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -788,17 +788,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -811,15 +811,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -827,12 +827,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -843,8 +843,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -858,17 +858,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.secret.items`
 
 Required:
 
@@ -881,8 +881,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--envoy--extra_volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.envoy.extra_volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -926,11 +926,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser.Default is /etc/ceph/keyring.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name.Default is rbd.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--rbd--secret_ref))
 - `user` (String) user is the rados user name.Default is admin.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.rbd.secret_ref`
 
 Optional:
 
@@ -944,7 +944,7 @@ Optional:
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -957,8 +957,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO systemthat is associated with this volume source.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -972,12 +972,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items))
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--secret--items))
 - `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--envoy--extra_volumes--secret--items"></a>
+### Nested Schema for `spec.envoy.extra_volumes.secret.items`
 
 Required:
 
@@ -997,12 +997,12 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volumenames are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If nonamespace is specified then the Pod's namespace will be used.  This allows theKubernetes name scoping to be mirrored within StorageOS for tighter integration.Set VolumeName to any name to override the default behaviour.Set to 'default' if you are not using namespaces within StorageOS.Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--envoy--extra_volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.envoy.extra_volumes.storageos.secret_ref`
 
 Optional:
 
@@ -1137,14 +1137,14 @@ Required:
 
 Optional:
 
-- `circuit_breakers` (Attributes) GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services.If defined, this will be used as the default for all services. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts--circuit_breakers))
+- `circuit_breakers` (Attributes) GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services.If defined, this will be used as the default for all services. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--cluster--circuit_breakers))
 - `dns_lookup_family` (String) DNSLookupFamily defines how external names are looked upWhen configured as V4, the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If V6 is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If AUTO is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If ALL is specified, the DNS resolver will perform a lookup forboth IPv4 and IPv6 families, and return all resolved addresses.When this is used, Happy Eyeballs will be enabled for upstream connections.Refer to Happy Eyeballs Support for more information.Note: This only applies to externalName clusters.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.Values: 'auto' (default), 'v4', 'v6', 'all'.Other values will produce an error.
 - `max_requests_per_connection` (Number) Defines the maximum requests for upstream connections. If not specified, there is no limit.see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptionsfor more information.
 - `per_connection_buffer_limit_bytes` (Number) Defines the soft limit on size of the cluster’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-per-connection-buffer-limit-bytesfor more information.
-- `upstream_tls` (Attributes) UpstreamTLS contains the TLS policy parameters for upstream connections (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts--upstream_tls))
+- `upstream_tls` (Attributes) UpstreamTLS contains the TLS policy parameters for upstream connections (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--cluster--upstream_tls))
 
-<a id="nestedatt--spec--runtime_settings--envoy--timeouts--circuit_breakers"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts.circuit_breakers`
+<a id="nestedatt--spec--runtime_settings--envoy--cluster--circuit_breakers"></a>
+### Nested Schema for `spec.runtime_settings.envoy.cluster.circuit_breakers`
 
 Optional:
 
@@ -1154,8 +1154,8 @@ Optional:
 - `max_retries` (Number) The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.
 
 
-<a id="nestedatt--spec--runtime_settings--envoy--timeouts--upstream_tls"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts.upstream_tls`
+<a id="nestedatt--spec--runtime_settings--envoy--cluster--upstream_tls"></a>
+### Nested Schema for `spec.runtime_settings.envoy.cluster.upstream_tls`
 
 Optional:
 
@@ -1208,12 +1208,12 @@ Optional:
 - `max_requests_per_io_cycle` (Number) Defines the limit on number of HTTP requests that Envoy will process from a singleconnection in a single I/O cycle. Requests over this limit are processed in subsequentI/O cycles. Can be used as a mitigation for CVE-2023-44487 when abusive traffic isdetected. Configures the http.max_requests_per_io_cycle Envoy runtime setting. The defaultvalue when this is not set is no limit.
 - `per_connection_buffer_limit_bytes` (Number) Defines the soft limit on size of the listener’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-per-connection-buffer-limit-bytesfor more information.
 - `server_header_transformation` (String) Defines the action to be applied to the Server header on the response path.When configured as overwrite, overwrites any Server header with 'envoy'.When configured as append_if_absent, if a Server header is present, pass it through, otherwise set it to 'envoy'.When configured as pass_through, pass through the value of the Server header, and do not append a header if none is present.Values: 'overwrite' (default), 'append_if_absent', 'pass_through'Other values will produce an error.Contour's default is overwrite.
-- `socket_options` (Attributes) SocketOptions defines configurable socket options for the listeners.Single set of options are applied to all listeners. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts--socket_options))
-- `tls` (Attributes) TLS holds various configurable Envoy TLS listener values. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts--tls))
+- `socket_options` (Attributes) SocketOptions defines configurable socket options for the listeners.Single set of options are applied to all listeners. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--listener--socket_options))
+- `tls` (Attributes) TLS holds various configurable Envoy TLS listener values. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--listener--tls))
 - `use_proxy_protocol` (Boolean) Use PROXY protocol for all listeners.Contour's default is false.
 
-<a id="nestedatt--spec--runtime_settings--envoy--timeouts--socket_options"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts.socket_options`
+<a id="nestedatt--spec--runtime_settings--envoy--listener--socket_options"></a>
+### Nested Schema for `spec.runtime_settings.envoy.listener.socket_options`
 
 Optional:
 
@@ -1221,8 +1221,8 @@ Optional:
 - `traffic_class` (Number) Defines the value for IPv6 Traffic Class field (including 6 bit DSCP field) for IP packets originating from the Envoy listeners.Single value is applied to all listeners.If listeners are bound to IPv4-only addresses, setting this option will cause an error.
 
 
-<a id="nestedatt--spec--runtime_settings--envoy--timeouts--tls"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts.tls`
+<a id="nestedatt--spec--runtime_settings--envoy--listener--tls"></a>
+### Nested Schema for `spec.runtime_settings.envoy.listener.tls`
 
 Optional:
 
@@ -1250,10 +1250,10 @@ Optional:
 
 - `address` (String) Defines the metrics address interface.
 - `port` (Number) Defines the metrics port.
-- `tls` (Attributes) TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts--tls))
+- `tls` (Attributes) TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--metrics--tls))
 
-<a id="nestedatt--spec--runtime_settings--envoy--timeouts--tls"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts.tls`
+<a id="nestedatt--spec--runtime_settings--envoy--metrics--tls"></a>
+### Nested Schema for `spec.runtime_settings.envoy.metrics.tls`
 
 Optional:
 
@@ -1468,28 +1468,28 @@ Required:
 
 Optional:
 
-- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors))
+- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors))
 - `disabled` (Boolean) Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors`
 
 Optional:
 
-- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries))
+- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries))
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors.entries`
 
 Optional:
 
-- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--generic_key))
+- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--generic_key))
 - `remote_address` (Map of String) RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).
-- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header))
-- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match))
+- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header))
+- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match))
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.generic_key`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--generic_key"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.generic_key`
 
 Optional:
 
@@ -1497,8 +1497,8 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header`
 
 Optional:
 
@@ -1506,17 +1506,17 @@ Optional:
 - `header_name` (String) HeaderName defines the name of the header to look for on the request.
 
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header_value_match`
 
 Optional:
 
 - `expect_match` (Boolean) ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.
-- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match--headers))
+- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match--headers))
 - `value` (String) Value defines the value of the descriptor entry.
 
-<a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match.headers`
+<a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match--headers"></a>
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header_value_match.headers`
 
 Required:
 

@@ -457,7 +457,7 @@ Required:
 Required:
 
 - `issuer_url` (String) IssuerURL defines the URL for issuer.
-- `secret` (Attributes) Secret defines the spec for the clientID, clientSecret and issuerCAPath for tenant's authentication. (see [below for nested schema](#nestedatt--spec--tenants--authentication--tenant_name--secret))
+- `secret` (Attributes) Secret defines the spec for the clientID, clientSecret and issuerCAPath for tenant's authentication. (see [below for nested schema](#nestedatt--spec--tenants--authentication--oidc--secret))
 
 Optional:
 
@@ -465,8 +465,8 @@ Optional:
 - `redirect_url` (String) RedirectURL defines the URL for redirect.
 - `username_claim` (String) User claim field from ID Token
 
-<a id="nestedatt--spec--tenants--authentication--tenant_name--secret"></a>
-### Nested Schema for `spec.tenants.authentication.tenant_name.secret`
+<a id="nestedatt--spec--tenants--authentication--oidc--secret"></a>
+### Nested Schema for `spec.tenants.authentication.oidc.secret`
 
 Required:
 
@@ -499,10 +499,10 @@ Required:
 
 - `name` (String)
 - `roles` (List of String)
-- `subjects` (Attributes List) (see [below for nested schema](#nestedatt--spec--tenants--authorization--roles--subjects))
+- `subjects` (Attributes List) (see [below for nested schema](#nestedatt--spec--tenants--authorization--role_bindings--subjects))
 
-<a id="nestedatt--spec--tenants--authorization--roles--subjects"></a>
-### Nested Schema for `spec.tenants.authorization.roles.subjects`
+<a id="nestedatt--spec--tenants--authorization--role_bindings--subjects"></a>
+### Nested Schema for `spec.tenants.authorization.role_bindings.subjects`
 
 Required:
 

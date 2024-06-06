@@ -127,11 +127,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--applied_to--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.applied_to.external_entity_selector.match_expressions`
 
 Required:
 
@@ -149,11 +149,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--applied_to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.applied_to.namespace_selector.match_expressions`
 
 Required:
 
@@ -171,11 +171,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--applied_to--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.applied_to.node_selector.match_expressions`
 
 Required:
 
@@ -193,11 +193,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--applied_to--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.applied_to.pod_selector.match_expressions`
 
 Required:
 
@@ -254,24 +254,24 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--external_entity_selector))
 - `group` (String) Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
-- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service))
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--namespace_selector))
+- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--pod_selector))
+- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--service))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.external_entity_selector.match_expressions`
 
 Required:
 
@@ -284,16 +284,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.namespace_selector.match_expressions`
 
 Required:
 
@@ -306,16 +306,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.node_selector.match_expressions`
 
 Required:
 
@@ -328,16 +328,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.pod_selector.match_expressions`
 
 Required:
 
@@ -350,8 +350,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--service"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.service`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--service"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.service`
 
 Optional:
 
@@ -359,8 +359,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--egress--applied_to--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.applied_to.service_account`
 
 Optional:
 
@@ -374,27 +374,27 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--external_entity_selector))
 - `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
 - `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--pod_selector))
 - `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.external_entity_selector.match_expressions`
 
 Required:
 
@@ -407,24 +407,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--ip_block"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.ip_block`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--ip_block"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.ip_block`
 
 Required:
 
 - `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.namespace_selector.match_expressions`
 
 Required:
 
@@ -437,8 +437,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespaces"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespaces`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--namespaces"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.namespaces`
 
 Optional:
 
@@ -446,16 +446,16 @@ Optional:
 - `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.node_selector.match_expressions`
 
 Required:
 
@@ -468,16 +468,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.pod_selector.match_expressions`
 
 Required:
 
@@ -490,8 +490,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--egress--from--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.from.service_account`
 
 Optional:
 
@@ -505,11 +505,11 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--http))
-- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--tls))
+- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--l7_protocols--http))
+- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--l7_protocols--tls))
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--http"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.http`
+<a id="nestedatt--spec--cluster_network_policy--egress--l7_protocols--http"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.l7_protocols.http`
 
 Optional:
 
@@ -518,8 +518,8 @@ Optional:
 - `path` (String) Path represents the URI path to match (Ex. '/index.html', '/admin').
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--tls"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.tls`
+<a id="nestedatt--spec--cluster_network_policy--egress--l7_protocols--tls"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.l7_protocols.tls`
 
 Optional:
 
@@ -544,11 +544,11 @@ Optional:
 
 Optional:
 
-- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--icmp))
-- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--igmp))
+- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--protocols--icmp))
+- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--protocols--igmp))
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--icmp"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.icmp`
+<a id="nestedatt--spec--cluster_network_policy--egress--protocols--icmp"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.protocols.icmp`
 
 Optional:
 
@@ -556,8 +556,8 @@ Optional:
 - `icmp_type` (Number)
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--igmp"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.igmp`
+<a id="nestedatt--spec--cluster_network_policy--egress--protocols--igmp"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.protocols.igmp`
 
 Optional:
 
@@ -571,27 +571,27 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--external_entity_selector))
 - `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
 - `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--pod_selector))
 - `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.external_entity_selector.match_expressions`
 
 Required:
 
@@ -604,24 +604,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--ip_block"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.ip_block`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--ip_block"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.ip_block`
 
 Required:
 
 - `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.namespace_selector.match_expressions`
 
 Required:
 
@@ -634,8 +634,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespaces"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespaces`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--namespaces"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.namespaces`
 
 Optional:
 
@@ -643,16 +643,16 @@ Optional:
 - `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.node_selector.match_expressions`
 
 Required:
 
@@ -665,16 +665,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.pod_selector.match_expressions`
 
 Required:
 
@@ -687,8 +687,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--egress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.egress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--egress--to--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.egress.to.service_account`
 
 Optional:
 
@@ -733,24 +733,24 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--external_entity_selector))
 - `group` (String) Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
-- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service))
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--namespace_selector))
+- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--pod_selector))
+- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--service))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.external_entity_selector.match_expressions`
 
 Required:
 
@@ -763,16 +763,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.namespace_selector.match_expressions`
 
 Required:
 
@@ -785,16 +785,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.node_selector.match_expressions`
 
 Required:
 
@@ -807,16 +807,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.pod_selector.match_expressions`
 
 Required:
 
@@ -829,8 +829,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--service"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.service`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--service"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.service`
 
 Optional:
 
@@ -838,8 +838,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--ingress--applied_to--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.applied_to.service_account`
 
 Optional:
 
@@ -853,27 +853,27 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--external_entity_selector))
 - `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
 - `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--pod_selector))
 - `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.external_entity_selector.match_expressions`
 
 Required:
 
@@ -886,24 +886,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.ip_block`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--ip_block"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.ip_block`
 
 Required:
 
 - `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.namespace_selector.match_expressions`
 
 Required:
 
@@ -916,8 +916,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespaces`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--namespaces"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.namespaces`
 
 Optional:
 
@@ -925,16 +925,16 @@ Optional:
 - `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.node_selector.match_expressions`
 
 Required:
 
@@ -947,16 +947,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.pod_selector.match_expressions`
 
 Required:
 
@@ -969,8 +969,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--ingress--from--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.from.service_account`
 
 Optional:
 
@@ -984,11 +984,11 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--http))
-- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--tls))
+- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--l7_protocols--http))
+- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--l7_protocols--tls))
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--http"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.http`
+<a id="nestedatt--spec--cluster_network_policy--ingress--l7_protocols--http"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.l7_protocols.http`
 
 Optional:
 
@@ -997,8 +997,8 @@ Optional:
 - `path` (String) Path represents the URI path to match (Ex. '/index.html', '/admin').
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--tls"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.tls`
+<a id="nestedatt--spec--cluster_network_policy--ingress--l7_protocols--tls"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.l7_protocols.tls`
 
 Optional:
 
@@ -1023,11 +1023,11 @@ Optional:
 
 Optional:
 
-- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--icmp))
-- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--igmp))
+- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--protocols--icmp))
+- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--protocols--igmp))
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--icmp"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.icmp`
+<a id="nestedatt--spec--cluster_network_policy--ingress--protocols--icmp"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.protocols.icmp`
 
 Optional:
 
@@ -1035,8 +1035,8 @@ Optional:
 - `icmp_type` (Number)
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--igmp"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.igmp`
+<a id="nestedatt--spec--cluster_network_policy--ingress--protocols--igmp"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.protocols.igmp`
 
 Optional:
 
@@ -1050,27 +1050,27 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--external_entity_selector))
 - `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
 - `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--pod_selector))
 - `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--service_account))
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--external_entity_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.external_entity_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--external_entity_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--external_entity_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.external_entity_selector.match_expressions`
 
 Required:
 
@@ -1083,24 +1083,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.ip_block`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--ip_block"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.ip_block`
 
 Required:
 
 - `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--namespace_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.namespace_selector.match_expressions`
 
 Required:
 
@@ -1113,8 +1113,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespaces`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--namespaces"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.namespaces`
 
 Optional:
 
@@ -1122,16 +1122,16 @@ Optional:
 - `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--node_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.node_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--node_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--node_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.node_selector.match_expressions`
 
 Required:
 
@@ -1144,16 +1144,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--pod_selector"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.pod_selector.match_expressions`
 
 Required:
 
@@ -1166,8 +1166,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cluster_network_policy--ingress--to_services--service_account"></a>
-### Nested Schema for `spec.cluster_network_policy.ingress.to_services.service_account`
+<a id="nestedatt--spec--cluster_network_policy--ingress--to--service_account"></a>
+### Nested Schema for `spec.cluster_network_policy.ingress.to.service_account`
 
 Optional:
 
@@ -1215,10 +1215,10 @@ Optional:
 
 - `hostname` (String) The Hostname of this endpoint
 - `node_name` (String) Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
-- `target_ref` (Attributes) Reference to object providing the endpoint. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--ports--target_ref))
+- `target_ref` (Attributes) Reference to object providing the endpoint. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--addresses--target_ref))
 
-<a id="nestedatt--spec--endpoints--subsets--ports--target_ref"></a>
-### Nested Schema for `spec.endpoints.subsets.ports.target_ref`
+<a id="nestedatt--spec--endpoints--subsets--addresses--target_ref"></a>
+### Nested Schema for `spec.endpoints.subsets.addresses.target_ref`
 
 Optional:
 
@@ -1243,10 +1243,10 @@ Optional:
 
 - `hostname` (String) The Hostname of this endpoint
 - `node_name` (String) Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
-- `target_ref` (Attributes) Reference to object providing the endpoint. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--ports--target_ref))
+- `target_ref` (Attributes) Reference to object providing the endpoint. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--not_ready_addresses--target_ref))
 
-<a id="nestedatt--spec--endpoints--subsets--ports--target_ref"></a>
-### Nested Schema for `spec.endpoints.subsets.ports.target_ref`
+<a id="nestedatt--spec--endpoints--subsets--not_ready_addresses--target_ref"></a>
+### Nested Schema for `spec.endpoints.subsets.not_ready_addresses.target_ref`
 
 Optional:
 
@@ -1382,10 +1382,10 @@ Optional:
 
 Optional:
 
-- `client_ip` (Attributes) clientIP contains the configurations of Client IP based session affinity. (see [below for nested schema](#nestedatt--spec--service--service_spec--type--client_ip))
+- `client_ip` (Attributes) clientIP contains the configurations of Client IP based session affinity. (see [below for nested schema](#nestedatt--spec--service--service_spec--session_affinity_config--client_ip))
 
-<a id="nestedatt--spec--service--service_spec--type--client_ip"></a>
-### Nested Schema for `spec.service.service_spec.type.client_ip`
+<a id="nestedatt--spec--service--service_spec--session_affinity_config--client_ip"></a>
+### Nested Schema for `spec.service.service_spec.session_affinity_config.client_ip`
 
 Optional:
 

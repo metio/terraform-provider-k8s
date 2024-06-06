@@ -214,11 +214,11 @@ Required:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resources--generate_from_endpoint_slices--target_port--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resources--generate_from_endpoint_slices--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--resources--generate_from_endpoint_slices--target_port--match_expressions"></a>
-### Nested Schema for `spec.resources.generate_from_endpoint_slices.target_port.match_expressions`
+<a id="nestedatt--spec--resources--generate_from_endpoint_slices--selector--match_expressions"></a>
+### Nested Schema for `spec.resources.generate_from_endpoint_slices.selector.match_expressions`
 
 Required:
 

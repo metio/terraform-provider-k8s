@@ -87,12 +87,12 @@ Optional:
 
 Optional:
 
-- `body` (Attributes) Body is a rule to patch message body of target. (see [below for nested schema](#nestedatt--spec--rules--actions--replace--body))
+- `body` (Attributes) Body is a rule to patch message body of target. (see [below for nested schema](#nestedatt--spec--rules--actions--patch--body))
 - `headers` (List of String) Headers is a rule to append http headers of target. For example: '[['Set-Cookie', '<one cookie>'], ['Set-Cookie', '<another cookie>']]'.
 - `queries` (List of String) Queries is a rule to append uri queries of target(Request only). For example: '[['foo', 'bar'], ['foo', 'unknown']]'.
 
-<a id="nestedatt--spec--rules--actions--replace--body"></a>
-### Nested Schema for `spec.rules.actions.replace.body`
+<a id="nestedatt--spec--rules--actions--patch--body"></a>
+### Nested Schema for `spec.rules.actions.patch.body`
 
 Required:
 

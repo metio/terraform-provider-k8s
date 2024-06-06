@@ -140,13 +140,13 @@ Optional:
 - `owner` (String) Owner.
 - `policies` (List of String) Policies.
 - `resources` (List of String) Resources.
-- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--client--authorization_settings--scopes--resources_data))
+- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--client--authorization_settings--policies--resources_data))
 - `scopes` (List of String) Scopes.
 - `scopes_data` (List of String) Scopes Data.
 - `type` (String) Type.
 
-<a id="nestedatt--spec--client--authorization_settings--scopes--resources_data"></a>
-### Nested Schema for `spec.client.authorization_settings.scopes.resources_data`
+<a id="nestedatt--spec--client--authorization_settings--policies--resources_data"></a>
+### Nested Schema for `spec.client.authorization_settings.policies.resources_data`
 
 Optional:
 

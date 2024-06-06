@@ -116,19 +116,19 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--apply--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--apply--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--wait--expect))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--apply--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--apply--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--apply--bindings"></a>
+### Nested Schema for `spec.steps.try.apply.bindings`
 
 Required:
 
@@ -136,8 +136,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--apply--clusters"></a>
+### Nested Schema for `spec.steps.try.apply.clusters`
 
 Required:
 
@@ -148,8 +148,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--expect"></a>
-### Nested Schema for `spec.steps.try.wait.expect`
+<a id="nestedatt--spec--steps--try--apply--expect"></a>
+### Nested Schema for `spec.steps.try.apply.expect`
 
 Required:
 
@@ -160,8 +160,8 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--apply--outputs"></a>
+### Nested Schema for `spec.steps.try.apply.outputs`
 
 Required:
 
@@ -179,16 +179,16 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--assert--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--assert--clusters))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--assert--bindings"></a>
+### Nested Schema for `spec.steps.try.assert.bindings`
 
 Required:
 
@@ -196,8 +196,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--assert--clusters"></a>
+### Nested Schema for `spec.steps.try.assert.clusters`
 
 Required:
 
@@ -219,17 +219,17 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--command--clusters))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--command--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--command--bindings"></a>
+### Nested Schema for `spec.steps.try.command.bindings`
 
 Required:
 
@@ -237,8 +237,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--command--clusters"></a>
+### Nested Schema for `spec.steps.try.command.clusters`
 
 Required:
 
@@ -249,8 +249,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--env"></a>
-### Nested Schema for `spec.steps.try.wait.env`
+<a id="nestedatt--spec--steps--try--command--env"></a>
+### Nested Schema for `spec.steps.try.command.env`
 
 Required:
 
@@ -258,8 +258,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--command--outputs"></a>
+### Nested Schema for `spec.steps.try.command.outputs`
 
 Required:
 
@@ -277,19 +277,19 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--create--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--create--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--wait--expect))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--create--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--create--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--create--bindings"></a>
+### Nested Schema for `spec.steps.try.create.bindings`
 
 Required:
 
@@ -297,8 +297,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--create--clusters"></a>
+### Nested Schema for `spec.steps.try.create.clusters`
 
 Required:
 
@@ -309,8 +309,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--expect"></a>
-### Nested Schema for `spec.steps.try.wait.expect`
+<a id="nestedatt--spec--steps--try--create--expect"></a>
+### Nested Schema for `spec.steps.try.create.expect`
 
 Required:
 
@@ -321,8 +321,8 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--create--outputs"></a>
+### Nested Schema for `spec.steps.try.create.outputs`
 
 Required:
 
@@ -340,19 +340,19 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--wait--ref))
+- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref))
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--wait--expect))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--delete--clusters))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--delete--expect))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--ref"></a>
-### Nested Schema for `spec.steps.try.wait.ref`
+<a id="nestedatt--spec--steps--try--delete--ref"></a>
+### Nested Schema for `spec.steps.try.delete.ref`
 
 Required:
 
@@ -366,8 +366,8 @@ Optional:
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--delete--bindings"></a>
+### Nested Schema for `spec.steps.try.delete.bindings`
 
 Required:
 
@@ -375,8 +375,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--delete--clusters"></a>
+### Nested Schema for `spec.steps.try.delete.clusters`
 
 Required:
 
@@ -387,8 +387,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--expect"></a>
-### Nested Schema for `spec.steps.try.wait.expect`
+<a id="nestedatt--spec--steps--try--delete--expect"></a>
+### Nested Schema for `spec.steps.try.delete.expect`
 
 Required:
 
@@ -405,16 +405,16 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--error--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--error--clusters))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--error--bindings"></a>
+### Nested Schema for `spec.steps.try.error.bindings`
 
 Required:
 
@@ -422,8 +422,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--error--clusters"></a>
+### Nested Schema for `spec.steps.try.error.clusters`
 
 Required:
 
@@ -440,19 +440,19 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--patch--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--patch--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--wait--expect))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--patch--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--patch--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--patch--bindings"></a>
+### Nested Schema for `spec.steps.try.patch.bindings`
 
 Required:
 
@@ -460,8 +460,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--patch--clusters"></a>
+### Nested Schema for `spec.steps.try.patch.clusters`
 
 Required:
 
@@ -472,8 +472,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--expect"></a>
-### Nested Schema for `spec.steps.try.wait.expect`
+<a id="nestedatt--spec--steps--try--patch--expect"></a>
+### Nested Schema for `spec.steps.try.patch.expect`
 
 Required:
 
@@ -484,8 +484,8 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--patch--outputs"></a>
+### Nested Schema for `spec.steps.try.patch.outputs`
 
 Required:
 
@@ -503,18 +503,18 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--script--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--script--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--script--bindings"></a>
+### Nested Schema for `spec.steps.try.script.bindings`
 
 Required:
 
@@ -522,8 +522,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--script--clusters"></a>
+### Nested Schema for `spec.steps.try.script.clusters`
 
 Required:
 
@@ -534,8 +534,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--env"></a>
-### Nested Schema for `spec.steps.try.wait.env`
+<a id="nestedatt--spec--steps--try--script--env"></a>
+### Nested Schema for `spec.steps.try.script.env`
 
 Required:
 
@@ -543,8 +543,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--script--outputs"></a>
+### Nested Schema for `spec.steps.try.script.outputs`
 
 Required:
 
@@ -570,19 +570,19 @@ Required:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--update--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--update--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--wait--expect))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--update--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--wait--outputs))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--update--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--wait--bindings"></a>
-### Nested Schema for `spec.steps.try.wait.bindings`
+<a id="nestedatt--spec--steps--try--update--bindings"></a>
+### Nested Schema for `spec.steps.try.update.bindings`
 
 Required:
 
@@ -590,8 +590,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
+<a id="nestedatt--spec--steps--try--update--clusters"></a>
+### Nested Schema for `spec.steps.try.update.clusters`
 
 Required:
 
@@ -602,8 +602,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--try--wait--expect"></a>
-### Nested Schema for `spec.steps.try.wait.expect`
+<a id="nestedatt--spec--steps--try--update--expect"></a>
+### Nested Schema for `spec.steps.try.update.expect`
 
 Required:
 
@@ -614,8 +614,8 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--wait--outputs"></a>
-### Nested Schema for `spec.steps.try.wait.outputs`
+<a id="nestedatt--spec--steps--try--update--outputs"></a>
+### Nested Schema for `spec.steps.try.update.outputs`
 
 Required:
 
@@ -728,17 +728,17 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--outputs))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--command--clusters))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--command--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--bindings"></a>
-### Nested Schema for `spec.steps.catch.wait.bindings`
+<a id="nestedatt--spec--steps--catch--command--bindings"></a>
+### Nested Schema for `spec.steps.catch.command.bindings`
 
 Required:
 
@@ -746,8 +746,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--command--clusters"></a>
+### Nested Schema for `spec.steps.catch.command.clusters`
 
 Required:
 
@@ -758,8 +758,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--catch--wait--env"></a>
-### Nested Schema for `spec.steps.catch.wait.env`
+<a id="nestedatt--spec--steps--catch--command--env"></a>
+### Nested Schema for `spec.steps.catch.command.env`
 
 Required:
 
@@ -767,8 +767,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--wait--outputs"></a>
-### Nested Schema for `spec.steps.catch.wait.outputs`
+<a id="nestedatt--spec--steps--catch--command--outputs"></a>
+### Nested Schema for `spec.steps.catch.command.outputs`
 
 Required:
 
@@ -786,19 +786,19 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--ref))
+- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref))
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--expect))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--clusters))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--expect))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--ref"></a>
-### Nested Schema for `spec.steps.catch.wait.ref`
+<a id="nestedatt--spec--steps--catch--delete--ref"></a>
+### Nested Schema for `spec.steps.catch.delete.ref`
 
 Required:
 
@@ -812,8 +812,8 @@ Optional:
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 
-<a id="nestedatt--spec--steps--catch--wait--bindings"></a>
-### Nested Schema for `spec.steps.catch.wait.bindings`
+<a id="nestedatt--spec--steps--catch--delete--bindings"></a>
+### Nested Schema for `spec.steps.catch.delete.bindings`
 
 Required:
 
@@ -821,8 +821,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--delete--clusters"></a>
+### Nested Schema for `spec.steps.catch.delete.clusters`
 
 Required:
 
@@ -833,8 +833,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--catch--wait--expect"></a>
-### Nested Schema for `spec.steps.catch.wait.expect`
+<a id="nestedatt--spec--steps--catch--delete--expect"></a>
+### Nested Schema for `spec.steps.catch.delete.expect`
 
 Required:
 
@@ -853,7 +853,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--describe--clusters))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -862,8 +862,8 @@ Optional:
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--describe--clusters"></a>
+### Nested Schema for `spec.steps.catch.describe.clusters`
 
 Required:
 
@@ -881,15 +881,15 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--events--clusters"></a>
+### Nested Schema for `spec.steps.catch.events.clusters`
 
 Required:
 
@@ -908,7 +908,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -917,8 +917,8 @@ Optional:
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--get--clusters"></a>
+### Nested Schema for `spec.steps.catch.get.clusters`
 
 Required:
 
@@ -936,7 +936,7 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -944,8 +944,8 @@ Optional:
 - `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--pod_logs--clusters"></a>
+### Nested Schema for `spec.steps.catch.pod_logs.clusters`
 
 Required:
 
@@ -962,18 +962,18 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--outputs))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--script--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--script--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--wait--bindings"></a>
-### Nested Schema for `spec.steps.catch.wait.bindings`
+<a id="nestedatt--spec--steps--catch--script--bindings"></a>
+### Nested Schema for `spec.steps.catch.script.bindings`
 
 Required:
 
@@ -981,8 +981,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+<a id="nestedatt--spec--steps--catch--script--clusters"></a>
+### Nested Schema for `spec.steps.catch.script.clusters`
 
 Required:
 
@@ -993,8 +993,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--catch--wait--env"></a>
-### Nested Schema for `spec.steps.catch.wait.env`
+<a id="nestedatt--spec--steps--catch--script--env"></a>
+### Nested Schema for `spec.steps.catch.script.env`
 
 Required:
 
@@ -1002,8 +1002,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--wait--outputs"></a>
-### Nested Schema for `spec.steps.catch.wait.outputs`
+<a id="nestedatt--spec--steps--catch--script--outputs"></a>
+### Nested Schema for `spec.steps.catch.script.outputs`
 
 Required:
 
@@ -1127,17 +1127,17 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--outputs))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--command--clusters))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--command--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--bindings"></a>
-### Nested Schema for `spec.steps.finally.wait.bindings`
+<a id="nestedatt--spec--steps--finally--command--bindings"></a>
+### Nested Schema for `spec.steps.finally.command.bindings`
 
 Required:
 
@@ -1145,8 +1145,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--command--clusters"></a>
+### Nested Schema for `spec.steps.finally.command.clusters`
 
 Required:
 
@@ -1157,8 +1157,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--finally--wait--env"></a>
-### Nested Schema for `spec.steps.finally.wait.env`
+<a id="nestedatt--spec--steps--finally--command--env"></a>
+### Nested Schema for `spec.steps.finally.command.env`
 
 Required:
 
@@ -1166,8 +1166,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--wait--outputs"></a>
-### Nested Schema for `spec.steps.finally.wait.outputs`
+<a id="nestedatt--spec--steps--finally--command--outputs"></a>
+### Nested Schema for `spec.steps.finally.command.outputs`
 
 Required:
 
@@ -1185,19 +1185,19 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--ref))
+- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref))
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
-- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--expect))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--clusters))
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--expect))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--ref"></a>
-### Nested Schema for `spec.steps.finally.wait.ref`
+<a id="nestedatt--spec--steps--finally--delete--ref"></a>
+### Nested Schema for `spec.steps.finally.delete.ref`
 
 Required:
 
@@ -1211,8 +1211,8 @@ Optional:
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 
-<a id="nestedatt--spec--steps--finally--wait--bindings"></a>
-### Nested Schema for `spec.steps.finally.wait.bindings`
+<a id="nestedatt--spec--steps--finally--delete--bindings"></a>
+### Nested Schema for `spec.steps.finally.delete.bindings`
 
 Required:
 
@@ -1220,8 +1220,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--delete--clusters"></a>
+### Nested Schema for `spec.steps.finally.delete.clusters`
 
 Required:
 
@@ -1232,8 +1232,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--finally--wait--expect"></a>
-### Nested Schema for `spec.steps.finally.wait.expect`
+<a id="nestedatt--spec--steps--finally--delete--expect"></a>
+### Nested Schema for `spec.steps.finally.delete.expect`
 
 Required:
 
@@ -1252,7 +1252,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--describe--clusters))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -1261,8 +1261,8 @@ Optional:
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--describe--clusters"></a>
+### Nested Schema for `spec.steps.finally.describe.clusters`
 
 Required:
 
@@ -1280,15 +1280,15 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--events--clusters"></a>
+### Nested Schema for `spec.steps.finally.events.clusters`
 
 Required:
 
@@ -1307,7 +1307,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -1316,8 +1316,8 @@ Optional:
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--get--clusters"></a>
+### Nested Schema for `spec.steps.finally.get.clusters`
 
 Required:
 
@@ -1335,7 +1335,7 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -1343,8 +1343,8 @@ Optional:
 - `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--pod_logs--clusters"></a>
+### Nested Schema for `spec.steps.finally.pod_logs.clusters`
 
 Required:
 
@@ -1361,18 +1361,18 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--bindings))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--outputs))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--script--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--script--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--wait--bindings"></a>
-### Nested Schema for `spec.steps.finally.wait.bindings`
+<a id="nestedatt--spec--steps--finally--script--bindings"></a>
+### Nested Schema for `spec.steps.finally.script.bindings`
 
 Required:
 
@@ -1380,8 +1380,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
+<a id="nestedatt--spec--steps--finally--script--clusters"></a>
+### Nested Schema for `spec.steps.finally.script.clusters`
 
 Required:
 
@@ -1392,8 +1392,8 @@ Optional:
 - `context` (String) Context is the name of the context to use.
 
 
-<a id="nestedatt--spec--steps--finally--wait--env"></a>
-### Nested Schema for `spec.steps.finally.wait.env`
+<a id="nestedatt--spec--steps--finally--script--env"></a>
+### Nested Schema for `spec.steps.finally.script.env`
 
 Required:
 
@@ -1401,8 +1401,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--wait--outputs"></a>
-### Nested Schema for `spec.steps.finally.wait.outputs`
+<a id="nestedatt--spec--steps--finally--script--outputs"></a>
+### Nested Schema for `spec.steps.finally.script.outputs`
 
 Required:
 
@@ -1858,12 +1858,12 @@ Optional:
 
 Optional:
 
-- `condition` (Attributes) Condition specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--timeout--condition))
+- `condition` (Attributes) Condition specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for--condition))
 - `deletion` (Map of String) Deletion specifies parameters for waiting on a resource's deletion.
-- `json_path` (Attributes) JsonPath specifies the json path condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--timeout--json_path))
+- `json_path` (Attributes) JsonPath specifies the json path condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for--json_path))
 
-<a id="nestedatt--spec--catch--wait--timeout--condition"></a>
-### Nested Schema for `spec.catch.wait.timeout.condition`
+<a id="nestedatt--spec--catch--wait--for--condition"></a>
+### Nested Schema for `spec.catch.wait.for.condition`
 
 Required:
 
@@ -1874,8 +1874,8 @@ Optional:
 - `value` (String) Value defines the specific condition status to wait for, e.g., 'True', 'False'.
 
 
-<a id="nestedatt--spec--catch--wait--timeout--json_path"></a>
-### Nested Schema for `spec.catch.wait.timeout.json_path`
+<a id="nestedatt--spec--catch--wait--for--json_path"></a>
+### Nested Schema for `spec.catch.wait.for.json_path`
 
 Required:
 

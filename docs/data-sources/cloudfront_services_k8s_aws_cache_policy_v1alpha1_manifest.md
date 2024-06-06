@@ -86,10 +86,10 @@ Optional:
 Optional:
 
 - `cookie_behavior` (String)
-- `cookies` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config--cookies))
+- `cookies` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config--cookies))
 
-<a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config--cookies"></a>
-### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.query_strings_config.cookies`
+<a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config--cookies"></a>
+### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.cookies_config.cookies`
 
 Optional:
 
@@ -103,10 +103,10 @@ Optional:
 Optional:
 
 - `header_behavior` (String)
-- `headers` (Attributes) Contains a list of HTTP header names. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config--headers))
+- `headers` (Attributes) Contains a list of HTTP header names. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--headers_config--headers))
 
-<a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config--headers"></a>
-### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.query_strings_config.headers`
+<a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--headers_config--headers"></a>
+### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.headers_config.headers`
 
 Optional:
 

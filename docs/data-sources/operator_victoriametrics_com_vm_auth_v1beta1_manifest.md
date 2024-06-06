@@ -208,11 +208,11 @@ Optional:
 
 Optional:
 
-- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--path--resource))
-- `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--path--service))
+- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--resource))
+- `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service))
 
-<a id="nestedatt--spec--ingress--extra_rules--http--paths--path--resource"></a>
-### Nested Schema for `spec.ingress.extra_rules.http.paths.path.resource`
+<a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--resource"></a>
+### Nested Schema for `spec.ingress.extra_rules.http.paths.backend.resource`
 
 Required:
 
@@ -224,8 +224,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--ingress--extra_rules--http--paths--path--service"></a>
-### Nested Schema for `spec.ingress.extra_rules.http.paths.path.service`
+<a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--service"></a>
+### Nested Schema for `spec.ingress.extra_rules.http.paths.backend.service`
 
 Required:
 
@@ -233,10 +233,10 @@ Required:
 
 Optional:
 
-- `port` (Attributes) port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--path--service--port))
+- `port` (Attributes) port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service--port))
 
-<a id="nestedatt--spec--ingress--extra_rules--http--paths--path--service--port"></a>
-### Nested Schema for `spec.ingress.extra_rules.http.paths.path.service.port`
+<a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--service--port"></a>
+### Nested Schema for `spec.ingress.extra_rules.http.paths.backend.service.port`
 
 Optional:
 

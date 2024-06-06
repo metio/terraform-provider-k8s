@@ -213,12 +213,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--probes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.probes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--probes--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.probes.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -286,12 +286,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--probes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.probes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--probes--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.probes.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -359,12 +359,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--probes--startup_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--probes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.probes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--probes--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.probes.startup_probe.http_get.http_headers`
 
 Required:
 

@@ -168,19 +168,19 @@ Optional:
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.preference`
+<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference"></a>
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.preferred_clusters.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference--match_fields))
 
-<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_expressions"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.preference.match_expressions`
+<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference--match_expressions"></a>
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.preferred_clusters.preference.match_expressions`
 
 Required:
 
@@ -192,8 +192,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_fields"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.preference.match_fields`
+<a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters--preference--match_fields"></a>
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.preferred_clusters.preference.match_fields`
 
 Required:
 

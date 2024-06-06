@@ -162,11 +162,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--cephfs--secret_ref))
 - `user` (String) user is Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--cephfs--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.cephfs.secret_ref`
 
 Optional:
 
@@ -186,10 +186,10 @@ Optional:
 
 - `fs_type` (String) fsType Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--cinder--secret_ref))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--cinder--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.cinder.secret_ref`
 
 Optional:
 
@@ -222,17 +222,17 @@ Required:
 
 Optional:
 
-- `controller_expand_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--controller_expand_secret_ref))
-- `controller_publish_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--controller_publish_secret_ref))
+- `controller_expand_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--csi--controller_expand_secret_ref))
+- `controller_publish_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--csi--controller_publish_secret_ref))
 - `fs_type` (String) fsType to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'.
-- `node_expand_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_expand_secret_ref))
-- `node_publish_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_publish_secret_ref))
-- `node_stage_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_stage_secret_ref))
+- `node_expand_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--csi--node_expand_secret_ref))
+- `node_publish_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--csi--node_publish_secret_ref))
+- `node_stage_secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--csi--node_stage_secret_ref))
 - `read_only` (Boolean) readOnly value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes of the volume to publish.
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--controller_expand_secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.controller_expand_secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--csi--controller_expand_secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.csi.controller_expand_secret_ref`
 
 Optional:
 
@@ -240,8 +240,8 @@ Optional:
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--controller_publish_secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.controller_publish_secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--csi--controller_publish_secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.csi.controller_publish_secret_ref`
 
 Optional:
 
@@ -249,8 +249,8 @@ Optional:
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_expand_secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.node_expand_secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--csi--node_expand_secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.csi.node_expand_secret_ref`
 
 Optional:
 
@@ -258,8 +258,8 @@ Optional:
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -267,8 +267,8 @@ Optional:
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--node_stage_secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.node_stage_secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--csi--node_stage_secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.csi.node_stage_secret_ref`
 
 Optional:
 
@@ -301,10 +301,10 @@ Optional:
 - `fs_type` (String) fsType is the Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.flex_volume.secret_ref`
 
 Optional:
 
@@ -380,10 +380,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--iscsi--secret_ref))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--iscsi--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.iscsi.secret_ref`
 
 Optional:
 
@@ -422,25 +422,25 @@ Optional:
 
 Optional:
 
-- `required` (Attributes) A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--required))
+- `required` (Attributes) A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--node_affinity--required))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--required"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required`
+<a id="nestedatt--spec--source--inline_volume_spec--node_affinity--required"></a>
+### Nested Schema for `spec.source.inline_volume_spec.node_affinity.required`
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms))
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required.node_selector_terms`
+<a id="nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms"></a>
+### Nested Schema for `spec.source.inline_volume_spec.node_affinity.required.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms--match_fields))
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required.node_selector_terms.match_expressions`
+<a id="nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.source.inline_volume_spec.node_affinity.required.node_selector_terms.match_expressions`
 
 Required:
 
@@ -452,8 +452,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required.node_selector_terms.match_fields`
+<a id="nestedatt--spec--source--inline_volume_spec--node_affinity--required--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.source.inline_volume_spec.node_affinity.required.node_selector_terms.match_fields`
 
 Required:
 
@@ -523,11 +523,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--rbd--secret_ref))
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--rbd--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.rbd.secret_ref`
 
 Optional:
 
@@ -542,7 +542,7 @@ Optional:
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -555,8 +555,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--scale_io--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.scale_io.secret_ref`
 
 Optional:
 
@@ -572,12 +572,12 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) ObjectReference contains enough information to let you inspect or modify the referred object. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) ObjectReference contains enough information to let you inspect or modify the referred object. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--source--inline_volume_spec--storageos--secret_ref"></a>
+### Nested Schema for `spec.source.inline_volume_spec.storageos.secret_ref`
 
 Optional:
 

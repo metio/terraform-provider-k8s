@@ -87,22 +87,22 @@ Optional:
 
 Required:
 
-- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--grpc_route--action--rewrite--virtual_service))
+- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--grpc_route--action--target--virtual_service))
 
 Optional:
 
 - `port` (Number) Specifies the port of the gateway route target
 
-<a id="nestedatt--spec--grpc_route--action--rewrite--virtual_service"></a>
-### Nested Schema for `spec.grpc_route.action.rewrite.virtual_service`
+<a id="nestedatt--spec--grpc_route--action--target--virtual_service"></a>
+### Nested Schema for `spec.grpc_route.action.target.virtual_service`
 
 Optional:
 
 - `virtual_service_arn` (String) Amazon Resource Name to AppMesh VirtualService object to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified.
-- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--grpc_route--action--rewrite--virtual_service--virtual_service_ref))
+- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--grpc_route--action--target--virtual_service--virtual_service_ref))
 
-<a id="nestedatt--spec--grpc_route--action--rewrite--virtual_service--virtual_service_ref"></a>
-### Nested Schema for `spec.grpc_route.action.rewrite.virtual_service.virtual_service_ref`
+<a id="nestedatt--spec--grpc_route--action--target--virtual_service--virtual_service_ref"></a>
+### Nested Schema for `spec.grpc_route.action.target.virtual_service.virtual_service_ref`
 
 Required:
 
@@ -161,21 +161,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--grpc_route--match--service_name--match))
+- `match` (Attributes) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--grpc_route--match--metadata--match))
 
-<a id="nestedatt--spec--grpc_route--match--service_name--match"></a>
-### Nested Schema for `spec.grpc_route.match.service_name.match`
+<a id="nestedatt--spec--grpc_route--match--metadata--match"></a>
+### Nested Schema for `spec.grpc_route.match.metadata.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on (see [below for nested schema](#nestedatt--spec--grpc_route--match--service_name--match--range))
+- `range` (Attributes) An object that represents the range of values to match on (see [below for nested schema](#nestedatt--spec--grpc_route--match--metadata--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--grpc_route--match--service_name--match--range"></a>
-### Nested Schema for `spec.grpc_route.match.service_name.match.range`
+<a id="nestedatt--spec--grpc_route--match--metadata--match--range"></a>
+### Nested Schema for `spec.grpc_route.match.metadata.match.range`
 
 Required:
 
@@ -211,22 +211,22 @@ Optional:
 
 Required:
 
-- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--http2_route--action--rewrite--virtual_service))
+- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--http2_route--action--target--virtual_service))
 
 Optional:
 
 - `port` (Number) Specifies the port of the gateway route target
 
-<a id="nestedatt--spec--http2_route--action--rewrite--virtual_service"></a>
-### Nested Schema for `spec.http2_route.action.rewrite.virtual_service`
+<a id="nestedatt--spec--http2_route--action--target--virtual_service"></a>
+### Nested Schema for `spec.http2_route.action.target.virtual_service`
 
 Optional:
 
 - `virtual_service_arn` (String) Amazon Resource Name to AppMesh VirtualService object to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified.
-- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--http2_route--action--rewrite--virtual_service--virtual_service_ref))
+- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--http2_route--action--target--virtual_service--virtual_service_ref))
 
-<a id="nestedatt--spec--http2_route--action--rewrite--virtual_service--virtual_service_ref"></a>
-### Nested Schema for `spec.http2_route.action.rewrite.virtual_service.virtual_service_ref`
+<a id="nestedatt--spec--http2_route--action--target--virtual_service--virtual_service_ref"></a>
+### Nested Schema for `spec.http2_route.action.target.virtual_service.virtual_service_ref`
 
 Required:
 
@@ -298,21 +298,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--http2_route--match--query_parameters--match))
+- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--http2_route--match--headers--match))
 
-<a id="nestedatt--spec--http2_route--match--query_parameters--match"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters.match`
+<a id="nestedatt--spec--http2_route--match--headers--match"></a>
+### Nested Schema for `spec.http2_route.match.headers.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--http2_route--match--query_parameters--match--range))
+- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--http2_route--match--headers--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--http2_route--match--query_parameters--match--range"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters.match.range`
+<a id="nestedatt--spec--http2_route--match--headers--match--range"></a>
+### Nested Schema for `spec.http2_route.match.headers.match.range`
 
 Required:
 
@@ -386,22 +386,22 @@ Optional:
 
 Required:
 
-- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--http_route--action--rewrite--virtual_service))
+- `virtual_service` (Attributes) The virtual service to associate with the gateway route target. (see [below for nested schema](#nestedatt--spec--http_route--action--target--virtual_service))
 
 Optional:
 
 - `port` (Number) Specifies the port of the gateway route target
 
-<a id="nestedatt--spec--http_route--action--rewrite--virtual_service"></a>
-### Nested Schema for `spec.http_route.action.rewrite.virtual_service`
+<a id="nestedatt--spec--http_route--action--target--virtual_service"></a>
+### Nested Schema for `spec.http_route.action.target.virtual_service`
 
 Optional:
 
 - `virtual_service_arn` (String) Amazon Resource Name to AppMesh VirtualService object to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified.
-- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--http_route--action--rewrite--virtual_service--virtual_service_ref))
+- `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster to associate with the gateway route virtual service target. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--http_route--action--target--virtual_service--virtual_service_ref))
 
-<a id="nestedatt--spec--http_route--action--rewrite--virtual_service--virtual_service_ref"></a>
-### Nested Schema for `spec.http_route.action.rewrite.virtual_service.virtual_service_ref`
+<a id="nestedatt--spec--http_route--action--target--virtual_service--virtual_service_ref"></a>
+### Nested Schema for `spec.http_route.action.target.virtual_service.virtual_service_ref`
 
 Required:
 
@@ -473,21 +473,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--http_route--match--query_parameters--match))
+- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--http_route--match--headers--match))
 
-<a id="nestedatt--spec--http_route--match--query_parameters--match"></a>
-### Nested Schema for `spec.http_route.match.query_parameters.match`
+<a id="nestedatt--spec--http_route--match--headers--match"></a>
+### Nested Schema for `spec.http_route.match.headers.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--http_route--match--query_parameters--match--range))
+- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--http_route--match--headers--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--http_route--match--query_parameters--match--range"></a>
-### Nested Schema for `spec.http_route.match.query_parameters.match.range`
+<a id="nestedatt--spec--http_route--match--headers--match--range"></a>
+### Nested Schema for `spec.http_route.match.headers.match.range`
 
 Required:
 

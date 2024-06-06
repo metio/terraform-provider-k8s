@@ -93,10 +93,10 @@ Required:
 Optional:
 
 - `metadata` (Map of String) Service metadata allows to set labels, annotations and namespace for the service. When infraClusterSecretRef is used, ControlPlaneService take the kubeconfig namespace by default if metadata.namespace is not specified. This field is optional.
-- `spec` (Attributes) Service specification allows to override some fields in the service spec. Note, it does not aim cover all fields of the service spec. (see [below for nested schema](#nestedatt--spec--template--spec--ssh_keys--spec))
+- `spec` (Attributes) Service specification allows to override some fields in the service spec. Note, it does not aim cover all fields of the service spec. (see [below for nested schema](#nestedatt--spec--template--spec--control_plane_service_template--spec))
 
-<a id="nestedatt--spec--template--spec--ssh_keys--spec"></a>
-### Nested Schema for `spec.template.spec.ssh_keys.spec`
+<a id="nestedatt--spec--template--spec--control_plane_service_template--spec"></a>
+### Nested Schema for `spec.template.spec.control_plane_service_template.spec`
 
 Optional:
 

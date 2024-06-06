@@ -92,19 +92,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--vault))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.secret_key_ref`
 
 Required:
 
@@ -112,8 +112,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.ssm`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm`
 
 Required:
 
@@ -121,13 +121,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.access_key_id`
 
 Required:
 
@@ -135,17 +135,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -155,8 +155,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -164,17 +164,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -185,8 +185,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault`
+<a id="nestedatt--spec--connection--cassandra--keyspace--value_from--vault"></a>
+### Nested Schema for `spec.connection.cassandra.keyspace.value_from.vault`
 
 Required:
 
@@ -211,19 +211,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from`
+<a id="nestedatt--spec--connection--cassandra--password--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.secret_key_ref`
 
 Required:
 
@@ -231,8 +231,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.ssm`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm`
 
 Required:
 
@@ -240,13 +240,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -254,17 +254,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -274,8 +274,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -283,17 +283,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -304,8 +304,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault`
+<a id="nestedatt--spec--connection--cassandra--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.cassandra.password.value_from.vault`
 
 Required:
 
@@ -359,13 +359,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.access_key_id`
 
 Required:
 
@@ -373,17 +373,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -393,8 +393,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -402,17 +402,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cassandra--username--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cassandra.username.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cassandra--username--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cassandra.username.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -464,19 +464,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.secret_key_ref`
 
 Required:
 
@@ -484,8 +484,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm`
 
 Required:
 
@@ -493,13 +493,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.access_key_id`
 
 Required:
 
@@ -507,17 +507,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -527,8 +527,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -536,17 +536,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -557,8 +557,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--dbname--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.dbname.value_from.vault`
 
 Required:
 
@@ -583,19 +583,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.secret_key_ref`
 
 Required:
 
@@ -603,8 +603,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm`
 
 Required:
 
@@ -612,13 +612,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.access_key_id`
 
 Required:
 
@@ -626,17 +626,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -646,8 +646,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -655,17 +655,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -676,8 +676,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--host--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.host.value_from.vault`
 
 Required:
 
@@ -702,19 +702,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.secret_key_ref`
 
 Required:
 
@@ -722,8 +722,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm`
 
 Required:
 
@@ -731,13 +731,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -745,17 +745,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -765,8 +765,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -774,17 +774,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -795,8 +795,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.password.value_from.vault`
 
 Required:
 
@@ -821,19 +821,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.secret_key_ref`
 
 Required:
 
@@ -841,8 +841,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm`
 
 Required:
 
@@ -850,13 +850,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.access_key_id`
 
 Required:
 
@@ -864,17 +864,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -884,8 +884,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -893,17 +893,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -914,8 +914,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--port--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.port.value_from.vault`
 
 Required:
 
@@ -940,19 +940,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.secret_key_ref`
 
 Required:
 
@@ -960,8 +960,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm`
 
 Required:
 
@@ -969,13 +969,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.access_key_id`
 
 Required:
 
@@ -983,17 +983,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1003,8 +1003,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1012,17 +1012,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1033,8 +1033,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--schema--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.schema.value_from.vault`
 
 Required:
 
@@ -1059,19 +1059,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.secret_key_ref`
 
 Required:
 
@@ -1079,8 +1079,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm`
 
 Required:
 
@@ -1088,13 +1088,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1102,17 +1102,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1122,8 +1122,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1131,17 +1131,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1152,8 +1152,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--sslmode--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.sslmode.value_from.vault`
 
 Required:
 
@@ -1178,19 +1178,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--vault))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.secret_key_ref`
 
 Required:
 
@@ -1198,8 +1198,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm`
 
 Required:
 
@@ -1207,13 +1207,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1221,17 +1221,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1241,8 +1241,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1250,17 +1250,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1271,8 +1271,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault`
+<a id="nestedatt--spec--connection--cockroachdb--uri--value_from--vault"></a>
+### Nested Schema for `spec.connection.cockroachdb.uri.value_from.vault`
 
 Required:
 
@@ -1326,13 +1326,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1340,17 +1340,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1360,8 +1360,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1369,17 +1369,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--cockroachdb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.cockroachdb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--cockroachdb--user--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.cockroachdb.user.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1432,19 +1432,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--vault))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.secret_key_ref`
 
 Required:
 
@@ -1452,8 +1452,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.ssm`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm`
 
 Required:
 
@@ -1461,13 +1461,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1475,17 +1475,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1495,8 +1495,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1504,17 +1504,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1525,8 +1525,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault`
+<a id="nestedatt--spec--connection--mysql--dbname--value_from--vault"></a>
+### Nested Schema for `spec.connection.mysql.dbname.value_from.vault`
 
 Required:
 
@@ -1551,19 +1551,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from`
+<a id="nestedatt--spec--connection--mysql--host--value_from"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--vault))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--host--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.secret_key_ref`
 
 Required:
 
@@ -1571,8 +1571,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.ssm`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm`
 
 Required:
 
@@ -1580,13 +1580,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1594,17 +1594,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1614,8 +1614,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1623,17 +1623,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--host--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1644,8 +1644,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault`
+<a id="nestedatt--spec--connection--mysql--host--value_from--vault"></a>
+### Nested Schema for `spec.connection.mysql.host.value_from.vault`
 
 Required:
 
@@ -1670,19 +1670,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from`
+<a id="nestedatt--spec--connection--mysql--password--value_from"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.secret_key_ref`
 
 Required:
 
@@ -1690,8 +1690,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.ssm`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm`
 
 Required:
 
@@ -1699,13 +1699,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1713,17 +1713,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1733,8 +1733,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1742,17 +1742,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1763,8 +1763,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault`
+<a id="nestedatt--spec--connection--mysql--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.mysql.password.value_from.vault`
 
 Required:
 
@@ -1789,19 +1789,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from`
+<a id="nestedatt--spec--connection--mysql--port--value_from"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--vault))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--port--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.secret_key_ref`
 
 Required:
 
@@ -1809,8 +1809,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.ssm`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm`
 
 Required:
 
@@ -1818,13 +1818,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1832,17 +1832,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1852,8 +1852,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1861,17 +1861,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--port--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -1882,8 +1882,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault`
+<a id="nestedatt--spec--connection--mysql--port--value_from--vault"></a>
+### Nested Schema for `spec.connection.mysql.port.value_from.vault`
 
 Required:
 
@@ -1908,19 +1908,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from`
+<a id="nestedatt--spec--connection--mysql--uri--value_from"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--vault))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.secret_key_ref`
 
 Required:
 
@@ -1928,8 +1928,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.ssm`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm`
 
 Required:
 
@@ -1937,13 +1937,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.access_key_id`
 
 Required:
 
@@ -1951,17 +1951,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1971,8 +1971,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -1980,17 +1980,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2001,8 +2001,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault`
+<a id="nestedatt--spec--connection--mysql--uri--value_from--vault"></a>
+### Nested Schema for `spec.connection.mysql.uri.value_from.vault`
 
 Required:
 
@@ -2056,13 +2056,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2070,17 +2070,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2090,8 +2090,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2099,17 +2099,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--mysql--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.mysql.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--mysql--user--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.mysql.user.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2161,19 +2161,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.secret_key_ref`
 
 Required:
 
@@ -2181,8 +2181,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm`
 
 Required:
 
@@ -2190,13 +2190,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2204,17 +2204,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2224,8 +2224,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2233,17 +2233,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2254,8 +2254,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--dbname--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.dbname.value_from.vault`
 
 Required:
 
@@ -2280,19 +2280,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--host--value_from"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--host--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.secret_key_ref`
 
 Required:
 
@@ -2300,8 +2300,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm`
 
 Required:
 
@@ -2309,13 +2309,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2323,17 +2323,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2343,8 +2343,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2352,17 +2352,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--host--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2373,8 +2373,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--host--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.host.value_from.vault`
 
 Required:
 
@@ -2399,19 +2399,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--password--value_from"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.secret_key_ref`
 
 Required:
 
@@ -2419,8 +2419,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm`
 
 Required:
 
@@ -2428,13 +2428,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2442,17 +2442,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2462,8 +2462,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2471,17 +2471,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2492,8 +2492,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.password.value_from.vault`
 
 Required:
 
@@ -2518,19 +2518,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--port--value_from"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--port--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.secret_key_ref`
 
 Required:
 
@@ -2538,8 +2538,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm`
 
 Required:
 
@@ -2547,13 +2547,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2561,17 +2561,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2581,8 +2581,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2590,17 +2590,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--port--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2611,8 +2611,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--port--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.port.value_from.vault`
 
 Required:
 
@@ -2637,19 +2637,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--schema--value_from"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.secret_key_ref`
 
 Required:
 
@@ -2657,8 +2657,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm`
 
 Required:
 
@@ -2666,13 +2666,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2680,17 +2680,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2700,8 +2700,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2709,17 +2709,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2730,8 +2730,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--schema--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.schema.value_from.vault`
 
 Required:
 
@@ -2756,19 +2756,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.secret_key_ref`
 
 Required:
 
@@ -2776,8 +2776,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm`
 
 Required:
 
@@ -2785,13 +2785,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2799,17 +2799,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2819,8 +2819,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2828,17 +2828,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2849,8 +2849,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--sslmode--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.sslmode.value_from.vault`
 
 Required:
 
@@ -2875,19 +2875,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from`
+<a id="nestedatt--spec--connection--postgres--uri--value_from"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--vault))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.secret_key_ref`
 
 Required:
 
@@ -2895,8 +2895,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.ssm`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm`
 
 Required:
 
@@ -2904,13 +2904,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.access_key_id`
 
 Required:
 
@@ -2918,17 +2918,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -2938,8 +2938,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -2947,17 +2947,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2968,8 +2968,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault`
+<a id="nestedatt--spec--connection--postgres--uri--value_from--vault"></a>
+### Nested Schema for `spec.connection.postgres.uri.value_from.vault`
 
 Required:
 
@@ -3023,13 +3023,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3037,17 +3037,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3057,8 +3057,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3066,17 +3066,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--postgres--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.postgres.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--postgres--user--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.postgres.user.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3126,19 +3126,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from`
+<a id="nestedatt--spec--connection--rqlite--host--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--vault))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.secret_key_ref`
 
 Required:
 
@@ -3146,8 +3146,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.ssm`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm`
 
 Required:
 
@@ -3155,13 +3155,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3169,17 +3169,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3189,8 +3189,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3198,17 +3198,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3219,8 +3219,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault`
+<a id="nestedatt--spec--connection--rqlite--host--value_from--vault"></a>
+### Nested Schema for `spec.connection.rqlite.host.value_from.vault`
 
 Required:
 
@@ -3245,19 +3245,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from`
+<a id="nestedatt--spec--connection--rqlite--password--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.secret_key_ref`
 
 Required:
 
@@ -3265,8 +3265,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.ssm`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm`
 
 Required:
 
@@ -3274,13 +3274,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3288,17 +3288,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3308,8 +3308,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3317,17 +3317,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3338,8 +3338,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault`
+<a id="nestedatt--spec--connection--rqlite--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.rqlite.password.value_from.vault`
 
 Required:
 
@@ -3364,19 +3364,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from`
+<a id="nestedatt--spec--connection--rqlite--port--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--vault))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.secret_key_ref`
 
 Required:
 
@@ -3384,8 +3384,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.ssm`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm`
 
 Required:
 
@@ -3393,13 +3393,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3407,17 +3407,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3427,8 +3427,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3436,17 +3436,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3457,8 +3457,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault`
+<a id="nestedatt--spec--connection--rqlite--port--value_from--vault"></a>
+### Nested Schema for `spec.connection.rqlite.port.value_from.vault`
 
 Required:
 
@@ -3483,19 +3483,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--vault))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.secret_key_ref`
 
 Required:
 
@@ -3503,8 +3503,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.ssm`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm`
 
 Required:
 
@@ -3512,13 +3512,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3526,17 +3526,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3546,8 +3546,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3555,17 +3555,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3576,8 +3576,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault`
+<a id="nestedatt--spec--connection--rqlite--uri--value_from--vault"></a>
+### Nested Schema for `spec.connection.rqlite.uri.value_from.vault`
 
 Required:
 
@@ -3631,13 +3631,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3645,17 +3645,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3665,8 +3665,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3674,17 +3674,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--rqlite--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.rqlite.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--rqlite--user--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.rqlite.user.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3744,19 +3744,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.secret_key_ref`
 
 Required:
 
@@ -3764,8 +3764,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm`
 
 Required:
 
@@ -3773,13 +3773,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3787,17 +3787,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3807,8 +3807,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3816,17 +3816,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3837,8 +3837,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--dbname--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.dbname.value_from.vault`
 
 Required:
 
@@ -3863,19 +3863,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.secret_key_ref`
 
 Required:
 
@@ -3883,8 +3883,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm`
 
 Required:
 
@@ -3892,13 +3892,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.access_key_id`
 
 Required:
 
@@ -3906,17 +3906,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3926,8 +3926,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -3935,17 +3935,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3956,8 +3956,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--host--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.host.value_from.vault`
 
 Required:
 
@@ -3982,19 +3982,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.secret_key_ref`
 
 Required:
 
@@ -4002,8 +4002,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm`
 
 Required:
 
@@ -4011,13 +4011,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4025,17 +4025,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4045,8 +4045,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4054,17 +4054,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -4075,8 +4075,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--password--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.password.value_from.vault`
 
 Required:
 
@@ -4101,19 +4101,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.secret_key_ref`
 
 Required:
 
@@ -4121,8 +4121,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm`
 
 Required:
 
@@ -4130,13 +4130,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4144,17 +4144,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4164,8 +4164,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4173,17 +4173,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -4194,8 +4194,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--port--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.port.value_from.vault`
 
 Required:
 
@@ -4220,19 +4220,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.secret_key_ref`
 
 Required:
 
@@ -4240,8 +4240,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm`
 
 Required:
 
@@ -4249,13 +4249,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4263,17 +4263,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4283,8 +4283,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4292,17 +4292,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -4313,8 +4313,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--schema--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.schema.value_from.vault`
 
 Required:
 
@@ -4339,19 +4339,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.secret_key_ref`
 
 Required:
 
@@ -4359,8 +4359,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm`
 
 Required:
 
@@ -4368,13 +4368,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4382,17 +4382,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4402,8 +4402,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4411,17 +4411,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -4432,8 +4432,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--sslmode--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.sslmode.value_from.vault`
 
 Required:
 
@@ -4458,19 +4458,19 @@ Optional:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref))
-- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm))
-- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--secret_key_ref))
+- `ssm` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm))
+- `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--vault))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.secret_key_ref`
 
 Required:
 
@@ -4478,8 +4478,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm`
 
 Required:
 
@@ -4487,13 +4487,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4501,17 +4501,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4521,8 +4521,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4530,17 +4530,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -4551,8 +4551,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault`
+<a id="nestedatt--spec--connection--timescaledb--uri--value_from--vault"></a>
+### Nested Schema for `spec.connection.timescaledb.uri.value_from.vault`
 
 Required:
 
@@ -4606,13 +4606,13 @@ Required:
 
 Optional:
 
-- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id))
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id))
 - `region` (String)
-- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key))
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key))
 - `with_decryption` (Boolean)
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--access_key_id"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.access_key_id`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.access_key_id`
 
 Required:
 
@@ -4620,17 +4620,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4640,8 +4640,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--secret_access_key"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.secret_access_key`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.secret_access_key`
 
 Required:
 
@@ -4649,17 +4649,17 @@ Required:
 
 Optional:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key--value_from))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key--value_from"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--connection--timescaledb--user--value_from--vault--with_decryption--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.connection.timescaledb.user.value_from.vault.with_decryption.value_from.secret_key_ref`
+<a id="nestedatt--spec--connection--timescaledb--user--value_from--ssm--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.connection.timescaledb.user.value_from.ssm.secret_access_key.value_from.secret_key_ref`
 
 Required:
 

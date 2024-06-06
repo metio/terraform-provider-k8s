@@ -359,12 +359,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--compactor--tolerations--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--compactor--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--compactor--tolerations--claims"></a>
-### Nested Schema for `spec.template.compactor.tolerations.claims`
+<a id="nestedatt--spec--template--compactor--resources--claims"></a>
+### Nested Schema for `spec.template.compactor.resources.claims`
 
 Required:
 
@@ -400,20 +400,20 @@ Optional:
 
 - `node_selector` (Map of String) NodeSelector defines the simple form of the node-selection constraint.
 - `replicas` (Number) Replicas defines the number of replicas to be created for this component.
-- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--distributor--tls--resources))
-- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--distributor--tls--tolerations))
+- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--distributor--component--resources))
+- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--distributor--component--tolerations))
 
-<a id="nestedatt--spec--template--distributor--tls--resources"></a>
-### Nested Schema for `spec.template.distributor.tls.resources`
+<a id="nestedatt--spec--template--distributor--component--resources"></a>
+### Nested Schema for `spec.template.distributor.component.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--distributor--tls--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--distributor--component--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--distributor--tls--resources--claims"></a>
-### Nested Schema for `spec.template.distributor.tls.resources.claims`
+<a id="nestedatt--spec--template--distributor--component--resources--claims"></a>
+### Nested Schema for `spec.template.distributor.component.resources.claims`
 
 Required:
 
@@ -421,8 +421,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--distributor--tls--tolerations"></a>
-### Nested Schema for `spec.template.distributor.tls.tolerations`
+<a id="nestedatt--spec--template--distributor--component--tolerations"></a>
+### Nested Schema for `spec.template.distributor.component.tolerations`
 
 Optional:
 
@@ -465,20 +465,20 @@ Optional:
 
 - `node_selector` (Map of String) NodeSelector defines the simple form of the node-selection constraint.
 - `replicas` (Number) Replicas defines the number of replicas to be created for this component.
-- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--gateway--ingress--resources))
-- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--gateway--ingress--tolerations))
+- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--gateway--component--resources))
+- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--gateway--component--tolerations))
 
-<a id="nestedatt--spec--template--gateway--ingress--resources"></a>
-### Nested Schema for `spec.template.gateway.ingress.resources`
+<a id="nestedatt--spec--template--gateway--component--resources"></a>
+### Nested Schema for `spec.template.gateway.component.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--gateway--ingress--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--gateway--component--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--gateway--ingress--resources--claims"></a>
-### Nested Schema for `spec.template.gateway.ingress.resources.claims`
+<a id="nestedatt--spec--template--gateway--component--resources--claims"></a>
+### Nested Schema for `spec.template.gateway.component.resources.claims`
 
 Required:
 
@@ -486,8 +486,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--gateway--ingress--tolerations"></a>
-### Nested Schema for `spec.template.gateway.ingress.tolerations`
+<a id="nestedatt--spec--template--gateway--component--tolerations"></a>
+### Nested Schema for `spec.template.gateway.component.tolerations`
 
 Optional:
 
@@ -535,12 +535,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--ingester--tolerations--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--ingester--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--ingester--tolerations--claims"></a>
-### Nested Schema for `spec.template.ingester.tolerations.claims`
+<a id="nestedatt--spec--template--ingester--resources--claims"></a>
+### Nested Schema for `spec.template.ingester.resources.claims`
 
 Required:
 
@@ -576,12 +576,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--querier--tolerations--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--querier--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--querier--tolerations--claims"></a>
-### Nested Schema for `spec.template.querier.tolerations.claims`
+<a id="nestedatt--spec--template--querier--resources--claims"></a>
+### Nested Schema for `spec.template.querier.resources.claims`
 
 Required:
 
@@ -617,20 +617,20 @@ Optional:
 
 - `node_selector` (Map of String) NodeSelector defines the simple form of the node-selection constraint.
 - `replicas` (Number) Replicas defines the number of replicas to be created for this component.
-- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources))
-- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--tolerations))
+- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--component--resources))
+- `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--query_frontend--component--tolerations))
 
-<a id="nestedatt--spec--template--query_frontend--jaeger_query--resources"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.resources`
+<a id="nestedatt--spec--template--query_frontend--component--resources"></a>
+### Nested Schema for `spec.template.query_frontend.component.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--component--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--query_frontend--jaeger_query--resources--claims"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.claims`
+<a id="nestedatt--spec--template--query_frontend--component--resources--claims"></a>
+### Nested Schema for `spec.template.query_frontend.component.resources.claims`
 
 Required:
 
@@ -638,8 +638,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--query_frontend--jaeger_query--tolerations"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.tolerations`
+<a id="nestedatt--spec--template--query_frontend--component--tolerations"></a>
+### Nested Schema for `spec.template.query_frontend.component.tolerations`
 
 Optional:
 
@@ -677,12 +677,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--sar--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--sar--claims"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.sar.claims`
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources--claims"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.resources.claims`
 
 Required:
 
@@ -801,10 +801,10 @@ Required:
 
 - `name` (String)
 - `roles` (List of String)
-- `subjects` (Attributes List) (see [below for nested schema](#nestedatt--spec--tenants--authorization--roles--subjects))
+- `subjects` (Attributes List) (see [below for nested schema](#nestedatt--spec--tenants--authorization--role_bindings--subjects))
 
-<a id="nestedatt--spec--tenants--authorization--roles--subjects"></a>
-### Nested Schema for `spec.tenants.authorization.roles.subjects`
+<a id="nestedatt--spec--tenants--authorization--role_bindings--subjects"></a>
+### Nested Schema for `spec.tenants.authorization.role_bindings.subjects`
 
 Required:
 

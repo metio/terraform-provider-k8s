@@ -126,19 +126,19 @@ Optional:
 
 Optional:
 
-- `headers` (Attributes) The Headers to be added to the HTTP response on a rate limit event (see [below for nested schema](#nestedatt--spec--from--default--local--http--request_rate--headers))
+- `headers` (Attributes) The Headers to be added to the HTTP response on a rate limit event (see [below for nested schema](#nestedatt--spec--from--default--local--http--on_rate_limit--headers))
 - `status` (Number) The HTTP status code to be set on a rate limit event
 
-<a id="nestedatt--spec--from--default--local--http--request_rate--headers"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate.headers`
+<a id="nestedatt--spec--from--default--local--http--on_rate_limit--headers"></a>
+### Nested Schema for `spec.from.default.local.http.on_rate_limit.headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--from--default--local--http--request_rate--status--add))
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--from--default--local--http--request_rate--status--set))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--from--default--local--http--on_rate_limit--headers--add))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--from--default--local--http--on_rate_limit--headers--set))
 
-<a id="nestedatt--spec--from--default--local--http--request_rate--status--add"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate.status.add`
+<a id="nestedatt--spec--from--default--local--http--on_rate_limit--headers--add"></a>
+### Nested Schema for `spec.from.default.local.http.on_rate_limit.headers.add`
 
 Required:
 
@@ -146,8 +146,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--from--default--local--http--request_rate--status--set"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate.status.set`
+<a id="nestedatt--spec--from--default--local--http--on_rate_limit--headers--set"></a>
+### Nested Schema for `spec.from.default.local.http.on_rate_limit.headers.set`
 
 Required:
 
@@ -240,19 +240,19 @@ Optional:
 
 Optional:
 
-- `headers` (Attributes) The Headers to be added to the HTTP response on a rate limit event (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--headers))
+- `headers` (Attributes) The Headers to be added to the HTTP response on a rate limit event (see [below for nested schema](#nestedatt--spec--to--default--local--http--on_rate_limit--headers))
 - `status` (Number) The HTTP status code to be set on a rate limit event
 
-<a id="nestedatt--spec--to--default--local--http--request_rate--headers"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate.headers`
+<a id="nestedatt--spec--to--default--local--http--on_rate_limit--headers"></a>
+### Nested Schema for `spec.to.default.local.http.on_rate_limit.headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--status--add))
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--status--set))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--on_rate_limit--headers--add))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--on_rate_limit--headers--set))
 
-<a id="nestedatt--spec--to--default--local--http--request_rate--status--add"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate.status.add`
+<a id="nestedatt--spec--to--default--local--http--on_rate_limit--headers--add"></a>
+### Nested Schema for `spec.to.default.local.http.on_rate_limit.headers.add`
 
 Required:
 
@@ -260,8 +260,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--to--default--local--http--request_rate--status--set"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate.status.set`
+<a id="nestedatt--spec--to--default--local--http--on_rate_limit--headers--set"></a>
+### Nested Schema for `spec.to.default.local.http.on_rate_limit.headers.set`
 
 Required:
 

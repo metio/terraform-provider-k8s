@@ -126,10 +126,10 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--group_ref--from))
 
-<a id="nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from"></a>
-### Nested Schema for `spec.egress_rules.user_id_group_pairs.vpc_ref.from`
+<a id="nestedatt--spec--egress_rules--user_id_group_pairs--group_ref--from"></a>
+### Nested Schema for `spec.egress_rules.user_id_group_pairs.group_ref.from`
 
 Optional:
 
@@ -215,10 +215,10 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--group_ref--from))
 
-<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from"></a>
-### Nested Schema for `spec.ingress_rules.user_id_group_pairs.vpc_ref.from`
+<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--group_ref--from"></a>
+### Nested Schema for `spec.ingress_rules.user_id_group_pairs.group_ref.from`
 
 Optional:
 

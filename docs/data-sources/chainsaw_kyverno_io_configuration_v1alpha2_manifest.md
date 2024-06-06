@@ -408,12 +408,12 @@ Optional:
 
 Optional:
 
-- `condition` (Attributes) Condition specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--timeout--condition))
+- `condition` (Attributes) Condition specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for--condition))
 - `deletion` (Map of String) Deletion specifies parameters for waiting on a resource's deletion.
-- `json_path` (Attributes) JsonPath specifies the json path condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--timeout--json_path))
+- `json_path` (Attributes) JsonPath specifies the json path condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for--json_path))
 
-<a id="nestedatt--spec--catch--wait--timeout--condition"></a>
-### Nested Schema for `spec.catch.wait.timeout.condition`
+<a id="nestedatt--spec--catch--wait--for--condition"></a>
+### Nested Schema for `spec.catch.wait.for.condition`
 
 Required:
 
@@ -424,8 +424,8 @@ Optional:
 - `value` (String) Value defines the specific condition status to wait for, e.g., 'True', 'False'.
 
 
-<a id="nestedatt--spec--catch--wait--timeout--json_path"></a>
-### Nested Schema for `spec.catch.wait.timeout.json_path`
+<a id="nestedatt--spec--catch--wait--for--json_path"></a>
+### Nested Schema for `spec.catch.wait.for.json_path`
 
 Required:
 

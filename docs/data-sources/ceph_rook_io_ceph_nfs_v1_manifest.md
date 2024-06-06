@@ -180,27 +180,27 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.server.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.server.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -212,8 +212,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--server--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.server.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -227,23 +227,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms`
+<a id="nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.server.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+<a id="nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.server.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -255,8 +255,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--server--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.server.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
@@ -276,19 +276,19 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -296,22 +296,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -324,16 +324,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -348,8 +348,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -357,22 +357,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -385,16 +385,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -414,19 +414,19 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -434,22 +434,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -462,16 +462,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -486,8 +486,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -495,22 +495,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -523,16 +523,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--server--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.server.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -651,32 +651,32 @@ Optional:
 
 Optional:
 
-- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--secret))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--config_map"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.config_map`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--config_map"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.items`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--config_map--items"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.config_map.items`
 
 Required:
 
@@ -689,8 +689,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.empty_dir`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--empty_dir"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.empty_dir`
 
 Optional:
 
@@ -698,8 +698,8 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--host_path"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.host_path`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--host_path"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.host_path`
 
 Required:
 
@@ -710,8 +710,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.persistent_volume_claim`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--persistent_volume_claim"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.persistent_volume_claim`
 
 Required:
 
@@ -722,27 +722,27 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--projected"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.projected`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -750,21 +750,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector.match_expressions`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -778,17 +778,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.config_map`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.config_map.items`
 
 Required:
 
@@ -801,15 +801,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.downward_api`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.downward_api.items`
 
 Required:
 
@@ -817,12 +817,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -833,8 +833,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -848,17 +848,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.secret`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.secret.items`
 
 Required:
 
@@ -871,8 +871,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.projected.sources.service_account_token`
 
 Required:
 
@@ -886,18 +886,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--secret"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.items`
+<a id="nestedatt--spec--security--kerberos--config_files--volume_source--secret--items"></a>
+### Nested Schema for `spec.security.kerberos.config_files.volume_source.secret.items`
 
 Required:
 
@@ -917,32 +917,32 @@ Optional:
 
 Optional:
 
-- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--secret))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--config_map"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.config_map`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--config_map"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.items`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--config_map--items"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.config_map.items`
 
 Required:
 
@@ -955,8 +955,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.empty_dir`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--empty_dir"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.empty_dir`
 
 Optional:
 
@@ -964,8 +964,8 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--host_path"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.host_path`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--host_path"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.host_path`
 
 Required:
 
@@ -976,8 +976,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.persistent_volume_claim`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--persistent_volume_claim"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.persistent_volume_claim`
 
 Required:
 
@@ -988,27 +988,27 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--projected"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.projected`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1016,21 +1016,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector.match_expressions`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -1044,17 +1044,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.config_map`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.config_map.items`
 
 Required:
 
@@ -1067,15 +1067,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.downward_api`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.downward_api.items`
 
 Required:
 
@@ -1083,12 +1083,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1099,8 +1099,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1114,17 +1114,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.secret`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.secret.items`
 
 Required:
 
@@ -1137,8 +1137,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.projected.sources.service_account_token`
 
 Required:
 
@@ -1152,18 +1152,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--secret"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.items`
+<a id="nestedatt--spec--security--kerberos--keytab_file--volume_source--secret--items"></a>
+### Nested Schema for `spec.security.kerberos.keytab_file.volume_source.secret.items`
 
 Required:
 
@@ -1226,12 +1226,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.items`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--config_map--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.config_map.items`
 
 Required:
 
@@ -1283,21 +1283,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources))
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1305,21 +1305,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--label_selector"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle.label_selector`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle.signer_name.match_expressions`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -1333,17 +1333,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.config_map`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.config_map.items`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.config_map.items`
 
 Required:
 
@@ -1356,15 +1356,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api.items`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.downward_api.items`
 
 Required:
 
@@ -1372,12 +1372,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1388,8 +1388,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1403,17 +1403,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.secret`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.secret.items`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.secret.items`
 
 Required:
 
@@ -1426,8 +1426,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--service_account_token"></a>
-### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.service_account_token`
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.projected.sources.service_account_token`
 
 Required:
 
@@ -1510,12 +1510,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.items`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--config_map--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.config_map.items`
 
 Required:
 
@@ -1567,21 +1567,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources))
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1589,21 +1589,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--label_selector"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle.label_selector`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle.signer_name.match_expressions`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -1617,17 +1617,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.config_map`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.config_map.items`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.config_map.items`
 
 Required:
 
@@ -1640,15 +1640,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api.items`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.downward_api.items`
 
 Required:
 
@@ -1656,12 +1656,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1672,8 +1672,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1687,17 +1687,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.secret`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret--items"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.secret.items`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.secret.items`
 
 Required:
 
@@ -1710,8 +1710,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--service_account_token"></a>
-### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.service_account_token`
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.projected.sources.service_account_token`
 
 Required:
 

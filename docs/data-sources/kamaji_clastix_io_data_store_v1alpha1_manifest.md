@@ -143,10 +143,10 @@ Optional:
 Optional:
 
 - `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
-- `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference))
+- `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority--certificate--secret_reference))
 
-<a id="nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference"></a>
-### Nested Schema for `spec.tls_config.certificate_authority.private_key.secret_reference`
+<a id="nestedatt--spec--tls_config--certificate_authority--certificate--secret_reference"></a>
+### Nested Schema for `spec.tls_config.certificate_authority.certificate.secret_reference`
 
 Required:
 
@@ -196,10 +196,10 @@ Required:
 Optional:
 
 - `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
-- `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate--private_key--secret_reference))
+- `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate--certificate--secret_reference))
 
-<a id="nestedatt--spec--tls_config--client_certificate--private_key--secret_reference"></a>
-### Nested Schema for `spec.tls_config.client_certificate.private_key.secret_reference`
+<a id="nestedatt--spec--tls_config--client_certificate--certificate--secret_reference"></a>
+### Nested Schema for `spec.tls_config.client_certificate.certificate.secret_reference`
 
 Required:
 

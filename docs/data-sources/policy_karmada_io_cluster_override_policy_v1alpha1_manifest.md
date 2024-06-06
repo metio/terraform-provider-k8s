@@ -127,11 +127,11 @@ Required:
 
 Optional:
 
-- `predicate` (Attributes) Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--plaintext--predicate))
+- `predicate` (Attributes) Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image_overrider--predicate))
 - `value` (String) Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.
 
-<a id="nestedatt--spec--override_rules--overriders--plaintext--predicate"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext.predicate`
+<a id="nestedatt--spec--override_rules--overriders--image_overrider--predicate"></a>
+### Nested Schema for `spec.override_rules.overriders.image_overrider.predicate`
 
 Required:
 
@@ -180,10 +180,10 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--label_selector--match_expressions))
+- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--field_selector--match_expressions))
 
-<a id="nestedatt--spec--override_rules--target_cluster--label_selector--match_expressions"></a>
-### Nested Schema for `spec.override_rules.target_cluster.label_selector.match_expressions`
+<a id="nestedatt--spec--override_rules--target_cluster--field_selector--match_expressions"></a>
+### Nested Schema for `spec.override_rules.target_cluster.field_selector.match_expressions`
 
 Required:
 

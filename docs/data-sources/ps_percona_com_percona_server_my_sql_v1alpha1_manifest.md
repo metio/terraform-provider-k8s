@@ -212,36 +212,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -253,51 +253,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--backup--storages--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -311,25 +268,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--backup--storages--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.backup.storages.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -337,22 +337,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -365,16 +365,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -389,8 +389,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -398,22 +398,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -426,16 +426,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -450,24 +450,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -475,22 +475,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -503,16 +503,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -527,8 +527,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -536,22 +536,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -564,16 +564,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup--storages--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -610,19 +610,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--windows_options))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--capabilities"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.capabilities`
+<a id="nestedatt--spec--backup--storages--container_security_context--capabilities"></a>
+### Nested Schema for `spec.backup.storages.container_security_context.capabilities`
 
 Optional:
 
@@ -630,8 +630,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.se_linux_options`
+<a id="nestedatt--spec--backup--storages--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup.storages.container_security_context.se_linux_options`
 
 Optional:
 
@@ -641,8 +641,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--backup--storages--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup.storages.container_security_context.seccomp_profile`
 
 Required:
 
@@ -653,8 +653,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--windows_options"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.windows_options`
+<a id="nestedatt--spec--backup--storages--container_security_context--windows_options"></a>
+### Nested Schema for `spec.backup.storages.container_security_context.windows_options`
 
 Optional:
 
@@ -690,14 +690,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--backup--storages--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.se_linux_options`
+<a id="nestedatt--spec--backup--storages--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup.storages.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -707,8 +707,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--backup--storages--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup.storages.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -719,8 +719,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--sysctls"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.sysctls`
+<a id="nestedatt--spec--backup--storages--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.backup.storages.pod_security_context.sysctls`
 
 Required:
 
@@ -728,8 +728,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--backup--storages--volume_spec--windows_options"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.windows_options`
+<a id="nestedatt--spec--backup--storages--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.backup.storages.pod_security_context.windows_options`
 
 Optional:
 
@@ -745,12 +745,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--claims"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.claims`
+<a id="nestedatt--spec--backup--storages--resources--claims"></a>
+### Nested Schema for `spec.backup.storages.resources.claims`
 
 Required:
 
@@ -797,22 +797,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--label_selector"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.label_selector`
+<a id="nestedatt--spec--backup--storages--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.backup.storages.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.label_selector.match_expressions`
+<a id="nestedatt--spec--backup--storages--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -912,11 +912,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--persistent_volume_claim--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--volume_spec--persistent_volume_claim--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup--storages--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.backup.storages.volume_spec.persistent_volume_claim.volume_name.match_expressions`
+<a id="nestedatt--spec--backup--storages--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
+### Nested Schema for `spec.backup.storages.volume_spec.persistent_volume_claim.selector.match_expressions`
 
 Required:
 
@@ -987,36 +987,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity))
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -1028,51 +1028,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -1086,25 +1043,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--mysql--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1112,22 +1112,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1140,16 +1140,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1164,8 +1164,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1173,22 +1173,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1201,16 +1201,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1225,24 +1225,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1250,22 +1250,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1278,16 +1278,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1302,8 +1302,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1311,22 +1311,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1339,16 +1339,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.mysql.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--mysql--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1598,12 +1598,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.mysql.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--mysql--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -1731,12 +1731,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.mysql.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--mysql--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1953,11 +1953,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -1976,10 +1976,10 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.cinder.secret_ref`
 
 Optional:
 
@@ -1993,12 +1993,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--config_map--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.config_map.items`
 
 Required:
 
@@ -2021,12 +2021,12 @@ Required:
 Optional:
 
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -2040,10 +2040,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--downward_api--items))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--downward_api--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.downward_api.items`
 
 Required:
 
@@ -2051,12 +2051,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -2067,8 +2067,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2096,36 +2096,36 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -2137,8 +2137,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -2151,8 +2151,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -2160,16 +2160,16 @@ Optional:
 - `requests` (Map of String)
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--mysql--sidecar_volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -2209,10 +2209,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -2299,10 +2299,10 @@ Optional:
 - `iscsi_interface` (String)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -2366,21 +2366,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -2388,21 +2388,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -2416,17 +2416,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -2439,15 +2439,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -2455,12 +2455,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -2471,8 +2471,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2486,17 +2486,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.secret.items`
 
 Required:
 
@@ -2509,8 +2509,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--mysql--sidecar_volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -2554,11 +2554,11 @@ Optional:
 - `keyring` (String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.rbd.secret_ref`
 
 Optional:
 
@@ -2572,7 +2572,7 @@ Optional:
 Required:
 
 - `gateway` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--scale_io--secret_ref))
 - `system` (String)
 
 Optional:
@@ -2585,8 +2585,8 @@ Optional:
 - `storage_pool` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -2600,12 +2600,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.items`
+<a id="nestedatt--spec--mysql--sidecar_volumes--secret--items"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.secret.items`
 
 Required:
 
@@ -2625,12 +2625,12 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--mysql--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecar_volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mysql--sidecar_volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.storageos.secret_ref`
 
 Optional:
 
@@ -2696,20 +2696,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env--value_from))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--value_from"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.value_from`
+<a id="nestedatt--spec--mysql--sidecars--env--value_from"></a>
+### Nested Schema for `spec.mysql.sidecars.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--mysql--sidecars--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -2721,8 +2721,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--mysql--sidecars--env--value_from--field_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env.value_from.field_ref`
 
 Required:
 
@@ -2733,8 +2733,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--mysql--sidecars--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env.value_from.resource_field_ref`
 
 Required:
 
@@ -2746,8 +2746,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--mysql--sidecars--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env.value_from.secret_key_ref`
 
 Required:
 
@@ -2766,12 +2766,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--env_from--secret_ref))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.config_map_ref`
+<a id="nestedatt--spec--mysql--sidecars--env_from--config_map_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env_from.config_map_ref`
 
 Optional:
 
@@ -2779,8 +2779,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--secret_ref"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.secret_ref`
+<a id="nestedatt--spec--mysql--sidecars--env_from--secret_ref"></a>
+### Nested Schema for `spec.mysql.sidecars.env_from.secret_ref`
 
 Optional:
 
@@ -2794,29 +2794,29 @@ Optional:
 
 Optional:
 
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop))
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start--http_get))
-- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start--sleep))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start.exec`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start.http_get`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start.http_get`
 
 Required:
 
@@ -2825,12 +2825,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--post_start--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start.tcp_socket.http_headers`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -2839,16 +2839,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start.sleep`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start.sleep`
 
 Required:
 
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--post_start--tcp_socket"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.post_start.tcp_socket`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -2860,26 +2860,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop--http_get))
-- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop--sleep))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -2888,12 +2888,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -2902,16 +2902,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop.sleep`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop.sleep`
 
 Required:
 
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--mysql--sidecars--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.mysql.sidecars.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -2929,27 +2929,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.exec`
+<a id="nestedatt--spec--mysql--sidecars--liveness_probe--exec"></a>
+### Nested Schema for `spec.mysql.sidecars.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.grpc`
+<a id="nestedatt--spec--mysql--sidecars--liveness_probe--grpc"></a>
+### Nested Schema for `spec.mysql.sidecars.liveness_probe.grpc`
 
 Required:
 
@@ -2960,8 +2960,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get`
+<a id="nestedatt--spec--mysql--sidecars--liveness_probe--http_get"></a>
+### Nested Schema for `spec.mysql.sidecars.liveness_probe.http_get`
 
 Required:
 
@@ -2970,12 +2970,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--mysql--sidecars--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.sidecars.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -2984,8 +2984,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.tcp_socket`
+<a id="nestedatt--spec--mysql--sidecars--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.mysql.sidecars.liveness_probe.tcp_socket`
 
 Required:
 
@@ -3017,27 +3017,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.exec`
+<a id="nestedatt--spec--mysql--sidecars--readiness_probe--exec"></a>
+### Nested Schema for `spec.mysql.sidecars.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.grpc`
+<a id="nestedatt--spec--mysql--sidecars--readiness_probe--grpc"></a>
+### Nested Schema for `spec.mysql.sidecars.readiness_probe.grpc`
 
 Required:
 
@@ -3048,8 +3048,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get`
+<a id="nestedatt--spec--mysql--sidecars--readiness_probe--http_get"></a>
+### Nested Schema for `spec.mysql.sidecars.readiness_probe.http_get`
 
 Required:
 
@@ -3058,12 +3058,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--mysql--sidecars--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.sidecars.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -3072,8 +3072,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.tcp_socket`
+<a id="nestedatt--spec--mysql--sidecars--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.mysql.sidecars.readiness_probe.tcp_socket`
 
 Required:
 
@@ -3099,12 +3099,12 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--claims"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.claims`
+<a id="nestedatt--spec--mysql--sidecars--resources--claims"></a>
+### Nested Schema for `spec.mysql.sidecars.resources.claims`
 
 Required:
 
@@ -3118,19 +3118,19 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--windows_options))
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--capabilities"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.capabilities`
+<a id="nestedatt--spec--mysql--sidecars--security_context--capabilities"></a>
+### Nested Schema for `spec.mysql.sidecars.security_context.capabilities`
 
 Optional:
 
@@ -3138,8 +3138,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.se_linux_options`
+<a id="nestedatt--spec--mysql--sidecars--security_context--se_linux_options"></a>
+### Nested Schema for `spec.mysql.sidecars.security_context.se_linux_options`
 
 Optional:
 
@@ -3149,8 +3149,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.seccomp_profile`
+<a id="nestedatt--spec--mysql--sidecars--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.mysql.sidecars.security_context.seccomp_profile`
 
 Required:
 
@@ -3161,8 +3161,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--windows_options"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.windows_options`
+<a id="nestedatt--spec--mysql--sidecars--security_context--windows_options"></a>
+### Nested Schema for `spec.mysql.sidecars.security_context.windows_options`
 
 Optional:
 
@@ -3178,27 +3178,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.exec`
+<a id="nestedatt--spec--mysql--sidecars--startup_probe--exec"></a>
+### Nested Schema for `spec.mysql.sidecars.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.grpc`
+<a id="nestedatt--spec--mysql--sidecars--startup_probe--grpc"></a>
+### Nested Schema for `spec.mysql.sidecars.startup_probe.grpc`
 
 Required:
 
@@ -3209,8 +3209,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get`
+<a id="nestedatt--spec--mysql--sidecars--startup_probe--http_get"></a>
+### Nested Schema for `spec.mysql.sidecars.startup_probe.http_get`
 
 Required:
 
@@ -3219,12 +3219,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--mysql--sidecars--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.sidecars.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -3233,8 +3233,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--mysql--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.mysql.sidecars.working_dir.tcp_socket`
+<a id="nestedatt--spec--mysql--sidecars--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.mysql.sidecars.startup_probe.tcp_socket`
 
 Required:
 
@@ -3318,12 +3318,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mysql--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.mysql.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--mysql--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mysql.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -3379,11 +3379,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mysql--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.mysql.topology_spread_constraints.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--mysql--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mysql.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -3553,36 +3553,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity))
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -3594,51 +3594,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -3652,25 +3609,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--orchestrator--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3678,22 +3678,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -3706,16 +3706,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -3730,8 +3730,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3739,22 +3739,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -3767,16 +3767,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -3791,24 +3791,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3816,22 +3816,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -3844,16 +3844,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -3868,8 +3868,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3877,22 +3877,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -3905,16 +3905,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--orchestrator--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -4163,12 +4163,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--orchestrator--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.orchestrator.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--orchestrator--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.orchestrator.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -4296,12 +4296,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--orchestrator--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.orchestrator.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--orchestrator--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.orchestrator.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -4387,12 +4387,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--orchestrator--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.orchestrator.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--orchestrator--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.orchestrator.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -4448,11 +4448,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--orchestrator--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.orchestrator.topology_spread_constraints.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--orchestrator--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.orchestrator.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -4719,44 +4719,44 @@ Optional:
 
 Optional:
 
-- `advanced` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced))
+- `advanced` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced))
 - `anti_affinity_topology_key` (String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced`
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--node_affinity"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.node_affinity`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -4768,51 +4768,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -4826,25 +4783,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_affinity"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4852,22 +4852,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -4880,16 +4880,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -4904,8 +4904,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4913,22 +4913,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -4941,16 +4941,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -4965,24 +4965,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4990,22 +4990,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -5018,16 +5018,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -5042,8 +5042,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -5051,22 +5051,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -5079,16 +5079,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -5111,19 +5111,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--windows_options))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--capabilities"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.capabilities`
+<a id="nestedatt--spec--proxy--haproxy--container_security_context--capabilities"></a>
+### Nested Schema for `spec.proxy.haproxy.container_security_context.capabilities`
 
 Optional:
 
@@ -5131,8 +5131,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.se_linux_options`
+<a id="nestedatt--spec--proxy--haproxy--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy.haproxy.container_security_context.se_linux_options`
 
 Optional:
 
@@ -5142,8 +5142,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--proxy--haproxy--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy.haproxy.container_security_context.seccomp_profile`
 
 Required:
 
@@ -5154,8 +5154,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--windows_options"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.windows_options`
+<a id="nestedatt--spec--proxy--haproxy--container_security_context--windows_options"></a>
+### Nested Schema for `spec.proxy.haproxy.container_security_context.windows_options`
 
 Optional:
 
@@ -5176,20 +5176,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env--value_from))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--value_from"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.value_from`
+<a id="nestedatt--spec--proxy--haproxy--env--value_from"></a>
+### Nested Schema for `spec.proxy.haproxy.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.value_from.config_map_key_ref`
+<a id="nestedatt--spec--proxy--haproxy--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -5201,8 +5201,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--value_from--field_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.value_from.field_ref`
+<a id="nestedatt--spec--proxy--haproxy--env--value_from--field_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env.value_from.field_ref`
 
 Required:
 
@@ -5213,8 +5213,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.value_from.resource_field_ref`
+<a id="nestedatt--spec--proxy--haproxy--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env.value_from.resource_field_ref`
 
 Required:
 
@@ -5226,8 +5226,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.value_from.secret_key_ref`
+<a id="nestedatt--spec--proxy--haproxy--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env.value_from.secret_key_ref`
 
 Required:
 
@@ -5246,12 +5246,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--env_from--secret_ref))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--config_map_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.config_map_ref`
+<a id="nestedatt--spec--proxy--haproxy--env_from--config_map_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env_from.config_map_ref`
 
 Optional:
 
@@ -5259,8 +5259,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--secret_ref"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.secret_ref`
+<a id="nestedatt--spec--proxy--haproxy--env_from--secret_ref"></a>
+### Nested Schema for `spec.proxy.haproxy.env_from.secret_ref`
 
 Optional:
 
@@ -5296,27 +5296,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.exec`
+<a id="nestedatt--spec--proxy--haproxy--liveness_probe--exec"></a>
+### Nested Schema for `spec.proxy.haproxy.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--haproxy--liveness_probe--grpc"></a>
+### Nested Schema for `spec.proxy.haproxy.liveness_probe.grpc`
 
 Required:
 
@@ -5327,8 +5327,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--haproxy--liveness_probe--http_get"></a>
+### Nested Schema for `spec.proxy.haproxy.liveness_probe.http_get`
 
 Required:
 
@@ -5337,12 +5337,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--haproxy--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.haproxy.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -5351,8 +5351,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--haproxy--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.haproxy.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5374,14 +5374,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.se_linux_options`
+<a id="nestedatt--spec--proxy--haproxy--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy.haproxy.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -5391,8 +5391,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--proxy--haproxy--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy.haproxy.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -5403,8 +5403,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--sysctls"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.sysctls`
+<a id="nestedatt--spec--proxy--haproxy--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.proxy.haproxy.pod_security_context.sysctls`
 
 Required:
 
@@ -5412,8 +5412,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--windows_options"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.windows_options`
+<a id="nestedatt--spec--proxy--haproxy--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.proxy.haproxy.pod_security_context.windows_options`
 
 Optional:
 
@@ -5429,27 +5429,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.exec`
+<a id="nestedatt--spec--proxy--haproxy--readiness_probe--exec"></a>
+### Nested Schema for `spec.proxy.haproxy.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--haproxy--readiness_probe--grpc"></a>
+### Nested Schema for `spec.proxy.haproxy.readiness_probe.grpc`
 
 Required:
 
@@ -5460,8 +5460,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--haproxy--readiness_probe--http_get"></a>
+### Nested Schema for `spec.proxy.haproxy.readiness_probe.http_get`
 
 Required:
 
@@ -5470,12 +5470,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--haproxy--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.haproxy.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -5484,8 +5484,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--haproxy--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.haproxy.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5502,12 +5502,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--claims"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.claims`
+<a id="nestedatt--spec--proxy--haproxy--resources--claims"></a>
+### Nested Schema for `spec.proxy.haproxy.resources.claims`
 
 Required:
 
@@ -5520,27 +5520,27 @@ Required:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.exec`
+<a id="nestedatt--spec--proxy--haproxy--startup_probe--exec"></a>
+### Nested Schema for `spec.proxy.haproxy.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--haproxy--startup_probe--grpc"></a>
+### Nested Schema for `spec.proxy.haproxy.startup_probe.grpc`
 
 Required:
 
@@ -5551,8 +5551,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--haproxy--startup_probe--http_get"></a>
+### Nested Schema for `spec.proxy.haproxy.startup_probe.http_get`
 
 Required:
 
@@ -5561,12 +5561,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--haproxy--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.haproxy.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -5575,8 +5575,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--haproxy--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.haproxy.startup_probe.tcp_socket`
 
 Required:
 
@@ -5611,22 +5611,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--label_selector"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.label_selector`
+<a id="nestedatt--spec--proxy--haproxy--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.proxy.haproxy.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -5726,11 +5726,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--persistent_volume_claim--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--volume_spec--persistent_volume_claim--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--haproxy--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.proxy.haproxy.volume_spec.persistent_volume_claim.volume_name.match_expressions`
+<a id="nestedatt--spec--proxy--haproxy--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.haproxy.volume_spec.persistent_volume_claim.selector.match_expressions`
 
 Required:
 
@@ -5788,44 +5788,44 @@ Optional:
 
 Optional:
 
-- `advanced` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced))
+- `advanced` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced))
 - `anti_affinity_topology_key` (String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced`
+<a id="nestedatt--spec--proxy--router--affinity--advanced"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced`
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--node_affinity"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.node_affinity`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -5837,51 +5837,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -5895,25 +5852,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_affinity"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--proxy--router--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -5921,22 +5921,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -5949,16 +5949,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -5973,8 +5973,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -5982,22 +5982,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -6010,16 +6010,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -6034,24 +6034,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -6059,22 +6059,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -6087,16 +6087,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -6111,8 +6111,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -6120,22 +6120,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -6148,16 +6148,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--proxy--router--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -6180,19 +6180,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--windows_options))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--capabilities"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.capabilities`
+<a id="nestedatt--spec--proxy--router--container_security_context--capabilities"></a>
+### Nested Schema for `spec.proxy.router.container_security_context.capabilities`
 
 Optional:
 
@@ -6200,8 +6200,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.se_linux_options`
+<a id="nestedatt--spec--proxy--router--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy.router.container_security_context.se_linux_options`
 
 Optional:
 
@@ -6211,8 +6211,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--proxy--router--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy.router.container_security_context.seccomp_profile`
 
 Required:
 
@@ -6223,8 +6223,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--windows_options"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.windows_options`
+<a id="nestedatt--spec--proxy--router--container_security_context--windows_options"></a>
+### Nested Schema for `spec.proxy.router.container_security_context.windows_options`
 
 Optional:
 
@@ -6245,20 +6245,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env--value_from))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--value_from"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.value_from`
+<a id="nestedatt--spec--proxy--router--env--value_from"></a>
+### Nested Schema for `spec.proxy.router.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.value_from.config_map_key_ref`
+<a id="nestedatt--spec--proxy--router--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.proxy.router.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -6270,8 +6270,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--value_from--field_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.value_from.field_ref`
+<a id="nestedatt--spec--proxy--router--env--value_from--field_ref"></a>
+### Nested Schema for `spec.proxy.router.env.value_from.field_ref`
 
 Required:
 
@@ -6282,8 +6282,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.value_from.resource_field_ref`
+<a id="nestedatt--spec--proxy--router--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.proxy.router.env.value_from.resource_field_ref`
 
 Required:
 
@@ -6295,8 +6295,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.value_from.secret_key_ref`
+<a id="nestedatt--spec--proxy--router--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.proxy.router.env.value_from.secret_key_ref`
 
 Required:
 
@@ -6315,12 +6315,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--env_from--secret_ref))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--config_map_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.config_map_ref`
+<a id="nestedatt--spec--proxy--router--env_from--config_map_ref"></a>
+### Nested Schema for `spec.proxy.router.env_from.config_map_ref`
 
 Optional:
 
@@ -6328,8 +6328,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--secret_ref"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.secret_ref`
+<a id="nestedatt--spec--proxy--router--env_from--secret_ref"></a>
+### Nested Schema for `spec.proxy.router.env_from.secret_ref`
 
 Optional:
 
@@ -6365,27 +6365,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.exec`
+<a id="nestedatt--spec--proxy--router--liveness_probe--exec"></a>
+### Nested Schema for `spec.proxy.router.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--router--liveness_probe--grpc"></a>
+### Nested Schema for `spec.proxy.router.liveness_probe.grpc`
 
 Required:
 
@@ -6396,8 +6396,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--router--liveness_probe--http_get"></a>
+### Nested Schema for `spec.proxy.router.liveness_probe.http_get`
 
 Required:
 
@@ -6406,12 +6406,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--router--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.router.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -6420,8 +6420,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--router--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.router.liveness_probe.tcp_socket`
 
 Required:
 
@@ -6443,14 +6443,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--proxy--router--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.se_linux_options`
+<a id="nestedatt--spec--proxy--router--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy.router.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -6460,8 +6460,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--proxy--router--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy.router.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -6472,8 +6472,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--sysctls"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.sysctls`
+<a id="nestedatt--spec--proxy--router--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.proxy.router.pod_security_context.sysctls`
 
 Required:
 
@@ -6481,8 +6481,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--windows_options"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.windows_options`
+<a id="nestedatt--spec--proxy--router--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.proxy.router.pod_security_context.windows_options`
 
 Optional:
 
@@ -6498,27 +6498,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.exec`
+<a id="nestedatt--spec--proxy--router--readiness_probe--exec"></a>
+### Nested Schema for `spec.proxy.router.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--router--readiness_probe--grpc"></a>
+### Nested Schema for `spec.proxy.router.readiness_probe.grpc`
 
 Required:
 
@@ -6529,8 +6529,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--router--readiness_probe--http_get"></a>
+### Nested Schema for `spec.proxy.router.readiness_probe.http_get`
 
 Required:
 
@@ -6539,12 +6539,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--router--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.router.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -6553,8 +6553,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--router--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.router.readiness_probe.tcp_socket`
 
 Required:
 
@@ -6571,12 +6571,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--claims"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.claims`
+<a id="nestedatt--spec--proxy--router--resources--claims"></a>
+### Nested Schema for `spec.proxy.router.resources.claims`
 
 Required:
 
@@ -6589,27 +6589,27 @@ Required:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--exec"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.exec`
+<a id="nestedatt--spec--proxy--router--startup_probe--exec"></a>
+### Nested Schema for `spec.proxy.router.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--grpc"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.grpc`
+<a id="nestedatt--spec--proxy--router--startup_probe--grpc"></a>
+### Nested Schema for `spec.proxy.router.startup_probe.grpc`
 
 Required:
 
@@ -6620,8 +6620,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get`
+<a id="nestedatt--spec--proxy--router--startup_probe--http_get"></a>
+### Nested Schema for `spec.proxy.router.startup_probe.http_get`
 
 Required:
 
@@ -6630,12 +6630,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.http_get.http_headers`
+<a id="nestedatt--spec--proxy--router--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.router.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -6644,8 +6644,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--proxy--router--volume_spec--tcp_socket"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.tcp_socket`
+<a id="nestedatt--spec--proxy--router--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy.router.startup_probe.tcp_socket`
 
 Required:
 
@@ -6680,22 +6680,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--label_selector"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.label_selector`
+<a id="nestedatt--spec--proxy--router--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.proxy.router.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy--router--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -6795,11 +6795,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--persistent_volume_claim--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--volume_spec--persistent_volume_claim--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy--router--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.proxy.router.volume_spec.persistent_volume_claim.volume_name.match_expressions`
+<a id="nestedatt--spec--proxy--router--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
+### Nested Schema for `spec.proxy.router.volume_spec.persistent_volume_claim.selector.match_expressions`
 
 Required:
 
@@ -7075,12 +7075,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--toolkit--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.toolkit.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--toolkit--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.toolkit.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -7148,12 +7148,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--toolkit--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.toolkit.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--toolkit--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.toolkit.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -7239,12 +7239,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--toolkit--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--toolkit--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.toolkit.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--toolkit--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.toolkit.startup_probe.http_get.http_headers`
 
 Required:
 

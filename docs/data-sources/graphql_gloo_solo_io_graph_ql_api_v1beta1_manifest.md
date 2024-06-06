@@ -86,39 +86,39 @@ Optional:
 Optional:
 
 - `enable_introspection` (Boolean)
-- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--options))
-- `resolutions` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions))
+- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--options))
+- `resolutions` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions))
 
-<a id="nestedatt--spec--executable_schema--executor--remote--options"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.options`
+<a id="nestedatt--spec--executable_schema--executor--local--options"></a>
+### Nested Schema for `spec.executable_schema.executor.local.options`
 
 Optional:
 
 - `max_depth` (Number)
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions`
 
 Optional:
 
-- `grpc_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--grpc_resolver))
-- `mock_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--mock_resolver))
-- `rest_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--rest_resolver))
+- `grpc_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver))
+- `mock_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--mock_resolver))
+- `rest_resolver` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver))
 - `stat_prefix` (String)
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--grpc_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.grpc_resolver`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.grpc_resolver`
 
 Optional:
 
-- `request_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request_transform))
+- `request_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver--request_transform))
 - `span_name` (String)
 - `timeout` (String)
-- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref))
+- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver--upstream_ref))
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request_transform"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.request_transform`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver--request_transform"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.grpc_resolver.request_transform`
 
 Optional:
 
@@ -128,8 +128,8 @@ Optional:
 - `service_name` (String)
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.upstream_ref`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--grpc_resolver--upstream_ref"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.grpc_resolver.upstream_ref`
 
 Optional:
 
@@ -138,17 +138,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--mock_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.mock_resolver`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--mock_resolver"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.mock_resolver`
 
 Optional:
 
-- `async_response` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--async_response))
+- `async_response` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--mock_resolver--async_response))
 - `error_response` (String)
 - `sync_response` (Map of String)
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--async_response"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.async_response`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--mock_resolver--async_response"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.mock_resolver.async_response`
 
 Optional:
 
@@ -157,19 +157,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--rest_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.rest_resolver`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.rest_resolver`
 
 Optional:
 
-- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request))
-- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--response))
+- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--request))
+- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--response))
 - `span_name` (String)
 - `timeout` (String)
-- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref))
+- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--upstream_ref))
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.request`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--request"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.rest_resolver.request`
 
 Optional:
 
@@ -178,8 +178,8 @@ Optional:
 - `query_params` (Map of String)
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--response"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.response`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--response"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.rest_resolver.response`
 
 Optional:
 
@@ -187,8 +187,8 @@ Optional:
 - `setters` (Map of String)
 
 
-<a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.upstream_ref`
+<a id="nestedatt--spec--executable_schema--executor--local--resolutions--rest_resolver--upstream_ref"></a>
+### Nested Schema for `spec.executable_schema.executor.local.resolutions.rest_resolver.upstream_ref`
 
 Optional:
 

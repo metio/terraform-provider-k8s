@@ -183,17 +183,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--aws_key_id--value_from))
 
-<a id="nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file.value_from`
+<a id="nestedatt--spec--outputs--cloud_watch--aws_key_id--value_from"></a>
+### Nested Schema for `spec.outputs.cloud_watch.aws_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--aws_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--cloud_watch--aws_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.cloud_watch.aws_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -212,17 +212,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--aws_sec_key--value_from))
 
-<a id="nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file.value_from`
+<a id="nestedatt--spec--outputs--cloud_watch--aws_sec_key--value_from"></a>
+### Nested Schema for `spec.outputs.cloud_watch.aws_sec_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--cloud_watch--aws_sec_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--cloud_watch--web_identity_token_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--cloud_watch--aws_sec_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.cloud_watch.aws_sec_key.value_from.secret_key_ref`
 
 Required:
 
@@ -285,17 +285,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--datadog--use_ssl--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--datadog--api_key--value_from))
 
-<a id="nestedatt--spec--outputs--datadog--use_ssl--value_from"></a>
-### Nested Schema for `spec.outputs.datadog.use_ssl.value_from`
+<a id="nestedatt--spec--outputs--datadog--api_key--value_from"></a>
+### Nested Schema for `spec.outputs.datadog.api_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--datadog--use_ssl--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--datadog--api_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--datadog--use_ssl--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.datadog.use_ssl.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--datadog--api_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.datadog.api_key.value_from.secret_key_ref`
 
 Required:
 
@@ -336,17 +336,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--client_key_password--value_from))
 
-<a id="nestedatt--spec--outputs--elasticsearch--user--value_from"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user.value_from`
+<a id="nestedatt--spec--outputs--elasticsearch--client_key_password--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch.client_key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--client_key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--elasticsearch--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--elasticsearch--client_key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch.client_key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -365,17 +365,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--password--value_from))
 
-<a id="nestedatt--spec--outputs--elasticsearch--user--value_from"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user.value_from`
+<a id="nestedatt--spec--outputs--elasticsearch--password--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--elasticsearch--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--elasticsearch--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch.password.value_from.secret_key_ref`
 
 Required:
 
@@ -488,30 +488,30 @@ Optional:
 - `id` (String) The @id parameter specifies a unique name for the configuration.
 - `log_level` (String) The @log_level parameter specifies the plugin-specific logging level
 - `name` (String) Name defines the name of the server. Used for logging and certificate verification in TLS transport (when the host is the address).
-- `password` (Attributes) Password defines the password for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--password))
+- `password` (Attributes) Password defines the password for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--password))
 - `port` (String) Port defines the port number of the host. Note that both TCP packets (event stream) and UDP packets (heartbeat messages) are sent to this port.
 - `shared_key` (String) SharedKey defines the shared key per server.
 - `standby` (String) Standby marks a node as the standby node for an Active-Standby model between Fluentd nodes.
 - `type` (String) The @type parameter specifies the type of the plugin.
-- `username` (Attributes) Username defines the username for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--username))
+- `username` (Attributes) Username defines the username for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--username))
 - `weight` (String) Weight defines the load balancing weight
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--password"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.password`
+<a id="nestedatt--spec--outputs--forward--servers--password"></a>
+### Nested Schema for `spec.outputs.forward.servers.password`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--password--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--password--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--password--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.password.value_from`
+<a id="nestedatt--spec--outputs--forward--servers--password--value_from"></a>
+### Nested Schema for `spec.outputs.forward.servers.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--servers--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.servers.password.value_from.secret_key_ref`
 
 Required:
 
@@ -525,22 +525,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--username"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.username`
+<a id="nestedatt--spec--outputs--forward--servers--username"></a>
+### Nested Schema for `spec.outputs.forward.servers.username`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--username--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--username--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--username--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.username.value_from`
+<a id="nestedatt--spec--outputs--forward--servers--username--value_from"></a>
+### Nested Schema for `spec.outputs.forward.servers.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--servers--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--servers--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.servers.username.value_from.secret_key_ref`
 
 Required:
 
@@ -563,33 +563,33 @@ Optional:
 - `allow_anonymous_source` (String) Allows the anonymous source. <client> sections are required, if disabled.
 - `self_hostname` (String) The hostname.
 - `shared_key` (String) The shared key for authentication.
-- `user` (Attributes) Defines user section directly. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user))
+- `user` (Attributes) Defines user section directly. (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user))
 - `user_auth` (String) If true, user-based authentication is used.
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user`
+<a id="nestedatt--spec--outputs--forward--security--user"></a>
+### Nested Schema for `spec.outputs.forward.security.user`
 
 Optional:
 
-- `password` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--password))
-- `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username))
+- `password` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--password))
+- `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--username))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--password"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.password`
-
-Optional:
-
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from))
-
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username.value_from`
+<a id="nestedatt--spec--outputs--forward--security--user--password"></a>
+### Nested Schema for `spec.outputs.forward.security.user.password`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from--secret_key_ref))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--password--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--security--user--password--value_from"></a>
+### Nested Schema for `spec.outputs.forward.security.user.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--forward--security--user--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.security.user.password.value_from.secret_key_ref`
 
 Required:
 
@@ -603,22 +603,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username`
+<a id="nestedatt--spec--outputs--forward--security--user--username"></a>
+### Nested Schema for `spec.outputs.forward.security.user.username`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--username--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username.value_from`
+<a id="nestedatt--spec--outputs--forward--security--user--username--value_from"></a>
+### Nested Schema for `spec.outputs.forward.security.user.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--security--user--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--security--user--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.security.user.username.value_from.secret_key_ref`
 
 Required:
 
@@ -652,11 +652,11 @@ Optional:
 - `log_level` (String) The @log_level parameter specifies the plugin-specific logging level
 - `path` (String) The path of the target list. Default is '/etc/fluent/sd.yaml'
 - `proto` (String) Proto without the underscore in RFC2782.
-- `server` (Attributes) The server section of this plugin (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server))
+- `server` (Attributes) The server section of this plugin (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server))
 - `service` (String) Service without the underscore in RFC2782.
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server`
 
 Optional:
 
@@ -664,30 +664,30 @@ Optional:
 - `id` (String) The @id parameter specifies a unique name for the configuration.
 - `log_level` (String) The @log_level parameter specifies the plugin-specific logging level
 - `name` (String) Name defines the name of the server. Used for logging and certificate verification in TLS transport (when the host is the address).
-- `password` (Attributes) Password defines the password for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--password))
+- `password` (Attributes) Password defines the password for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--password))
 - `port` (String) Port defines the port number of the host. Note that both TCP packets (event stream) and UDP packets (heartbeat messages) are sent to this port.
 - `shared_key` (String) SharedKey defines the shared key per server.
 - `standby` (String) Standby marks a node as the standby node for an Active-Standby model between Fluentd nodes.
 - `type` (String) The @type parameter specifies the type of the plugin.
-- `username` (Attributes) Username defines the username for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--username))
+- `username` (Attributes) Username defines the username for authentication. (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--username))
 - `weight` (String) Weight defines the load balancing weight
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--password"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.password`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--password"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.password`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--password--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight.value_from`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--password--value_from"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.password.value_from.secret_key_ref`
 
 Required:
 
@@ -701,22 +701,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--username"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.username`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--username"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.username`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--username--value_from))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight.value_from`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--username--value_from"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--forward--service_discovery--server--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--weight--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--forward--service_discovery--server--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.forward.service_discovery.server.username.value_from.secret_key_ref`
 
 Required:
 
@@ -765,25 +765,25 @@ Optional:
 Optional:
 
 - `auth` (String) The method for HTTP authentication. Now only basic.
-- `password` (Attributes) The password for basic authentication. (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--password))
-- `username` (Attributes) The username for basic authentication. (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--username))
+- `password` (Attributes) The password for basic authentication. (see [below for nested schema](#nestedatt--spec--outputs--http--auth--password))
+- `username` (Attributes) The username for basic authentication. (see [below for nested schema](#nestedatt--spec--outputs--http--auth--username))
 
-<a id="nestedatt--spec--outputs--http--tls_version--password"></a>
-### Nested Schema for `spec.outputs.http.tls_version.password`
-
-Optional:
-
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--password--value_from))
-
-<a id="nestedatt--spec--outputs--http--tls_version--password--value_from"></a>
-### Nested Schema for `spec.outputs.http.tls_version.password.value_from`
+<a id="nestedatt--spec--outputs--http--auth--password"></a>
+### Nested Schema for `spec.outputs.http.auth.password`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--password--value_from--secret_key_ref))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--http--auth--password--value_from))
 
-<a id="nestedatt--spec--outputs--http--tls_version--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.http.tls_version.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--http--auth--password--value_from"></a>
+### Nested Schema for `spec.outputs.http.auth.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--http--auth--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--http--auth--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.http.auth.password.value_from.secret_key_ref`
 
 Required:
 
@@ -797,22 +797,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--outputs--http--tls_version--username"></a>
-### Nested Schema for `spec.outputs.http.tls_version.username`
+<a id="nestedatt--spec--outputs--http--auth--username"></a>
+### Nested Schema for `spec.outputs.http.auth.username`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--username--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--http--auth--username--value_from))
 
-<a id="nestedatt--spec--outputs--http--tls_version--username--value_from"></a>
-### Nested Schema for `spec.outputs.http.tls_version.username.value_from`
+<a id="nestedatt--spec--outputs--http--auth--username--value_from"></a>
+### Nested Schema for `spec.outputs.http.auth.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--http--tls_version--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--http--auth--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--http--tls_version--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.http.tls_version.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--http--auth--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.http.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -896,17 +896,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--http_password--value_from))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from`
+<a id="nestedatt--spec--outputs--loki--http_password--value_from"></a>
+### Nested Schema for `spec.outputs.loki.http_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--http_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--loki--http_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.loki.http_password.value_from.secret_key_ref`
 
 Required:
 
@@ -925,17 +925,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--http_user--value_from))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from`
+<a id="nestedatt--spec--outputs--loki--http_user--value_from"></a>
+### Nested Schema for `spec.outputs.loki.http_user.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--http_user--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--loki--http_user--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.loki.http_user.value_from.secret_key_ref`
 
 Required:
 
@@ -954,17 +954,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--loki--tenant_id--value_from))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from`
+<a id="nestedatt--spec--outputs--loki--tenant_id--value_from"></a>
+### Nested Schema for `spec.outputs.loki.tenant_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--loki--tenant_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--loki--tls_private_key_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--loki--tenant_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.loki.tenant_id.value_from.secret_key_ref`
 
 Required:
 
@@ -1000,17 +1000,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--opensearch--user--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--opensearch--password--value_from))
 
-<a id="nestedatt--spec--outputs--opensearch--user--value_from"></a>
-### Nested Schema for `spec.outputs.opensearch.user.value_from`
+<a id="nestedatt--spec--outputs--opensearch--password--value_from"></a>
+### Nested Schema for `spec.outputs.opensearch.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--opensearch--user--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--opensearch--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--outputs--opensearch--user--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.outputs.opensearch.user.value_from.secret_key_ref`
+<a id="nestedatt--spec--outputs--opensearch--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.opensearch.password.value_from.secret_key_ref`
 
 Required:
 

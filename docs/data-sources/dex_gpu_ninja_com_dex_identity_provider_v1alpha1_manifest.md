@@ -253,15 +253,15 @@ Required:
 
 - `base_dn` (String) BaseDN to start the search from. For example 'cn=groups,dc=example,dc=com'
 - `name_attr` (String) NameAttr is the attribute of the group that represents its name.
-- `user_matchers` (Attributes List) UserMatchers is an array of the field pairs used to match a user to a group. See the 'DexIdentityProviderConnectorLDAPGroupSearchUserMatcher' struct for the exact field names  Each pair adds an additional requirement to the filter that an attribute in the group match the user's attribute value. For example that the 'members' attribute of a group matches the 'uid' of the user. The exact filter being added is:  (userMatchers[n].<groupAttr>=userMatchers[n].<userAttr value>) (see [below for nested schema](#nestedatt--spec--connectors--ldap--username_prompt--user_matchers))
+- `user_matchers` (Attributes List) UserMatchers is an array of the field pairs used to match a user to a group. See the 'DexIdentityProviderConnectorLDAPGroupSearchUserMatcher' struct for the exact field names  Each pair adds an additional requirement to the filter that an attribute in the group match the user's attribute value. For example that the 'members' attribute of a group matches the 'uid' of the user. The exact filter being added is:  (userMatchers[n].<groupAttr>=userMatchers[n].<userAttr value>) (see [below for nested schema](#nestedatt--spec--connectors--ldap--group_search--user_matchers))
 
 Optional:
 
 - `filter` (String) Filter is an optional filter to apply when searching the directory. For example '(objectClass=posixGroup)'
 - `scope` (String) Scope is the optional scope of the search (default 'sub'). Can either be: * 'sub' - search the whole sub tree * 'one' - only search one level
 
-<a id="nestedatt--spec--connectors--ldap--username_prompt--user_matchers"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt.user_matchers`
+<a id="nestedatt--spec--connectors--ldap--group_search--user_matchers"></a>
+### Nested Schema for `spec.connectors.ldap.group_search.user_matchers`
 
 Required:
 
@@ -552,12 +552,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--volume_claim_templates--spec--volume_name--claims"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name.claims`
+<a id="nestedatt--spec--volume_claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.volume_claim_templates.spec.resources.claims`
 
 Required:
 
@@ -570,11 +570,11 @@ Required:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--volume_claim_templates--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--volume_claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.volume_claim_templates.spec.selector.match_expressions`
 
 Required:
 

@@ -115,13 +115,13 @@ Required:
 Optional:
 
 - `connect_timeout` (String) ConnectTimeout is a timeout for initial dial to cassandra server.
-- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--default_store--tls--consistency))
+- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--default_store--cassandra--consistency))
 - `datacenter` (String) Datacenter is the data center filter arg for cassandra.
 - `disable_initial_host_lookup` (Boolean) DisableInitialHostLookup instructs the gocql client to connect only using the supplied hosts.
 - `max_conns` (Number) MaxConns is the max number of connections to this datastore for a single keyspace.
 
-<a id="nestedatt--spec--persistence--default_store--tls--consistency"></a>
-### Nested Schema for `spec.persistence.default_store.tls.consistency`
+<a id="nestedatt--spec--persistence--default_store--cassandra--consistency"></a>
+### Nested Schema for `spec.persistence.default_store.cassandra.consistency`
 
 Optional:
 
@@ -135,7 +135,7 @@ Optional:
 
 Required:
 
-- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--default_store--tls--indices))
+- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--default_store--elasticsearch--indices))
 - `url` (String) URL is the connection url to connect to the instance.
 - `username` (String) Username is the username to be used for the connection.
 - `version` (String) Version defines the elasticsearch version.
@@ -147,8 +147,8 @@ Optional:
 - `enable_sniff` (Boolean) EnableSniff enables or disables sniffer on the temporal cluster's es client.
 - `log_level` (String) LogLevel defines the temporal cluster's es client logger level.
 
-<a id="nestedatt--spec--persistence--default_store--tls--indices"></a>
-### Nested Schema for `spec.persistence.default_store.tls.indices`
+<a id="nestedatt--spec--persistence--default_store--elasticsearch--indices"></a>
+### Nested Schema for `spec.persistence.default_store.elasticsearch.indices`
 
 Required:
 
@@ -272,13 +272,13 @@ Required:
 Optional:
 
 - `connect_timeout` (String) ConnectTimeout is a timeout for initial dial to cassandra server.
-- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--tls--consistency))
+- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--cassandra--consistency))
 - `datacenter` (String) Datacenter is the data center filter arg for cassandra.
 - `disable_initial_host_lookup` (Boolean) DisableInitialHostLookup instructs the gocql client to connect only using the supplied hosts.
 - `max_conns` (Number) MaxConns is the max number of connections to this datastore for a single keyspace.
 
-<a id="nestedatt--spec--persistence--visibility_store--tls--consistency"></a>
-### Nested Schema for `spec.persistence.visibility_store.tls.consistency`
+<a id="nestedatt--spec--persistence--visibility_store--cassandra--consistency"></a>
+### Nested Schema for `spec.persistence.visibility_store.cassandra.consistency`
 
 Optional:
 
@@ -292,7 +292,7 @@ Optional:
 
 Required:
 
-- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--tls--indices))
+- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--elasticsearch--indices))
 - `url` (String) URL is the connection url to connect to the instance.
 - `username` (String) Username is the username to be used for the connection.
 - `version` (String) Version defines the elasticsearch version.
@@ -304,8 +304,8 @@ Optional:
 - `enable_sniff` (Boolean) EnableSniff enables or disables sniffer on the temporal cluster's es client.
 - `log_level` (String) LogLevel defines the temporal cluster's es client logger level.
 
-<a id="nestedatt--spec--persistence--visibility_store--tls--indices"></a>
-### Nested Schema for `spec.persistence.visibility_store.tls.indices`
+<a id="nestedatt--spec--persistence--visibility_store--elasticsearch--indices"></a>
+### Nested Schema for `spec.persistence.visibility_store.elasticsearch.indices`
 
 Required:
 
@@ -429,13 +429,13 @@ Required:
 Optional:
 
 - `connect_timeout` (String) ConnectTimeout is a timeout for initial dial to cassandra server.
-- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--tls--consistency))
+- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--cassandra--consistency))
 - `datacenter` (String) Datacenter is the data center filter arg for cassandra.
 - `disable_initial_host_lookup` (Boolean) DisableInitialHostLookup instructs the gocql client to connect only using the supplied hosts.
 - `max_conns` (Number) MaxConns is the max number of connections to this datastore for a single keyspace.
 
-<a id="nestedatt--spec--persistence--advanced_visibility_store--tls--consistency"></a>
-### Nested Schema for `spec.persistence.advanced_visibility_store.tls.consistency`
+<a id="nestedatt--spec--persistence--advanced_visibility_store--cassandra--consistency"></a>
+### Nested Schema for `spec.persistence.advanced_visibility_store.cassandra.consistency`
 
 Optional:
 
@@ -449,7 +449,7 @@ Optional:
 
 Required:
 
-- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--tls--indices))
+- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--elasticsearch--indices))
 - `url` (String) URL is the connection url to connect to the instance.
 - `username` (String) Username is the username to be used for the connection.
 - `version` (String) Version defines the elasticsearch version.
@@ -461,8 +461,8 @@ Optional:
 - `enable_sniff` (Boolean) EnableSniff enables or disables sniffer on the temporal cluster's es client.
 - `log_level` (String) LogLevel defines the temporal cluster's es client logger level.
 
-<a id="nestedatt--spec--persistence--advanced_visibility_store--tls--indices"></a>
-### Nested Schema for `spec.persistence.advanced_visibility_store.tls.indices`
+<a id="nestedatt--spec--persistence--advanced_visibility_store--elasticsearch--indices"></a>
+### Nested Schema for `spec.persistence.advanced_visibility_store.elasticsearch.indices`
 
 Required:
 
@@ -586,13 +586,13 @@ Required:
 Optional:
 
 - `connect_timeout` (String) ConnectTimeout is a timeout for initial dial to cassandra server.
-- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--tls--consistency))
+- `consistency` (Attributes) Consistency configuration. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--cassandra--consistency))
 - `datacenter` (String) Datacenter is the data center filter arg for cassandra.
 - `disable_initial_host_lookup` (Boolean) DisableInitialHostLookup instructs the gocql client to connect only using the supplied hosts.
 - `max_conns` (Number) MaxConns is the max number of connections to this datastore for a single keyspace.
 
-<a id="nestedatt--spec--persistence--secondary_visibility_store--tls--consistency"></a>
-### Nested Schema for `spec.persistence.secondary_visibility_store.tls.consistency`
+<a id="nestedatt--spec--persistence--secondary_visibility_store--cassandra--consistency"></a>
+### Nested Schema for `spec.persistence.secondary_visibility_store.cassandra.consistency`
 
 Optional:
 
@@ -606,7 +606,7 @@ Optional:
 
 Required:
 
-- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--tls--indices))
+- `indices` (Attributes) Indices holds visibility index names. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--elasticsearch--indices))
 - `url` (String) URL is the connection url to connect to the instance.
 - `username` (String) Username is the username to be used for the connection.
 - `version` (String) Version defines the elasticsearch version.
@@ -618,8 +618,8 @@ Optional:
 - `enable_sniff` (Boolean) EnableSniff enables or disables sniffer on the temporal cluster's es client.
 - `log_level` (String) LogLevel defines the temporal cluster's es client logger level.
 
-<a id="nestedatt--spec--persistence--secondary_visibility_store--tls--indices"></a>
-### Nested Schema for `spec.persistence.secondary_visibility_store.tls.indices`
+<a id="nestedatt--spec--persistence--secondary_visibility_store--elasticsearch--indices"></a>
+### Nested Schema for `spec.persistence.secondary_visibility_store.elasticsearch.indices`
 
 Required:
 
@@ -846,10 +846,10 @@ Required:
 
 Required:
 
-- `credentials_ref` (Attributes) SecretAccessKeyRef is the secret key selector containing Google Cloud Storage credentials file. (see [below for nested schema](#nestedatt--spec--archival--provider--s3--credentials_ref))
+- `credentials_ref` (Attributes) SecretAccessKeyRef is the secret key selector containing Google Cloud Storage credentials file. (see [below for nested schema](#nestedatt--spec--archival--provider--gcs--credentials_ref))
 
-<a id="nestedatt--spec--archival--provider--s3--credentials_ref"></a>
-### Nested Schema for `spec.archival.provider.s3.credentials_ref`
+<a id="nestedatt--spec--archival--provider--gcs--credentials_ref"></a>
+### Nested Schema for `spec.archival.provider.gcs.credentials_ref`
 
 Required:
 
@@ -1125,11 +1125,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--match_expressions"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.match_expressions`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector.match_expressions`
 
 Required:
 
@@ -1155,39 +1155,39 @@ Optional:
 
 Optional:
 
-- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use when scraping the target.  Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--authorization))
-- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use when scraping the target.  Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--basic_auth))
+- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use when scraping the target.  Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization))
+- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use when scraping the target.  Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth))
 - `bearer_token_file` (String) File to read bearer token for scraping the target.  Deprecated: use 'authorization' instead.
-- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator.  Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--bearer_token_secret))
+- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator.  Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--bearer_token_secret))
 - `enable_http2` (Boolean) 'enableHttp2' can be used to disable HTTP2 when scraping the target.
 - `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery.  If unset, the filtering is enabled.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
 - `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.
 - `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.
 - `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.
 - `interval` (String) Interval at which Prometheus scrapes the metrics from the target.  If empty, Prometheus uses the global scrape interval.
-- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--metric_relabelings))
-- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target.  It requires Prometheus >= 2.27.0.  Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--oauth2))
+- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--metric_relabelings))
+- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target.  It requires Prometheus >= 2.27.0.  Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2))
 - `params` (Map of List of String) params define optional HTTP URL parameters.
 - `path` (String) HTTP path from which to scrape for metrics.  If empty, Prometheus uses the default value (e.g. '/metrics').
 - `port` (String) Name of the Service port which this endpoint refers to.  It takes precedence over 'targetPort'.
 - `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.
-- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target's metadata labels.  The Operator automatically adds relabelings for a few standard Kubernetes fields.  The original scrape job's name is available via the '__tmp_prometheus_job_name' label.  More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--relabelings))
+- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target's metadata labels.  The Operator automatically adds relabelings for a few standard Kubernetes fields.  The original scrape job's name is available via the '__tmp_prometheus_job_name' label.  More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--relabelings))
 - `scheme` (String) HTTP scheme to use for scraping.  'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.  If empty, Prometheus uses the default value 'http'.
 - `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed.  If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.
 - `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.
-- `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--tls_config))
+- `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config))
 - `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false.  It requires Prometheus >= v2.48.0.
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--authorization"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.authorization`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.authorization`
 
 Optional:
 
-- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--credentials))
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization--credentials))
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--credentials"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.credentials`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization--credentials"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.authorization.credentials`
 
 Required:
 
@@ -1200,16 +1200,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--basic_auth"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.basic_auth`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.basic_auth`
 
 Optional:
 
-- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--password))
-- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--username))
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--password"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.password`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--password"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.basic_auth.password`
 
 Required:
 
@@ -1221,8 +1221,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--username"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.username`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--username"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.basic_auth.username`
 
 Required:
 
@@ -1235,8 +1235,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--bearer_token_secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.bearer_token_secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--bearer_token_secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.bearer_token_secret`
 
 Required:
 
@@ -1248,8 +1248,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--metric_relabelings"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.metric_relabelings`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--metric_relabelings"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.metric_relabelings`
 
 Optional:
 
@@ -1262,13 +1262,13 @@ Optional:
 - `target_label` (String) Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--oauth2"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.oauth2`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2`
 
 Required:
 
-- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id))
-- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_secret))
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_secret))
 - `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
@@ -1276,16 +1276,16 @@ Optional:
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.client_id`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.client_id`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id--config_map"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.client_id.config_map`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.client_id.config_map`
 
 Required:
 
@@ -1297,8 +1297,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_id--secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.client_id.secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.client_id.secret`
 
 Required:
 
@@ -1311,8 +1311,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--client_secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.client_secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.client_secret`
 
 Required:
 
@@ -1325,8 +1325,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--relabelings"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.relabelings`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--relabelings"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.relabelings`
 
 Optional:
 
@@ -1339,30 +1339,30 @@ Optional:
 - `target_label` (String) Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--tls_config"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.tls_config`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config`
 
 Optional:
 
-- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca))
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the Prometheus container to use for the targets.
-- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the Prometheus container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.ca`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca--secret))
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca--config_map"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.ca.config_map`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.ca.config_map`
 
 Required:
 
@@ -1374,8 +1374,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--ca--secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.ca.secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca--secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.ca.secret`
 
 Required:
 
@@ -1388,16 +1388,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.cert`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert--secret))
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert--config_map"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.cert.config_map`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.cert.config_map`
 
 Required:
 
@@ -1409,8 +1409,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--cert--secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.cert.secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--cert--secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.cert.secret`
 
 Required:
 
@@ -1423,8 +1423,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--track_timestamps_staleness--key_secret"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.target_limit.track_timestamps_staleness.key_secret`
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--key_secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.tls_config.key_secret`
 
 Required:
 
@@ -1482,18 +1482,18 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--deployment))
+- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment))
 
-<a id="nestedatt--spec--services--frontend--resources--deployment"></a>
-### Nested Schema for `spec.services.frontend.resources.deployment`
+<a id="nestedatt--spec--services--frontend--overrides--deployment"></a>
+### Nested Schema for `spec.services.frontend.overrides.deployment`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--deployment--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--deployment--spec))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec))
 
-<a id="nestedatt--spec--services--frontend--resources--deployment--metadata"></a>
-### Nested Schema for `spec.services.frontend.resources.deployment.metadata`
+<a id="nestedatt--spec--services--frontend--overrides--deployment--metadata"></a>
+### Nested Schema for `spec.services.frontend.overrides.deployment.metadata`
 
 Optional:
 
@@ -1501,23 +1501,23 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
-<a id="nestedatt--spec--services--frontend--resources--deployment--spec"></a>
-### Nested Schema for `spec.services.frontend.resources.deployment.spec`
+<a id="nestedatt--spec--services--frontend--overrides--deployment--spec"></a>
+### Nested Schema for `spec.services.frontend.overrides.deployment.spec`
 
 Optional:
 
-- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--deployment--spec--template))
+- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec--template))
 
-<a id="nestedatt--spec--services--frontend--resources--deployment--spec--template"></a>
-### Nested Schema for `spec.services.frontend.resources.deployment.spec.template`
+<a id="nestedatt--spec--services--frontend--overrides--deployment--spec--template"></a>
+### Nested Schema for `spec.services.frontend.overrides.deployment.spec.template`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
-<a id="nestedatt--spec--services--frontend--resources--deployment--spec--template--metadata"></a>
-### Nested Schema for `spec.services.frontend.resources.deployment.spec.template.metadata`
+<a id="nestedatt--spec--services--frontend--overrides--deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.services.frontend.overrides.deployment.spec.template.metadata`
 
 Optional:
 
@@ -1566,18 +1566,18 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--history--resources--deployment))
+- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment))
 
-<a id="nestedatt--spec--services--history--resources--deployment"></a>
-### Nested Schema for `spec.services.history.resources.deployment`
+<a id="nestedatt--spec--services--history--overrides--deployment"></a>
+### Nested Schema for `spec.services.history.overrides.deployment`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--resources--deployment--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--history--resources--deployment--spec))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec))
 
-<a id="nestedatt--spec--services--history--resources--deployment--metadata"></a>
-### Nested Schema for `spec.services.history.resources.deployment.metadata`
+<a id="nestedatt--spec--services--history--overrides--deployment--metadata"></a>
+### Nested Schema for `spec.services.history.overrides.deployment.metadata`
 
 Optional:
 
@@ -1585,23 +1585,23 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
-<a id="nestedatt--spec--services--history--resources--deployment--spec"></a>
-### Nested Schema for `spec.services.history.resources.deployment.spec`
+<a id="nestedatt--spec--services--history--overrides--deployment--spec"></a>
+### Nested Schema for `spec.services.history.overrides.deployment.spec`
 
 Optional:
 
-- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--history--resources--deployment--spec--template))
+- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec--template))
 
-<a id="nestedatt--spec--services--history--resources--deployment--spec--template"></a>
-### Nested Schema for `spec.services.history.resources.deployment.spec.template`
+<a id="nestedatt--spec--services--history--overrides--deployment--spec--template"></a>
+### Nested Schema for `spec.services.history.overrides.deployment.spec.template`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--resources--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
-<a id="nestedatt--spec--services--history--resources--deployment--spec--template--metadata"></a>
-### Nested Schema for `spec.services.history.resources.deployment.spec.template.metadata`
+<a id="nestedatt--spec--services--history--overrides--deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.services.history.overrides.deployment.spec.template.metadata`
 
 Optional:
 
@@ -1651,18 +1651,18 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--deployment))
+- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment))
 
-<a id="nestedatt--spec--services--internal_frontend--resources--deployment"></a>
-### Nested Schema for `spec.services.internal_frontend.resources.deployment`
+<a id="nestedatt--spec--services--internal_frontend--overrides--deployment"></a>
+### Nested Schema for `spec.services.internal_frontend.overrides.deployment`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--deployment--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--deployment--spec))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec))
 
-<a id="nestedatt--spec--services--internal_frontend--resources--deployment--metadata"></a>
-### Nested Schema for `spec.services.internal_frontend.resources.deployment.metadata`
+<a id="nestedatt--spec--services--internal_frontend--overrides--deployment--metadata"></a>
+### Nested Schema for `spec.services.internal_frontend.overrides.deployment.metadata`
 
 Optional:
 
@@ -1670,23 +1670,23 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
-<a id="nestedatt--spec--services--internal_frontend--resources--deployment--spec"></a>
-### Nested Schema for `spec.services.internal_frontend.resources.deployment.spec`
+<a id="nestedatt--spec--services--internal_frontend--overrides--deployment--spec"></a>
+### Nested Schema for `spec.services.internal_frontend.overrides.deployment.spec`
 
 Optional:
 
-- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--deployment--spec--template))
+- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template))
 
-<a id="nestedatt--spec--services--internal_frontend--resources--deployment--spec--template"></a>
-### Nested Schema for `spec.services.internal_frontend.resources.deployment.spec.template`
+<a id="nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template"></a>
+### Nested Schema for `spec.services.internal_frontend.overrides.deployment.spec.template`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
-<a id="nestedatt--spec--services--internal_frontend--resources--deployment--spec--template--metadata"></a>
-### Nested Schema for `spec.services.internal_frontend.resources.deployment.spec.template.metadata`
+<a id="nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.services.internal_frontend.overrides.deployment.spec.template.metadata`
 
 Optional:
 
@@ -1735,18 +1735,18 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--matching--resources--deployment))
+- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment))
 
-<a id="nestedatt--spec--services--matching--resources--deployment"></a>
-### Nested Schema for `spec.services.matching.resources.deployment`
+<a id="nestedatt--spec--services--matching--overrides--deployment"></a>
+### Nested Schema for `spec.services.matching.overrides.deployment`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--resources--deployment--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--matching--resources--deployment--spec))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec))
 
-<a id="nestedatt--spec--services--matching--resources--deployment--metadata"></a>
-### Nested Schema for `spec.services.matching.resources.deployment.metadata`
+<a id="nestedatt--spec--services--matching--overrides--deployment--metadata"></a>
+### Nested Schema for `spec.services.matching.overrides.deployment.metadata`
 
 Optional:
 
@@ -1754,23 +1754,23 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
-<a id="nestedatt--spec--services--matching--resources--deployment--spec"></a>
-### Nested Schema for `spec.services.matching.resources.deployment.spec`
+<a id="nestedatt--spec--services--matching--overrides--deployment--spec"></a>
+### Nested Schema for `spec.services.matching.overrides.deployment.spec`
 
 Optional:
 
-- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--matching--resources--deployment--spec--template))
+- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec--template))
 
-<a id="nestedatt--spec--services--matching--resources--deployment--spec--template"></a>
-### Nested Schema for `spec.services.matching.resources.deployment.spec.template`
+<a id="nestedatt--spec--services--matching--overrides--deployment--spec--template"></a>
+### Nested Schema for `spec.services.matching.overrides.deployment.spec.template`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--resources--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
-<a id="nestedatt--spec--services--matching--resources--deployment--spec--template--metadata"></a>
-### Nested Schema for `spec.services.matching.resources.deployment.spec.template.metadata`
+<a id="nestedatt--spec--services--matching--overrides--deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.services.matching.overrides.deployment.spec.template.metadata`
 
 Optional:
 
@@ -1871,18 +1871,18 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--worker--resources--deployment))
+- `deployment` (Attributes) Override configuration for the temporal service Deployment. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment))
 
-<a id="nestedatt--spec--services--worker--resources--deployment"></a>
-### Nested Schema for `spec.services.worker.resources.deployment`
+<a id="nestedatt--spec--services--worker--overrides--deployment"></a>
+### Nested Schema for `spec.services.worker.overrides.deployment`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--resources--deployment--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--worker--resources--deployment--spec))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec))
 
-<a id="nestedatt--spec--services--worker--resources--deployment--metadata"></a>
-### Nested Schema for `spec.services.worker.resources.deployment.metadata`
+<a id="nestedatt--spec--services--worker--overrides--deployment--metadata"></a>
+### Nested Schema for `spec.services.worker.overrides.deployment.metadata`
 
 Optional:
 
@@ -1890,23 +1890,23 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
-<a id="nestedatt--spec--services--worker--resources--deployment--spec"></a>
-### Nested Schema for `spec.services.worker.resources.deployment.spec`
+<a id="nestedatt--spec--services--worker--overrides--deployment--spec"></a>
+### Nested Schema for `spec.services.worker.overrides.deployment.spec`
 
 Optional:
 
-- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--worker--resources--deployment--spec--template))
+- `template` (Attributes) Template describes the pods that will be created. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec--template))
 
-<a id="nestedatt--spec--services--worker--resources--deployment--spec--template"></a>
-### Nested Schema for `spec.services.worker.resources.deployment.spec.template`
+<a id="nestedatt--spec--services--worker--overrides--deployment--spec--template"></a>
+### Nested Schema for `spec.services.worker.overrides.deployment.spec.template`
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--resources--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
-<a id="nestedatt--spec--services--worker--resources--deployment--spec--template--metadata"></a>
-### Nested Schema for `spec.services.worker.resources.deployment.spec.template.metadata`
+<a id="nestedatt--spec--services--worker--overrides--deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.services.worker.overrides.deployment.spec.template.metadata`
 
 Optional:
 

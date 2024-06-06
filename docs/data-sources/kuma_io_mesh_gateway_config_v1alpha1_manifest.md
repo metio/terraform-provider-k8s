@@ -93,10 +93,10 @@ Optional:
 
 Optional:
 
-- `security_context` (Attributes) ContainerSecurityContext corresponds to PodSpec.Container.SecurityContext (see [below for nested schema](#nestedatt--spec--pod_template--spec--service_account_name--security_context))
+- `security_context` (Attributes) ContainerSecurityContext corresponds to PodSpec.Container.SecurityContext (see [below for nested schema](#nestedatt--spec--pod_template--spec--container--security_context))
 
-<a id="nestedatt--spec--pod_template--spec--service_account_name--security_context"></a>
-### Nested Schema for `spec.pod_template.spec.service_account_name.security_context`
+<a id="nestedatt--spec--pod_template--spec--container--security_context"></a>
+### Nested Schema for `spec.pod_template.spec.container.security_context`
 
 Optional:
 

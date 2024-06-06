@@ -123,19 +123,19 @@ Optional:
 
 Optional:
 
-- `access_log` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log))
+- `access_log` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log`
 
 Optional:
 
-- `file_sink` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--file_sink))
-- `filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--filter))
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service))
+- `file_sink` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--file_sink))
+- `filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--grpc_service))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--file_sink"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.file_sink`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--file_sink"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.file_sink`
 
 Optional:
 
@@ -144,39 +144,39 @@ Optional:
 - `string_format` (String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter`
 
 Optional:
 
 - `and_filter` (Map of String)
-- `duration_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--duration_filter))
-- `grpc_status_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--grpc_status_filter))
-- `header_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--header_filter))
+- `duration_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter))
+- `grpc_status_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--grpc_status_filter))
+- `header_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter))
 - `not_health_check_filter` (Map of String)
 - `or_filter` (Map of String)
-- `response_flag_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--response_flag_filter))
-- `runtime_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--runtime_filter))
-- `status_code_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--status_code_filter))
+- `response_flag_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--response_flag_filter))
+- `runtime_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--runtime_filter))
+- `status_code_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter))
 - `traceable_filter` (Map of String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--duration_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.duration_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.duration_filter`
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter--comparison))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter--comparison"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.duration_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter--comparison--value))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison.value`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--duration_filter--comparison--value"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.duration_filter.comparison.value`
 
 Optional:
 
@@ -186,8 +186,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--grpc_status_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.grpc_status_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--grpc_status_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.grpc_status_filter`
 
 Optional:
 
@@ -195,15 +195,15 @@ Optional:
 - `statuses` (List of String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--header_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.header_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.header_filter`
 
 Optional:
 
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.header_filter.header`
 
 Optional:
 
@@ -212,12 +212,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--range_match))
-- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--range_match))
+- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match))
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--range_match"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.range_match`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--range_match"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.header_filter.header.range_match`
 
 Optional:
 
@@ -225,16 +225,16 @@ Optional:
 - `start` (Number)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.header_filter.header.safe_regex_match`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match--google_re2"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match.google_re2`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.header_filter.header.safe_regex_match.google_re2`
 
 Optional:
 
@@ -244,25 +244,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--response_flag_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.response_flag_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--response_flag_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.response_flag_filter`
 
 Optional:
 
 - `flags` (List of String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--runtime_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.runtime_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--runtime_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.runtime_filter`
 
 Optional:
 
-- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--percent_sampled))
+- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--runtime_filter--percent_sampled))
 - `runtime_key` (String)
 - `use_independent_randomness` (Boolean)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--percent_sampled"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.percent_sampled`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--runtime_filter--percent_sampled"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.runtime_filter.percent_sampled`
 
 Optional:
 
@@ -271,23 +271,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--status_code_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.status_code_filter`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.status_code_filter`
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter--comparison))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter--comparison"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.status_code_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter--comparison--value))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison.value`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--filter--status_code_filter--comparison--value"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.filter.status_code_filter.comparison.value`
 
 Optional:
 
@@ -298,8 +298,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service`
+<a id="nestedatt--spec--listeners--options--access_logging_service--access_log--grpc_service"></a>
+### Nested Schema for `spec.listeners.options.access_logging_service.access_log.grpc_service`
 
 Optional:
 
@@ -333,19 +333,19 @@ Optional:
 
 Optional:
 
-- `access_log` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log))
+- `access_log` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log`
 
 Optional:
 
-- `file_sink` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--file_sink))
-- `filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--filter))
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service))
+- `file_sink` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--file_sink))
+- `filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--grpc_service))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--file_sink"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.file_sink`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--file_sink"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.file_sink`
 
 Optional:
 
@@ -354,39 +354,39 @@ Optional:
 - `string_format` (String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter`
 
 Optional:
 
 - `and_filter` (Map of String)
-- `duration_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--duration_filter))
-- `grpc_status_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--grpc_status_filter))
-- `header_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--header_filter))
+- `duration_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter))
+- `grpc_status_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--grpc_status_filter))
+- `header_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter))
 - `not_health_check_filter` (Map of String)
 - `or_filter` (Map of String)
-- `response_flag_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--response_flag_filter))
-- `runtime_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--runtime_filter))
-- `status_code_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--status_code_filter))
+- `response_flag_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--response_flag_filter))
+- `runtime_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--runtime_filter))
+- `status_code_filter` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter))
 - `traceable_filter` (Map of String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--duration_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.duration_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.duration_filter`
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter--comparison))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter--comparison"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.duration_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter--comparison--value))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison.value`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--duration_filter--comparison--value"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.duration_filter.comparison.value`
 
 Optional:
 
@@ -396,8 +396,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--grpc_status_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.grpc_status_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--grpc_status_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.grpc_status_filter`
 
 Optional:
 
@@ -405,15 +405,15 @@ Optional:
 - `statuses` (List of String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--header_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.header_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.header_filter`
 
 Optional:
 
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.header_filter.header`
 
 Optional:
 
@@ -422,12 +422,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--range_match))
-- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--range_match))
+- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match))
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--range_match"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.range_match`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--range_match"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.header_filter.header.range_match`
 
 Optional:
 
@@ -435,16 +435,16 @@ Optional:
 - `start` (Number)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.header_filter.header.safe_regex_match`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match--google_re2"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match.google_re2`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.header_filter.header.safe_regex_match.google_re2`
 
 Optional:
 
@@ -454,25 +454,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--response_flag_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.response_flag_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--response_flag_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.response_flag_filter`
 
 Optional:
 
 - `flags` (List of String)
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--runtime_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.runtime_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--runtime_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.runtime_filter`
 
 Optional:
 
-- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--percent_sampled))
+- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--runtime_filter--percent_sampled))
 - `runtime_key` (String)
 - `use_independent_randomness` (Boolean)
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--percent_sampled"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.percent_sampled`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--runtime_filter--percent_sampled"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.runtime_filter.percent_sampled`
 
 Optional:
 
@@ -481,23 +481,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--status_code_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.status_code_filter`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.status_code_filter`
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.status_code_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison--value))
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.comparison.value`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison--value"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.filter.status_code_filter.comparison.value`
 
 Optional:
 
@@ -508,8 +508,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service`
+<a id="nestedatt--spec--listeners--options--listener_access_logging_service--access_log--grpc_service"></a>
+### Nested Schema for `spec.listeners.options.listener_access_logging_service.access_log.grpc_service`
 
 Optional:
 
@@ -528,18 +528,18 @@ Optional:
 Optional:
 
 - `allow_requests_without_proxy_protocol` (Boolean)
-- `rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--rules))
+- `rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--proxy_protocol--rules))
 
-<a id="nestedatt--spec--listeners--options--socket_options--rules"></a>
-### Nested Schema for `spec.listeners.options.socket_options.rules`
+<a id="nestedatt--spec--listeners--options--proxy_protocol--rules"></a>
+### Nested Schema for `spec.listeners.options.proxy_protocol.rules`
 
 Optional:
 
-- `on_tlv_present` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--rules--on_tlv_present))
+- `on_tlv_present` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--proxy_protocol--rules--on_tlv_present))
 - `tlv_type` (Number)
 
-<a id="nestedatt--spec--listeners--options--socket_options--rules--on_tlv_present"></a>
-### Nested Schema for `spec.listeners.options.socket_options.rules.on_tlv_present`
+<a id="nestedatt--spec--listeners--options--proxy_protocol--rules--on_tlv_present"></a>
+### Nested Schema for `spec.listeners.options.proxy_protocol.rules.on_tlv_present`
 
 Optional:
 
@@ -605,21 +605,21 @@ Optional:
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--ssl_configurations--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--ssl_configurations--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--listeners--ssl_configurations--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--listeners--ssl_configurations--sds--call_credentials"></a>
+### Nested Schema for `spec.listeners.ssl_configurations.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--ssl_configurations--verify_subject_alt_name--call_credentials--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--ssl_configurations--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--listeners--ssl_configurations--verify_subject_alt_name--call_credentials--file_credential_source"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name.call_credentials.file_credential_source`
+<a id="nestedatt--spec--listeners--ssl_configurations--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.listeners.ssl_configurations.sds.call_credentials.file_credential_source`
 
 Optional:
 

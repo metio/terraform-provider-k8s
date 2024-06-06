@@ -107,21 +107,21 @@ Optional:
 
 Optional:
 
-- `influxdb2` (Attributes) method configuration for database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--influxdb2))
-- `mysql` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--mysql))
-- `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--redis))
-- `td_engine` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--td_engine))
+- `influxdb2` (Attributes) method configuration for database (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--influxdb2))
+- `mysql` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--mysql))
+- `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--redis))
+- `td_engine` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--td_engine))
 
-<a id="nestedatt--spec--properties--push_method--mqtt--influxdb2"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.influxdb2`
+<a id="nestedatt--spec--properties--push_method--db_method--influxdb2"></a>
+### Nested Schema for `spec.properties.push_method.db_method.influxdb2`
 
 Optional:
 
-- `influxdb2_client_config` (Attributes) Config of influx database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--influxdb2--influxdb2_client_config))
-- `influxdb2_data_config` (Attributes) config of device data when push to influx database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--influxdb2--influxdb2_data_config))
+- `influxdb2_client_config` (Attributes) Config of influx database (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--influxdb2--influxdb2_client_config))
+- `influxdb2_data_config` (Attributes) config of device data when push to influx database (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--influxdb2--influxdb2_data_config))
 
-<a id="nestedatt--spec--properties--push_method--mqtt--influxdb2--influxdb2_client_config"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.influxdb2.influxdb2_client_config`
+<a id="nestedatt--spec--properties--push_method--db_method--influxdb2--influxdb2_client_config"></a>
+### Nested Schema for `spec.properties.push_method.db_method.influxdb2.influxdb2_client_config`
 
 Optional:
 
@@ -130,8 +130,8 @@ Optional:
 - `url` (String) Url of influx database
 
 
-<a id="nestedatt--spec--properties--push_method--mqtt--influxdb2--influxdb2_data_config"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.influxdb2.influxdb2_data_config`
+<a id="nestedatt--spec--properties--push_method--db_method--influxdb2--influxdb2_data_config"></a>
+### Nested Schema for `spec.properties.push_method.db_method.influxdb2.influxdb2_data_config`
 
 Optional:
 
@@ -141,15 +141,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--properties--push_method--mqtt--mysql"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.mysql`
+<a id="nestedatt--spec--properties--push_method--db_method--mysql"></a>
+### Nested Schema for `spec.properties.push_method.db_method.mysql`
 
 Optional:
 
-- `mysql_client_config` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--mysql--mysql_client_config))
+- `mysql_client_config` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--mysql--mysql_client_config))
 
-<a id="nestedatt--spec--properties--push_method--mqtt--mysql--mysql_client_config"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.mysql.mysql_client_config`
+<a id="nestedatt--spec--properties--push_method--db_method--mysql--mysql_client_config"></a>
+### Nested Schema for `spec.properties.push_method.db_method.mysql.mysql_client_config`
 
 Optional:
 
@@ -159,15 +159,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--properties--push_method--mqtt--redis"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.redis`
+<a id="nestedatt--spec--properties--push_method--db_method--redis"></a>
+### Nested Schema for `spec.properties.push_method.db_method.redis`
 
 Optional:
 
-- `redis_client_config` (Attributes) RedisClientConfig of redis database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--redis--redis_client_config))
+- `redis_client_config` (Attributes) RedisClientConfig of redis database (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--redis--redis_client_config))
 
-<a id="nestedatt--spec--properties--push_method--mqtt--redis--redis_client_config"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.redis.redis_client_config`
+<a id="nestedatt--spec--properties--push_method--db_method--redis--redis_client_config"></a>
+### Nested Schema for `spec.properties.push_method.db_method.redis.redis_client_config`
 
 Optional:
 
@@ -178,15 +178,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--properties--push_method--mqtt--td_engine"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.td_engine`
+<a id="nestedatt--spec--properties--push_method--db_method--td_engine"></a>
+### Nested Schema for `spec.properties.push_method.db_method.td_engine`
 
 Optional:
 
-- `td_engine_client_config` (Attributes) tdengineClientConfig of tdengine database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--td_engine--td_engine_client_config))
+- `td_engine_client_config` (Attributes) tdengineClientConfig of tdengine database (see [below for nested schema](#nestedatt--spec--properties--push_method--db_method--td_engine--td_engine_client_config))
 
-<a id="nestedatt--spec--properties--push_method--mqtt--td_engine--td_engine_client_config"></a>
-### Nested Schema for `spec.properties.push_method.mqtt.td_engine.td_engine_client_config`
+<a id="nestedatt--spec--properties--push_method--db_method--td_engine--td_engine_client_config"></a>
+### Nested Schema for `spec.properties.push_method.db_method.td_engine.td_engine_client_config`
 
 Optional:
 

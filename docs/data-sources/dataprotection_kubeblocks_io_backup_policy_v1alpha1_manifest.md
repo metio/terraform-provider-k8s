@@ -216,12 +216,12 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--service_account_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
-<a id="nestedatt--spec--backup_methods--target--service_account_name--match_expressions"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name.match_expressions`
+<a id="nestedatt--spec--backup_methods--target--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.target.pod_selector.match_expressions`
 
 Required:
 
@@ -241,18 +241,18 @@ Optional:
 
 - `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
 - `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
-- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_methods--target--service_account_name--selector))
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_methods--target--resources--selector))
 
-<a id="nestedatt--spec--backup_methods--target--service_account_name--selector"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name.selector`
+<a id="nestedatt--spec--backup_methods--target--resources--selector"></a>
+### Nested Schema for `spec.backup_methods.target.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--service_account_name--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--backup_methods--target--service_account_name--selector--match_expressions"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name.selector.match_expressions`
+<a id="nestedatt--spec--backup_methods--target--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.target.resources.selector.match_expressions`
 
 Required:
 
@@ -323,12 +323,12 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
-<a id="nestedatt--spec--backup_methods--targets--service_account_name--match_expressions"></a>
-### Nested Schema for `spec.backup_methods.targets.service_account_name.match_expressions`
+<a id="nestedatt--spec--backup_methods--targets--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.targets.pod_selector.match_expressions`
 
 Required:
 
@@ -348,18 +348,18 @@ Optional:
 
 - `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
 - `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
-- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--selector))
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--resources--selector))
 
-<a id="nestedatt--spec--backup_methods--targets--service_account_name--selector"></a>
-### Nested Schema for `spec.backup_methods.targets.service_account_name.selector`
+<a id="nestedatt--spec--backup_methods--targets--resources--selector"></a>
+### Nested Schema for `spec.backup_methods.targets.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--backup_methods--targets--service_account_name--selector--match_expressions"></a>
-### Nested Schema for `spec.backup_methods.targets.service_account_name.selector.match_expressions`
+<a id="nestedatt--spec--backup_methods--targets--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.targets.resources.selector.match_expressions`
 
 Required:
 

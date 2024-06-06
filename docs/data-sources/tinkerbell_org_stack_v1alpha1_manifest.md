@@ -166,19 +166,19 @@ Optional:
 
 Optional:
 
-- `backend_file_mode` (Attributes) BackendFileMode contains the file backend configurations for DHCP and the HTTP iPXE script. (see [below for nested schema](#nestedatt--spec--services--smee--tftp_configs--backend_file_mode))
-- `backend_kube_mode` (Attributes) BackendKubeMode contains the Kubernetes backend configurations for DHCP and the HTTP iPXE script. (see [below for nested schema](#nestedatt--spec--services--smee--tftp_configs--backend_kube_mode))
+- `backend_file_mode` (Attributes) BackendFileMode contains the file backend configurations for DHCP and the HTTP iPXE script. (see [below for nested schema](#nestedatt--spec--services--smee--backend_configs--backend_file_mode))
+- `backend_kube_mode` (Attributes) BackendKubeMode contains the Kubernetes backend configurations for DHCP and the HTTP iPXE script. (see [below for nested schema](#nestedatt--spec--services--smee--backend_configs--backend_kube_mode))
 
-<a id="nestedatt--spec--services--smee--tftp_configs--backend_file_mode"></a>
-### Nested Schema for `spec.services.smee.tftp_configs.backend_file_mode`
+<a id="nestedatt--spec--services--smee--backend_configs--backend_file_mode"></a>
+### Nested Schema for `spec.services.smee.backend_configs.backend_file_mode`
 
 Required:
 
 - `file_path` (String) FilePath specifies the hardware yaml file path for the file backend.
 
 
-<a id="nestedatt--spec--services--smee--tftp_configs--backend_kube_mode"></a>
-### Nested Schema for `spec.services.smee.tftp_configs.backend_kube_mode`
+<a id="nestedatt--spec--services--smee--backend_configs--backend_kube_mode"></a>
+### Nested Schema for `spec.services.smee.backend_configs.backend_kube_mode`
 
 Optional:
 

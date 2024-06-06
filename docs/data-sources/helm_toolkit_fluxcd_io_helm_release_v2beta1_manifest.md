@@ -132,10 +132,10 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--chart--spec--version--secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--chart--spec--verify--secret_ref))
 
-<a id="nestedatt--spec--chart--spec--version--secret_ref"></a>
-### Nested Schema for `spec.chart.spec.version.secret_ref`
+<a id="nestedatt--spec--chart--spec--verify--secret_ref"></a>
+### Nested Schema for `spec.chart.spec.verify.secret_ref`
 
 Required:
 
@@ -302,10 +302,10 @@ Required:
 
 Optional:
 
-- `target` (Attributes) Target points to the resources that the patch document should be applied to. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--target))
+- `target` (Attributes) Target points to the resources that the patch document should be applied to. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches--target))
 
-<a id="nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--target"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge.target`
+<a id="nestedatt--spec--post_renderers--kustomize--patches--target"></a>
+### Nested Schema for `spec.post_renderers.kustomize.patches.target`
 
 Optional:
 
@@ -324,11 +324,11 @@ Optional:
 
 Required:
 
-- `patch` (Attributes List) Patch contains the JSON6902 patch document with an array of operation objects. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--patch))
-- `target` (Attributes) Target points to the resources that the patch document should be applied to. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--target))
+- `patch` (Attributes List) Patch contains the JSON6902 patch document with an array of operation objects. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches_json6902--patch))
+- `target` (Attributes) Target points to the resources that the patch document should be applied to. (see [below for nested schema](#nestedatt--spec--post_renderers--kustomize--patches_json6902--target))
 
-<a id="nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--patch"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge.patch`
+<a id="nestedatt--spec--post_renderers--kustomize--patches_json6902--patch"></a>
+### Nested Schema for `spec.post_renderers.kustomize.patches_json6902.patch`
 
 Required:
 
@@ -341,8 +341,8 @@ Optional:
 - `value` (Map of String) Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken intoaccount by all operations.
 
 
-<a id="nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--target"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge.target`
+<a id="nestedatt--spec--post_renderers--kustomize--patches_json6902--target"></a>
+### Nested Schema for `spec.post_renderers.kustomize.patches_json6902.target`
 
 Optional:
 

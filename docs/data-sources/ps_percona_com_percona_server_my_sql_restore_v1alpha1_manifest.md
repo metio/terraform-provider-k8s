@@ -106,36 +106,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -147,51 +147,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -205,25 +162,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--backup_source--storage--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -231,22 +231,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -259,16 +259,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -283,8 +283,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -292,22 +292,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -320,16 +320,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -344,24 +344,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -369,22 +369,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -397,16 +397,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -421,8 +421,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -430,22 +430,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -458,16 +458,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -504,19 +504,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--container_security_context--windows_options))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--capabilities"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.capabilities`
+<a id="nestedatt--spec--backup_source--storage--container_security_context--capabilities"></a>
+### Nested Schema for `spec.backup_source.storage.container_security_context.capabilities`
 
 Optional:
 
@@ -524,8 +524,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.se_linux_options`
+<a id="nestedatt--spec--backup_source--storage--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup_source.storage.container_security_context.se_linux_options`
 
 Optional:
 
@@ -535,8 +535,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--backup_source--storage--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup_source.storage.container_security_context.seccomp_profile`
 
 Required:
 
@@ -547,8 +547,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--windows_options"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.windows_options`
+<a id="nestedatt--spec--backup_source--storage--container_security_context--windows_options"></a>
+### Nested Schema for `spec.backup_source.storage.container_security_context.windows_options`
 
 Optional:
 
@@ -584,14 +584,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--se_linux_options"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.se_linux_options`
+<a id="nestedatt--spec--backup_source--storage--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup_source.storage.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -601,8 +601,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--seccomp_profile"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.seccomp_profile`
+<a id="nestedatt--spec--backup_source--storage--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup_source.storage.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -613,8 +613,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--sysctls"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.sysctls`
+<a id="nestedatt--spec--backup_source--storage--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.backup_source.storage.pod_security_context.sysctls`
 
 Required:
 
@@ -622,8 +622,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--windows_options"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.windows_options`
+<a id="nestedatt--spec--backup_source--storage--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.backup_source.storage.pod_security_context.windows_options`
 
 Optional:
 
@@ -639,12 +639,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--claims"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.claims`
+<a id="nestedatt--spec--backup_source--storage--resources--claims"></a>
+### Nested Schema for `spec.backup_source.storage.resources.claims`
 
 Required:
 
@@ -691,22 +691,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--label_selector"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.label_selector`
+<a id="nestedatt--spec--backup_source--storage--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.backup_source.storage.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.label_selector.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -806,11 +806,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--persistent_volume_claim--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--volume_spec--persistent_volume_claim--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--backup_source--storage--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.backup_source.storage.volume_spec.persistent_volume_claim.volume_name.match_expressions`
+<a id="nestedatt--spec--backup_source--storage--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
+### Nested Schema for `spec.backup_source.storage.volume_spec.persistent_volume_claim.selector.match_expressions`
 
 Required:
 

@@ -82,22 +82,22 @@ Optional:
 
 Optional:
 
-- `http_get_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--http_get_list))
-- `task_status_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--task_status_list))
-- `tcp_socket_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--tcp_socket_list))
+- `http_get_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--probe--http_get_list))
+- `task_status_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--probe--task_status_list))
+- `tcp_socket_list` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows--depends_on--probe--tcp_socket_list))
 
-<a id="nestedatt--spec--flows--depends_on--targets--http_get_list"></a>
-### Nested Schema for `spec.flows.depends_on.targets.http_get_list`
+<a id="nestedatt--spec--flows--depends_on--probe--http_get_list"></a>
+### Nested Schema for `spec.flows.depends_on.probe.http_get_list`
 
 Optional:
 
-- `http_header` (Attributes) (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--http_get_list--http_header))
+- `http_header` (Attributes) (see [below for nested schema](#nestedatt--spec--flows--depends_on--probe--http_get_list--http_header))
 - `path` (String)
 - `port` (Number)
 - `task_name` (String)
 
-<a id="nestedatt--spec--flows--depends_on--targets--http_get_list--http_header"></a>
-### Nested Schema for `spec.flows.depends_on.targets.http_get_list.http_header`
+<a id="nestedatt--spec--flows--depends_on--probe--http_get_list--http_header"></a>
+### Nested Schema for `spec.flows.depends_on.probe.http_get_list.http_header`
 
 Required:
 
@@ -106,8 +106,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--flows--depends_on--targets--task_status_list"></a>
-### Nested Schema for `spec.flows.depends_on.targets.task_status_list`
+<a id="nestedatt--spec--flows--depends_on--probe--task_status_list"></a>
+### Nested Schema for `spec.flows.depends_on.probe.task_status_list`
 
 Optional:
 
@@ -115,8 +115,8 @@ Optional:
 - `task_name` (String)
 
 
-<a id="nestedatt--spec--flows--depends_on--targets--tcp_socket_list"></a>
-### Nested Schema for `spec.flows.depends_on.targets.tcp_socket_list`
+<a id="nestedatt--spec--flows--depends_on--probe--tcp_socket_list"></a>
+### Nested Schema for `spec.flows.depends_on.probe.tcp_socket_list`
 
 Required:
 

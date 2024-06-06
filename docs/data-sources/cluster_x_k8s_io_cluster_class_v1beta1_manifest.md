@@ -223,10 +223,10 @@ Required:
 Optional:
 
 - `value` (Map of String) Value defines the value of the patch.Note: Either Value or ValueFrom is required for add and replaceoperations. Only one of them is allowed to be set at the same time.Note: We have to use apiextensionsv1.JSON instead of our JSON type,because controller-tools has a hard-coded schema for apiextensionsv1.JSONwhich cannot be produced by another type (unset type field).Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111
-- `value_from` (Attributes) ValueFrom defines the value of the patch.Note: Either Value or ValueFrom is required for add and replaceoperations. Only one of them is allowed to be set at the same time. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--value_from))
+- `value_from` (Attributes) ValueFrom defines the value of the patch.Note: Either Value or ValueFrom is required for add and replaceoperations. Only one of them is allowed to be set at the same time. (see [below for nested schema](#nestedatt--spec--patches--definitions--json_patches--value_from))
 
-<a id="nestedatt--spec--patches--definitions--selector--value_from"></a>
-### Nested Schema for `spec.patches.definitions.selector.value_from`
+<a id="nestedatt--spec--patches--definitions--json_patches--value_from"></a>
+### Nested Schema for `spec.patches.definitions.json_patches.value_from`
 
 Optional:
 
@@ -379,22 +379,22 @@ Optional:
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--bootstrap))
-- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--infrastructure))
+- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap))
+- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--metadata))
+- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--metadata))
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--bootstrap"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.bootstrap`
+<a id="nestedatt--spec--workers--machine_deployments--template--bootstrap"></a>
+### Nested Schema for `spec.workers.machine_deployments.template.bootstrap`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--bootstrap--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap--ref))
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--bootstrap--ref"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.bootstrap.ref`
+<a id="nestedatt--spec--workers--machine_deployments--template--bootstrap--ref"></a>
+### Nested Schema for `spec.workers.machine_deployments.template.bootstrap.ref`
 
 Optional:
 
@@ -408,15 +408,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--infrastructure"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.infrastructure`
+<a id="nestedatt--spec--workers--machine_deployments--template--infrastructure"></a>
+### Nested Schema for `spec.workers.machine_deployments.template.infrastructure`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure--ref))
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--infrastructure--ref"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.infrastructure.ref`
+<a id="nestedatt--spec--workers--machine_deployments--template--infrastructure--ref"></a>
+### Nested Schema for `spec.workers.machine_deployments.template.infrastructure.ref`
 
 Optional:
 
@@ -430,8 +430,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--metadata"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.metadata`
+<a id="nestedatt--spec--workers--machine_deployments--template--metadata"></a>
+### Nested Schema for `spec.workers.machine_deployments.template.metadata`
 
 Optional:
 
@@ -447,12 +447,12 @@ Optional:
 
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
 - `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--remediation_template))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--unhealthy_conditions))
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--remediation_template"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.remediation_template`
+<a id="nestedatt--spec--workers--machine_deployments--machine_health_check--remediation_template"></a>
+### Nested Schema for `spec.workers.machine_deployments.machine_health_check.remediation_template`
 
 Optional:
 
@@ -465,8 +465,8 @@ Optional:
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
-<a id="nestedatt--spec--workers--machine_deployments--strategy--unhealthy_conditions"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy.unhealthy_conditions`
+<a id="nestedatt--spec--workers--machine_deployments--machine_health_check--unhealthy_conditions"></a>
+### Nested Schema for `spec.workers.machine_deployments.machine_health_check.unhealthy_conditions`
 
 Required:
 
@@ -526,22 +526,22 @@ Optional:
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of the Machines in the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--bootstrap))
-- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--infrastructure))
+- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of the Machines in the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap))
+- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata applied to the MachinePool.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--metadata))
+- `metadata` (Attributes) Metadata is the metadata applied to the MachinePool.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--metadata))
 
-<a id="nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--bootstrap"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout.bootstrap`
+<a id="nestedatt--spec--workers--machine_pools--template--bootstrap"></a>
+### Nested Schema for `spec.workers.machine_pools.template.bootstrap`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--bootstrap--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap--ref))
 
-<a id="nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--bootstrap--ref"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout.bootstrap.ref`
+<a id="nestedatt--spec--workers--machine_pools--template--bootstrap--ref"></a>
+### Nested Schema for `spec.workers.machine_pools.template.bootstrap.ref`
 
 Optional:
 
@@ -555,15 +555,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--infrastructure"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout.infrastructure`
+<a id="nestedatt--spec--workers--machine_pools--template--infrastructure"></a>
+### Nested Schema for `spec.workers.machine_pools.template.infrastructure`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure--ref))
 
-<a id="nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--infrastructure--ref"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout.infrastructure.ref`
+<a id="nestedatt--spec--workers--machine_pools--template--infrastructure--ref"></a>
+### Nested Schema for `spec.workers.machine_pools.template.infrastructure.ref`
 
 Optional:
 
@@ -577,8 +577,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workers--machine_pools--node_volume_detach_timeout--metadata"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout.metadata`
+<a id="nestedatt--spec--workers--machine_pools--template--metadata"></a>
+### Nested Schema for `spec.workers.machine_pools.template.metadata`
 
 Optional:
 

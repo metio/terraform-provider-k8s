@@ -205,11 +205,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--analytics--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.analytics.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--analytics--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.analytics.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -312,11 +312,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics_alarm--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics_alarm--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--analytics_alarm--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.analytics_alarm.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--analytics_alarm--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.analytics_alarm.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -422,11 +422,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics_snmp--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--analytics_snmp--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--analytics_snmp--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.analytics_snmp.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--analytics_snmp--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.analytics_snmp.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -552,11 +552,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--cassandras--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--cassandras--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--cassandras--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.cassandras.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--cassandras--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.cassandras.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -679,11 +679,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--config--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--config--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--config--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.config.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--config--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.config.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -788,11 +788,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--controls--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--controls--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--controls--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.controls.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--controls--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.controls.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -901,11 +901,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--kubemanager--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--kubemanager--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--kubemanager--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.kubemanager.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--kubemanager--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.kubemanager.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1004,11 +1004,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--queryengine--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--queryengine--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--queryengine--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.queryengine.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--queryengine--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.queryengine.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1127,11 +1127,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--rabbitmq--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--rabbitmq--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--rabbitmq--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.rabbitmq.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--rabbitmq--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.rabbitmq.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1230,11 +1230,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--redis--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--redis--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--redis--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.redis.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--redis--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.redis.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1416,11 +1416,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--vrouters--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--vrouters--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--vrouters--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.vrouters.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--vrouters--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.vrouters.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1518,11 +1518,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--webui--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--webui--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--webui--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.webui.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--webui--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.webui.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 
@@ -1624,11 +1624,11 @@ Optional:
 Optional:
 
 - `auth_mode` (String) AuthenticationMode auth mode
-- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--zookeeper--spec--common_configuration--tolerations--keystone_auth_parameters))
+- `keystone_auth_parameters` (Attributes) KeystoneAuthParameters keystone parameters (see [below for nested schema](#nestedatt--spec--services--zookeeper--spec--common_configuration--auth_parameters--keystone_auth_parameters))
 - `keystone_secret_name` (String)
 
-<a id="nestedatt--spec--services--zookeeper--spec--common_configuration--tolerations--keystone_auth_parameters"></a>
-### Nested Schema for `spec.services.zookeeper.spec.common_configuration.tolerations.keystone_auth_parameters`
+<a id="nestedatt--spec--services--zookeeper--spec--common_configuration--auth_parameters--keystone_auth_parameters"></a>
+### Nested Schema for `spec.services.zookeeper.spec.common_configuration.auth_parameters.keystone_auth_parameters`
 
 Optional:
 

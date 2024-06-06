@@ -293,11 +293,11 @@ Optional:
 
 Optional:
 
-- `file_system_data_source` (Attributes) Specifies a file system data source for a channel. (see [below for nested schema](#nestedatt--spec--training_job_definition--input_data_config--shuffle_config--file_system_data_source))
-- `s3_data_source` (Attributes) Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job. (see [below for nested schema](#nestedatt--spec--training_job_definition--input_data_config--shuffle_config--s3_data_source))
+- `file_system_data_source` (Attributes) Specifies a file system data source for a channel. (see [below for nested schema](#nestedatt--spec--training_job_definition--input_data_config--data_source--file_system_data_source))
+- `s3_data_source` (Attributes) Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job. (see [below for nested schema](#nestedatt--spec--training_job_definition--input_data_config--data_source--s3_data_source))
 
-<a id="nestedatt--spec--training_job_definition--input_data_config--shuffle_config--file_system_data_source"></a>
-### Nested Schema for `spec.training_job_definition.input_data_config.shuffle_config.file_system_data_source`
+<a id="nestedatt--spec--training_job_definition--input_data_config--data_source--file_system_data_source"></a>
+### Nested Schema for `spec.training_job_definition.input_data_config.data_source.file_system_data_source`
 
 Optional:
 
@@ -307,8 +307,8 @@ Optional:
 - `file_system_type` (String)
 
 
-<a id="nestedatt--spec--training_job_definition--input_data_config--shuffle_config--s3_data_source"></a>
-### Nested Schema for `spec.training_job_definition.input_data_config.shuffle_config.s3_data_source`
+<a id="nestedatt--spec--training_job_definition--input_data_config--data_source--s3_data_source"></a>
+### Nested Schema for `spec.training_job_definition.input_data_config.data_source.s3_data_source`
 
 Optional:
 
@@ -519,11 +519,11 @@ Optional:
 
 Optional:
 
-- `file_system_data_source` (Attributes) Specifies a file system data source for a channel. (see [below for nested schema](#nestedatt--spec--training_job_definitions--input_data_config--shuffle_config--file_system_data_source))
-- `s3_data_source` (Attributes) Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job. (see [below for nested schema](#nestedatt--spec--training_job_definitions--input_data_config--shuffle_config--s3_data_source))
+- `file_system_data_source` (Attributes) Specifies a file system data source for a channel. (see [below for nested schema](#nestedatt--spec--training_job_definitions--input_data_config--data_source--file_system_data_source))
+- `s3_data_source` (Attributes) Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job. (see [below for nested schema](#nestedatt--spec--training_job_definitions--input_data_config--data_source--s3_data_source))
 
-<a id="nestedatt--spec--training_job_definitions--input_data_config--shuffle_config--file_system_data_source"></a>
-### Nested Schema for `spec.training_job_definitions.input_data_config.shuffle_config.file_system_data_source`
+<a id="nestedatt--spec--training_job_definitions--input_data_config--data_source--file_system_data_source"></a>
+### Nested Schema for `spec.training_job_definitions.input_data_config.data_source.file_system_data_source`
 
 Optional:
 
@@ -533,8 +533,8 @@ Optional:
 - `file_system_type` (String)
 
 
-<a id="nestedatt--spec--training_job_definitions--input_data_config--shuffle_config--s3_data_source"></a>
-### Nested Schema for `spec.training_job_definitions.input_data_config.shuffle_config.s3_data_source`
+<a id="nestedatt--spec--training_job_definitions--input_data_config--data_source--s3_data_source"></a>
+### Nested Schema for `spec.training_job_definitions.input_data_config.data_source.s3_data_source`
 
 Optional:
 

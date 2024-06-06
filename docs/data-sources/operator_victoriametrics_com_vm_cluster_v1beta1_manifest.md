@@ -366,16 +366,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--data_source"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.data_source`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--data_source"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.data_source`
 
 Required:
 
@@ -387,8 +387,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--data_source_ref"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.data_source_ref`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--data_source_ref"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -401,17 +401,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--resources"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.resources`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--resources"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.resources.claims`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.resources.claims`
 
 Required:
 
@@ -419,16 +419,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--selector"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.selector`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--selector"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--vmselect--claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.selector.match_expressions`
+<a id="nestedatt--spec--vmselect--claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.vmselect.claim_templates.spec.selector.match_expressions`
 
 Required:
 
@@ -674,12 +674,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmselect--storage--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.claims`
+<a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -692,11 +692,11 @@ Required:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmselect--storage--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -841,16 +841,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--data_source"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.data_source`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--data_source"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.data_source`
 
 Required:
 
@@ -862,8 +862,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--data_source_ref"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.data_source_ref`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--data_source_ref"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -876,17 +876,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--resources"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.resources`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--resources"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.resources.claims`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.resources.claims`
 
 Required:
 
@@ -894,16 +894,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--selector"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.selector`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--selector"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--vmstorage--claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.selector.match_expressions`
+<a id="nestedatt--spec--vmstorage--claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.vmstorage.claim_templates.spec.selector.match_expressions`
 
 Required:
 
@@ -1126,20 +1126,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from))
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from`
+<a id="nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.config_map_key_ref`
+<a id="nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs.value_from.config_map_key_ref`
 
 Required:
 
@@ -1151,8 +1151,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.field_ref`
+<a id="nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--field_ref"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs.value_from.field_ref`
 
 Required:
 
@@ -1163,8 +1163,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.resource_field_ref`
+<a id="nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs.value_from.resource_field_ref`
 
 Required:
 
@@ -1176,8 +1176,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.secret_key_ref`
+<a id="nestedatt--spec--vmstorage--vm_backup--extra_envs--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs.value_from.secret_key_ref`
 
 Required:
 
@@ -1206,12 +1206,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--claims"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.claims`
+<a id="nestedatt--spec--vmstorage--vm_backup--resources--claims"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.resources.claims`
 
 Required:
 
@@ -1224,10 +1224,10 @@ Required:
 
 Optional:
 
-- `on_start` (Attributes) OnStart defines configuration for restore on pod start (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--on_start))
+- `on_start` (Attributes) OnStart defines configuration for restore on pod start (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--restore--on_start))
 
-<a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--on_start"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.on_start`
+<a id="nestedatt--spec--vmstorage--vm_backup--restore--on_start"></a>
+### Nested Schema for `spec.vmstorage.vm_backup.restore.on_start`
 
 Optional:
 

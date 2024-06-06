@@ -203,19 +203,19 @@ Optional:
 - `queue_burst` (Number) QueueBurst specifies workqueue rate limiter burst for a controller
 - `queue_qps` (Number) QueueQPS specifies workqueue rate limiter QPS for a controller
 - `replicas` (Number) Replicas specifies the number of replicas the specific controller pod should use. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others.
-- `resources` (Attributes) Resources describes the compute resource requirements of the controller container. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others. (see [below for nested schema](#nestedatt--spec--controllers_config--controllers--name--resources))
+- `resources` (Attributes) Resources describes the compute resource requirements of the controller container. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others. (see [below for nested schema](#nestedatt--spec--controllers_config--controllers--config--resources))
 
-<a id="nestedatt--spec--controllers_config--controllers--name--resources"></a>
-### Nested Schema for `spec.controllers_config.controllers.name.resources`
+<a id="nestedatt--spec--controllers_config--controllers--config--resources"></a>
+### Nested Schema for `spec.controllers_config.controllers.config.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--controllers_config--controllers--name--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--controllers_config--controllers--config--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--controllers_config--controllers--name--resources--claims"></a>
-### Nested Schema for `spec.controllers_config.controllers.name.resources.claims`
+<a id="nestedatt--spec--controllers_config--controllers--config--resources--claims"></a>
+### Nested Schema for `spec.controllers_config.controllers.config.resources.claims`
 
 Required:
 

@@ -118,11 +118,11 @@ Optional:
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--build--maven--settings_security--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--build--maven--settings_security--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--build--maven--profiles--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--build--maven--profiles--secret_key_ref))
 
-<a id="nestedatt--spec--build--maven--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.build.maven.settings_security.config_map_key_ref`
+<a id="nestedatt--spec--build--maven--profiles--config_map_key_ref"></a>
+### Nested Schema for `spec.build.maven.profiles.config_map_key_ref`
 
 Required:
 
@@ -134,8 +134,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--build--maven--settings_security--secret_key_ref"></a>
-### Nested Schema for `spec.build.maven.settings_security.secret_key_ref`
+<a id="nestedatt--spec--build--maven--profiles--secret_key_ref"></a>
+### Nested Schema for `spec.build.maven.profiles.secret_key_ref`
 
 Required:
 
@@ -153,11 +153,11 @@ Optional:
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--build--maven--settings_security--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--build--maven--settings_security--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--build--maven--settings--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--build--maven--settings--secret_key_ref))
 
-<a id="nestedatt--spec--build--maven--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.build.maven.settings_security.config_map_key_ref`
+<a id="nestedatt--spec--build--maven--settings--config_map_key_ref"></a>
+### Nested Schema for `spec.build.maven.settings.config_map_key_ref`
 
 Required:
 
@@ -169,8 +169,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--build--maven--settings_security--secret_key_ref"></a>
-### Nested Schema for `spec.build.maven.settings_security.secret_key_ref`
+<a id="nestedatt--spec--build--maven--settings--secret_key_ref"></a>
+### Nested Schema for `spec.build.maven.settings.secret_key_ref`
 
 Required:
 

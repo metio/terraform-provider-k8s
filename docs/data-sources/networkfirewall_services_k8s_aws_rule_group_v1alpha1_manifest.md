@@ -156,11 +156,11 @@ Optional:
 Optional:
 
 - `action` (String)
-- `header` (Attributes) The basic rule criteria for Network Firewall to use to inspect packet headersin stateful traffic flow inspection. Traffic flows that match the criteriaare a match for the corresponding StatefulRule. (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--header))
-- `rule_options` (Attributes List) (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--rule_options))
+- `header` (Attributes) The basic rule criteria for Network Firewall to use to inspect packet headersin stateful traffic flow inspection. Traffic flows that match the criteriaare a match for the corresponding StatefulRule. (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateful_rules--header))
+- `rule_options` (Attributes List) (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateful_rules--rule_options))
 
-<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--header"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.header`
+<a id="nestedatt--spec--rule_group--rules_source--stateful_rules--header"></a>
+### Nested Schema for `spec.rule_group.rules_source.stateful_rules.header`
 
 Optional:
 
@@ -172,8 +172,8 @@ Optional:
 - `source_port` (String)
 
 
-<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--rule_options"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.rule_options`
+<a id="nestedatt--spec--rule_group--rules_source--stateful_rules--rule_options"></a>
+### Nested Schema for `spec.rule_group.rules_source.stateful_rules.rule_options`
 
 Optional:
 
@@ -203,17 +203,17 @@ Optional:
 
 Optional:
 
-- `publish_metric_action` (Attributes) Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published. (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_name--publish_metric_action))
+- `publish_metric_action` (Attributes) Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published. (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_definition--publish_metric_action))
 
-<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_name--publish_metric_action"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_name.publish_metric_action`
+<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_definition--publish_metric_action"></a>
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_definition.publish_metric_action`
 
 Optional:
 
-- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_name--publish_metric_action--dimensions))
+- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_definition--publish_metric_action--dimensions))
 
-<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_name--publish_metric_action--dimensions"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_name.publish_metric_action.dimensions`
+<a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_definition--publish_metric_action--dimensions"></a>
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_definition.publish_metric_action.dimensions`
 
 Optional:
 

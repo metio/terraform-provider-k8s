@@ -114,32 +114,32 @@ Optional:
 
 Optional:
 
-- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers))
-- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--caching_service_ref))
+- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers))
+- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--caching_service_ref))
 - `max_payload_size` (Number)
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers.safe_regex.google_re2`
 
 Optional:
 
@@ -148,8 +148,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--caching_service_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.caching_service_ref`
+<a id="nestedatt--spec--http_gateway--options--caching--caching_service_ref"></a>
+### Nested Schema for `spec.http_gateway.options.caching.caching_service_ref`
 
 Optional:
 
@@ -172,31 +172,31 @@ Optional:
 
 Optional:
 
-- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins))
-- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_enabled))
-- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--shadow_enabled))
+- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins))
+- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--filter_enabled))
+- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--shadow_enabled))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -205,16 +205,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_enabled"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled`
+<a id="nestedatt--spec--http_gateway--options--csrf--filter_enabled"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.filter_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled.default_value`
+<a id="nestedatt--spec--http_gateway--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -223,16 +223,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--shadow_enabled"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled`
+<a id="nestedatt--spec--http_gateway--options--csrf--shadow_enabled"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.shadow_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--shadow_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled.default_value`
+<a id="nestedatt--spec--http_gateway--options--csrf--shadow_enabled--default_value"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -247,48 +247,48 @@ Optional:
 
 Optional:
 
-- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules))
+- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules))
 - `enabled_for` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules`
 
 Optional:
 
-- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--actions))
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher))
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--actions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.actions`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions`
 
 Optional:
 
 - `action_type` (String)
-- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--custom_action))
-- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--key_value_action))
+- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action))
+- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action))
 - `shadow` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--custom_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.custom_action`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action`
 
 Optional:
 
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent))
 - `regex` (List of String)
-- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--regex_actions))
+- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.percent`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action.percent`
 
 Optional:
 
 - `value` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--regex_actions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.regex_actions`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action.regex_actions`
 
 Optional:
 
@@ -297,18 +297,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--key_value_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.key_value_action`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.key_value_action`
 
 Optional:
 
 - `key_to_mask` (String)
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.percent`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.key_value_action.percent`
 
 Optional:
 
@@ -317,22 +317,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.headers`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--headers"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher.headers`
 
 Optional:
 
@@ -342,8 +342,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--query_parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.query_parameters`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--query_parameters"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher.query_parameters`
 
 Optional:
 
@@ -360,36 +360,36 @@ Optional:
 
 Optional:
 
-- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config))
+- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config))
 - `save_upstream_address` (Boolean)
-- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config))
+- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config`
 
 Optional:
 
 - `apple_dns` (Map of String)
-- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--cares_dns))
-- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_cache_circuit_breaker))
-- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_failure_refresh_rate))
+- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns))
+- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker))
+- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate))
 - `dns_lookup_family` (String)
 - `dns_query_timeout` (String)
 - `dns_refresh_rate` (String)
 - `host_ttl` (String)
 - `max_hosts` (Number)
-- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames))
+- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--cares_dns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.cares_dns`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns`
 
 Optional:
 
-- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--dns_resolver_options))
-- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers))
+- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options))
+- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--dns_resolver_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.dns_resolver_options`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.dns_resolver_options`
 
 Optional:
 
@@ -397,16 +397,16 @@ Optional:
 - `use_tcp_for_dns_lookups` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers`
 
 Optional:
 
-- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--pipe))
-- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--socket_address))
+- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe))
+- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--pipe"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.pipe`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.pipe`
 
 Optional:
 
@@ -414,8 +414,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--socket_address"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.socket_address`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.socket_address`
 
 Optional:
 
@@ -429,16 +429,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_cache_circuit_breaker"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_cache_circuit_breaker`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_cache_circuit_breaker`
 
 Optional:
 
 - `max_pending_requests` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_failure_refresh_rate"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_failure_refresh_rate`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_failure_refresh_rate`
 
 Optional:
 
@@ -446,8 +446,8 @@ Optional:
 - `max_interval` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.preresolve_hostnames`
 
 Optional:
 
@@ -460,22 +460,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config`
 
 Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--parameters))
-- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--sds))
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--secret_ref))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters))
+- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref))
 - `sni` (String)
-- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--ssl_files))
+- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files))
 - `verify_subject_alt_name` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.parameters`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.parameters`
 
 Optional:
 
@@ -485,26 +485,26 @@ Optional:
 - `minimum_protocol_version` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--sds"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.sds`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds`
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -514,8 +514,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.secret_ref`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.secret_ref`
 
 Optional:
 
@@ -523,8 +523,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.ssl_files`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.ssl_files`
 
 Optional:
 
@@ -546,21 +546,21 @@ Optional:
 - `disable_clear_route_cache` (Boolean)
 - `failure_mode_allow` (Boolean)
 - `filter_metadata` (Map of String)
-- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_stage))
-- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules))
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
+- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--filter_stage))
+- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
 - `metadata_context_namespaces` (List of String)
-- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules))
-- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--processing_mode))
+- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules))
+- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
 - `typed_metadata_context_namespaces` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_stage"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_stage`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--filter_stage"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.filter_stage`
 
 Optional:
 
@@ -568,42 +568,42 @@ Optional:
 - `stage` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules`
 
 Optional:
 
-- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--allowed_headers))
-- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers))
+- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers))
+- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--allowed_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.allowed_headers`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -613,34 +613,34 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -651,19 +651,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service`
 
 Optional:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--ext_proc_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.ext_proc_server_ref`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.ext_proc_server_ref`
 
 Optional:
 
@@ -671,8 +671,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--initial_metadata"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.initial_metadata`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--initial_metadata"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.initial_metadata`
 
 Optional:
 
@@ -680,16 +680,16 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--retry_policy"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.retry_policy`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.retry_policy`
 
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--timeout--retry_back_off"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.timeout.retry_back_off`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.retry_policy.retry_back_off`
 
 Optional:
 
@@ -699,29 +699,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules`
 
 Optional:
 
 - `allow_all_routing` (Boolean)
 - `allow_envoy` (Boolean)
-- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--allow_expression))
+- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression))
 - `disallow_all` (Boolean)
-- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_expression))
+- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression))
 - `disallow_is_error` (Boolean)
 - `disallow_system` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--allow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.allow_expression`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.allow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.allow_expression.google_re2`
 
 Optional:
 
@@ -729,16 +729,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_expression`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.disallow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.disallow_expression.google_re2`
 
 Optional:
 
@@ -747,8 +747,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--processing_mode"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.processing_mode`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--processing_mode"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.processing_mode`
 
 Optional:
 
@@ -767,19 +767,19 @@ Optional:
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--extauthz_server_ref))
+- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--extauthz_server_ref))
 - `failure_mode_allow` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service))
-- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--request_body))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service))
+- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--request_body))
 - `request_timeout` (String)
 - `stat_prefix` (String)
 - `status_on_error` (Number)
 - `transport_api_version` (String)
 - `user_id_header` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--extauthz_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.extauthz_server_ref`
+<a id="nestedatt--spec--http_gateway--options--extauth--extauthz_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.extauthz_server_ref`
 
 Optional:
 
@@ -787,25 +787,25 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--extauth--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service`
 
 Optional:
 
 - `path_prefix` (String)
-- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service--request))
-- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service--response))
+- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service--request))
+- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service--response))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service--request"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service.request`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service--request"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service.request`
 
 Optional:
 
@@ -814,8 +814,8 @@ Optional:
 - `headers_to_add` (Map of String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service--response"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service.response`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service--response"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service.response`
 
 Optional:
 
@@ -825,8 +825,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--request_body"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.request_body`
+<a id="nestedatt--spec--http_gateway--options--extauth--request_body"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.request_body`
 
 Optional:
 
@@ -854,14 +854,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--print_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.print_options`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -871,16 +871,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -937,9 +937,9 @@ Optional:
 - `forward_client_cert_details` (String)
 - `generate_request_id` (Boolean)
 - `headers_with_underscores_action` (String)
-- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http2_protocol_options))
+- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--http2_protocol_options))
 - `idle_timeout` (String)
-- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--internal_address_config))
+- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config))
 - `max_connection_duration` (String)
 - `max_headers_count` (Number)
 - `max_request_headers_kb` (Number)
@@ -956,19 +956,19 @@ Optional:
 - `request_timeout` (String)
 - `server_header_transformation` (String)
 - `server_name` (String)
-- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--set_current_client_cert_details))
+- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details))
 - `skip_xff_append` (Boolean)
 - `stream_idle_timeout` (String)
 - `strip_any_host_port` (Boolean)
-- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing))
-- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades))
+- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing))
+- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades))
 - `use_remote_address` (Boolean)
-- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--uuid_request_id_config))
+- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--uuid_request_id_config))
 - `via` (String)
 - `xff_num_trusted_hops` (Number)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http2_protocol_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http2_protocol_options`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--http2_protocol_options"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.http2_protocol_options`
 
 Optional:
 
@@ -978,16 +978,16 @@ Optional:
 - `override_stream_error_on_invalid_http_message` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--internal_address_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.internal_address_config`
 
 Optional:
 
-- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--internal_address_config--cidr_ranges))
+- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges))
 - `unix_sockets` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--internal_address_config--cidr_ranges"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config.cidr_ranges`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.internal_address_config.cidr_ranges`
 
 Optional:
 
@@ -996,8 +996,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--set_current_client_cert_details"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.set_current_client_cert_details`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.set_current_client_cert_details`
 
 Optional:
 
@@ -1008,32 +1008,32 @@ Optional:
 - `uri` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing`
 
 Optional:
 
-- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--datadog_config))
-- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--environment_variables_for_tags))
-- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--literals_for_tags))
-- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--open_census_config))
-- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--open_telemetry_config))
+- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config))
+- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags))
+- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags))
+- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config))
+- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config))
 - `request_headers_for_tags` (List of String)
-- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--trace_percentages))
+- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages))
 - `verbose` (Boolean)
-- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config))
+- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--datadog_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.datadog_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.datadog_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref))
 - `service_name` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.datadog_config.collector_upstream_ref`
 
 Optional:
 
@@ -1042,8 +1042,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--environment_variables_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.environment_variables_for_tags`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.environment_variables_for_tags`
 
 Optional:
 
@@ -1052,8 +1052,8 @@ Optional:
 - `tag` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--literals_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.literals_for_tags`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.literals_for_tags`
 
 Optional:
 
@@ -1061,20 +1061,20 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_census_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_census_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config`
 
 Optional:
 
-- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--grpc_address))
+- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address))
 - `http_address` (String)
 - `incoming_trace_context` (List of String)
 - `ocagent_exporter_enabled` (Boolean)
 - `outgoing_trace_context` (List of String)
-- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config))
+- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--grpc_address"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.grpc_address`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.grpc_address`
 
 Optional:
 
@@ -1082,37 +1082,37 @@ Optional:
 - `target_uri` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config`
 
 Optional:
 
-- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--constant_sampler))
+- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_links` (Number)
 - `max_number_of_message_events` (Number)
-- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--probability_sampler))
-- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--rate_limiting_sampler))
+- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler))
+- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--constant_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.constant_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.constant_sampler`
 
 Optional:
 
 - `decision` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--probability_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.probability_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.probability_sampler`
 
 Optional:
 
 - `sampling_probability` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--rate_limiting_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.rate_limiting_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.rate_limiting_sampler`
 
 Optional:
 
@@ -1121,16 +1121,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_telemetry_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_telemetry_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config.collector_upstream_ref`
 
 Optional:
 
@@ -1139,8 +1139,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--trace_percentages"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.trace_percentages`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.trace_percentages`
 
 Optional:
 
@@ -1149,20 +1149,20 @@ Optional:
 - `random_sample_percentage` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config`
 
 Optional:
 
 - `cluster_name` (String)
 - `collector_endpoint` (String)
 - `collector_endpoint_version` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref))
 - `shared_span_context` (Boolean)
 - `trace_id128bit` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -1172,33 +1172,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades`
 
 Optional:
 
-- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades--connect))
-- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades--websocket))
+- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--connect))
+- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--websocket))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades--connect"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades.connect`
-
-Optional:
-
-- `enabled` (Boolean)
-
-
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades--websocket"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades.websocket`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--connect"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades.connect`
 
 Optional:
 
 - `enabled` (Boolean)
 
 
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--websocket"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades.websocket`
 
-<a id="nestedatt--spec--http_gateway--options--wasm--uuid_request_id_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.uuid_request_id_config`
+Optional:
+
+- `enabled` (Boolean)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--uuid_request_id_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.uuid_request_id_config`
 
 Optional:
 
@@ -1212,12 +1212,12 @@ Optional:
 
 Optional:
 
-- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--default_limit))
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_local_ratelimit--default_limit))
 - `enable_x_ratelimit_headers` (Boolean)
 - `local_rate_limit_per_downstream_connection` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--default_limit"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.default_limit`
+<a id="nestedatt--spec--http_gateway--options--http_local_ratelimit--default_limit"></a>
+### Nested Schema for `spec.http_gateway.options.http_local_ratelimit.default_limit`
 
 Optional:
 
@@ -1257,21 +1257,21 @@ Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server--grpc_service))
 - `rate_limit_before_auth` (Boolean)
-- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref))
+- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server--ratelimit_server_ref))
 - `request_timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--ratelimit_server--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.ratelimit_server.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ratelimit_server_ref`
+<a id="nestedatt--spec--http_gateway--options--ratelimit_server--ratelimit_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.ratelimit_server.ratelimit_server_ref`
 
 Optional:
 
@@ -1294,25 +1294,25 @@ Optional:
 
 Optional:
 
-- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks))
+- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks`
-
-Optional:
-
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service))
-
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--http_service))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.grpc_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--grpc_service--tap_server))
+
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--grpc_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.grpc_service.tap_server`
 
 Optional:
 
@@ -1321,16 +1321,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--http_service"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.http_service`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--http_service--tap_server))
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.http_service.tap_server`
 
 Optional:
 
@@ -1346,17 +1346,17 @@ Optional:
 
 Optional:
 
-- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--audit_logging))
-- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets))
-- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--core_rule_set))
+- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--audit_logging))
+- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--config_map_rule_sets))
+- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--core_rule_set))
 - `custom_intervention_message` (String)
 - `disabled` (Boolean)
 - `request_headers_only` (Boolean)
 - `response_headers_only` (Boolean)
-- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--rule_sets))
+- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--rule_sets))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--audit_logging"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.audit_logging`
+<a id="nestedatt--spec--http_gateway--options--waf--audit_logging"></a>
+### Nested Schema for `spec.http_gateway.options.waf.audit_logging`
 
 Optional:
 
@@ -1364,16 +1364,16 @@ Optional:
 - `location` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets`
+<a id="nestedatt--spec--http_gateway--options--waf--config_map_rule_sets"></a>
+### Nested Schema for `spec.http_gateway.options.waf.config_map_rule_sets`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--config_map_rule_sets--config_map_ref))
 - `data_map_keys` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets.config_map_ref`
+<a id="nestedatt--spec--http_gateway--options--waf--config_map_rule_sets--config_map_ref"></a>
+### Nested Schema for `spec.http_gateway.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -1382,8 +1382,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--core_rule_set"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.core_rule_set`
+<a id="nestedatt--spec--http_gateway--options--waf--core_rule_set"></a>
+### Nested Schema for `spec.http_gateway.options.waf.core_rule_set`
 
 Optional:
 
@@ -1391,8 +1391,8 @@ Optional:
 - `custom_settings_string` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--rule_sets"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.rule_sets`
+<a id="nestedatt--spec--http_gateway--options--waf--rule_sets"></a>
+### Nested Schema for `spec.http_gateway.options.waf.rule_sets`
 
 Optional:
 
@@ -1513,21 +1513,21 @@ Optional:
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--matcher--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--matcher--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--matcher--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--matcher--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.matcher.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--matcher--ssl_config--verify_subject_alt_name--call_credentials--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--matcher--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--matcher--ssl_config--verify_subject_alt_name--call_credentials--file_credential_source"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name.call_credentials.file_credential_source`
+<a id="nestedatt--spec--matcher--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.matcher.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 

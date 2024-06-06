@@ -411,10 +411,10 @@ Optional:
 Optional:
 
 - `name` (String) The name of the Grafana dashboard.
-- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--external_services--grafana--url--variables))
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--external_services--grafana--dashboards--variables))
 
-<a id="nestedatt--spec--external_services--grafana--url--variables"></a>
-### Nested Schema for `spec.external_services.grafana.url.variables`
+<a id="nestedatt--spec--external_services--grafana--dashboards--variables"></a>
+### Nested Schema for `spec.external_services.grafana.dashboards.variables`
 
 Optional:
 
@@ -451,11 +451,11 @@ Optional:
 
 Optional:
 
-- `components` (Attributes List) A specific Istio component whose status will be monitored by Kiali. (see [below for nested schema](#nestedatt--spec--external_services--istio--url_service_version--components))
+- `components` (Attributes List) A specific Istio component whose status will be monitored by Kiali. (see [below for nested schema](#nestedatt--spec--external_services--istio--component_status--components))
 - `enabled` (Boolean) Determines if Istio component statuses will be displayed in the Kiali masthead indicator.
 
-<a id="nestedatt--spec--external_services--istio--url_service_version--components"></a>
-### Nested Schema for `spec.external_services.istio.url_service_version.components`
+<a id="nestedatt--spec--external_services--istio--component_status--components"></a>
+### Nested Schema for `spec.external_services.istio.component_status.components`
 
 Optional:
 
@@ -703,12 +703,12 @@ Optional:
 
 Optional:
 
-- `find_options` (Attributes List) A list of commonly used and useful find expressions that will be provided to the user out-of-box. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--find_options))
-- `hide_options` (Attributes List) A list of commonly used and useful hide expressions that will be provided to the user out-of-box. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--hide_options))
-- `traffic` (Attributes) These settings determine which rates are used to determine graph traffic. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--traffic))
+- `find_options` (Attributes List) A list of commonly used and useful find expressions that will be provided to the user out-of-box. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--graph--find_options))
+- `hide_options` (Attributes List) A list of commonly used and useful hide expressions that will be provided to the user out-of-box. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--graph--hide_options))
+- `traffic` (Attributes) These settings determine which rates are used to determine graph traffic. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--graph--traffic))
 
-<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--find_options"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval.find_options`
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--graph--find_options"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.graph.find_options`
 
 Optional:
 
@@ -717,8 +717,8 @@ Optional:
 - `expression` (String) The find expression.
 
 
-<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--hide_options"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval.hide_options`
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--graph--hide_options"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.graph.hide_options`
 
 Optional:
 
@@ -727,8 +727,8 @@ Optional:
 - `expression` (String) The hide expression.
 
 
-<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--traffic"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval.traffic`
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--graph--traffic"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.graph.traffic`
 
 Optional:
 
@@ -763,10 +763,10 @@ Optional:
 
 Optional:
 
-- `aggregations` (Attributes List) (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--aggregations))
+- `aggregations` (Attributes List) (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_inbound--aggregations))
 
-<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--aggregations"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval.aggregations`
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_inbound--aggregations"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.metrics_inbound.aggregations`
 
 Optional:
 
@@ -780,10 +780,10 @@ Optional:
 
 Optional:
 
-- `aggregations` (Attributes List) (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--aggregations))
+- `aggregations` (Attributes List) (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_outbound--aggregations))
 
-<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--refresh_interval--aggregations"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval.aggregations`
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_outbound--aggregations"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.metrics_outbound.aggregations`
 
 Optional:
 

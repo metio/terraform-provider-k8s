@@ -494,10 +494,10 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) HTTP connection pool settings. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--http))
+- `http` (Attributes) HTTP connection pool settings. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--connection_pool--http))
 
-<a id="nestedatt--spec--service--traffic_policy--tls--http"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.http`
+<a id="nestedatt--spec--service--traffic_policy--connection_pool--http"></a>
+### Nested Schema for `spec.service.traffic_policy.connection_pool.http`
 
 Optional:
 
@@ -515,24 +515,24 @@ Optional:
 
 Optional:
 
-- `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--consistent_hash))
-- `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--locality_lb_setting))
+- `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--load_balancer--consistent_hash))
+- `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting))
 - `simple` (String)
 - `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
-<a id="nestedatt--spec--service--traffic_policy--tls--consistent_hash"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.consistent_hash`
+<a id="nestedatt--spec--service--traffic_policy--load_balancer--consistent_hash"></a>
+### Nested Schema for `spec.service.traffic_policy.load_balancer.consistent_hash`
 
 Optional:
 
-- `http_cookie` (Attributes) Hash based on HTTP cookie. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--consistent_hash--http_cookie))
+- `http_cookie` (Attributes) Hash based on HTTP cookie. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--load_balancer--consistent_hash--http_cookie))
 - `http_header_name` (String) Hash based on a specific HTTP header.
 - `http_query_parameter_name` (String) Hash based on a specific HTTP query parameter.
 - `minimum_ring_size` (Number)
 - `use_source_ip` (Boolean) Hash based on the source IP address.
 
-<a id="nestedatt--spec--service--traffic_policy--tls--consistent_hash--http_cookie"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.consistent_hash.http_cookie`
+<a id="nestedatt--spec--service--traffic_policy--load_balancer--consistent_hash--http_cookie"></a>
+### Nested Schema for `spec.service.traffic_policy.load_balancer.consistent_hash.http_cookie`
 
 Optional:
 
@@ -542,17 +542,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--service--traffic_policy--tls--locality_lb_setting"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.locality_lb_setting`
+<a id="nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting"></a>
+### Nested Schema for `spec.service.traffic_policy.load_balancer.locality_lb_setting`
 
 Optional:
 
-- `distribute` (Attributes List) Optional: only one of distribute or failover can be set. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--distribute))
+- `distribute` (Attributes List) Optional: only one of distribute or failover can be set. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting--distribute))
 - `enabled` (Boolean) enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.
-- `failover` (Attributes List) Optional: only failover or distribute can be set. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--failover))
+- `failover` (Attributes List) Optional: only failover or distribute can be set. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting--failover))
 
-<a id="nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--distribute"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.locality_lb_setting.distribute`
+<a id="nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting--distribute"></a>
+### Nested Schema for `spec.service.traffic_policy.load_balancer.locality_lb_setting.distribute`
 
 Optional:
 
@@ -560,8 +560,8 @@ Optional:
 - `to` (Map of String) Map of upstream localities to traffic distribution weights.
 
 
-<a id="nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--failover"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.locality_lb_setting.failover`
+<a id="nestedatt--spec--service--traffic_policy--load_balancer--locality_lb_setting--failover"></a>
+### Nested Schema for `spec.service.traffic_policy.load_balancer.locality_lb_setting.failover`
 
 Optional:
 

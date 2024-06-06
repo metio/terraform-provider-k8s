@@ -128,7 +128,7 @@ Optional:
 - `client_audience` (String) The audience to use when making requests to the authorization server's token endpoint. Used for inter-broker authentication and for configuring OAuth 2.0 over PLAIN using the 'clientId' and 'secret' method.
 - `client_id` (String) OAuth Client ID which the Kafka broker can use to authenticate against the authorization server and use the introspect endpoint URI.
 - `client_scope` (String) The scope to use when making requests to the authorization server's token endpoint. Used for inter-broker authentication and for configuring OAuth 2.0 over PLAIN using the 'clientId' and 'secret' method.
-- `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka broker can use to authenticate against the authorization server and use the introspect endpoint URI. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--client_secret))
+- `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka broker can use to authenticate against the authorization server and use the introspect endpoint URI. (see [below for nested schema](#nestedatt--spec--kafka--listeners--authentication--client_secret))
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
 - `custom_claim_check` (String) JsonPath filter query to be applied to the JWT token or to the response of the introspection endpoint for additional token validation. Not set by default.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
@@ -154,16 +154,16 @@ Optional:
 - `max_seconds_without_reauthentication` (Number) Maximum number of seconds the authenticated session remains valid without re-authentication. This enables Apache Kafka re-authentication feature, and causes sessions to expire when the access token expires. If the access token expires before max time or if max time is reached, the client has to re-authenticate, otherwise the server will drop the connection. Not set by default - the authenticated session does not expire when the access token expires. This option only applies to SASL_OAUTHBEARER authentication mechanism (when 'enableOauthBearer' is 'true').
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
 - `sasl` (Boolean) Enable or disable SASL on this listener.
-- `secrets` (Attributes List) Secrets to be mounted to /opt/kafka/custom-authn-secrets/custom-listener-_<listener_name>-<port>_/_<secret_name>_. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--secrets))
-- `tls_trusted_certificates` (Attributes List) Trusted certificates for TLS connection to the OAuth server. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--tls_trusted_certificates))
+- `secrets` (Attributes List) Secrets to be mounted to /opt/kafka/custom-authn-secrets/custom-listener-_<listener_name>-<port>_/_<secret_name>_. (see [below for nested schema](#nestedatt--spec--kafka--listeners--authentication--secrets))
+- `tls_trusted_certificates` (Attributes List) Trusted certificates for TLS connection to the OAuth server. (see [below for nested schema](#nestedatt--spec--kafka--listeners--authentication--tls_trusted_certificates))
 - `token_endpoint_uri` (String) URI of the Token Endpoint to use with SASL_PLAIN mechanism when the client authenticates with 'clientId' and a 'secret'. If set, the client can authenticate over SASL_PLAIN by either setting 'username' to 'clientId', and setting 'password' to client 'secret', or by setting 'username' to account username, and 'password' to access token prefixed with '$accessToken:'. If this option is not set, the 'password' is always interpreted as an access token (without a prefix), and 'username' as the account username (a so called 'no-client-credentials' mode).
 - `user_info_endpoint_uri` (String) URI of the User Info Endpoint to use as a fallback to obtaining the user id when the Introspection Endpoint does not return information that can be used for the user id.
 - `user_name_claim` (String) Name of the claim from the JWT authentication token, Introspection Endpoint response or User Info Endpoint response which will be used to extract the user id. Defaults to 'sub'.
 - `valid_issuer_uri` (String) URI of the token issuer used for authentication.
 - `valid_token_type` (String) Valid value for the 'token_type' attribute returned by the Introspection Endpoint. No default value, and not checked by default.
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--client_secret"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.client_secret`
+<a id="nestedatt--spec--kafka--listeners--authentication--client_secret"></a>
+### Nested Schema for `spec.kafka.listeners.authentication.client_secret`
 
 Required:
 
@@ -171,8 +171,8 @@ Required:
 - `secret_name` (String) The name of the Kubernetes Secret containing the secret value.
 
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--secrets"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.secrets`
+<a id="nestedatt--spec--kafka--listeners--authentication--secrets"></a>
+### Nested Schema for `spec.kafka.listeners.authentication.secrets`
 
 Required:
 
@@ -180,8 +180,8 @@ Required:
 - `secret_name` (String) The name of the Kubernetes Secret containing the secret value.
 
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--tls_trusted_certificates"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.tls_trusted_certificates`
+<a id="nestedatt--spec--kafka--listeners--authentication--tls_trusted_certificates"></a>
+### Nested Schema for `spec.kafka.listeners.authentication.tls_trusted_certificates`
 
 Required:
 
@@ -195,9 +195,9 @@ Required:
 
 Optional:
 
-- `bootstrap` (Attributes) Bootstrap configuration. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--bootstrap))
-- `broker_cert_chain_and_key` (Attributes) Reference to the 'Secret' which holds the certificate and private key pair which will be used for this listener. The certificate can optionally contain the whole chain. This field can be used only with listeners with enabled TLS encryption. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--broker_cert_chain_and_key))
-- `brokers` (Attributes List) Per-broker configurations. (see [below for nested schema](#nestedatt--spec--kafka--listeners--network_policy_peers--brokers))
+- `bootstrap` (Attributes) Bootstrap configuration. (see [below for nested schema](#nestedatt--spec--kafka--listeners--configuration--bootstrap))
+- `broker_cert_chain_and_key` (Attributes) Reference to the 'Secret' which holds the certificate and private key pair which will be used for this listener. The certificate can optionally contain the whole chain. This field can be used only with listeners with enabled TLS encryption. (see [below for nested schema](#nestedatt--spec--kafka--listeners--configuration--broker_cert_chain_and_key))
+- `brokers` (Attributes List) Per-broker configurations. (see [below for nested schema](#nestedatt--spec--kafka--listeners--configuration--brokers))
 - `class` (String) Configures a specific class for 'Ingress' and 'LoadBalancer' that defines which controller will be used. This field can only be used with 'ingress' and 'loadbalancer' type listeners. If not specified, the default controller is used. For an 'ingress' listener, set the 'ingressClassName' property in the 'Ingress' resources. For a 'loadbalancer' listener, set the 'loadBalancerClass' property  in the 'Service' resources.
 - `create_bootstrap_service` (Boolean) Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the 'loadBalancer' type listener.
 - `external_traffic_policy` (String) Specifies whether the service routes external traffic to node-local or cluster-wide endpoints. 'Cluster' may cause a second hop to another node and obscures the client source IP. 'Local' avoids a second hop for LoadBalancer and Nodeport type services and preserves the client source IP (when supported by the infrastructure). If unspecified, Kubernetes will use 'Cluster' as the default.This field can be used only with 'loadbalancer' or 'nodeport' type listener.
@@ -210,8 +210,8 @@ Optional:
 - `preferred_node_port_address_type` (String) Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses will be used in the following order (the first one found will be used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This field is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order. This field can only be used with 'nodeport' type listener.
 - `use_service_dns_domain` (Boolean) Configures whether the Kubernetes service DNS domain should be used or not. If set to 'true', the generated addresses will contain the service DNS domain suffix (by default '.cluster.local', can be configured using environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'). Defaults to 'false'.This field can be used only with 'internal' and 'cluster-ip' type listeners.
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--bootstrap"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.bootstrap`
+<a id="nestedatt--spec--kafka--listeners--configuration--bootstrap"></a>
+### Nested Schema for `spec.kafka.listeners.configuration.bootstrap`
 
 Optional:
 
@@ -224,8 +224,8 @@ Optional:
 - `node_port` (Number) Node port for the bootstrap service. This field can be used only with 'nodeport' type listener.
 
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--broker_cert_chain_and_key"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.broker_cert_chain_and_key`
+<a id="nestedatt--spec--kafka--listeners--configuration--broker_cert_chain_and_key"></a>
+### Nested Schema for `spec.kafka.listeners.configuration.broker_cert_chain_and_key`
 
 Required:
 
@@ -234,8 +234,8 @@ Required:
 - `secret_name` (String) The name of the Secret containing the certificate.
 
 
-<a id="nestedatt--spec--kafka--listeners--network_policy_peers--brokers"></a>
-### Nested Schema for `spec.kafka.listeners.network_policy_peers.brokers`
+<a id="nestedatt--spec--kafka--listeners--configuration--brokers"></a>
+### Nested Schema for `spec.kafka.listeners.configuration.brokers`
 
 Required:
 
@@ -589,10 +589,10 @@ Optional:
 
 - `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
 - `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--bootstrap_service--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--bootstrap_service--metadata"></a>
+### Nested Schema for `spec.kafka.template.bootstrap_service.metadata`
 
 Optional:
 
@@ -608,10 +608,10 @@ Optional:
 
 - `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
 - `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--brokers_service--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--brokers_service--metadata"></a>
+### Nested Schema for `spec.kafka.template.brokers_service.metadata`
 
 Optional:
 
@@ -625,10 +625,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--cluster_ca_cert--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--cluster_ca_cert--metadata"></a>
+### Nested Schema for `spec.kafka.template.cluster_ca_cert.metadata`
 
 Optional:
 
@@ -642,10 +642,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--cluster_role_binding--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--cluster_role_binding--metadata"></a>
+### Nested Schema for `spec.kafka.template.cluster_role_binding.metadata`
 
 Optional:
 
@@ -659,10 +659,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--external_bootstrap_ingress--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--external_bootstrap_ingress--metadata"></a>
+### Nested Schema for `spec.kafka.template.external_bootstrap_ingress.metadata`
 
 Optional:
 
@@ -676,10 +676,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--external_bootstrap_route--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--external_bootstrap_route--metadata"></a>
+### Nested Schema for `spec.kafka.template.external_bootstrap_route.metadata`
 
 Optional:
 
@@ -693,10 +693,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--external_bootstrap_service--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--external_bootstrap_service--metadata"></a>
+### Nested Schema for `spec.kafka.template.external_bootstrap_service.metadata`
 
 Optional:
 
@@ -710,11 +710,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context))
 
-<a id="nestedatt--spec--kafka--template--statefulset--env"></a>
-### Nested Schema for `spec.kafka.template.statefulset.env`
+<a id="nestedatt--spec--kafka--template--init_container--env"></a>
+### Nested Schema for `spec.kafka.template.init_container.env`
 
 Optional:
 
@@ -722,25 +722,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context`
+<a id="nestedatt--spec--kafka--template--init_container--security_context"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--windows_options))
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--capabilities"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.capabilities`
+<a id="nestedatt--spec--kafka--template--init_container--security_context--capabilities"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context.capabilities`
 
 Optional:
 
@@ -748,8 +748,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.se_linux_options`
+<a id="nestedatt--spec--kafka--template--init_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context.se_linux_options`
 
 Optional:
 
@@ -759,8 +759,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.seccomp_profile`
+<a id="nestedatt--spec--kafka--template--init_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -768,8 +768,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--windows_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.windows_options`
+<a id="nestedatt--spec--kafka--template--init_container--security_context--windows_options"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context.windows_options`
 
 Optional:
 
@@ -786,10 +786,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--jmx_secret--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--jmx_secret--metadata"></a>
+### Nested Schema for `spec.kafka.template.jmx_secret.metadata`
 
 Optional:
 
@@ -803,11 +803,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context))
 
-<a id="nestedatt--spec--kafka--template--statefulset--env"></a>
-### Nested Schema for `spec.kafka.template.statefulset.env`
+<a id="nestedatt--spec--kafka--template--kafka_container--env"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.env`
 
 Optional:
 
@@ -815,25 +815,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context`
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--windows_options))
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--capabilities"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.capabilities`
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context--capabilities"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context.capabilities`
 
 Optional:
 
@@ -841,8 +841,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.se_linux_options`
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context.se_linux_options`
 
 Optional:
 
@@ -852,8 +852,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.seccomp_profile`
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -861,8 +861,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--windows_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.windows_options`
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context--windows_options"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context.windows_options`
 
 Optional:
 
@@ -879,10 +879,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--per_pod_ingress--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--per_pod_ingress--metadata"></a>
+### Nested Schema for `spec.kafka.template.per_pod_ingress.metadata`
 
 Optional:
 
@@ -896,10 +896,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--per_pod_route--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--per_pod_route--metadata"></a>
+### Nested Schema for `spec.kafka.template.per_pod_route.metadata`
 
 Optional:
 
@@ -913,10 +913,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--per_pod_service--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--per_pod_service--metadata"></a>
+### Nested Schema for `spec.kafka.template.per_pod_service.metadata`
 
 Optional:
 
@@ -930,10 +930,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--persistent_volume_claim--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--persistent_volume_claim--metadata"></a>
+### Nested Schema for `spec.kafka.template.persistent_volume_claim.metadata`
 
 Optional:
 
@@ -947,64 +947,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--kafka--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--node_affinity"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.node_affinity`
+<a id="nestedatt--spec--kafka--template--pod--affinity"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -1013,35 +1003,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -1052,45 +1015,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_affinity"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -1100,16 +1100,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1121,28 +1121,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -1152,16 +1152,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1173,44 +1173,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -1220,16 +1220,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1241,28 +1241,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -1272,16 +1272,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1294,8 +1294,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--host_aliases"></a>
-### Nested Schema for `spec.kafka.template.statefulset.host_aliases`
+<a id="nestedatt--spec--kafka--template--pod--host_aliases"></a>
+### Nested Schema for `spec.kafka.template.pod.host_aliases`
 
 Optional:
 
@@ -1303,16 +1303,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--image_pull_secrets"></a>
-### Nested Schema for `spec.kafka.template.statefulset.image_pull_secrets`
+<a id="nestedatt--spec--kafka--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.kafka.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--pod--metadata"></a>
+### Nested Schema for `spec.kafka.template.pod.metadata`
 
 Optional:
 
@@ -1320,8 +1320,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context`
+<a id="nestedatt--spec--kafka--template--pod--security_context"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context`
 
 Optional:
 
@@ -1330,14 +1330,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--se_linux_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.se_linux_options`
+<a id="nestedatt--spec--kafka--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -1347,8 +1347,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.seccomp_profile`
+<a id="nestedatt--spec--kafka--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -1356,8 +1356,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--sysctls"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.sysctls`
+<a id="nestedatt--spec--kafka--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -1365,8 +1365,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--security_context--windows_options"></a>
-### Nested Schema for `spec.kafka.template.statefulset.security_context.windows_options`
+<a id="nestedatt--spec--kafka--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -1377,8 +1377,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--tolerations"></a>
-### Nested Schema for `spec.kafka.template.statefulset.tolerations`
+<a id="nestedatt--spec--kafka--template--pod--tolerations"></a>
+### Nested Schema for `spec.kafka.template.pod.tolerations`
 
 Optional:
 
@@ -1389,12 +1389,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--kafka--template--statefulset--topology_spread_constraints"></a>
-### Nested Schema for `spec.kafka.template.statefulset.topology_spread_constraints`
+<a id="nestedatt--spec--kafka--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.kafka.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -1403,16 +1403,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.kafka.template.statefulset.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--kafka--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.kafka.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka--template--statefulset--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.kafka.template.statefulset.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--kafka--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -1430,10 +1430,10 @@ Optional:
 Optional:
 
 - `max_unavailable` (Number) Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.
-- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--kafka--template--pod_disruption_budget--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--pod_disruption_budget--metadata"></a>
+### Nested Schema for `spec.kafka.template.pod_disruption_budget.metadata`
 
 Optional:
 
@@ -1447,10 +1447,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--pod_set--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--pod_set--metadata"></a>
+### Nested Schema for `spec.kafka.template.pod_set.metadata`
 
 Optional:
 
@@ -1464,10 +1464,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--service_account--metadata))
 
-<a id="nestedatt--spec--kafka--template--statefulset--metadata"></a>
-### Nested Schema for `spec.kafka.template.statefulset.metadata`
+<a id="nestedatt--spec--kafka--template--service_account--metadata"></a>
+### Nested Schema for `spec.kafka.template.service_account.metadata`
 
 Optional:
 
@@ -1727,10 +1727,10 @@ Optional:
 
 - `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
 - `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--api_service--metadata))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.metadata`
+<a id="nestedatt--spec--cruise_control--template--api_service--metadata"></a>
+### Nested Schema for `spec.cruise_control.template.api_service.metadata`
 
 Optional:
 
@@ -1744,11 +1744,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--env"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.env`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--env"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.env`
 
 Optional:
 
@@ -1756,25 +1756,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--windows_options))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--capabilities"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.capabilities`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--capabilities"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.capabilities`
 
 Optional:
 
@@ -1782,8 +1782,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--se_linux_options"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.se_linux_options`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.se_linux_options`
 
 Optional:
 
@@ -1793,8 +1793,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.seccomp_profile`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -1802,8 +1802,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--windows_options"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.windows_options`
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--windows_options"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.windows_options`
 
 Optional:
 
@@ -1821,10 +1821,10 @@ Optional:
 Optional:
 
 - `deployment_strategy` (String) Pod replacement strategy for deployment configuration changes. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--deployment--metadata))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.metadata`
+<a id="nestedatt--spec--cruise_control--template--deployment--metadata"></a>
+### Nested Schema for `spec.cruise_control.template.deployment.metadata`
 
 Optional:
 
@@ -1838,64 +1838,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--node_affinity"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.node_affinity`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -1904,35 +1894,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -1943,45 +1906,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_affinity"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -1991,16 +1991,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2012,28 +2012,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2043,16 +2043,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2064,44 +2064,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -2111,16 +2111,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2132,28 +2132,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2163,16 +2163,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2185,8 +2185,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--host_aliases"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.host_aliases`
+<a id="nestedatt--spec--cruise_control--template--pod--host_aliases"></a>
+### Nested Schema for `spec.cruise_control.template.pod.host_aliases`
 
 Optional:
 
@@ -2194,16 +2194,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--image_pull_secrets"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.image_pull_secrets`
+<a id="nestedatt--spec--cruise_control--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.cruise_control.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.metadata`
+<a id="nestedatt--spec--cruise_control--template--pod--metadata"></a>
+### Nested Schema for `spec.cruise_control.template.pod.metadata`
 
 Optional:
 
@@ -2211,8 +2211,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context`
+<a id="nestedatt--spec--cruise_control--template--pod--security_context"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context`
 
 Optional:
 
@@ -2221,14 +2221,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--se_linux_options"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.se_linux_options`
+<a id="nestedatt--spec--cruise_control--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -2238,8 +2238,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.seccomp_profile`
+<a id="nestedatt--spec--cruise_control--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -2247,8 +2247,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--sysctls"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.sysctls`
+<a id="nestedatt--spec--cruise_control--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -2256,8 +2256,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--windows_options"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.windows_options`
+<a id="nestedatt--spec--cruise_control--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -2268,8 +2268,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--tolerations"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.tolerations`
+<a id="nestedatt--spec--cruise_control--template--pod--tolerations"></a>
+### Nested Schema for `spec.cruise_control.template.pod.tolerations`
 
 Optional:
 
@@ -2280,12 +2280,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.topology_spread_constraints`
+<a id="nestedatt--spec--cruise_control--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.cruise_control.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -2294,16 +2294,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--cruise_control--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.cruise_control.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--cruise_control--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.cruise_control.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -2321,10 +2321,10 @@ Optional:
 Optional:
 
 - `max_unavailable` (Number) Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.
-- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
+- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod_disruption_budget--metadata))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.metadata`
+<a id="nestedatt--spec--cruise_control--template--pod_disruption_budget--metadata"></a>
+### Nested Schema for `spec.cruise_control.template.pod_disruption_budget.metadata`
 
 Optional:
 
@@ -2338,10 +2338,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--service_account--metadata))
 
-<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata"></a>
-### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.metadata`
+<a id="nestedatt--spec--cruise_control--template--service_account--metadata"></a>
+### Nested Schema for `spec.cruise_control.template.service_account.metadata`
 
 Optional:
 
@@ -2513,10 +2513,10 @@ Optional:
 Optional:
 
 - `deployment_strategy` (String) Pod replacement strategy for deployment configuration changes. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--deployment--metadata))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.metadata`
+<a id="nestedatt--spec--entity_operator--template--deployment--metadata"></a>
+### Nested Schema for `spec.entity_operator.template.deployment.metadata`
 
 Optional:
 
@@ -2530,10 +2530,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--entity_operator_role--metadata))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.metadata`
+<a id="nestedatt--spec--entity_operator--template--entity_operator_role--metadata"></a>
+### Nested Schema for `spec.entity_operator.template.entity_operator_role.metadata`
 
 Optional:
 
@@ -2547,64 +2547,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--node_affinity"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.node_affinity`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -2613,35 +2603,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -2652,45 +2615,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_affinity"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -2700,16 +2700,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2721,28 +2721,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2752,16 +2752,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2773,44 +2773,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -2820,16 +2820,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2841,28 +2841,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2872,16 +2872,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2894,8 +2894,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--host_aliases"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.host_aliases`
+<a id="nestedatt--spec--entity_operator--template--pod--host_aliases"></a>
+### Nested Schema for `spec.entity_operator.template.pod.host_aliases`
 
 Optional:
 
@@ -2903,16 +2903,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--image_pull_secrets"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.image_pull_secrets`
+<a id="nestedatt--spec--entity_operator--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.entity_operator.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.metadata`
+<a id="nestedatt--spec--entity_operator--template--pod--metadata"></a>
+### Nested Schema for `spec.entity_operator.template.pod.metadata`
 
 Optional:
 
@@ -2920,8 +2920,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context`
+<a id="nestedatt--spec--entity_operator--template--pod--security_context"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context`
 
 Optional:
 
@@ -2930,14 +2930,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.se_linux_options`
+<a id="nestedatt--spec--entity_operator--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -2947,8 +2947,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.seccomp_profile`
+<a id="nestedatt--spec--entity_operator--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -2956,8 +2956,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--sysctls"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.sysctls`
+<a id="nestedatt--spec--entity_operator--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -2965,8 +2965,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.windows_options`
+<a id="nestedatt--spec--entity_operator--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -2977,8 +2977,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--tolerations"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.tolerations`
+<a id="nestedatt--spec--entity_operator--template--pod--tolerations"></a>
+### Nested Schema for `spec.entity_operator.template.pod.tolerations`
 
 Optional:
 
@@ -2989,12 +2989,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.topology_spread_constraints`
+<a id="nestedatt--spec--entity_operator--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.entity_operator.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -3003,16 +3003,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--entity_operator--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.entity_operator.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--entity_operator--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.entity_operator.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -3029,10 +3029,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--service_account--metadata))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.metadata`
+<a id="nestedatt--spec--entity_operator--template--service_account--metadata"></a>
+### Nested Schema for `spec.entity_operator.template.service_account.metadata`
 
 Optional:
 
@@ -3046,11 +3046,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--env"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.env`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--env"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.env`
 
 Optional:
 
@@ -3058,25 +3058,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--windows_options))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.capabilities`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--capabilities"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.capabilities`
 
 Optional:
 
@@ -3084,8 +3084,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.se_linux_options`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.se_linux_options`
 
 Optional:
 
@@ -3095,8 +3095,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.seccomp_profile`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -3104,8 +3104,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.windows_options`
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--windows_options"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.windows_options`
 
 Optional:
 
@@ -3122,11 +3122,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--env"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.env`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--env"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.env`
 
 Optional:
 
@@ -3134,25 +3134,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--windows_options))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.capabilities`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--capabilities"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.capabilities`
 
 Optional:
 
@@ -3160,8 +3160,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.se_linux_options`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.se_linux_options`
 
 Optional:
 
@@ -3171,8 +3171,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.seccomp_profile`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -3180,8 +3180,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.windows_options`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--windows_options"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.windows_options`
 
 Optional:
 
@@ -3198,10 +3198,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_role_binding--metadata))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.metadata`
+<a id="nestedatt--spec--entity_operator--template--topic_operator_role_binding--metadata"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_role_binding.metadata`
 
 Optional:
 
@@ -3215,11 +3215,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--env"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.env`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--env"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.env`
 
 Optional:
 
@@ -3227,25 +3227,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--windows_options))
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--capabilities"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.capabilities`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--capabilities"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.capabilities`
 
 Optional:
 
@@ -3253,8 +3253,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--se_linux_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.se_linux_options`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.se_linux_options`
 
 Optional:
 
@@ -3264,8 +3264,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.seccomp_profile`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.seccomp_profile`
 
 Optional:
 
@@ -3273,8 +3273,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context--windows_options"></a>
-### Nested Schema for `spec.entity_operator.template.user_operator_role_binding.security_context.windows_options`
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--windows_options"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.windows_options`
 
 Optional:
 
@@ -3381,13 +3381,13 @@ Optional:
 Optional:
 
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
-- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--java_system_properties))
+- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--jvm_options--java_system_properties))
 - `xms` (String) -Xms option to to the JVM.
 - `xmx` (String) -Xmx option to to the JVM.
 - `xx` (Map of String) A map of -XX options to the JVM.
 
-<a id="nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--java_system_properties"></a>
-### Nested Schema for `spec.entity_operator.topic_operator.zookeeper_session_timeout_seconds.java_system_properties`
+<a id="nestedatt--spec--entity_operator--topic_operator--jvm_options--java_system_properties"></a>
+### Nested Schema for `spec.entity_operator.topic_operator.jvm_options.java_system_properties`
 
 Optional:
 
@@ -3418,17 +3418,17 @@ Required:
 Optional:
 
 - `loggers` (Map of String) A Map from logger name to logger level.
-- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--value_from))
+- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--logging--value_from))
 
-<a id="nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--value_from"></a>
-### Nested Schema for `spec.entity_operator.topic_operator.zookeeper_session_timeout_seconds.value_from`
+<a id="nestedatt--spec--entity_operator--topic_operator--logging--value_from"></a>
+### Nested Schema for `spec.entity_operator.topic_operator.logging.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--value_from--config_map_key_ref))
+- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--logging--value_from--config_map_key_ref))
 
-<a id="nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.entity_operator.topic_operator.zookeeper_session_timeout_seconds.value_from.config_map_key_ref`
+<a id="nestedatt--spec--entity_operator--topic_operator--logging--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.entity_operator.topic_operator.logging.value_from.config_map_key_ref`
 
 Optional:
 
@@ -3456,12 +3456,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--claims"></a>
-### Nested Schema for `spec.entity_operator.topic_operator.zookeeper_session_timeout_seconds.claims`
+<a id="nestedatt--spec--entity_operator--topic_operator--resources--claims"></a>
+### Nested Schema for `spec.entity_operator.topic_operator.resources.claims`
 
 Optional:
 
@@ -3504,13 +3504,13 @@ Optional:
 Optional:
 
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
-- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--java_system_properties))
+- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--jvm_options--java_system_properties))
 - `xms` (String) -Xms option to to the JVM.
 - `xmx` (String) -Xmx option to to the JVM.
 - `xx` (Map of String) A map of -XX options to the JVM.
 
-<a id="nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--java_system_properties"></a>
-### Nested Schema for `spec.entity_operator.user_operator.zookeeper_session_timeout_seconds.java_system_properties`
+<a id="nestedatt--spec--entity_operator--user_operator--jvm_options--java_system_properties"></a>
+### Nested Schema for `spec.entity_operator.user_operator.jvm_options.java_system_properties`
 
 Optional:
 
@@ -3541,17 +3541,17 @@ Required:
 Optional:
 
 - `loggers` (Map of String) A Map from logger name to logger level.
-- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--value_from))
+- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--logging--value_from))
 
-<a id="nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--value_from"></a>
-### Nested Schema for `spec.entity_operator.user_operator.zookeeper_session_timeout_seconds.value_from`
+<a id="nestedatt--spec--entity_operator--user_operator--logging--value_from"></a>
+### Nested Schema for `spec.entity_operator.user_operator.logging.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--value_from--config_map_key_ref))
+- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--logging--value_from--config_map_key_ref))
 
-<a id="nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.entity_operator.user_operator.zookeeper_session_timeout_seconds.value_from.config_map_key_ref`
+<a id="nestedatt--spec--entity_operator--user_operator--logging--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.entity_operator.user_operator.logging.value_from.config_map_key_ref`
 
 Optional:
 
@@ -3579,12 +3579,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--claims"></a>
-### Nested Schema for `spec.entity_operator.user_operator.zookeeper_session_timeout_seconds.claims`
+<a id="nestedatt--spec--entity_operator--user_operator--resources--claims"></a>
+### Nested Schema for `spec.entity_operator.user_operator.resources.claims`
 
 Optional:
 
@@ -3668,11 +3668,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--env"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.env`
+<a id="nestedatt--spec--jmx_trans--template--container--env"></a>
+### Nested Schema for `spec.jmx_trans.template.container.env`
 
 Optional:
 
@@ -3680,25 +3680,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context`
+<a id="nestedatt--spec--jmx_trans--template--container--security_context"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--windows_options))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--capabilities"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.capabilities`
+<a id="nestedatt--spec--jmx_trans--template--container--security_context--capabilities"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context.capabilities`
 
 Optional:
 
@@ -3706,8 +3706,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--se_linux_options"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.se_linux_options`
+<a id="nestedatt--spec--jmx_trans--template--container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context.se_linux_options`
 
 Optional:
 
@@ -3717,8 +3717,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.seccomp_profile`
+<a id="nestedatt--spec--jmx_trans--template--container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context.seccomp_profile`
 
 Optional:
 
@@ -3726,8 +3726,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--windows_options"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.windows_options`
+<a id="nestedatt--spec--jmx_trans--template--container--security_context--windows_options"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context.windows_options`
 
 Optional:
 
@@ -3745,10 +3745,10 @@ Optional:
 Optional:
 
 - `deployment_strategy` (String) Pod replacement strategy for deployment configuration changes. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--deployment--metadata))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--metadata"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.metadata`
+<a id="nestedatt--spec--jmx_trans--template--deployment--metadata"></a>
+### Nested Schema for `spec.jmx_trans.template.deployment.metadata`
 
 Optional:
 
@@ -3762,64 +3762,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--node_affinity"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.node_affinity`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -3828,35 +3818,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -3867,45 +3830,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_affinity"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -3915,16 +3915,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -3936,28 +3936,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -3967,16 +3967,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -3988,44 +3988,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -4035,16 +4035,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4056,28 +4056,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -4087,16 +4087,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4109,8 +4109,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--host_aliases"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.host_aliases`
+<a id="nestedatt--spec--jmx_trans--template--pod--host_aliases"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.host_aliases`
 
 Optional:
 
@@ -4118,16 +4118,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.image_pull_secrets`
+<a id="nestedatt--spec--jmx_trans--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--metadata"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.metadata`
+<a id="nestedatt--spec--jmx_trans--template--pod--metadata"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.metadata`
 
 Optional:
 
@@ -4135,8 +4135,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context`
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context`
 
 Optional:
 
@@ -4145,14 +4145,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--se_linux_options"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.se_linux_options`
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -4162,8 +4162,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.seccomp_profile`
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -4171,8 +4171,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--sysctls"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.sysctls`
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -4180,8 +4180,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--security_context--windows_options"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.security_context.windows_options`
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -4192,8 +4192,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--tolerations"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.tolerations`
+<a id="nestedatt--spec--jmx_trans--template--pod--tolerations"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.tolerations`
 
 Optional:
 
@@ -4204,12 +4204,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.topology_spread_constraints`
+<a id="nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -4218,16 +4218,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.jmx_trans.template.service_account.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--jmx_trans--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -4334,11 +4334,11 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context))
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--env"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.env`
+<a id="nestedatt--spec--kafka_exporter--template--container--env"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.env`
 
 Optional:
 
@@ -4346,25 +4346,25 @@ Optional:
 - `value` (String) The environment variable value.
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context`
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--windows_options))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--capabilities"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.capabilities`
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context--capabilities"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context.capabilities`
 
 Optional:
 
@@ -4372,8 +4372,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--se_linux_options"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.se_linux_options`
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context.se_linux_options`
 
 Optional:
 
@@ -4383,8 +4383,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.seccomp_profile`
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context.seccomp_profile`
 
 Optional:
 
@@ -4392,8 +4392,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--windows_options"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.windows_options`
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context--windows_options"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context.windows_options`
 
 Optional:
 
@@ -4411,10 +4411,10 @@ Optional:
 Optional:
 
 - `deployment_strategy` (String) Pod replacement strategy for deployment configuration changes. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--deployment--metadata))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--metadata"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.metadata`
+<a id="nestedatt--spec--kafka_exporter--template--deployment--metadata"></a>
+### Nested Schema for `spec.kafka_exporter.template.deployment.metadata`
 
 Optional:
 
@@ -4428,64 +4428,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--node_affinity"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.node_affinity`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -4494,35 +4484,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -4533,45 +4496,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_affinity"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -4581,16 +4581,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4602,28 +4602,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -4633,16 +4633,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4654,44 +4654,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -4701,16 +4701,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4722,28 +4722,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -4753,16 +4753,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4775,8 +4775,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--host_aliases"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.host_aliases`
+<a id="nestedatt--spec--kafka_exporter--template--pod--host_aliases"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.host_aliases`
 
 Optional:
 
@@ -4784,16 +4784,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.image_pull_secrets`
+<a id="nestedatt--spec--kafka_exporter--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--metadata"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.metadata`
+<a id="nestedatt--spec--kafka_exporter--template--pod--metadata"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.metadata`
 
 Optional:
 
@@ -4801,8 +4801,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context`
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context`
 
 Optional:
 
@@ -4811,14 +4811,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--se_linux_options"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.se_linux_options`
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -4828,8 +4828,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.seccomp_profile`
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -4837,8 +4837,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--sysctls"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.sysctls`
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -4846,8 +4846,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--security_context--windows_options"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.security_context.windows_options`
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -4858,8 +4858,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--tolerations"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.tolerations`
+<a id="nestedatt--spec--kafka_exporter--template--pod--tolerations"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.tolerations`
 
 Optional:
 
@@ -4870,12 +4870,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.topology_spread_constraints`
+<a id="nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -4884,16 +4884,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--kafka_exporter--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -4910,10 +4910,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service--metadata))
 
-<a id="nestedatt--spec--kafka_exporter--template--service_account--metadata"></a>
-### Nested Schema for `spec.kafka_exporter.template.service_account.metadata`
+<a id="nestedatt--spec--kafka_exporter--template--service--metadata"></a>
+### Nested Schema for `spec.kafka_exporter.template.service.metadata`
 
 Optional:
 
@@ -5150,10 +5150,10 @@ Optional:
 
 - `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
 - `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--client_service--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--client_service--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.client_service.metadata`
 
 Optional:
 
@@ -5167,10 +5167,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--jmx_secret--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--jmx_secret--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.jmx_secret.metadata`
 
 Optional:
 
@@ -5186,10 +5186,10 @@ Optional:
 
 - `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
 - `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--nodes_service--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--nodes_service--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.nodes_service.metadata`
 
 Optional:
 
@@ -5203,10 +5203,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--persistent_volume_claim--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--persistent_volume_claim--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.persistent_volume_claim.metadata`
 
 Optional:
 
@@ -5220,64 +5220,54 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity))
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity))
 - `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--metadata))
 - `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context))
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
 - `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints))
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--topology_spread_constraints))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.node_affinity`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -5286,35 +5276,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -5325,45 +5288,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -5373,16 +5373,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -5394,28 +5394,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -5425,16 +5425,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -5446,44 +5446,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -5493,16 +5493,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -5514,28 +5514,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -5545,16 +5545,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -5567,8 +5567,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.host_aliases`
+<a id="nestedatt--spec--zookeeper--template--pod--host_aliases"></a>
+### Nested Schema for `spec.zookeeper.template.pod.host_aliases`
 
 Optional:
 
@@ -5576,16 +5576,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.image_pull_secrets`
+<a id="nestedatt--spec--zookeeper--template--pod--image_pull_secrets"></a>
+### Nested Schema for `spec.zookeeper.template.pod.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--pod--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.pod.metadata`
 
 Optional:
 
@@ -5593,8 +5593,8 @@ Optional:
 - `labels` (Map of String) Labels added to the Kubernetes resource.
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context`
+<a id="nestedatt--spec--zookeeper--template--pod--security_context"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context`
 
 Optional:
 
@@ -5603,14 +5603,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.se_linux_options`
+<a id="nestedatt--spec--zookeeper--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -5620,8 +5620,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.seccomp_profile`
+<a id="nestedatt--spec--zookeeper--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -5629,8 +5629,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.sysctls`
+<a id="nestedatt--spec--zookeeper--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -5638,8 +5638,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+<a id="nestedatt--spec--zookeeper--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context.windows_options`
 
 Optional:
 
@@ -5650,8 +5650,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--tolerations"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.tolerations`
+<a id="nestedatt--spec--zookeeper--template--pod--tolerations"></a>
+### Nested Schema for `spec.zookeeper.template.pod.tolerations`
 
 Optional:
 
@@ -5662,12 +5662,12 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints`
+<a id="nestedatt--spec--zookeeper--template--pod--topology_spread_constraints"></a>
+### Nested Schema for `spec.zookeeper.template.pod.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
@@ -5676,16 +5676,16 @@ Optional:
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--zookeeper--template--pod--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.pod.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--zookeeper--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.pod.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -5703,10 +5703,10 @@ Optional:
 Optional:
 
 - `max_unavailable` (Number) Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.
-- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_disruption_budget--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--pod_disruption_budget--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.pod_disruption_budget.metadata`
 
 Optional:
 
@@ -5720,10 +5720,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_set--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--pod_set--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.pod_set.metadata`
 
 Optional:
 
@@ -5737,10 +5737,10 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--service_account--metadata))
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--service_account--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.service_account.metadata`
 
 Optional:
 
@@ -5754,11 +5754,11 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--statefulset--metadata))
 - `pod_management_policy` (String) PodManagementPolicy which will be used for this StatefulSet. Valid values are 'Parallel' and 'OrderedReady'. Defaults to 'Parallel'.
 
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+<a id="nestedatt--spec--zookeeper--template--statefulset--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.statefulset.metadata`
 
 Optional:
 

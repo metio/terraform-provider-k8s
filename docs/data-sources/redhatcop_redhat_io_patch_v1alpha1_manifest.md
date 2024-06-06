@@ -97,11 +97,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--patches--target_object_ref--namespace--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--patches--target_object_ref--annotation_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--patches--target_object_ref--namespace--match_expressions"></a>
-### Nested Schema for `spec.patches.target_object_ref.namespace.match_expressions`
+<a id="nestedatt--spec--patches--target_object_ref--annotation_selector--match_expressions"></a>
+### Nested Schema for `spec.patches.target_object_ref.annotation_selector.match_expressions`
 
 Required:
 
@@ -119,11 +119,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--patches--target_object_ref--namespace--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--patches--target_object_ref--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--patches--target_object_ref--namespace--match_expressions"></a>
-### Nested Schema for `spec.patches.target_object_ref.namespace.match_expressions`
+<a id="nestedatt--spec--patches--target_object_ref--label_selector--match_expressions"></a>
+### Nested Schema for `spec.patches.target_object_ref.label_selector.match_expressions`
 
 Required:
 

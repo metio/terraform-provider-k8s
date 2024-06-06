@@ -110,20 +110,20 @@ Required:
 Optional:
 
 - `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
-- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--limits--when--matches))
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--limits--route_selectors--matches))
 
-<a id="nestedatt--spec--defaults--limits--when--matches"></a>
-### Nested Schema for `spec.defaults.limits.when.matches`
+<a id="nestedatt--spec--defaults--limits--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.limits.route_selectors.matches`
 
 Optional:
 
-- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--limits--when--matches--headers))
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--limits--route_selectors--matches--headers))
 - `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
-- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--limits--when--matches--path))
-- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--limits--when--matches--query_params))
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--limits--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--limits--route_selectors--matches--query_params))
 
-<a id="nestedatt--spec--defaults--limits--when--matches--headers"></a>
-### Nested Schema for `spec.defaults.limits.when.matches.headers`
+<a id="nestedatt--spec--defaults--limits--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.limits.route_selectors.matches.headers`
 
 Required:
 
@@ -135,8 +135,8 @@ Optional:
 - `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
 
 
-<a id="nestedatt--spec--defaults--limits--when--matches--path"></a>
-### Nested Schema for `spec.defaults.limits.when.matches.path`
+<a id="nestedatt--spec--defaults--limits--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.limits.route_selectors.matches.path`
 
 Optional:
 
@@ -144,8 +144,8 @@ Optional:
 - `value` (String) Value of the HTTP path to match against.
 
 
-<a id="nestedatt--spec--defaults--limits--when--matches--query_params"></a>
-### Nested Schema for `spec.defaults.limits.when.matches.query_params`
+<a id="nestedatt--spec--defaults--limits--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.limits.route_selectors.matches.query_params`
 
 Required:
 
@@ -290,20 +290,20 @@ Required:
 Optional:
 
 - `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
-- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--limits--when--matches))
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--limits--route_selectors--matches))
 
-<a id="nestedatt--spec--overrides--limits--when--matches"></a>
-### Nested Schema for `spec.overrides.limits.when.matches`
+<a id="nestedatt--spec--overrides--limits--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.limits.route_selectors.matches`
 
 Optional:
 
-- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--limits--when--matches--headers))
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--limits--route_selectors--matches--headers))
 - `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
-- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--limits--when--matches--path))
-- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--limits--when--matches--query_params))
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--limits--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--limits--route_selectors--matches--query_params))
 
-<a id="nestedatt--spec--overrides--limits--when--matches--headers"></a>
-### Nested Schema for `spec.overrides.limits.when.matches.headers`
+<a id="nestedatt--spec--overrides--limits--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.limits.route_selectors.matches.headers`
 
 Required:
 
@@ -315,8 +315,8 @@ Optional:
 - `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
 
 
-<a id="nestedatt--spec--overrides--limits--when--matches--path"></a>
-### Nested Schema for `spec.overrides.limits.when.matches.path`
+<a id="nestedatt--spec--overrides--limits--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.limits.route_selectors.matches.path`
 
 Optional:
 
@@ -324,8 +324,8 @@ Optional:
 - `value` (String) Value of the HTTP path to match against.
 
 
-<a id="nestedatt--spec--overrides--limits--when--matches--query_params"></a>
-### Nested Schema for `spec.overrides.limits.when.matches.query_params`
+<a id="nestedatt--spec--overrides--limits--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.limits.route_selectors.matches.query_params`
 
 Required:
 

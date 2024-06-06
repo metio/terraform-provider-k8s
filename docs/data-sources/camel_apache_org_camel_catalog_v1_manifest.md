@@ -132,10 +132,10 @@ Optional:
 
 Optional:
 
-- `dependencies` (Attributes List) list of dependencies needed for this scope (see [below for nested schema](#nestedatt--spec--artifacts--schemes--producer--dependencies))
+- `dependencies` (Attributes List) list of dependencies needed for this scope (see [below for nested schema](#nestedatt--spec--artifacts--schemes--consumer--dependencies))
 
-<a id="nestedatt--spec--artifacts--schemes--producer--dependencies"></a>
-### Nested Schema for `spec.artifacts.schemes.producer.dependencies`
+<a id="nestedatt--spec--artifacts--schemes--consumer--dependencies"></a>
+### Nested Schema for `spec.artifacts.schemes.consumer.dependencies`
 
 Required:
 
@@ -145,12 +145,12 @@ Required:
 Optional:
 
 - `classifier` (String) Maven Classifier
-- `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions))
+- `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--schemes--consumer--dependencies--exclusions))
 - `type` (String) Maven Type
 - `version` (String) Maven Version
 
-<a id="nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions"></a>
-### Nested Schema for `spec.artifacts.schemes.producer.dependencies.exclusions`
+<a id="nestedatt--spec--artifacts--schemes--consumer--dependencies--exclusions"></a>
+### Nested Schema for `spec.artifacts.schemes.consumer.dependencies.exclusions`
 
 Required:
 

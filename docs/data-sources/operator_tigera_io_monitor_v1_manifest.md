@@ -116,17 +116,17 @@ Optional:
 
 Optional:
 
-- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets.Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--labels--bearer_token_secret))
+- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets.Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--bearer_token_secret))
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.
 - `interval` (String) Interval at which metrics should be scraped.If not specified Prometheus' global scrape interval is used.
-- `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--labels--metric_relabelings))
+- `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--metric_relabelings))
 - `params` (Map of List of String) Optional HTTP URL parametersDefault: scrape all metrics.
-- `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--labels--relabelings))
+- `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--relabelings))
 - `scrape_timeout` (String) Timeout after which the scrape is ended.If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.
 
-<a id="nestedatt--spec--external_prometheus--service_monitor--labels--bearer_token_secret"></a>
-### Nested Schema for `spec.external_prometheus.service_monitor.labels.bearer_token_secret`
+<a id="nestedatt--spec--external_prometheus--service_monitor--endpoints--bearer_token_secret"></a>
+### Nested Schema for `spec.external_prometheus.service_monitor.endpoints.bearer_token_secret`
 
 Required:
 
@@ -138,8 +138,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--external_prometheus--service_monitor--labels--metric_relabelings"></a>
-### Nested Schema for `spec.external_prometheus.service_monitor.labels.metric_relabelings`
+<a id="nestedatt--spec--external_prometheus--service_monitor--endpoints--metric_relabelings"></a>
+### Nested Schema for `spec.external_prometheus.service_monitor.endpoints.metric_relabelings`
 
 Optional:
 
@@ -152,8 +152,8 @@ Optional:
 - `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
 
 
-<a id="nestedatt--spec--external_prometheus--service_monitor--labels--relabelings"></a>
-### Nested Schema for `spec.external_prometheus.service_monitor.labels.relabelings`
+<a id="nestedatt--spec--external_prometheus--service_monitor--endpoints--relabelings"></a>
+### Nested Schema for `spec.external_prometheus.service_monitor.endpoints.relabelings`
 
 Optional:
 

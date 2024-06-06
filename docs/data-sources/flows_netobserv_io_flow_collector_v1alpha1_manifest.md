@@ -108,12 +108,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--agent--ebpf--sampling--claims"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.claims`
+<a id="nestedatt--spec--agent--ebpf--resources--claims"></a>
+### Nested Schema for `spec.agent.ebpf.resources.claims`
 
 Required:
 
@@ -191,23 +191,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource))
+- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource))
+- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external))
+- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods))
+- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String) container is the name of the container in the pods of the scaling target
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -221,16 +221,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric`
 
 Required:
 
@@ -238,18 +238,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -263,8 +263,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.target`
 
 Required:
 
@@ -278,17 +278,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--described_object))
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
+- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.described_object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -300,8 +300,8 @@ Optional:
 - `api_version` (String) apiVersion is the API version of the referent
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric`
 
 Required:
 
@@ -309,18 +309,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -334,8 +334,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.target`
 
 Required:
 
@@ -349,16 +349,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -366,18 +366,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -391,8 +391,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.target`
 
 Required:
 
@@ -406,16 +406,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource.target`
 
 Required:
 
@@ -515,12 +515,12 @@ Optional:
 
 Optional:
 
-- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_id_reference))
-- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_secret_reference))
+- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_id_reference))
+- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_secret_reference))
 - `type` (String) Type of SASL authentication to use, or 'DISABLED' if SASL is not used
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_id_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_id_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_id_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_id_reference`
 
 Optional:
 
@@ -530,8 +530,8 @@ Optional:
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_secret_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_secret_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_secret_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_secret_reference`
 
 Optional:
 
@@ -762,23 +762,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource))
+- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource))
+- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external))
+- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods))
+- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String) container is the name of the container in the pods of the scaling target
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -792,16 +792,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric`
 
 Required:
 
@@ -809,18 +809,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -834,8 +834,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.target`
 
 Required:
 
@@ -849,17 +849,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object))
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
+- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.described_object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -871,8 +871,8 @@ Optional:
 - `api_version` (String) apiVersion is the API version of the referent
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric`
 
 Required:
 
@@ -880,18 +880,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -905,8 +905,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.target`
 
 Required:
 
@@ -920,16 +920,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -937,18 +937,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -962,8 +962,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.target`
 
 Required:
 
@@ -977,16 +977,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource.target`
 
 Required:
 

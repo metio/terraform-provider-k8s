@@ -238,11 +238,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--a_pi_server_config--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.a_pi_server_config.tls_config.server_name.config_map`
+<a id="nestedatt--spec--a_pi_server_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.a_pi_server_config.tls_config.ca.config_map`
 
 Required:
 
@@ -254,8 +254,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--a_pi_server_config--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.a_pi_server_config.tls_config.server_name.secret`
+<a id="nestedatt--spec--a_pi_server_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.a_pi_server_config.tls_config.ca.secret`
 
 Required:
 
@@ -273,11 +273,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--a_pi_server_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--a_pi_server_config--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.a_pi_server_config.tls_config.server_name.config_map`
+<a id="nestedatt--spec--a_pi_server_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.a_pi_server_config.tls_config.cert.config_map`
 
 Required:
 
@@ -289,8 +289,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--a_pi_server_config--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.a_pi_server_config.tls_config.server_name.secret`
+<a id="nestedatt--spec--a_pi_server_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.a_pi_server_config.tls_config.cert.secret`
 
 Required:
 
@@ -396,12 +396,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--claim_templates--spec--volume_name--claims"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name.claims`
+<a id="nestedatt--spec--claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.claim_templates.spec.resources.claims`
 
 Required:
 
@@ -414,11 +414,11 @@ Required:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--claim_templates--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.claim_templates.spec.selector.match_expressions`
 
 Required:
 
@@ -887,11 +887,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--remote_write--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes.config_map`
+<a id="nestedatt--spec--remote_write--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.config_map`
 
 Required:
 
@@ -903,8 +903,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--remote_write--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes.secret`
+<a id="nestedatt--spec--remote_write--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.secret`
 
 Required:
 
@@ -959,16 +959,16 @@ Optional:
 - `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.Labels are dropped before de-duplication and aggregation.
 - `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process terminationor config reload. Is 'false' by default.It is not recommended changing this setting, unless unfinished aggregations statesare preferred to missing data points.
 - `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
-- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the inputbefore aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--keep_input--input_relabel_configs))
+- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the inputbefore aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
 - `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
 - `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector.If the match isn't set, then all the input time series are processed.
 - `no_align_flush_to_interval` (Boolean) NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.
-- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are appliedon the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--keep_input--output_relabel_configs))
+- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are appliedon the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
 - `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it.The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
 - `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series.See also By.If neither By nor Without are set, then the Outputs are calculatedindividually per each input time series.
 
-<a id="nestedatt--spec--remote_write--stream_aggr_config--keep_input--input_relabel_configs"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config.keep_input.input_relabel_configs`
+<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.rules.input_relabel_configs`
 
 Optional:
 
@@ -984,8 +984,8 @@ Optional:
 - `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
 
 
-<a id="nestedatt--spec--remote_write--stream_aggr_config--keep_input--output_relabel_configs"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config.keep_input.output_relabel_configs`
+<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.rules.output_relabel_configs`
 
 Optional:
 
@@ -1022,11 +1022,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--secret))
 
-<a id="nestedatt--spec--remote_write--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.remote_write.tls_config.server_name.config_map`
+<a id="nestedatt--spec--remote_write--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.remote_write.tls_config.ca.config_map`
 
 Required:
 
@@ -1038,8 +1038,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--remote_write--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.remote_write.tls_config.server_name.secret`
+<a id="nestedatt--spec--remote_write--tls_config--ca--secret"></a>
+### Nested Schema for `spec.remote_write.tls_config.ca.secret`
 
 Required:
 
@@ -1057,11 +1057,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--secret))
 
-<a id="nestedatt--spec--remote_write--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.remote_write.tls_config.server_name.config_map`
+<a id="nestedatt--spec--remote_write--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.remote_write.tls_config.cert.config_map`
 
 Required:
 
@@ -1073,8 +1073,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--remote_write--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.remote_write.tls_config.server_name.secret`
+<a id="nestedatt--spec--remote_write--tls_config--cert--secret"></a>
+### Nested Schema for `spec.remote_write.tls_config.cert.secret`
 
 Required:
 
@@ -1347,16 +1347,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--data_source"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.data_source`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -1368,8 +1368,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--data_source_ref"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.data_source_ref`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -1382,17 +1382,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--resources"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.resources`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--resources--claims"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.resources.claims`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -1400,16 +1400,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--selector"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.selector`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--selector--match_expressions"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.status.selector.match_expressions`
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 

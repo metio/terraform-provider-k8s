@@ -124,10 +124,10 @@ Optional:
 
 Optional:
 
-- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--routes--services--weight--cookie))
+- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--routes--services--sticky--cookie))
 
-<a id="nestedatt--spec--routes--services--weight--cookie"></a>
-### Nested Schema for `spec.routes.services.weight.cookie`
+<a id="nestedatt--spec--routes--services--sticky--cookie"></a>
+### Nested Schema for `spec.routes.services.sticky.cookie`
 
 Optional:
 

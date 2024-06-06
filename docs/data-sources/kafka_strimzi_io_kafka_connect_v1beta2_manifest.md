@@ -302,12 +302,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_configuration--volumes--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_configuration--volumes--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--external_configuration--volumes--secret--items"></a>
-### Nested Schema for `spec.external_configuration.volumes.secret.items`
+<a id="nestedatt--spec--external_configuration--volumes--config_map--items"></a>
+### Nested Schema for `spec.external_configuration.volumes.config_map.items`
 
 Optional:
 
@@ -642,46 +642,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -690,35 +680,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -729,45 +692,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--template--build_pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.template.build_pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -777,16 +777,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -798,28 +798,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -829,16 +829,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -850,44 +850,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -897,16 +897,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -918,28 +918,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -949,16 +949,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--build_pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.build_pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1007,14 +1007,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--windows_options))
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--se_linux_options"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.se_linux_options`
+<a id="nestedatt--spec--template--build_pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.build_pod.security_context.se_linux_options`
 
 Optional:
 
@@ -1024,8 +1024,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--seccomp_profile"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.seccomp_profile`
+<a id="nestedatt--spec--template--build_pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.build_pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -1033,8 +1033,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--sysctls"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.sysctls`
+<a id="nestedatt--spec--template--build_pod--security_context--sysctls"></a>
+### Nested Schema for `spec.template.build_pod.security_context.sysctls`
 
 Optional:
 
@@ -1042,8 +1042,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--template--build_pod--topology_spread_constraints--windows_options"></a>
-### Nested Schema for `spec.template.build_pod.topology_spread_constraints.windows_options`
+<a id="nestedatt--spec--template--build_pod--security_context--windows_options"></a>
+### Nested Schema for `spec.template.build_pod.security_context.windows_options`
 
 Optional:
 
@@ -1364,46 +1364,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--pod--affinity--node_affinity"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -1412,35 +1402,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -1451,45 +1414,82 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--template--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.template.pod.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -1499,16 +1499,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1520,28 +1520,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -1551,16 +1551,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1572,44 +1572,44 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -1619,16 +1619,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1640,28 +1640,28 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -1671,16 +1671,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--template--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.template.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -1729,14 +1729,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--windows_options))
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--se_linux_options"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.se_linux_options`
+<a id="nestedatt--spec--template--pod--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.pod.security_context.se_linux_options`
 
 Optional:
 
@@ -1746,8 +1746,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--seccomp_profile"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.seccomp_profile`
+<a id="nestedatt--spec--template--pod--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.pod.security_context.seccomp_profile`
 
 Optional:
 
@@ -1755,8 +1755,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--sysctls"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.sysctls`
+<a id="nestedatt--spec--template--pod--security_context--sysctls"></a>
+### Nested Schema for `spec.template.pod.security_context.sysctls`
 
 Optional:
 
@@ -1764,8 +1764,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--template--pod--topology_spread_constraints--windows_options"></a>
-### Nested Schema for `spec.template.pod.topology_spread_constraints.windows_options`
+<a id="nestedatt--spec--template--pod--security_context--windows_options"></a>
+### Nested Schema for `spec.template.pod.security_context.windows_options`
 
 Optional:
 

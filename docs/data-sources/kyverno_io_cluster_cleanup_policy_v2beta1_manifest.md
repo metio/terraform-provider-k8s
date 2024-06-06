@@ -218,21 +218,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--all--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--all--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--all--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--all--resources--selector))
 
-<a id="nestedatt--spec--exclude--all--subjects--namespace_selector"></a>
-### Nested Schema for `spec.exclude.all.subjects.namespace_selector`
+<a id="nestedatt--spec--exclude--all--resources--namespace_selector"></a>
+### Nested Schema for `spec.exclude.all.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--all--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--all--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--exclude--all--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.exclude.all.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--exclude--all--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.exclude.all.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -245,16 +245,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--exclude--all--subjects--selector"></a>
-### Nested Schema for `spec.exclude.all.subjects.selector`
+<a id="nestedatt--spec--exclude--all--resources--selector"></a>
+### Nested Schema for `spec.exclude.all.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--all--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--all--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--exclude--all--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.exclude.all.subjects.selector.match_expressions`
+<a id="nestedatt--spec--exclude--all--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.exclude.all.resources.selector.match_expressions`
 
 Required:
 
@@ -302,21 +302,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--any--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--any--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--any--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--exclude--any--resources--selector))
 
-<a id="nestedatt--spec--exclude--any--subjects--namespace_selector"></a>
-### Nested Schema for `spec.exclude.any.subjects.namespace_selector`
+<a id="nestedatt--spec--exclude--any--resources--namespace_selector"></a>
+### Nested Schema for `spec.exclude.any.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--any--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--any--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--exclude--any--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.exclude.any.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--exclude--any--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.exclude.any.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -329,16 +329,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--exclude--any--subjects--selector"></a>
-### Nested Schema for `spec.exclude.any.subjects.selector`
+<a id="nestedatt--spec--exclude--any--resources--selector"></a>
+### Nested Schema for `spec.exclude.any.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--any--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--exclude--any--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--exclude--any--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.exclude.any.subjects.selector.match_expressions`
+<a id="nestedatt--spec--exclude--any--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.exclude.any.resources.selector.match_expressions`
 
 Required:
 
@@ -395,21 +395,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--all--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--all--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--all--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--all--resources--selector))
 
-<a id="nestedatt--spec--match--all--subjects--namespace_selector"></a>
-### Nested Schema for `spec.match.all.subjects.namespace_selector`
+<a id="nestedatt--spec--match--all--resources--namespace_selector"></a>
+### Nested Schema for `spec.match.all.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--all--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--all--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--match--all--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.match.all.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--match--all--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.match.all.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -422,16 +422,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--match--all--subjects--selector"></a>
-### Nested Schema for `spec.match.all.subjects.selector`
+<a id="nestedatt--spec--match--all--resources--selector"></a>
+### Nested Schema for `spec.match.all.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--all--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--all--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--match--all--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.match.all.subjects.selector.match_expressions`
+<a id="nestedatt--spec--match--all--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.match.all.resources.selector.match_expressions`
 
 Required:
 
@@ -479,21 +479,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--any--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--any--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--any--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--match--any--resources--selector))
 
-<a id="nestedatt--spec--match--any--subjects--namespace_selector"></a>
-### Nested Schema for `spec.match.any.subjects.namespace_selector`
+<a id="nestedatt--spec--match--any--resources--namespace_selector"></a>
+### Nested Schema for `spec.match.any.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--any--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--any--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--match--any--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.match.any.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--match--any--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.match.any.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -506,16 +506,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--match--any--subjects--selector"></a>
-### Nested Schema for `spec.match.any.subjects.selector`
+<a id="nestedatt--spec--match--any--resources--selector"></a>
+### Nested Schema for `spec.match.any.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--any--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--any--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--match--any--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.match.any.subjects.selector.match_expressions`
+<a id="nestedatt--spec--match--any--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.match.any.resources.selector.match_expressions`
 
 Required:
 

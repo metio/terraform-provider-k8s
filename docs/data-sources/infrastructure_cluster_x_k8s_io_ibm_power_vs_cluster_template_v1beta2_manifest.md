@@ -144,13 +144,13 @@ Optional:
 
 Optional:
 
-- `additional_listeners` (Attributes List) AdditionalListeners sets the additional listeners for the control plane load balancer. (see [below for nested schema](#nestedatt--spec--template--spec--zone--additional_listeners))
+- `additional_listeners` (Attributes List) AdditionalListeners sets the additional listeners for the control plane load balancer. (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--additional_listeners))
 - `id` (String) id of the loadbalancer
 - `name` (String) Name sets the name of the VPC load balancer.
 - `public` (Boolean) public indicates that load balancer is public or private
 
-<a id="nestedatt--spec--template--spec--zone--additional_listeners"></a>
-### Nested Schema for `spec.template.spec.zone.additional_listeners`
+<a id="nestedatt--spec--template--spec--load_balancers--additional_listeners"></a>
+### Nested Schema for `spec.template.spec.load_balancers.additional_listeners`
 
 Required:
 

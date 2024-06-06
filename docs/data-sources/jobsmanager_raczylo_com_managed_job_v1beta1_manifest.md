@@ -100,18 +100,18 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env))
-- `from_env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env))
+- `from_env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--from_env))
 - `image_pull_policy` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--image_pull_secrets))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--image_pull_secrets))
 - `labels` (Map of String)
 - `restart_policy` (String)
 - `service_account` (String)
-- `volume_mount` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volume_mount))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes))
+- `volume_mount` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volume_mount))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes))
 
-<a id="nestedatt--spec--groups--jobs--status--env"></a>
-### Nested Schema for `spec.groups.jobs.status.env`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env`
 
 Required:
 
@@ -120,20 +120,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env--value_from))
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env--value_from"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -145,8 +145,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env--value_from--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env.value_from.field_ref`
 
 Required:
 
@@ -157,8 +157,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env.value_from.resource_field_ref`
 
 Required:
 
@@ -170,8 +170,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.env.value_from.secret_key_ref`
 
 Required:
 
@@ -185,17 +185,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--from_env"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env`
+<a id="nestedatt--spec--groups--jobs--compiled_params--from_env"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.from_env`
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--from_env--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--from_env--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--from_env--config_map_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.config_map_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--from_env--config_map_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.from_env.config_map_ref`
 
 Optional:
 
@@ -203,8 +203,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--groups--jobs--status--from_env--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--from_env--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.from_env.secret_ref`
 
 Optional:
 
@@ -213,16 +213,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--image_pull_secrets"></a>
-### Nested Schema for `spec.groups.jobs.status.image_pull_secrets`
+<a id="nestedatt--spec--groups--jobs--compiled_params--image_pull_secrets"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.image_pull_secrets`
 
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--groups--jobs--status--volume_mount"></a>
-### Nested Schema for `spec.groups.jobs.status.volume_mount`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volume_mount"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volume_mount`
 
 Required:
 
@@ -237,8 +237,8 @@ Optional:
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes`
 
 Required:
 
@@ -246,38 +246,38 @@ Required:
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store))
-- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--azure_disk))
-- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--azure_file))
-- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--cephfs))
-- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--cinder))
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--config_map))
-- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--csi))
-- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--downward_api))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--empty_dir))
-- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--ephemeral))
-- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--fc))
-- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--flex_volume))
-- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--flocker))
-- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk))
-- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--git_repo))
-- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--glusterfs))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--host_path))
-- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--iscsi))
-- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--nfs))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk))
-- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--portworx_volume))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--projected))
-- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--quobyte))
-- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--rbd))
-- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--scale_io))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--secret))
-- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--storageos))
-- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--vsphere_volume))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.aws_elastic_block_store`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -290,8 +290,8 @@ Optional:
 - `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.azure_disk`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--azure_disk"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.azure_disk`
 
 Required:
 
@@ -306,8 +306,8 @@ Optional:
 - `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--azure_file"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.azure_file`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--azure_file"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.azure_file`
 
 Required:
 
@@ -319,8 +319,8 @@ Optional:
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--cephfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.cephfs`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--cephfs"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.cephfs`
 
 Required:
 
@@ -331,11 +331,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--cephfs--secret_ref))
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -343,8 +343,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--cinder"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.cinder`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--cinder"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.cinder`
 
 Required:
 
@@ -354,10 +354,10 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -365,18 +365,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.config_map`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--config_map"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.config_map`
 
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--config_map--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.config_map.items`
 
 Required:
 
@@ -389,8 +389,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--csi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.csi`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--csi"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.csi`
 
 Required:
 
@@ -399,12 +399,12 @@ Required:
 Optional:
 
 - `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -412,16 +412,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.downward_api`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.downward_api`
 
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.downward_api.items`
 
 Required:
 
@@ -429,12 +429,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -445,8 +445,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -460,8 +460,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.empty_dir`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--empty_dir"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.empty_dir`
 
 Optional:
 
@@ -469,40 +469,40 @@ Optional:
 - `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.ephemeral`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -514,8 +514,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -528,17 +528,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -546,16 +546,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -571,8 +571,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--fc"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.fc`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--fc"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.fc`
 
 Optional:
 
@@ -583,8 +583,8 @@ Optional:
 - `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.flex_volume`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--flex_volume"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.flex_volume`
 
 Required:
 
@@ -595,10 +595,10 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -606,8 +606,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--flocker"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.flocker`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--flocker"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.flocker`
 
 Optional:
 
@@ -615,8 +615,8 @@ Optional:
 - `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.gce_persistent_disk`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.gce_persistent_disk`
 
 Required:
 
@@ -629,8 +629,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--git_repo"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.git_repo`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--git_repo"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.git_repo`
 
 Required:
 
@@ -642,8 +642,8 @@ Optional:
 - `revision` (String) revision is the commit hash for the specified revision.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.glusterfs`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--glusterfs"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.glusterfs`
 
 Required:
 
@@ -655,8 +655,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--host_path"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.host_path`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--host_path"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.host_path`
 
 Required:
 
@@ -667,8 +667,8 @@ Optional:
 - `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--iscsi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.iscsi`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--iscsi"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.iscsi`
 
 Required:
 
@@ -685,10 +685,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -696,8 +696,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--nfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.nfs`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--nfs"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.nfs`
 
 Required:
 
@@ -709,8 +709,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.persistent_volume_claim`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.persistent_volume_claim`
 
 Required:
 
@@ -721,8 +721,8 @@ Optional:
 - `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.photon_persistent_disk`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.photon_persistent_disk`
 
 Required:
 
@@ -733,8 +733,8 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.portworx_volume`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--portworx_volume"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.portworx_volume`
 
 Required:
 
@@ -746,35 +746,35 @@ Optional:
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--projected"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.projected`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected`
 
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -787,15 +787,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -803,12 +803,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -819,8 +819,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -834,17 +834,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -857,8 +857,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -872,8 +872,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--quobyte"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.quobyte`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--quobyte"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.quobyte`
 
 Required:
 
@@ -888,8 +888,8 @@ Optional:
 - `user` (String) user to map volume access to Defaults to serivceaccount user
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--rbd"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.rbd`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--rbd"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.rbd`
 
 Required:
 
@@ -902,11 +902,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--rbd--secret_ref))
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -914,13 +914,13 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--scale_io"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.scale_io`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--scale_io"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.scale_io`
 
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -933,8 +933,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -942,18 +942,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.secret`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--secret"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.secret`
 
 Optional:
 
 - `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--secret--items))
 - `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--secret--items"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.secret.items`
 
 Required:
 
@@ -966,19 +966,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--storageos"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.storageos`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--storageos"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.storageos`
 
 Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--groups--jobs--compiled_params--volumes--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -986,8 +986,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+<a id="nestedatt--spec--groups--jobs--compiled_params--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.groups.jobs.compiled_params.volumes.vsphere_volume`
 
 Required:
 
@@ -1020,18 +1020,18 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env))
-- `from_env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env))
+- `from_env` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--params--from_env))
 - `image_pull_policy` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--image_pull_secrets))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--params--image_pull_secrets))
 - `labels` (Map of String)
 - `restart_policy` (String)
 - `service_account` (String)
-- `volume_mount` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volume_mount))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes))
+- `volume_mount` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volume_mount))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes))
 
-<a id="nestedatt--spec--groups--jobs--status--env"></a>
-### Nested Schema for `spec.groups.jobs.status.env`
+<a id="nestedatt--spec--groups--jobs--params--env"></a>
+### Nested Schema for `spec.groups.jobs.params.env`
 
 Required:
 
@@ -1040,20 +1040,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env--value_from))
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from`
+<a id="nestedatt--spec--groups--jobs--params--env--value_from"></a>
+### Nested Schema for `spec.groups.jobs.params.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--params--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--groups--jobs--params--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1065,8 +1065,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.field_ref`
+<a id="nestedatt--spec--groups--jobs--params--env--value_from--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.env.value_from.field_ref`
 
 Required:
 
@@ -1077,8 +1077,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--params--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1090,8 +1090,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--groups--jobs--params--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1105,17 +1105,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--from_env"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env`
+<a id="nestedatt--spec--groups--jobs--params--from_env"></a>
+### Nested Schema for `spec.groups.jobs.params.from_env`
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--params--from_env--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--params--from_env--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--from_env--config_map_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.config_map_ref`
+<a id="nestedatt--spec--groups--jobs--params--from_env--config_map_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.from_env.config_map_ref`
 
 Optional:
 
@@ -1123,8 +1123,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--groups--jobs--status--from_env--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--from_env--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.from_env.secret_ref`
 
 Optional:
 
@@ -1133,16 +1133,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--image_pull_secrets"></a>
-### Nested Schema for `spec.groups.jobs.status.image_pull_secrets`
+<a id="nestedatt--spec--groups--jobs--params--image_pull_secrets"></a>
+### Nested Schema for `spec.groups.jobs.params.image_pull_secrets`
 
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--groups--jobs--status--volume_mount"></a>
-### Nested Schema for `spec.groups.jobs.status.volume_mount`
+<a id="nestedatt--spec--groups--jobs--params--volume_mount"></a>
+### Nested Schema for `spec.groups.jobs.params.volume_mount`
 
 Required:
 
@@ -1157,8 +1157,8 @@ Optional:
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes`
+<a id="nestedatt--spec--groups--jobs--params--volumes"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes`
 
 Required:
 
@@ -1166,38 +1166,38 @@ Required:
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store))
-- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--azure_disk))
-- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--azure_file))
-- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--cephfs))
-- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--cinder))
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--config_map))
-- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--csi))
-- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--downward_api))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--empty_dir))
-- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--ephemeral))
-- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--fc))
-- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--flex_volume))
-- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--flocker))
-- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk))
-- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--git_repo))
-- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--glusterfs))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--host_path))
-- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--iscsi))
-- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--nfs))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk))
-- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--portworx_volume))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--projected))
-- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--quobyte))
-- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--rbd))
-- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--scale_io))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--secret))
-- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--storageos))
-- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--vsphere_volume))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.aws_elastic_block_store`
+<a id="nestedatt--spec--groups--jobs--params--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -1210,8 +1210,8 @@ Optional:
 - `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.azure_disk`
+<a id="nestedatt--spec--groups--jobs--params--volumes--azure_disk"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.azure_disk`
 
 Required:
 
@@ -1226,8 +1226,8 @@ Optional:
 - `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--azure_file"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.azure_file`
+<a id="nestedatt--spec--groups--jobs--params--volumes--azure_file"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.azure_file`
 
 Required:
 
@@ -1239,8 +1239,8 @@ Optional:
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--cephfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.cephfs`
+<a id="nestedatt--spec--groups--jobs--params--volumes--cephfs"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.cephfs`
 
 Required:
 
@@ -1251,11 +1251,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--cephfs--secret_ref))
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -1263,8 +1263,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--cinder"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.cinder`
+<a id="nestedatt--spec--groups--jobs--params--volumes--cinder"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.cinder`
 
 Required:
 
@@ -1274,10 +1274,10 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -1285,18 +1285,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.config_map`
+<a id="nestedatt--spec--groups--jobs--params--volumes--config_map"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.config_map`
 
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--config_map--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.config_map.items`
 
 Required:
 
@@ -1309,8 +1309,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--csi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.csi`
+<a id="nestedatt--spec--groups--jobs--params--volumes--csi"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.csi`
 
 Required:
 
@@ -1319,12 +1319,12 @@ Required:
 Optional:
 
 - `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1332,16 +1332,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.downward_api`
+<a id="nestedatt--spec--groups--jobs--params--volumes--downward_api"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.downward_api`
 
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--downward_api--items))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--downward_api--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.downward_api.items`
 
 Required:
 
@@ -1349,12 +1349,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -1365,8 +1365,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1380,8 +1380,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.empty_dir`
+<a id="nestedatt--spec--groups--jobs--params--volumes--empty_dir"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.empty_dir`
 
 Optional:
 
@@ -1389,40 +1389,40 @@ Optional:
 - `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.ephemeral`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -1434,8 +1434,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -1448,17 +1448,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -1466,16 +1466,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
+<a id="nestedatt--spec--groups--jobs--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -1491,8 +1491,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--fc"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.fc`
+<a id="nestedatt--spec--groups--jobs--params--volumes--fc"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.fc`
 
 Optional:
 
@@ -1503,8 +1503,8 @@ Optional:
 - `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.flex_volume`
+<a id="nestedatt--spec--groups--jobs--params--volumes--flex_volume"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.flex_volume`
 
 Required:
 
@@ -1515,10 +1515,10 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -1526,8 +1526,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--flocker"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.flocker`
+<a id="nestedatt--spec--groups--jobs--params--volumes--flocker"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.flocker`
 
 Optional:
 
@@ -1535,8 +1535,8 @@ Optional:
 - `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.gce_persistent_disk`
+<a id="nestedatt--spec--groups--jobs--params--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.gce_persistent_disk`
 
 Required:
 
@@ -1549,8 +1549,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--git_repo"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.git_repo`
+<a id="nestedatt--spec--groups--jobs--params--volumes--git_repo"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.git_repo`
 
 Required:
 
@@ -1562,8 +1562,8 @@ Optional:
 - `revision` (String) revision is the commit hash for the specified revision.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.glusterfs`
+<a id="nestedatt--spec--groups--jobs--params--volumes--glusterfs"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.glusterfs`
 
 Required:
 
@@ -1575,8 +1575,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--host_path"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.host_path`
+<a id="nestedatt--spec--groups--jobs--params--volumes--host_path"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.host_path`
 
 Required:
 
@@ -1587,8 +1587,8 @@ Optional:
 - `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--iscsi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.iscsi`
+<a id="nestedatt--spec--groups--jobs--params--volumes--iscsi"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.iscsi`
 
 Required:
 
@@ -1605,10 +1605,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -1616,8 +1616,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--nfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.nfs`
+<a id="nestedatt--spec--groups--jobs--params--volumes--nfs"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.nfs`
 
 Required:
 
@@ -1629,8 +1629,8 @@ Optional:
 - `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.persistent_volume_claim`
+<a id="nestedatt--spec--groups--jobs--params--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.persistent_volume_claim`
 
 Required:
 
@@ -1641,8 +1641,8 @@ Optional:
 - `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.photon_persistent_disk`
+<a id="nestedatt--spec--groups--jobs--params--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.photon_persistent_disk`
 
 Required:
 
@@ -1653,8 +1653,8 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.portworx_volume`
+<a id="nestedatt--spec--groups--jobs--params--volumes--portworx_volume"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.portworx_volume`
 
 Required:
 
@@ -1666,35 +1666,35 @@ Optional:
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--projected"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.projected`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected`
 
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -1707,15 +1707,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -1723,12 +1723,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1739,8 +1739,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1754,17 +1754,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1777,8 +1777,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--groups--jobs--params--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -1792,8 +1792,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--quobyte"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.quobyte`
+<a id="nestedatt--spec--groups--jobs--params--volumes--quobyte"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.quobyte`
 
 Required:
 
@@ -1808,8 +1808,8 @@ Optional:
 - `user` (String) user to map volume access to Defaults to serivceaccount user
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--rbd"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.rbd`
+<a id="nestedatt--spec--groups--jobs--params--volumes--rbd"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.rbd`
 
 Required:
 
@@ -1822,11 +1822,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--rbd--secret_ref))
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1834,13 +1834,13 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--scale_io"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.scale_io`
+<a id="nestedatt--spec--groups--jobs--params--volumes--scale_io"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.scale_io`
 
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -1853,8 +1853,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1862,18 +1862,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.secret`
+<a id="nestedatt--spec--groups--jobs--params--volumes--secret"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.secret`
 
 Optional:
 
 - `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items))
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--secret--items))
 - `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--groups--jobs--params--volumes--secret--items"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.secret.items`
 
 Required:
 
@@ -1886,19 +1886,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--storageos"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.storageos`
+<a id="nestedatt--spec--groups--jobs--params--volumes--storageos"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.storageos`
 
 Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--groups--jobs--params--volumes--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--groups--jobs--params--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -1906,8 +1906,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+<a id="nestedatt--spec--groups--jobs--params--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.groups.jobs.params.volumes.vsphere_volume`
 
 Required:
 
@@ -1961,20 +1961,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--groups--params--env--value_from))
 
-<a id="nestedatt--spec--groups--params--volumes--value_from"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from`
+<a id="nestedatt--spec--groups--params--env--value_from"></a>
+### Nested Schema for `spec.groups.params.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--groups--params--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--groups--params--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--params--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--params--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--groups--params--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.config_map_key_ref`
+<a id="nestedatt--spec--groups--params--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.groups.params.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1986,8 +1986,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--groups--params--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.field_ref`
+<a id="nestedatt--spec--groups--params--env--value_from--field_ref"></a>
+### Nested Schema for `spec.groups.params.env.value_from.field_ref`
 
 Required:
 
@@ -1998,8 +1998,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--params--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.resource_field_ref`
+<a id="nestedatt--spec--groups--params--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.groups.params.env.value_from.resource_field_ref`
 
 Required:
 
@@ -2011,8 +2011,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--groups--params--volumes--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.secret_key_ref`
+<a id="nestedatt--spec--groups--params--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.groups.params.env.value_from.secret_key_ref`
 
 Required:
 
@@ -2031,12 +2031,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--params--volumes--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--groups--params--from_env--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--params--volumes--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--params--from_env--secret_ref))
 
-<a id="nestedatt--spec--groups--params--volumes--config_map_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.config_map_ref`
+<a id="nestedatt--spec--groups--params--from_env--config_map_ref"></a>
+### Nested Schema for `spec.groups.params.from_env.config_map_ref`
 
 Optional:
 
@@ -2044,8 +2044,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--groups--params--volumes--secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.secret_ref`
+<a id="nestedatt--spec--groups--params--from_env--secret_ref"></a>
+### Nested Schema for `spec.groups.params.from_env.secret_ref`
 
 Optional:
 
@@ -2334,16 +2334,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -2355,8 +2355,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -2369,17 +2369,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -2387,16 +2387,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -2610,12 +2610,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--params--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.groups.params.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -2633,10 +2633,10 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.groups.params.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -2644,12 +2644,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.groups.params.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -2660,8 +2660,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--groups--params--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.groups.params.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2680,12 +2680,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--groups--params--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.groups.params.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -3081,11 +3081,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--params--volumes--cephfs--secret_ref))
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -3104,10 +3104,10 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--params--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -3121,12 +3121,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--params--volumes--config_map--items"></a>
+### Nested Schema for `spec.params.volumes.config_map.items`
 
 Required:
 
@@ -3149,12 +3149,12 @@ Required:
 Optional:
 
 - `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--params--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--params--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.params.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -3168,10 +3168,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--params--volumes--downward_api--items))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--params--volumes--downward_api--items"></a>
+### Nested Schema for `spec.params.volumes.downward_api.items`
 
 Required:
 
@@ -3179,12 +3179,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--params--volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--params--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.params.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -3195,8 +3195,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--params--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.params.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -3224,35 +3224,35 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -3264,8 +3264,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -3278,17 +3278,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -3296,16 +3296,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--params--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.params.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -3345,10 +3345,10 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--params--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -3435,10 +3435,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--params--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -3502,29 +3502,29 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--params--volumes--projected--sources"></a>
+### Nested Schema for `spec.params.volumes.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--params--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--params--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -3537,15 +3537,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--params--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--params--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -3553,12 +3553,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--params--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -3569,8 +3569,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--params--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -3584,17 +3584,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--params--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--params--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -3607,8 +3607,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--params--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.params.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -3652,11 +3652,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--params--volumes--rbd--secret_ref))
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -3670,7 +3670,7 @@ Optional:
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--params--volumes--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -3683,8 +3683,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -3698,12 +3698,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items))
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--params--volumes--secret--items))
 - `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--params--volumes--secret--items"></a>
+### Nested Schema for `spec.params.volumes.secret.items`
 
 Required:
 
@@ -3723,12 +3723,12 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--params--volumes--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--params--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--params--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.params.volumes.storageos.secret_ref`
 
 Optional:
 

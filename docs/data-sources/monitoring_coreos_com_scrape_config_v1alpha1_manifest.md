@@ -292,11 +292,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--consul_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.consul_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--consul_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.consul_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -308,8 +308,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--consul_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.consul_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--consul_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.consul_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -352,11 +352,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--consul_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.consul_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--consul_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.consul_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -368,8 +368,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--consul_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.consul_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--consul_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.consul_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -387,11 +387,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--consul_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.consul_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--consul_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.consul_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -403,8 +403,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--consul_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.consul_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--consul_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.consul_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -503,11 +503,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--digital_ocean_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -519,8 +519,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--digital_ocean_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -563,11 +563,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -579,8 +579,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -598,11 +598,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -614,8 +614,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.digital_ocean_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -766,11 +766,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--docker_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.docker_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--docker_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.docker_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -782,8 +782,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--docker_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.docker_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--docker_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.docker_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -826,11 +826,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--docker_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.docker_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--docker_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.docker_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -842,8 +842,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--docker_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.docker_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--docker_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.docker_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -861,11 +861,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--docker_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.docker_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--docker_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.docker_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -877,8 +877,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--docker_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.docker_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--docker_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.docker_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -1052,11 +1052,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--eureka_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.eureka_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--eureka_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.eureka_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -1068,8 +1068,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--eureka_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.eureka_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--eureka_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.eureka_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -1112,11 +1112,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--eureka_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.eureka_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--eureka_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.eureka_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -1128,8 +1128,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--eureka_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.eureka_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--eureka_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.eureka_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -1147,11 +1147,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--eureka_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.eureka_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--eureka_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.eureka_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -1163,8 +1163,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--eureka_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.eureka_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--eureka_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.eureka_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -1318,11 +1318,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--hetzner_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.hetzner_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--hetzner_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.hetzner_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -1334,8 +1334,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--hetzner_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.hetzner_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--hetzner_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.hetzner_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -1378,11 +1378,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--hetzner_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.hetzner_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--hetzner_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.hetzner_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -1394,8 +1394,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--hetzner_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.hetzner_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--hetzner_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.hetzner_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -1413,11 +1413,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--hetzner_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.hetzner_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--hetzner_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.hetzner_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -1429,8 +1429,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--hetzner_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.hetzner_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--hetzner_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.hetzner_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -1549,11 +1549,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--http_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.http_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--http_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.http_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -1565,8 +1565,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--http_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.http_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--http_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.http_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -1584,11 +1584,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--http_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.http_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--http_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.http_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -1600,8 +1600,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--http_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.http_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--http_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.http_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -1746,11 +1746,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--kubernetes_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--kubernetes_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -1762,8 +1762,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kubernetes_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--kubernetes_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -1819,11 +1819,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -1835,8 +1835,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -1854,11 +1854,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -1870,8 +1870,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--kubernetes_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.kubernetes_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -1998,11 +1998,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--kuma_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.kuma_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--kuma_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.kuma_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -2014,8 +2014,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kuma_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.kuma_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--kuma_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.kuma_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -2058,11 +2058,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--kuma_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.kuma_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--kuma_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.kuma_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -2074,8 +2074,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kuma_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.kuma_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--kuma_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.kuma_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -2093,11 +2093,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--kuma_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.kuma_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--kuma_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.kuma_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -2109,8 +2109,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--kuma_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.kuma_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--kuma_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.kuma_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -2253,11 +2253,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--nomad_sd_configs--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.nomad_sd_configs.oauth2.scopes.config_map`
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.client_id.config_map`
 
 Required:
 
@@ -2269,8 +2269,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--nomad_sd_configs--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.nomad_sd_configs.oauth2.scopes.secret`
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.client_id.secret`
 
 Required:
 
@@ -2313,11 +2313,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -2329,8 +2329,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -2348,11 +2348,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -2364,8 +2364,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.cert.secret`
 
 Required:
 
@@ -2462,11 +2462,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--openstack_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.openstack_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--openstack_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.openstack_sd_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -2478,8 +2478,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--openstack_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.openstack_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--openstack_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.openstack_sd_configs.tls_config.ca.secret`
 
 Required:
 
@@ -2497,11 +2497,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--openstack_sd_configs--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.openstack_sd_configs.tls_config.server_name.config_map`
+<a id="nestedatt--spec--openstack_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.openstack_sd_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -2513,8 +2513,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--openstack_sd_configs--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.openstack_sd_configs.tls_config.server_name.secret`
+<a id="nestedatt--spec--openstack_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.openstack_sd_configs.tls_config.cert.secret`
 
 Required:
 

@@ -100,15 +100,15 @@ Optional:
 
 Required:
 
-- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices))
+- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--template--spec--network--devices))
 
 Optional:
 
 - `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine
-- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--routes))
+- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--network--routes))
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices`
+<a id="nestedatt--spec--template--spec--network--devices"></a>
+### Nested Schema for `spec.template.spec.network.devices`
 
 Required:
 
@@ -125,11 +125,11 @@ Optional:
 - `mac_addr` (String) MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.
 - `mtu` (Number) MTU is the device’s Maximum Transmission Unit size in bytes.
 - `nameservers` (List of String) Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).
-- `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices--routes))
+- `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--template--spec--network--devices--routes))
 - `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.routes`
+<a id="nestedatt--spec--template--spec--network--devices--routes"></a>
+### Nested Schema for `spec.template.spec.network.devices.routes`
 
 Required:
 
@@ -139,8 +139,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--thumbprint--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.routes`
+<a id="nestedatt--spec--template--spec--network--routes"></a>
+### Nested Schema for `spec.template.spec.network.routes`
 
 Required:
 

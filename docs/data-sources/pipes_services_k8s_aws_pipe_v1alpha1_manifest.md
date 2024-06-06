@@ -318,12 +318,12 @@ Optional:
 Optional:
 
 - `command` (List of String)
-- `environment` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy--environment))
+- `environment` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--container_overrides--environment))
 - `instance_type` (String)
-- `resource_requirements` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy--resource_requirements))
+- `resource_requirements` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--container_overrides--resource_requirements))
 
-<a id="nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy--environment"></a>
-### Nested Schema for `spec.target_parameters.batch_job_parameters.retry_strategy.environment`
+<a id="nestedatt--spec--target_parameters--batch_job_parameters--container_overrides--environment"></a>
+### Nested Schema for `spec.target_parameters.batch_job_parameters.container_overrides.environment`
 
 Optional:
 
@@ -331,8 +331,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy--resource_requirements"></a>
-### Nested Schema for `spec.target_parameters.batch_job_parameters.retry_strategy.resource_requirements`
+<a id="nestedatt--spec--target_parameters--batch_job_parameters--container_overrides--resource_requirements"></a>
+### Nested Schema for `spec.target_parameters.batch_job_parameters.container_overrides.resource_requirements`
 
 Optional:
 
@@ -404,10 +404,10 @@ Optional:
 
 Optional:
 
-- `aws_vpc_configuration` (Attributes) This structure specifies the VPC subnets and security groups for the task,and whether a public IP address is to be used. This structure is relevantonly for ECS tasks that use the awsvpc network mode. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--aws_vpc_configuration))
+- `aws_vpc_configuration` (Attributes) This structure specifies the VPC subnets and security groups for the task,and whether a public IP address is to be used. This structure is relevantonly for ECS tasks that use the awsvpc network mode. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration--aws_vpc_configuration))
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--aws_vpc_configuration"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.aws_vpc_configuration`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration--aws_vpc_configuration"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.network_configuration.aws_vpc_configuration`
 
 Optional:
 
@@ -422,30 +422,30 @@ Optional:
 
 Optional:
 
-- `container_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides))
+- `container_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides))
 - `cpu` (String)
-- `ephemeral_storage` (Attributes) The amount of ephemeral storage to allocate for the task. This parameteris used to expand the total amount of ephemeral storage available, beyondthe default amount, for tasks hosted on Fargate. For more information, seeFargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)in the Amazon ECS User Guide for Fargate.This parameter is only supported for tasks hosted on Fargate using Linuxplatform version 1.4.0 or later. This parameter is not supported for Windowscontainers on Fargate. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--ephemeral_storage))
+- `ephemeral_storage` (Attributes) The amount of ephemeral storage to allocate for the task. This parameteris used to expand the total amount of ephemeral storage available, beyondthe default amount, for tasks hosted on Fargate. For more information, seeFargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)in the Amazon ECS User Guide for Fargate.This parameter is only supported for tasks hosted on Fargate using Linuxplatform version 1.4.0 or later. This parameter is not supported for Windowscontainers on Fargate. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--ephemeral_storage))
 - `execution_role_arn` (String)
-- `inference_accelerator_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--inference_accelerator_overrides))
+- `inference_accelerator_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--inference_accelerator_overrides))
 - `memory` (String)
 - `task_role_arn` (String)
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.container_overrides`
 
 Optional:
 
 - `command` (List of String)
 - `cpu` (Number)
-- `environment` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment))
-- `environment_files` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment_files))
+- `environment` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--environment))
+- `environment_files` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--environment_files))
 - `memory` (Number)
 - `memory_reservation` (Number)
 - `name` (String)
-- `resource_requirements` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--resource_requirements))
+- `resource_requirements` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--resource_requirements))
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.environment`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--environment"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.container_overrides.environment`
 
 Optional:
 
@@ -453,8 +453,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment_files"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.environment_files`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--environment_files"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.container_overrides.environment_files`
 
 Optional:
 
@@ -462,8 +462,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--resource_requirements"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.resource_requirements`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides--resource_requirements"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.container_overrides.resource_requirements`
 
 Optional:
 
@@ -472,16 +472,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--ephemeral_storage"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.ephemeral_storage`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--ephemeral_storage"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.ephemeral_storage`
 
 Optional:
 
 - `size_in_gi_b` (Number)
 
 
-<a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--inference_accelerator_overrides"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.inference_accelerator_overrides`
+<a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides--inference_accelerator_overrides"></a>
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides.inference_accelerator_overrides`
 
 Optional:
 

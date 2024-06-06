@@ -127,30 +127,30 @@ Optional:
 
 Required:
 
-- `paths` (Attributes List) A collection of paths that map requests to backends. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths))
+- `paths` (Attributes List) A collection of paths that map requests to backends. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths))
 
-<a id="nestedatt--spec--ingress--rules--host--paths"></a>
-### Nested Schema for `spec.ingress.rules.host.paths`
+<a id="nestedatt--spec--ingress--rules--http--paths"></a>
+### Nested Schema for `spec.ingress.rules.http.paths`
 
 Required:
 
-- `backend` (Attributes) Backend defines the referenced service endpoint to which the traffic will be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths--backend))
+- `backend` (Attributes) Backend defines the referenced service endpoint to which the traffic will be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend))
 - `path_type` (String) PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is done on a path element by element basis. A path element refers is the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). * ImplementationSpecific: Interpretation of the Path matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. Implementations are required to support all path types.
 
 Optional:
 
 - `path` (String) Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
-<a id="nestedatt--spec--ingress--rules--host--paths--backend"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.backend`
+<a id="nestedatt--spec--ingress--rules--http--paths--backend"></a>
+### Nested Schema for `spec.ingress.rules.http.paths.backend`
 
 Optional:
 
-- `resource` (Attributes) Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths--path--resource))
-- `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths--path--service))
+- `resource` (Attributes) Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--resource))
+- `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service))
 
-<a id="nestedatt--spec--ingress--rules--host--paths--path--resource"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.path.resource`
+<a id="nestedatt--spec--ingress--rules--http--paths--backend--resource"></a>
+### Nested Schema for `spec.ingress.rules.http.paths.backend.resource`
 
 Required:
 
@@ -162,8 +162,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--ingress--rules--host--paths--path--service"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.path.service`
+<a id="nestedatt--spec--ingress--rules--http--paths--backend--service"></a>
+### Nested Schema for `spec.ingress.rules.http.paths.backend.service`
 
 Required:
 
@@ -171,10 +171,10 @@ Required:
 
 Optional:
 
-- `port` (Attributes) Port of the referenced service. A port name or port number is required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths--path--service--port))
+- `port` (Attributes) Port of the referenced service. A port name or port number is required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service--port))
 
-<a id="nestedatt--spec--ingress--rules--host--paths--path--service--port"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.path.service.port`
+<a id="nestedatt--spec--ingress--rules--http--paths--backend--service--port"></a>
+### Nested Schema for `spec.ingress.rules.http.paths.backend.service.port`
 
 Optional:
 

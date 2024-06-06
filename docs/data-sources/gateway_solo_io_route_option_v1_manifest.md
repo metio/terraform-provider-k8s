@@ -159,19 +159,19 @@ Optional:
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--shadow_enabled--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--options--csrf--shadow_enabled--safe_regex"></a>
-### Nested Schema for `spec.options.csrf.shadow_enabled.safe_regex`
+<a id="nestedatt--spec--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--shadow_enabled--safe_regex--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--csrf--shadow_enabled--safe_regex--google_re2"></a>
-### Nested Schema for `spec.options.csrf.shadow_enabled.safe_regex.google_re2`
+<a id="nestedatt--spec--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -185,11 +185,11 @@ Optional:
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--options--csrf--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.options.csrf.shadow_enabled.default_value`
+<a id="nestedatt--spec--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -231,31 +231,31 @@ Optional:
 Optional:
 
 - `action_type` (String)
-- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--enabled_for--custom_action))
-- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--enabled_for--key_value_action))
+- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--actions--custom_action))
+- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--actions--key_value_action))
 - `shadow` (Boolean)
 
-<a id="nestedatt--spec--options--dlp--enabled_for--custom_action"></a>
-### Nested Schema for `spec.options.dlp.enabled_for.custom_action`
+<a id="nestedatt--spec--options--dlp--actions--custom_action"></a>
+### Nested Schema for `spec.options.dlp.actions.custom_action`
 
 Optional:
 
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--enabled_for--custom_action--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--actions--custom_action--percent))
 - `regex` (List of String)
-- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--dlp--enabled_for--custom_action--regex_actions))
+- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--dlp--actions--custom_action--regex_actions))
 
-<a id="nestedatt--spec--options--dlp--enabled_for--custom_action--percent"></a>
-### Nested Schema for `spec.options.dlp.enabled_for.custom_action.percent`
+<a id="nestedatt--spec--options--dlp--actions--custom_action--percent"></a>
+### Nested Schema for `spec.options.dlp.actions.custom_action.percent`
 
 Optional:
 
 - `value` (Number)
 
 
-<a id="nestedatt--spec--options--dlp--enabled_for--custom_action--regex_actions"></a>
-### Nested Schema for `spec.options.dlp.enabled_for.custom_action.regex_actions`
+<a id="nestedatt--spec--options--dlp--actions--custom_action--regex_actions"></a>
+### Nested Schema for `spec.options.dlp.actions.custom_action.regex_actions`
 
 Optional:
 
@@ -264,18 +264,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--dlp--enabled_for--key_value_action"></a>
-### Nested Schema for `spec.options.dlp.enabled_for.key_value_action`
+<a id="nestedatt--spec--options--dlp--actions--key_value_action"></a>
+### Nested Schema for `spec.options.dlp.actions.key_value_action`
 
 Optional:
 
 - `key_to_mask` (String)
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--enabled_for--key_value_action--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp--actions--key_value_action--percent))
 
-<a id="nestedatt--spec--options--dlp--enabled_for--key_value_action--percent"></a>
-### Nested Schema for `spec.options.dlp.enabled_for.key_value_action.percent`
+<a id="nestedatt--spec--options--dlp--actions--key_value_action--percent"></a>
+### Nested Schema for `spec.options.dlp.actions.key_value_action.percent`
 
 Optional:
 
@@ -341,10 +341,10 @@ Optional:
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ext_proc--overrides--grpc_service--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ext_proc--overrides--grpc_service--retry_policy--retry_back_off))
 
-<a id="nestedatt--spec--options--ext_proc--overrides--grpc_service--timeout--retry_back_off"></a>
-### Nested Schema for `spec.options.ext_proc.overrides.grpc_service.timeout.retry_back_off`
+<a id="nestedatt--spec--options--ext_proc--overrides--grpc_service--retry_policy--retry_back_off"></a>
+### Nested Schema for `spec.options.ext_proc.overrides.grpc_service.retry_policy.retry_back_off`
 
 Optional:
 
@@ -448,11 +448,11 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--response_headers_to_remove--header))
-- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--response_headers_to_remove--header_secret_ref))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--request_headers_to_add--header))
+- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--request_headers_to_add--header_secret_ref))
 
-<a id="nestedatt--spec--options--header_manipulation--response_headers_to_remove--header"></a>
-### Nested Schema for `spec.options.header_manipulation.response_headers_to_remove.header`
+<a id="nestedatt--spec--options--header_manipulation--request_headers_to_add--header"></a>
+### Nested Schema for `spec.options.header_manipulation.request_headers_to_add.header`
 
 Optional:
 
@@ -460,8 +460,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--options--header_manipulation--response_headers_to_remove--header_secret_ref"></a>
-### Nested Schema for `spec.options.header_manipulation.response_headers_to_remove.header_secret_ref`
+<a id="nestedatt--spec--options--header_manipulation--request_headers_to_add--header_secret_ref"></a>
+### Nested Schema for `spec.options.header_manipulation.request_headers_to_add.header_secret_ref`
 
 Optional:
 
@@ -476,10 +476,10 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--response_headers_to_remove--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--header_manipulation--response_headers_to_add--header))
 
-<a id="nestedatt--spec--options--header_manipulation--response_headers_to_remove--header"></a>
-### Nested Schema for `spec.options.header_manipulation.response_headers_to_remove.header`
+<a id="nestedatt--spec--options--header_manipulation--response_headers_to_add--header"></a>
+### Nested Schema for `spec.options.header_manipulation.response_headers_to_add.header`
 
 Optional:
 
@@ -502,11 +502,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--host_rewrite_path_regex--substitution--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--host_rewrite_path_regex--pattern--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--host_rewrite_path_regex--substitution--google_re2"></a>
-### Nested Schema for `spec.options.host_rewrite_path_regex.substitution.google_re2`
+<a id="nestedatt--spec--options--host_rewrite_path_regex--pattern--google_re2"></a>
+### Nested Schema for `spec.options.host_rewrite_path_regex.pattern.google_re2`
 
 Optional:
 
@@ -694,10 +694,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.actions.header_value_match.headers`
 
 Optional:
 
@@ -706,12 +706,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -728,19 +728,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -820,10 +820,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.header_value_match.headers`
 
 Optional:
 
@@ -832,12 +832,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -854,19 +854,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit--rate_limits--set_actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.set_actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -970,10 +970,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.header_value_match.headers`
 
 Optional:
 
@@ -982,12 +982,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -1004,19 +1004,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -1096,10 +1096,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.header_value_match.headers`
 
 Optional:
 
@@ -1108,12 +1108,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -1130,19 +1130,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--set_actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.set_actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -1219,10 +1219,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.header_value_match.headers`
 
 Optional:
 
@@ -1231,12 +1231,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -1253,19 +1253,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -1345,10 +1345,10 @@ Optional:
 
 - `descriptor_value` (String)
 - `expect_match` (Boolean)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--header_value_match--headers))
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--headers"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.source_cluster.headers`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--header_value_match--headers"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.header_value_match.headers`
 
 Optional:
 
@@ -1357,12 +1357,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--headers--range_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--header_value_match--headers--range_match))
 - `regex_match` (String)
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.source_cluster.headers.range_match`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--header_value_match--headers--range_match"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.header_value_match.headers.range_match`
 
 Optional:
 
@@ -1379,19 +1379,19 @@ Optional:
 
 - `default_value` (String)
 - `descriptor_key` (String)
-- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--metadata_key))
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--metadata--metadata_key))
 - `source` (String)
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.source_cluster.metadata_key`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.metadata.metadata_key`
 
 Optional:
 
 - `key` (String)
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--source--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--metadata--metadata_key--path))
 
-<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--source_cluster--source--path"></a>
-### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.source_cluster.source.path`
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions--metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.set_actions.metadata.metadata_key.path`
 
 Optional:
 
@@ -1471,11 +1471,11 @@ Optional:
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--regex_rewrite--substitution--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--regex_rewrite--pattern--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--regex_rewrite--substitution--google_re2"></a>
-### Nested Schema for `spec.options.regex_rewrite.substitution.google_re2`
+<a id="nestedatt--spec--options--regex_rewrite--pattern--google_re2"></a>
+### Nested Schema for `spec.options.regex_rewrite.pattern.google_re2`
 
 Optional:
 
@@ -1538,35 +1538,35 @@ Optional:
 
 Optional:
 
-- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms))
-- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms))
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher))
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.matcher`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--matcher"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.matcher.headers`
 
 Optional:
 
@@ -1576,8 +1576,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -1587,61 +1587,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1649,8 +1649,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -1662,24 +1662,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -1688,8 +1688,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -1699,61 +1699,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1761,8 +1761,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -1774,24 +1774,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -1800,8 +1800,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -1812,17 +1812,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms`
 
 Optional:
 
-- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--matchers))
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--matchers))
 - `response_code_details` (String)
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.matchers`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--matchers"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.matchers`
 
 Optional:
 
@@ -1832,61 +1832,61 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1894,8 +1894,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -1907,24 +1907,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -1933,8 +1933,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -1972,14 +1972,14 @@ Optional:
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.matcher.headers`
 
 Optional:
 
@@ -1989,8 +1989,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -2005,56 +2005,56 @@ Optional:
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -2062,8 +2062,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -2075,24 +2075,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -2101,8 +2101,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -2136,37 +2136,37 @@ Optional:
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -2174,8 +2174,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -2187,24 +2187,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -2269,37 +2269,37 @@ Optional:
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -2307,8 +2307,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -2320,24 +2320,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -2394,56 +2394,56 @@ Optional:
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--options--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.header_body_transform`
+<a id="nestedatt--spec--options--transformations--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.body`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.dynamic_metadata_values`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.passthrough.value`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -2451,8 +2451,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.extractors`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -2464,24 +2464,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.headers`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.headers_to_append`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.passthrough.value`
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -2490,8 +2490,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--options--transformations--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--options--transformations--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -2552,10 +2552,10 @@ Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.passthrough.value`
+<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -2590,10 +2590,10 @@ Optional:
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--passthrough--value"></a>
-### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.passthrough.value`
+<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -2667,11 +2667,11 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--options--waf--rule_sets--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--options--waf--config_map_rule_sets--config_map_ref))
 - `data_map_keys` (List of String)
 
-<a id="nestedatt--spec--options--waf--rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.options.waf.rule_sets.config_map_ref`
+<a id="nestedatt--spec--options--waf--config_map_rule_sets--config_map_ref"></a>
+### Nested Schema for `spec.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 

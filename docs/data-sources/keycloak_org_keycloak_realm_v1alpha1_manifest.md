@@ -265,13 +265,13 @@ Optional:
 - `decision_strategy` (String) The decision strategy dictates how permissions are evaluated and how a final decision is obtained. 'Affirmative' means that at least one permission must evaluate to a positive decision in order to grant access to a resource and its scopes. 'Unanimous' means that all permissions must evaluate to a positive decision in order for the final decision to be also positive.
 - `id` (String) ID.
 - `name` (String) Name.
-- `policies` (Attributes List) Policies. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies))
+- `policies` (Attributes List) Policies. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies))
 - `policy_enforcement_mode` (String) The policy enforcement mode dictates how policies are enforced when evaluating authorization requests. 'Enforcing' means requests are denied by default even when there is no policy associated with a given resource. 'Permissive' means requests are allowed even when there is no policy associated with a given resource. 'Disabled' completely disables the evaluation of policies and allows access to any resource.
-- `resources` (Attributes List) Resources. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--resources))
-- `scopes` (Attributes List) Authorization Scopes. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes))
+- `resources` (Attributes List) Resources. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--resources))
+- `scopes` (Attributes List) Authorization Scopes. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--scopes))
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies`
 
 Optional:
 
@@ -284,13 +284,13 @@ Optional:
 - `owner` (String) Owner.
 - `policies` (List of String) Policies.
 - `resources` (List of String) Resources.
-- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies--resources_data))
+- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies--resources_data))
 - `scopes` (List of String) Scopes.
 - `scopes_data` (List of String) Scopes Data.
 - `type` (String) Type.
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.resources_data`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies--resources_data"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies.resources_data`
 
 Optional:
 
@@ -306,8 +306,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--resources"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources`
+<a id="nestedatt--spec--realm--clients--authorization_settings--resources"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.resources`
 
 Optional:
 
@@ -322,8 +322,8 @@ Optional:
 - `uris` (List of String) Set of URIs which are protected by resource.
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes`
+<a id="nestedatt--spec--realm--clients--authorization_settings--scopes"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.scopes`
 
 Optional:
 
@@ -331,11 +331,11 @@ Optional:
 - `icon_uri` (String) An URI pointing to an icon.
 - `id` (String) ID.
 - `name` (String) A unique name for this scope. The name can be used to uniquely identify a scope, useful when querying for a specific scope.
-- `policies` (Attributes List) Policies. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes--policies))
-- `resources` (Attributes List) Resources. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes--resources))
+- `policies` (Attributes List) Policies. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--scopes--policies))
+- `resources` (Attributes List) Resources. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--scopes--resources))
 
-<a id="nestedatt--spec--realm--clients--web_origins--scopes--policies"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes.policies`
+<a id="nestedatt--spec--realm--clients--authorization_settings--scopes--policies"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.scopes.policies`
 
 Optional:
 
@@ -348,13 +348,13 @@ Optional:
 - `owner` (String) Owner.
 - `policies` (List of String) Policies.
 - `resources` (List of String) Resources.
-- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes--resources--resources_data))
+- `resources_data` (Attributes List) Resources Data. (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--scopes--policies--resources_data))
 - `scopes` (List of String) Scopes.
 - `scopes_data` (List of String) Scopes Data.
 - `type` (String) Type.
 
-<a id="nestedatt--spec--realm--clients--web_origins--scopes--resources--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes.resources.resources_data`
+<a id="nestedatt--spec--realm--clients--authorization_settings--scopes--policies--resources_data"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.scopes.policies.resources_data`
 
 Optional:
 
@@ -370,8 +370,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--scopes--resources"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes.resources`
+<a id="nestedatt--spec--realm--clients--authorization_settings--scopes--resources"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.scopes.resources`
 
 Optional:
 

@@ -93,11 +93,11 @@ Optional:
 
 Optional:
 
-- `exclude` (Attributes) Exclude defines the parameters for the exclude plugin (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--exclude))
-- `regexp` (Attributes) Regexp defines the parameters for the regexp plugin (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--regexp))
+- `exclude` (Attributes) Exclude defines the parameters for the exclude plugin (see [below for nested schema](#nestedatt--spec--filters--grep--and--exclude))
+- `regexp` (Attributes) Regexp defines the parameters for the regexp plugin (see [below for nested schema](#nestedatt--spec--filters--grep--and--regexp))
 
-<a id="nestedatt--spec--filters--grep--regexp--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp.exclude`
+<a id="nestedatt--spec--filters--grep--and--exclude"></a>
+### Nested Schema for `spec.filters.grep.and.exclude`
 
 Optional:
 
@@ -105,8 +105,8 @@ Optional:
 - `pattern` (String)
 
 
-<a id="nestedatt--spec--filters--grep--regexp--regexp"></a>
-### Nested Schema for `spec.filters.grep.regexp.regexp`
+<a id="nestedatt--spec--filters--grep--and--regexp"></a>
+### Nested Schema for `spec.filters.grep.and.regexp`
 
 Optional:
 
@@ -129,11 +129,11 @@ Optional:
 
 Optional:
 
-- `exclude` (Attributes) Exclude defines the parameters for the exclude plugin (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--exclude))
-- `regexp` (Attributes) Regexp defines the parameters for the regexp plugin (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--regexp))
+- `exclude` (Attributes) Exclude defines the parameters for the exclude plugin (see [below for nested schema](#nestedatt--spec--filters--grep--or--exclude))
+- `regexp` (Attributes) Regexp defines the parameters for the regexp plugin (see [below for nested schema](#nestedatt--spec--filters--grep--or--regexp))
 
-<a id="nestedatt--spec--filters--grep--regexp--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp.exclude`
+<a id="nestedatt--spec--filters--grep--or--exclude"></a>
+### Nested Schema for `spec.filters.grep.or.exclude`
 
 Optional:
 
@@ -141,8 +141,8 @@ Optional:
 - `pattern` (String)
 
 
-<a id="nestedatt--spec--filters--grep--regexp--regexp"></a>
-### Nested Schema for `spec.filters.grep.regexp.regexp`
+<a id="nestedatt--spec--filters--grep--or--regexp"></a>
+### Nested Schema for `spec.filters.grep.or.regexp`
 
 Optional:
 
@@ -191,7 +191,7 @@ Optional:
 - `custom_pattern_path` (String) Path to the file that includes custom grok patterns.
 - `estimate_current_event` (Boolean) If true, use Fluent::Eventnow(current time) as a timestamp when time_key is specified.
 - `expression` (String) Specifies the regular expression for matching logs. Regular expression also supports i and m suffix.
-- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--grok))
+- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--filters--parser--parse--grok))
 - `grok_failure_key` (String) The key has grok failure reason.
 - `grok_pattern` (String) The pattern of grok.
 - `grok_pattern_series` (String) Specify grok pattern series set.
@@ -209,8 +209,8 @@ Optional:
 - `types` (String) Specify types for converting field into another, i.e: types user_id:integer,paid:bool,paid_usd_amount:float
 - `utc` (Boolean) If true, uses UTC.
 
-<a id="nestedatt--spec--filters--parser--reserve_time--grok"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.grok`
+<a id="nestedatt--spec--filters--parser--parse--grok"></a>
+### Nested Schema for `spec.filters.parser.parse.grok`
 
 Optional:
 
