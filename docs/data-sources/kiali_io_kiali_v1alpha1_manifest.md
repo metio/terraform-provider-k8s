@@ -532,6 +532,7 @@ Optional:
 Optional:
 
 - `auth` (Attributes) Settings used to authenticate with the Tracing server instance. (see [below for nested schema](#nestedatt--spec--external_services--tracing--auth))
+- `custom_headers` (Map of String) A set of name/value settings that will be passed as headers when requests are sent to the Tracing backend.
 - `enabled` (Boolean) When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.
 - `grpc_port` (Number) Set port number when 'use_grpc' is true and 'provider' is 'tempo'. By default is '9095'
 - `health_check_url` (String) Used in the Components health feature. This is the url which Kiali will ping to determine whether the component is reachable or not. It defaults to 'url' when not provided.
@@ -843,6 +844,7 @@ Optional:
 - `web_port` (String) Defines the ingress port where the connections come from. This is usually necessary when the application responds through a proxy/ingress, and it does not forward the correct headers (when this happens, Kiali cannot guess the port). When empty, Kiali will try to guess this value from HTTP headers.
 - `web_root` (String) Defines the context root path for the Kiali console and API endpoints and readiness probes. When providing a context root path that is not '/', do not add a trailing slash (i.e. use '/kiali' not '/kiali/'). When empty, this will default to '/' on OpenShift and '/kiali' on other Kubernetes environments.
 - `web_schema` (String) Defines the public HTTP schema used to serve Kiali. Value must be one of: 'http' or 'https'. When empty, Kiali will try to guess this value from HTTP headers. On non-OpenShift clusters, you must populate this value if you want to enable cross-linking between Kiali instances in a multi-cluster setup.
+- `write_timeout` (Number) The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.
 
 <a id="nestedatt--spec--server--observability"></a>
 ### Nested Schema for `spec.server.observability`

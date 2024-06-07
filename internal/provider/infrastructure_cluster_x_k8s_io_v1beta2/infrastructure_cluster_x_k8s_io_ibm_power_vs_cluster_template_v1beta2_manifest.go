@@ -95,14 +95,55 @@ type InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2ManifestData str
 				} `tfsdk:"service_instance" json:"serviceInstance,omitempty"`
 				ServiceInstanceID *string `tfsdk:"service_instance_id" json:"serviceInstanceID,omitempty"`
 				TransitGateway    *struct {
-					Id   *string `tfsdk:"id" json:"id,omitempty"`
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					GlobalRouting *bool   `tfsdk:"global_routing" json:"globalRouting,omitempty"`
+					Id            *string `tfsdk:"id" json:"id,omitempty"`
+					Name          *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"transit_gateway" json:"transitGateway,omitempty"`
 				Vpc *struct {
 					Id     *string `tfsdk:"id" json:"id,omitempty"`
 					Name   *string `tfsdk:"name" json:"name,omitempty"`
 					Region *string `tfsdk:"region" json:"region,omitempty"`
 				} `tfsdk:"vpc" json:"vpc,omitempty"`
+				VpcSecurityGroups *[]struct {
+					Id    *string `tfsdk:"id" json:"id,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Rules *[]struct {
+						Action      *string `tfsdk:"action" json:"action,omitempty"`
+						Destination *struct {
+							IcmpCode  *int64 `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+							IcmpType  *int64 `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+							PortRange *struct {
+								MaximumPort *int64 `tfsdk:"maximum_port" json:"maximumPort,omitempty"`
+								MinimumPort *int64 `tfsdk:"minimum_port" json:"minimumPort,omitempty"`
+							} `tfsdk:"port_range" json:"portRange,omitempty"`
+							Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+							Remotes  *[]struct {
+								Address           *string `tfsdk:"address" json:"address,omitempty"`
+								CidrSubnetName    *string `tfsdk:"cidr_subnet_name" json:"cidrSubnetName,omitempty"`
+								RemoteType        *string `tfsdk:"remote_type" json:"remoteType,omitempty"`
+								SecurityGroupName *string `tfsdk:"security_group_name" json:"securityGroupName,omitempty"`
+							} `tfsdk:"remotes" json:"remotes,omitempty"`
+						} `tfsdk:"destination" json:"destination,omitempty"`
+						Direction       *string `tfsdk:"direction" json:"direction,omitempty"`
+						SecurityGroupID *string `tfsdk:"security_group_id" json:"securityGroupID,omitempty"`
+						Source          *struct {
+							IcmpCode  *int64 `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+							IcmpType  *int64 `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+							PortRange *struct {
+								MaximumPort *int64 `tfsdk:"maximum_port" json:"maximumPort,omitempty"`
+								MinimumPort *int64 `tfsdk:"minimum_port" json:"minimumPort,omitempty"`
+							} `tfsdk:"port_range" json:"portRange,omitempty"`
+							Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+							Remotes  *[]struct {
+								Address           *string `tfsdk:"address" json:"address,omitempty"`
+								CidrSubnetName    *string `tfsdk:"cidr_subnet_name" json:"cidrSubnetName,omitempty"`
+								RemoteType        *string `tfsdk:"remote_type" json:"remoteType,omitempty"`
+								SecurityGroupName *string `tfsdk:"security_group_name" json:"securityGroupName,omitempty"`
+							} `tfsdk:"remotes" json:"remotes,omitempty"`
+						} `tfsdk:"source" json:"source,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+					Tags *[]string `tfsdk:"tags" json:"tags,omitempty"`
+				} `tfsdk:"vpc_security_groups" json:"vpcSecurityGroups,omitempty"`
 				VpcSubnets *[]struct {
 					Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
 					Id   *string `tfsdk:"id" json:"id,omitempty"`
@@ -470,8 +511,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"resource_group": schema.SingleNestedAttribute{
-										Description:         "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
-										MarkdownDescription: "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
+										Description:         "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ResourceGroup.ID and ResourceGroup.Regex is not yet supported and system will ignore the value.",
+										MarkdownDescription: "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ResourceGroup.ID and ResourceGroup.Regex is not yet supported and system will ignore the value.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "ID of resource",
@@ -565,6 +606,14 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 										Description:         "transitGateway contains information about IBM Cloud TransitGatewayIBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructuremore information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway.when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error.when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
 										MarkdownDescription: "transitGateway contains information about IBM Cloud TransitGatewayIBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructuremore information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway.when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error.when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
 										Attributes: map[string]schema.Attribute{
+											"global_routing": schema.BoolAttribute{
+												Description:         "globalRouting indicates whether to set global routing true or not while creating the transit gateway.set this field to true only when PowerVS and VPC are from different regions, if they are same it's suggested to use local routing by setting the field to false.when the field is omitted,  based on PowerVS region (region associated with IBMPowerVSCluster.Spec.Zone) and VPC region(IBMPowerVSCluster.Spec.VPC.Region) system will decide whether to enable globalRouting or not.",
+												MarkdownDescription: "globalRouting indicates whether to set global routing true or not while creating the transit gateway.set this field to true only when PowerVS and VPC are from different regions, if they are same it's suggested to use local routing by setting the field to false.when the field is omitted,  based on PowerVS region (region associated with IBMPowerVSCluster.Spec.Zone) and VPC region(IBMPowerVSCluster.Spec.VPC.Region) system will decide whether to enable globalRouting or not.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"id": schema.StringAttribute{
 												Description:         "id of resource.",
 												MarkdownDescription: "id of resource.",
@@ -627,6 +676,313 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"vpc_security_groups": schema.ListNestedAttribute{
+										Description:         "VPCSecurityGroups to attach it to the VPC resource",
+										MarkdownDescription: "VPCSecurityGroups to attach it to the VPC resource",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"id": schema.StringAttribute{
+													Description:         "id of the Security Group.",
+													MarkdownDescription: "id of the Security Group.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "name of the Security Group.",
+													MarkdownDescription: "name of the Security Group.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"rules": schema.ListNestedAttribute{
+													Description:         "rules are the Security Group Rules for the Security Group.",
+													MarkdownDescription: "rules are the Security Group Rules for the Security Group.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"action": schema.StringAttribute{
+																Description:         "action defines whether to allow or deny traffic defined by the Security Group Rule.",
+																MarkdownDescription: "action defines whether to allow or deny traffic defined by the Security Group Rule.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("allow", "deny"),
+																},
+															},
+
+															"destination": schema.SingleNestedAttribute{
+																Description:         "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+																MarkdownDescription: "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+																Attributes: map[string]schema.Attribute{
+																	"icmp_code": schema.Int64Attribute{
+																		Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"icmp_type": schema.Int64Attribute{
+																		Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"port_range": schema.SingleNestedAttribute{
+																		Description:         "portRange is a range of ports allowed for the Rule's remote.",
+																		MarkdownDescription: "portRange is a range of ports allowed for the Rule's remote.",
+																		Attributes: map[string]schema.Attribute{
+																			"maximum_port": schema.Int64Attribute{
+																				Description:         "maximumPort is the inclusive upper range of ports.",
+																				MarkdownDescription: "maximumPort is the inclusive upper range of ports.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(1),
+																					int64validator.AtMost(65535),
+																				},
+																			},
+
+																			"minimum_port": schema.Int64Attribute{
+																				Description:         "minimumPort is the inclusive lower range of ports.",
+																				MarkdownDescription: "minimumPort is the inclusive lower range of ports.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(1),
+																					int64validator.AtMost(65535),
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"protocol": schema.StringAttribute{
+																		Description:         "protocol defines the traffic protocol used for the Security Group Rule.",
+																		MarkdownDescription: "protocol defines the traffic protocol used for the Security Group Rule.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("all", "icmp", "tcp", "udp"),
+																		},
+																	},
+
+																	"remotes": schema.ListNestedAttribute{
+																		Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																		MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"address": schema.StringAttribute{
+																					Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																					MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"cidr_subnet_name": schema.StringAttribute{
+																					Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																					MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"remote_type": schema.StringAttribute{
+																					Description:         "remoteType defines the type of filter to define for the remote's destination/source.",
+																					MarkdownDescription: "remoteType defines the type of filter to define for the remote's destination/source.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																					Validators: []validator.String{
+																						stringvalidator.OneOf("any", "cidr", "address", "sg"),
+																					},
+																				},
+
+																				"security_group_name": schema.StringAttribute{
+																					Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																					MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"direction": schema.StringAttribute{
+																Description:         "direction defines whether the traffic is inbound or outbound for the Security Group Rule.",
+																MarkdownDescription: "direction defines whether the traffic is inbound or outbound for the Security Group Rule.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("inbound", "outbound"),
+																},
+															},
+
+															"security_group_id": schema.StringAttribute{
+																Description:         "securityGroupID is the ID of the Security Group for the Security Group Rule.",
+																MarkdownDescription: "securityGroupID is the ID of the Security Group for the Security Group Rule.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"source": schema.SingleNestedAttribute{
+																Description:         "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+																MarkdownDescription: "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+																Attributes: map[string]schema.Attribute{
+																	"icmp_code": schema.Int64Attribute{
+																		Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"icmp_type": schema.Int64Attribute{
+																		Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"port_range": schema.SingleNestedAttribute{
+																		Description:         "portRange is a range of ports allowed for the Rule's remote.",
+																		MarkdownDescription: "portRange is a range of ports allowed for the Rule's remote.",
+																		Attributes: map[string]schema.Attribute{
+																			"maximum_port": schema.Int64Attribute{
+																				Description:         "maximumPort is the inclusive upper range of ports.",
+																				MarkdownDescription: "maximumPort is the inclusive upper range of ports.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(1),
+																					int64validator.AtMost(65535),
+																				},
+																			},
+
+																			"minimum_port": schema.Int64Attribute{
+																				Description:         "minimumPort is the inclusive lower range of ports.",
+																				MarkdownDescription: "minimumPort is the inclusive lower range of ports.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(1),
+																					int64validator.AtMost(65535),
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"protocol": schema.StringAttribute{
+																		Description:         "protocol defines the traffic protocol used for the Security Group Rule.",
+																		MarkdownDescription: "protocol defines the traffic protocol used for the Security Group Rule.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("all", "icmp", "tcp", "udp"),
+																		},
+																	},
+
+																	"remotes": schema.ListNestedAttribute{
+																		Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																		MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"address": schema.StringAttribute{
+																					Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																					MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"cidr_subnet_name": schema.StringAttribute{
+																					Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																					MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"remote_type": schema.StringAttribute{
+																					Description:         "remoteType defines the type of filter to define for the remote's destination/source.",
+																					MarkdownDescription: "remoteType defines the type of filter to define for the remote's destination/source.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																					Validators: []validator.String{
+																						stringvalidator.OneOf("any", "cidr", "address", "sg"),
+																					},
+																				},
+
+																				"security_group_name": schema.StringAttribute{
+																					Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																					MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"tags": schema.ListAttribute{
+													Description:         "tags are tags to add to the Security Group.",
+													MarkdownDescription: "tags are tags to add to the Security Group.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,

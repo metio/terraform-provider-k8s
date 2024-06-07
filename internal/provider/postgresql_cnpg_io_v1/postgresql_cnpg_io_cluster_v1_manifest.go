@@ -553,9 +553,10 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"inherited_metadata" json:"inheritedMetadata,omitempty"`
-		Instances *int64  `tfsdk:"instances" json:"instances,omitempty"`
-		LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-		Managed   *struct {
+		Instances            *int64  `tfsdk:"instances" json:"instances,omitempty"`
+		LivenessProbeTimeout *int64  `tfsdk:"liveness_probe_timeout" json:"livenessProbeTimeout,omitempty"`
+		LogLevel             *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+		Managed              *struct {
 			Roles *[]struct {
 				Bypassrls       *bool     `tfsdk:"bypassrls" json:"bypassrls,omitempty"`
 				Comment         *string   `tfsdk:"comment" json:"comment,omitempty"`
@@ -4393,6 +4394,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 						Validators: []validator.Int64{
 							int64validator.AtLeast(1),
 						},
+					},
+
+					"liveness_probe_timeout": schema.Int64Attribute{
+						Description:         "LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instanceto successfully respond to the liveness probe (default 30).The Liveness probe failure threshold is derived from this value using the formula:ceiling(livenessProbe / 10).",
+						MarkdownDescription: "LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instanceto successfully respond to the liveness probe (default 30).The Liveness probe failure threshold is derived from this value using the formula:ceiling(livenessProbe / 10).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"log_level": schema.StringAttribute{

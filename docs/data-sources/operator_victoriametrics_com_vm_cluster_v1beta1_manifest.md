@@ -62,7 +62,7 @@ Optional:
 - `cluster_version` (String) ClusterVersion defines default images tag for all components.it can be overwritten with component specific image.tag value.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
-- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
 - `replication_factor` (Number) ReplicationFactor defines how many copies of data make amongdistinct storage nodes
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run theVMSelect, VMStorage and VMInsert Pods.
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for componentit restricts disk writes accessuses non-root user out of the boxdrops not needed security permissions
@@ -325,7 +325,7 @@ Optional:
 - `log_level` (String) LogLevel for VMSelect to be configured with.
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `persistent_volume` (Attributes) Storage - add persistent volume for cacheMounthPathits useful for persistent cacheuse storage instead of persistentVolume. (see [below for nested schema](#nestedatt--spec--vmselect--persistent_volume))
+- `persistent_volume` (Attributes) Storage - add persistent volume for cacheMountPathits useful for persistent cacheuse storage instead of persistentVolume. (see [below for nested schema](#nestedatt--spec--vmselect--persistent_volume))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--vmselect--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods. (see [below for nested schema](#nestedatt--spec--vmselect--pod_metadata))
 - `port` (String) Port listen port

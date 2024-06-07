@@ -1204,9 +1204,13 @@ type DatadoghqComDatadogAgentV1Alpha1ManifestData struct {
 			Config *struct {
 				AdmissionController *struct {
 					AgentCommunicationMode *string `tfsdk:"agent_communication_mode" json:"agentCommunicationMode,omitempty"`
-					Enabled                *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-					MutateUnlabelled       *bool   `tfsdk:"mutate_unlabelled" json:"mutateUnlabelled,omitempty"`
-					ServiceName            *string `tfsdk:"service_name" json:"serviceName,omitempty"`
+					CwsInstrumentation     *struct {
+						Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+						Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
+					} `tfsdk:"cws_instrumentation" json:"cwsInstrumentation,omitempty"`
+					Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+					MutateUnlabelled *bool   `tfsdk:"mutate_unlabelled" json:"mutateUnlabelled,omitempty"`
+					ServiceName      *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 				} `tfsdk:"admission_controller" json:"admissionController,omitempty"`
 				Args                 *[]string `tfsdk:"args" json:"args,omitempty"`
 				ClusterChecksEnabled *bool     `tfsdk:"cluster_checks_enabled" json:"clusterChecksEnabled,omitempty"`
@@ -10091,6 +10095,31 @@ func (r *DatadoghqComDatadogAgentV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"cws_instrumentation": schema.SingleNestedAttribute{
+												Description:         "CWSInstrumentation holds the CWS Instrumentation endpoint configuration",
+												MarkdownDescription: "CWSInstrumentation holds the CWS Instrumentation endpoint configuration",
+												Attributes: map[string]schema.Attribute{
+													"enabled": schema.BoolAttribute{
+														Description:         "Enable the CWS Instrumentation admission controller endpoint",
+														MarkdownDescription: "Enable the CWS Instrumentation admission controller endpoint",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"mode": schema.StringAttribute{
+														Description:         "Mode defines how the CWS Instrumentation endpoint should behave. It can be 'init_container' or 'remote_copy'.",
+														MarkdownDescription: "Mode defines how the CWS Instrumentation endpoint should behave. It can be 'init_container' or 'remote_copy'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"enabled": schema.BoolAttribute{

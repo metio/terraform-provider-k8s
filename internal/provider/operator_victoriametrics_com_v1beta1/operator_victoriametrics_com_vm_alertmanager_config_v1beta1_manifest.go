@@ -890,8 +890,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"months": schema.ListAttribute{
-												Description:         "Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
-												MarkdownDescription: "Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												Description:         "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												MarkdownDescription: "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5475,8 +5475,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"months": schema.ListAttribute{
-												Description:         "Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
-												MarkdownDescription: "Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												Description:         "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												MarkdownDescription: "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

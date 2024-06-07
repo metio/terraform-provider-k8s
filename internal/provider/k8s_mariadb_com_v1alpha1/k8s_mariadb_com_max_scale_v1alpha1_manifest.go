@@ -3170,8 +3170,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"client_password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
-								MarkdownDescription: "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
+								Description:         "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -3235,8 +3235,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"metrics_password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
-								MarkdownDescription: "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
+								Description:         "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -3292,8 +3292,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"monitor_password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
-								MarkdownDescription: "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
+								Description:         "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -3349,8 +3349,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"server_password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
-								MarkdownDescription: "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
+								Description:         "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -3406,8 +3406,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"sync_password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
-								MarkdownDescription: "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
+								Description:         "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",

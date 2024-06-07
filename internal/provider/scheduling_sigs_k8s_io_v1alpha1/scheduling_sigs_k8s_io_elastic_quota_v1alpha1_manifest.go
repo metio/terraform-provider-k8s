@@ -126,8 +126,8 @@ func (r *SchedulingSigsK8SIoElasticQuotaV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "ElasticQuotaSpec defines the Min and Max for Quota.",
 				Attributes: map[string]schema.Attribute{
 					"max": schema.MapAttribute{
-						Description:         "Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations of successfully scheduled pods.",
-						MarkdownDescription: "Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations of successfully scheduled pods.",
+						Description:         "Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations ofsuccessfully scheduled pods.",
+						MarkdownDescription: "Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations ofsuccessfully scheduled pods.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

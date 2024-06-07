@@ -100,22 +100,28 @@ Optional:
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`
 
+Required:
+
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+
 Optional:
 
 - `group` (String) group is the group of the target resource.
-- `kind` (String) kind is kind of the target resource.
-- `name` (String) name is the name of the target resource.
 - `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--target_refs"></a>
 ### Nested Schema for `spec.target_refs`
 
+Required:
+
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+
 Optional:
 
 - `group` (String) group is the group of the target resource.
-- `kind` (String) kind is kind of the target resource.
-- `name` (String) name is the name of the target resource.
 - `namespace` (String) namespace is the namespace of the referent.
 
 

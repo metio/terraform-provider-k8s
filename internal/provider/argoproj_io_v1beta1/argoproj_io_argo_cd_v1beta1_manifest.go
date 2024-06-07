@@ -171,11 +171,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				Replicas              *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"sharding" json:"sharding,omitempty"`
 		} `tfsdk:"controller" json:"controller,omitempty"`
-		DisableAdmin     *bool              `tfsdk:"disable_admin" json:"disableAdmin,omitempty"`
-		ExtraConfig      *map[string]string `tfsdk:"extra_config" json:"extraConfig,omitempty"`
-		GaAnonymizeUsers *bool              `tfsdk:"ga_anonymize_users" json:"gaAnonymizeUsers,omitempty"`
-		GaTrackingID     *string            `tfsdk:"ga_tracking_id" json:"gaTrackingID,omitempty"`
-		Grafana          *struct {
+		DefaultClusterScopedRoleDisabled *bool              `tfsdk:"default_cluster_scoped_role_disabled" json:"defaultClusterScopedRoleDisabled,omitempty"`
+		DisableAdmin                     *bool              `tfsdk:"disable_admin" json:"disableAdmin,omitempty"`
+		ExtraConfig                      *map[string]string `tfsdk:"extra_config" json:"extraConfig,omitempty"`
+		GaAnonymizeUsers                 *bool              `tfsdk:"ga_anonymize_users" json:"gaAnonymizeUsers,omitempty"`
+		GaTrackingID                     *string            `tfsdk:"ga_tracking_id" json:"gaTrackingID,omitempty"`
+		Grafana                          *struct {
 			Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Host    *string `tfsdk:"host" json:"host,omitempty"`
 			Image   *string `tfsdk:"image" json:"image,omitempty"`
@@ -244,7 +245,8 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"kustomize_versions" json:"kustomizeVersions,omitempty"`
 		Monitoring *struct {
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			DisableMetrics *bool `tfsdk:"disable_metrics" json:"disableMetrics,omitempty"`
+			Enabled        *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
 		NodePlacement *struct {
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -1332,6 +1334,7 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"dex" json:"dex,omitempty"`
 			Keycloak *struct {
+				Host      *string `tfsdk:"host" json:"host,omitempty"`
 				Image     *string `tfsdk:"image" json:"image,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
@@ -2297,6 +2300,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed: false,
 					},
 
+					"default_cluster_scoped_role_disabled": schema.BoolAttribute{
+						Description:         "DefaultClusterScopedRoleDisabled will disable creation of default ClusterRoles for a cluster scoped instance.",
+						MarkdownDescription: "DefaultClusterScopedRoleDisabled will disable creation of default ClusterRoles for a cluster scoped instance.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"disable_admin": schema.BoolAttribute{
 						Description:         "DisableAdmin will disable the admin user.",
 						MarkdownDescription: "DisableAdmin will disable the admin user.",
@@ -2803,6 +2814,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "Monitoring defines whether workload status monitoring configuration for this instance.",
 						MarkdownDescription: "Monitoring defines whether workload status monitoring configuration for this instance.",
 						Attributes: map[string]schema.Attribute{
+							"disable_metrics": schema.BoolAttribute{
+								Description:         "DisableMetrics field can be used to enable or disable the collection of Metrics on Openshift",
+								MarkdownDescription: "DisableMetrics field can be used to enable or disable the collection of Metrics on Openshift",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled defines whether workload status monitoring is enabled for this instance or not",
 								MarkdownDescription: "Enabled defines whether workload status monitoring is enabled for this instance or not",
@@ -10086,6 +10105,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "Keycloak contains the configuration for Argo CD keycloak authentication",
 								MarkdownDescription: "Keycloak contains the configuration for Argo CD keycloak authentication",
 								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "Host is the hostname to use for Ingress/Route resources.",
+										MarkdownDescription: "Host is the hostname to use for Ingress/Route resources.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"image": schema.StringAttribute{
 										Description:         "Image is the Keycloak container image.",
 										MarkdownDescription: "Image is the Keycloak container image.",

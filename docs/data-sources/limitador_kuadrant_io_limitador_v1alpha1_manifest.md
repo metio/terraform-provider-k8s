@@ -584,6 +584,7 @@ Optional:
 
 Optional:
 
+- `batch_size` (Number) BatchSize defines the size of entries to flush in as single flush [default: 100]
 - `flush_period` (Number) FlushPeriod for counters in milliseconds [default: 1000]
 - `max_cached` (Number) MaxCached refers to the maximum amount of counters cached [default: 10000]
 - `response_timeout` (Number) ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]

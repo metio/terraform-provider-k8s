@@ -66,6 +66,7 @@ Optional:
 - `disk_selector` (List of String)
 - `encrypted` (Boolean)
 - `engine_image` (String) Deprecated: Replaced by field 'image'.
+- `freeze_filesystem_for_snapshot` (String) Setting that freezes the filesystem on the root partition before a snapshot is created.
 - `from_backup` (String)
 - `frontend` (String)
 - `image` (String)

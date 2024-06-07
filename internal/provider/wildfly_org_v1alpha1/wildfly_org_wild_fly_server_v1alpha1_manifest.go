@@ -44,11 +44,12 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ApplicationImage *string   `tfsdk:"application_image" json:"applicationImage,omitempty"`
-		BootableJar      *bool     `tfsdk:"bootable_jar" json:"bootableJar,omitempty"`
-		ConfigMaps       *[]string `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		DisableHTTPRoute *bool     `tfsdk:"disable_http_route" json:"disableHTTPRoute,omitempty"`
-		Env              *[]struct {
+		ApplicationImage              *string   `tfsdk:"application_image" json:"applicationImage,omitempty"`
+		BootableJar                   *bool     `tfsdk:"bootable_jar" json:"bootableJar,omitempty"`
+		ConfigMaps                    *[]string `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		DeactivateTransactionRecovery *bool     `tfsdk:"deactivate_transaction_recovery" json:"deactivateTransactionRecovery,omitempty"`
+		DisableHTTPRoute              *bool     `tfsdk:"disable_http_route" json:"disableHTTPRoute,omitempty"`
+		Env                           *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -339,6 +340,14 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
 						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"deactivate_transaction_recovery": schema.BoolAttribute{
+						Description:         "DeactivateTransactionRecovery disables the process of recovering transactions (false if omitted)",
+						MarkdownDescription: "DeactivateTransactionRecovery disables the process of recovering transactions (false if omitted)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -285,6 +285,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					Use_kiali_token      *bool   `tfsdk:"use_kiali_token" json:"use_kiali_token,omitempty"`
 					Username             *string `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"auth" json:"auth,omitempty"`
+				Custom_headers     *map[string]string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
 				Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				Grpc_port          *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
 				Health_check_url   *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
@@ -447,6 +448,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			Web_port         *string `tfsdk:"web_port" json:"web_port,omitempty"`
 			Web_root         *string `tfsdk:"web_root" json:"web_root,omitempty"`
 			Web_schema       *string `tfsdk:"web_schema" json:"web_schema,omitempty"`
+			Write_timeout    *int64  `tfsdk:"write_timeout" json:"write_timeout,omitempty"`
 		} `tfsdk:"server" json:"server,omitempty"`
 		Version *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -2249,6 +2251,15 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed: false,
 									},
 
+									"custom_headers": schema.MapAttribute{
+										Description:         "A set of name/value settings that will be passed as headers when requests are sent to the Tracing backend.",
+										MarkdownDescription: "A set of name/value settings that will be passed as headers when requests are sent to the Tracing backend.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enabled": schema.BoolAttribute{
 										Description:         "When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.",
 										MarkdownDescription: "When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.",
@@ -3357,6 +3368,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Validators: []validator.String{
 									stringvalidator.OneOf("", "http", "https"),
 								},
+							},
+
+							"write_timeout": schema.Int64Attribute{
+								Description:         "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.",
+								MarkdownDescription: "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

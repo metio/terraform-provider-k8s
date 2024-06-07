@@ -45,11 +45,11 @@ type GatewayNginxOrgObservabilityPolicyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		TargetRef *struct {
+		TargetRefs *[]struct {
 			Group *string `tfsdk:"group" json:"group,omitempty"`
 			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name  *string `tfsdk:"name" json:"name,omitempty"`
-		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
+		} `tfsdk:"target_refs" json:"targetRefs,omitempty"`
 		Tracing *struct {
 			Context        *string `tfsdk:"context" json:"context,omitempty"`
 			Ratio          *int64  `tfsdk:"ratio" json:"ratio,omitempty"`
@@ -140,44 +140,46 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 				Description:         "Spec defines the desired state of the ObservabilityPolicy.",
 				MarkdownDescription: "Spec defines the desired state of the ObservabilityPolicy.",
 				Attributes: map[string]schema.Attribute{
-					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: HTTPRoute",
-						MarkdownDescription: "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: HTTPRoute",
-						Attributes: map[string]schema.Attribute{
-							"group": schema.StringAttribute{
-								Description:         "Group is the group of the target resource.",
-								MarkdownDescription: "Group is the group of the target resource.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.LengthAtMost(253),
-									stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+					"target_refs": schema.ListNestedAttribute{
+						Description:         "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute",
+						MarkdownDescription: "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"group": schema.StringAttribute{
+									Description:         "Group is the group of the target resource.",
+									MarkdownDescription: "Group is the group of the target resource.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(253),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+									},
 								},
-							},
 
-							"kind": schema.StringAttribute{
-								Description:         "Kind is kind of the target resource.",
-								MarkdownDescription: "Kind is kind of the target resource.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.LengthAtLeast(1),
-									stringvalidator.LengthAtMost(63),
-									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+								"kind": schema.StringAttribute{
+									Description:         "Kind is kind of the target resource.",
+									MarkdownDescription: "Kind is kind of the target resource.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(63),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+									},
 								},
-							},
 
-							"name": schema.StringAttribute{
-								Description:         "Name is the name of the target resource.",
-								MarkdownDescription: "Name is the name of the target resource.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.LengthAtLeast(1),
-									stringvalidator.LengthAtMost(253),
+								"name": schema.StringAttribute{
+									Description:         "Name is the name of the target resource.",
+									MarkdownDescription: "Name is the name of the target resource.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(253),
+									},
 								},
 							},
 						},
@@ -202,8 +204,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"ratio": schema.Int64Attribute{
-								Description:         "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.",
-								MarkdownDescription: "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.",
+								Description:         "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.",
+								MarkdownDescription: "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

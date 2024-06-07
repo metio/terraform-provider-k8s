@@ -53,8 +53,8 @@ func (r *StunnerL7MpIoStaticServiceV1Manifest) Metadata(_ context.Context, reque
 
 func (r *StunnerL7MpIoStaticServiceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
-		MarkdownDescription: "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
+		Description:         "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (orTCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports onthe given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
+		MarkdownDescription: "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (orTCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports onthe given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

@@ -703,6 +703,7 @@ Optional:
 
 - `append_x_forwarded_host` (Boolean)
 - `enable_auto_mtls` (Boolean)
+- `enable_integration` (Boolean)
 
 
 

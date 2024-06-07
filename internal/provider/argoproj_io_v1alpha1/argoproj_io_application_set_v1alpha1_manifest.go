@@ -133,6 +133,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -221,6 +222,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -371,6 +373,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -459,6 +462,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -612,6 +616,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -700,6 +705,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -844,6 +850,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -932,6 +939,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1086,6 +1094,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1174,6 +1183,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1324,6 +1334,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1412,6 +1423,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1565,6 +1577,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1653,6 +1666,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1797,6 +1811,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1885,6 +1900,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2035,6 +2051,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2123,6 +2140,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2343,6 +2361,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2431,6 +2450,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2654,6 +2674,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2742,6 +2763,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2892,6 +2914,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -2980,6 +3003,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3134,6 +3158,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3222,6 +3247,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3372,6 +3398,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3460,6 +3487,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3613,6 +3641,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3701,6 +3730,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3845,6 +3875,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -3933,6 +3964,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4083,6 +4115,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4171,6 +4204,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4391,6 +4425,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4479,6 +4514,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4702,6 +4738,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4790,6 +4827,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 										Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -4941,6 +4979,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5029,6 +5068,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5177,6 +5217,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5265,6 +5306,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5485,6 +5527,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5573,6 +5616,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5796,6 +5840,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -5884,6 +5929,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 								Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -6062,6 +6108,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 						ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 						Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+						LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 						NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 						NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 						Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -6150,6 +6197,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 						ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 						Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+						LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 						NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 						NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 						Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -6929,6 +6977,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -7550,6 +7606,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8597,6 +8661,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -9218,6 +9290,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -10289,6 +10369,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -10910,6 +10998,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -11920,6 +12016,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -12541,6 +12645,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -13612,6 +13724,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -14233,6 +14353,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -15280,6 +15408,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -15901,6 +16037,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -16972,6 +17116,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -17593,6 +17745,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -18603,6 +18763,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -19224,6 +19392,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -20269,6 +20445,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -20890,6 +21074,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -22393,6 +22585,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -23014,6 +23214,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -24548,6 +24756,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -25169,6 +25385,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -26218,6 +26442,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -26839,6 +27071,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -27910,6 +28150,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -28531,6 +28779,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -29578,6 +29834,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -30199,6 +30463,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -31270,6 +31542,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -31891,6 +32171,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -32901,6 +33189,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -33522,6 +33818,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -34567,6 +34871,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -35188,6 +35500,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -36691,6 +37011,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -37312,6 +37640,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -38846,6 +39182,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"label_without_selector": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"name_prefix": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -39467,6 +39811,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"label_without_selector": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -40525,6 +40877,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -41146,6 +41506,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -42173,6 +42541,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -42794,6 +43170,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -44297,6 +44681,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -44918,6 +45310,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -46452,6 +46852,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"label_without_selector": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"name_prefix": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -47073,6 +47481,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"label_without_selector": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -48312,6 +48728,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Computed:            false,
 													},
 
+													"label_without_selector": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"name_prefix": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -48933,6 +49357,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 															Description:         "",
 															MarkdownDescription: "",
 															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"label_without_selector": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,

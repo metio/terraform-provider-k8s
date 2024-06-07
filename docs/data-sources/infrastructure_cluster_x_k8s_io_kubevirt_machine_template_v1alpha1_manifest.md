@@ -69,7 +69,7 @@ Required:
 
 Optional:
 
-- `infra_cluster_secret_ref` (Attributes) InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra. When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine. (see [below for nested schema](#nestedatt--spec--template--spec--infra_cluster_secret_ref))
+- `infra_cluster_secret_ref` (Attributes) InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra.When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine. (see [below for nested schema](#nestedatt--spec--template--spec--infra_cluster_secret_ref))
 - `provider_id` (String) ProviderID TBD what to use for Kubevirt
 - `virtual_machine_bootstrap_check` (Attributes) BootstrapCheckSpec defines how the CAPK controller is checking CAPI Sentinel file inside the VM. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_bootstrap_check))
 - `virtual_machine_template` (Attributes) VirtualMachineTemplateSpec defines the desired state of the kubevirt VM. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template))
@@ -80,12 +80,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_bootstrap_check"></a>
@@ -93,7 +93,7 @@ Optional:
 
 Optional:
 
-- `check_strategy` (String) CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap. Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM. Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.
+- `check_strategy` (String) CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap.Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM.Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template"></a>
@@ -113,12 +113,11 @@ Required:
 
 Optional:
 
-- `data_volume_templates` (Attributes List) dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference. DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates))
+- `data_volume_templates` (Attributes List) dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference.DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates))
 - `instancetype` (Attributes) InstancetypeMatcher references a instancetype that is used to fill fields in Template (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--instancetype))
-- `live_update_features` (Attributes) LiveUpdateFeatures references a configuration of hotpluggable resources (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--live_update_features))
 - `preference` (Attributes) PreferenceMatcher references a set of preference that is used to fill fields in Template (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--preference))
-- `run_strategy` (String) Running state indicates the requested running state of the VirtualMachineInstance mutually exclusive with Running
-- `running` (Boolean) Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy
+- `run_strategy` (String) Running state indicates the requested running state of the VirtualMachineInstancemutually exclusive with Running
+- `running` (Boolean) Running controls whether the associatied VirtualMachineInstance is created or notMutually exclusive with RunStrategy
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template`
@@ -140,21 +139,21 @@ Optional:
 - `access_credentials` (Attributes List) Specifies a set of public keys to inject into the vm guest (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials))
 - `affinity` (Attributes) If affinity is specifies, obey all the affinity rules (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity))
 - `architecture` (String) Specifies the architecture of the vm guest you are attempting to run. Defaults to the compiled architecture of the KubeVirt components
-- `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--dns_config))
-- `dns_policy` (String) Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
-- `eviction_strategy` (String) EvictionStrategy can be set to 'LiveMigrate' if the VirtualMachineInstance should be migrated instead of shut-off in case of a node drain.
-- `hostname` (String) Specifies the hostname of the vmi If not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.
-- `liveness_probe` (Attributes) Periodic probe of VirtualMachineInstance liveness. VirtualmachineInstances will be stopped if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe))
+- `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--dns_config))
+- `dns_policy` (String) Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.
+- `eviction_strategy` (String) EvictionStrategy describes the strategy to follow when a node drain occurs.The possible options are:- 'None': No action will be taken, according to the specified 'RunStrategy' the VirtualMachine will be restarted or shutdown.- 'LiveMigrate': the VirtualMachineInstance will be migrated instead of being shutdown.- 'LiveMigrateIfPossible': the same as 'LiveMigrate' but only if the VirtualMachine is Live-Migratable, otherwise it will behave as 'None'.- 'External': the VirtualMachineInstance will be protected by a PDB and 'vmi.Status.EvacuationNodeName' will be set on eviction. This is mainly useful for cluster-api-provider-kubevirt (capk) which needs a way for VMI's to be blocked from eviction, yet signal capk that eviction has been called on the VMI so the capk controller can handle tearing the VMI down. Details can be found in the commit description https://github.com/kubevirt/kubevirt/commit/c1d77face705c8b126696bac9a3ee3825f27f1fa.
+- `hostname` (String) Specifies the hostname of the vmiIf not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.
+- `liveness_probe` (Attributes) Periodic probe of VirtualMachineInstance liveness.VirtualmachineInstances will be stopped if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe))
 - `networks` (Attributes List) List of networks that can be attached to a vm's virtual interface. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--networks))
-- `node_selector` (Map of String) NodeSelector is a selector which must be true for the vmi to fit on a node. Selector which must match a node's labels for the vmi to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `priority_class_name` (String) If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.
-- `readiness_probe` (Attributes) Periodic probe of VirtualMachineInstance service readiness. VirtualmachineInstances will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe))
-- `scheduler_name` (String) If specified, the VMI will be dispatched by specified scheduler. If not specified, the VMI will be dispatched by default scheduler.
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the vmi to fit on a node.Selector which must match a node's labels for the vmi to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `priority_class_name` (String) If specified, indicates the pod's priority.If not specified, the pod priority will be default or zero if there is nodefault.
+- `readiness_probe` (Attributes) Periodic probe of VirtualMachineInstance service readiness.VirtualmachineInstances will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe))
+- `scheduler_name` (String) If specified, the VMI will be dispatched by specified scheduler.If not specified, the VMI will be dispatched by default scheduler.
 - `start_strategy` (String) StartStrategy can be set to 'Paused' if Virtual Machine should be started in paused state.
-- `subdomain` (String) If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi, no matter if the vmi itself can pick up a hostname.
+- `subdomain` (String) If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'.If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi,no matter if the vmi itself can pick up a hostname.
 - `termination_grace_period_seconds` (Number) Grace period observed after signalling a VirtualMachineInstance to stop after which the VirtualMachineInstance is force terminated.
 - `tolerations` (Attributes List) If toleration is specified, obey all the toleration rules. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of VMIs will be spread across a given topology domains. K8s scheduler will schedule VMI pods in a way which abides by the constraints. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of VMIs will be spread across a given topologydomains. K8s scheduler will schedule VMI pods in a way which abides by the constraints. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints))
 - `volumes` (Attributes List) List of volumes that can be mounted by disks belonging to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain"></a>
@@ -171,7 +170,7 @@ Optional:
 - `cpu` (Attributes) CPU allow specified the detailed CPU topology inside the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu))
 - `features` (Attributes) Features like acpi, apic, hyperv, smm. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features))
 - `firmware` (Attributes) Firmware. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware))
-- `io_threads_policy` (String) Controls whether or not disks will share IOThreads. Omitting IOThreadsPolicy disables use of IOThreads. One of: shared, auto
+- `io_threads_policy` (String) Controls whether or not disks will share IOThreads.Omitting IOThreadsPolicy disables use of IOThreads.One of: shared, auto
 - `launch_security` (Attributes) Launch Security setting of the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--launch_security))
 - `machine` (Attributes) Machine type. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--machine))
 - `memory` (Attributes) Memory allow specifying the VMI memory features. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--memory))
@@ -182,26 +181,28 @@ Optional:
 
 Optional:
 
-- `autoattach_graphics_device` (Boolean) Whether to attach the default graphics device or not. VNC will not be available if set to false. Defaults to true.
-- `autoattach_input_device` (Boolean) Whether to attach an Input Device. Defaults to false.
-- `autoattach_mem_balloon` (Boolean) Whether to attach the Memory balloon device with default period. Period can be adjusted in virt-config. Defaults to true.
+- `autoattach_graphics_device` (Boolean) Whether to attach the default graphics device or not.VNC will not be available if set to false. Defaults to true.
+- `autoattach_input_device` (Boolean) Whether to attach an Input Device.Defaults to false.
+- `autoattach_mem_balloon` (Boolean) Whether to attach the Memory balloon device with default period.Period can be adjusted in virt-config.Defaults to true.
 - `autoattach_pod_interface` (Boolean) Whether to attach a pod network interface. Defaults to true.
-- `autoattach_serial_console` (Boolean) Whether to attach the default serial console or not. Serial console access will not be available if set to false. Defaults to true.
-- `autoattach_vsock` (Boolean) Whether to attach the VSOCK CID to the VM or not. VSOCK access will be available if set to true. Defaults to false.
-- `block_multi_queue` (Boolean) Whether or not to enable virtio multi-queue for block devices. Defaults to false.
+- `autoattach_serial_console` (Boolean) Whether to attach the default virtio-serial console or not.Serial console access will not be available if set to false. Defaults to true.
+- `autoattach_vsock` (Boolean) Whether to attach the VSOCK CID to the VM or not.VSOCK access will be available if set to true. Defaults to false.
+- `block_multi_queue` (Boolean) Whether or not to enable virtio multi-queue for block devices.Defaults to false.
 - `client_passthrough` (Map of String) To configure and access client devices such as redirecting USB
 - `disable_hotplug` (Boolean) DisableHotplug disabled the ability to hotplug disks.
 - `disks` (Attributes List) Disks describes disks, cdroms and luns which are connected to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks))
+- `downward_metrics` (Map of String) DownwardMetrics creates a virtio serials for exposing the downward metrics to the vmi.
 - `filesystems` (Attributes List) Filesystems describes filesystem which is connected to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--filesystems))
 - `gpus` (Attributes List) Whether to attach a GPU device to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--gpus))
 - `host_devices` (Attributes List) Whether to attach a host device to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--host_devices))
 - `inputs` (Attributes List) Inputs describe input devices (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--inputs))
 - `interfaces` (Attributes List) Interfaces describe network interfaces which are added to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces))
+- `log_serial_console` (Boolean) Whether to log the auto-attached default serial console or not.Serial console logs will be collect to a file and then streamed from a named 'guest-console-log'.Not relevant if autoattachSerialConsole is disabled.Defaults to cluster wide setting on VirtualMachineOptions.
 - `network_interface_multiqueue` (Boolean) If specified, virtual network interfaces configured with a virtio bus will also enable the vhost multiqueue feature for network devices. The number of queues created depends on additional factors of the VirtualMachineInstance, like the number of guest CPUs.
 - `rng` (Map of String) Whether to have random number generator from host
 - `sound` (Attributes) Whether to emulate a sound device. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--sound))
 - `tpm` (Attributes) Whether to emulate a TPM device. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--tpm))
-- `use_virtio_transitional` (Boolean) Fall back to legacy virtio 0.9 support if virtio bus is selected on devices. This is helpful for old machines like CentOS6 or RHEL6 which do not understand virtio_non_transitional (virtio 1.0).
+- `use_virtio_transitional` (Boolean) Fall back to legacy virtio 0.9 support if virtio bus is selected on devices.This is helpful for old machines like CentOS6 or RHEL6 whichdo not understand virtio_non_transitional (virtio 1.0).
 - `watchdog` (Attributes) Watchdog describes a watchdog device which can be added to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--watchdog))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks"></a>
@@ -214,12 +215,13 @@ Required:
 Optional:
 
 - `block_size` (Attributes) If specified, the virtual disk will be presented with the given block sizes. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--block_size))
-- `boot_order` (Number) BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each disk or interface that has a boot order must have a unique value. Disks without a boot order are not tried if a disk with a boot order exists.
-- `cache` (String) Cache specifies which kvm disk cache mode should be used. Supported values are: CacheNone, CacheWriteThrough.
+- `boot_order` (Number) BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each disk or interface that has a boot order must have a unique value.Disks without a boot order are not tried if a disk with a boot order exists.
+- `cache` (String) Cache specifies which kvm disk cache mode should be used.Supported values are: CacheNone, CacheWriteThrough.
 - `cdrom` (Attributes) Attach a volume as a cdrom to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--cdrom))
-- `dedicated_io_thread` (Boolean) dedicatedIOThread indicates this disk should have an exclusive IO Thread. Enabling this implies useIOThreads = true. Defaults to false.
+- `dedicated_io_thread` (Boolean) dedicatedIOThread indicates this disk should have an exclusive IO Thread.Enabling this implies useIOThreads = true.Defaults to false.
 - `disk` (Attributes) Attach a volume as a disk to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--disk))
-- `io` (String) IO specifies which QEMU disk IO mode should be used. Supported values are: native, default, threads.
+- `error_policy` (String) If specified, it can change the default error policy (stop) for the disk
+- `io` (String) IO specifies which QEMU disk IO mode should be used.Supported values are: native, default, threads.
 - `lun` (Attributes) Attach a volume as a LUN to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--lun))
 - `serial` (String) Serial provides the ability to specify a serial number for the disk device.
 - `shareable` (Boolean) If specified the disk is made sharable and multiple write from different VMs are permitted
@@ -247,7 +249,7 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 
@@ -256,9 +258,9 @@ Optional:
 
 Optional:
 
-- `bus` (String) Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.
-- `readonly` (Boolean) ReadOnly. Defaults to true.
-- `tray` (String) Tray indicates if the tray of the device is open or closed. Allowed values are 'open' and 'closed'. Defaults to closed.
+- `bus` (String) Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.
+- `readonly` (Boolean) ReadOnly.Defaults to true.
+- `tray` (String) Tray indicates if the tray of the device is open or closed.Allowed values are 'open' and 'closed'.Defaults to closed.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--disk"></a>
@@ -266,9 +268,9 @@ Optional:
 
 Optional:
 
-- `bus` (String) Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi, usb.
+- `bus` (String) Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi, usb.
 - `pci_address` (String) If specified, the virtual disk will be placed on the guests pci address with the specified PCI address. For example: 0000:81:01.10
-- `readonly` (Boolean) ReadOnly. Defaults to false.
+- `readonly` (Boolean) ReadOnly.Defaults to false.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--disks--lun"></a>
@@ -276,8 +278,8 @@ Optional:
 
 Optional:
 
-- `bus` (String) Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.
-- `readonly` (Boolean) ReadOnly. Defaults to false.
+- `bus` (String) Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.
+- `readonly` (Boolean) ReadOnly.Defaults to false.
 - `reservation` (Boolean) Reservation indicates if the disk needs to support the persistent reservation for the SCSI disk
 
 
@@ -316,15 +318,15 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest. Defaults to true.
-- `ram_fb` (Attributes) Enables a boot framebuffer, until the guest OS loads a real GPU driver Defaults to true. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--gpus--virtual_gpu_options--display--ram_fb))
+- `enabled` (Boolean) Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest.Defaults to true.
+- `ram_fb` (Attributes) Enables a boot framebuffer, until the guest OS loads a real GPU driverDefaults to true. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--gpus--virtual_gpu_options--display--ram_fb))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--gpus--virtual_gpu_options--display--ram_fb"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.devices.gpus.virtual_gpu_options.display.ram_fb`
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 
@@ -349,11 +351,11 @@ Optional:
 Required:
 
 - `name` (String) Name is the device name
-- `type` (String) Type indicated the type of input device. Supported values: tablet.
+- `type` (String) Type indicated the type of input device.Supported values: tablet.
 
 Optional:
 
-- `bus` (String) Bus indicates the bus of input device to emulate. Supported values: virtio, usb.
+- `bus` (String) Bus indicates the bus of input device to emulate.Supported values: virtio, usb.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces"></a>
@@ -361,25 +363,34 @@ Optional:
 
 Required:
 
-- `name` (String) Logical name of the interface as well as a reference to the associated networks. Must match the Name of a Network.
+- `name` (String) Logical name of the interface as well as a reference to the associated networks.Must match the Name of a Network.
 
 Optional:
 
-- `acpi_index` (Number) If specified, the ACPI index is used to provide network interface device naming, that is stable across changes in PCI addresses assigned to the device. This value is required to be unique across all devices and be between 1 and (16*1024-1).
-- `boot_order` (Number) BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each interface or disk that has a boot order must have a unique value. Interfaces without a boot order are not tried.
+- `acpi_index` (Number) If specified, the ACPI index is used to provide network interface device naming, that is stable across changesin PCI addresses assigned to the device.This value is required to be unique across all devices and be between 1 and (16*1024-1).
+- `binding` (Attributes) Binding specifies the binding plugin that will be used to connect the interface to the guest.It provides an alternative to InterfaceBindingMethod.version: 1alphav1 (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces--binding))
+- `boot_order` (Number) BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each interface or disk that has a boot order must have a unique value.Interfaces without a boot order are not tried.
 - `bridge` (Map of String) InterfaceBridge connects to a given network via a linux bridge.
 - `dhcp_options` (Attributes) If specified the network interface will pass additional DHCP options to the VMI (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces--dhcp_options))
 - `mac_address` (String) Interface MAC address. For example: de:ad:00:00:be:af or DE-AD-00-00-BE-AF.
-- `macvtap` (Map of String) InterfaceMacvtap connects to a given network by extending the Kubernetes node's L2 networks via a macvtap interface.
+- `macvtap` (Map of String) Deprecated, please refer to Kubevirt user guide for alternatives.
 - `masquerade` (Map of String) InterfaceMasquerade connects to a given network using netfilter rules to nat the traffic.
-- `model` (String) Interface model. One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio. TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51
-- `passt` (Map of String) InterfacePasst connects to a given network.
+- `model` (String) Interface model.One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio.Defaults to virtio.TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51
+- `passt` (Map of String) Deprecated, please refer to Kubevirt user guide for alternatives.
 - `pci_address` (String) If specified, the virtual network interface will be placed on the guests pci address with the specified PCI address. For example: 0000:81:01.10
 - `ports` (Attributes List) List of ports to be forwarded to the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces--ports))
 - `slirp` (Map of String) InterfaceSlirp connects to a given network using QEMU user networking mode.
 - `sriov` (Map of String) InterfaceSRIOV connects to a given network by passing-through an SR-IOV PCI device via vfio.
-- `state` (String) State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.
+- `state` (String) State represents the requested operational state of the interface.The (only) value supported is 'absent', expressing a request to remove the interface.
 - `tag` (String) If specified, the virtual network interface address and its tag will be provided to the guest via config drive
+
+<a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces--binding"></a>
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.devices.interfaces.binding`
+
+Required:
+
+- `name` (String) Name references to the binding name as denined in the kubevirt CR.version: 1alphav1
+
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--interfaces--dhcp_options"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.devices.interfaces.dhcp_options`
@@ -396,8 +407,8 @@ Optional:
 
 Required:
 
-- `option` (Number) Option is an Integer value from 224-254 Required.
-- `value` (String) Value is a String value for the Option provided Required.
+- `option` (Number) Option is an Integer value from 224-254Required.
+- `value` (String) Value is a String value for the Option providedRequired.
 
 
 
@@ -406,12 +417,12 @@ Required:
 
 Required:
 
-- `port` (Number) Number of port to expose for the virtual machine. This must be a valid port number, 0 < x < 65536.
+- `port` (Number) Number of port to expose for the virtual machine.This must be a valid port number, 0 < x < 65536.
 
 Optional:
 
-- `name` (String) If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.
-- `protocol` (String) Protocol for port. Must be UDP or TCP. Defaults to 'TCP'.
+- `name` (String) If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.
+- `protocol` (String) Protocol for port. Must be UDP or TCP.Defaults to 'TCP'.
 
 
 
@@ -424,7 +435,7 @@ Required:
 
 Optional:
 
-- `model` (String) We only support ich9 or ac97. If SoundDevice is not set: No sound card is emulated. If SoundDevice is set but Model is not: ich9
+- `model` (String) We only support ich9 or ac97.If SoundDevice is not set: No sound card is emulated.If SoundDevice is set but Model is not: ich9
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--tpm"></a>
@@ -432,7 +443,7 @@ Optional:
 
 Optional:
 
-- `persistent` (Boolean) Persistent indicates the state of the TPM device should be kept accross reboots Defaults to false
+- `persistent` (Boolean) Persistent indicates the state of the TPM device should be kept accross rebootsDefaults to false
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--devices--watchdog"></a>
@@ -451,7 +462,7 @@ Optional:
 
 Optional:
 
-- `action` (String) The action to take. Valid values are poweroff, reset, shutdown. Defaults to reset.
+- `action` (String) The action to take. Valid values are poweroff, reset, shutdown.Defaults to reset.
 
 
 
@@ -474,8 +485,8 @@ Optional:
 Optional:
 
 - `timer` (Attributes) Timer specifies whih timers are attached to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer))
-- `timezone` (String) Timezone sets the guest clock to the specified timezone. Zone name follows the TZ environment variable format (e.g. 'America/New_York').
-- `utc` (Attributes) UTC sets the guest clock to UTC on each boot. If an offset is specified, guest changes to the clock will be kept during reboots and are not reset. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--utc))
+- `timezone` (String) Timezone sets the guest clock to the specified timezone.Zone name follows the TZ environment variable format (e.g. 'America/New_York').
+- `utc` (Attributes) UTC sets the guest clock to UTC on each boot. If an offset is specified,guest changes to the clock will be kept during reboots and are not reset. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--utc))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.clock.timer`
@@ -493,8 +504,8 @@ Optional:
 
 Optional:
 
-- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.
-- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'merge', 'discard'.
+- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.
+- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'merge', 'discard'.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer--hyperv"></a>
@@ -502,7 +513,7 @@ Optional:
 
 Optional:
 
-- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.
+- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer--kvm"></a>
@@ -510,7 +521,7 @@ Optional:
 
 Optional:
 
-- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.
+- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer--pit"></a>
@@ -518,8 +529,8 @@ Optional:
 
 Optional:
 
-- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.
-- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'discard'.
+- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.
+- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'discard'.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--clock--timer--rtc"></a>
@@ -527,8 +538,8 @@ Optional:
 
 Optional:
 
-- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.
-- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup'.
+- `present` (Boolean) Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.
+- `tick_policy` (String) TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup'.
 - `track` (String) Track the guest or the wall clock.
 
 
@@ -538,7 +549,7 @@ Optional:
 
 Optional:
 
-- `offset_seconds` (Number) OffsetSeconds specifies an offset in seconds, relative to UTC. If set, guest changes to the clock will be kept during reboots and not reset.
+- `offset_seconds` (Number) OffsetSeconds specifies an offset in seconds, relative to UTC. If set,guest changes to the clock will be kept during reboots and not reset.
 
 
 
@@ -547,16 +558,16 @@ Optional:
 
 Optional:
 
-- `cores` (Number) Cores specifies the number of cores inside the vmi. Must be a value greater or equal 1.
-- `dedicated_cpu_placement` (Boolean) DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a node with enough dedicated pCPUs and pin the vCPUs to it.
+- `cores` (Number) Cores specifies the number of cores inside the vmi.Must be a value greater or equal 1.
+- `dedicated_cpu_placement` (Boolean) DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a nodewith enough dedicated pCPUs and pin the vCPUs to it.
 - `features` (Attributes List) Features specifies the CPU features list inside the VMI. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--features))
-- `isolate_emulator_thread` (Boolean) IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to place the emulator thread on it.
-- `max_sockets` (Number) MaxSockets specifies the maximum amount of sockets that can be hotplugged
-- `model` (String) Model specifies the CPU model inside the VMI. List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map. It is possible to specify special cases like 'host-passthrough' to get the same CPU as the node and 'host-model' to get CPU closest to the node one. Defaults to host-model.
+- `isolate_emulator_thread` (Boolean) IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to placethe emulator thread on it.
+- `max_sockets` (Number) MaxSockets specifies the maximum amount of sockets that canbe hotplugged
+- `model` (String) Model specifies the CPU model inside the VMI.List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map.It is possible to specify special cases like 'host-passthrough' to get the same CPU as the nodeand 'host-model' to get CPU closest to the node one.Defaults to host-model.
 - `numa` (Attributes) NUMA allows specifying settings for the guest NUMA topology (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--numa))
 - `realtime` (Attributes) Realtime instructs the virt-launcher to tune the VMI for lower latency, optional for real time workloads (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--realtime))
-- `sockets` (Number) Sockets specifies the number of sockets inside the vmi. Must be a value greater or equal 1.
-- `threads` (Number) Threads specifies the number of threads inside the vmi. Must be a value greater or equal 1.
+- `sockets` (Number) Sockets specifies the number of sockets inside the vmi.Must be a value greater or equal 1.
+- `threads` (Number) Threads specifies the number of threads inside the vmi.Must be a value greater or equal 1.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--features"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.cpu.features`
@@ -567,7 +578,7 @@ Required:
 
 Optional:
 
-- `policy` (String) Policy is the CPU feature attribute which can have the following attributes: force    - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU. require  - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it. optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU. disable  - The feature will not be supported by virtual CPU. forbid   - Guest creation will fail if the feature is supported by host CPU. Defaults to require
+- `policy` (String) Policy is the CPU feature attribute which can have the following attributes:force    - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU.require  - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it.optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU.disable  - The feature will not be supported by virtual CPU.forbid   - Guest creation will fail if the feature is supported by host CPU.Defaults to require
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--numa"></a>
@@ -575,7 +586,7 @@ Optional:
 
 Optional:
 
-- `guest_mapping_passthrough` (Map of String) GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod. The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.
+- `guest_mapping_passthrough` (Map of String) GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod.The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--cpu--realtime"></a>
@@ -583,7 +594,7 @@ Optional:
 
 Optional:
 
-- `mask` (String) Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions. Example: '0-3,^1','0,2,3','2-3'
+- `mask` (String) Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions.Example: '0-3,^1','0,2,3','2-3'
 
 
 
@@ -592,19 +603,19 @@ Optional:
 
 Optional:
 
-- `acpi` (Attributes) ACPI enables/disables ACPI inside the guest. Defaults to enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--acpi))
+- `acpi` (Attributes) ACPI enables/disables ACPI inside the guest.Defaults to enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--acpi))
 - `apic` (Attributes) Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--apic))
 - `hyperv` (Attributes) Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv))
 - `kvm` (Attributes) Configure how KVM presence is exposed to the guest. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--kvm))
-- `pvspinlock` (Attributes) Notify the guest that the host supports paravirtual spinlocks. For older kernels this feature should be explicitly disabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--pvspinlock))
-- `smm` (Attributes) SMM enables/disables System Management Mode. TSEG not yet implemented. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--smm))
+- `pvspinlock` (Attributes) Notify the guest that the host supports paravirtual spinlocks.For older kernels this feature should be explicitly disabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--pvspinlock))
+- `smm` (Attributes) SMM enables/disables System Management Mode.TSEG not yet implemented. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--smm))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--acpi"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.features.acpi`
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--apic"></a>
@@ -612,8 +623,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
-- `end_of_interrupt` (Boolean) EndOfInterrupt enables the end of interrupt notification in the guest. Defaults to false.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
+- `end_of_interrupt` (Boolean) EndOfInterrupt enables the end of interrupt notification in the guest.Defaults to false.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv"></a>
@@ -621,27 +632,27 @@ Optional:
 
 Optional:
 
-- `evmcs` (Attributes) EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--evmcs))
-- `frequencies` (Attributes) Frequencies improves the TSC clock source handling for Hyper-V on KVM. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--frequencies))
-- `ipi` (Attributes) IPI improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--ipi))
-- `reenlightenment` (Attributes) Reenlightenment enables the notifications on TSC frequency changes. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reenlightenment))
-- `relaxed` (Attributes) Relaxed instructs the guest OS to disable watchdog timeouts. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--relaxed))
-- `reset` (Attributes) Reset enables Hyperv reboot/reset for the vmi. Requires synic. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reset))
-- `runtime` (Attributes) Runtime improves the time accounting to improve scheduling in the guest. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--runtime))
+- `evmcs` (Attributes) EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--evmcs))
+- `frequencies` (Attributes) Frequencies improves the TSC clock source handling for Hyper-V on KVM.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--frequencies))
+- `ipi` (Attributes) IPI improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--ipi))
+- `reenlightenment` (Attributes) Reenlightenment enables the notifications on TSC frequency changes.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reenlightenment))
+- `relaxed` (Attributes) Relaxed instructs the guest OS to disable watchdog timeouts.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--relaxed))
+- `reset` (Attributes) Reset enables Hyperv reboot/reset for the vmi. Requires synic.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reset))
+- `runtime` (Attributes) Runtime improves the time accounting to improve scheduling in the guest.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--runtime))
 - `spinlocks` (Attributes) Spinlocks allows to configure the spinlock retry attempts. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--spinlocks))
-- `synic` (Attributes) SyNIC enables the Synthetic Interrupt Controller. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synic))
-- `synictimer` (Attributes) SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synictimer))
-- `tlbflush` (Attributes) TLBFlush improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--tlbflush))
-- `vapic` (Attributes) VAPIC improves the paravirtualized handling of interrupts. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vapic))
-- `vendorid` (Attributes) VendorID allows setting the hypervisor vendor id. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vendorid))
-- `vpindex` (Attributes) VPIndex enables the Virtual Processor Index to help windows identifying virtual processors. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vpindex))
+- `synic` (Attributes) SyNIC enables the Synthetic Interrupt Controller.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synic))
+- `synictimer` (Attributes) SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synictimer))
+- `tlbflush` (Attributes) TLBFlush improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--tlbflush))
+- `vapic` (Attributes) VAPIC improves the paravirtualized handling of interrupts.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vapic))
+- `vendorid` (Attributes) VendorID allows setting the hypervisor vendor id.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vendorid))
+- `vpindex` (Attributes) VPIndex enables the Virtual Processor Index to help windows identifying virtual processors.Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vpindex))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--evmcs"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.features.hyperv.evmcs`
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--frequencies"></a>
@@ -649,7 +660,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--ipi"></a>
@@ -657,7 +668,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reenlightenment"></a>
@@ -665,7 +676,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--relaxed"></a>
@@ -673,7 +684,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--reset"></a>
@@ -681,7 +692,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--runtime"></a>
@@ -689,7 +700,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--spinlocks"></a>
@@ -697,8 +708,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
-- `spinlocks` (Number) Retries indicates the number of retries. Must be a value greater or equal 4096. Defaults to 4096.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
+- `spinlocks` (Number) Retries indicates the number of retries.Must be a value greater or equal 4096.Defaults to 4096.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synic"></a>
@@ -706,7 +717,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--synictimer"></a>
@@ -722,7 +733,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 
@@ -731,7 +742,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vapic"></a>
@@ -739,7 +750,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vendorid"></a>
@@ -747,8 +758,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
-- `vendorid` (String) VendorID sets the hypervisor vendor id, visible to the vmi. String up to twelve characters.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
+- `vendorid` (String) VendorID sets the hypervisor vendor id, visible to the vmi.String up to twelve characters.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--hyperv--vpindex"></a>
@@ -756,7 +767,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 
@@ -765,7 +776,7 @@ Optional:
 
 Optional:
 
-- `hidden` (Boolean) Hide the KVM hypervisor from standard MSR based discovery. Defaults to false
+- `hidden` (Boolean) Hide the KVM hypervisor from standard MSR based discovery.Defaults to false
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--pvspinlock"></a>
@@ -773,7 +784,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--features--smm"></a>
@@ -781,7 +792,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.
+- `enabled` (Boolean) Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.
 
 
 
@@ -790,10 +801,19 @@ Optional:
 
 Optional:
 
+- `acpi` (Attributes) Information that can be set in the ACPI table (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware--acpi))
 - `bootloader` (Attributes) Settings to control the bootloader that is used. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware--bootloader))
 - `kernel_boot` (Attributes) Settings to set the kernel for booting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware--kernel_boot))
 - `serial` (String) The system-serial-number in SMBIOS
-- `uuid` (String) UUID reported by the vmi bios. Defaults to a random generated uid.
+- `uuid` (String) UUID reported by the vmi bios.Defaults to a random generated uid.
+
+<a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware--acpi"></a>
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.firmware.acpi`
+
+Optional:
+
+- `slic_name_ref` (String) SlicNameRef should match the volume name of a secret object. The data in the secret shouldbe a binary blob that follows the ACPI SLIC standard, see:https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn653305(v=vs.85)
+
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--firmware--bootloader"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.firmware.bootloader`
@@ -816,7 +836,8 @@ Optional:
 
 Optional:
 
-- `secure_boot` (Boolean) If set, SecureBoot will be enabled and the OVMF roms will be swapped for SecureBoot-enabled ones. Requires SMM to be enabled. Defaults to true
+- `persistent` (Boolean) If set to true, Persistent will persist the EFI NVRAM across reboots.Defaults to false
+- `secure_boot` (Boolean) If set, SecureBoot will be enabled and the OVMF roms will be swapped forSecureBoot-enabled ones.Requires SMM to be enabled.Defaults to true
 
 
 
@@ -837,7 +858,7 @@ Required:
 
 Optional:
 
-- `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+- `image_pull_policy` (String) Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
 - `image_pull_secret` (String) ImagePullSecret is the name of the Docker registry secret required to pull the image. The secret must already exist.
 - `initrd_path` (String) the fully-qualified path to the ramdisk image in the host OS
 - `kernel_path` (String) The fully-qualified path to the kernel image in the host OS
@@ -857,14 +878,17 @@ Optional:
 
 Optional:
 
-- `policy` (Attributes) Guest policy flags as defined in AMD SEV API specification. Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--launch_security--sev--policy))
+- `attestation` (Map of String) If specified, run the attestation process for a vmi.
+- `dh_cert` (String) Base64 encoded guest owner's Diffie-Hellman key.
+- `policy` (Attributes) Guest policy flags as defined in AMD SEV API specification.Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--launch_security--sev--policy))
+- `session` (String) Base64 encoded session blob.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--launch_security--sev--policy"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.launch_security.sev.policy`
 
 Optional:
 
-- `encrypted_state` (Boolean) SEV-ES is required. Defaults to false.
+- `encrypted_state` (Boolean) SEV-ES is required.Defaults to false.
 
 
 
@@ -882,8 +906,9 @@ Optional:
 
 Optional:
 
-- `guest` (String) Guest allows to specifying the amount of memory which is visible inside the Guest OS. The Guest must lie between Requests and Limits from the resources section. Defaults to the requested memory in the resources section if not specified.
+- `guest` (String) Guest allows to specifying the amount of memory which is visible inside the Guest OS.The Guest must lie between Requests and Limits from the resources section.Defaults to the requested memory in the resources section if not specified.
 - `hugepages` (Attributes) Hugepages allow to use hugepages for the VirtualMachineInstance instead of regular memory. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--memory--hugepages))
+- `max_guest` (String) MaxGuest allows to specify the maximum amount of memory which is visible inside the Guest OS.The delta between MaxGuest and Guest is the amount of memory that can be hot(un)plugged.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--domain--memory--hugepages"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.domain.memory.hugepages`
@@ -899,9 +924,9 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. Valid resource keys are 'memory' and 'cpu'.
-- `overcommit_guest_overhead` (Boolean) Don't ask the scheduler to take the guest-management overhead into account. Instead put the overhead only into the container's memory limit. This can lead to crashes if all memory is in use on a node. Defaults to false.
-- `requests` (Map of String) Requests is a description of the initial vmi resources. Valid resource keys are 'memory' and 'cpu'.
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.Valid resource keys are 'memory' and 'cpu'.
+- `overcommit_guest_overhead` (Boolean) Don't ask the scheduler to take the guest-management overhead into account. Insteadput the overhead only into the container's memory limit. This can lead to crashes ifall memory is in use on a node. Defaults to false.
+- `requests` (Map of String) Requests is a description of the initial vmi resources.Valid resource keys are 'memory' and 'cpu'.
 
 
 
@@ -910,8 +935,8 @@ Optional:
 
 Optional:
 
-- `ssh_public_key` (Attributes) SSHPublicKey represents the source and method of applying a ssh public key into a guest virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key))
-- `user_password` (Attributes) UserPassword represents the source and method for applying a guest user's password (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--user_password))
+- `ssh_public_key` (Attributes) SSHPublicKey represents the source and method of applying a ssh publickey into a guest virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key))
+- `user_password` (Attributes) UserPassword represents the source and method for applying a guest user'spassword (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--user_password))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.access_credentials.ssh_public_key`
@@ -926,15 +951,16 @@ Required:
 
 Optional:
 
-- `config_drive` (Map of String) ConfigDrivePropagation means that the ssh public keys are injected into the VM using metadata using the configDrive cloud-init provider
-- `qemu_guest_agent` (Attributes) QemuGuestAgentAccessCredentailPropagation means ssh public keys are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key--propagation_method--qemu_guest_agent))
+- `config_drive` (Map of String) ConfigDrivePropagation means that the ssh public keys are injectedinto the VM using metadata using the configDrive cloud-init provider
+- `no_cloud` (Map of String) NoCloudPropagation means that the ssh public keys are injectedinto the VM using metadata using the noCloud cloud-init provider
+- `qemu_guest_agent` (Attributes) QemuGuestAgentAccessCredentailPropagation means ssh public keys aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key--propagation_method--qemu_guest_agent))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--ssh_public_key--propagation_method--qemu_guest_agent"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.access_credentials.ssh_public_key.propagation_method.qemu_guest_agent`
 
 Required:
 
-- `users` (List of String) Users represents a list of guest users that should have the ssh public keys added to their authorized_keys file.
+- `users` (List of String) Users represents a list of guest users that should have the ssh public keysadded to their authorized_keys file.
 
 
 
@@ -968,7 +994,7 @@ Required:
 
 Optional:
 
-- `qemu_guest_agent` (Map of String) QemuGuestAgentAccessCredentailPropagation means passwords are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest.
+- `qemu_guest_agent` (Map of String) QemuGuestAgentAccessCredentailPropagation means passwords aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--access_credentials--user_password--source"></a>
@@ -1003,8 +1029,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1028,11 +1054,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -1041,11 +1067,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1071,11 +1097,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -1084,11 +1110,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1099,8 +1125,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1108,20 +1134,22 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1129,7 +1157,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -1137,11 +1165,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1151,7 +1179,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -1159,11 +1187,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1174,13 +1202,15 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1188,7 +1218,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1196,11 +1226,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1210,7 +1240,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1218,11 +1248,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1233,8 +1263,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1242,20 +1272,22 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1263,7 +1295,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -1271,11 +1303,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1285,7 +1317,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -1293,11 +1325,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1308,13 +1340,15 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1322,7 +1356,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1330,11 +1364,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1344,7 +1378,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1352,11 +1386,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1368,9 +1402,9 @@ Optional:
 
 Optional:
 
-- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
-- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--dns_config--options))
-- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
+- `nameservers` (List of String) A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.
+- `options` (Attributes List) A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--dns_config--options"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.dns_config.options`
@@ -1387,22 +1421,22 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--exec))
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `exec` (Attributes) One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
 - `guest_agent_ping` (Map of String) GuestAgentPing contacts the qemu-guest-agent for availability checks.
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--http_get))
-- `initial_delay_seconds` (Number) Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--tcp_socket))
-- `timeout_seconds` (Number) Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `initial_delay_seconds` (Number) Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--tcp_socket))
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--exec"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.liveness_probe.exec`
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--http_get"></a>
@@ -1410,21 +1444,21 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
-- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.
 - `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+- `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--liveness_probe--http_get--http_headers"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.liveness_probe.http_get.http_headers`
 
 Required:
 
-- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1434,7 +1468,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1447,7 +1481,7 @@ Optional:
 
 Required:
 
-- `name` (String) Network name. Must be a DNS_LABEL and unique within the vm. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Network name.Must be a DNS_LABEL and unique within the vm.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
@@ -1459,11 +1493,11 @@ Optional:
 
 Required:
 
-- `network_name` (String) References to a NetworkAttachmentDefinition CRD object. Format: <networkName>, <namespace>/<networkName>. If namespace is not specified, VMI namespace is assumed.
+- `network_name` (String) References to a NetworkAttachmentDefinition CRD object. Format:<networkName>, <namespace>/<networkName>. If namespace is notspecified, VMI namespace is assumed.
 
 Optional:
 
-- `default` (Boolean) Select the default network and add it to the multus-cni.io/default-network annotation.
+- `default` (Boolean) Select the default network and add it to themultus-cni.io/default-network annotation.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--networks--pod"></a>
@@ -1471,8 +1505,8 @@ Optional:
 
 Optional:
 
-- `vm_i_pv6_network_cidr` (String) IPv6 CIDR for the vm network. Defaults to fd10:0:2::/120 if not specified.
-- `vm_network_cidr` (String) CIDR for vm network. Default 10.0.2.0/24 if not specified.
+- `vm_i_pv6_network_cidr` (String) IPv6 CIDR for the vm network.Defaults to fd10:0:2::/120 if not specified.
+- `vm_network_cidr` (String) CIDR for vm network.Default 10.0.2.0/24 if not specified.
 
 
 
@@ -1481,22 +1515,22 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--exec))
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `exec` (Attributes) One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
 - `guest_agent_ping` (Map of String) GuestAgentPing contacts the qemu-guest-agent for availability checks.
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--http_get))
-- `initial_delay_seconds` (Number) Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--tcp_socket))
-- `timeout_seconds` (Number) Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `initial_delay_seconds` (Number) Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--tcp_socket))
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--exec"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.readiness_probe.exec`
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--http_get"></a>
@@ -1504,21 +1538,21 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
-- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.
 - `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+- `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--readiness_probe--http_get--http_headers"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.readiness_probe.http_get.http_headers`
 
 Required:
 
-- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1528,7 +1562,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1541,11 +1575,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints"></a>
@@ -1553,17 +1587,17 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.topology_spread_constraints.label_selector`
@@ -1571,7 +1605,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.topology_spread_constraints.label_selector.match_expressions`
@@ -1579,11 +1613,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1593,24 +1627,24 @@ Optional:
 
 Required:
 
-- `name` (String) Volume's name. Must be a DNS_LABEL and unique within the vmi. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Volume's name.Must be a DNS_LABEL and unique within the vmi.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `cloud_init_config_drive` (Attributes) CloudInitConfigDrive represents a cloud-init Config Drive user-data source. The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_config_drive))
-- `cloud_init_no_cloud` (Attributes) CloudInitNoCloud represents a cloud-init NoCloud user-data source. The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_no_cloud))
-- `config_map` (Attributes) ConfigMapSource represents a reference to a ConfigMap in the same namespace. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--config_map))
-- `container_disk` (Attributes) ContainerDisk references a docker image, embedding a qcow or raw disk. More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--container_disk))
-- `data_volume` (Attributes) DataVolume represents the dynamic creation a PVC for this volume as well as the process of populating that PVC with a disk image. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--data_volume))
+- `cloud_init_config_drive` (Attributes) CloudInitConfigDrive represents a cloud-init Config Drive user-data source.The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_config_drive))
+- `cloud_init_no_cloud` (Attributes) CloudInitNoCloud represents a cloud-init NoCloud user-data source.The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_no_cloud))
+- `config_map` (Attributes) ConfigMapSource represents a reference to a ConfigMap in the same namespace.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--config_map))
+- `container_disk` (Attributes) ContainerDisk references a docker image, embedding a qcow or raw disk.More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--container_disk))
+- `data_volume` (Attributes) DataVolume represents the dynamic creation a PVC for this volume as well asthe process of populating that PVC with a disk image. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--data_volume))
 - `downward_api` (Attributes) DownwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api))
-- `downward_metrics` (Map of String) DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guest metrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.
-- `empty_disk` (Attributes) EmptyDisk represents a temporary disk which shares the vmis lifecycle. More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--empty_disk))
+- `downward_metrics` (Map of String) DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guestmetrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.
+- `empty_disk` (Attributes) EmptyDisk represents a temporary disk which shares the vmis lifecycle.More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--empty_disk))
 - `ephemeral` (Attributes) Ephemeral is a special volume source that 'wraps' specified source and provides copy-on-write image on top of it. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--ephemeral))
 - `host_disk` (Attributes) HostDisk represents a disk created on the cluster level (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--host_disk))
 - `memory_dump` (Attributes) MemoryDump is attached to the virt launcher and is populated with a memory dump of the vmi (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--memory_dump))
-- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--persistent_volume_claim))
-- `secret` (Attributes) SecretVolumeSource represents a reference to a secret data in the same namespace. More info: https://kubernetes.io/docs/concepts/configuration/secret/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--secret))
-- `service_account` (Attributes) ServiceAccountVolumeSource represents a reference to a service account. There can only be one volume of this type! More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--service_account))
+- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--persistent_volume_claim))
+- `secret` (Attributes) SecretVolumeSource represents a reference to a secret data in the same namespace.More info: https://kubernetes.io/docs/concepts/configuration/secret/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--secret))
+- `service_account` (Attributes) ServiceAccountVolumeSource represents a reference to a service account.There can only be one volume of this type!More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--service_account))
 - `sysprep` (Attributes) Represents a Sysprep volume source. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--sysprep))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_config_drive"></a>
@@ -1630,7 +1664,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_config_drive--secret_ref"></a>
@@ -1638,7 +1672,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 
@@ -1659,7 +1693,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--cloud_init_no_cloud--secret_ref"></a>
@@ -1667,7 +1701,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 
@@ -1676,9 +1710,9 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or it's keys must be defined
-- `volume_label` (String) The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
+- `volume_label` (String) The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--container_disk"></a>
@@ -1690,7 +1724,7 @@ Required:
 
 Optional:
 
-- `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+- `image_pull_policy` (String) Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
 - `image_pull_secret` (String) ImagePullSecret is the name of the Docker registry secret required to pull the image. The secret must already exist.
 - `path` (String) Path defines the path to disk file in the container
 
@@ -1700,7 +1734,7 @@ Optional:
 
 Required:
 
-- `name` (String) Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.
+- `name` (String) Name of both the DataVolume and the PVC in the same namespace.After PVC population the DataVolume is garbage collected by default.
 
 Optional:
 
@@ -1713,7 +1747,7 @@ Optional:
 Optional:
 
 - `fields` (Attributes List) Fields is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields))
-- `volume_label` (String) The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
+- `volume_label` (String) The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.volumes.downward_api.fields`
@@ -1724,9 +1758,9 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields--resource_field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields--resource_field_ref))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--downward_api--fields--field_ref"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.volumes.downward_api.fields.field_ref`
@@ -1768,18 +1802,18 @@ Required:
 
 Optional:
 
-- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--ephemeral--persistent_volume_claim))
+- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--ephemeral--persistent_volume_claim))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--ephemeral--persistent_volume_claim"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template.spec.volumes.ephemeral.persistent_volume_claim`
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
 
 
 
@@ -1789,7 +1823,7 @@ Optional:
 Required:
 
 - `path` (String) The path to HostDisk image located on the cluster
-- `type` (String) Contains information if disk.img exists or should be created allowed options are 'Disk' and 'DiskOrCreate'
+- `type` (String) Contains information if disk.img exists or should be createdallowed options are 'Disk' and 'DiskOrCreate'
 
 Optional:
 
@@ -1802,12 +1836,12 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
 
 Optional:
 
 - `hotpluggable` (Boolean) Hotpluggable indicates whether the volume can be hotplugged and hotunplugged.
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--persistent_volume_claim"></a>
@@ -1815,12 +1849,12 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
 
 Optional:
 
 - `hotpluggable` (Boolean) Hotpluggable indicates whether the volume can be hotplugged and hotunplugged.
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--secret"></a>
@@ -1829,8 +1863,8 @@ Optional:
 Optional:
 
 - `optional` (Boolean) Specify whether the Secret or it's keys must be defined
-- `secret_name` (String) Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
-- `volume_label` (String) The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
+- `secret_name` (String) Name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `volume_label` (String) The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--service_account"></a>
@@ -1838,7 +1872,7 @@ Optional:
 
 Optional:
 
-- `service_account_name` (String) Name of the service account in the pod's namespace to use. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+- `service_account_name` (String) Name of the service account in the pod's namespace to use.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--sysprep"></a>
@@ -1854,7 +1888,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template--spec--volumes--sysprep--secret"></a>
@@ -1862,7 +1896,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 
@@ -1878,10 +1912,10 @@ Required:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Map of String)
-- `status` (Map of String) DataVolumeTemplateDummyStatus is here simply for backwards compatibility with a previous API.
+- `status` (Map of String) DataVolumeTemplateDummyStatus is here simply for backwards compatibility witha previous API.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates.spec`
@@ -1912,13 +1946,14 @@ Required:
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source"></a>
@@ -1931,7 +1966,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--data_source_ref"></a>
@@ -1944,8 +1979,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--resources"></a>
@@ -1953,17 +1988,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--resources--claims"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates.spec.pvc.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--selector"></a>
@@ -1972,7 +1998,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--pvc--selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates.spec.pvc.selector.match_expressions`
@@ -1980,11 +2006,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2121,13 +2147,13 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source))
-- `data_source_ref` (Attributes) Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source_ref))
-- `resources` (Attributes) Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources))
+- `access_modes` (List of String) AccessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source))
+- `data_source_ref` (Attributes) Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner.This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty.There are two important differences between DataSource and DataSourceRef:* While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects.* While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source_ref))
+- `resources` (Attributes) Resources represents the minimum resources the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources))
 - `selector` (Attributes) A label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--selector))
-- `storage_class_name` (String) Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) Name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source"></a>
@@ -2140,7 +2166,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--data_source_ref"></a>
@@ -2153,8 +2179,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources"></a>
@@ -2162,16 +2188,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--resources--claims"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates.spec.storage.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -2181,7 +2207,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates--spec--storage--selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates.spec.storage.selector.match_expressions`
@@ -2189,11 +2215,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2205,26 +2231,11 @@ Optional:
 
 Optional:
 
-- `infer_from_volume` (String) InferFromVolume lists the name of a volume that should be used to infer or discover the instancetype to be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcher this field is removed.
-- `kind` (String) Kind specifies which instancetype resource is referenced. Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'. If not specified, 'VirtualMachineClusterInstancetype' is used by default.
+- `infer_from_volume` (String) InferFromVolume lists the name of a volume that should be used to infer or discover the instancetypeto be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcherthis field is removed.
+- `infer_from_volume_failure_policy` (String) InferFromVolumeFailurePolicy controls what should happen on failure when inferring the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.
+- `kind` (String) Kind specifies which instancetype resource is referenced.Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'.If not specified, 'VirtualMachineClusterInstancetype' is used by default.
 - `name` (String) Name is the name of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype
-- `revision_name` (String) RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.
-
-
-<a id="nestedatt--spec--template--spec--virtual_machine_template--spec--live_update_features"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.live_update_features`
-
-Optional:
-
-- `cpu` (Attributes) LiveUpdateCPU holds hotplug configuration for the CPU resource. Empty struct indicates that default will be used for maxSockets. Default is specified on cluster level. Absence of the struct means opt-out from CPU hotplug functionality. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--live_update_features--cpu))
-
-<a id="nestedatt--spec--template--spec--virtual_machine_template--spec--live_update_features--cpu"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.live_update_features.cpu`
-
-Optional:
-
-- `max_sockets` (Number) The maximum amount of sockets that can be hot-plugged to the Virtual Machine
-
+- `revision_name` (String) RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initiallycaptured the first time the instancetype is applied to the VirtualMachineInstance.
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--preference"></a>
@@ -2232,7 +2243,8 @@ Optional:
 
 Optional:
 
-- `infer_from_volume` (String) InferFromVolume lists the name of a volume that should be used to infer or discover the preference to be used through known annotations on the underlying resource. Once applied to the PreferenceMatcher this field is removed.
-- `kind` (String) Kind specifies which preference resource is referenced. Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'. If not specified, 'VirtualMachineClusterPreference' is used by default.
+- `infer_from_volume` (String) InferFromVolume lists the name of a volume that should be used to infer or discover the preferenceto be used through known annotations on the underlying resource. Once applied to the PreferenceMatcherthis field is removed.
+- `infer_from_volume_failure_policy` (String) InferFromVolumeFailurePolicy controls what should happen on failure when preference the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.
+- `kind` (String) Kind specifies which preference resource is referenced.Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'.If not specified, 'VirtualMachineClusterPreference' is used by default.
 - `name` (String) Name is the name of the VirtualMachinePreference or VirtualMachineClusterPreference
-- `revision_name` (String) RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachinePreference or VirtualMachineClusterPreference to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.
+- `revision_name` (String) RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachinePreference or VirtualMachineClusterPreference to be used. This isinitially captured the first time the instancetype is applied to the VirtualMachineInstance.

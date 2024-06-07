@@ -108,6 +108,13 @@ type ClusterXK8SIoClusterV1Beta1ManifestData struct {
 				NodeDrainTimeout        *string `tfsdk:"node_drain_timeout" json:"nodeDrainTimeout,omitempty"`
 				NodeVolumeDetachTimeout *string `tfsdk:"node_volume_detach_timeout" json:"nodeVolumeDetachTimeout,omitempty"`
 				Replicas                *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
+				Variables               *struct {
+					Overrides *[]struct {
+						DefinitionFrom *string            `tfsdk:"definition_from" json:"definitionFrom,omitempty"`
+						Name           *string            `tfsdk:"name" json:"name,omitempty"`
+						Value          *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"overrides" json:"overrides,omitempty"`
+				} `tfsdk:"variables" json:"variables,omitempty"`
 			} `tfsdk:"control_plane" json:"controlPlane,omitempty"`
 			RolloutAfter *string `tfsdk:"rollout_after" json:"rolloutAfter,omitempty"`
 			Variables    *[]struct {
@@ -530,8 +537,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"node_startup_timeout": schema.StringAttribute{
-												Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
-												MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+												Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+												MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -717,6 +724,51 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"variables": schema.SingleNestedAttribute{
+										Description:         "Variables can be used to customize the ControlPlane through patches.",
+										MarkdownDescription: "Variables can be used to customize the ControlPlane through patches.",
+										Attributes: map[string]schema.Attribute{
+											"overrides": schema.ListNestedAttribute{
+												Description:         "Overrides can be used to override Cluster level variables.",
+												MarkdownDescription: "Overrides can be used to override Cluster level variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"definition_from": schema.StringAttribute{
+															Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+															MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the variable.",
+															MarkdownDescription: "Name of the variable.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.MapAttribute{
+															Description:         "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+															MarkdownDescription: "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+															ElementType:         types.StringType,
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -824,8 +876,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"node_startup_timeout": schema.StringAttribute{
-															Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
-															MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+															Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+															MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,

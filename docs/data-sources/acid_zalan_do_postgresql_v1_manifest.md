@@ -141,6 +141,7 @@ Required:
 Optional:
 
 - `iops` (Number)
+- `is_sub_path_expr` (Boolean)
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--volume--selector))
 - `storage_class` (String)
 - `sub_path` (String)
@@ -180,6 +181,7 @@ Required:
 
 Optional:
 
+- `is_sub_path_expr` (Boolean)
 - `sub_path` (String)
 - `target_containers` (List of String)
 

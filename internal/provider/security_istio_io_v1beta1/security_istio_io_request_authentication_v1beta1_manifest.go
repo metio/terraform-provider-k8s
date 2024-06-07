@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -199,6 +200,9 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"prefix": schema.StringAttribute{
@@ -230,6 +234,9 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 
 								"jwks": schema.StringAttribute{
@@ -246,6 +253,10 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(2048),
+									},
 								},
 
 								"output_claim_to_headers": schema.ListNestedAttribute{
@@ -256,17 +267,24 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 											"claim": schema.StringAttribute{
 												Description:         "The name of the claim to be copied from.",
 												MarkdownDescription: "The name of the claim to be copied from.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"header": schema.StringAttribute{
 												Description:         "The name of the header to be created.",
 												MarkdownDescription: "The name of the header to be created.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[-_A-Za-z0-9]+$`), ""),
+												},
 											},
 										},
 									},
@@ -325,22 +343,35 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
 							},
 
 							"kind": schema.StringAttribute{
 								Description:         "kind is kind of the target resource.",
 								MarkdownDescription: "kind is kind of the target resource.",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+								},
 							},
 
 							"name": schema.StringAttribute{
 								Description:         "name is the name of the target resource.",
 								MarkdownDescription: "name is the name of the target resource.",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"namespace": schema.StringAttribute{
@@ -367,22 +398,35 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(253),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+									},
 								},
 
 								"kind": schema.StringAttribute{
 									Description:         "kind is kind of the target resource.",
 									MarkdownDescription: "kind is kind of the target resource.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(63),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+									},
 								},
 
 								"name": schema.StringAttribute{
 									Description:         "name is the name of the target resource.",
 									MarkdownDescription: "name is the name of the target resource.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(253),
+									},
 								},
 
 								"namespace": schema.StringAttribute{

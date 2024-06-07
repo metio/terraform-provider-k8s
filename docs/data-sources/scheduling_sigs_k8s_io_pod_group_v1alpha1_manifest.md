@@ -55,6 +55,6 @@ Optional:
 
 Optional:
 
-- `min_member` (Number) MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.
-- `min_resources` (Map of String) MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.
+- `min_member` (Number) MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.
+- `min_resources` (Map of String) MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.
 - `schedule_timeout_seconds` (Number) ScheduleTimeoutSeconds defines the maximal time of members/tasks to wait before run the pod group;

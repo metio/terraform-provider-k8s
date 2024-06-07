@@ -44,166 +44,6 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Catch *[]struct {
-			Command *struct {
-				Args     *[]string `tfsdk:"args" json:"args,omitempty"`
-				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
-				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
-				Env        *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"env" json:"env,omitempty"`
-				Outputs *[]struct {
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"outputs" json:"outputs,omitempty"`
-				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"command" json:"command,omitempty"`
-			Delete *struct {
-				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Expect *[]struct {
-					Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-				} `tfsdk:"expect" json:"expect,omitempty"`
-				Ref *struct {
-					ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
-					Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-					Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					Name       *string            `tfsdk:"name" json:"name,omitempty"`
-					Namespace  *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-				} `tfsdk:"ref" json:"ref,omitempty"`
-				Template *bool   `tfsdk:"template" json:"template,omitempty"`
-				Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"delete" json:"delete,omitempty"`
-			Describe *struct {
-				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters   *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name       *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource   *string `tfsdk:"resource" json:"resource,omitempty"`
-				Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
-				ShowEvents *bool   `tfsdk:"show_events" json:"showEvents,omitempty"`
-				Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"describe" json:"describe,omitempty"`
-			Description *string `tfsdk:"description" json:"description,omitempty"`
-			Events      *struct {
-				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Format    *string `tfsdk:"format" json:"format,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
-				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"events" json:"events,omitempty"`
-			Get *struct {
-				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters   *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Format    *string `tfsdk:"format" json:"format,omitempty"`
-				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
-				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
-				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"get" json:"get,omitempty"`
-			PodLogs *struct {
-				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Container *string `tfsdk:"container" json:"container,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
-				Tail      *int64  `tfsdk:"tail" json:"tail,omitempty"`
-				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
-			Script *struct {
-				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
-				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Content *string `tfsdk:"content" json:"content,omitempty"`
-				Env     *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"env" json:"env,omitempty"`
-				Outputs *[]struct {
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"outputs" json:"outputs,omitempty"`
-				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"script" json:"script,omitempty"`
-			Sleep *struct {
-				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
-			} `tfsdk:"sleep" json:"sleep,omitempty"`
-			Wait *struct {
-				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters   *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				For *struct {
-					Condition *struct {
-						Name  *string `tfsdk:"name" json:"name,omitempty"`
-						Value *string `tfsdk:"value" json:"value,omitempty"`
-					} `tfsdk:"condition" json:"condition,omitempty"`
-					Deletion *map[string]string `tfsdk:"deletion" json:"deletion,omitempty"`
-					JsonPath *struct {
-						Path  *string `tfsdk:"path" json:"path,omitempty"`
-						Value *string `tfsdk:"value" json:"value,omitempty"`
-					} `tfsdk:"json_path" json:"jsonPath,omitempty"`
-				} `tfsdk:"for" json:"for,omitempty"`
-				Format    *string `tfsdk:"format" json:"format,omitempty"`
-				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
-				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
-				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
-			} `tfsdk:"wait" json:"wait,omitempty"`
-		} `tfsdk:"catch" json:"catch,omitempty"`
 		Cleanup *struct {
 			DelayBeforeCleanup *string `tfsdk:"delay_before_cleanup" json:"delayBeforeCleanup,omitempty"`
 			SkipDelete         *bool   `tfsdk:"skip_delete" json:"skipDelete,omitempty"`
@@ -212,12 +52,176 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 			Context    *string `tfsdk:"context" json:"context,omitempty"`
 			Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
 		} `tfsdk:"clusters" json:"clusters,omitempty"`
+		Deletion *struct {
+			Propagation *string `tfsdk:"propagation" json:"propagation,omitempty"`
+		} `tfsdk:"deletion" json:"deletion,omitempty"`
 		Discovery *struct {
 			ExcludeTestRegex *string `tfsdk:"exclude_test_regex" json:"excludeTestRegex,omitempty"`
 			FullName         *bool   `tfsdk:"full_name" json:"fullName,omitempty"`
 			IncludeTestRegex *string `tfsdk:"include_test_regex" json:"includeTestRegex,omitempty"`
 			TestFile         *string `tfsdk:"test_file" json:"testFile,omitempty"`
 		} `tfsdk:"discovery" json:"discovery,omitempty"`
+		Error *struct {
+			Catch *[]struct {
+				Command *struct {
+					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+					Env        *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"env" json:"env,omitempty"`
+					Outputs *[]struct {
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"outputs" json:"outputs,omitempty"`
+					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"command" json:"command,omitempty"`
+				Delete *struct {
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					DeletionPropagationPolicy *string `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
+					Expect                    *[]struct {
+						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+					} `tfsdk:"expect" json:"expect,omitempty"`
+					File *string `tfsdk:"file" json:"file,omitempty"`
+					Ref  *struct {
+						ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+						Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Name       *string            `tfsdk:"name" json:"name,omitempty"`
+						Namespace  *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"ref" json:"ref,omitempty"`
+					Template *bool   `tfsdk:"template" json:"template,omitempty"`
+					Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"delete" json:"delete,omitempty"`
+				Describe *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
+					ShowEvents *bool   `tfsdk:"show_events" json:"showEvents,omitempty"`
+					Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"describe" json:"describe,omitempty"`
+				Description *string `tfsdk:"description" json:"description,omitempty"`
+				Events      *struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"events" json:"events,omitempty"`
+				Get *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"get" json:"get,omitempty"`
+				PodLogs *struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Container *string `tfsdk:"container" json:"container,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Tail      *int64  `tfsdk:"tail" json:"tail,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
+				Script *struct {
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Content *string `tfsdk:"content" json:"content,omitempty"`
+					Env     *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"env" json:"env,omitempty"`
+					Outputs *[]struct {
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"outputs" json:"outputs,omitempty"`
+					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"script" json:"script,omitempty"`
+				Sleep *struct {
+					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
+				} `tfsdk:"sleep" json:"sleep,omitempty"`
+				Wait *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					For *struct {
+						Condition *struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"condition" json:"condition,omitempty"`
+						Deletion *map[string]string `tfsdk:"deletion" json:"deletion,omitempty"`
+						JsonPath *struct {
+							Path  *string `tfsdk:"path" json:"path,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"json_path" json:"jsonPath,omitempty"`
+					} `tfsdk:"for" json:"for,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"wait" json:"wait,omitempty"`
+			} `tfsdk:"catch" json:"catch,omitempty"`
+		} `tfsdk:"error" json:"error,omitempty"`
 		Execution *struct {
 			FailFast                    *bool   `tfsdk:"fail_fast" json:"failFast,omitempty"`
 			ForceTerminationGracePeriod *string `tfsdk:"force_termination_grace_period" json:"forceTerminationGracePeriod,omitempty"`
@@ -312,1140 +316,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 				Description:         "Configuration spec.",
 				MarkdownDescription: "Configuration spec.",
 				Attributes: map[string]schema.Attribute{
-					"catch": schema.ListNestedAttribute{
-						Description:         "Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels.",
-						MarkdownDescription: "Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels.",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"command": schema.SingleNestedAttribute{
-									Description:         "Command defines a command to run.",
-									MarkdownDescription: "Command defines a command to run.",
-									Attributes: map[string]schema.Attribute{
-										"args": schema.ListAttribute{
-											Description:         "Args is the command arguments.",
-											MarkdownDescription: "Args is the command arguments.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"bindings": schema.ListNestedAttribute{
-											Description:         "Bindings defines additional binding key/values.",
-											MarkdownDescription: "Bindings defines additional binding key/values.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"check": schema.MapAttribute{
-											Description:         "Check is an assertion tree to validate the operation outcome.",
-											MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"entrypoint": schema.StringAttribute{
-											Description:         "Entrypoint is the command entry point to run.",
-											MarkdownDescription: "Entrypoint is the command entry point to run.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"env": schema.ListNestedAttribute{
-											Description:         "Env defines additional environment variables.",
-											MarkdownDescription: "Env defines additional environment variables.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"outputs": schema.ListNestedAttribute{
-											Description:         "Outputs defines output bindings.",
-											MarkdownDescription: "Outputs defines output bindings.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"match": schema.MapAttribute{
-														Description:         "Match defines the matching statement.",
-														MarkdownDescription: "Match defines the matching statement.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"skip_log_output": schema.BoolAttribute{
-											Description:         "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
-											MarkdownDescription: "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"delete": schema.SingleNestedAttribute{
-									Description:         "Delete represents a deletion operation.",
-									MarkdownDescription: "Delete represents a deletion operation.",
-									Attributes: map[string]schema.Attribute{
-										"bindings": schema.ListNestedAttribute{
-											Description:         "Bindings defines additional binding key/values.",
-											MarkdownDescription: "Bindings defines additional binding key/values.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"expect": schema.ListNestedAttribute{
-											Description:         "Expect defines a list of matched checks to validate the operation outcome.",
-											MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"check": schema.MapAttribute{
-														Description:         "Check defines the verification statement.",
-														MarkdownDescription: "Check defines the verification statement.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"match": schema.MapAttribute{
-														Description:         "Match defines the matching statement.",
-														MarkdownDescription: "Match defines the matching statement.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"ref": schema.SingleNestedAttribute{
-											Description:         "ObjectReference determines objects to be deleted.",
-											MarkdownDescription: "ObjectReference determines objects to be deleted.",
-											Attributes: map[string]schema.Attribute{
-												"api_version": schema.StringAttribute{
-													Description:         "API version of the referent.",
-													MarkdownDescription: "API version of the referent.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"kind": schema.StringAttribute{
-													Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-													MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"labels": schema.MapAttribute{
-													Description:         "Label selector to match objects to delete",
-													MarkdownDescription: "Label selector to match objects to delete",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"namespace": schema.StringAttribute{
-													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: true,
-											Optional: false,
-											Computed: false,
-										},
-
-										"template": schema.BoolAttribute{
-											Description:         "Template determines whether resources should be considered for templating.",
-											MarkdownDescription: "Template determines whether resources should be considered for templating.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"describe": schema.SingleNestedAttribute{
-									Description:         "Describe determines the resource describe collector to execute.",
-									MarkdownDescription: "Describe determines the resource describe collector to execute.",
-									Attributes: map[string]schema.Attribute{
-										"api_version": schema.StringAttribute{
-											Description:         "API version of the referent.",
-											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"kind": schema.StringAttribute{
-											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines labels selector.",
-											MarkdownDescription: "Selector defines labels selector.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"show_events": schema.BoolAttribute{
-											Description:         "Show Events indicates whether to include related events.",
-											MarkdownDescription: "Show Events indicates whether to include related events.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"description": schema.StringAttribute{
-									Description:         "Description contains a description of the operation.",
-									MarkdownDescription: "Description contains a description of the operation.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"events": schema.SingleNestedAttribute{
-									Description:         "Events determines the events collector to execute.",
-									MarkdownDescription: "Events determines the events collector to execute.",
-									Attributes: map[string]schema.Attribute{
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"format": schema.StringAttribute{
-											Description:         "Format determines the output format (json or yaml).",
-											MarkdownDescription: "Format determines the output format (json or yaml).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
-											},
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines labels selector.",
-											MarkdownDescription: "Selector defines labels selector.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"get": schema.SingleNestedAttribute{
-									Description:         "Get determines the resource get collector to execute.",
-									MarkdownDescription: "Get determines the resource get collector to execute.",
-									Attributes: map[string]schema.Attribute{
-										"api_version": schema.StringAttribute{
-											Description:         "API version of the referent.",
-											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"format": schema.StringAttribute{
-											Description:         "Format determines the output format (json or yaml).",
-											MarkdownDescription: "Format determines the output format (json or yaml).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
-											},
-										},
-
-										"kind": schema.StringAttribute{
-											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines labels selector.",
-											MarkdownDescription: "Selector defines labels selector.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"pod_logs": schema.SingleNestedAttribute{
-									Description:         "PodLogs determines the pod logs collector to execute.",
-									MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
-									Attributes: map[string]schema.Attribute{
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"container": schema.StringAttribute{
-											Description:         "Container in pod to get logs from else --all-containers is used.",
-											MarkdownDescription: "Container in pod to get logs from else --all-containers is used.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines labels selector.",
-											MarkdownDescription: "Selector defines labels selector.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tail": schema.Int64Attribute{
-											Description:         "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
-											MarkdownDescription: "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"script": schema.SingleNestedAttribute{
-									Description:         "Script defines a script to run.",
-									MarkdownDescription: "Script defines a script to run.",
-									Attributes: map[string]schema.Attribute{
-										"bindings": schema.ListNestedAttribute{
-											Description:         "Bindings defines additional binding key/values.",
-											MarkdownDescription: "Bindings defines additional binding key/values.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"check": schema.MapAttribute{
-											Description:         "Check is an assertion tree to validate the operation outcome.",
-											MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"content": schema.StringAttribute{
-											Description:         "Content defines a shell script (run with 'sh -c ...').",
-											MarkdownDescription: "Content defines a shell script (run with 'sh -c ...').",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"env": schema.ListNestedAttribute{
-											Description:         "Env defines additional environment variables.",
-											MarkdownDescription: "Env defines additional environment variables.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"outputs": schema.ListNestedAttribute{
-											Description:         "Outputs defines output bindings.",
-											MarkdownDescription: "Outputs defines output bindings.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"match": schema.MapAttribute{
-														Description:         "Match defines the matching statement.",
-														MarkdownDescription: "Match defines the matching statement.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"skip_log_output": schema.BoolAttribute{
-											Description:         "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
-											MarkdownDescription: "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"sleep": schema.SingleNestedAttribute{
-									Description:         "Sleep defines zzzz.",
-									MarkdownDescription: "Sleep defines zzzz.",
-									Attributes: map[string]schema.Attribute{
-										"duration": schema.StringAttribute{
-											Description:         "Duration is the delay used for sleeping.",
-											MarkdownDescription: "Duration is the delay used for sleeping.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"wait": schema.SingleNestedAttribute{
-									Description:         "Wait determines the resource wait collector to execute.",
-									MarkdownDescription: "Wait determines the resource wait collector to execute.",
-									Attributes: map[string]schema.Attribute{
-										"api_version": schema.StringAttribute{
-											Description:         "API version of the referent.",
-											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
-											MarkdownDescription: "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"for": schema.SingleNestedAttribute{
-											Description:         "For specifies the condition to wait for.",
-											MarkdownDescription: "For specifies the condition to wait for.",
-											Attributes: map[string]schema.Attribute{
-												"condition": schema.SingleNestedAttribute{
-													Description:         "Condition specifies the condition to wait for.",
-													MarkdownDescription: "Condition specifies the condition to wait for.",
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name defines the specific condition to wait for, e.g., 'Available', 'Ready'.",
-															MarkdownDescription: "Name defines the specific condition to wait for, e.g., 'Available', 'Ready'.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Value defines the specific condition status to wait for, e.g., 'True', 'False'.",
-															MarkdownDescription: "Value defines the specific condition status to wait for, e.g., 'True', 'False'.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"deletion": schema.MapAttribute{
-													Description:         "Deletion specifies parameters for waiting on a resource's deletion.",
-													MarkdownDescription: "Deletion specifies parameters for waiting on a resource's deletion.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"json_path": schema.SingleNestedAttribute{
-													Description:         "JsonPath specifies the json path condition to wait for.",
-													MarkdownDescription: "JsonPath specifies the json path condition to wait for.",
-													Attributes: map[string]schema.Attribute{
-														"path": schema.StringAttribute{
-															Description:         "Path defines the json path to wait for, e.g. '{.status.phase}'.",
-															MarkdownDescription: "Path defines the json path to wait for, e.g. '{.status.phase}'.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Value defines the expected value to wait for, e.g., 'Running'.",
-															MarkdownDescription: "Value defines the expected value to wait for, e.g., 'Running'.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-											},
-											Required: true,
-											Optional: false,
-											Computed: false,
-										},
-
-										"format": schema.StringAttribute{
-											Description:         "Format determines the output format (json or yaml).",
-											MarkdownDescription: "Format determines the output format (json or yaml).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
-											},
-										},
-
-										"kind": schema.StringAttribute{
-											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines labels selector.",
-											MarkdownDescription: "Selector defines labels selector.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"timeout": schema.StringAttribute{
-											Description:         "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
-											MarkdownDescription: "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"cleanup": schema.SingleNestedAttribute{
 						Description:         "Cleanup contains cleanup configuration.",
 						MarkdownDescription: "Cleanup contains cleanup configuration.",
@@ -1496,6 +366,26 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 						Computed: false,
 					},
 
+					"deletion": schema.SingleNestedAttribute{
+						Description:         "Deletion contains the global deletion configuration.",
+						MarkdownDescription: "Deletion contains the global deletion configuration.",
+						Attributes: map[string]schema.Attribute{
+							"propagation": schema.StringAttribute{
+								Description:         "Propagation decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.",
+								MarkdownDescription: "Propagation decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Orphan", "Background", "Foreground"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"discovery": schema.SingleNestedAttribute{
 						Description:         "Discovery contains tests discovery configuration.",
 						MarkdownDescription: "Discovery contains tests discovery configuration.",
@@ -1530,6 +420,1144 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"error": schema.SingleNestedAttribute{
+						Description:         "Error contains the global error configuration.",
+						MarkdownDescription: "Error contains the global error configuration.",
+						Attributes: map[string]schema.Attribute{
+							"catch": schema.ListNestedAttribute{
+								Description:         "Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels.",
+								MarkdownDescription: "Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"command": schema.SingleNestedAttribute{
+											Description:         "Command defines a command to run.",
+											MarkdownDescription: "Command defines a command to run.",
+											Attributes: map[string]schema.Attribute{
+												"args": schema.ListAttribute{
+													Description:         "Args is the command arguments.",
+													MarkdownDescription: "Args is the command arguments.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"check": schema.MapAttribute{
+													Description:         "Check is an assertion tree to validate the operation outcome.",
+													MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"entrypoint": schema.StringAttribute{
+													Description:         "Entrypoint is the command entry point to run.",
+													MarkdownDescription: "Entrypoint is the command entry point to run.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"env": schema.ListNestedAttribute{
+													Description:         "Env defines additional environment variables.",
+													MarkdownDescription: "Env defines additional environment variables.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"outputs": schema.ListNestedAttribute{
+													Description:         "Outputs defines output bindings.",
+													MarkdownDescription: "Outputs defines output bindings.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"match": schema.MapAttribute{
+																Description:         "Match defines the matching statement.",
+																MarkdownDescription: "Match defines the matching statement.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"skip_log_output": schema.BoolAttribute{
+													Description:         "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
+													MarkdownDescription: "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"delete": schema.SingleNestedAttribute{
+											Description:         "Delete represents a deletion operation.",
+											MarkdownDescription: "Delete represents a deletion operation.",
+											Attributes: map[string]schema.Attribute{
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"deletion_propagation_policy": schema.StringAttribute{
+													Description:         "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
+													MarkdownDescription: "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Orphan", "Background", "Foreground"),
+													},
+												},
+
+												"expect": schema.ListNestedAttribute{
+													Description:         "Expect defines a list of matched checks to validate the operation outcome.",
+													MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"check": schema.MapAttribute{
+																Description:         "Check defines the verification statement.",
+																MarkdownDescription: "Check defines the verification statement.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"match": schema.MapAttribute{
+																Description:         "Match defines the matching statement.",
+																MarkdownDescription: "Match defines the matching statement.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"file": schema.StringAttribute{
+													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
+													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ref": schema.SingleNestedAttribute{
+													Description:         "Ref determines objects to be deleted.",
+													MarkdownDescription: "Ref determines objects to be deleted.",
+													Attributes: map[string]schema.Attribute{
+														"api_version": schema.StringAttribute{
+															Description:         "API version of the referent.",
+															MarkdownDescription: "API version of the referent.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"kind": schema.StringAttribute{
+															Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+															MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "Label selector to match objects to delete",
+															MarkdownDescription: "Label selector to match objects to delete",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+															MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"template": schema.BoolAttribute{
+													Description:         "Template determines whether resources should be considered for templating.",
+													MarkdownDescription: "Template determines whether resources should be considered for templating.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"describe": schema.SingleNestedAttribute{
+											Description:         "Describe determines the resource describe collector to execute.",
+											MarkdownDescription: "Describe determines the resource describe collector to execute.",
+											Attributes: map[string]schema.Attribute{
+												"api_version": schema.StringAttribute{
+													Description:         "API version of the referent.",
+													MarkdownDescription: "API version of the referent.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"selector": schema.StringAttribute{
+													Description:         "Selector defines labels selector.",
+													MarkdownDescription: "Selector defines labels selector.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"show_events": schema.BoolAttribute{
+													Description:         "Show Events indicates whether to include related events.",
+													MarkdownDescription: "Show Events indicates whether to include related events.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"description": schema.StringAttribute{
+											Description:         "Description contains a description of the operation.",
+											MarkdownDescription: "Description contains a description of the operation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"events": schema.SingleNestedAttribute{
+											Description:         "Events determines the events collector to execute.",
+											MarkdownDescription: "Events determines the events collector to execute.",
+											Attributes: map[string]schema.Attribute{
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"format": schema.StringAttribute{
+													Description:         "Format determines the output format (json or yaml).",
+													MarkdownDescription: "Format determines the output format (json or yaml).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
+													},
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"selector": schema.StringAttribute{
+													Description:         "Selector defines labels selector.",
+													MarkdownDescription: "Selector defines labels selector.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"get": schema.SingleNestedAttribute{
+											Description:         "Get determines the resource get collector to execute.",
+											MarkdownDescription: "Get determines the resource get collector to execute.",
+											Attributes: map[string]schema.Attribute{
+												"api_version": schema.StringAttribute{
+													Description:         "API version of the referent.",
+													MarkdownDescription: "API version of the referent.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"format": schema.StringAttribute{
+													Description:         "Format determines the output format (json or yaml).",
+													MarkdownDescription: "Format determines the output format (json or yaml).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
+													},
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"selector": schema.StringAttribute{
+													Description:         "Selector defines labels selector.",
+													MarkdownDescription: "Selector defines labels selector.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"pod_logs": schema.SingleNestedAttribute{
+											Description:         "PodLogs determines the pod logs collector to execute.",
+											MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
+											Attributes: map[string]schema.Attribute{
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"container": schema.StringAttribute{
+													Description:         "Container in pod to get logs from else --all-containers is used.",
+													MarkdownDescription: "Container in pod to get logs from else --all-containers is used.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"selector": schema.StringAttribute{
+													Description:         "Selector defines labels selector.",
+													MarkdownDescription: "Selector defines labels selector.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"tail": schema.Int64Attribute{
+													Description:         "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
+													MarkdownDescription: "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"script": schema.SingleNestedAttribute{
+											Description:         "Script defines a script to run.",
+											MarkdownDescription: "Script defines a script to run.",
+											Attributes: map[string]schema.Attribute{
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"check": schema.MapAttribute{
+													Description:         "Check is an assertion tree to validate the operation outcome.",
+													MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"content": schema.StringAttribute{
+													Description:         "Content defines a shell script (run with 'sh -c ...').",
+													MarkdownDescription: "Content defines a shell script (run with 'sh -c ...').",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"env": schema.ListNestedAttribute{
+													Description:         "Env defines additional environment variables.",
+													MarkdownDescription: "Env defines additional environment variables.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"outputs": schema.ListNestedAttribute{
+													Description:         "Outputs defines output bindings.",
+													MarkdownDescription: "Outputs defines output bindings.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"match": schema.MapAttribute{
+																Description:         "Match defines the matching statement.",
+																MarkdownDescription: "Match defines the matching statement.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"skip_log_output": schema.BoolAttribute{
+													Description:         "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
+													MarkdownDescription: "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"sleep": schema.SingleNestedAttribute{
+											Description:         "Sleep defines zzzz.",
+											MarkdownDescription: "Sleep defines zzzz.",
+											Attributes: map[string]schema.Attribute{
+												"duration": schema.StringAttribute{
+													Description:         "Duration is the delay used for sleeping.",
+													MarkdownDescription: "Duration is the delay used for sleeping.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"wait": schema.SingleNestedAttribute{
+											Description:         "Wait determines the resource wait collector to execute.",
+											MarkdownDescription: "Wait determines the resource wait collector to execute.",
+											Attributes: map[string]schema.Attribute{
+												"api_version": schema.StringAttribute{
+													Description:         "API version of the referent.",
+													MarkdownDescription: "API version of the referent.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"for": schema.SingleNestedAttribute{
+													Description:         "For specifies the condition to wait for.",
+													MarkdownDescription: "For specifies the condition to wait for.",
+													Attributes: map[string]schema.Attribute{
+														"condition": schema.SingleNestedAttribute{
+															Description:         "Condition specifies the condition to wait for.",
+															MarkdownDescription: "Condition specifies the condition to wait for.",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name defines the specific condition to wait for, e.g., 'Available', 'Ready'.",
+																	MarkdownDescription: "Name defines the specific condition to wait for, e.g., 'Available', 'Ready'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value defines the specific condition status to wait for, e.g., 'True', 'False'.",
+																	MarkdownDescription: "Value defines the specific condition status to wait for, e.g., 'True', 'False'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"deletion": schema.MapAttribute{
+															Description:         "Deletion specifies parameters for waiting on a resource's deletion.",
+															MarkdownDescription: "Deletion specifies parameters for waiting on a resource's deletion.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"json_path": schema.SingleNestedAttribute{
+															Description:         "JsonPath specifies the json path condition to wait for.",
+															MarkdownDescription: "JsonPath specifies the json path condition to wait for.",
+															Attributes: map[string]schema.Attribute{
+																"path": schema.StringAttribute{
+																	Description:         "Path defines the json path to wait for, e.g. '{.status.phase}'.",
+																	MarkdownDescription: "Path defines the json path to wait for, e.g. '{.status.phase}'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value defines the expected value to wait for, e.g., 'Running'.",
+																	MarkdownDescription: "Value defines the expected value to wait for, e.g., 'Running'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"format": schema.StringAttribute{
+													Description:         "Format determines the output format (json or yaml).",
+													MarkdownDescription: "Format determines the output format (json or yaml).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(?:json|yaml|\(.+\))$`), ""),
+													},
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"selector": schema.StringAttribute{
+													Description:         "Selector defines labels selector.",
+													MarkdownDescription: "Selector defines labels selector.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
+													MarkdownDescription: "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

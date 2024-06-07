@@ -141,7 +141,15 @@ Optional:
 Optional:
 
 - `hub_connection_timeout_seconds` (Number) HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.
-- `secret_names` (List of String) SecretNames is a list of secret names. The secrets are in the same namespace where the agent controller runs.
+- `kube_config_secrets` (Attributes List) KubeConfigSecrets is a list of secret names. The secrets are in the same namespace where the agent controller runs. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config--kube_config_secrets))
+
+<a id="nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config--kube_config_secrets"></a>
+### Nested Schema for `spec.registration_configuration.bootstrap_kube_configs.local_secrets_config.kube_config_secrets`
+
+Optional:
+
+- `name` (String) Name is the name of the secret.
+
 
 
 

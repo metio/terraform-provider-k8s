@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -48,9 +49,22 @@ type AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1ManifestData struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"credential_ref" json:"credentialRef,omitempty"`
-		Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-		Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
-		Port     *int64  `tfsdk:"port" json:"port,omitempty"`
+		Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		FailureDomains *[]struct {
+			Cluster *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+				Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+			} `tfsdk:"cluster" json:"cluster,omitempty"`
+			Name    *string `tfsdk:"name" json:"name,omitempty"`
+			Subnets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+				Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+			} `tfsdk:"subnets" json:"subnets,omitempty"`
+		} `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
+		Insecure *bool  `tfsdk:"insecure" json:"insecure,omitempty"`
+		Port     *int64 `tfsdk:"port" json:"port,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -170,6 +184,104 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"failure_domains": schema.ListNestedAttribute{
+						Description:         "FailureDomains is the optional list of failure domains for the Nutanix Datacenter.",
+						MarkdownDescription: "FailureDomains is the optional list of failure domains for the Nutanix Datacenter.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"cluster": schema.SingleNestedAttribute{
+									Description:         "Cluster is the Prism Element cluster name or uuid that is connected to the Prism Central.",
+									MarkdownDescription: "Cluster is the Prism Element cluster name or uuid that is connected to the Prism Central.",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "name is the resource name in the PC",
+											MarkdownDescription: "name is the resource name in the PC",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Type is the identifier type to use for this resource.",
+											MarkdownDescription: "Type is the identifier type to use for this resource.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("uuid", "name"),
+											},
+										},
+
+										"uuid": schema.StringAttribute{
+											Description:         "uuid is the UUID of the resource in the PC.",
+											MarkdownDescription: "uuid is the UUID of the resource in the PC.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is the unique name of the failure domain. Name must be between 1 and 64 characters long. It must consist of only lower case alphanumeric characters and hyphens (-). It must start and end with an alphanumeric character.",
+									MarkdownDescription: "Name is the unique name of the failure domain. Name must be between 1 and 64 characters long. It must consist of only lower case alphanumeric characters and hyphens (-). It must start and end with an alphanumeric character.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(64),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+									},
+								},
+
+								"subnets": schema.ListNestedAttribute{
+									Description:         "Subnets holds the list of subnets identifiers cluster's network subnets.",
+									MarkdownDescription: "Subnets holds the list of subnets identifiers cluster's network subnets.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "name is the resource name in the PC",
+												MarkdownDescription: "name is the resource name in the PC",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "Type is the identifier type to use for this resource.",
+												MarkdownDescription: "Type is the identifier type to use for this resource.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("uuid", "name"),
+												},
+											},
+
+											"uuid": schema.StringAttribute{
+												Description:         "uuid is the UUID of the resource in the PC.",
+												MarkdownDescription: "uuid is the UUID of the resource in the PC.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"insecure": schema.BoolAttribute{

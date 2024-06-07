@@ -754,8 +754,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
-						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Description:         "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2129,8 +2129,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"persistent_volume": schema.SingleNestedAttribute{
-								Description:         "Storage - add persistent volume for cacheMounthPathits useful for persistent cacheuse storage instead of persistentVolume.",
-								MarkdownDescription: "Storage - add persistent volume for cacheMounthPathits useful for persistent cacheuse storage instead of persistentVolume.",
+								Description:         "Storage - add persistent volume for cacheMountPathits useful for persistent cacheuse storage instead of persistentVolume.",
+								MarkdownDescription: "Storage - add persistent volume for cacheMountPathits useful for persistent cacheuse storage instead of persistentVolume.",
 								Attributes: map[string]schema.Attribute{
 									"disable_mount_sub_path": schema.BoolAttribute{
 										Description:         "Deprecated: subPath usage will be disabled by default in a future release, this option will become unnecessary.DisableMountSubPath allows to remove any subPath usage in volume mounts.",

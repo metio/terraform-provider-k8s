@@ -80,11 +80,13 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 					Context    *string `tfsdk:"context" json:"context,omitempty"`
 					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
 				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Expect *[]struct {
+				DeletionPropagationPolicy *string `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
+				Expect                    *[]struct {
 					Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 				} `tfsdk:"expect" json:"expect,omitempty"`
-				Ref *struct {
+				File *string `tfsdk:"file" json:"file,omitempty"`
+				Ref  *struct {
 					ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
 					Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -104,7 +106,6 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource   *string `tfsdk:"resource" json:"resource,omitempty"`
 				Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
 				ShowEvents *bool   `tfsdk:"show_events" json:"showEvents,omitempty"`
 				Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -133,7 +134,6 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
 				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
 				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"get" json:"get,omitempty"`
@@ -199,7 +199,6 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
 				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
 				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"wait" json:"wait,omitempty"`
@@ -209,6 +208,7 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 			Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
 		} `tfsdk:"clusters" json:"clusters,omitempty"`
 		DelayBeforeCleanup          *string            `tfsdk:"delay_before_cleanup" json:"delayBeforeCleanup,omitempty"`
+		DeletionPropagationPolicy   *string            `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
 		ExcludeTestRegex            *string            `tfsdk:"exclude_test_regex" json:"excludeTestRegex,omitempty"`
 		FailFast                    *bool              `tfsdk:"fail_fast" json:"failFast,omitempty"`
 		ForceTerminationGracePeriod *string            `tfsdk:"force_termination_grace_period" json:"forceTerminationGracePeriod,omitempty"`
@@ -559,6 +559,17 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 											Computed: false,
 										},
 
+										"deletion_propagation_policy": schema.StringAttribute{
+											Description:         "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
+											MarkdownDescription: "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Orphan", "Background", "Foreground"),
+											},
+										},
+
 										"expect": schema.ListNestedAttribute{
 											Description:         "Expect defines a list of matched checks to validate the operation outcome.",
 											MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
@@ -588,9 +599,17 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 											Computed: false,
 										},
 
+										"file": schema.StringAttribute{
+											Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
+											MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"ref": schema.SingleNestedAttribute{
-											Description:         "ObjectReference determines objects to be deleted.",
-											MarkdownDescription: "ObjectReference determines objects to be deleted.",
+											Description:         "Ref determines objects to be deleted.",
+											MarkdownDescription: "Ref determines objects to be deleted.",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
 													Description:         "API version of the referent.",
@@ -633,8 +652,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 													Computed:            false,
 												},
 											},
-											Required: true,
-											Optional: false,
+											Required: false,
+											Optional: true,
 											Computed: false,
 										},
 
@@ -666,8 +685,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"api_version": schema.StringAttribute{
 											Description:         "API version of the referent.",
 											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -707,8 +726,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -723,14 +742,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"namespace": schema.StringAttribute{
 											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -865,8 +876,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"api_version": schema.StringAttribute{
 											Description:         "API version of the referent.",
 											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -917,8 +928,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -933,14 +944,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"namespace": schema.StringAttribute{
 											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1258,8 +1261,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"api_version": schema.StringAttribute{
 											Description:         "API version of the referent.",
 											MarkdownDescription: "API version of the referent.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -1378,8 +1381,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -1394,14 +1397,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"namespace": schema.StringAttribute{
 											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"resource": schema.StringAttribute{
-											Description:         "Resource name of the referent.",
-											MarkdownDescription: "Resource name of the referent.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1465,6 +1460,17 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"deletion_propagation_policy": schema.StringAttribute{
+						Description:         "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.",
+						MarkdownDescription: "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Orphan", "Background", "Foreground"),
+						},
 					},
 
 					"exclude_test_regex": schema.StringAttribute{

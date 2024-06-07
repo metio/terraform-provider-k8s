@@ -1100,6 +1100,7 @@ type LoggingBanzaicloudIoOutputV1Beta1ManifestData struct {
 				Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
 			} `tfsdk:"servers" json:"servers,omitempty"`
 			Slow_flush_log_threshold    *string `tfsdk:"slow_flush_log_threshold" json:"slow_flush_log_threshold,omitempty"`
+			Time_as_integer             *bool   `tfsdk:"time_as_integer" json:"time_as_integer,omitempty"`
 			Tls_allow_self_signed_cert  *bool   `tfsdk:"tls_allow_self_signed_cert" json:"tls_allow_self_signed_cert,omitempty"`
 			Tls_cert_logical_store_name *string `tfsdk:"tls_cert_logical_store_name" json:"tls_cert_logical_store_name,omitempty"`
 			Tls_cert_path               *struct {
@@ -10845,6 +10846,14 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"slow_flush_log_threshold": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_as_integer": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

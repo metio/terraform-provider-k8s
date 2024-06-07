@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 - `username` (String) Username to use for configuring the Connection.
 
 Optional:

@@ -79,7 +79,7 @@ Optional:
 - `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.
 - `target_labels` (List of String) TargetLabels transfers labels on the Kubernetes Node onto the target.
 - `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--tls_config))
-- `vm_scrape_params` (Attributes) VMScrapeParams defines VictoriaMetrics specific scrape parametrs (see [below for nested schema](#nestedatt--spec--vm_scrape_params))
+- `vm_scrape_params` (Attributes) VMScrapeParams defines VictoriaMetrics specific scrape parameters (see [below for nested schema](#nestedatt--spec--vm_scrape_params))
 
 <a id="nestedatt--spec--authorization"></a>
 ### Nested Schema for `spec.authorization`

@@ -43,13 +43,16 @@ type ResourcesTeleportDevTeleportGithubConnectorV3ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Api_endpoint_url *string `tfsdk:"api_endpoint_url" json:"api_endpoint_url,omitempty"`
-		Client_id        *string `tfsdk:"client_id" json:"client_id,omitempty"`
-		Client_secret    *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
-		Display          *string `tfsdk:"display" json:"display,omitempty"`
-		Endpoint_url     *string `tfsdk:"endpoint_url" json:"endpoint_url,omitempty"`
-		Redirect_url     *string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
-		Teams_to_roles   *[]struct {
+		Api_endpoint_url         *string `tfsdk:"api_endpoint_url" json:"api_endpoint_url,omitempty"`
+		Client_id                *string `tfsdk:"client_id" json:"client_id,omitempty"`
+		Client_redirect_settings *struct {
+			Allowed_https_hostnames *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
+		Client_secret  *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+		Display        *string `tfsdk:"display" json:"display,omitempty"`
+		Endpoint_url   *string `tfsdk:"endpoint_url" json:"endpoint_url,omitempty"`
+		Redirect_url   *string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
+		Teams_to_roles *[]struct {
 			Organization *string   `tfsdk:"organization" json:"organization,omitempty"`
 			Roles        *[]string `tfsdk:"roles" json:"roles,omitempty"`
 			Team         *string   `tfsdk:"team" json:"team,omitempty"`
@@ -148,6 +151,24 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Schema(_ context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"client_redirect_settings": schema.SingleNestedAttribute{
+						Description:         "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						MarkdownDescription: "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						Attributes: map[string]schema.Attribute{
+							"allowed_https_hostnames": schema.ListAttribute{
+								Description:         "a list of hostnames allowed for https client redirect URLs",
+								MarkdownDescription: "a list of hostnames allowed for https client redirect URLs",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"client_secret": schema.StringAttribute{

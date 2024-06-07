@@ -185,8 +185,8 @@ func (r *ClusterXK8SIoMachinePoolV1Beta1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)NOTE: No logic is implemented for this field and it currently has no behaviour.",
-						MarkdownDescription: "Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)NOTE: No logic is implemented for this field and it currently has no behaviour.",
+						Description:         "Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)",
+						MarkdownDescription: "Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

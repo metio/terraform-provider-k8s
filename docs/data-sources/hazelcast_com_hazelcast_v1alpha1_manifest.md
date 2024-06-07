@@ -63,6 +63,7 @@ Optional:
 - `cp_subsystem` (Attributes) CPSubsystem is the configuration of the Hazelcast CP Subsystem. (see [below for nested schema](#nestedatt--spec--cp_subsystem))
 - `custom_config_cm_name` (String) Name of the ConfigMap with the Hazelcast custom configuration. This configuration from the ConfigMap might be overridden by the Hazelcast CR configuration.
 - `durable_executor_services` (Attributes List) Durable Executor Service configurations, see https://docs.hazelcast.com/hazelcast/latest/computing/durable-executor-service (see [below for nested schema](#nestedatt--spec--durable_executor_services))
+- `env` (Attributes List) Env configuration of environment variables (see [below for nested schema](#nestedatt--spec--env))
 - `executor_services` (Attributes List) Java Executor Service configurations, see https://docs.hazelcast.com/hazelcast/latest/computing/executor-service (see [below for nested schema](#nestedatt--spec--executor_services))
 - `expose_externally` (Attributes) Configuration to expose Hazelcast cluster to external clients. (see [below for nested schema](#nestedatt--spec--expose_externally))
 - `high_availability_mode` (String) Configuration to create clusters resilient to node and zone failures
@@ -189,6 +190,81 @@ Optional:
 - `name` (String) The name of the executor service
 - `pool_size` (Number) The number of executor threads per member.
 - `user_code_namespace` (String) Name of the User Code Namespace applied to this instance
+
+
+<a id="nestedatt--spec--env"></a>
+### Nested Schema for `spec.env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--env--value_from))
+
+<a id="nestedatt--spec--env--value_from"></a>
+### Nested Schema for `spec.env.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--env--value_from--field_ref"></a>
+### Nested Schema for `spec.env.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.env.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 
 <a id="nestedatt--spec--executor_services"></a>

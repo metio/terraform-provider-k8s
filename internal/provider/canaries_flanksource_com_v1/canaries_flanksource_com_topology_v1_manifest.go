@@ -151,8 +151,9 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 			Type          *string            `tfsdk:"type" json:"type,omitempty"`
 			Types         *[]string          `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
-		Icon *string `tfsdk:"icon" json:"icon,omitempty"`
-		Id   *struct {
+		GroupByTag *string `tfsdk:"group_by_tag" json:"groupByTag,omitempty"`
+		Icon       *string `tfsdk:"icon" json:"icon,omitempty"`
+		Id         *struct {
 			Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
 			Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
 			JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
@@ -1105,6 +1106,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"group_by_tag": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"icon": schema.StringAttribute{

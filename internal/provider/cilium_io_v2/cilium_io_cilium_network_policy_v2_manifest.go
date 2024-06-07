@@ -110,6 +110,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					TrustedCA *string `tfsdk:"trusted_ca" json:"trustedCA,omitempty"`
 				} `tfsdk:"originating_tls" json:"originatingTLS,omitempty"`
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -220,6 +221,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -330,6 +332,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					TrustedCA *string `tfsdk:"trusted_ca" json:"trustedCA,omitempty"`
 				} `tfsdk:"originating_tls" json:"originatingTLS,omitempty"`
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -423,6 +426,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -508,6 +512,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					TrustedCA *string `tfsdk:"trusted_ca" json:"trustedCA,omitempty"`
 				} `tfsdk:"originating_tls" json:"originatingTLS,omitempty"`
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -618,6 +623,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -728,6 +734,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					TrustedCA *string `tfsdk:"trusted_ca" json:"trustedCA,omitempty"`
 				} `tfsdk:"originating_tls" json:"originatingTLS,omitempty"`
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -821,6 +828,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
+					EndPort  *int64  `tfsdk:"end_port" json:"endPort,omitempty"`
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
 					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
@@ -1391,9 +1399,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Ports is a list of L4 port/protocol",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
+														"end_port": schema.Int64Attribute{
+															Description:         "EndPort can only be an L4 port number.",
+															MarkdownDescription: "EndPort can only be an L4 port number.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(65535),
+															},
+														},
+
 														"port": schema.StringAttribute{
-															Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-															MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2180,9 +2200,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Ports is a list of L4 port/protocol",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
+														"end_port": schema.Int64Attribute{
+															Description:         "EndPort can only be an L4 port number.",
+															MarkdownDescription: "EndPort can only be an L4 port number.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(65535),
+															},
+														},
+
 														"port": schema.StringAttribute{
-															Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-															MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2961,9 +2993,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Ports is a list of L4 port/protocol",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
+														"end_port": schema.Int64Attribute{
+															Description:         "EndPort can only be an L4 port number.",
+															MarkdownDescription: "EndPort can only be an L4 port number.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(65535),
+															},
+														},
+
 														"port": schema.StringAttribute{
-															Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-															MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3640,9 +3684,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Ports is a list of L4 port/protocol",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
+														"end_port": schema.Int64Attribute{
+															Description:         "EndPort can only be an L4 port number.",
+															MarkdownDescription: "EndPort can only be an L4 port number.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(65535),
+															},
+														},
+
 														"port": schema.StringAttribute{
-															Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-															MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4254,9 +4310,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Ports is a list of L4 port/protocol",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"end_port": schema.Int64Attribute{
+																Description:         "EndPort can only be an L4 port number.",
+																MarkdownDescription: "EndPort can only be an L4 port number.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
+															},
+
 															"port": schema.StringAttribute{
-																Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-																MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5043,9 +5111,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Ports is a list of L4 port/protocol",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"end_port": schema.Int64Attribute{
+																Description:         "EndPort can only be an L4 port number.",
+																MarkdownDescription: "EndPort can only be an L4 port number.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
+															},
+
 															"port": schema.StringAttribute{
-																Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-																MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5824,9 +5904,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Ports is a list of L4 port/protocol",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"end_port": schema.Int64Attribute{
+																Description:         "EndPort can only be an L4 port number.",
+																MarkdownDescription: "EndPort can only be an L4 port number.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
+															},
+
 															"port": schema.StringAttribute{
-																Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-																MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6503,9 +6595,21 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Ports is a list of L4 port/protocol",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"end_port": schema.Int64Attribute{
+																Description:         "EndPort can only be an L4 port number.",
+																MarkdownDescription: "EndPort can only be an L4 port number.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
+															},
+
 															"port": schema.StringAttribute{
-																Description:         "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
-																MarkdownDescription: "Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,

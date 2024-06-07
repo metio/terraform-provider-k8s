@@ -46,6 +46,7 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 
 	Spec *struct {
 		AdditionalVolumes *[]struct {
+			IsSubPathExpr    *bool              `tfsdk:"is_sub_path_expr" json:"isSubPathExpr,omitempty"`
 			MountPath        *string            `tfsdk:"mount_path" json:"mountPath,omitempty"`
 			Name             *string            `tfsdk:"name" json:"name,omitempty"`
 			SubPath          *string            `tfsdk:"sub_path" json:"subPath,omitempty"`
@@ -219,8 +220,9 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 		UsersWithInPlaceSecretRotation *[]string            `tfsdk:"users_with_in_place_secret_rotation" json:"usersWithInPlaceSecretRotation,omitempty"`
 		UsersWithSecretRotation        *[]string            `tfsdk:"users_with_secret_rotation" json:"usersWithSecretRotation,omitempty"`
 		Volume                         *struct {
-			Iops     *int64 `tfsdk:"iops" json:"iops,omitempty"`
-			Selector *struct {
+			Iops          *int64 `tfsdk:"iops" json:"iops,omitempty"`
+			IsSubPathExpr *bool  `tfsdk:"is_sub_path_expr" json:"isSubPathExpr,omitempty"`
+			Selector      *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -318,6 +320,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"is_sub_path_expr": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"mount_path": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1617,6 +1627,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"iops": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"is_sub_path_expr": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

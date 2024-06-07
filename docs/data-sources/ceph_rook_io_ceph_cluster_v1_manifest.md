@@ -421,6 +421,15 @@ Optional:
 
 - `enabled` (Boolean) Enabled determines whether a module should be enabled or not
 - `name` (String) Name is the name of the ceph manager module
+- `settings` (Attributes) Settings to further configure the module (see [below for nested schema](#nestedatt--spec--mgr--modules--settings))
+
+<a id="nestedatt--spec--mgr--modules--settings"></a>
+### Nested Schema for `spec.mgr.modules.settings`
+
+Optional:
+
+- `balancer_mode` (String) BalancerMode sets the 'balancer' module with different modes like 'upmap', 'crush-compact' etc
+
 
 
 
@@ -884,11 +893,14 @@ Optional:
 
 Optional:
 
+- `backfill_full_ratio` (Number) BackfillFullRatio is the ratio at which the cluster is too full for backfill. Backfill will be disabled if above this threshold. Default is 0.90.
 - `config` (Map of String)
 - `device_filter` (String) A regular expression to allow more fine-grained selection of devices on nodes across the cluster
 - `device_path_filter` (String) A regular expression to allow more fine-grained selection of devices with path names
 - `devices` (Map of String) List of devices to use as storage devices
 - `flapping_restart_interval_hours` (Number) FlappingRestartIntervalHours defines the time for which the OSD pods, that failed with zero exit code, will sleep before restarting.This is needed for OSD flapping where OSD daemons are marked down more than 5 times in 600 seconds by Ceph.Preventing the OSD pods to restart immediately in such scenarios will prevent Rook from marking OSD as 'up' and thuspeering of the PGs mapped to the OSD.User needs to manually restart the OSD pod if they manage to fix the underlying OSD flapping issue before the restart interval.The sleep will be disabled if this interval is set to 0.
+- `full_ratio` (Number) FullRatio is the ratio at which the cluster is considered full and ceph will stop accepting writes. Default is 0.95.
+- `near_full_ratio` (Number) NearFullRatio is the ratio at which the cluster is considered nearly full and will raise a ceph health warning. Default is 0.85.
 - `nodes` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--nodes))
 - `only_apply_osd_placement` (Boolean)
 - `storage_class_device_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets))

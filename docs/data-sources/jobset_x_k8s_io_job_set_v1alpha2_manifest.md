@@ -70,6 +70,21 @@ Optional:
 Optional:
 
 - `max_restarts` (Number) MaxRestarts defines the limit on the number of JobSet restarts.A restart is achieved by recreating all active child jobs.
+- `rules` (Attributes List) List of failure policy rules for this JobSet.For a given Job failure, the rules will be evaluated in order,and only the first matching rule will be executed.If no matching rule is found, the RestartJobSet action is applied. (see [below for nested schema](#nestedatt--spec--failure_policy--rules))
+
+<a id="nestedatt--spec--failure_policy--rules"></a>
+### Nested Schema for `spec.failure_policy.rules`
+
+Required:
+
+- `action` (String) The action to take if the rule is matched.
+- `name` (String) The name of the failure policy rule.The name is defaulted to 'failurePolicyRuleN' where N is the index of the failure policy rule.The name must match the regular expression '^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$'.
+- `on_job_failure_reasons` (List of String) The requirement on the job failure reasons. The requirementis satisfied if at least one reason matches the list.The rules are evaluated in order, and the first matchingrule is executed.An empty list applies the rule to any job failure reason.
+
+Optional:
+
+- `target_replicated_jobs` (List of String) TargetReplicatedJobs are the names of the replicated jobs the operator applies to.An empty list will apply to all replicatedJobs.
+
 
 
 <a id="nestedatt--spec--network"></a>

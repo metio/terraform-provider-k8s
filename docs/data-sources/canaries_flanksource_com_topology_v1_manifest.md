@@ -57,6 +57,7 @@ Optional:
 
 - `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--components))
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--configs))
+- `group_by_tag` (String)
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--id))
 - `label` (String)

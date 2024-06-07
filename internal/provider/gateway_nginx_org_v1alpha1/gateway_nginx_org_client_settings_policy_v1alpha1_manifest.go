@@ -236,8 +236,8 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: Gateway, HTTPRoute",
-						MarkdownDescription: "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: Gateway, HTTPRoute",
+						Description:         "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: Gateway, HTTPRoute, GRPCRoute.",
+						MarkdownDescription: "TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: Gateway, HTTPRoute, GRPCRoute.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",

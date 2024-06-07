@@ -8589,8 +8589,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"database": schema.StringAttribute{
-						Description:         "Database is the database to be created on bootstrap.",
-						MarkdownDescription: "Database is the database to be created on bootstrap.",
+						Description:         "Database is the initial database to be created by the operator once MariaDB is ready.",
+						MarkdownDescription: "Database is the initial database to be created by the operator once MariaDB is ready.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -13489,8 +13489,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"client_password_secret_key_ref": schema.SingleNestedAttribute{
-										Description:         "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
-										MarkdownDescription: "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
+										Description:         "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+										MarkdownDescription: "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 										Attributes: map[string]schema.Attribute{
 											"generate": schema.BoolAttribute{
 												Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -13554,8 +13554,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"metrics_password_secret_key_ref": schema.SingleNestedAttribute{
-										Description:         "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
-										MarkdownDescription: "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
+										Description:         "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+										MarkdownDescription: "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 										Attributes: map[string]schema.Attribute{
 											"generate": schema.BoolAttribute{
 												Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -13611,8 +13611,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"monitor_password_secret_key_ref": schema.SingleNestedAttribute{
-										Description:         "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
-										MarkdownDescription: "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
+										Description:         "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+										MarkdownDescription: "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 										Attributes: map[string]schema.Attribute{
 											"generate": schema.BoolAttribute{
 												Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -13668,8 +13668,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"server_password_secret_key_ref": schema.SingleNestedAttribute{
-										Description:         "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
-										MarkdownDescription: "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
+										Description:         "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+										MarkdownDescription: "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 										Attributes: map[string]schema.Attribute{
 											"generate": schema.BoolAttribute{
 												Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -13725,8 +13725,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"sync_password_secret_key_ref": schema.SingleNestedAttribute{
-										Description:         "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
-										MarkdownDescription: "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
+										Description:         "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+										MarkdownDescription: "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 										Attributes: map[string]schema.Attribute{
 											"generate": schema.BoolAttribute{
 												Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -27299,8 +27299,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"password_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter.",
-								MarkdownDescription: "PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter.",
+								Description:         "PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+								MarkdownDescription: "PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 								Attributes: map[string]schema.Attribute{
 									"generate": schema.BoolAttribute{
 										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -27394,16 +27394,16 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"my_cnf": schema.StringAttribute{
-						Description:         "MyCnf allows to specify the my.cnf file mounted by Mariadb.",
-						MarkdownDescription: "MyCnf allows to specify the my.cnf file mounted by Mariadb.",
+						Description:         "MyCnf allows to specify the my.cnf file mounted by Mariadb.Updating this field will trigger an update to the Mariadb resource.",
+						MarkdownDescription: "MyCnf allows to specify the my.cnf file mounted by Mariadb.Updating this field will trigger an update to the Mariadb resource.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"my_cnf_config_map_key_ref": schema.SingleNestedAttribute{
-						Description:         "MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with reference to a ConfigMap with the contents of the MyCnf field.",
-						MarkdownDescription: "MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with reference to a ConfigMap with the contents of the MyCnf field.",
+						Description:         "MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with a reference to a ConfigMap containing the MyCnf field.If the referred ConfigMap is labeled with 'k8s.mariadb.com/watch', an update to the Mariadb resource will be triggered when the ConfigMap is updated.",
+						MarkdownDescription: "MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with a reference to a ConfigMap containing the MyCnf field.If the referred ConfigMap is labeled with 'k8s.mariadb.com/watch', an update to the Mariadb resource will be triggered when the ConfigMap is updated.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key to select.",
@@ -27444,8 +27444,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap.",
-						MarkdownDescription: "PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap.",
+						Description:         "PasswordSecretKeyRef is a reference to a Secret that contains the password for the initial user.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to a Secret that contains the password for the initial user.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						Attributes: map[string]schema.Attribute{
 							"generate": schema.BoolAttribute{
 								Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -30405,12 +30405,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"update_strategy": schema.SingleNestedAttribute{
-						Description:         "PodDisruptionBudget defines the update strategy for the StatefulSet object.",
-						MarkdownDescription: "PodDisruptionBudget defines the update strategy for the StatefulSet object.",
+						Description:         "UpdateStrategy defines how a MariaDB resource is updated.",
+						MarkdownDescription: "UpdateStrategy defines how a MariaDB resource is updated.",
 						Attributes: map[string]schema.Attribute{
 							"rolling_update": schema.SingleNestedAttribute{
-								Description:         "RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.",
-								MarkdownDescription: "RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.",
+								Description:         "RollingUpdate defines parameters for the RollingUpdate type.",
+								MarkdownDescription: "RollingUpdate defines parameters for the RollingUpdate type.",
 								Attributes: map[string]schema.Attribute{
 									"max_unavailable": schema.StringAttribute{
 										Description:         "The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding up. This can not be 0.Defaults to 1. This field is alpha-level and is only honored by servers that enable theMaxUnavailableStatefulSet feature. The field applies to all pods in the range 0 toReplicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, itwill be counted towards MaxUnavailable.",
@@ -30434,11 +30434,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type indicates the type of the StatefulSetUpdateStrategy.Default is RollingUpdate.",
-								MarkdownDescription: "Type indicates the type of the StatefulSetUpdateStrategy.Default is RollingUpdate.",
+								Description:         "Type defines the type of updates. One of 'ReplicasFirstPrimaryLast', 'RollingUpdate' or 'OnDelete'. If not defined, it defaults to 'ReplicasFirstPrimaryLast'.",
+								MarkdownDescription: "Type defines the type of updates. One of 'ReplicasFirstPrimaryLast', 'RollingUpdate' or 'OnDelete'. If not defined, it defaults to 'ReplicasFirstPrimaryLast'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("ReplicasFirstPrimaryLast", "RollingUpdate", "OnDelete"),
+								},
 							},
 						},
 						Required: false,
@@ -30447,8 +30450,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "Username is the username of the initial user created on bootstrap.",
-						MarkdownDescription: "Username is the username of the initial user created on bootstrap.",
+						Description:         "Username is the initial username to be created by the operator once MariaDB is ready. It has all privileges on the initial database.",
+						MarkdownDescription: "Username is the initial username to be created by the operator once MariaDB is ready. It has all privileges on the initial database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

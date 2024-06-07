@@ -716,8 +716,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
-						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Description:         "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1456,8 +1456,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"no_align_flush_to_interval": schema.BoolAttribute{
-											Description:         "NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
-											MarkdownDescription: "NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
+											Description:         "NoAlignFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
+											MarkdownDescription: "NoAlignFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

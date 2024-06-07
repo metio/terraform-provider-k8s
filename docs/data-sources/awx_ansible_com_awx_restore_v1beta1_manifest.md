@@ -75,6 +75,7 @@ Optional:
 - `postgres_label_selector` (String) Label selector used to identify postgres pod for backing up data
 - `restore_resource_requirements` (Attributes) Resource requirements for the management pod that restores AWX from a backup (see [below for nested schema](#nestedatt--spec--restore_resource_requirements))
 - `set_self_labels` (Boolean) Maintain some of the recommended 'app.kubernetes.io/*' labels on the resource (self)
+- `spec_overrides` (Map of String) Overrides for the AWX spec
 
 <a id="nestedatt--spec--restore_resource_requirements"></a>
 ### Nested Schema for `spec.restore_resource_requirements`

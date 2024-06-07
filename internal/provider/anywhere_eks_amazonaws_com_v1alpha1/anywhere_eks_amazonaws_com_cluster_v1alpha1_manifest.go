@@ -83,8 +83,9 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 			Endpoint           *struct {
 				Host *string `tfsdk:"host" json:"host,omitempty"`
 			} `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			MachineGroupRef *struct {
+			KubeletConfiguration *map[string]string `tfsdk:"kubelet_configuration" json:"kubeletConfiguration,omitempty"`
+			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			MachineGroupRef      *struct {
 				Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"machine_group_ref" json:"machineGroupRef,omitempty"`
@@ -197,10 +198,11 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 				MaxCount *int64 `tfsdk:"max_count" json:"maxCount,omitempty"`
 				MinCount *int64 `tfsdk:"min_count" json:"minCount,omitempty"`
 			} `tfsdk:"autoscaling_configuration" json:"autoscalingConfiguration,omitempty"`
-			Count             *int64             `tfsdk:"count" json:"count,omitempty"`
-			KubernetesVersion *string            `tfsdk:"kubernetes_version" json:"kubernetesVersion,omitempty"`
-			Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			MachineGroupRef   *struct {
+			Count                *int64             `tfsdk:"count" json:"count,omitempty"`
+			KubeletConfiguration *map[string]string `tfsdk:"kubelet_configuration" json:"kubeletConfiguration,omitempty"`
+			KubernetesVersion    *string            `tfsdk:"kubernetes_version" json:"kubernetesVersion,omitempty"`
+			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			MachineGroupRef      *struct {
 				Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"machine_group_ref" json:"machineGroupRef,omitempty"`
@@ -553,6 +555,15 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"kubelet_configuration": schema.MapAttribute{
+								Description:         "KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on control plane nodes.",
+								MarkdownDescription: "KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on control plane nodes.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"labels": schema.MapAttribute{
@@ -1304,9 +1315,18 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 									Computed:            false,
 								},
 
+								"kubelet_configuration": schema.MapAttribute{
+									Description:         "KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on worker nodes.",
+									MarkdownDescription: "KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on worker nodes.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"kubernetes_version": schema.StringAttribute{
-									Description:         "KuberenetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.",
-									MarkdownDescription: "KuberenetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.",
+									Description:         "KubernetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.",
+									MarkdownDescription: "KubernetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -62,6 +62,7 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
 - `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP Endpoint.
 - `prefix` (String) Prefix to use for server-side filtering of files in the Bucket.
@@ -85,6 +86,14 @@ Optional:
 
 - `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
+
+
+<a id="nestedatt--spec--cert_secret_ref"></a>
+### Nested Schema for `spec.cert_secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
 
 
 <a id="nestedatt--spec--secret_ref"></a>

@@ -247,8 +247,8 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.",
-						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",

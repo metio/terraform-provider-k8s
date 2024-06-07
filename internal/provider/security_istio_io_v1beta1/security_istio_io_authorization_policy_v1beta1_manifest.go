@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -481,22 +482,35 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
 							},
 
 							"kind": schema.StringAttribute{
 								Description:         "kind is kind of the target resource.",
 								MarkdownDescription: "kind is kind of the target resource.",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+								},
 							},
 
 							"name": schema.StringAttribute{
 								Description:         "name is the name of the target resource.",
 								MarkdownDescription: "name is the name of the target resource.",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"namespace": schema.StringAttribute{
@@ -523,22 +537,35 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(253),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+									},
 								},
 
 								"kind": schema.StringAttribute{
 									Description:         "kind is kind of the target resource.",
 									MarkdownDescription: "kind is kind of the target resource.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(63),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+									},
 								},
 
 								"name": schema.StringAttribute{
 									Description:         "name is the name of the target resource.",
 									MarkdownDescription: "name is the name of the target resource.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(253),
+									},
 								},
 
 								"namespace": schema.StringAttribute{

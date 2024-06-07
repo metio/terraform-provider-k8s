@@ -59,14 +59,14 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef identifies an API object to apply the policy to.Object must be in the same namespace as the policy.Support: HTTPRoute (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_refs` (Attributes List) TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute (see [below for nested schema](#nestedatt--spec--target_refs))
 
 Optional:
 
 - `tracing` (Attributes) Tracing allows for enabling and configuring tracing. (see [below for nested schema](#nestedatt--spec--tracing))
 
-<a id="nestedatt--spec--target_ref"></a>
-### Nested Schema for `spec.target_ref`
+<a id="nestedatt--spec--target_refs"></a>
+### Nested Schema for `spec.target_refs`
 
 Required:
 
@@ -85,7 +85,7 @@ Required:
 Optional:
 
 - `context` (String) Context specifies how to propagate traceparent/tracestate headers.Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context
-- `ratio` (Number) Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.
+- `ratio` (Number) Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.
 - `span_attributes` (Attributes List) SpanAttributes are custom key/value attributes that are added to each span. (see [below for nested schema](#nestedatt--spec--tracing--span_attributes))
 - `span_name` (String) SpanName defines the name of the Otel span. By default is the name of the location for a request.If specified, applies to all locations that are created for a route.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''Examples of invalid names: some-$value, quoted-'value'-name, unescaped
 

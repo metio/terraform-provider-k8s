@@ -92,7 +92,7 @@ Optional:
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `override_honor_labels` (Boolean) OverrideHonorLabels if set to true overrides all user configured honor_labels.If HonorLabels is set in ServiceScrape or PodScrape to true, this overrides honor_labels to false.
 - `override_honor_timestamps` (Boolean) OverrideHonorTimestamps allows to globally enforce honoring timestamps in all scrape configs.
-- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the vmagent pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `pod_scrape_namespace_selector` (Attributes) PodScrapeNamespaceSelector defines Namespaces to be selected for VMPodScrape discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_namespace_selector))
@@ -962,7 +962,7 @@ Optional:
 - `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the inputbefore aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
 - `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
 - `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector.If the match isn't set, then all the input time series are processed.
-- `no_align_flush_to_interval` (Boolean) NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.
+- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.
 - `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are appliedon the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
 - `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it.The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
 - `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series.See also By.If neither By nor Without are set, then the Outputs are calculatedindividually per each input time series.

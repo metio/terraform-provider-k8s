@@ -420,7 +420,11 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -486,12 +490,13 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
@@ -691,7 +696,11 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -757,12 +766,13 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -775,6 +785,7 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 		LogLevel                             *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
 		MaximumStartupDurationSeconds        *int64             `tfsdk:"maximum_startup_duration_seconds" json:"maximumStartupDurationSeconds,omitempty"`
 		MinReadySeconds                      *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		Mode                                 *string            `tfsdk:"mode" json:"mode,omitempty"`
 		NodeSelector                         *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		OverrideHonorLabels                  *bool              `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
 		OverrideHonorTimestamps              *bool              `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
@@ -986,7 +997,16 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 		RoutePrefix   *string `tfsdk:"route_prefix" json:"routePrefix,omitempty"`
 		SampleLimit   *int64  `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
 		ScrapeClasses *[]struct {
-			Default     *bool   `tfsdk:"default" json:"default,omitempty"`
+			Default           *bool `tfsdk:"default" json:"default,omitempty"`
+			MetricRelabelings *[]struct {
+				Action       *string   `tfsdk:"action" json:"action,omitempty"`
+				Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
+				Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
+				Replacement  *string   `tfsdk:"replacement" json:"replacement,omitempty"`
+				Separator    *string   `tfsdk:"separator" json:"separator,omitempty"`
+				SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
+			} `tfsdk:"metric_relabelings" json:"metricRelabelings,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			Relabelings *[]struct {
 				Action       *string   `tfsdk:"action" json:"action,omitempty"`
@@ -1055,6 +1075,10 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 		ScrapeTimeout   *string   `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
 		Secrets         *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 		SecurityContext *struct {
+			AppArmorProfile *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1274,12 +1298,13 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 		} `tfsdk:"tracing_config" json:"tracingConfig,omitempty"`
 		Version      *string `tfsdk:"version" json:"version,omitempty"`
 		VolumeMounts *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		Volumes *[]struct {
 			AwsElasticBlockStore *struct {
@@ -1759,8 +1784,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2052,8 +2077,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2061,8 +2086,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2219,8 +2244,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2228,8 +2253,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2386,8 +2411,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2395,8 +2420,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2553,8 +2578,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2562,8 +2587,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2678,8 +2703,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2736,8 +2761,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2769,8 +2794,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2839,8 +2864,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2872,8 +2897,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2922,8 +2947,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2955,8 +2980,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3017,8 +3042,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3161,8 +3186,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3252,8 +3277,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3293,8 +3318,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												MarkdownDescription: "The ConfigMap to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3326,8 +3351,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												MarkdownDescription: "The Secret to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4189,6 +4214,31 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Computed:            false,
 										},
 
+										"app_armor_profile": schema.SingleNestedAttribute{
+											Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+											Attributes: map[string]schema.Attribute{
+												"localhost_profile": schema.StringAttribute{
+													Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+													MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+													MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"capabilities": schema.SingleNestedAttribute{
 											Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
 											MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
@@ -4650,8 +4700,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+												Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+												MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4668,6 +4718,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											"read_only": schema.BoolAttribute{
 												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"recursive_read_only": schema.StringAttribute{
+												Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+												MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4931,8 +4989,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -5005,8 +5063,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5096,8 +5154,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5137,8 +5195,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												MarkdownDescription: "The ConfigMap to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5170,8 +5228,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												MarkdownDescription: "The Secret to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6033,6 +6091,31 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Computed:            false,
 										},
 
+										"app_armor_profile": schema.SingleNestedAttribute{
+											Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+											Attributes: map[string]schema.Attribute{
+												"localhost_profile": schema.StringAttribute{
+													Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+													MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+													MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"capabilities": schema.SingleNestedAttribute{
 											Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
 											MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
@@ -6494,8 +6577,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+												Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+												MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6512,6 +6595,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											"read_only": schema.BoolAttribute{
 												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"recursive_read_only": schema.StringAttribute{
+												Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+												MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6634,6 +6725,17 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"mode": schema.StringAttribute{
+						Description:         "Mode defines how the Prometheus operator deploys the PrometheusAgent pod(s).For now this field has no effect.(Alpha) Using this field requires the 'PrometheusAgentDaemonSet' feature gate to be enabled.",
+						MarkdownDescription: "Mode defines how the Prometheus operator deploys the PrometheusAgent pod(s).For now this field has no effect.(Alpha) Using this field requires the 'PrometheusAgentDaemonSet' feature gate to be enabled.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("StatefulSet", "DaemonSet"),
+						},
+					},
+
 					"node_selector": schema.MapAttribute{
 						Description:         "Defines on which Nodes the Pods are scheduled.",
 						MarkdownDescription: "Defines on which Nodes the Pods are scheduled.",
@@ -6728,8 +6830,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"pod_monitor_namespace_selector": schema.SingleNestedAttribute{
-						Description:         "Namespaces to match for PodMonitors discovery. An empty label selectormatches all namespaces. A null label selector matches the currentnamespace only.",
-						MarkdownDescription: "Namespaces to match for PodMonitors discovery. An empty label selectormatches all namespaces. A null label selector matches the currentnamespace only.",
+						Description:         "Namespaces to match for PodMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only.",
+						MarkdownDescription: "Namespaces to match for PodMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -7009,8 +7111,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7110,8 +7212,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7189,8 +7291,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7222,8 +7324,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7337,8 +7439,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7370,8 +7472,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7408,8 +7510,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7615,8 +7717,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7672,8 +7774,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7718,8 +7820,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7751,8 +7853,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7801,8 +7903,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7834,8 +7936,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7896,8 +7998,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8105,6 +8207,77 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									Computed:            false,
 								},
 
+								"metric_relabelings": schema.ListNestedAttribute{
+									Description:         "MetricRelabelings configures the relabeling rules to apply to all samples before ingestion.The Operator adds the scrape class metric relabelings defined here.Then the Operator adds the target-specific metric relabelings defined in ServiceMonitors, PodMonitors, Probes and ScrapeConfigs.Then the Operator adds namespace enforcement relabeling rule, specified in '.spec.enforcedNamespaceLabel'.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs",
+									MarkdownDescription: "MetricRelabelings configures the relabeling rules to apply to all samples before ingestion.The Operator adds the scrape class metric relabelings defined here.Then the Operator adds the target-specific metric relabelings defined in ServiceMonitors, PodMonitors, Probes and ScrapeConfigs.Then the Operator adds namespace enforcement relabeling rule, specified in '.spec.enforcedNamespaceLabel'.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"action": schema.StringAttribute{
+												Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+												MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
+												},
+											},
+
+											"modulus": schema.Int64Attribute{
+												Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+												MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"regex": schema.StringAttribute{
+												Description:         "Regular expression against which the extracted value is matched.",
+												MarkdownDescription: "Regular expression against which the extracted value is matched.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"replacement": schema.StringAttribute{
+												Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+												MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"separator": schema.StringAttribute{
+												Description:         "Separator is the string between concatenated SourceLabels.",
+												MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"source_labels": schema.ListAttribute{
+												Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"target_label": schema.StringAttribute{
+												Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name of the scrape class.",
 									MarkdownDescription: "Name of the scrape class.",
@@ -8208,8 +8381,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8241,8 +8414,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8291,8 +8464,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8324,8 +8497,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8386,8 +8559,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8577,6 +8750,31 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Description:         "SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.",
 						MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.",
 						Attributes: map[string]schema.Attribute{
+							"app_armor_profile": schema.SingleNestedAttribute{
+								Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+										MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+										MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"fs_group": schema.Int64Attribute{
 								Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
 								MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
@@ -8774,8 +8972,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"service_monitor_namespace_selector": schema.SingleNestedAttribute{
-						Description:         "Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector matches the currentnamespace only.",
-						MarkdownDescription: "Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector matches the currentnamespace only.",
+						Description:         "Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only.",
+						MarkdownDescription: "Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -9120,8 +9318,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"volume_attributes_class_name": schema.StringAttribute{
-														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9390,8 +9588,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"volume_attributes_class_name": schema.StringAttribute{
-												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9459,8 +9657,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"conditions": schema.ListNestedAttribute{
-												Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'ResizeStarted'.",
-												MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'ResizeStarted'.",
+												Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'Resizing'.",
+												MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'Resizing'.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"last_probe_time": schema.StringAttribute{
@@ -9494,8 +9692,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"reason": schema.StringAttribute{
-															Description:         "reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'ResizeStarted' that means the underlyingpersistent volume is being resized.",
-															MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'ResizeStarted' that means the underlyingpersistent volume is being resized.",
+															Description:         "reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'Resizing' that means the underlyingpersistent volume is being resized.",
+															MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'Resizing' that means the underlyingpersistent volume is being resized.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -9726,8 +9924,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"min_domains": schema.Int64Attribute{
-									Description:         "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-									MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+									Description:         "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
+									MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -9865,8 +10063,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9898,8 +10096,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9948,8 +10146,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9981,8 +10179,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10043,8 +10241,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10103,8 +10301,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+									Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+									MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -10121,6 +10319,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								"read_only": schema.BoolAttribute{
 									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
+									Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+									MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -10326,8 +10532,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10376,8 +10582,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connectto OpenStack.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10449,8 +10655,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10494,8 +10700,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10546,8 +10752,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+														Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -10849,8 +11055,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														},
 
 														"volume_attributes_class_name": schema.StringAttribute{
-															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -10980,8 +11186,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11236,8 +11442,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11537,8 +11743,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11567,8 +11773,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"field_ref": schema.SingleNestedAttribute{
-																			Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																			Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																			Attributes: map[string]schema.Attribute{
 																				"api_version": schema.StringAttribute{
 																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -11691,8 +11897,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11870,8 +12076,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11936,8 +12142,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -12086,8 +12292,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -12290,8 +12496,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12323,8 +12529,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12382,8 +12588,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12415,8 +12621,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12462,8 +12668,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

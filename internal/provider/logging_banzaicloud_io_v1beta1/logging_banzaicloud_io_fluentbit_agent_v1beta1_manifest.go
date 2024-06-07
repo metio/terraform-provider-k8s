@@ -673,6 +673,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Keepalive              *bool   `tfsdk:"keepalive" json:"keepalive,omitempty"`
 			KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
 			KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+			MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
 			SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
 		} `tfsdk:"network" json:"network,omitempty"`
 		NodeSelector         *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -772,6 +773,10 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		Security *struct {
 			PodSecurityContext *struct {
+				AppArmorProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -803,7 +808,11 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			RoleBasedAccessControlCreate *bool `tfsdk:"role_based_access_control_create" json:"roleBasedAccessControlCreate,omitempty"`
 			SecurityContext              *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -5252,6 +5261,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"max_worker_connections": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"source_address": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -5903,6 +5920,31 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"fs_group": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -6117,6 +6159,31 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"capabilities": schema.SingleNestedAttribute{

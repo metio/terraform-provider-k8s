@@ -55,5 +55,5 @@ Optional:
 
 Optional:
 
-- `max` (Map of String) Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations of successfully scheduled pods.
+- `max` (Map of String) Max is the set of desired max limits for each named resource. The usage of max is based on the resource configurations ofsuccessfully scheduled pods.
 - `min` (Map of String) Min is the set of desired guaranteed limits for each named resource.

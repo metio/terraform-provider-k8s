@@ -360,8 +360,8 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.",
-						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",

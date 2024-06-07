@@ -976,8 +976,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
-						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Description:         "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

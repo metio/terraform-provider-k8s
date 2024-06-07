@@ -1297,8 +1297,8 @@ func (r *OperatorVictoriametricsComVmpodScrapeV1Beta1Manifest) Schema(_ context.
 								},
 
 								"vm_scrape_params": schema.SingleNestedAttribute{
-									Description:         "VMScrapeParams defines VictoriaMetrics specific scrape parametrs",
-									MarkdownDescription: "VMScrapeParams defines VictoriaMetrics specific scrape parametrs",
+									Description:         "VMScrapeParams defines VictoriaMetrics specific scrape parameters",
+									MarkdownDescription: "VMScrapeParams defines VictoriaMetrics specific scrape parameters",
 									Attributes: map[string]schema.Attribute{
 										"disable_compression": schema.BoolAttribute{
 											Description:         "",

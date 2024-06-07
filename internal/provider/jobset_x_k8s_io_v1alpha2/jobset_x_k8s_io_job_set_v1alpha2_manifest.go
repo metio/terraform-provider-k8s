@@ -46,6 +46,12 @@ type JobsetXK8SIoJobSetV1Alpha2ManifestData struct {
 	Spec *struct {
 		FailurePolicy *struct {
 			MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
+			Rules       *[]struct {
+				Action               *string   `tfsdk:"action" json:"action,omitempty"`
+				Name                 *string   `tfsdk:"name" json:"name,omitempty"`
+				OnJobFailureReasons  *[]string `tfsdk:"on_job_failure_reasons" json:"onJobFailureReasons,omitempty"`
+				TargetReplicatedJobs *[]string `tfsdk:"target_replicated_jobs" json:"targetReplicatedJobs,omitempty"`
+			} `tfsdk:"rules" json:"rules,omitempty"`
 		} `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
 		ManagedBy *string `tfsdk:"managed_by" json:"managedBy,omitempty"`
 		Network   *struct {
@@ -1485,6 +1491,54 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"rules": schema.ListNestedAttribute{
+								Description:         "List of failure policy rules for this JobSet.For a given Job failure, the rules will be evaluated in order,and only the first matching rule will be executed.If no matching rule is found, the RestartJobSet action is applied.",
+								MarkdownDescription: "List of failure policy rules for this JobSet.For a given Job failure, the rules will be evaluated in order,and only the first matching rule will be executed.If no matching rule is found, the RestartJobSet action is applied.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"action": schema.StringAttribute{
+											Description:         "The action to take if the rule is matched.",
+											MarkdownDescription: "The action to take if the rule is matched.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("FailJobSet", "RestartJobSet", "RestartJobSetAndIgnoreMaxRestarts"),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "The name of the failure policy rule.The name is defaulted to 'failurePolicyRuleN' where N is the index of the failure policy rule.The name must match the regular expression '^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$'.",
+											MarkdownDescription: "The name of the failure policy rule.The name is defaulted to 'failurePolicyRuleN' where N is the index of the failure policy rule.The name must match the regular expression '^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"on_job_failure_reasons": schema.ListAttribute{
+											Description:         "The requirement on the job failure reasons. The requirementis satisfied if at least one reason matches the list.The rules are evaluated in order, and the first matchingrule is executed.An empty list applies the rule to any job failure reason.",
+											MarkdownDescription: "The requirement on the job failure reasons. The requirementis satisfied if at least one reason matches the list.The rules are evaluated in order, and the first matchingrule is executed.An empty list applies the rule to any job failure reason.",
+											ElementType:         types.StringType,
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"target_replicated_jobs": schema.ListAttribute{
+											Description:         "TargetReplicatedJobs are the names of the replicated jobs the operator applies to.An empty list will apply to all replicatedJobs.",
+											MarkdownDescription: "TargetReplicatedJobs are the names of the replicated jobs the operator applies to.An empty list will apply to all replicatedJobs.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

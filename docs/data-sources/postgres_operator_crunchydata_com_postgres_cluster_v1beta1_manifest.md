@@ -5754,6 +5754,8 @@ Optional:
 
 Optional:
 
+- `external_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
+- `internal_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
 - `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--service--metadata))
 - `node_port` (Number) The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `type` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
@@ -5849,6 +5851,8 @@ Optional:
 
 Optional:
 
+- `external_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
+- `internal_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
 - `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--replica_service--metadata))
 - `node_port` (Number) The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `type` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
@@ -5868,6 +5872,8 @@ Optional:
 
 Optional:
 
+- `external_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
+- `internal_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
 - `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--service--metadata))
 - `node_port` (Number) The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `type` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
@@ -6529,6 +6535,8 @@ Optional:
 
 Optional:
 
+- `external_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
+- `internal_traffic_policy` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies
 - `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--service--metadata))
 - `node_port` (Number) The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `type` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types

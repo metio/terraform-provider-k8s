@@ -68,6 +68,7 @@ Optional:
 - `custom_plugin` (Attributes) Custom plugin type (see [below for nested schema](#nestedatt--spec--outputs--custom_plugin))
 - `datadog` (Attributes) datadog plugin (see [below for nested schema](#nestedatt--spec--outputs--datadog))
 - `elasticsearch` (Attributes) out_es plugin (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch))
+- `elasticsearch_data_stream` (Attributes) out_es datastreams plugin (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream))
 - `format` (Attributes) format section (see [below for nested schema](#nestedatt--spec--outputs--format))
 - `forward` (Attributes) out_forward plugin (see [below for nested schema](#nestedatt--spec--outputs--forward))
 - `http` (Attributes) out_http plugin (see [below for nested schema](#nestedatt--spec--outputs--http))
@@ -320,6 +321,8 @@ Optional:
 - `client_cert` (String) Optional, Absolute path to client Certificate file
 - `client_key` (String) Optional, Absolute path to client private Key file
 - `client_key_password` (Attributes) Optional, password for ClientKey file (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--client_key_password))
+- `cloud_auth` (Attributes) Authenticate towards Elastic Cloud using cloudAuth. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_auth))
+- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_id))
 - `host` (String) The hostname of your Elasticsearch node (default: localhost).
 - `hosts` (String) Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes
 - `index_name` (String) IndexName defines the placeholder syntax of Fluentd plugin API. See https://docs.fluentd.org/configuration/buffer-section.
@@ -348,6 +351,64 @@ Optional:
 
 <a id="nestedatt--spec--outputs--elasticsearch--client_key_password--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.outputs.elasticsearch.client_key_password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_auth"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_auth`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_auth--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_auth--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_auth.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_auth--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_auth--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_auth.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_id"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_id`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_id--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_id--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_id.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_id--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch--cloud_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch.cloud_id.value_from.secret_key_ref`
 
 Required:
 
@@ -406,6 +467,176 @@ Optional:
 
 <a id="nestedatt--spec--outputs--elasticsearch--user--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.outputs.elasticsearch.user.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream`
+
+Required:
+
+- `data_stream_name` (String) You can specify Elasticsearch data stream name by this parameter. This parameter is mandatory for elasticsearch_data_stream
+
+Optional:
+
+- `ca_file` (String) Optional, Absolute path to CA certificate file
+- `client_cert` (String) Optional, Absolute path to client Certificate file
+- `client_key` (String) Optional, Absolute path to client private Key file
+- `client_key_password` (Attributes) Optional, password for ClientKey file (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password))
+- `cloud_auth` (Attributes) Authenticate towards Elastic Cloud using cloudAuth. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth))
+- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id))
+- `host` (String) The hostname of your Elasticsearch node (default: localhost).
+- `hosts` (String) Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes
+- `password` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--password))
+- `path` (String) Path defines the REST API endpoint of Elasticsearch to post write requests (default: nil).
+- `port` (Number) The port number of your Elasticsearch node (default: 9200).
+- `scheme` (String) Specify https if your Elasticsearch endpoint supports SSL (default: http).
+- `ssl_verify` (Boolean) Optional, Force certificate validation
+- `user` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--user))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.client_key_password`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.client_key_password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.client_key_password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_auth`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_auth.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_auth.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_id`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_id.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.cloud_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--password"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.password`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--password--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--password--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--user"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.user`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--user--value_from))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--user--value_from"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.user.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--user--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--outputs--elasticsearch_data_stream--user--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.outputs.elasticsearch_data_stream.user.value_from.secret_key_ref`
 
 Required:
 

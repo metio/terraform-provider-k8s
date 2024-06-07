@@ -261,10 +261,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -562,10 +563,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -883,10 +885,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -1131,10 +1134,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -1387,10 +1391,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -1688,10 +1693,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -2009,10 +2015,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 
@@ -2257,10 +2264,11 @@ Optional:
 
 Required:
 
-- `port` (String) Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form '1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `port` (String) Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.
 
 Optional:
 
+- `end_port` (Number) EndPort can only be an L4 port number.
 - `protocol` (String) Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.
 
 

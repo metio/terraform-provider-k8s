@@ -422,6 +422,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--dynamic_metadata_values--value))
@@ -525,6 +526,7 @@ Optional:
 - `address` (String)
 - `health_check_config` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--health_check_config))
 - `load_balancing_weight` (Number)
+- `metadata` (Map of String)
 - `port` (Number)
 - `upstream_ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config))
 
@@ -1069,6 +1071,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--dynamic_metadata_values--value))
@@ -1398,6 +1401,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--dynamic_metadata_values--value))
@@ -1555,6 +1559,7 @@ Optional:
 - `addr` (String)
 - `health_check_config` (Attributes) (see [below for nested schema](#nestedatt--spec--static--hosts--health_check_config))
 - `load_balancing_weight` (Number)
+- `metadata` (Map of String)
 - `port` (Number)
 - `sni_addr` (String)
 
@@ -1707,6 +1712,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--dynamic_metadata_values--value))

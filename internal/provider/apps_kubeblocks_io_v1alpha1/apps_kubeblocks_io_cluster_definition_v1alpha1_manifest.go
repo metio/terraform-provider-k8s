@@ -1493,6 +1493,7 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 			} `tfsdk:"service" json:"service,omitempty"`
 			ServiceRefDeclarations *[]struct {
 				Name                       *string `tfsdk:"name" json:"name,omitempty"`
+				Optional                   *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				ServiceRefDeclarationSpecs *[]struct {
 					ServiceKind    *string `tfsdk:"service_kind" json:"serviceKind,omitempty"`
 					ServiceVersion *string `tfsdk:"service_version" json:"serviceVersion,omitempty"`
@@ -1807,8 +1808,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"default_mode": schema.Int64Attribute{
-												Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-												MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+												MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -11394,8 +11395,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"default_mode": schema.Int64Attribute{
-												Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-												MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+												MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -11528,6 +11529,14 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 												MarkdownDescription: "Specifies the name of the ServiceRefDeclaration.",
 												Required:            true,
 												Optional:            false,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specifies whether the service reference can be optional.  For an optional service-ref, the component can still be created even if the service-ref is not provided.",
+												MarkdownDescription: "Specifies whether the service reference can be optional.  For an optional service-ref, the component can still be created even if the service-ref is not provided.",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 

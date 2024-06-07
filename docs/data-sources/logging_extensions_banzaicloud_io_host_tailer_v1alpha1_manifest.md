@@ -265,6 +265,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--file_tailers--container_overrides--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--file_tailers--container_overrides--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -275,6 +276,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--file_tailers--container_overrides--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--file_tailers--container_overrides--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--file_tailers--container_overrides--security_context--windows_options))
+
+<a id="nestedatt--spec--file_tailers--container_overrides--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.file_tailers.container_overrides.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--file_tailers--container_overrides--security_context--capabilities"></a>
 ### Nested Schema for `spec.file_tailers.container_overrides.security_context.capabilities`
@@ -332,6 +345,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -577,6 +591,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--systemd_tailers--container_overrides--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--systemd_tailers--container_overrides--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -587,6 +602,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--systemd_tailers--container_overrides--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--systemd_tailers--container_overrides--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--systemd_tailers--container_overrides--security_context--windows_options))
+
+<a id="nestedatt--spec--systemd_tailers--container_overrides--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.systemd_tailers.container_overrides.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--systemd_tailers--container_overrides--security_context--capabilities"></a>
 ### Nested Schema for `spec.systemd_tailers.container_overrides.security_context.capabilities`
@@ -644,6 +671,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1261,6 +1289,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1271,6 +1300,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--workload_overrides--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.workload_overrides.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--workload_overrides--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.workload_overrides.containers.security_context.capabilities`
@@ -1328,6 +1369,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1526,6 +1568,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1536,6 +1579,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--workload_overrides--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--workload_overrides--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.workload_overrides.init_containers.security_context.capabilities`
@@ -1593,6 +1648,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1603,6 +1659,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1613,6 +1670,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--windows_options))
+
+<a id="nestedatt--spec--workload_overrides--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.workload_overrides.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--workload_overrides--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.workload_overrides.security_context.se_linux_options`

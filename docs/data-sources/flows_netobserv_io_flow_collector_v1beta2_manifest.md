@@ -62,6 +62,7 @@ Optional:
 - `loki` (Attributes) 'loki', the flow store, client settings. (see [below for nested schema](#nestedatt--spec--loki))
 - `namespace` (String) Namespace where NetObserv pods are deployed.
 - `processor` (Attributes) 'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter. (see [below for nested schema](#nestedatt--spec--processor))
+- `prometheus` (Attributes) 'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin. (see [below for nested schema](#nestedatt--spec--prometheus))
 
 <a id="nestedatt--spec--agent"></a>
 ### Nested Schema for `spec.agent`
@@ -70,7 +71,7 @@ Optional:
 
 - `ebpf` (Attributes) 'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'eBPF'. (see [below for nested schema](#nestedatt--spec--agent--ebpf))
 - `ipfix` (Attributes) 'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'. (see [below for nested schema](#nestedatt--spec--agent--ipfix))
-- `type` (String) 'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.
+- `type` (String) 'type' [deprecated (*)] selects the flows tracing agent. Previously, this field allowed to select between 'eBPF' or 'IPFIX'.Only 'eBPF' is allowed now, so this field is deprecated and is planned for removal in a future version of the API.
 
 <a id="nestedatt--spec--agent--ebpf"></a>
 ### Nested Schema for `spec.agent.ebpf`
@@ -84,7 +85,7 @@ Optional:
 - `features` (List of String) List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>
 - `flow_filter` (Attributes) 'flowFilter' defines the eBPF agent configuration regarding flow filtering (see [below for nested schema](#nestedatt--spec--agent--ebpf--flow_filter))
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
-- `interfaces` (List of String) 'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
+- `interfaces` (List of String) 'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in 'excludeInterfaces'.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
 - `kafka_batch_size` (Number) 'kafkaBatchSize' limits the maximum size of a request in bytes before being sent to a partition. Ignored when not using Kafka. Default: 1MB.
 - `log_level` (String) 'logLevel' defines the log level for the NetObserv eBPF Agent
 - `metrics` (Attributes) 'metrics' defines the eBPF agent configuration regarding metrics (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics))
@@ -98,17 +99,17 @@ Optional:
 Optional:
 
 - `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
-- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling))
+- `scheduling` (Attributes) scheduling controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling))
 
 <a id="nestedatt--spec--agent--ebpf--advanced--scheduling"></a>
 ### Nested Schema for `spec.agent.ebpf.advanced.scheduling`
 
 Optional:
 
-- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity))
-- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
-- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--tolerations))
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity))
+- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
+- `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--tolerations))
 
 <a id="nestedatt--spec--agent--ebpf--advanced--scheduling--affinity"></a>
 ### Nested Schema for `spec.agent.ebpf.advanced.scheduling.affinity`
@@ -511,17 +512,17 @@ Optional:
 
 Optional:
 
-- `action` (String) Action defines the action to perform on the flows that match the filter.
-- `cidr` (String) CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64
-- `dest_ports` (String) DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.
-- `direction` (String) Direction defines the direction to filter flows by.
+- `action` (String) 'action' defines the action to perform on the flows that match the filter.
+- `cidr` (String) 'cidr' defines the IP CIDR to filter flows by.Examples: '10.10.10.0/24' or '100:100:100:100::/64'
+- `dest_ports` (String) 'destPorts' defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'destPorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'destPorts: '80-100''.
+- `direction` (String) 'direction' defines the direction to filter flows by.
 - `enable` (Boolean) Set 'enable' to 'true' to enable eBPF flow filtering feature.
-- `icmp_code` (Number) ICMPCode defines the ICMP code to filter flows by.
-- `icmp_type` (Number) ICMPType defines the ICMP type to filter flows by.
-- `peer_ip` (String) PeerIP defines the IP address to filter flows by.Example: 10.10.10.10
-- `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10
-- `protocol` (String) Protocol defines the protocol to filter flows by.
-- `source_ports` (String) SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.
+- `icmp_code` (Number) 'icmpCode' defines the ICMP code to filter flows by.
+- `icmp_type` (Number) 'icmpType' defines the ICMP type to filter flows by.
+- `peer_ip` (String) 'peerIP' defines the IP address to filter flows by.Example: '10.10.10.10'.
+- `ports` (String) 'ports' defines the ports to filter flows by, used both for source and destination ports.To filter a single port, set a single port as an integer value. For example: 'ports: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'ports: '80-100''.
+- `protocol` (String) 'protocol' defines the protocol to filter flows by.
+- `source_ports` (String) 'sourcePorts' defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'sourcePorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'sourcePorts: '80-100''.
 
 
 <a id="nestedatt--spec--agent--ebpf--metrics"></a>
@@ -530,7 +531,7 @@ Optional:
 Optional:
 
 - `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
-- `enable` (Boolean) Set 'enable' to 'true' to enable eBPF agent metrics collection.
+- `enable` (Boolean) Set 'enable' to 'false' to disable eBPF agent metrics collection. It is enabled by default.
 - `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server"></a>
@@ -538,7 +539,7 @@ Optional:
 
 Optional:
 
-- `port` (Number) The prometheus HTTP port
+- `port` (Number) The metrics server HTTP port
 - `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls))
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server--tls"></a>
@@ -652,17 +653,17 @@ Optional:
 - `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
 - `port` (Number) 'port' is the plugin service port. Do not use 9002, which is reserved for metrics.
 - `register` (Boolean) 'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''
-- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling))
+- `scheduling` (Attributes) scheduling controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling))
 
 <a id="nestedatt--spec--console_plugin--advanced--scheduling"></a>
 ### Nested Schema for `spec.console_plugin.advanced.scheduling`
 
 Optional:
 
-- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity))
-- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
-- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--tolerations))
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity))
+- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
+- `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--tolerations))
 
 <a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity"></a>
 ### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity`
@@ -1554,8 +1555,8 @@ Optional:
 Optional:
 
 - `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the Loki clients.This section is aimed mostly for debugging and fine-grained performance optimizations. (see [below for nested schema](#nestedatt--spec--loki--advanced))
-- `enable` (Boolean) Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.
-- `loki_stack` (Attributes) Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--loki_stack))
+- `enable` (Boolean) Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.
+- `loki_stack` (Attributes) Loki configuration for 'LokiStack' mode. This is useful for an easy Loki Operator configuration.It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--loki_stack))
 - `manual` (Attributes) Loki configuration for 'Manual' mode. This is the most flexible configuration.It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--manual))
 - `microservices` (Attributes) Loki configuration for 'Microservices' mode.Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode).It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--microservices))
 - `mode` (String) 'mode' must be set according to the installation mode of Loki:<br>- Use 'LokiStack' when Loki is managed using the Loki Operator<br>- Use 'Monolithic' when Loki is installed as a monolithic workload<br>- Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br>- Use 'Manual' if none of the options above match your setup<br>
@@ -1779,7 +1780,7 @@ Optional:
 - `metrics` (Attributes) 'Metrics' define the processor configuration regarding metrics (see [below for nested schema](#nestedatt--spec--processor--metrics))
 - `multi_cluster_deployment` (Boolean) Set 'multiClusterDeployment' to 'true' to enable multi clusters feature. This adds 'clusterName' label to flows data
 - `resources` (Attributes) 'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--processor--resources))
-- `subnet_labels` (Attributes) 'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'. (see [below for nested schema](#nestedatt--spec--processor--subnet_labels))
+- `subnet_labels` (Attributes) 'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift, which is used to identify cluster external traffic.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'. (see [below for nested schema](#nestedatt--spec--processor--subnet_labels))
 
 <a id="nestedatt--spec--processor--advanced"></a>
 ### Nested Schema for `spec.processor.advanced`
@@ -1795,17 +1796,17 @@ Optional:
 - `health_port` (Number) 'healthPort' is a collector HTTP port in the Pod that exposes the health check API
 - `port` (Number) Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.
 - `profile_port` (Number) 'profilePort' allows setting up a Go pprof profiler listening to this port
-- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling))
+- `scheduling` (Attributes) scheduling controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling))
 
 <a id="nestedatt--spec--processor--advanced--scheduling"></a>
 ### Nested Schema for `spec.processor.advanced.scheduling`
 
 Optional:
 
-- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity))
-- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
-- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--tolerations))
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity))
+- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
+- `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--tolerations))
 
 <a id="nestedatt--spec--processor--advanced--scheduling--affinity"></a>
 ### Nested Schema for `spec.processor.advanced.scheduling.affinity`
@@ -2476,7 +2477,7 @@ Optional:
 
 Optional:
 
-- `port` (Number) The prometheus HTTP port
+- `port` (Number) The metrics server HTTP port
 - `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls))
 
 <a id="nestedatt--spec--processor--metrics--server--tls"></a>
@@ -2548,3 +2549,65 @@ Optional:
 
 - `cidrs` (List of String) List of CIDRs, such as '['1.2.3.4/32']'.
 - `name` (String) Label name, used to flag matching flows.
+
+
+
+
+<a id="nestedatt--spec--prometheus"></a>
+### Nested Schema for `spec.prometheus`
+
+Optional:
+
+- `querier` (Attributes) Prometheus querying configuration, such as client settings, used in the Console plugin. (see [below for nested schema](#nestedatt--spec--prometheus--querier))
+
+<a id="nestedatt--spec--prometheus--querier"></a>
+### Nested Schema for `spec.prometheus.querier`
+
+Optional:
+
+- `enable` (Boolean) When 'enable' is 'true', the Console plugin queries flow metrics from Prometheus instead of Loki whenever possible.It is enbaled by default: set it to 'false' to disable this feature.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.
+- `manual` (Attributes) Prometheus configuration for 'Manual' mode. (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual))
+- `mode` (String) 'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>
+- `timeout` (String) 'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.
+
+<a id="nestedatt--spec--prometheus--querier--manual"></a>
+### Nested Schema for `spec.prometheus.querier.manual`
+
+Optional:
+
+- `forward_user_token` (Boolean) Set 'true' to forward logged in user token in queries to Prometheus
+- `tls` (Attributes) TLS client configuration for Prometheus URL. (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls))
+- `url` (String) 'url' is the address of an existing Prometheus service to use for querying metrics.
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls`
+
+Optional:
+
+- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls--ca_cert))
+- `enable` (Boolean) Enable TLS
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
+- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls--user_cert))
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls--ca_cert"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls.ca_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls--user_cert"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls.user_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'

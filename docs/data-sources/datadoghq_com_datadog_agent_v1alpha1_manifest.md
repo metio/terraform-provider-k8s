@@ -3185,9 +3185,19 @@ Optional:
 Optional:
 
 - `agent_communication_mode` (String) agentCommunicationMode corresponds to the mode used by the Datadog application libraries to communicate with the Agent. It can be 'hostip', 'service', or 'socket'.
+- `cws_instrumentation` (Attributes) CWSInstrumentation holds the CWS Instrumentation endpoint configuration (see [below for nested schema](#nestedatt--spec--cluster_agent--config--admission_controller--cws_instrumentation))
 - `enabled` (Boolean) Enable the admission controller to be able to inject APM/Dogstatsd config and standard tags (env, service, version) automatically into your pods.
 - `mutate_unlabelled` (Boolean) MutateUnlabelled enables injecting config without having the pod label 'admission.datadoghq.com/enabled='true''.
 - `service_name` (String) ServiceName corresponds to the webhook service name.
+
+<a id="nestedatt--spec--cluster_agent--config--admission_controller--cws_instrumentation"></a>
+### Nested Schema for `spec.cluster_agent.config.admission_controller.cws_instrumentation`
+
+Optional:
+
+- `enabled` (Boolean) Enable the CWS Instrumentation admission controller endpoint
+- `mode` (String) Mode defines how the CWS Instrumentation endpoint should behave. It can be 'init_container' or 'remote_copy'.
+
 
 
 <a id="nestedatt--spec--cluster_agent--config--confd"></a>

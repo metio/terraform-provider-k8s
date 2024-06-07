@@ -12299,13 +12299,13 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Schema(_ contex
 					},
 
 					"server_type": schema.StringAttribute{
-						Description:         "Server type: 'cassandra' or 'dse'",
-						MarkdownDescription: "Server type: 'cassandra' or 'dse'",
+						Description:         "Server type: 'cassandra', 'dse' or 'hcd'",
+						MarkdownDescription: "Server type: 'cassandra', 'dse' or 'hcd'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("cassandra", "dse"),
+							stringvalidator.OneOf("cassandra", "dse", "hcd"),
 						},
 					},
 
@@ -12316,7 +12316,7 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Schema(_ contex
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`(6\.8\.\d+)|(3\.11\.\d+)|(4\.\d+\.\d+)|(5\.\d+\.\d+)|(7\.\d+\.\d+)`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`(6\.[89]\.\d+)|(3\.11\.\d+)|(4\.\d+\.\d+)|(5\.\d+\.\d+)|(1\.\d+\.\d+)`), ""),
 						},
 					},
 

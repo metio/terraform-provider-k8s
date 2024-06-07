@@ -44,9 +44,35 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		Mirroring *struct {
+			HealthCheck *struct {
+				FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+				Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+				Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+				Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
+				Method          *string            `tfsdk:"method" json:"method,omitempty"`
+				Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+				Path            *string            `tfsdk:"path" json:"path,omitempty"`
+				Port            *int64             `tfsdk:"port" json:"port,omitempty"`
+				Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+				Status          *int64             `tfsdk:"status" json:"status,omitempty"`
+				Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
 			MaxBodySize *int64  `tfsdk:"max_body_size" json:"maxBodySize,omitempty"`
 			Mirrors     *[]struct {
+				HealthCheck *struct {
+					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method          *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path            *string            `tfsdk:"path" json:"path,omitempty"`
+					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -97,6 +123,19 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 		} `tfsdk:"mirroring" json:"mirroring,omitempty"`
 		Weighted *struct {
 			Services *[]struct {
+				HealthCheck *struct {
+					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method          *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path            *string            `tfsdk:"path" json:"path,omitempty"`
+					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -215,6 +254,104 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "Mirroring defines the Mirroring service configuration.",
 						MarkdownDescription: "Mirroring defines the Mirroring service configuration.",
 						Attributes: map[string]schema.Attribute{
+							"health_check": schema.SingleNestedAttribute{
+								Description:         "Healthcheck defines health checks for ExternalName services.",
+								MarkdownDescription: "Healthcheck defines health checks for ExternalName services.",
+								Attributes: map[string]schema.Attribute{
+									"follow_redirects": schema.BoolAttribute{
+										Description:         "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+										MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"headers": schema.MapAttribute{
+										Description:         "Headers defines custom headers to be sent to the health check endpoint.",
+										MarkdownDescription: "Headers defines custom headers to be sent to the health check endpoint.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"hostname": schema.StringAttribute{
+										Description:         "Hostname defines the value of hostname in the Host header of the health check request.",
+										MarkdownDescription: "Hostname defines the value of hostname in the Host header of the health check request.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"interval": schema.StringAttribute{
+										Description:         "Interval defines the frequency of the health check calls.Default: 30s",
+										MarkdownDescription: "Interval defines the frequency of the health check calls.Default: 30s",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"method": schema.StringAttribute{
+										Description:         "Method defines the healthcheck method.",
+										MarkdownDescription: "Method defines the healthcheck method.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"mode": schema.StringAttribute{
+										Description:         "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+										MarkdownDescription: "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "Path defines the server URL path for the health check endpoint.",
+										MarkdownDescription: "Path defines the server URL path for the health check endpoint.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.Int64Attribute{
+										Description:         "Port defines the server URL port for the health check endpoint.",
+										MarkdownDescription: "Port defines the server URL port for the health check endpoint.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "Scheme replaces the server URL scheme for the health check endpoint.",
+										MarkdownDescription: "Scheme replaces the server URL scheme for the health check endpoint.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"status": schema.Int64Attribute{
+										Description:         "Status defines the expected HTTP status code of the response to the health check request.",
+										MarkdownDescription: "Status defines the expected HTTP status code of the response to the health check request.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout": schema.StringAttribute{
+										Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+										MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"kind": schema.StringAttribute{
 								Description:         "Kind defines the kind of the Service.",
 								MarkdownDescription: "Kind defines the kind of the Service.",
@@ -239,6 +376,104 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"health_check": schema.SingleNestedAttribute{
+											Description:         "Healthcheck defines health checks for ExternalName services.",
+											MarkdownDescription: "Healthcheck defines health checks for ExternalName services.",
+											Attributes: map[string]schema.Attribute{
+												"follow_redirects": schema.BoolAttribute{
+													Description:         "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+													MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"headers": schema.MapAttribute{
+													Description:         "Headers defines custom headers to be sent to the health check endpoint.",
+													MarkdownDescription: "Headers defines custom headers to be sent to the health check endpoint.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"hostname": schema.StringAttribute{
+													Description:         "Hostname defines the value of hostname in the Host header of the health check request.",
+													MarkdownDescription: "Hostname defines the value of hostname in the Host header of the health check request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"interval": schema.StringAttribute{
+													Description:         "Interval defines the frequency of the health check calls.Default: 30s",
+													MarkdownDescription: "Interval defines the frequency of the health check calls.Default: 30s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"method": schema.StringAttribute{
+													Description:         "Method defines the healthcheck method.",
+													MarkdownDescription: "Method defines the healthcheck method.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mode": schema.StringAttribute{
+													Description:         "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+													MarkdownDescription: "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "Path defines the server URL path for the health check endpoint.",
+													MarkdownDescription: "Path defines the server URL path for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"port": schema.Int64Attribute{
+													Description:         "Port defines the server URL port for the health check endpoint.",
+													MarkdownDescription: "Port defines the server URL port for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"scheme": schema.StringAttribute{
+													Description:         "Scheme replaces the server URL scheme for the health check endpoint.",
+													MarkdownDescription: "Scheme replaces the server URL scheme for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"status": schema.Int64Attribute{
+													Description:         "Status defines the expected HTTP status code of the response to the health check request.",
+													MarkdownDescription: "Status defines the expected HTTP status code of the response to the health check request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+													MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"kind": schema.StringAttribute{
 											Description:         "Kind defines the kind of the Service.",
 											MarkdownDescription: "Kind defines the kind of the Service.",
@@ -588,6 +823,104 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"health_check": schema.SingleNestedAttribute{
+											Description:         "Healthcheck defines health checks for ExternalName services.",
+											MarkdownDescription: "Healthcheck defines health checks for ExternalName services.",
+											Attributes: map[string]schema.Attribute{
+												"follow_redirects": schema.BoolAttribute{
+													Description:         "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+													MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"headers": schema.MapAttribute{
+													Description:         "Headers defines custom headers to be sent to the health check endpoint.",
+													MarkdownDescription: "Headers defines custom headers to be sent to the health check endpoint.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"hostname": schema.StringAttribute{
+													Description:         "Hostname defines the value of hostname in the Host header of the health check request.",
+													MarkdownDescription: "Hostname defines the value of hostname in the Host header of the health check request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"interval": schema.StringAttribute{
+													Description:         "Interval defines the frequency of the health check calls.Default: 30s",
+													MarkdownDescription: "Interval defines the frequency of the health check calls.Default: 30s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"method": schema.StringAttribute{
+													Description:         "Method defines the healthcheck method.",
+													MarkdownDescription: "Method defines the healthcheck method.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mode": schema.StringAttribute{
+													Description:         "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+													MarkdownDescription: "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "Path defines the server URL path for the health check endpoint.",
+													MarkdownDescription: "Path defines the server URL path for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"port": schema.Int64Attribute{
+													Description:         "Port defines the server URL port for the health check endpoint.",
+													MarkdownDescription: "Port defines the server URL port for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"scheme": schema.StringAttribute{
+													Description:         "Scheme replaces the server URL scheme for the health check endpoint.",
+													MarkdownDescription: "Scheme replaces the server URL scheme for the health check endpoint.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"status": schema.Int64Attribute{
+													Description:         "Status defines the expected HTTP status code of the response to the health check request.",
+													MarkdownDescription: "Status defines the expected HTTP status code of the response to the health check request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"timeout": schema.StringAttribute{
+													Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+													MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"kind": schema.StringAttribute{
 											Description:         "Kind defines the kind of the Service.",
 											MarkdownDescription: "Kind defines the kind of the Service.",

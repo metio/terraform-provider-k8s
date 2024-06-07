@@ -199,6 +199,24 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"client_key_password" json:"clientKeyPassword,omitempty"`
+				CloudAuth *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"cloud_auth" json:"cloudAuth,omitempty"`
+				CloudId *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"cloud_id" json:"cloudId,omitempty"`
 				Host           *string `tfsdk:"host" json:"host,omitempty"`
 				Hosts          *string `tfsdk:"hosts" json:"hosts,omitempty"`
 				IndexName      *string `tfsdk:"index_name" json:"indexName,omitempty"`
@@ -227,6 +245,63 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"user" json:"user,omitempty"`
 			} `tfsdk:"elasticsearch" json:"elasticsearch,omitempty"`
+			ElasticsearchDataStream *struct {
+				CaFile            *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+				ClientCert        *string `tfsdk:"client_cert" json:"clientCert,omitempty"`
+				ClientKey         *string `tfsdk:"client_key" json:"clientKey,omitempty"`
+				ClientKeyPassword *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_key_password" json:"clientKeyPassword,omitempty"`
+				CloudAuth *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"cloud_auth" json:"cloudAuth,omitempty"`
+				CloudId *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"cloud_id" json:"cloudId,omitempty"`
+				DataStreamName *string `tfsdk:"data_stream_name" json:"dataStreamName,omitempty"`
+				Host           *string `tfsdk:"host" json:"host,omitempty"`
+				Hosts          *string `tfsdk:"hosts" json:"hosts,omitempty"`
+				Password       *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Path      *string `tfsdk:"path" json:"path,omitempty"`
+				Port      *int64  `tfsdk:"port" json:"port,omitempty"`
+				Scheme    *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SslVerify *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
+				User      *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"user" json:"user,omitempty"`
+			} `tfsdk:"elasticsearch_data_stream" json:"elasticsearchDataStream,omitempty"`
 			Format *struct {
 				Delimiter           *string `tfsdk:"delimiter" json:"delimiter,omitempty"`
 				Id                  *string `tfsdk:"id" json:"id,omitempty"`
@@ -1777,6 +1852,108 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed: false,
 										},
 
+										"cloud_auth": schema.SingleNestedAttribute{
+											Description:         "Authenticate towards Elastic Cloud using cloudAuth.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using cloudAuth.",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cloud_id": schema.SingleNestedAttribute{
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"host": schema.StringAttribute{
 											Description:         "The hostname of your Elasticsearch node (default: localhost).",
 											MarkdownDescription: "The hostname of your Elasticsearch node (default: localhost).",
@@ -1812,6 +1989,354 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"logstash_prefix": schema.StringAttribute{
 											Description:         "LogstashPrefix defines the logstash prefix index name to write events when logstash_format is true (default: logstash).",
 											MarkdownDescription: "LogstashPrefix defines the logstash prefix index name to write events when logstash_format is true (default: logstash).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"password": schema.SingleNestedAttribute{
+											Description:         "Optional, The login credentials to connect to Elasticsearch",
+											MarkdownDescription: "Optional, The login credentials to connect to Elasticsearch",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"path": schema.StringAttribute{
+											Description:         "Path defines the REST API endpoint of Elasticsearch to post write requests (default: nil).",
+											MarkdownDescription: "Path defines the REST API endpoint of Elasticsearch to post write requests (default: nil).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"port": schema.Int64Attribute{
+											Description:         "The port number of your Elasticsearch node (default: 9200).",
+											MarkdownDescription: "The port number of your Elasticsearch node (default: 9200).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(1),
+												int64validator.AtMost(65535),
+											},
+										},
+
+										"scheme": schema.StringAttribute{
+											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ssl_verify": schema.BoolAttribute{
+											Description:         "Optional, Force certificate validation",
+											MarkdownDescription: "Optional, Force certificate validation",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"user": schema.SingleNestedAttribute{
+											Description:         "Optional, The login credentials to connect to Elasticsearch",
+											MarkdownDescription: "Optional, The login credentials to connect to Elasticsearch",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"elasticsearch_data_stream": schema.SingleNestedAttribute{
+									Description:         "out_es datastreams plugin",
+									MarkdownDescription: "out_es datastreams plugin",
+									Attributes: map[string]schema.Attribute{
+										"ca_file": schema.StringAttribute{
+											Description:         "Optional, Absolute path to CA certificate file",
+											MarkdownDescription: "Optional, Absolute path to CA certificate file",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"client_cert": schema.StringAttribute{
+											Description:         "Optional, Absolute path to client Certificate file",
+											MarkdownDescription: "Optional, Absolute path to client Certificate file",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"client_key": schema.StringAttribute{
+											Description:         "Optional, Absolute path to client private Key file",
+											MarkdownDescription: "Optional, Absolute path to client private Key file",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"client_key_password": schema.SingleNestedAttribute{
+											Description:         "Optional, password for ClientKey file",
+											MarkdownDescription: "Optional, password for ClientKey file",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cloud_auth": schema.SingleNestedAttribute{
+											Description:         "Authenticate towards Elastic Cloud using cloudAuth.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using cloudAuth.",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cloud_id": schema.SingleNestedAttribute{
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											Attributes: map[string]schema.Attribute{
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "ValueSource defines how to find a value's key.",
+													MarkdownDescription: "ValueSource defines how to find a value's key.",
+													Attributes: map[string]schema.Attribute{
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"data_stream_name": schema.StringAttribute{
+											Description:         "You can specify Elasticsearch data stream name by this parameter. This parameter is mandatory for elasticsearch_data_stream",
+											MarkdownDescription: "You can specify Elasticsearch data stream name by this parameter. This parameter is mandatory for elasticsearch_data_stream",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"host": schema.StringAttribute{
+											Description:         "The hostname of your Elasticsearch node (default: localhost).",
+											MarkdownDescription: "The hostname of your Elasticsearch node (default: localhost).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"hosts": schema.StringAttribute{
+											Description:         "Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes",
+											MarkdownDescription: "Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

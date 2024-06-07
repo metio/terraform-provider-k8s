@@ -55,6 +55,7 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		DiskSelector                *[]string `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
 		Encrypted                   *bool     `tfsdk:"encrypted" json:"encrypted,omitempty"`
 		EngineImage                 *string   `tfsdk:"engine_image" json:"engineImage,omitempty"`
+		FreezeFilesystemForSnapshot *string   `tfsdk:"freeze_filesystem_for_snapshot" json:"freezeFilesystemForSnapshot,omitempty"`
 		FromBackup                  *string   `tfsdk:"from_backup" json:"fromBackup,omitempty"`
 		Frontend                    *string   `tfsdk:"frontend" json:"frontend,omitempty"`
 		Image                       *string   `tfsdk:"image" json:"image,omitempty"`
@@ -264,6 +265,17 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"freeze_filesystem_for_snapshot": schema.StringAttribute{
+						Description:         "Setting that freezes the filesystem on the root partition before a snapshot is created.",
+						MarkdownDescription: "Setting that freezes the filesystem on the root partition before a snapshot is created.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ignored", "enabled", "disabled"),
+						},
 					},
 
 					"from_backup": schema.StringAttribute{

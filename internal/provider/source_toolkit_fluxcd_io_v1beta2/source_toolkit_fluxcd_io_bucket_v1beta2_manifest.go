@@ -49,15 +49,18 @@ type SourceToolkitFluxcdIoBucketV1Beta2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selectors" json:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" json:"accessFrom,omitempty"`
-		BucketName *string `tfsdk:"bucket_name" json:"bucketName,omitempty"`
-		Endpoint   *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-		Ignore     *string `tfsdk:"ignore" json:"ignore,omitempty"`
-		Insecure   *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
-		Interval   *string `tfsdk:"interval" json:"interval,omitempty"`
-		Prefix     *string `tfsdk:"prefix" json:"prefix,omitempty"`
-		Provider   *string `tfsdk:"provider" json:"provider,omitempty"`
-		Region     *string `tfsdk:"region" json:"region,omitempty"`
-		SecretRef  *struct {
+		BucketName    *string `tfsdk:"bucket_name" json:"bucketName,omitempty"`
+		CertSecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
+		Endpoint  *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		Ignore    *string `tfsdk:"ignore" json:"ignore,omitempty"`
+		Insecure  *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+		Interval  *string `tfsdk:"interval" json:"interval,omitempty"`
+		Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+		Provider  *string `tfsdk:"provider" json:"provider,omitempty"`
+		Region    *string `tfsdk:"region" json:"region,omitempty"`
+		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		Suspend *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
@@ -177,6 +180,23 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"cert_secret_ref": schema.SingleNestedAttribute{
+						Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider.",
+						MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"endpoint": schema.StringAttribute{

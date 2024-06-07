@@ -182,6 +182,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 							Text *string `tfsdk:"text" json:"text,omitempty"`
 						} `tfsdk:"body" json:"body,omitempty"`
 						DynamicMetadataValues *[]struct {
+							JsonToProto       *bool   `tfsdk:"json_to_proto" json:"jsonToProto,omitempty"`
 							Key               *string `tfsdk:"key" json:"key,omitempty"`
 							MetadataNamespace *string `tfsdk:"metadata_namespace" json:"metadataNamespace,omitempty"`
 							Value             *struct {
@@ -236,8 +237,9 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 							Path      *string `tfsdk:"path" json:"path,omitempty"`
 							PortValue *int64  `tfsdk:"port_value" json:"portValue,omitempty"`
 						} `tfsdk:"health_check_config" json:"healthCheckConfig,omitempty"`
-						LoadBalancingWeight *int64 `tfsdk:"load_balancing_weight" json:"loadBalancingWeight,omitempty"`
-						Port                *int64 `tfsdk:"port" json:"port,omitempty"`
+						LoadBalancingWeight *int64             `tfsdk:"load_balancing_weight" json:"loadBalancingWeight,omitempty"`
+						Metadata            *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+						Port                *int64             `tfsdk:"port" json:"port,omitempty"`
 						UpstreamSslConfig   *struct {
 							AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
 							AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
@@ -465,6 +467,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 							Text *string `tfsdk:"text" json:"text,omitempty"`
 						} `tfsdk:"body" json:"body,omitempty"`
 						DynamicMetadataValues *[]struct {
+							JsonToProto       *bool   `tfsdk:"json_to_proto" json:"jsonToProto,omitempty"`
 							Key               *string `tfsdk:"key" json:"key,omitempty"`
 							MetadataNamespace *string `tfsdk:"metadata_namespace" json:"metadataNamespace,omitempty"`
 							Value             *struct {
@@ -609,6 +612,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 							Text *string `tfsdk:"text" json:"text,omitempty"`
 						} `tfsdk:"body" json:"body,omitempty"`
 						DynamicMetadataValues *[]struct {
+							JsonToProto       *bool   `tfsdk:"json_to_proto" json:"jsonToProto,omitempty"`
 							Key               *string `tfsdk:"key" json:"key,omitempty"`
 							MetadataNamespace *string `tfsdk:"metadata_namespace" json:"metadataNamespace,omitempty"`
 							Value             *struct {
@@ -691,9 +695,10 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 					Method *string `tfsdk:"method" json:"method,omitempty"`
 					Path   *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"health_check_config" json:"healthCheckConfig,omitempty"`
-				LoadBalancingWeight *int64  `tfsdk:"load_balancing_weight" json:"loadBalancingWeight,omitempty"`
-				Port                *int64  `tfsdk:"port" json:"port,omitempty"`
-				SniAddr             *string `tfsdk:"sni_addr" json:"sniAddr,omitempty"`
+				LoadBalancingWeight *int64             `tfsdk:"load_balancing_weight" json:"loadBalancingWeight,omitempty"`
+				Metadata            *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+				Port                *int64             `tfsdk:"port" json:"port,omitempty"`
+				SniAddr             *string            `tfsdk:"sni_addr" json:"sniAddr,omitempty"`
 			} `tfsdk:"hosts" json:"hosts,omitempty"`
 			ServiceSpec *struct {
 				Graphql *struct {
@@ -743,6 +748,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 							Text *string `tfsdk:"text" json:"text,omitempty"`
 						} `tfsdk:"body" json:"body,omitempty"`
 						DynamicMetadataValues *[]struct {
+							JsonToProto       *bool   `tfsdk:"json_to_proto" json:"jsonToProto,omitempty"`
 							Key               *string `tfsdk:"key" json:"key,omitempty"`
 							MetadataNamespace *string `tfsdk:"metadata_namespace" json:"metadataNamespace,omitempty"`
 							Value             *struct {
@@ -1810,6 +1816,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														MarkdownDescription: "",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"json_to_proto": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"key": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -2190,6 +2204,15 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																		int64validator.AtLeast(0),
 																		int64validator.AtMost(4.294967295e+09),
 																	},
+																},
+
+																"metadata": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"port": schema.Int64Attribute{
@@ -3738,6 +3761,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														MarkdownDescription: "",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"json_to_proto": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"key": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -4753,6 +4784,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														MarkdownDescription: "",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"json_to_proto": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"key": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -5316,6 +5355,15 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 										},
 
+										"metadata": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"port": schema.Int64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -5652,6 +5700,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														MarkdownDescription: "",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"json_to_proto": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"key": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",

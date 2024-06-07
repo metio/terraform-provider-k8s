@@ -167,6 +167,7 @@ Optional:
 - `cert_sans` (List of String) CertSANs is a slice of domain names or IPs to be added as Subject Name Alternatives of the Kube API Servers Certificate.
 - `count` (Number) Count defines the number of desired control plane nodes. Defaults to 1.
 - `endpoint` (Attributes) Endpoint defines the host ip and port to use for the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_configuration--endpoint))
+- `kubelet_configuration` (Map of String) KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on control plane nodes.
 - `labels` (Map of String) Labels define the labels to assign to the node
 - `machine_group_ref` (Attributes) MachineGroupRef defines the machine group configuration for the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_configuration--machine_group_ref))
 - `machine_health_check` (Attributes) MachineHealthCheck is a control-plane level override for the timeouts and maxUnhealthy specified in the top-level MHC configuration. If not configured, the defaults in the top-level MHC configuration are used. (see [below for nested schema](#nestedatt--spec--control_plane_configuration--machine_health_check))
@@ -435,7 +436,8 @@ Optional:
 
 - `autoscaling_configuration` (Attributes) AutoScalingConfiguration defines the auto scaling configuration (see [below for nested schema](#nestedatt--spec--worker_node_group_configurations--autoscaling_configuration))
 - `count` (Number) Count defines the number of desired worker nodes. Defaults to 1.
-- `kubernetes_version` (String) KuberenetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.
+- `kubelet_configuration` (Map of String) KubeletConfiguration is a struct that exposes the Kubelet settings for the user to set on worker nodes.
+- `kubernetes_version` (String) KubernetesVersion defines the version for worker nodes. If not set, the top level spec kubernetesVersion will be used.
 - `labels` (Map of String) Labels define the labels to assign to the node
 - `machine_group_ref` (Attributes) MachineGroupRef defines the machine group configuration for the worker nodes. (see [below for nested schema](#nestedatt--spec--worker_node_group_configurations--machine_group_ref))
 - `machine_health_check` (Attributes) MachineHealthCheck is a worker node level override for the timeouts and maxUnhealthy specified in the top-level MHC configuration. If not configured, the defaults in the top-level MHC configuration are used. (see [below for nested schema](#nestedatt--spec--worker_node_group_configurations--machine_health_check))

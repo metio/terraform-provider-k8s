@@ -430,8 +430,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -743,8 +743,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"authority": schema.SingleNestedAttribute{
-												Description:         "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												Description:         "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -763,8 +763,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -805,8 +805,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -826,8 +826,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 											},
 
 											"method": schema.SingleNestedAttribute{
-												Description:         "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												Description:         "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -846,8 +846,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -899,8 +899,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -912,8 +912,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 											},
 
 											"scheme": schema.SingleNestedAttribute{
-												Description:         "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												Description:         "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -932,8 +932,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -970,8 +970,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 											},
 
 											"uri": schema.SingleNestedAttribute{
-												Description:         "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												Description:         "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -990,8 +990,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1023,8 +1023,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-														MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+														Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+														MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1332,8 +1332,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 											MarkdownDescription: "rewrite the path portion of the URI with the specified regex.",
 											Attributes: map[string]schema.Attribute{
 												"match": schema.StringAttribute{
-													Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-													MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+													Description:         "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+													MarkdownDescription: "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

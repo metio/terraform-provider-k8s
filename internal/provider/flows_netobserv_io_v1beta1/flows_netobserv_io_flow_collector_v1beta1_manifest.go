@@ -519,6 +519,35 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 				OpenShiftAutoDetect *bool `tfsdk:"open_shift_auto_detect" json:"openShiftAutoDetect,omitempty"`
 			} `tfsdk:"subnet_labels" json:"subnetLabels,omitempty"`
 		} `tfsdk:"processor" json:"processor,omitempty"`
+		Prometheus *struct {
+			Querier *struct {
+				Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
+				Manual *struct {
+					ForwardUserToken *bool `tfsdk:"forward_user_token" json:"forwardUserToken,omitempty"`
+					Tls              *struct {
+						CaCert *struct {
+							CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+							CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Type      *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+						Enable             *bool `tfsdk:"enable" json:"enable,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						UserCert           *struct {
+							CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+							CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Type      *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"user_cert" json:"userCert,omitempty"`
+					} `tfsdk:"tls" json:"tls,omitempty"`
+					Url *string `tfsdk:"url" json:"url,omitempty"`
+				} `tfsdk:"manual" json:"manual,omitempty"`
+				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
+				Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"querier" json:"querier,omitempty"`
+		} `tfsdk:"prometheus" json:"prometheus,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -812,8 +841,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"enable": schema.BoolAttribute{
-												Description:         "Set 'enable' to 'true' to enable eBPF agent metrics collection.",
-												MarkdownDescription: "Set 'enable' to 'true' to enable eBPF agent metrics collection.",
+												Description:         "Set 'enable' to 'false' to disable eBPF agent metrics collection, by default it's 'true'.",
+												MarkdownDescription: "Set 'enable' to 'false' to disable eBPF agent metrics collection, by default it's 'true'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2536,8 +2565,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.",
-								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.",
+								Description:         "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3917,6 +3946,205 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									"open_shift_auto_detect": schema.BoolAttribute{
 										Description:         "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
 										MarkdownDescription: "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prometheus": schema.SingleNestedAttribute{
+						Description:         "'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin.",
+						MarkdownDescription: "'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin.",
+						Attributes: map[string]schema.Attribute{
+							"querier": schema.SingleNestedAttribute{
+								Description:         "Prometheus querying configuration, such as client settings, used in the Console plugin.",
+								MarkdownDescription: "Prometheus querying configuration, such as client settings, used in the Console plugin.",
+								Attributes: map[string]schema.Attribute{
+									"enable": schema.BoolAttribute{
+										Description:         "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+										MarkdownDescription: "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"manual": schema.SingleNestedAttribute{
+										Description:         "Prometheus configuration for 'Manual' mode.",
+										MarkdownDescription: "Prometheus configuration for 'Manual' mode.",
+										Attributes: map[string]schema.Attribute{
+											"forward_user_token": schema.BoolAttribute{
+												Description:         "Set 'true' to forward logged in user token in queries to Prometheus",
+												MarkdownDescription: "Set 'true' to forward logged in user token in queries to Prometheus",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tls": schema.SingleNestedAttribute{
+												Description:         "TLS client configuration for Prometheus URL.",
+												MarkdownDescription: "TLS client configuration for Prometheus URL.",
+												Attributes: map[string]schema.Attribute{
+													"ca_cert": schema.SingleNestedAttribute{
+														Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
+														MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+														Attributes: map[string]schema.Attribute{
+															"cert_file": schema.StringAttribute{
+																Description:         "'certFile' defines the path to the certificate file name within the config map or secret",
+																MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"cert_key": schema.StringAttribute{
+																Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the config map or secret containing certificates",
+																MarkdownDescription: "Name of the config map or secret containing certificates",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type for the certificate reference: 'configmap' or 'secret'",
+																MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("configmap", "secret"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"enable": schema.BoolAttribute{
+														Description:         "Enable TLS",
+														MarkdownDescription: "Enable TLS",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"insecure_skip_verify": schema.BoolAttribute{
+														Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user_cert": schema.SingleNestedAttribute{
+														Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+														MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+														Attributes: map[string]schema.Attribute{
+															"cert_file": schema.StringAttribute{
+																Description:         "'certFile' defines the path to the certificate file name within the config map or secret",
+																MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"cert_key": schema.StringAttribute{
+																Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the config map or secret containing certificates",
+																MarkdownDescription: "Name of the config map or secret containing certificates",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type for the certificate reference: 'configmap' or 'secret'",
+																MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("configmap", "secret"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"url": schema.StringAttribute{
+												Description:         "'url' is the address of an existing Prometheus service to use for querying metrics.",
+												MarkdownDescription: "'url' is the address of an existing Prometheus service to use for querying metrics.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": schema.StringAttribute{
+										Description:         "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
+										MarkdownDescription: "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Manual", "Auto"),
+										},
+									},
+
+									"timeout": schema.StringAttribute{
+										Description:         "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
+										MarkdownDescription: "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

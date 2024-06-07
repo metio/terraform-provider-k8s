@@ -57,6 +57,7 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
 					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
 					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					DisableWebhooks          *bool              `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
 					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
@@ -117,6 +118,7 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
 					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
 					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					DisableWebhooks          *bool              `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
 					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
@@ -167,6 +169,7 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 		ExecutionRequest *struct {
 			CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
 			CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+			DisableWebhooks          *bool              `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 			ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
 			HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 			HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
@@ -225,6 +228,7 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
 					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
 					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					DisableWebhooks          *bool              `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
 					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
@@ -405,8 +409,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"execution_request": schema.SingleNestedAttribute{
-												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
-												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
 												Attributes: map[string]schema.Attribute{
 													"args": schema.ListAttribute{
 														Description:         "additional executor binary arguments",
@@ -448,6 +452,14 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													"cron_job_template_reference": schema.StringAttribute{
 														Description:         "cron job template extensions reference",
 														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"disable_webhooks": schema.BoolAttribute{
+														Description:         "whether webhooks should be called on execution",
+														MarkdownDescription: "whether webhooks should be called on execution",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -612,8 +624,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -633,8 +645,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																		Attributes: map[string]schema.Attribute{
 																			"api_version": schema.StringAttribute{
 																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -658,8 +670,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"resource_field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																		Attributes: map[string]schema.Attribute{
 																			"container_name": schema.StringAttribute{
 																				Description:         "Container name: required for volumes, optional for env vars",
@@ -703,8 +715,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -820,8 +832,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"execution_request": schema.SingleNestedAttribute{
-												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
-												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
 												Attributes: map[string]schema.Attribute{
 													"args": schema.ListAttribute{
 														Description:         "additional executor binary arguments",
@@ -863,6 +875,14 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													"cron_job_template_reference": schema.StringAttribute{
 														Description:         "cron job template extensions reference",
 														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"disable_webhooks": schema.BoolAttribute{
+														Description:         "whether webhooks should be called on execution",
+														MarkdownDescription: "whether webhooks should be called on execution",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1027,8 +1047,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1048,8 +1068,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																		Attributes: map[string]schema.Attribute{
 																			"api_version": schema.StringAttribute{
 																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1073,8 +1093,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"resource_field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																		Attributes: map[string]schema.Attribute{
 																			"container_name": schema.StringAttribute{
 																				Description:         "Container name: required for volumes, optional for env vars",
@@ -1118,8 +1138,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1204,6 +1224,14 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 							"cron_job_template_reference": schema.StringAttribute{
 								Description:         "name of the template resource",
 								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_webhooks": schema.BoolAttribute{
+								Description:         "whether webhooks should be called on execution",
+								MarkdownDescription: "whether webhooks should be called on execution",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1376,8 +1404,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1397,8 +1425,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1422,8 +1450,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"resource_field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-												MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 												Attributes: map[string]schema.Attribute{
 													"container_name": schema.StringAttribute{
 														Description:         "Container name: required for volumes, optional for env vars",
@@ -1467,8 +1495,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1572,8 +1600,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"execution_request": schema.SingleNestedAttribute{
-												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
-												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions.",
 												Attributes: map[string]schema.Attribute{
 													"args": schema.ListAttribute{
 														Description:         "additional executor binary arguments",
@@ -1615,6 +1643,14 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													"cron_job_template_reference": schema.StringAttribute{
 														Description:         "cron job template extensions reference",
 														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"disable_webhooks": schema.BoolAttribute{
+														Description:         "whether webhooks should be called on execution",
+														MarkdownDescription: "whether webhooks should be called on execution",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1779,8 +1815,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1800,8 +1836,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																		Attributes: map[string]schema.Attribute{
 																			"api_version": schema.StringAttribute{
 																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1825,8 +1861,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"resource_field_ref": schema.SingleNestedAttribute{
-																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																		Attributes: map[string]schema.Attribute{
 																			"container_name": schema.StringAttribute{
 																				Description:         "Container name: required for volumes, optional for env vars",
@@ -1870,8 +1906,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,

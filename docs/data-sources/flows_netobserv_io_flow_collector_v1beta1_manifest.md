@@ -62,6 +62,7 @@ Optional:
 - `loki` (Attributes) 'loki', the flow store, client settings. (see [below for nested schema](#nestedatt--spec--loki))
 - `namespace` (String) Namespace where NetObserv pods are deployed.
 - `processor` (Attributes) 'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter. (see [below for nested schema](#nestedatt--spec--processor))
+- `prometheus` (Attributes) 'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin. (see [below for nested schema](#nestedatt--spec--prometheus))
 
 <a id="nestedatt--spec--agent"></a>
 ### Nested Schema for `spec.agent`
@@ -124,7 +125,7 @@ Optional:
 Optional:
 
 - `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
-- `enable` (Boolean) Set 'enable' to 'true' to enable eBPF agent metrics collection.
+- `enable` (Boolean) Set 'enable' to 'false' to disable eBPF agent metrics collection, by default it's 'true'.
 - `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server"></a>
@@ -734,7 +735,7 @@ Optional:
 - `auth_token` (String) 'authToken' describes the way to get a token to authenticate to Loki.<br>- 'DISABLED' does not send any token with the request.<br>- 'FORWARD' forwards the user token for authorization.<br>- 'HOST' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'FORWARD'.
 - `batch_size` (Number) 'batchSize' is the maximum batch size (in bytes) of logs to accumulate before sending.
 - `batch_wait` (String) 'batchWait' is the maximum time to wait before sending a batch.
-- `enable` (Boolean) Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.
+- `enable` (Boolean) Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.
 - `max_backoff` (String) 'maxBackoff' is the maximum backoff time for client connection between retries.
 - `max_retries` (Number) 'maxRetries' is the maximum number of retries for client connections.
 - `min_backoff` (String) 'minBackoff' is the initial backoff time for client connection between retries.
@@ -1201,3 +1202,65 @@ Optional:
 
 - `cidrs` (List of String) List of CIDRs, such as '['1.2.3.4/32']'.
 - `name` (String) Label name, used to flag matching flows.
+
+
+
+
+<a id="nestedatt--spec--prometheus"></a>
+### Nested Schema for `spec.prometheus`
+
+Optional:
+
+- `querier` (Attributes) Prometheus querying configuration, such as client settings, used in the Console plugin. (see [below for nested schema](#nestedatt--spec--prometheus--querier))
+
+<a id="nestedatt--spec--prometheus--querier"></a>
+### Nested Schema for `spec.prometheus.querier`
+
+Optional:
+
+- `enable` (Boolean) Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.
+- `manual` (Attributes) Prometheus configuration for 'Manual' mode. (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual))
+- `mode` (String) 'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>
+- `timeout` (String) 'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.
+
+<a id="nestedatt--spec--prometheus--querier--manual"></a>
+### Nested Schema for `spec.prometheus.querier.manual`
+
+Optional:
+
+- `forward_user_token` (Boolean) Set 'true' to forward logged in user token in queries to Prometheus
+- `tls` (Attributes) TLS client configuration for Prometheus URL. (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls))
+- `url` (String) 'url' is the address of an existing Prometheus service to use for querying metrics.
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls`
+
+Optional:
+
+- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls--ca_cert))
+- `enable` (Boolean) Enable TLS
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
+- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual--tls--user_cert))
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls--ca_cert"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls.ca_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+
+
+<a id="nestedatt--spec--prometheus--querier--manual--tls--user_cert"></a>
+### Nested Schema for `spec.prometheus.querier.manual.tls.user_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'

@@ -218,6 +218,7 @@ type LimitadorKuadrantIoLimitadorV1Alpha1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"config_secret_ref" json:"configSecretRef,omitempty"`
 				Options *struct {
+					Batch_size       *int64 `tfsdk:"batch_size" json:"batch-size,omitempty"`
 					Flush_period     *int64 `tfsdk:"flush_period" json:"flush-period,omitempty"`
 					Max_cached       *int64 `tfsdk:"max_cached" json:"max-cached,omitempty"`
 					Response_timeout *int64 `tfsdk:"response_timeout" json:"response-timeout,omitempty"`
@@ -1435,6 +1436,14 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"batch_size": schema.Int64Attribute{
+												Description:         "BatchSize defines the size of entries to flush in as single flush [default: 100]",
+												MarkdownDescription: "BatchSize defines the size of entries to flush in as single flush [default: 100]",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"flush_period": schema.Int64Attribute{
 												Description:         "FlushPeriod for counters in milliseconds [default: 1000]",
 												MarkdownDescription: "FlushPeriod for counters in milliseconds [default: 1000]",

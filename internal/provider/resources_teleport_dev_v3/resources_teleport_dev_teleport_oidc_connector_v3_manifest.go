@@ -50,7 +50,10 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 			Value *string   `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"claims_to_roles" json:"claims_to_roles,omitempty"`
-		Client_id                  *string   `tfsdk:"client_id" json:"client_id,omitempty"`
+		Client_id                *string `tfsdk:"client_id" json:"client_id,omitempty"`
+		Client_redirect_settings *struct {
+			Allowed_https_hostnames *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
 		Client_secret              *string   `tfsdk:"client_secret" json:"client_secret,omitempty"`
 		Display                    *string   `tfsdk:"display" json:"display,omitempty"`
 		Google_admin_email         *string   `tfsdk:"google_admin_email" json:"google_admin_email,omitempty"`
@@ -201,6 +204,24 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"client_redirect_settings": schema.SingleNestedAttribute{
+						Description:         "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						MarkdownDescription: "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						Attributes: map[string]schema.Attribute{
+							"allowed_https_hostnames": schema.ListAttribute{
+								Description:         "a list of hostnames allowed for https client redirect URLs",
+								MarkdownDescription: "a list of hostnames allowed for https client redirect URLs",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"client_secret": schema.StringAttribute{

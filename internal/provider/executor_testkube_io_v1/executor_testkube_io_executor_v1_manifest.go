@@ -173,8 +173,8 @@ func (r *ExecutorTestkubeIoExecutorV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"executor_type": schema.StringAttribute{
-						Description:         "ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkube or 'container' for container executors",
-						MarkdownDescription: "ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkube or 'container' for container executors",
+						Description:         "ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkubeor 'container' for container executors",
+						MarkdownDescription: "ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkubeor 'container' for container executors",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -206,8 +206,8 @@ func (r *ExecutorTestkubeIoExecutorV1Manifest) Schema(_ context.Context, _ datas
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

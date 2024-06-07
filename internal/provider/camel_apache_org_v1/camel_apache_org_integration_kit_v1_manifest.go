@@ -418,8 +418,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"base_image": schema.StringAttribute{
-										Description:         "Specify a base image",
-										MarkdownDescription: "Specify a base image",
+										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
+										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
