@@ -951,9 +951,12 @@ Optional:
 
 Optional:
 
+- `base_image` (String) base image layer
 - `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--s2i--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
+- `image` (String) final image name
 - `name` (String) name of the task
+- `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--s2i--registry))
 - `tag` (String) used by the ImageStream
 
 <a id="nestedatt--spec--tasks--s2i--configuration"></a>
@@ -972,6 +975,18 @@ Optional:
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
 - `tool_image` (String) The container image to be used to run the build.
+
+
+<a id="nestedatt--spec--tasks--s2i--registry"></a>
+### Nested Schema for `spec.tasks.s2i.registry`
+
+Optional:
+
+- `address` (String) the URI to access
+- `ca` (String) the configmap which stores the Certificate Authority
+- `insecure` (Boolean) if the container registry is insecure (ie, http only)
+- `organization` (String) the registry organization
+- `secret` (String) the secret where credentials are stored
 
 
 

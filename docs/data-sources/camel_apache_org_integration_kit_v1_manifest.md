@@ -111,7 +111,7 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) When using 'pod' strategy, annotation to use for the builder pod.
-- `base_image` (String) Specify a base image
+- `base_image` (String) Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `incremental_image_build` (Boolean) Use the incremental image build option, to reuse existing containers (default 'true')

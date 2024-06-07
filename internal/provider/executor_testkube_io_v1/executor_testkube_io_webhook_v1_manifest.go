@@ -43,6 +43,7 @@ type ExecutorTestkubeIoWebhookV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Disabled                 *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
 		Events                   *[]string          `tfsdk:"events" json:"events,omitempty"`
 		Headers                  *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
 		PayloadObjectField       *string            `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
@@ -130,6 +131,14 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "WebhookSpec defines the desired state of Webhook",
 				MarkdownDescription: "WebhookSpec defines the desired state of Webhook",
 				Attributes: map[string]schema.Attribute{
+					"disabled": schema.BoolAttribute{
+						Description:         "Disabled will disable the webhook",
+						MarkdownDescription: "Disabled will disable the webhook",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"events": schema.ListAttribute{
 						Description:         "Events declare list if events on which webhook should be called",
 						MarkdownDescription: "Events declare list if events on which webhook should be called",

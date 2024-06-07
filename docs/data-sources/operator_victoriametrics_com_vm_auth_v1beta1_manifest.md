@@ -83,7 +83,7 @@ Optional:
 - `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAuth pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `port` (String) Port listen port

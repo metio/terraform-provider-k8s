@@ -139,8 +139,8 @@ func (r *BmcTinkerbellOrgJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "JobSpec defines the desired state of Job.",
 				Attributes: map[string]schema.Attribute{
 					"machine_ref": schema.SingleNestedAttribute{
-						Description:         "MachineRef represents the Machine resource to execute the job. All the tasks in the job are executed for the same Machine.",
-						MarkdownDescription: "MachineRef represents the Machine resource to execute the job. All the tasks in the job are executed for the same Machine.",
+						Description:         "MachineRef represents the Machine resource to execute the job.All the tasks in the job are executed for the same Machine.",
+						MarkdownDescription: "MachineRef represents the Machine resource to execute the job.All the tasks in the job are executed for the same Machine.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the Machine.",
@@ -164,8 +164,8 @@ func (r *BmcTinkerbellOrgJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"tasks": schema.ListNestedAttribute{
-						Description:         "Tasks represents a list of baseboard management actions to be executed. The tasks are executed sequentially. Controller waits for one task to complete before executing the next. If a single task fails, job execution stops and sets condition Failed. Condition Completed is set only if all the tasks were successful.",
-						MarkdownDescription: "Tasks represents a list of baseboard management actions to be executed. The tasks are executed sequentially. Controller waits for one task to complete before executing the next. If a single task fails, job execution stops and sets condition Failed. Condition Completed is set only if all the tasks were successful.",
+						Description:         "Tasks represents a list of baseboard management actions to be executed.The tasks are executed sequentially. Controller waits for one task to complete before executing the next.If a single task fails, job execution stops and sets condition Failed.Condition Completed is set only if all the tasks were successful.",
+						MarkdownDescription: "Tasks represents a list of baseboard management actions to be executed.The tasks are executed sequentially. Controller waits for one task to complete before executing the next.If a single task fails, job execution stops and sets condition Failed.Condition Completed is set only if all the tasks were successful.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"one_time_boot_device_action": schema.SingleNestedAttribute{
@@ -173,8 +173,8 @@ func (r *BmcTinkerbellOrgJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "OneTimeBootDeviceAction represents a baseboard management one time set boot device operation.",
 									Attributes: map[string]schema.Attribute{
 										"device": schema.ListAttribute{
-											Description:         "Devices represents the boot devices, in order for setting one time boot. Currently only the first device in the slice is used to set one time boot.",
-											MarkdownDescription: "Devices represents the boot devices, in order for setting one time boot. Currently only the first device in the slice is used to set one time boot.",
+											Description:         "Devices represents the boot devices, in order for setting one time boot.Currently only the first device in the slice is used to set one time boot.",
+											MarkdownDescription: "Devices represents the boot devices, in order for setting one time boot.Currently only the first device in the slice is used to set one time boot.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -218,8 +218,8 @@ func (r *BmcTinkerbellOrgJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"media_url": schema.StringAttribute{
-											Description:         "mediaURL represents the URL of the image to be inserted into the virtual media, or empty to eject media.",
-											MarkdownDescription: "mediaURL represents the URL of the image to be inserted into the virtual media, or empty to eject media.",
+											Description:         "mediaURL represents the URL of the image to be inserted into the virtual media, or empty toeject media.",
+											MarkdownDescription: "mediaURL represents the URL of the image to be inserted into the virtual media, or empty toeject media.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

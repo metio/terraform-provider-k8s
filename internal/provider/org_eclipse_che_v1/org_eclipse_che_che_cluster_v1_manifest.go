@@ -865,40 +865,40 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Desired configuration of the Che installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps that will contain the appropriate environment variables the various components of the Che installation. These generated ConfigMaps must NOT be updated manually.",
-				MarkdownDescription: "Desired configuration of the Che installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps that will contain the appropriate environment variables the various components of the Che installation. These generated ConfigMaps must NOT be updated manually.",
+				Description:         "Desired configuration of the Che installation.Based on these settings, the  Operator automatically creates and maintainsseveral ConfigMaps that will contain the appropriate environment variablesthe various components of the Che installation.These generated ConfigMaps must NOT be updated manually.",
+				MarkdownDescription: "Desired configuration of the Che installation.Based on these settings, the  Operator automatically creates and maintainsseveral ConfigMaps that will contain the appropriate environment variablesthe various components of the Che installation.These generated ConfigMaps must NOT be updated manually.",
 				Attributes: map[string]schema.Attribute{
 					"auth": schema.SingleNestedAttribute{
 						Description:         "Configuration settings related to the Authentication used by the Che installation.",
 						MarkdownDescription: "Configuration settings related to the Authentication used by the Che installation.",
 						Attributes: map[string]schema.Attribute{
 							"debug": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Debug internal identity provider.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Debug internal identity provider.",
+								Description:         "Deprecated. The value of this flag is ignored.Debug internal identity provider.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Debug internal identity provider.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"external_identity_provider": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Instructs the Operator on whether or not to deploy a dedicated Identity Provider (Keycloak or RH SSO instance). Instructs the Operator on whether to deploy a dedicated Identity Provider (Keycloak or RH-SSO instance). By default, a dedicated Identity Provider server is deployed as part of the Che installation. When 'externalIdentityProvider' is 'true', no dedicated identity provider will be deployed by the Operator and you will need to provide details about the external identity provider you are about to use. See also all the other fields starting with: 'identityProvider'.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Instructs the Operator on whether or not to deploy a dedicated Identity Provider (Keycloak or RH SSO instance). Instructs the Operator on whether to deploy a dedicated Identity Provider (Keycloak or RH-SSO instance). By default, a dedicated Identity Provider server is deployed as part of the Che installation. When 'externalIdentityProvider' is 'true', no dedicated identity provider will be deployed by the Operator and you will need to provide details about the external identity provider you are about to use. See also all the other fields starting with: 'identityProvider'.",
+								Description:         "Deprecated. The value of this flag is ignored.Instructs the Operator on whether or not to deploy a dedicated Identity Provider (Keycloak or RH SSO instance).Instructs the Operator on whether to deploy a dedicated Identity Provider (Keycloak or RH-SSO instance).By default, a dedicated Identity Provider server is deployed as part of the Che installation. When 'externalIdentityProvider' is 'true',no dedicated identity provider will be deployed by the Operator and you will need to provide details about the external identity provider you are about to use.See also all the other fields starting with: 'identityProvider'.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Instructs the Operator on whether or not to deploy a dedicated Identity Provider (Keycloak or RH SSO instance).Instructs the Operator on whether to deploy a dedicated Identity Provider (Keycloak or RH-SSO instance).By default, a dedicated Identity Provider server is deployed as part of the Che installation. When 'externalIdentityProvider' is 'true',no dedicated identity provider will be deployed by the Operator and you will need to provide details about the external identity provider you are about to use.See also all the other fields starting with: 'identityProvider'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"gateway_authentication_sidecar_image": schema.StringAttribute{
-								Description:         "Gateway sidecar responsible for authentication when NativeUserMode is enabled. See link:https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] or link:https://github.com/openshift/oauth-proxy[openshift/oauth-proxy].",
-								MarkdownDescription: "Gateway sidecar responsible for authentication when NativeUserMode is enabled. See link:https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] or link:https://github.com/openshift/oauth-proxy[openshift/oauth-proxy].",
+								Description:         "Gateway sidecar responsible for authentication when NativeUserMode is enabled.See link:https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] or link:https://github.com/openshift/oauth-proxy[openshift/oauth-proxy].",
+								MarkdownDescription: "Gateway sidecar responsible for authentication when NativeUserMode is enabled.See link:https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] or link:https://github.com/openshift/oauth-proxy[openshift/oauth-proxy].",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"gateway_authorization_sidecar_image": schema.StringAttribute{
-								Description:         "Gateway sidecar responsible for authorization when NativeUserMode is enabled. See link:https://github.com/brancz/kube-rbac-proxy[kube-rbac-proxy] or link:https://github.com/openshift/kube-rbac-proxy[openshift/kube-rbac-proxy]",
-								MarkdownDescription: "Gateway sidecar responsible for authorization when NativeUserMode is enabled. See link:https://github.com/brancz/kube-rbac-proxy[kube-rbac-proxy] or link:https://github.com/openshift/kube-rbac-proxy[openshift/kube-rbac-proxy]",
+								Description:         "Gateway sidecar responsible for authorization when NativeUserMode is enabled.See link:https://github.com/brancz/kube-rbac-proxy[kube-rbac-proxy] or link:https://github.com/openshift/kube-rbac-proxy[openshift/kube-rbac-proxy]",
+								MarkdownDescription: "Gateway sidecar responsible for authorization when NativeUserMode is enabled.See link:https://github.com/brancz/kube-rbac-proxy[kube-rbac-proxy] or link:https://github.com/openshift/kube-rbac-proxy[openshift/kube-rbac-proxy]",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -918,8 +918,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -942,8 +942,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -963,8 +963,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -988,8 +988,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -1033,8 +1033,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1078,8 +1078,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1102,8 +1102,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1123,8 +1123,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1148,8 +1148,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -1193,8 +1193,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1246,8 +1246,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1270,8 +1270,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1291,8 +1291,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1316,8 +1316,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -1361,8 +1361,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1406,8 +1406,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1430,8 +1430,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1451,8 +1451,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1476,8 +1476,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -1521,8 +1521,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1553,24 +1553,24 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"identity_provider_admin_user_name": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Overrides the name of the Identity Provider administrator user. Defaults to 'admin'.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Overrides the name of the Identity Provider administrator user. Defaults to 'admin'.",
+								Description:         "Deprecated. The value of this flag is ignored.Overrides the name of the Identity Provider administrator user. Defaults to 'admin'.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Overrides the name of the Identity Provider administrator user. Defaults to 'admin'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_client_id": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Name of a Identity provider, Keycloak or RH-SSO, 'client-id' that is used for Che. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to the value of the 'flavour' field suffixed with '-public'.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Name of a Identity provider, Keycloak or RH-SSO, 'client-id' that is used for Che. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to the value of the 'flavour' field suffixed with '-public'.",
+								Description:         "Deprecated. The value of this flag is ignored.Name of a Identity provider, Keycloak or RH-SSO, 'client-id' that is used for Che.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to the value of the 'flavour' field suffixed with '-public'.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Name of a Identity provider, Keycloak or RH-SSO, 'client-id' that is used for Che.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to the value of the 'flavour' field suffixed with '-public'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_container_resources": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Identity provider container custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Identity provider container custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Identity provider container custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Identity provider container custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"limits": schema.SingleNestedAttribute{
 										Description:         "Limits describes the maximum amount of compute resources allowed.",
@@ -1628,24 +1628,24 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"identity_provider_image": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Overrides the container image used in the Identity Provider, Keycloak or RH-SSO, deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Overrides the container image used in the Identity Provider, Keycloak or RH-SSO, deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Deprecated. The value of this flag is ignored.Overrides the container image used in the Identity Provider, Keycloak or RH-SSO, deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Overrides the container image used in the Identity Provider, Keycloak or RH-SSO, deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_image_pull_policy": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Overrides the image pull policy used in the Identity Provider, Keycloak or RH-SSO, deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Overrides the image pull policy used in the Identity Provider, Keycloak or RH-SSO, deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								Description:         "Deprecated. The value of this flag is ignored.Overrides the image pull policy used in the Identity Provider, Keycloak or RH-SSO, deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Overrides the image pull policy used in the Identity Provider, Keycloak or RH-SSO, deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_ingress": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Ingress custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Ingress custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Ingress custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Ingress custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -1670,40 +1670,40 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"identity_provider_password": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Overrides the password of Keycloak administrator user. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to an auto-generated password.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Overrides the password of Keycloak administrator user. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to an auto-generated password.",
+								Description:         "Deprecated. The value of this flag is ignored.Overrides the password of Keycloak administrator user.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to an auto-generated password.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Overrides the password of Keycloak administrator user.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to an auto-generated password.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_postgres_password": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Password for a Identity Provider, Keycloak or RH-SSO, to connect to the database. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to an auto-generated password.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Password for a Identity Provider, Keycloak or RH-SSO, to connect to the database. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to an auto-generated password.",
+								Description:         "Deprecated. The value of this flag is ignored.Password for a Identity Provider, Keycloak or RH-SSO, to connect to the database.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to an auto-generated password.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Password for a Identity Provider, Keycloak or RH-SSO, to connect to the database.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to an auto-generated password.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_postgres_secret": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. The secret that contains 'password' for the Identity Provider, Keycloak or RH-SSO, to connect to the database. When the secret is defined, the 'identityProviderPostgresPassword' is ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'identityProviderPostgresPassword' is defined, then it will be used to connect to the database. 2. 'identityProviderPostgresPassword' is not defined, then a new secret with the name 'che-identity-postgres-secret' will be created with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. The secret that contains 'password' for the Identity Provider, Keycloak or RH-SSO, to connect to the database. When the secret is defined, the 'identityProviderPostgresPassword' is ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'identityProviderPostgresPassword' is defined, then it will be used to connect to the database. 2. 'identityProviderPostgresPassword' is not defined, then a new secret with the name 'che-identity-postgres-secret' will be created with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "Deprecated. The value of this flag is ignored.The secret that contains 'password' for the Identity Provider, Keycloak or RH-SSO, to connect to the database.When the secret is defined, the 'identityProviderPostgresPassword' is ignored. When the value is omitted or left blank, the one of following scenarios applies:1. 'identityProviderPostgresPassword' is defined, then it will be used to connect to the database.2. 'identityProviderPostgresPassword' is not defined, then a new secret with the name 'che-identity-postgres-secret' will be created with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.The secret that contains 'password' for the Identity Provider, Keycloak or RH-SSO, to connect to the database.When the secret is defined, the 'identityProviderPostgresPassword' is ignored. When the value is omitted or left blank, the one of following scenarios applies:1. 'identityProviderPostgresPassword' is defined, then it will be used to connect to the database.2. 'identityProviderPostgresPassword' is not defined, then a new secret with the name 'che-identity-postgres-secret' will be created with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_realm": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Name of a Identity provider, Keycloak or RH-SSO, realm that is used for Che. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to the value of the 'flavour' field.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Name of a Identity provider, Keycloak or RH-SSO, realm that is used for Che. Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field. When omitted or left blank, it is set to the value of the 'flavour' field.",
+								Description:         "Deprecated. The value of this flag is ignored.Name of a Identity provider, Keycloak or RH-SSO, realm that is used for Che.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to the value of the 'flavour' field.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Name of a Identity provider, Keycloak or RH-SSO, realm that is used for Che.Override this when an external Identity Provider is in use. See the 'externalIdentityProvider' field.When omitted or left blank, it is set to the value of the 'flavour' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_route": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Route custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Route custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Route custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Route custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -1715,8 +1715,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"domain": schema.StringAttribute{
-										Description:         "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
-										MarkdownDescription: "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										Description:         "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										MarkdownDescription: "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1736,40 +1736,40 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"identity_provider_secret": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. The secret that contains 'user' and 'password' for Identity Provider. When the secret is defined, the 'identityProviderAdminUserName' and 'identityProviderPassword' are ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'identityProviderAdminUserName' and 'identityProviderPassword' are defined, then they will be used. 2. 'identityProviderAdminUserName' or 'identityProviderPassword' are not defined, then a new secret with the name 'che-identity-secret' will be created with default value 'admin' for 'user' and with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. The secret that contains 'user' and 'password' for Identity Provider. When the secret is defined, the 'identityProviderAdminUserName' and 'identityProviderPassword' are ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'identityProviderAdminUserName' and 'identityProviderPassword' are defined, then they will be used. 2. 'identityProviderAdminUserName' or 'identityProviderPassword' are not defined, then a new secret with the name 'che-identity-secret' will be created with default value 'admin' for 'user' and with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "Deprecated. The value of this flag is ignored.The secret that contains 'user' and 'password' for Identity Provider.When the secret is defined, the 'identityProviderAdminUserName' and 'identityProviderPassword' are ignored.When the value is omitted or left blank, the one of following scenarios applies:1. 'identityProviderAdminUserName' and 'identityProviderPassword' are defined, then they will be used.2. 'identityProviderAdminUserName' or 'identityProviderPassword' are not defined, then a new secret with the name'che-identity-secret' will be created with default value 'admin' for 'user' and with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.The secret that contains 'user' and 'password' for Identity Provider.When the secret is defined, the 'identityProviderAdminUserName' and 'identityProviderPassword' are ignored.When the value is omitted or left blank, the one of following scenarios applies:1. 'identityProviderAdminUserName' and 'identityProviderPassword' are defined, then they will be used.2. 'identityProviderAdminUserName' or 'identityProviderPassword' are not defined, then a new secret with the name'che-identity-secret' will be created with default value 'admin' for 'user' and with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_provider_url": schema.StringAttribute{
-								Description:         "Public URL of the Identity Provider server (Keycloak / RH-SSO server). Set this ONLY when a use of an external Identity Provider is needed. See the 'externalIdentityProvider' field. By default, this will be automatically calculated and set by the Operator.",
-								MarkdownDescription: "Public URL of the Identity Provider server (Keycloak / RH-SSO server). Set this ONLY when a use of an external Identity Provider is needed. See the 'externalIdentityProvider' field. By default, this will be automatically calculated and set by the Operator.",
+								Description:         "Public URL of the Identity Provider server (Keycloak / RH-SSO server).Set this ONLY when a use of an external Identity Provider is needed.See the 'externalIdentityProvider' field. By default, this will be automatically calculated and set by the Operator.",
+								MarkdownDescription: "Public URL of the Identity Provider server (Keycloak / RH-SSO server).Set this ONLY when a use of an external Identity Provider is needed.See the 'externalIdentityProvider' field. By default, this will be automatically calculated and set by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"identity_token": schema.StringAttribute{
-								Description:         "Identity token to be passed to upstream. There are two types of tokens supported: 'id_token' and 'access_token'. Default value is 'id_token'. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
-								MarkdownDescription: "Identity token to be passed to upstream. There are two types of tokens supported: 'id_token' and 'access_token'. Default value is 'id_token'. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
+								Description:         "Identity token to be passed to upstream. There are two types of tokens supported: 'id_token' and 'access_token'.Default value is 'id_token'.This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
+								MarkdownDescription: "Identity token to be passed to upstream. There are two types of tokens supported: 'id_token' and 'access_token'.Default value is 'id_token'.This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"initial_open_shift_o_auth_user": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. For operating with the OpenShift OAuth authentication, create a new user account since the kubeadmin can not be used. If the value is true, then a new OpenShift OAuth user will be created for the HTPasswd identity provider. If the value is false and the user has already been created, then it will be removed. If value is an empty, then do nothing. The user's credentials are stored in the 'openshift-oauth-user-credentials' secret in 'openshift-config' namespace by Operator. Note that this solution is Openshift 4 platform-specific.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. For operating with the OpenShift OAuth authentication, create a new user account since the kubeadmin can not be used. If the value is true, then a new OpenShift OAuth user will be created for the HTPasswd identity provider. If the value is false and the user has already been created, then it will be removed. If value is an empty, then do nothing. The user's credentials are stored in the 'openshift-oauth-user-credentials' secret in 'openshift-config' namespace by Operator. Note that this solution is Openshift 4 platform-specific.",
+								Description:         "Deprecated. The value of this flag is ignored.For operating with the OpenShift OAuth authentication, create a new user account since the kubeadmin can not be used.If the value is true, then a new OpenShift OAuth user will be created for the HTPasswd identity provider.If the value is false and the user has already been created, then it will be removed.If value is an empty, then do nothing.The user's credentials are stored in the 'openshift-oauth-user-credentials' secret in 'openshift-config' namespace by Operator.Note that this solution is Openshift 4 platform-specific.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.For operating with the OpenShift OAuth authentication, create a new user account since the kubeadmin can not be used.If the value is true, then a new OpenShift OAuth user will be created for the HTPasswd identity provider.If the value is false and the user has already been created, then it will be removed.If value is an empty, then do nothing.The user's credentials are stored in the 'openshift-oauth-user-credentials' secret in 'openshift-config' namespace by Operator.Note that this solution is Openshift 4 platform-specific.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"native_user_mode": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Enables native user mode. Currently works only on OpenShift and DevWorkspace engine. Native User mode uses OpenShift OAuth directly as identity provider, without Keycloak.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Enables native user mode. Currently works only on OpenShift and DevWorkspace engine. Native User mode uses OpenShift OAuth directly as identity provider, without Keycloak.",
+								Description:         "Deprecated. The value of this flag is ignored.Enables native user mode. Currently works only on OpenShift and DevWorkspace engine.Native User mode uses OpenShift OAuth directly as identity provider, without Keycloak.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Enables native user mode. Currently works only on OpenShift and DevWorkspace engine.Native User mode uses OpenShift OAuth directly as identity provider, without Keycloak.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1784,8 +1784,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"o_auth_scope": schema.StringAttribute{
-								Description:         "Access Token Scope. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
-								MarkdownDescription: "Access Token Scope. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
+								Description:         "Access Token Scope.This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
+								MarkdownDescription: "Access Token Scope.This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1800,16 +1800,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"open_shifto_auth": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Enables the integration of the identity provider (Keycloak / RHSSO) with OpenShift OAuth. Empty value on OpenShift by default. This will allow users to directly login with their OpenShift user through the OpenShift login, and have their workspaces created under personal OpenShift namespaces. WARNING: the 'kubeadmin' user is NOT supported, and logging through it will NOT allow accessing the Che Dashboard.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Enables the integration of the identity provider (Keycloak / RHSSO) with OpenShift OAuth. Empty value on OpenShift by default. This will allow users to directly login with their OpenShift user through the OpenShift login, and have their workspaces created under personal OpenShift namespaces. WARNING: the 'kubeadmin' user is NOT supported, and logging through it will NOT allow accessing the Che Dashboard.",
+								Description:         "Deprecated. The value of this flag is ignored.Enables the integration of the identity provider (Keycloak / RHSSO) with OpenShift OAuth.Empty value on OpenShift by default. This will allow users to directly login with their OpenShift user through the OpenShift login,and have their workspaces created under personal OpenShift namespaces.WARNING: the 'kubeadmin' user is NOT supported, and logging through it will NOT allow accessing the Che Dashboard.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Enables the integration of the identity provider (Keycloak / RHSSO) with OpenShift OAuth.Empty value on OpenShift by default. This will allow users to directly login with their OpenShift user through the OpenShift login,and have their workspaces created under personal OpenShift namespaces.WARNING: the 'kubeadmin' user is NOT supported, and logging through it will NOT allow accessing the Che Dashboard.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"update_admin_password": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Forces the default 'admin' Che user to update password on first login. Defaults to 'false'.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Forces the default 'admin' Che user to update password on first login. Defaults to 'false'.",
+								Description:         "Deprecated. The value of this flag is ignored.Forces the default 'admin' Che user to update password on first login. Defaults to 'false'.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Forces the default 'admin' Che user to update password on first login. Defaults to 'false'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1909,8 +1909,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"che_postgres_host_name": schema.StringAttribute{
-								Description:         "PostgreSQL Database host name that the Che server uses to connect to. Defaults is 'postgres'. Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
-								MarkdownDescription: "PostgreSQL Database host name that the Che server uses to connect to. Defaults is 'postgres'. Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
+								Description:         "PostgreSQL Database host name that the Che server uses to connect to.Defaults is 'postgres'. Override this value ONLY when using an external database. See field 'externalDb'.In the default case it will be automatically set by the Operator.",
+								MarkdownDescription: "PostgreSQL Database host name that the Che server uses to connect to.Defaults is 'postgres'. Override this value ONLY when using an external database. See field 'externalDb'.In the default case it will be automatically set by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1925,16 +1925,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"che_postgres_port": schema.StringAttribute{
-								Description:         "PostgreSQL Database port that the Che server uses to connect to. Defaults to 5432. Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
-								MarkdownDescription: "PostgreSQL Database port that the Che server uses to connect to. Defaults to 5432. Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
+								Description:         "PostgreSQL Database port that the Che server uses to connect to. Defaults to 5432.Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
+								MarkdownDescription: "PostgreSQL Database port that the Che server uses to connect to. Defaults to 5432.Override this value ONLY when using an external database. See field 'externalDb'. In the default case it will be automatically set by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_postgres_secret": schema.StringAttribute{
-								Description:         "The secret that contains PostgreSQL'user' and 'password' that the Che server uses to connect to the DB. When the secret is defined, the 'chePostgresUser' and 'chePostgresPassword' are ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'chePostgresUser' and 'chePostgresPassword' are defined, then they will be used to connect to the DB. 2. 'chePostgresUser' or 'chePostgresPassword' are not defined, then a new secret with the name 'postgres-credentials' will be created with default value of 'pgche' for 'user' and with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "The secret that contains PostgreSQL'user' and 'password' that the Che server uses to connect to the DB. When the secret is defined, the 'chePostgresUser' and 'chePostgresPassword' are ignored. When the value is omitted or left blank, the one of following scenarios applies: 1. 'chePostgresUser' and 'chePostgresPassword' are defined, then they will be used to connect to the DB. 2. 'chePostgresUser' or 'chePostgresPassword' are not defined, then a new secret with the name 'postgres-credentials' will be created with default value of 'pgche' for 'user' and with an auto-generated value for 'password'. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "The secret that contains PostgreSQL'user' and 'password' that the Che server uses to connect to the DB.When the secret is defined, the 'chePostgresUser' and 'chePostgresPassword' are ignored.When the value is omitted or left blank, the one of following scenarios applies:1. 'chePostgresUser' and 'chePostgresPassword' are defined, then they will be used to connect to the DB.2. 'chePostgresUser' or 'chePostgresPassword' are not defined, then a new secret with the name 'postgres-credentials'will be created with default value of 'pgche' for 'user' and with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "The secret that contains PostgreSQL'user' and 'password' that the Che server uses to connect to the DB.When the secret is defined, the 'chePostgresUser' and 'chePostgresPassword' are ignored.When the value is omitted or left blank, the one of following scenarios applies:1. 'chePostgresUser' and 'chePostgresPassword' are defined, then they will be used to connect to the DB.2. 'chePostgresUser' or 'chePostgresPassword' are not defined, then a new secret with the name 'postgres-credentials'will be created with default value of 'pgche' for 'user' and with an auto-generated value for 'password'.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1949,8 +1949,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"external_db": schema.BoolAttribute{
-								Description:         "Instructs the Operator on whether to deploy a dedicated database. By default, a dedicated PostgreSQL database is deployed as part of the Che installation. When 'externalDb' is 'true', no dedicated database will be deployed by the Operator and you will need to provide connection details to the external DB you are about to use. See also all the fields starting with: 'chePostgres'.",
-								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated database. By default, a dedicated PostgreSQL database is deployed as part of the Che installation. When 'externalDb' is 'true', no dedicated database will be deployed by the Operator and you will need to provide connection details to the external DB you are about to use. See also all the fields starting with: 'chePostgres'.",
+								Description:         "Instructs the Operator on whether to deploy a dedicated database.By default, a dedicated PostgreSQL database is deployed as part of the Che installation. When 'externalDb' is 'true', no dedicated database will be deployed by theOperator and you will need to provide connection details to the external DB you are about to use. See also all the fields starting with: 'chePostgres'.",
+								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated database.By default, a dedicated PostgreSQL database is deployed as part of the Che installation. When 'externalDb' is 'true', no dedicated database will be deployed by theOperator and you will need to provide connection details to the external DB you are about to use. See also all the fields starting with: 'chePostgres'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1970,8 +1970,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1994,8 +1994,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2015,8 +2015,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -2040,8 +2040,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -2085,8 +2085,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2133,16 +2133,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"postgres_version": schema.StringAttribute{
-								Description:         "Indicates a PostgreSQL version image to use. Allowed values are: '9.6' and '13.3'. Migrate your PostgreSQL database to switch from one version to another.",
-								MarkdownDescription: "Indicates a PostgreSQL version image to use. Allowed values are: '9.6' and '13.3'. Migrate your PostgreSQL database to switch from one version to another.",
+								Description:         "Indicates a PostgreSQL version image to use. Allowed values are: '9.6' and '13.3'.Migrate your PostgreSQL database to switch from one version to another.",
+								MarkdownDescription: "Indicates a PostgreSQL version image to use. Allowed values are: '9.6' and '13.3'.Migrate your PostgreSQL database to switch from one version to another.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pvc_claim_size": schema.StringAttribute{
-								Description:         "Size of the persistent volume claim for database. Defaults to '1Gi'. To update pvc storageclass that provisions it must support resize when Eclipse Che has been already deployed.",
-								MarkdownDescription: "Size of the persistent volume claim for database. Defaults to '1Gi'. To update pvc storageclass that provisions it must support resize when Eclipse Che has been already deployed.",
+								Description:         "Size of the persistent volume claim for database. Defaults to '1Gi'.To update pvc storageclass that provisions it must support resize when Eclipse Che has been already deployed.",
+								MarkdownDescription: "Size of the persistent volume claim for database. Defaults to '1Gi'.To update pvc storageclass that provisions it must support resize when Eclipse Che has been already deployed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2158,16 +2158,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "DevWorkspace operator configuration",
 						Attributes: map[string]schema.Attribute{
 							"controller_image": schema.StringAttribute{
-								Description:         "Overrides the container image used in the DevWorkspace controller deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Overrides the container image used in the DevWorkspace controller deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Overrides the container image used in the DevWorkspace controller deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Overrides the container image used in the DevWorkspace controller deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Deploys the DevWorkspace Operator in the cluster. Does nothing when a matching version of the Operator is already installed. Fails when a non-matching version of the Operator is already installed.",
-								MarkdownDescription: "Deploys the DevWorkspace Operator in the cluster. Does nothing when a matching version of the Operator is already installed. Fails when a non-matching version of the Operator is already installed.",
+								Description:         "Deploys the DevWorkspace Operator in the cluster.Does nothing when a matching version of the Operator is already installed.Fails when a non-matching version of the Operator is already installed.",
+								MarkdownDescription: "Deploys the DevWorkspace Operator in the cluster.Does nothing when a matching version of the Operator is already installed.Fails when a non-matching version of the Operator is already installed.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -2187,8 +2187,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2211,8 +2211,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2232,8 +2232,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -2257,8 +2257,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -2302,8 +2302,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2342,16 +2342,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"seconds_of_inactivity_before_idling": schema.Int64Attribute{
-								Description:         "Idle timeout for workspaces in seconds. This timeout is the duration after which a workspace will be idled if there is no activity. To disable workspace idling due to inactivity, set this value to -1.",
-								MarkdownDescription: "Idle timeout for workspaces in seconds. This timeout is the duration after which a workspace will be idled if there is no activity. To disable workspace idling due to inactivity, set this value to -1.",
+								Description:         "Idle timeout for workspaces in seconds.This timeout is the duration after which a workspace will be idled if there is no activity.To disable workspace idling due to inactivity, set this value to -1.",
+								MarkdownDescription: "Idle timeout for workspaces in seconds.This timeout is the duration after which a workspace will be idled if there is no activity.To disable workspace idling due to inactivity, set this value to -1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"seconds_of_run_before_idling": schema.Int64Attribute{
-								Description:         "Run timeout for workspaces in seconds. This timeout is the maximum duration a workspace runs. To disable workspace run timeout, set this value to -1.",
-								MarkdownDescription: "Run timeout for workspaces in seconds. This timeout is the maximum duration a workspace runs. To disable workspace run timeout, set this value to -1.",
+								Description:         "Run timeout for workspaces in seconds.This timeout is the maximum duration a workspace runs.To disable workspace run timeout, set this value to -1.",
+								MarkdownDescription: "Run timeout for workspaces in seconds.This timeout is the maximum duration a workspace runs.To disable workspace run timeout, set this value to -1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2372,16 +2372,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"endpoint": schema.StringAttribute{
-											Description:         "Bitbucket server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/.",
-											MarkdownDescription: "Bitbucket server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/.",
+											Description:         "Bitbucket server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/.",
+											MarkdownDescription: "Bitbucket server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "Kubernetes secret, that contains Base64-encoded Bitbucket OAuth 1.0 or OAuth 2.0 data. See the following pages for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/ and https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/.",
-											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded Bitbucket OAuth 1.0 or OAuth 2.0 data. See the following pages for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/ and https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/.",
+											Description:         "Kubernetes secret, that contains Base64-encoded Bitbucket OAuth 1.0 or OAuth 2.0 data.See the following pages for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/and https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/.",
+											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded Bitbucket OAuth 1.0 or OAuth 2.0 data.See the following pages for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-1-for-a-bitbucket-server/and https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -2399,16 +2399,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"endpoint": schema.StringAttribute{
-											Description:         "GitHub server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
-											MarkdownDescription: "GitHub server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
+											Description:         "GitHub server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
+											MarkdownDescription: "GitHub server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "Kubernetes secret, that contains Base64-encoded GitHub OAuth Client id and GitHub OAuth Client secret. See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
-											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded GitHub OAuth Client id and GitHub OAuth Client secret. See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
+											Description:         "Kubernetes secret, that contains Base64-encoded GitHub OAuth Client id and GitHub OAuth Client secret.See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
+											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded GitHub OAuth Client id and GitHub OAuth Client secret.See the following page for details: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -2426,16 +2426,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"endpoint": schema.StringAttribute{
-											Description:         "GitLab server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
-											MarkdownDescription: "GitLab server endpoint URL. Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
+											Description:         "GitLab server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
+											MarkdownDescription: "GitLab server endpoint URL.Deprecated in favor of 'che.eclipse.org/scm-server-endpoint' annotation.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "Kubernetes secret, that contains Base64-encoded GitHub Application id and GitLab Application Client secret. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
-											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded GitHub Application id and GitLab Application Client secret. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
+											Description:         "Kubernetes secret, that contains Base64-encoded GitHub Application id and GitLab Application Client secret.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
+											MarkdownDescription: "Kubernetes secret, that contains Base64-encoded GitHub Application id and GitLab Application Client secret.See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-gitlab/.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -2457,8 +2457,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "Kubernetes Image Puller configuration",
 						Attributes: map[string]schema.Attribute{
 							"enable": schema.BoolAttribute{
-								Description:         "Install and configure the Community Supported Kubernetes Image Puller Operator. When set to 'true' and no spec is provided, it will create a default KubernetesImagePuller object to be managed by the Operator. When set to 'false', the KubernetesImagePuller object will be deleted, and the Operator will be uninstalled, regardless of whether a spec is provided. If the 'spec.images' field is empty, a set of recommended workspace-related images will be automatically detected and pre-pulled after installation. Note that while this Operator and its behavior is community-supported, its payload may be commercially-supported for pulling commercially-supported images.",
-								MarkdownDescription: "Install and configure the Community Supported Kubernetes Image Puller Operator. When set to 'true' and no spec is provided, it will create a default KubernetesImagePuller object to be managed by the Operator. When set to 'false', the KubernetesImagePuller object will be deleted, and the Operator will be uninstalled, regardless of whether a spec is provided. If the 'spec.images' field is empty, a set of recommended workspace-related images will be automatically detected and pre-pulled after installation. Note that while this Operator and its behavior is community-supported, its payload may be commercially-supported for pulling commercially-supported images.",
+								Description:         "Install and configure the Community Supported Kubernetes Image Puller Operator. When set to 'true' and no spec is provided,it will create a default KubernetesImagePuller object to be managed by the Operator.When set to 'false', the KubernetesImagePuller object will be deleted, and the Operator will be uninstalled,regardless of whether a spec is provided.If the 'spec.images' field is empty, a set of recommended workspace-related images will be automatically detected andpre-pulled after installation.Note that while this Operator and its behavior is community-supported, its payload may be commercially-supportedfor pulling commercially-supported images.",
+								MarkdownDescription: "Install and configure the Community Supported Kubernetes Image Puller Operator. When set to 'true' and no spec is provided,it will create a default KubernetesImagePuller object to be managed by the Operator.When set to 'false', the KubernetesImagePuller object will be deleted, and the Operator will be uninstalled,regardless of whether a spec is provided.If the 'spec.images' field is empty, a set of recommended workspace-related images will be automatically detected andpre-pulled after installation.Note that while this Operator and its behavior is community-supported, its payload may be commercially-supportedfor pulling commercially-supported images.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -2587,8 +2587,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "Configuration settings specific to Che installations made on upstream Kubernetes.",
 						Attributes: map[string]schema.Attribute{
 							"ingress_class": schema.StringAttribute{
-								Description:         "Ingress class that will define the which controller will manage ingresses. Defaults to 'nginx'. NB: This drives the 'kubernetes.io/ingress.class' annotation on Che-related ingresses.",
-								MarkdownDescription: "Ingress class that will define the which controller will manage ingresses. Defaults to 'nginx'. NB: This drives the 'kubernetes.io/ingress.class' annotation on Che-related ingresses.",
+								Description:         "Ingress class that will define the which controller will manage ingresses. Defaults to 'nginx'.NB: This drives the 'kubernetes.io/ingress.class' annotation on Che-related ingresses.",
+								MarkdownDescription: "Ingress class that will define the which controller will manage ingresses. Defaults to 'nginx'.NB: This drives the 'kubernetes.io/ingress.class' annotation on Che-related ingresses.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2603,8 +2603,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"ingress_strategy": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Strategy for ingress creation. Options are: 'multi-host' (host is explicitly provided in ingress), 'single-host' (host is provided, path-based rules) and 'default-host' (no host is provided, path-based rules). Defaults to 'multi-host' Deprecated in favor of 'serverExposureStrategy' in the 'server' section, which defines this regardless of the cluster type. When both are defined, the 'serverExposureStrategy' option takes precedence.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Strategy for ingress creation. Options are: 'multi-host' (host is explicitly provided in ingress), 'single-host' (host is provided, path-based rules) and 'default-host' (no host is provided, path-based rules). Defaults to 'multi-host' Deprecated in favor of 'serverExposureStrategy' in the 'server' section, which defines this regardless of the cluster type. When both are defined, the 'serverExposureStrategy' option takes precedence.",
+								Description:         "Deprecated. The value of this flag is ignored.Strategy for ingress creation. Options are: 'multi-host' (host is explicitly provided in ingress),'single-host' (host is provided, path-based rules) and 'default-host' (no host is provided, path-based rules).Defaults to 'multi-host' Deprecated in favor of 'serverExposureStrategy' in the 'server' section,which defines this regardless of the cluster type. When both are defined, the 'serverExposureStrategy' option takes precedence.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Strategy for ingress creation. Options are: 'multi-host' (host is explicitly provided in ingress),'single-host' (host is provided, path-based rules) and 'default-host' (no host is provided, path-based rules).Defaults to 'multi-host' Deprecated in favor of 'serverExposureStrategy' in the 'server' section,which defines this regardless of the cluster type. When both are defined, the 'serverExposureStrategy' option takes precedence.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2627,16 +2627,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"single_host_exposure_type": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. When the serverExposureStrategy is set to 'single-host', the way the server, registries and workspaces are exposed is further configured by this property. The possible values are 'native', which means that the server and workspaces are exposed using ingresses on K8s or 'gateway' where the server and workspaces are exposed using a custom gateway based on link:https://doc.traefik.io/traefik/[Traefik]. All the endpoints whether backed by the ingress or gateway 'route' always point to the subpaths on the same domain. Defaults to 'native'.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. When the serverExposureStrategy is set to 'single-host', the way the server, registries and workspaces are exposed is further configured by this property. The possible values are 'native', which means that the server and workspaces are exposed using ingresses on K8s or 'gateway' where the server and workspaces are exposed using a custom gateway based on link:https://doc.traefik.io/traefik/[Traefik]. All the endpoints whether backed by the ingress or gateway 'route' always point to the subpaths on the same domain. Defaults to 'native'.",
+								Description:         "Deprecated. The value of this flag is ignored.When the serverExposureStrategy is set to 'single-host', the way the server, registries and workspaces are exposed is further configured by this property.The possible values are 'native', which means that the server and workspaces are exposed using ingresses on K8sor 'gateway' where the server and workspaces are exposed using a custom gateway based on link:https://doc.traefik.io/traefik/[Traefik].All the endpoints whether backed by the ingress or gateway 'route' always point to the subpaths on the same domain. Defaults to 'native'.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.When the serverExposureStrategy is set to 'single-host', the way the server, registries and workspaces are exposed is further configured by this property.The possible values are 'native', which means that the server and workspaces are exposed using ingresses on K8sor 'gateway' where the server and workspaces are exposed using a custom gateway based on link:https://doc.traefik.io/traefik/[Traefik].All the endpoints whether backed by the ingress or gateway 'route' always point to the subpaths on the same domain. Defaults to 'native'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tls_secret_name": schema.StringAttribute{
-								Description:         "Name of a secret that will be used to setup ingress TLS termination when TLS is enabled. When the field is empty string, the default cluster certificate will be used. See also the 'tlsSupport' field.",
-								MarkdownDescription: "Name of a secret that will be used to setup ingress TLS termination when TLS is enabled. When the field is empty string, the default cluster certificate will be used. See also the 'tlsSupport' field.",
+								Description:         "Name of a secret that will be used to setup ingress TLS termination when TLS is enabled.When the field is empty string, the default cluster certificate will be used. See also the 'tlsSupport' field.",
+								MarkdownDescription: "Name of a secret that will be used to setup ingress TLS termination when TLS is enabled.When the field is empty string, the default cluster certificate will be used. See also the 'tlsSupport' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2669,40 +2669,40 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "General configuration settings related to the Che server, the plugin and devfile registries",
 						Attributes: map[string]schema.Attribute{
 							"air_gap_container_registry_hostname": schema.StringAttribute{
-								Description:         "Optional host name, or URL, to an alternate container registry to pull images from. This value overrides the container registry host name defined in all the default container images involved in a Che deployment. This is particularly useful to install Che in a restricted environment.",
-								MarkdownDescription: "Optional host name, or URL, to an alternate container registry to pull images from. This value overrides the container registry host name defined in all the default container images involved in a Che deployment. This is particularly useful to install Che in a restricted environment.",
+								Description:         "Optional host name, or URL, to an alternate container registry to pull images from.This value overrides the container registry host name defined in all the default container images involved in a Che deployment.This is particularly useful to install Che in a restricted environment.",
+								MarkdownDescription: "Optional host name, or URL, to an alternate container registry to pull images from.This value overrides the container registry host name defined in all the default container images involved in a Che deployment.This is particularly useful to install Che in a restricted environment.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"air_gap_container_registry_organization": schema.StringAttribute{
-								Description:         "Optional repository name of an alternate container registry to pull images from. This value overrides the container registry organization defined in all the default container images involved in a Che deployment. This is particularly useful to install Eclipse Che in a restricted environment.",
-								MarkdownDescription: "Optional repository name of an alternate container registry to pull images from. This value overrides the container registry organization defined in all the default container images involved in a Che deployment. This is particularly useful to install Eclipse Che in a restricted environment.",
+								Description:         "Optional repository name of an alternate container registry to pull images from.This value overrides the container registry organization defined in all the default container images involved in a Che deployment.This is particularly useful to install Eclipse Che in a restricted environment.",
+								MarkdownDescription: "Optional repository name of an alternate container registry to pull images from.This value overrides the container registry organization defined in all the default container images involved in a Che deployment.This is particularly useful to install Eclipse Che in a restricted environment.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"allow_auto_provision_user_namespace": schema.BoolAttribute{
-								Description:         "Indicates if is allowed to automatically create a user namespace. If it set to false, then user namespace must be pre-created by a cluster administrator.",
-								MarkdownDescription: "Indicates if is allowed to automatically create a user namespace. If it set to false, then user namespace must be pre-created by a cluster administrator.",
+								Description:         "Indicates if is allowed to automatically create a user namespace.If it set to false, then user namespace must be pre-created by a cluster administrator.",
+								MarkdownDescription: "Indicates if is allowed to automatically create a user namespace.If it set to false, then user namespace must be pre-created by a cluster administrator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"allow_user_defined_workspace_namespaces": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Defines that a user is allowed to specify a Kubernetes namespace, or an OpenShift project, which differs from the default. It's NOT RECOMMENDED to set to 'true' without OpenShift OAuth configured. The OpenShift infrastructure also uses this property.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Defines that a user is allowed to specify a Kubernetes namespace, or an OpenShift project, which differs from the default. It's NOT RECOMMENDED to set to 'true' without OpenShift OAuth configured. The OpenShift infrastructure also uses this property.",
+								Description:         "Deprecated. The value of this flag is ignored.Defines that a user is allowed to specify a Kubernetes namespace, or an OpenShift project, which differs from the default.It's NOT RECOMMENDED to set to 'true' without OpenShift OAuth configured. The OpenShift infrastructure also uses this property.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Defines that a user is allowed to specify a Kubernetes namespace, or an OpenShift project, which differs from the default.It's NOT RECOMMENDED to set to 'true' without OpenShift OAuth configured. The OpenShift infrastructure also uses this property.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_cluster_roles": schema.StringAttribute{
-								Description:         "A comma-separated list of ClusterRoles that will be assigned to Che ServiceAccount. Each role must have 'app.kubernetes.io/part-of=che.eclipse.org' label. Be aware that the Che Operator has to already have all permissions in these ClusterRoles to grant them.",
-								MarkdownDescription: "A comma-separated list of ClusterRoles that will be assigned to Che ServiceAccount. Each role must have 'app.kubernetes.io/part-of=che.eclipse.org' label. Be aware that the Che Operator has to already have all permissions in these ClusterRoles to grant them.",
+								Description:         "A comma-separated list of ClusterRoles that will be assigned to Che ServiceAccount.Each role must have 'app.kubernetes.io/part-of=che.eclipse.org' label.Be aware that the Che Operator has to already have all permissions in these ClusterRoles to grant them.",
+								MarkdownDescription: "A comma-separated list of ClusterRoles that will be assigned to Che ServiceAccount.Each role must have 'app.kubernetes.io/part-of=che.eclipse.org' label.Be aware that the Che Operator has to already have all permissions in these ClusterRoles to grant them.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2717,48 +2717,48 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"che_flavor": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Specifies a variation of the installation. The options are  'che' for upstream Che installations or 'devspaces' for Red Hat OpenShift Dev Spaces (formerly Red Hat CodeReady Workspaces) installation",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Specifies a variation of the installation. The options are  'che' for upstream Che installations or 'devspaces' for Red Hat OpenShift Dev Spaces (formerly Red Hat CodeReady Workspaces) installation",
+								Description:         "Deprecated. The value of this flag is ignored.Specifies a variation of the installation. The options are  'che' for upstream Che installations or'devspaces' for Red Hat OpenShift Dev Spaces (formerly Red Hat CodeReady Workspaces) installation",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Specifies a variation of the installation. The options are  'che' for upstream Che installations or'devspaces' for Red Hat OpenShift Dev Spaces (formerly Red Hat CodeReady Workspaces) installation",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_host": schema.StringAttribute{
-								Description:         "Public host name of the installed Che server. When value is omitted, the value it will be automatically set by the Operator. See the 'cheHostTLSSecret' field.",
-								MarkdownDescription: "Public host name of the installed Che server. When value is omitted, the value it will be automatically set by the Operator. See the 'cheHostTLSSecret' field.",
+								Description:         "Public host name of the installed Che server. When value is omitted, the value it will be automatically set by the Operator.See the 'cheHostTLSSecret' field.",
+								MarkdownDescription: "Public host name of the installed Che server. When value is omitted, the value it will be automatically set by the Operator.See the 'cheHostTLSSecret' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_host_tls_secret": schema.StringAttribute{
-								Description:         "Name of a secret containing certificates to secure ingress or route for the custom host name of the installed Che server. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label. See the 'cheHost' field.",
-								MarkdownDescription: "Name of a secret containing certificates to secure ingress or route for the custom host name of the installed Che server. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label. See the 'cheHost' field.",
+								Description:         "Name of a secret containing certificates to secure ingress or route for the custom host name of the installed Che server.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.See the 'cheHost' field.",
+								MarkdownDescription: "Name of a secret containing certificates to secure ingress or route for the custom host name of the installed Che server.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.See the 'cheHost' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_image": schema.StringAttribute{
-								Description:         "Overrides the container image used in Che deployment. This does NOT include the container image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Overrides the container image used in Che deployment. This does NOT include the container image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Overrides the container image used in Che deployment. This does NOT include the container image tag.Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Overrides the container image used in Che deployment. This does NOT include the container image tag.Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_image_pull_policy": schema.StringAttribute{
-								Description:         "Overrides the image pull policy used in Che deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
-								MarkdownDescription: "Overrides the image pull policy used in Che deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								Description:         "Overrides the image pull policy used in Che deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								MarkdownDescription: "Overrides the image pull policy used in Che deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"che_image_tag": schema.StringAttribute{
-								Description:         "Overrides the tag of the container image used in Che deployment. Omit it or leave it empty to use the default image tag provided by the Operator.",
-								MarkdownDescription: "Overrides the tag of the container image used in Che deployment. Omit it or leave it empty to use the default image tag provided by the Operator.",
+								Description:         "Overrides the tag of the container image used in Che deployment.Omit it or leave it empty to use the default image tag provided by the Operator.",
+								MarkdownDescription: "Overrides the tag of the container image used in Che deployment.Omit it or leave it empty to use the default image tag provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2786,8 +2786,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2810,8 +2810,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2831,8 +2831,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -2856,8 +2856,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -2901,8 +2901,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2972,8 +2972,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"domain": schema.StringAttribute{
-										Description:         "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
-										MarkdownDescription: "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										Description:         "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										MarkdownDescription: "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2993,16 +2993,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"che_workspace_cluster_role": schema.StringAttribute{
-								Description:         "Custom cluster role bound to the user for the Che workspaces. The role must have 'app.kubernetes.io/part-of=che.eclipse.org' label. The default roles are used when omitted or left blank.",
-								MarkdownDescription: "Custom cluster role bound to the user for the Che workspaces. The role must have 'app.kubernetes.io/part-of=che.eclipse.org' label. The default roles are used when omitted or left blank.",
+								Description:         "Custom cluster role bound to the user for the Che workspaces.The role must have 'app.kubernetes.io/part-of=che.eclipse.org' label.The default roles are used when omitted or left blank.",
+								MarkdownDescription: "Custom cluster role bound to the user for the Che workspaces.The role must have 'app.kubernetes.io/part-of=che.eclipse.org' label.The default roles are used when omitted or left blank.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"custom_che_properties": schema.MapAttribute{
-								Description:         "Map of additional environment variables that will be applied in the generated 'che' ConfigMap to be used by the Che server, in addition to the values already generated from other fields of the 'CheCluster' custom resource (CR). When 'customCheProperties' contains a property that would be normally generated in 'che' ConfigMap from other CR fields, the value defined in the 'customCheProperties' is used instead.",
-								MarkdownDescription: "Map of additional environment variables that will be applied in the generated 'che' ConfigMap to be used by the Che server, in addition to the values already generated from other fields of the 'CheCluster' custom resource (CR). When 'customCheProperties' contains a property that would be normally generated in 'che' ConfigMap from other CR fields, the value defined in the 'customCheProperties' is used instead.",
+								Description:         "Map of additional environment variables that will be applied in the generated 'che' ConfigMap to be used by the Che server,in addition to the values already generated from other fields of the 'CheCluster' custom resource (CR).When 'customCheProperties' contains a property that would be normally generated in 'che' ConfigMap from other CR fields,the value defined in the 'customCheProperties' is used instead.",
+								MarkdownDescription: "Map of additional environment variables that will be applied in the generated 'che' ConfigMap to be used by the Che server,in addition to the values already generated from other fields of the 'CheCluster' custom resource (CR).When 'customCheProperties' contains a property that would be normally generated in 'che' ConfigMap from other CR fields,the value defined in the 'customCheProperties' is used instead.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3010,16 +3010,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"dashboard_cpu_limit": schema.StringAttribute{
-								Description:         "Overrides the CPU limit used in the dashboard deployment. In cores. (500m = .5 cores). Default to 500m.",
-								MarkdownDescription: "Overrides the CPU limit used in the dashboard deployment. In cores. (500m = .5 cores). Default to 500m.",
+								Description:         "Overrides the CPU limit used in the dashboard deployment.In cores. (500m = .5 cores). Default to 500m.",
+								MarkdownDescription: "Overrides the CPU limit used in the dashboard deployment.In cores. (500m = .5 cores). Default to 500m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"dashboard_cpu_request": schema.StringAttribute{
-								Description:         "Overrides the CPU request used in the dashboard deployment. In cores. (500m = .5 cores). Default to 100m.",
-								MarkdownDescription: "Overrides the CPU request used in the dashboard deployment. In cores. (500m = .5 cores). Default to 100m.",
+								Description:         "Overrides the CPU request used in the dashboard deployment.In cores. (500m = .5 cores). Default to 100m.",
+								MarkdownDescription: "Overrides the CPU request used in the dashboard deployment.In cores. (500m = .5 cores). Default to 100m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3039,8 +3039,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3063,8 +3063,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3084,8 +3084,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -3109,8 +3109,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -3154,8 +3154,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3186,24 +3186,24 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"dashboard_image": schema.StringAttribute{
-								Description:         "Overrides the container image used in the dashboard deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Overrides the container image used in the dashboard deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Overrides the container image used in the dashboard deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Overrides the container image used in the dashboard deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"dashboard_image_pull_policy": schema.StringAttribute{
-								Description:         "Overrides the image pull policy used in the dashboard deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
-								MarkdownDescription: "Overrides the image pull policy used in the dashboard deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								Description:         "Overrides the image pull policy used in the dashboard deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								MarkdownDescription: "Overrides the image pull policy used in the dashboard deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"dashboard_ingress": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Dashboard ingress custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Dashboard ingress custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Dashboard ingress custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Dashboard ingress custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3244,8 +3244,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"dashboard_route": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Dashboard route custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Dashboard route custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Dashboard route custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Dashboard route custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3257,8 +3257,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"domain": schema.StringAttribute{
-										Description:         "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
-										MarkdownDescription: "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										Description:         "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										MarkdownDescription: "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3278,16 +3278,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"devfile_registry_cpu_limit": schema.StringAttribute{
-								Description:         "Overrides the CPU limit used in the devfile registry deployment. In cores. (500m = .5 cores). Default to 500m.",
-								MarkdownDescription: "Overrides the CPU limit used in the devfile registry deployment. In cores. (500m = .5 cores). Default to 500m.",
+								Description:         "Overrides the CPU limit used in the devfile registry deployment.In cores. (500m = .5 cores). Default to 500m.",
+								MarkdownDescription: "Overrides the CPU limit used in the devfile registry deployment.In cores. (500m = .5 cores). Default to 500m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"devfile_registry_cpu_request": schema.StringAttribute{
-								Description:         "Overrides the CPU request used in the devfile registry deployment. In cores. (500m = .5 cores). Default to 100m.",
-								MarkdownDescription: "Overrides the CPU request used in the devfile registry deployment. In cores. (500m = .5 cores). Default to 100m.",
+								Description:         "Overrides the CPU request used in the devfile registry deployment.In cores. (500m = .5 cores). Default to 100m.",
+								MarkdownDescription: "Overrides the CPU request used in the devfile registry deployment.In cores. (500m = .5 cores). Default to 100m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3307,8 +3307,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3331,8 +3331,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3352,8 +3352,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -3377,8 +3377,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -3422,8 +3422,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3454,16 +3454,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"devfile_registry_image": schema.StringAttribute{
-								Description:         "Overrides the container image used in the devfile registry deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Overrides the container image used in the devfile registry deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Overrides the container image used in the devfile registry deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Overrides the container image used in the devfile registry deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"devfile_registry_ingress": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. The devfile registry ingress custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. The devfile registry ingress custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.The devfile registry ingress custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.The devfile registry ingress custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3504,16 +3504,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"devfile_registry_pull_policy": schema.StringAttribute{
-								Description:         "Overrides the image pull policy used in the devfile registry deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
-								MarkdownDescription: "Overrides the image pull policy used in the devfile registry deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								Description:         "Overrides the image pull policy used in the devfile registry deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								MarkdownDescription: "Overrides the image pull policy used in the devfile registry deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"devfile_registry_route": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. The devfile registry route custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. The devfile registry route custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.The devfile registry route custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.The devfile registry route custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3525,8 +3525,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"domain": schema.StringAttribute{
-										Description:         "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
-										MarkdownDescription: "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										Description:         "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										MarkdownDescription: "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3554,16 +3554,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"disable_internal_cluster_svc_names": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Disable internal cluster SVC names usage to communicate between components to speed up the traffic and avoid proxy issues.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Disable internal cluster SVC names usage to communicate between components to speed up the traffic and avoid proxy issues.",
+								Description:         "Deprecated. The value of this flag is ignored.Disable internal cluster SVC names usage to communicate between components to speed up the traffic and avoid proxy issues.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Disable internal cluster SVC names usage to communicate between components to speed up the traffic and avoid proxy issues.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"external_devfile_registries": schema.ListNestedAttribute{
-								Description:         "External devfile registries, that serves sample, ready-to-use devfiles. Configure this in addition to a dedicated devfile registry (when 'externalDevfileRegistry' is 'false') or instead of it (when 'externalDevfileRegistry' is 'true')",
-								MarkdownDescription: "External devfile registries, that serves sample, ready-to-use devfiles. Configure this in addition to a dedicated devfile registry (when 'externalDevfileRegistry' is 'false') or instead of it (when 'externalDevfileRegistry' is 'true')",
+								Description:         "External devfile registries, that serves sample, ready-to-use devfiles.Configure this in addition to a dedicated devfile registry (when 'externalDevfileRegistry' is 'false')or instead of it (when 'externalDevfileRegistry' is 'true')",
+								MarkdownDescription: "External devfile registries, that serves sample, ready-to-use devfiles.Configure this in addition to a dedicated devfile registry (when 'externalDevfileRegistry' is 'false')or instead of it (when 'externalDevfileRegistry' is 'true')",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"url": schema.StringAttribute{
@@ -3581,32 +3581,32 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"external_devfile_registry": schema.BoolAttribute{
-								Description:         "Instructs the Operator on whether to deploy a dedicated devfile registry server. By default, a dedicated devfile registry server is started. When 'externalDevfileRegistry' is 'true', no such dedicated server will be started by the Operator and configure at least one devfile registry with 'externalDevfileRegistries' field.",
-								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated devfile registry server. By default, a dedicated devfile registry server is started. When 'externalDevfileRegistry' is 'true', no such dedicated server will be started by the Operator and configure at least one devfile registry with 'externalDevfileRegistries' field.",
+								Description:         "Instructs the Operator on whether to deploy a dedicated devfile registry server.By default, a dedicated devfile registry server is started. When 'externalDevfileRegistry' is 'true',no such dedicated server will be started by the Operator and configure at least onedevfile registry with 'externalDevfileRegistries' field.",
+								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated devfile registry server.By default, a dedicated devfile registry server is started. When 'externalDevfileRegistry' is 'true',no such dedicated server will be started by the Operator and configure at least onedevfile registry with 'externalDevfileRegistries' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"external_plugin_registry": schema.BoolAttribute{
-								Description:         "Instructs the Operator on whether to deploy a dedicated plugin registry server. By default, a dedicated plugin registry server is started. When 'externalPluginRegistry' is 'true', no such dedicated server will be started by the Operator and you will have to manually set the 'pluginRegistryUrl' field.",
-								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated plugin registry server. By default, a dedicated plugin registry server is started. When 'externalPluginRegistry' is 'true', no such dedicated server will be started by the Operator and you will have to manually set the 'pluginRegistryUrl' field.",
+								Description:         "Instructs the Operator on whether to deploy a dedicated plugin registry server.By default, a dedicated plugin registry server is started. When 'externalPluginRegistry' is 'true', no such dedicated serverwill be started by the Operator and you will have to manually set the 'pluginRegistryUrl' field.",
+								MarkdownDescription: "Instructs the Operator on whether to deploy a dedicated plugin registry server.By default, a dedicated plugin registry server is started. When 'externalPluginRegistry' is 'true', no such dedicated serverwill be started by the Operator and you will have to manually set the 'pluginRegistryUrl' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"git_self_signed_cert": schema.BoolAttribute{
-								Description:         "When enabled, the certificate from 'che-git-self-signed-cert' ConfigMap will be propagated to the Che components and provide particular configuration for Git. Note, the 'che-git-self-signed-cert' ConfigMap must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "When enabled, the certificate from 'che-git-self-signed-cert' ConfigMap will be propagated to the Che components and provide particular configuration for Git. Note, the 'che-git-self-signed-cert' ConfigMap must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "When enabled, the certificate from 'che-git-self-signed-cert' ConfigMap will be propagated to the Che components and provide particular configuration for Git.Note, the 'che-git-self-signed-cert' ConfigMap must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "When enabled, the certificate from 'che-git-self-signed-cert' ConfigMap will be propagated to the Che components and provide particular configuration for Git.Note, the 'che-git-self-signed-cert' ConfigMap must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"non_proxy_hosts": schema.StringAttribute{
-								Description:         "List of hosts that will be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>' and '|' as delimiter, for example: 'localhost|.my.host.com|123.42.12.32' Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required, but defining 'nonProxyHosts' in a custom resource leads to merging non proxy hosts lists from the cluster proxy configuration and ones defined in the custom resources. See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyURL' fields.",
-								MarkdownDescription: "List of hosts that will be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>' and '|' as delimiter, for example: 'localhost|.my.host.com|123.42.12.32' Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required, but defining 'nonProxyHosts' in a custom resource leads to merging non proxy hosts lists from the cluster proxy configuration and ones defined in the custom resources. See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyURL' fields.",
+								Description:         "List of hosts that will be reached directly, bypassing the proxy.Specify wild card domain use the following form '.<DOMAIN>' and '|' as delimiter, for example: 'localhost|.my.host.com|123.42.12.32'Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required,but defining 'nonProxyHosts' in a custom resource leads to merging non proxy hosts lists from the cluster proxy configuration and ones defined in the custom resources.See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyURL' fields.",
+								MarkdownDescription: "List of hosts that will be reached directly, bypassing the proxy.Specify wild card domain use the following form '.<DOMAIN>' and '|' as delimiter, for example: 'localhost|.my.host.com|123.42.12.32'Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required,but defining 'nonProxyHosts' in a custom resource leads to merging non proxy hosts lists from the cluster proxy configuration and ones defined in the custom resources.See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyURL' fields.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3621,16 +3621,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"plugin_registry_cpu_limit": schema.StringAttribute{
-								Description:         "Overrides the CPU limit used in the plugin registry deployment. In cores. (500m = .5 cores). Default to 500m.",
-								MarkdownDescription: "Overrides the CPU limit used in the plugin registry deployment. In cores. (500m = .5 cores). Default to 500m.",
+								Description:         "Overrides the CPU limit used in the plugin registry deployment.In cores. (500m = .5 cores). Default to 500m.",
+								MarkdownDescription: "Overrides the CPU limit used in the plugin registry deployment.In cores. (500m = .5 cores). Default to 500m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"plugin_registry_cpu_request": schema.StringAttribute{
-								Description:         "Overrides the CPU request used in the plugin registry deployment. In cores. (500m = .5 cores). Default to 100m.",
-								MarkdownDescription: "Overrides the CPU request used in the plugin registry deployment. In cores. (500m = .5 cores). Default to 100m.",
+								Description:         "Overrides the CPU request used in the plugin registry deployment.In cores. (500m = .5 cores). Default to 100m.",
+								MarkdownDescription: "Overrides the CPU request used in the plugin registry deployment.In cores. (500m = .5 cores). Default to 100m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3650,8 +3650,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3674,8 +3674,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3695,8 +3695,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -3720,8 +3720,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
 															Description:         "Container name: required for volumes, optional for env vars",
@@ -3765,8 +3765,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3797,16 +3797,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"plugin_registry_image": schema.StringAttribute{
-								Description:         "Overrides the container image used in the plugin registry deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
-								MarkdownDescription: "Overrides the container image used in the plugin registry deployment. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								Description:         "Overrides the container image used in the plugin registry deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
+								MarkdownDescription: "Overrides the container image used in the plugin registry deployment.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"plugin_registry_ingress": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Plugin registry ingress custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Plugin registry ingress custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Plugin registry ingress custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Plugin registry ingress custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3847,16 +3847,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"plugin_registry_pull_policy": schema.StringAttribute{
-								Description:         "Overrides the image pull policy used in the plugin registry deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
-								MarkdownDescription: "Overrides the image pull policy used in the plugin registry deployment. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								Description:         "Overrides the image pull policy used in the plugin registry deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
+								MarkdownDescription: "Overrides the image pull policy used in the plugin registry deployment.Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"plugin_registry_route": schema.SingleNestedAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Plugin registry route custom settings.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Plugin registry route custom settings.",
+								Description:         "Deprecated. The value of this flag is ignored.Plugin registry route custom settings.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Plugin registry route custom settings.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
@@ -3868,8 +3868,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"domain": schema.StringAttribute{
-										Description:         "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
-										MarkdownDescription: "Operator uses the domain to generate a hostname for a route. In a conjunction with labels it creates a route, which is served by a non-default Ingress controller. The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										Description:         "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
+										MarkdownDescription: "Operator uses the domain to generate a hostname for a route.In a conjunction with labels it creates a route, which is served by a non-default Ingress controller.The generated host name will follow this pattern: '<route-name>-<route-namespace>.<domain>'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3889,16 +3889,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"plugin_registry_url": schema.StringAttribute{
-								Description:         "Public URL of the plugin registry that serves sample ready-to-use devfiles. Set this ONLY when a use of an external devfile registry is needed. See the 'externalPluginRegistry' field. By default, this will be automatically calculated by the Operator.",
-								MarkdownDescription: "Public URL of the plugin registry that serves sample ready-to-use devfiles. Set this ONLY when a use of an external devfile registry is needed. See the 'externalPluginRegistry' field. By default, this will be automatically calculated by the Operator.",
+								Description:         "Public URL of the plugin registry that serves sample ready-to-use devfiles.Set this ONLY when a use of an external devfile registry is needed.See the 'externalPluginRegistry' field. By default, this will be automatically calculated by the Operator.",
+								MarkdownDescription: "Public URL of the plugin registry that serves sample ready-to-use devfiles.Set this ONLY when a use of an external devfile registry is needed.See the 'externalPluginRegistry' field. By default, this will be automatically calculated by the Operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_password": schema.StringAttribute{
-								Description:         "Password of the proxy server. Only use when proxy configuration is required. See the 'proxyURL', 'proxyUser' and 'proxySecret' fields.",
-								MarkdownDescription: "Password of the proxy server. Only use when proxy configuration is required. See the 'proxyURL', 'proxyUser' and 'proxySecret' fields.",
+								Description:         "Password of the proxy server.Only use when proxy configuration is required. See the 'proxyURL', 'proxyUser' and 'proxySecret' fields.",
+								MarkdownDescription: "Password of the proxy server.Only use when proxy configuration is required. See the 'proxyURL', 'proxyUser' and 'proxySecret' fields.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3913,16 +3913,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"proxy_secret": schema.StringAttribute{
-								Description:         "The secret that contains 'user' and 'password' for a proxy server. When the secret is defined, the 'proxyUser' and 'proxyPassword' are ignored. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "The secret that contains 'user' and 'password' for a proxy server. When the secret is defined, the 'proxyUser' and 'proxyPassword' are ignored. The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "The secret that contains 'user' and 'password' for a proxy server. When the secret is defined, the 'proxyUser' and 'proxyPassword' are ignored.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "The secret that contains 'user' and 'password' for a proxy server. When the secret is defined, the 'proxyUser' and 'proxyPassword' are ignored.The secret must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_url": schema.StringAttribute{
-								Description:         "URL (protocol+host name) of the proxy server. This drives the appropriate changes in the 'JAVA_OPTS' and 'https(s)_proxy' variables in the Che server and workspaces containers. Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required, but defining 'proxyUrl' in a custom resource leads to overrides the cluster proxy configuration with fields 'proxyUrl', 'proxyPort', 'proxyUser' and 'proxyPassword' from the custom resource. See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyPort' and 'nonProxyHosts' fields.",
-								MarkdownDescription: "URL (protocol+host name) of the proxy server. This drives the appropriate changes in the 'JAVA_OPTS' and 'https(s)_proxy' variables in the Che server and workspaces containers. Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configuration and no additional configuration is required, but defining 'proxyUrl' in a custom resource leads to overrides the cluster proxy configuration with fields 'proxyUrl', 'proxyPort', 'proxyUser' and 'proxyPassword' from the custom resource. See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyPort' and 'nonProxyHosts' fields.",
+								Description:         "URL (protocol+host name) of the proxy server. This drives the appropriate changes in the 'JAVA_OPTS' and 'https(s)_proxy' variablesin the Che server and workspaces containers.Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configurationand no additional configuration is required, but defining 'proxyUrl' in a custom resource leads to overrides the cluster proxy configurationwith fields 'proxyUrl', 'proxyPort', 'proxyUser' and 'proxyPassword' from the custom resource.See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyPort' and 'nonProxyHosts' fields.",
+								MarkdownDescription: "URL (protocol+host name) of the proxy server. This drives the appropriate changes in the 'JAVA_OPTS' and 'https(s)_proxy' variablesin the Che server and workspaces containers.Only use when configuring a proxy is required. Operator respects OpenShift cluster wide proxy configurationand no additional configuration is required, but defining 'proxyUrl' in a custom resource leads to overrides the cluster proxy configurationwith fields 'proxyUrl', 'proxyPort', 'proxyUser' and 'proxyPassword' from the custom resource.See the doc https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html. See also the 'proxyPort' and 'nonProxyHosts' fields.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3937,32 +3937,32 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"self_signed_cert": schema.BoolAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. The Che Operator will automatically detect whether the router certificate is self-signed and propagate it to other components, such as the Che server.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. The Che Operator will automatically detect whether the router certificate is self-signed and propagate it to other components, such as the Che server.",
+								Description:         "Deprecated. The value of this flag is ignored.The Che Operator will automatically detect whether the router certificate is self-signed and propagate it to other components, such as the Che server.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.The Che Operator will automatically detect whether the router certificate is self-signed and propagate it to other components, such as the Che server.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"server_cpu_limit": schema.StringAttribute{
-								Description:         "Overrides the CPU limit used in the Che server deployment In cores. (500m = .5 cores). Default to 1.",
-								MarkdownDescription: "Overrides the CPU limit used in the Che server deployment In cores. (500m = .5 cores). Default to 1.",
+								Description:         "Overrides the CPU limit used in the Che server deploymentIn cores. (500m = .5 cores). Default to 1.",
+								MarkdownDescription: "Overrides the CPU limit used in the Che server deploymentIn cores. (500m = .5 cores). Default to 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"server_cpu_request": schema.StringAttribute{
-								Description:         "Overrides the CPU request used in the Che server deployment In cores. (500m = .5 cores). Default to 100m.",
-								MarkdownDescription: "Overrides the CPU request used in the Che server deployment In cores. (500m = .5 cores). Default to 100m.",
+								Description:         "Overrides the CPU request used in the Che server deploymentIn cores. (500m = .5 cores). Default to 100m.",
+								MarkdownDescription: "Overrides the CPU request used in the Che server deploymentIn cores. (500m = .5 cores). Default to 100m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"server_exposure_strategy": schema.StringAttribute{
-								Description:         "Deprecated. The value of this flag is ignored. Sets the server and workspaces exposure type. Possible values are 'multi-host', 'single-host', 'default-host'. Defaults to 'multi-host', which creates a separate ingress, or OpenShift routes, for every required endpoint. 'single-host' makes Che exposed on a single host name with workspaces exposed on subpaths. Read the docs to learn about the limitations of this approach. Also consult the 'singleHostExposureType' property to further configure how the Operator and the Che server make that happen on Kubernetes. 'default-host' exposes the Che server on the host of the cluster. Read the docs to learn about the limitations of this approach.",
-								MarkdownDescription: "Deprecated. The value of this flag is ignored. Sets the server and workspaces exposure type. Possible values are 'multi-host', 'single-host', 'default-host'. Defaults to 'multi-host', which creates a separate ingress, or OpenShift routes, for every required endpoint. 'single-host' makes Che exposed on a single host name with workspaces exposed on subpaths. Read the docs to learn about the limitations of this approach. Also consult the 'singleHostExposureType' property to further configure how the Operator and the Che server make that happen on Kubernetes. 'default-host' exposes the Che server on the host of the cluster. Read the docs to learn about the limitations of this approach.",
+								Description:         "Deprecated. The value of this flag is ignored.Sets the server and workspaces exposure type.Possible values are 'multi-host', 'single-host', 'default-host'. Defaults to 'multi-host', which creates a separate ingress, or OpenShift routes, for every required endpoint.'single-host' makes Che exposed on a single host name with workspaces exposed on subpaths.Read the docs to learn about the limitations of this approach.Also consult the 'singleHostExposureType' property to further configure how the Operator and the Che server make that happen on Kubernetes.'default-host' exposes the Che server on the host of the cluster. Read the docs to learn about the limitations of this approach.",
+								MarkdownDescription: "Deprecated. The value of this flag is ignored.Sets the server and workspaces exposure type.Possible values are 'multi-host', 'single-host', 'default-host'. Defaults to 'multi-host', which creates a separate ingress, or OpenShift routes, for every required endpoint.'single-host' makes Che exposed on a single host name with workspaces exposed on subpaths.Read the docs to learn about the limitations of this approach.Also consult the 'singleHostExposureType' property to further configure how the Operator and the Che server make that happen on Kubernetes.'default-host' exposes the Che server on the host of the cluster. Read the docs to learn about the limitations of this approach.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3985,8 +3985,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"server_trust_store_config_map_name": schema.StringAttribute{
-								Description:         "Name of the ConfigMap with public certificates to add to Java trust store of the Che server. This is often required when adding the OpenShift OAuth provider, which has HTTPS endpoint signed with self-signed cert. The Che server must be aware of its CA cert to be able to request it. This is disabled by default. The Config Map must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
-								MarkdownDescription: "Name of the ConfigMap with public certificates to add to Java trust store of the Che server. This is often required when adding the OpenShift OAuth provider, which has HTTPS endpoint signed with self-signed cert. The Che server must be aware of its CA cert to be able to request it. This is disabled by default. The Config Map must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								Description:         "Name of the ConfigMap with public certificates to add to Java trust store of the Che server.This is often required when adding the OpenShift OAuth provider, which has HTTPS endpoint signed with self-signed cert.The Che server must be aware of its CA cert to be able to request it. This is disabled by default.The Config Map must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
+								MarkdownDescription: "Name of the ConfigMap with public certificates to add to Java trust store of the Che server.This is often required when adding the OpenShift OAuth provider, which has HTTPS endpoint signed with self-signed cert.The Che server must be aware of its CA cert to be able to request it. This is disabled by default.The Config Map must have 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4034,8 +4034,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"workspace_default_components": schema.ListNestedAttribute{
-								Description:         "Default components applied to DevWorkspaces. These default components are meant to be used when a Devfile does not contain any components.",
-								MarkdownDescription: "Default components applied to DevWorkspaces. These default components are meant to be used when a Devfile does not contain any components.",
+								Description:         "Default components applied to DevWorkspaces.These default components are meant to be used when a Devfile does not contain any components.",
+								MarkdownDescription: "Default components applied to DevWorkspaces.These default components are meant to be used when a Devfile does not contain any components.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"attributes": schema.MapAttribute{
@@ -4090,8 +4090,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"args": schema.ListAttribute{
-													Description:         "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.",
-													MarkdownDescription: "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.",
+													Description:         "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.Defaults to an empty array, meaning use whatever is defined in the image.",
+													MarkdownDescription: "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.Defaults to an empty array, meaning use whatever is defined in the image.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4099,8 +4099,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"command": schema.ListAttribute{
-													Description:         "The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.",
-													MarkdownDescription: "The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.",
+													Description:         "The command to run in the dockerimage component instead of the default one provided in the image.Defaults to an empty array, meaning use whatever is defined in the image.",
+													MarkdownDescription: "The command to run in the dockerimage component instead of the default one provided in the image.Defaults to an empty array, meaning use whatever is defined in the image.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4124,8 +4124,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"dedicated_pod": schema.BoolAttribute{
-													Description:         "Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'",
-													MarkdownDescription: "Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'",
+													Description:         "Specify if a container should run in its own separated pod,instead of running as part of the main development environment pod.Default value is 'false'",
+													MarkdownDescription: "Specify if a container should run in its own separated pod,instead of running as part of the main development environment pod.Default value is 'false'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4146,8 +4146,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"attributes": schema.MapAttribute{
-																Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4155,8 +4155,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"exposure": schema.StringAttribute{
-																Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4186,8 +4186,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4197,16 +4197,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"secure": schema.BoolAttribute{
-																Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"target_port": schema.Int64Attribute{
-																Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4219,8 +4219,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"env": schema.ListNestedAttribute{
-													Description:         "Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE'",
-													MarkdownDescription: "Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE'",
+													Description:         "Environment variables used in this container.The following variables are reserved and cannot be overridden via env: - '$PROJECTS_ROOT' - '$PROJECT_SOURCE'",
+													MarkdownDescription: "Environment variables used in this container.The following variables are reserved and cannot be overridden via env: - '$PROJECTS_ROOT' - '$PROJECT_SOURCE'",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
@@ -4270,16 +4270,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"mount_sources": schema.BoolAttribute{
-													Description:         "Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
-													MarkdownDescription: "Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
+													Description:         "Toggles whether or not the project source code shouldbe mounted in the component.Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
+													MarkdownDescription: "Toggles whether or not the project source code shouldbe mounted in the component.Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"source_mapping": schema.StringAttribute{
-													Description:         "Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.",
-													MarkdownDescription: "Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.",
+													Description:         "Optional specification of the path in the container whereproject sources should be transferred/mounted when 'mountSources' is 'true'.When omitted, the default value of /projects is used.",
+													MarkdownDescription: "Optional specification of the path in the container whereproject sources should be transferred/mounted when 'mountSources' is 'true'.When omitted, the default value of /projects is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4291,8 +4291,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The volume mount name is the name of an existing 'Volume' component. If several containers mount the same volume name then they will reuse the same volume and will be able to access to the same files.",
-																MarkdownDescription: "The volume mount name is the name of an existing 'Volume' component. If several containers mount the same volume name then they will reuse the same volume and will be able to access to the same files.",
+																Description:         "The volume mount name is the name of an existing 'Volume' component.If several containers mount the same volume namethen they will reuse the same volume and will be able to access to the same files.",
+																MarkdownDescription: "The volume mount name is the name of an existing 'Volume' component.If several containers mount the same volume namethen they will reuse the same volume and will be able to access to the same files.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4303,8 +4303,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"path": schema.StringAttribute{
-																Description:         "The path in the component container where the volume should be mounted. If not path is mentioned, default path is the is '/<name>'.",
-																MarkdownDescription: "The path in the component container where the volume should be mounted. If not path is mentioned, default path is the is '/<name>'.",
+																Description:         "The path in the component container where the volume should be mounted.If not path is mentioned, default path is the is '/<name>'.",
+																MarkdownDescription: "The path in the component container where the volume should be mounted.If not path is mentioned, default path is the is '/<name>'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4322,20 +4322,20 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"custom": schema.SingleNestedAttribute{
-											Description:         "Custom component whose logic is implementation-dependant and should be provided by the user possibly through some dedicated controller",
-											MarkdownDescription: "Custom component whose logic is implementation-dependant and should be provided by the user possibly through some dedicated controller",
+											Description:         "Custom component whose logic is implementation-dependantand should be provided by the userpossibly through some dedicated controller",
+											MarkdownDescription: "Custom component whose logic is implementation-dependantand should be provided by the userpossibly through some dedicated controller",
 											Attributes: map[string]schema.Attribute{
 												"component_class": schema.StringAttribute{
-													Description:         "Class of component that the associated implementation controller should use to process this command with the appropriate logic",
-													MarkdownDescription: "Class of component that the associated implementation controller should use to process this command with the appropriate logic",
+													Description:         "Class of component that the associated implementation controllershould use to process this command with the appropriate logic",
+													MarkdownDescription: "Class of component that the associated implementation controllershould use to process this command with the appropriate logic",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"embedded_resource": schema.MapAttribute{
-													Description:         "Additional free-form configuration for this custom component that the implementation controller will know how to use",
-													MarkdownDescription: "Additional free-form configuration for this custom component that the implementation controller will know how to use",
+													Description:         "Additional free-form configuration for this custom componentthat the implementation controller will know how to use",
+													MarkdownDescription: "Additional free-form configuration for this custom componentthat the implementation controller will know how to use",
 													ElementType:         types.StringType,
 													Required:            true,
 													Optional:            false,
@@ -4352,8 +4352,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 											MarkdownDescription: "Allows specifying the definition of an image for outer loop builds",
 											Attributes: map[string]schema.Attribute{
 												"auto_build": schema.BoolAttribute{
-													Description:         "Defines if the image should be built during startup.  Default value is 'false'",
-													MarkdownDescription: "Defines if the image should be built during startup.  Default value is 'false'",
+													Description:         "Defines if the image should be built during startup.Default value is 'false'",
+													MarkdownDescription: "Defines if the image should be built during startup.Default value is 'false'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4385,16 +4385,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															MarkdownDescription: "Dockerfile's Devfile Registry source",
 															Attributes: map[string]schema.Attribute{
 																"id": schema.StringAttribute{
-																	Description:         "Id in a devfile registry that contains a Dockerfile. The src in the OCI registry required for the Dockerfile build will be downloaded for building the image.",
-																	MarkdownDescription: "Id in a devfile registry that contains a Dockerfile. The src in the OCI registry required for the Dockerfile build will be downloaded for building the image.",
+																	Description:         "Id in a devfile registry that contains a Dockerfile. The src in the OCI registryrequired for the Dockerfile build will be downloaded for building the image.",
+																	MarkdownDescription: "Id in a devfile registry that contains a Dockerfile. The src in the OCI registryrequired for the Dockerfile build will be downloaded for building the image.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"registry_url": schema.StringAttribute{
-																	Description:         "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
-																	MarkdownDescription: "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
+																	Description:         "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src.To ensure the Dockerfile gets resolved consistently in different environments,it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
+																	MarkdownDescription: "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src.To ensure the Dockerfile gets resolved consistently in different environments,it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4422,8 +4422,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"revision": schema.StringAttribute{
-																			Description:         "The revision to checkout from. Should be branch name, tag or commit id. Default branch is used if missing or specified revision is not found.",
-																			MarkdownDescription: "The revision to checkout from. Should be branch name, tag or commit id. Default branch is used if missing or specified revision is not found.",
+																			Description:         "The revision to checkout from. Should be branch name, tag or commit id.Default branch is used if missing or specified revision is not found.",
+																			MarkdownDescription: "The revision to checkout from. Should be branch name, tag or commit id.Default branch is used if missing or specified revision is not found.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4435,16 +4435,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"file_location": schema.StringAttribute{
-																	Description:         "Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.",
-																	MarkdownDescription: "Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.",
+																	Description:         "Location of the Dockerfile in the Git repository when using git as Dockerfile src.Defaults to Dockerfile.",
+																	MarkdownDescription: "Location of the Dockerfile in the Git repository when using git as Dockerfile src.Defaults to Dockerfile.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"remotes": schema.MapAttribute{
-																	Description:         "The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
-																	MarkdownDescription: "The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
+																	Description:         "The remotes map which should be initialized in the git project.Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
+																	MarkdownDescription: "The remotes map which should be initialized in the git project.Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
 																	ElementType:         types.StringType,
 																	Required:            true,
 																	Optional:            false,
@@ -4457,8 +4457,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"root_required": schema.BoolAttribute{
-															Description:         "Specify if a privileged builder pod is required.  Default value is 'false'",
-															MarkdownDescription: "Specify if a privileged builder pod is required.  Default value is 'false'",
+															Description:         "Specify if a privileged builder pod is required.Default value is 'false'",
+															MarkdownDescription: "Specify if a privileged builder pod is required.Default value is 'false'",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4476,8 +4476,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"uri": schema.StringAttribute{
-															Description:         "URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.",
-															MarkdownDescription: "URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.",
+															Description:         "URI Reference of a Dockerfile.It can be a full URL or a relative URI from the current devfile as the base URI.",
+															MarkdownDescription: "URI Reference of a Dockerfile.It can be a full URL or a relative URI from the current devfile as the base URI.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4513,12 +4513,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"kubernetes": schema.SingleNestedAttribute{
-											Description:         "Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production.",
-											MarkdownDescription: "Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production.",
+											Description:         "Allows importing into the devworkspace the Kubernetes resourcesdefined in a given manifest. For example this allows reusing the Kubernetesdefinitions used to deploy some runtime components in production.",
+											MarkdownDescription: "Allows importing into the devworkspace the Kubernetes resourcesdefined in a given manifest. For example this allows reusing the Kubernetesdefinitions used to deploy some runtime components in production.",
 											Attributes: map[string]schema.Attribute{
 												"deploy_by_default": schema.BoolAttribute{
-													Description:         "Defines if the component should be deployed during startup.  Default value is 'false'",
-													MarkdownDescription: "Defines if the component should be deployed during startup.  Default value is 'false'",
+													Description:         "Defines if the component should be deployed during startup.Default value is 'false'",
+													MarkdownDescription: "Defines if the component should be deployed during startup.Default value is 'false'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4539,8 +4539,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"attributes": schema.MapAttribute{
-																Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4548,8 +4548,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"exposure": schema.StringAttribute{
-																Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4579,8 +4579,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4590,16 +4590,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"secure": schema.BoolAttribute{
-																Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"target_port": schema.Int64Attribute{
-																Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4644,8 +4644,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Mandatory name that allows referencing the component from other elements (such as commands) or from an external devfile that may reference this component through a parent or a plugin.",
-											MarkdownDescription: "Mandatory name that allows referencing the component from other elements (such as commands) or from an external devfile that may reference this component through a parent or a plugin.",
+											Description:         "Mandatory name that allows referencing the componentfrom other elements (such as commands) or from an externaldevfile that may reference this component through a parent or a plugin.",
+											MarkdownDescription: "Mandatory name that allows referencing the componentfrom other elements (such as commands) or from an externaldevfile that may reference this component through a parent or a plugin.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -4656,12 +4656,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"openshift": schema.SingleNestedAttribute{
-											Description:         "Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production.",
-											MarkdownDescription: "Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production.",
+											Description:         "Allows importing into the devworkspace the OpenShift resourcesdefined in a given manifest. For example this allows reusing the OpenShiftdefinitions used to deploy some runtime components in production.",
+											MarkdownDescription: "Allows importing into the devworkspace the OpenShift resourcesdefined in a given manifest. For example this allows reusing the OpenShiftdefinitions used to deploy some runtime components in production.",
 											Attributes: map[string]schema.Attribute{
 												"deploy_by_default": schema.BoolAttribute{
-													Description:         "Defines if the component should be deployed during startup.  Default value is 'false'",
-													MarkdownDescription: "Defines if the component should be deployed during startup.  Default value is 'false'",
+													Description:         "Defines if the component should be deployed during startup.Default value is 'false'",
+													MarkdownDescription: "Defines if the component should be deployed during startup.Default value is 'false'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4682,8 +4682,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"attributes": schema.MapAttribute{
-																Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4691,8 +4691,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"exposure": schema.StringAttribute{
-																Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4722,8 +4722,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4733,16 +4733,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"secure": schema.BoolAttribute{
-																Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"target_port": schema.Int64Attribute{
-																Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4787,17 +4787,17 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"plugin": schema.SingleNestedAttribute{
-											Description:         "Allows importing a plugin.  Plugins are mainly imported devfiles that contribute components, commands and events as a consistent single unit. They are defined in either YAML files following the devfile syntax, or as 'DevWorkspaceTemplate' Kubernetes Custom Resources",
-											MarkdownDescription: "Allows importing a plugin.  Plugins are mainly imported devfiles that contribute components, commands and events as a consistent single unit. They are defined in either YAML files following the devfile syntax, or as 'DevWorkspaceTemplate' Kubernetes Custom Resources",
+											Description:         "Allows importing a plugin.Plugins are mainly imported devfiles that contribute components, commandsand events as a consistent single unit. They are defined in either YAML filesfollowing the devfile syntax,or as 'DevWorkspaceTemplate' Kubernetes Custom Resources",
+											MarkdownDescription: "Allows importing a plugin.Plugins are mainly imported devfiles that contribute components, commandsand events as a consistent single unit. They are defined in either YAML filesfollowing the devfile syntax,or as 'DevWorkspaceTemplate' Kubernetes Custom Resources",
 											Attributes: map[string]schema.Attribute{
 												"commands": schema.ListNestedAttribute{
-													Description:         "Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules.",
-													MarkdownDescription: "Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules.",
+													Description:         "Overrides of commands encapsulated in a parent devfile or a plugin.Overriding is done according to K8S strategic merge patch standard rules.",
+													MarkdownDescription: "Overrides of commands encapsulated in a parent devfile or a plugin.Overriding is done according to K8S strategic merge patch standard rules.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"apply": schema.SingleNestedAttribute{
-																Description:         "Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false.",
-																MarkdownDescription: "Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false.",
+																Description:         "Command that consists in applying a given component definition,typically bound to a devworkspace event.For example, when an 'apply' command is bound to a 'preStart' event,and references a 'container' component, it will start the container as aK8S initContainer in the devworkspace POD, unless the component has its'dedicatedPod' field set to 'true'.When no 'apply' command exist for a given component,it is assumed the component will be applied at devworkspace startby default, unless 'deployByDefault' for that component is set to false.",
+																MarkdownDescription: "Command that consists in applying a given component definition,typically bound to a devworkspace event.For example, when an 'apply' command is bound to a 'preStart' event,and references a 'container' component, it will start the container as aK8S initContainer in the devworkspace POD, unless the component has its'dedicatedPod' field set to 'true'.When no 'apply' command exist for a given component,it is assumed the component will be applied at devworkspace startby default, unless 'deployByDefault' for that component is set to false.",
 																Attributes: map[string]schema.Attribute{
 																	"component": schema.StringAttribute{
 																		Description:         "Describes component that will be applied",
@@ -4836,8 +4836,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"label": schema.StringAttribute{
-																		Description:         "Optional label that provides a label for this command to be used in Editor UI menus for example",
-																		MarkdownDescription: "Optional label that provides a label for this command to be used in Editor UI menus for example",
+																		Description:         "Optional label that provides a label for this commandto be used in Editor UI menus for example",
+																		MarkdownDescription: "Optional label that provides a label for this commandto be used in Editor UI menus for example",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4869,8 +4869,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"composite": schema.SingleNestedAttribute{
-																Description:         "Composite command that allows executing several sub-commands either sequentially or concurrently",
-																MarkdownDescription: "Composite command that allows executing several sub-commands either sequentially or concurrently",
+																Description:         "Composite command that allows executing several sub-commandseither sequentially or concurrently",
+																MarkdownDescription: "Composite command that allows executing several sub-commandseither sequentially or concurrently",
 																Attributes: map[string]schema.Attribute{
 																	"commands": schema.ListAttribute{
 																		Description:         "The commands that comprise this composite command",
@@ -4910,8 +4910,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"label": schema.StringAttribute{
-																		Description:         "Optional label that provides a label for this command to be used in Editor UI menus for example",
-																		MarkdownDescription: "Optional label that provides a label for this command to be used in Editor UI menus for example",
+																		Description:         "Optional label that provides a label for this commandto be used in Editor UI menus for example",
+																		MarkdownDescription: "Optional label that provides a label for this commandto be used in Editor UI menus for example",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4935,8 +4935,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																MarkdownDescription: "CLI Command executed in an existing component container",
 																Attributes: map[string]schema.Attribute{
 																	"command_line": schema.StringAttribute{
-																		Description:         "The actual command-line string  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
-																		MarkdownDescription: "The actual command-line string  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
+																		Description:         "The actual command-line stringSpecial variables that can be used: - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping. - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
+																		MarkdownDescription: "The actual command-line stringSpecial variables that can be used: - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping. - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4951,8 +4951,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"env": schema.ListNestedAttribute{
-																		Description:         "Optional list of environment variables that have to be set before running the command",
-																		MarkdownDescription: "Optional list of environment variables that have to be set before running the command",
+																		Description:         "Optional list of environment variables that have to be setbefore running the command",
+																		MarkdownDescription: "Optional list of environment variables that have to be setbefore running the command",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
@@ -5006,24 +5006,24 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"hot_reload_capable": schema.BoolAttribute{
-																		Description:         "Specify whether the command is restarted or not when the source code changes. If set to 'true' the command won't be restarted. A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted. A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again. This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.  Default value is 'false'",
-																		MarkdownDescription: "Specify whether the command is restarted or not when the source code changes. If set to 'true' the command won't be restarted. A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted. A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again. This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.  Default value is 'false'",
+																		Description:         "Specify whether the command is restarted or not when the source code changes.If set to 'true' the command won't be restarted.A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted.A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again.This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.Default value is 'false'",
+																		MarkdownDescription: "Specify whether the command is restarted or not when the source code changes.If set to 'true' the command won't be restarted.A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted.A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again.This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.Default value is 'false'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"label": schema.StringAttribute{
-																		Description:         "Optional label that provides a label for this command to be used in Editor UI menus for example",
-																		MarkdownDescription: "Optional label that provides a label for this command to be used in Editor UI menus for example",
+																		Description:         "Optional label that provides a label for this commandto be used in Editor UI menus for example",
+																		MarkdownDescription: "Optional label that provides a label for this commandto be used in Editor UI menus for example",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"working_dir": schema.StringAttribute{
-																		Description:         "Working directory where the command should be executed  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
-																		MarkdownDescription: "Working directory where the command should be executed  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
+																		Description:         "Working directory where the command should be executedSpecial variables that can be used: - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping. - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
+																		MarkdownDescription: "Working directory where the command should be executedSpecial variables that can be used: - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping. - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5035,8 +5035,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"id": schema.StringAttribute{
-																Description:         "Mandatory identifier that allows referencing this command in composite commands, from a parent, or in events.",
-																MarkdownDescription: "Mandatory identifier that allows referencing this command in composite commands, from a parent, or in events.",
+																Description:         "Mandatory identifier that allows referencingthis command in composite commands, froma parent, or in events.",
+																MarkdownDescription: "Mandatory identifier that allows referencingthis command in composite commands, froma parent, or in events.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5053,8 +5053,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"components": schema.ListNestedAttribute{
-													Description:         "Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules.",
-													MarkdownDescription: "Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules.",
+													Description:         "Overrides of components encapsulated in a parent devfile or a plugin.Overriding is done according to K8S strategic merge patch standard rules.",
+													MarkdownDescription: "Overrides of components encapsulated in a parent devfile or a plugin.Overriding is done according to K8S strategic merge patch standard rules.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"attributes": schema.MapAttribute{
@@ -5109,8 +5109,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"args": schema.ListAttribute{
-																		Description:         "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.",
-																		MarkdownDescription: "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.",
+																		Description:         "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.Defaults to an empty array, meaning use whatever is defined in the image.",
+																		MarkdownDescription: "The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.Defaults to an empty array, meaning use whatever is defined in the image.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5118,8 +5118,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"command": schema.ListAttribute{
-																		Description:         "The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.",
-																		MarkdownDescription: "The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.",
+																		Description:         "The command to run in the dockerimage component instead of the default one provided in the image.Defaults to an empty array, meaning use whatever is defined in the image.",
+																		MarkdownDescription: "The command to run in the dockerimage component instead of the default one provided in the image.Defaults to an empty array, meaning use whatever is defined in the image.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5143,8 +5143,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"dedicated_pod": schema.BoolAttribute{
-																		Description:         "Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'",
-																		MarkdownDescription: "Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'",
+																		Description:         "Specify if a container should run in its own separated pod,instead of running as part of the main development environment pod.Default value is 'false'",
+																		MarkdownDescription: "Specify if a container should run in its own separated pod,instead of running as part of the main development environment pod.Default value is 'false'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5165,8 +5165,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"attributes": schema.MapAttribute{
-																					Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																					Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5174,8 +5174,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"exposure": schema.StringAttribute{
-																					Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																					Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5205,8 +5205,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"protocol": schema.StringAttribute{
-																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5216,16 +5216,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"secure": schema.BoolAttribute{
-																					Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																					Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"target_port": schema.Int64Attribute{
-																					Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																					MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																					Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																					MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5238,8 +5238,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"env": schema.ListNestedAttribute{
-																		Description:         "Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE'",
-																		MarkdownDescription: "Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE'",
+																		Description:         "Environment variables used in this container.The following variables are reserved and cannot be overridden via env: - '$PROJECTS_ROOT' - '$PROJECT_SOURCE'",
+																		MarkdownDescription: "Environment variables used in this container.The following variables are reserved and cannot be overridden via env: - '$PROJECTS_ROOT' - '$PROJECT_SOURCE'",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
@@ -5289,16 +5289,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																	},
 
 																	"mount_sources": schema.BoolAttribute{
-																		Description:         "Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
-																		MarkdownDescription: "Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
+																		Description:         "Toggles whether or not the project source code shouldbe mounted in the component.Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
+																		MarkdownDescription: "Toggles whether or not the project source code shouldbe mounted in the component.Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"source_mapping": schema.StringAttribute{
-																		Description:         "Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.",
-																		MarkdownDescription: "Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.",
+																		Description:         "Optional specification of the path in the container whereproject sources should be transferred/mounted when 'mountSources' is 'true'.When omitted, the default value of /projects is used.",
+																		MarkdownDescription: "Optional specification of the path in the container whereproject sources should be transferred/mounted when 'mountSources' is 'true'.When omitted, the default value of /projects is used.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5310,8 +5310,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "The volume mount name is the name of an existing 'Volume' component. If several containers mount the same volume name then they will reuse the same volume and will be able to access to the same files.",
-																					MarkdownDescription: "The volume mount name is the name of an existing 'Volume' component. If several containers mount the same volume name then they will reuse the same volume and will be able to access to the same files.",
+																					Description:         "The volume mount name is the name of an existing 'Volume' component.If several containers mount the same volume namethen they will reuse the same volume and will be able to access to the same files.",
+																					MarkdownDescription: "The volume mount name is the name of an existing 'Volume' component.If several containers mount the same volume namethen they will reuse the same volume and will be able to access to the same files.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5322,8 +5322,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "The path in the component container where the volume should be mounted. If not path is mentioned, default path is the is '/<name>'.",
-																					MarkdownDescription: "The path in the component container where the volume should be mounted. If not path is mentioned, default path is the is '/<name>'.",
+																					Description:         "The path in the component container where the volume should be mounted.If not path is mentioned, default path is the is '/<name>'.",
+																					MarkdownDescription: "The path in the component container where the volume should be mounted.If not path is mentioned, default path is the is '/<name>'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5345,8 +5345,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																MarkdownDescription: "Allows specifying the definition of an image for outer loop builds",
 																Attributes: map[string]schema.Attribute{
 																	"auto_build": schema.BoolAttribute{
-																		Description:         "Defines if the image should be built during startup.  Default value is 'false'",
-																		MarkdownDescription: "Defines if the image should be built during startup.  Default value is 'false'",
+																		Description:         "Defines if the image should be built during startup.Default value is 'false'",
+																		MarkdownDescription: "Defines if the image should be built during startup.Default value is 'false'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5378,16 +5378,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				MarkdownDescription: "Dockerfile's Devfile Registry source",
 																				Attributes: map[string]schema.Attribute{
 																					"id": schema.StringAttribute{
-																						Description:         "Id in a devfile registry that contains a Dockerfile. The src in the OCI registry required for the Dockerfile build will be downloaded for building the image.",
-																						MarkdownDescription: "Id in a devfile registry that contains a Dockerfile. The src in the OCI registry required for the Dockerfile build will be downloaded for building the image.",
+																						Description:         "Id in a devfile registry that contains a Dockerfile. The src in the OCI registryrequired for the Dockerfile build will be downloaded for building the image.",
+																						MarkdownDescription: "Id in a devfile registry that contains a Dockerfile. The src in the OCI registryrequired for the Dockerfile build will be downloaded for building the image.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"registry_url": schema.StringAttribute{
-																						Description:         "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
-																						MarkdownDescription: "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
+																						Description:         "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src.To ensure the Dockerfile gets resolved consistently in different environments,it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
+																						MarkdownDescription: "Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src.To ensure the Dockerfile gets resolved consistently in different environments,it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5415,8 +5415,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																							},
 
 																							"revision": schema.StringAttribute{
-																								Description:         "The revision to checkout from. Should be branch name, tag or commit id. Default branch is used if missing or specified revision is not found.",
-																								MarkdownDescription: "The revision to checkout from. Should be branch name, tag or commit id. Default branch is used if missing or specified revision is not found.",
+																								Description:         "The revision to checkout from. Should be branch name, tag or commit id.Default branch is used if missing or specified revision is not found.",
+																								MarkdownDescription: "The revision to checkout from. Should be branch name, tag or commit id.Default branch is used if missing or specified revision is not found.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -5428,16 +5428,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"file_location": schema.StringAttribute{
-																						Description:         "Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.",
-																						MarkdownDescription: "Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.",
+																						Description:         "Location of the Dockerfile in the Git repository when using git as Dockerfile src.Defaults to Dockerfile.",
+																						MarkdownDescription: "Location of the Dockerfile in the Git repository when using git as Dockerfile src.Defaults to Dockerfile.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"remotes": schema.MapAttribute{
-																						Description:         "The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
-																						MarkdownDescription: "The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
+																						Description:         "The remotes map which should be initialized in the git project.Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
+																						MarkdownDescription: "The remotes map which should be initialized in the git project.Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5450,8 +5450,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"root_required": schema.BoolAttribute{
-																				Description:         "Specify if a privileged builder pod is required.  Default value is 'false'",
-																				MarkdownDescription: "Specify if a privileged builder pod is required.  Default value is 'false'",
+																				Description:         "Specify if a privileged builder pod is required.Default value is 'false'",
+																				MarkdownDescription: "Specify if a privileged builder pod is required.Default value is 'false'",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5469,8 +5469,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"uri": schema.StringAttribute{
-																				Description:         "URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.",
-																				MarkdownDescription: "URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.",
+																				Description:         "URI Reference of a Dockerfile.It can be a full URL or a relative URI from the current devfile as the base URI.",
+																				MarkdownDescription: "URI Reference of a Dockerfile.It can be a full URL or a relative URI from the current devfile as the base URI.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5506,12 +5506,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"kubernetes": schema.SingleNestedAttribute{
-																Description:         "Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production.",
-																MarkdownDescription: "Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production.",
+																Description:         "Allows importing into the devworkspace the Kubernetes resourcesdefined in a given manifest. For example this allows reusing the Kubernetesdefinitions used to deploy some runtime components in production.",
+																MarkdownDescription: "Allows importing into the devworkspace the Kubernetes resourcesdefined in a given manifest. For example this allows reusing the Kubernetesdefinitions used to deploy some runtime components in production.",
 																Attributes: map[string]schema.Attribute{
 																	"deploy_by_default": schema.BoolAttribute{
-																		Description:         "Defines if the component should be deployed during startup.  Default value is 'false'",
-																		MarkdownDescription: "Defines if the component should be deployed during startup.  Default value is 'false'",
+																		Description:         "Defines if the component should be deployed during startup.Default value is 'false'",
+																		MarkdownDescription: "Defines if the component should be deployed during startup.Default value is 'false'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5532,8 +5532,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"attributes": schema.MapAttribute{
-																					Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																					Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5541,8 +5541,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"exposure": schema.StringAttribute{
-																					Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																					Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5572,8 +5572,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"protocol": schema.StringAttribute{
-																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5583,16 +5583,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"secure": schema.BoolAttribute{
-																					Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																					Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"target_port": schema.Int64Attribute{
-																					Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																					MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																					Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																					MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5637,8 +5637,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Mandatory name that allows referencing the component from other elements (such as commands) or from an external devfile that may reference this component through a parent or a plugin.",
-																MarkdownDescription: "Mandatory name that allows referencing the component from other elements (such as commands) or from an external devfile that may reference this component through a parent or a plugin.",
+																Description:         "Mandatory name that allows referencing the componentfrom other elements (such as commands) or from an externaldevfile that may reference this component through a parent or a plugin.",
+																MarkdownDescription: "Mandatory name that allows referencing the componentfrom other elements (such as commands) or from an externaldevfile that may reference this component through a parent or a plugin.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5649,12 +5649,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"openshift": schema.SingleNestedAttribute{
-																Description:         "Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production.",
-																MarkdownDescription: "Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production.",
+																Description:         "Allows importing into the devworkspace the OpenShift resourcesdefined in a given manifest. For example this allows reusing the OpenShiftdefinitions used to deploy some runtime components in production.",
+																MarkdownDescription: "Allows importing into the devworkspace the OpenShift resourcesdefined in a given manifest. For example this allows reusing the OpenShiftdefinitions used to deploy some runtime components in production.",
 																Attributes: map[string]schema.Attribute{
 																	"deploy_by_default": schema.BoolAttribute{
-																		Description:         "Defines if the component should be deployed during startup.  Default value is 'false'",
-																		MarkdownDescription: "Defines if the component should be deployed during startup.  Default value is 'false'",
+																		Description:         "Defines if the component should be deployed during startup.Default value is 'false'",
+																		MarkdownDescription: "Defines if the component should be deployed during startup.Default value is 'false'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5675,8 +5675,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"attributes": schema.MapAttribute{
-																					Description:         "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
-																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.  Examples of Che-specific attributes:  - cookiesAuthEnabled: 'true' / 'false',  - type: 'terminal' / 'ide' / 'ide-dev',",
+																					Description:         "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
+																					MarkdownDescription: "Map of implementation-dependant string-based free-form attributes.Examples of Che-specific attributes:- cookiesAuthEnabled: 'true' / 'false',- type: 'terminal' / 'ide' / 'ide-dev',",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5684,8 +5684,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"exposure": schema.StringAttribute{
-																					Description:         "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
-																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.  - 'public' means that the endpoint will be exposed on the public network, typically through a K8S ingress or an OpenShift route.  - 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD, typically by K8S services, to be consumed by other elements running on the same cloud internal network.  - 'none' means that the endpoint will not be exposed and will only be accessible inside the main devworkspace POD, on a local address.  Default value is 'public'",
+																					Description:         "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
+																					MarkdownDescription: "Describes how the endpoint should be exposed on the network.- 'public' means that the endpoint will be exposed on the public network, typically througha K8S ingress or an OpenShift route.- 'internal' means that the endpoint will be exposed internally outside of the main devworkspace POD,typically by K8S services, to be consumed by other elements runningon the same cloud internal network.- 'none' means that the endpoint will not be exposed and will only be accessibleinside the main devworkspace POD, on a local address.Default value is 'public'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5715,8 +5715,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"protocol": schema.StringAttribute{
-																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
-																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.  - 'http': Endpoint will have 'http' traffic, typically on a TCP connection. It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.  - 'https': Endpoint will have 'https' traffic, typically on a TCP connection.  - 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection. It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.  - 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.  - 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.  - 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.  Default value is 'http'",
+																					Description:         "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
+																					MarkdownDescription: "Describes the application and transport protocols of the traffic that will go through this endpoint.- 'http': Endpoint will have 'http' traffic, typically on a TCP connection.It will be automaticaly promoted to 'https' when the 'secure' field is set to 'true'.- 'https': Endpoint will have 'https' traffic, typically on a TCP connection.- 'ws': Endpoint will have 'ws' traffic, typically on a TCP connection.It will be automaticaly promoted to 'wss' when the 'secure' field is set to 'true'.- 'wss': Endpoint will have 'wss' traffic, typically on a TCP connection.- 'tcp': Endpoint will have traffic on a TCP connection, without specifying an application protocol.- 'udp': Endpoint will have traffic on an UDP connection, without specifying an application protocol.Default value is 'http'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5726,16 +5726,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 																				},
 
 																				"secure": schema.BoolAttribute{
-																					Description:         "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
-																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.",
+																					Description:         "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
+																					MarkdownDescription: "Describes whether the endpoint should be secured and protected by someauthentication process. This requires a protocol of 'https' or 'wss'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"target_port": schema.Int64Attribute{
-																					Description:         "Port number to be used within the container component. The same port cannot be used by two different container components.",
-																					MarkdownDescription: "Port number to be used within the container component. The same port cannot be used by two different container components.",
+																					Description:         "Port number to be used within the container component. The same port cannotbe used by two different container components.",
+																					MarkdownDescription: "Port number to be used within the container component. The same port cannotbe used by two different container components.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5780,12 +5780,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"volume": schema.SingleNestedAttribute{
-																Description:         "Allows specifying the definition of a volume shared by several other components",
-																MarkdownDescription: "Allows specifying the definition of a volume shared by several other components",
+																Description:         "Allows specifying the definition of a volumeshared by several other components",
+																MarkdownDescription: "Allows specifying the definition of a volumeshared by several other components",
 																Attributes: map[string]schema.Attribute{
 																	"ephemeral": schema.BoolAttribute{
-																		Description:         "Ephemeral volumes are not stored persistently across restarts. Defaults to false",
-																		MarkdownDescription: "Ephemeral volumes are not stored persistently across restarts. Defaults to false",
+																		Description:         "Ephemeral volumes are not stored persistently across restarts. Defaultsto false",
+																		MarkdownDescription: "Ephemeral volumes are not stored persistently across restarts. Defaultsto false",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5855,24 +5855,24 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"registry_url": schema.StringAttribute{
-													Description:         "Registry URL to pull the parent devfile from when using id in the parent reference. To ensure the parent devfile gets resolved consistently in different environments, it is recommended to always specify the 'registryUrl' when 'id' is used.",
-													MarkdownDescription: "Registry URL to pull the parent devfile from when using id in the parent reference. To ensure the parent devfile gets resolved consistently in different environments, it is recommended to always specify the 'registryUrl' when 'id' is used.",
+													Description:         "Registry URL to pull the parent devfile from when using id in the parent reference.To ensure the parent devfile gets resolved consistently in different environments,it is recommended to always specify the 'registryUrl' when 'id' is used.",
+													MarkdownDescription: "Registry URL to pull the parent devfile from when using id in the parent reference.To ensure the parent devfile gets resolved consistently in different environments,it is recommended to always specify the 'registryUrl' when 'id' is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"uri": schema.StringAttribute{
-													Description:         "URI Reference of a parent devfile YAML file. It can be a full URL or a relative URI with the current devfile as the base URI.",
-													MarkdownDescription: "URI Reference of a parent devfile YAML file. It can be a full URL or a relative URI with the current devfile as the base URI.",
+													Description:         "URI Reference of a parent devfile YAML file.It can be a full URL or a relative URI with the current devfile as the base URI.",
+													MarkdownDescription: "URI Reference of a parent devfile YAML file.It can be a full URL or a relative URI with the current devfile as the base URI.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"version": schema.StringAttribute{
-													Description:         "Specific stack/sample version to pull the parent devfile from, when using id in the parent reference. To specify 'version', 'id' must be defined and used as the import reference source. 'version' can be either a specific stack version, or 'latest'. If no 'version' specified, default version will be used.",
-													MarkdownDescription: "Specific stack/sample version to pull the parent devfile from, when using id in the parent reference. To specify 'version', 'id' must be defined and used as the import reference source. 'version' can be either a specific stack version, or 'latest'. If no 'version' specified, default version will be used.",
+													Description:         "Specific stack/sample version to pull the parent devfile from, when using id in the parent reference.To specify 'version', 'id' must be defined and used as the import reference source.'version' can be either a specific stack version, or 'latest'.If no 'version' specified, default version will be used.",
+													MarkdownDescription: "Specific stack/sample version to pull the parent devfile from, when using id in the parent reference.To specify 'version', 'id' must be defined and used as the import reference source.'version' can be either a specific stack version, or 'latest'.If no 'version' specified, default version will be used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5887,12 +5887,12 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"volume": schema.SingleNestedAttribute{
-											Description:         "Allows specifying the definition of a volume shared by several other components",
-											MarkdownDescription: "Allows specifying the definition of a volume shared by several other components",
+											Description:         "Allows specifying the definition of a volumeshared by several other components",
+											MarkdownDescription: "Allows specifying the definition of a volumeshared by several other components",
 											Attributes: map[string]schema.Attribute{
 												"ephemeral": schema.BoolAttribute{
-													Description:         "Ephemeral volumes are not stored persistently across restarts. Defaults to false",
-													MarkdownDescription: "Ephemeral volumes are not stored persistently across restarts. Defaults to false",
+													Description:         "Ephemeral volumes are not stored persistently across restarts. Defaultsto false",
+													MarkdownDescription: "Ephemeral volumes are not stored persistently across restarts. Defaultsto false",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5918,16 +5918,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"workspace_default_editor": schema.StringAttribute{
-								Description:         "The default editor to workspace create with. It could be a plugin ID or a URI. The plugin ID must have 'publisher/plugin/version'. The URI must start from 'http'.",
-								MarkdownDescription: "The default editor to workspace create with. It could be a plugin ID or a URI. The plugin ID must have 'publisher/plugin/version'. The URI must start from 'http'.",
+								Description:         "The default editor to workspace create with. It could be a plugin ID or a URI.The plugin ID must have 'publisher/plugin/version'.The URI must start from 'http'.",
+								MarkdownDescription: "The default editor to workspace create with. It could be a plugin ID or a URI.The plugin ID must have 'publisher/plugin/version'.The URI must start from 'http'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"workspace_namespace_default": schema.StringAttribute{
-								Description:         "Defines Kubernetes default namespace in which user's workspaces are created for a case when a user does not override it. It's possible to use '<username>', '<userid>' and '<workspaceid>' placeholders, such as che-workspace-<username>. In that case, a new namespace will be created for each user or workspace.",
-								MarkdownDescription: "Defines Kubernetes default namespace in which user's workspaces are created for a case when a user does not override it. It's possible to use '<username>', '<userid>' and '<workspaceid>' placeholders, such as che-workspace-<username>. In that case, a new namespace will be created for each user or workspace.",
+								Description:         "Defines Kubernetes default namespace in which user's workspaces are created for a case when a user does not override it.It's possible to use '<username>', '<userid>' and '<workspaceid>' placeholders, such as che-workspace-<username>.In that case, a new namespace will be created for each user or workspace.",
+								MarkdownDescription: "Defines Kubernetes default namespace in which user's workspaces are created for a case when a user does not override it.It's possible to use '<username>', '<userid>' and '<workspaceid>' placeholders, such as che-workspace-<username>.In that case, a new namespace will be created for each user or workspace.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5948,40 +5948,40 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
-											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"toleration_seconds": schema.Int64Attribute{
-											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -6055,8 +6055,8 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"pre_create_sub_paths": schema.BoolAttribute{
-								Description:         "Instructs the Che server to start a special Pod to pre-create a sub-path in the Persistent Volumes. Defaults to 'false', however it will need to enable it according to the configuration of your Kubernetes cluster.",
-								MarkdownDescription: "Instructs the Che server to start a special Pod to pre-create a sub-path in the Persistent Volumes. Defaults to 'false', however it will need to enable it according to the configuration of your Kubernetes cluster.",
+								Description:         "Instructs the Che server to start a special Pod to pre-create a sub-path in the Persistent Volumes.Defaults to 'false', however it will need to enable it according to the configuration of your Kubernetes cluster.",
+								MarkdownDescription: "Instructs the Che server to start a special Pod to pre-create a sub-path in the Persistent Volumes.Defaults to 'false', however it will need to enable it according to the configuration of your Kubernetes cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6071,16 +6071,16 @@ func (r *OrgEclipseCheCheClusterV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"pvc_jobs_image": schema.StringAttribute{
-								Description:         "Overrides the container image used to create sub-paths in the Persistent Volumes. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator. See also the 'preCreateSubPaths' field.",
-								MarkdownDescription: "Overrides the container image used to create sub-paths in the Persistent Volumes. This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator. See also the 'preCreateSubPaths' field.",
+								Description:         "Overrides the container image used to create sub-paths in the Persistent Volumes.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator. See also the 'preCreateSubPaths' field.",
+								MarkdownDescription: "Overrides the container image used to create sub-paths in the Persistent Volumes.This includes the image tag. Omit it or leave it empty to use the default container image provided by the Operator. See also the 'preCreateSubPaths' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pvc_strategy": schema.StringAttribute{
-								Description:         "Persistent volume claim strategy for the Che server. This Can be:'common' (all workspaces PVCs in one volume), 'per-workspace' (one PVC per workspace for all declared volumes) and 'unique' (one PVC per declared volume). Defaults to 'common'.",
-								MarkdownDescription: "Persistent volume claim strategy for the Che server. This Can be:'common' (all workspaces PVCs in one volume), 'per-workspace' (one PVC per workspace for all declared volumes) and 'unique' (one PVC per declared volume). Defaults to 'common'.",
+								Description:         "Persistent volume claim strategy for the Che server. This Can be:'common' (all workspaces PVCs in one volume),'per-workspace' (one PVC per workspace for all declared volumes) and 'unique' (one PVC per declared volume). Defaults to 'common'.",
+								MarkdownDescription: "Persistent volume claim strategy for the Che server. This Can be:'common' (all workspaces PVCs in one volume),'per-workspace' (one PVC per workspace for all declared volumes) and 'unique' (one PVC per declared volume). Defaults to 'common'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

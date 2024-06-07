@@ -65,10 +65,11 @@ Optional:
 - `dhcp_server` (Attributes) dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace.when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created.it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace. (see [below for nested schema](#nestedatt--spec--dhcp_server))
 - `ignition` (Attributes) Ignition defined options related to the bootstrapping systems where Ignition is used. (see [below for nested schema](#nestedatt--spec--ignition))
 - `load_balancers` (Attributes List) loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes.when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer.when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer.ControlPlaneEndpoint will be set with associated hostname of public loadbalancer.when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error.when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer.For each loadbalancer a default backed pool and front listener will be configured with port 6443. (see [below for nested schema](#nestedatt--spec--load_balancers))
-- `resource_group` (Attributes) resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--resource_group))
+- `resource_group` (Attributes) resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ResourceGroup.ID and ResourceGroup.Regex is not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--resource_group))
 - `service_instance` (Attributes) serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created.Power VS server workspace is a container for all Power VS instances at a specific geographic region.serviceInstance can be created via IBM Cloud catalog or CLI.supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli.More detail about Power VS service instance.https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-serverwhen omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance.when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error.when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance.ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--service_instance))
 - `transit_gateway` (Attributes) transitGateway contains information about IBM Cloud TransitGatewayIBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructuremore information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway.when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error.when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway. (see [below for nested schema](#nestedatt--spec--transit_gateway))
 - `vpc` (Attributes) vpc contains information about IBM Cloud VPC resources.when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc.when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error.when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the VPC.Region, not setting will result in webhook error. (see [below for nested schema](#nestedatt--spec--vpc))
+- `vpc_security_groups` (Attributes List) VPCSecurityGroups to attach it to the VPC resource (see [below for nested schema](#nestedatt--spec--vpc_security_groups))
 - `vpc_subnets` (Attributes List) vpcSubnets contains information about IBM Cloud VPC Subnet resources.when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME.possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error.when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region.when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX.if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone. (see [below for nested schema](#nestedatt--spec--vpc_subnets))
 - `zone` (String) zone is the name of Power VS zone where the cluster will be createdpossible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the zone, not setting will result in webhook error.2. the zone should have PER capabilities, or else system will give error.
 
@@ -165,6 +166,7 @@ Optional:
 
 Optional:
 
+- `global_routing` (Boolean) globalRouting indicates whether to set global routing true or not while creating the transit gateway.set this field to true only when PowerVS and VPC are from different regions, if they are same it's suggested to use local routing by setting the field to false.when the field is omitted,  based on PowerVS region (region associated with IBMPowerVSCluster.Spec.Zone) and VPC region(IBMPowerVSCluster.Spec.VPC.Region) system will decide whether to enable globalRouting or not.
 - `id` (String) id of resource.
 - `name` (String) name of resource.
 
@@ -177,6 +179,108 @@ Optional:
 - `id` (String) id of resource.
 - `name` (String) name of resource.
 - `region` (String) region of IBM Cloud VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,it is expected to set the region, not setting will result in webhook error.
+
+
+<a id="nestedatt--spec--vpc_security_groups"></a>
+### Nested Schema for `spec.vpc_security_groups`
+
+Optional:
+
+- `id` (String) id of the Security Group.
+- `name` (String) name of the Security Group.
+- `rules` (Attributes List) rules are the Security Group Rules for the Security Group. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules))
+- `tags` (List of String) tags are tags to add to the Security Group.
+
+<a id="nestedatt--spec--vpc_security_groups--rules"></a>
+### Nested Schema for `spec.vpc_security_groups.rules`
+
+Required:
+
+- `action` (String) action defines whether to allow or deny traffic defined by the Security Group Rule.
+- `direction` (String) direction defines whether the traffic is inbound or outbound for the Security Group Rule.
+
+Optional:
+
+- `destination` (Attributes) destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--destination))
+- `security_group_id` (String) securityGroupID is the ID of the Security Group for the Security Group Rule.
+- `source` (Attributes) source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--source))
+
+<a id="nestedatt--spec--vpc_security_groups--rules--destination"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.destination`
+
+Required:
+
+- `protocol` (String) protocol defines the traffic protocol used for the Security Group Rule.
+- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--destination--remotes))
+
+Optional:
+
+- `icmp_code` (Number) icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_type` (Number) icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `port_range` (Attributes) portRange is a range of ports allowed for the Rule's remote. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--destination--port_range))
+
+<a id="nestedatt--spec--vpc_security_groups--rules--destination--remotes"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.destination.remotes`
+
+Required:
+
+- `remote_type` (String) remoteType defines the type of filter to define for the remote's destination/source.
+
+Optional:
+
+- `address` (String) address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
+- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
+- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
+
+
+<a id="nestedatt--spec--vpc_security_groups--rules--destination--port_range"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.destination.port_range`
+
+Optional:
+
+- `maximum_port` (Number) maximumPort is the inclusive upper range of ports.
+- `minimum_port` (Number) minimumPort is the inclusive lower range of ports.
+
+
+
+<a id="nestedatt--spec--vpc_security_groups--rules--source"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.source`
+
+Required:
+
+- `protocol` (String) protocol defines the traffic protocol used for the Security Group Rule.
+- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--source--remotes))
+
+Optional:
+
+- `icmp_code` (Number) icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_type` (Number) icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `port_range` (Attributes) portRange is a range of ports allowed for the Rule's remote. (see [below for nested schema](#nestedatt--spec--vpc_security_groups--rules--source--port_range))
+
+<a id="nestedatt--spec--vpc_security_groups--rules--source--remotes"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.source.remotes`
+
+Required:
+
+- `remote_type` (String) remoteType defines the type of filter to define for the remote's destination/source.
+
+Optional:
+
+- `address` (String) address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
+- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
+- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
+
+
+<a id="nestedatt--spec--vpc_security_groups--rules--source--port_range"></a>
+### Nested Schema for `spec.vpc_security_groups.rules.source.port_range`
+
+Optional:
+
+- `maximum_port` (Number) maximumPort is the inclusive upper range of ports.
+- `minimum_port` (Number) minimumPort is the inclusive lower range of ports.
+
+
+
 
 
 <a id="nestedatt--spec--vpc_subnets"></a>

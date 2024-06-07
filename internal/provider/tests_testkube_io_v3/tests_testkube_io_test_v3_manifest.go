@@ -76,6 +76,7 @@ type TestsTestkubeIoTestV3ManifestData struct {
 				Masks                      *[]string `tfsdk:"masks" json:"masks,omitempty"`
 				OmitFolderPerExecution     *bool     `tfsdk:"omit_folder_per_execution" json:"omitFolderPerExecution,omitempty"`
 				SharedBetweenPods          *bool     `tfsdk:"shared_between_pods" json:"sharedBetweenPods,omitempty"`
+				SidecarScraper             *bool     `tfsdk:"sidecar_scraper" json:"sidecarScraper,omitempty"`
 				StorageBucket              *string   `tfsdk:"storage_bucket" json:"storageBucket,omitempty"`
 				StorageClassName           *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 				UseDefaultStorageClassName *bool     `tfsdk:"use_default_storage_class_name" json:"useDefaultStorageClassName,omitempty"`
@@ -84,6 +85,7 @@ type TestsTestkubeIoTestV3ManifestData struct {
 			Command                  *[]string `tfsdk:"command" json:"command,omitempty"`
 			CronJobTemplate          *string   `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
 			CronJobTemplateReference *string   `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+			DisableWebhooks          *bool     `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 			EnvConfigMaps            *[]struct {
 				MapToVariables *bool   `tfsdk:"map_to_variables" json:"mapToVariables,omitempty"`
 				Mount          *bool   `tfsdk:"mount" json:"mount,omitempty"`
@@ -431,8 +433,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 						MarkdownDescription: "test execution request body",
 						Attributes: map[string]schema.Attribute{
 							"active_deadline_seconds": schema.Int64Attribute{
-								Description:         "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
-								MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
+								Description:         "Optional duration in seconds the pod may be active on the node relative toStartTime before the system will actively try to mark it failed and kill associated containers.Value must be a positive integer.",
+								MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative toStartTime before the system will actively try to mark it failed and kill associated containers.Value must be a positive integer.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -491,6 +493,14 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 									"shared_between_pods": schema.BoolAttribute{
 										Description:         "whether to share volume between pods",
 										MarkdownDescription: "whether to share volume between pods",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sidecar_scraper": schema.BoolAttribute{
+										Description:         "run scraper as pod sidecar container",
+										MarkdownDescription: "run scraper as pod sidecar container",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -558,6 +568,14 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 								Computed:            false,
 							},
 
+							"disable_webhooks": schema.BoolAttribute{
+								Description:         "whether webhooks should be called on execution",
+								MarkdownDescription: "whether webhooks should be called on execution",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"env_config_maps": schema.ListNestedAttribute{
 								Description:         "config map references",
 								MarkdownDescription: "config map references",
@@ -588,12 +606,12 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 										},
 
 										"reference": schema.SingleNestedAttribute{
-											Description:         "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-											MarkdownDescription: "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+											Description:         "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
+											MarkdownDescription: "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -640,12 +658,12 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 										},
 
 										"reference": schema.SingleNestedAttribute{
-											Description:         "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-											MarkdownDescription: "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+											Description:         "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
+											MarkdownDescription: "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -663,8 +681,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 							},
 
 							"envs": schema.MapAttribute{
-								Description:         "Environment variables passed to executor. Deprecated: use Basic Variables instead",
-								MarkdownDescription: "Environment variables passed to executor. Deprecated: use Basic Variables instead",
+								Description:         "Environment variables passed to executor.Deprecated: use Basic Variables instead",
+								MarkdownDescription: "Environment variables passed to executor.Deprecated: use Basic Variables instead",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -726,8 +744,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -844,8 +862,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 							},
 
 							"secret_envs": schema.MapAttribute{
-								Description:         "Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead",
-								MarkdownDescription: "Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead",
+								Description:         "Execution variables passed to executor from secrets.Deprecated: use Secret Variables instead",
+								MarkdownDescription: "Execution variables passed to executor from secrets.Deprecated: use Secret Variables instead",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1021,8 +1039,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1042,8 +1060,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 											},
 
 											"field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1067,8 +1085,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 											},
 
 											"resource_field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-												MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 												Attributes: map[string]schema.Attribute{
 													"container_name": schema.StringAttribute{
 														Description:         "Container name: required for volumes, optional for env vars",
@@ -1112,8 +1130,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

@@ -1002,6 +1002,35 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 				OpenShiftAutoDetect *bool `tfsdk:"open_shift_auto_detect" json:"openShiftAutoDetect,omitempty"`
 			} `tfsdk:"subnet_labels" json:"subnetLabels,omitempty"`
 		} `tfsdk:"processor" json:"processor,omitempty"`
+		Prometheus *struct {
+			Querier *struct {
+				Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
+				Manual *struct {
+					ForwardUserToken *bool `tfsdk:"forward_user_token" json:"forwardUserToken,omitempty"`
+					Tls              *struct {
+						CaCert *struct {
+							CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+							CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Type      *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+						Enable             *bool `tfsdk:"enable" json:"enable,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						UserCert           *struct {
+							CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+							CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Type      *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"user_cert" json:"userCert,omitempty"`
+					} `tfsdk:"tls" json:"tls,omitempty"`
+					Url *string `tfsdk:"url" json:"url,omitempty"`
+				} `tfsdk:"manual" json:"manual,omitempty"`
+				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
+				Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"querier" json:"querier,omitempty"`
+		} `tfsdk:"prometheus" json:"prometheus,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1092,12 +1121,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"scheduling": schema.SingleNestedAttribute{
-												Description:         "scheduling controls whether the pod will be scheduled or not.",
-												MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+												Description:         "scheduling controls how the pods are scheduled on nodes.",
+												MarkdownDescription: "scheduling controls how the pods are scheduled on nodes.",
 												Attributes: map[string]schema.Attribute{
 													"affinity": schema.SingleNestedAttribute{
-														Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
-														MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+														Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+														MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 														Attributes: map[string]schema.Attribute{
 															"node_affinity": schema.SingleNestedAttribute{
 																Description:         "Describes node affinity scheduling rules for the pod.",
@@ -1974,8 +2003,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"node_selector": schema.MapAttribute{
-														Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-														MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+														Description:         "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
+														MarkdownDescription: "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1983,16 +2012,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"priority_class_name": schema.StringAttribute{
-														Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
-														MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+														Description:         "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
+														MarkdownDescription: "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"tolerations": schema.ListNestedAttribute{
-														Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
-														MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+														Description:         "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+														MarkdownDescription: "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"effect": schema.StringAttribute{
@@ -2096,8 +2125,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'flowFilter' defines the eBPF agent configuration regarding flow filtering",
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
-												Description:         "Action defines the action to perform on the flows that match the filter.",
-												MarkdownDescription: "Action defines the action to perform on the flows that match the filter.",
+												Description:         "'action' defines the action to perform on the flows that match the filter.",
+												MarkdownDescription: "'action' defines the action to perform on the flows that match the filter.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2107,24 +2136,24 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"cidr": schema.StringAttribute{
-												Description:         "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
-												MarkdownDescription: "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												Description:         "'cidr' defines the IP CIDR to filter flows by.Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+												MarkdownDescription: "'cidr' defines the IP CIDR to filter flows by.Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"dest_ports": schema.StringAttribute{
-												Description:         "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
-												MarkdownDescription: "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
+												Description:         "'destPorts' defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'destPorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'destPorts: '80-100''.",
+												MarkdownDescription: "'destPorts' defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'destPorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'destPorts: '80-100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"direction": schema.StringAttribute{
-												Description:         "Direction defines the direction to filter flows by.",
-												MarkdownDescription: "Direction defines the direction to filter flows by.",
+												Description:         "'direction' defines the direction to filter flows by.",
+												MarkdownDescription: "'direction' defines the direction to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2142,40 +2171,40 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"icmp_code": schema.Int64Attribute{
-												Description:         "ICMPCode defines the ICMP code to filter flows by.",
-												MarkdownDescription: "ICMPCode defines the ICMP code to filter flows by.",
+												Description:         "'icmpCode' defines the ICMP code to filter flows by.",
+												MarkdownDescription: "'icmpCode' defines the ICMP code to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"icmp_type": schema.Int64Attribute{
-												Description:         "ICMPType defines the ICMP type to filter flows by.",
-												MarkdownDescription: "ICMPType defines the ICMP type to filter flows by.",
+												Description:         "'icmpType' defines the ICMP type to filter flows by.",
+												MarkdownDescription: "'icmpType' defines the ICMP type to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"peer_ip": schema.StringAttribute{
-												Description:         "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
-												MarkdownDescription: "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
+												Description:         "'peerIP' defines the IP address to filter flows by.Example: '10.10.10.10'.",
+												MarkdownDescription: "'peerIP' defines the IP address to filter flows by.Example: '10.10.10.10'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ports": schema.StringAttribute{
-												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
-												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
+												Description:         "'ports' defines the ports to filter flows by, used both for source and destination ports.To filter a single port, set a single port as an integer value. For example: 'ports: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'ports: '80-100''.",
+												MarkdownDescription: "'ports' defines the ports to filter flows by, used both for source and destination ports.To filter a single port, set a single port as an integer value. For example: 'ports: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'ports: '80-100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "Protocol defines the protocol to filter flows by.",
-												MarkdownDescription: "Protocol defines the protocol to filter flows by.",
+												Description:         "'protocol' defines the protocol to filter flows by.",
+												MarkdownDescription: "'protocol' defines the protocol to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2185,8 +2214,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"source_ports": schema.StringAttribute{
-												Description:         "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
-												MarkdownDescription: "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
+												Description:         "'sourcePorts' defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'sourcePorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'sourcePorts: '80-100''.",
+												MarkdownDescription: "'sourcePorts' defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'sourcePorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'sourcePorts: '80-100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2209,8 +2238,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"interfaces": schema.ListAttribute{
-										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
-										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in 'excludeInterfaces'.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in 'excludeInterfaces'.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2250,8 +2279,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"enable": schema.BoolAttribute{
-												Description:         "Set 'enable' to 'true' to enable eBPF agent metrics collection.",
-												MarkdownDescription: "Set 'enable' to 'true' to enable eBPF agent metrics collection.",
+												Description:         "Set 'enable' to 'false' to disable eBPF agent metrics collection. It is enabled by default.",
+												MarkdownDescription: "Set 'enable' to 'false' to disable eBPF agent metrics collection. It is enabled by default.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2262,8 +2291,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												MarkdownDescription: "Metrics server endpoint configuration for Prometheus scraper",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
-														Description:         "The prometheus HTTP port",
-														MarkdownDescription: "The prometheus HTTP port",
+														Description:         "The metrics server HTTP port",
+														MarkdownDescription: "The metrics server HTTP port",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2578,8 +2607,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
-								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
+								Description:         "'type' [deprecated (*)] selects the flows tracing agent. Previously, this field allowed to select between 'eBPF' or 'IPFIX'.Only 'eBPF' is allowed now, so this field is deprecated and is planned for removal in a future version of the API.",
+								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. Previously, this field allowed to select between 'eBPF' or 'IPFIX'.Only 'eBPF' is allowed now, so this field is deprecated and is planned for removal in a future version of the API.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2640,12 +2669,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"scheduling": schema.SingleNestedAttribute{
-										Description:         "scheduling controls whether the pod will be scheduled or not.",
-										MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+										Description:         "scheduling controls how the pods are scheduled on nodes.",
+										MarkdownDescription: "scheduling controls how the pods are scheduled on nodes.",
 										Attributes: map[string]schema.Attribute{
 											"affinity": schema.SingleNestedAttribute{
-												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
-												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 												Attributes: map[string]schema.Attribute{
 													"node_affinity": schema.SingleNestedAttribute{
 														Description:         "Describes node affinity scheduling rules for the pod.",
@@ -3522,8 +3551,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"node_selector": schema.MapAttribute{
-												Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-												MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												Description:         "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
+												MarkdownDescription: "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3531,16 +3560,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
-												MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												Description:         "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
+												MarkdownDescription: "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"tolerations": schema.ListNestedAttribute{
-												Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
-												MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												Description:         "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+												MarkdownDescription: "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"effect": schema.StringAttribute{
@@ -4971,16 +5000,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.",
-								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.",
+								Description:         "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"loki_stack": schema.SingleNestedAttribute{
-								Description:         "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes.",
-								MarkdownDescription: "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes.",
+								Description:         "Loki configuration for 'LokiStack' mode. This is useful for an easy Loki Operator configuration.It is ignored for other modes.",
+								MarkdownDescription: "Loki configuration for 'LokiStack' mode. This is useful for an easy Loki Operator configuration.It is ignored for other modes.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of an existing LokiStack resource to use.",
@@ -5790,12 +5819,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"scheduling": schema.SingleNestedAttribute{
-										Description:         "scheduling controls whether the pod will be scheduled or not.",
-										MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+										Description:         "scheduling controls how the pods are scheduled on nodes.",
+										MarkdownDescription: "scheduling controls how the pods are scheduled on nodes.",
 										Attributes: map[string]schema.Attribute{
 											"affinity": schema.SingleNestedAttribute{
-												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
-												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 												Attributes: map[string]schema.Attribute{
 													"node_affinity": schema.SingleNestedAttribute{
 														Description:         "Describes node affinity scheduling rules for the pod.",
@@ -6672,8 +6701,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"node_selector": schema.MapAttribute{
-												Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-												MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												Description:         "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
+												MarkdownDescription: "'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -6681,16 +6710,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
-												MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												Description:         "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
+												MarkdownDescription: "If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"tolerations": schema.ListNestedAttribute{
-												Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
-												MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												Description:         "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
+												MarkdownDescription: "'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"effect": schema.StringAttribute{
@@ -7419,8 +7448,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "Metrics server endpoint configuration for Prometheus scraper",
 										Attributes: map[string]schema.Attribute{
 											"port": schema.Int64Attribute{
-												Description:         "The prometheus HTTP port",
-												MarkdownDescription: "The prometheus HTTP port",
+												Description:         "The metrics server HTTP port",
+												MarkdownDescription: "The metrics server HTTP port",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -7619,8 +7648,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"subnet_labels": schema.SingleNestedAttribute{
-								Description:         "'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
-								MarkdownDescription: "'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								Description:         "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift, which is used to identify cluster external traffic.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								MarkdownDescription: "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift, which is used to identify cluster external traffic.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
 								Attributes: map[string]schema.Attribute{
 									"custom_labels": schema.ListNestedAttribute{
 										Description:         "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
@@ -7653,6 +7682,205 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									"open_shift_auto_detect": schema.BoolAttribute{
 										Description:         "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
 										MarkdownDescription: "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prometheus": schema.SingleNestedAttribute{
+						Description:         "'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin.",
+						MarkdownDescription: "'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin.",
+						Attributes: map[string]schema.Attribute{
+							"querier": schema.SingleNestedAttribute{
+								Description:         "Prometheus querying configuration, such as client settings, used in the Console plugin.",
+								MarkdownDescription: "Prometheus querying configuration, such as client settings, used in the Console plugin.",
+								Attributes: map[string]schema.Attribute{
+									"enable": schema.BoolAttribute{
+										Description:         "When 'enable' is 'true', the Console plugin queries flow metrics from Prometheus instead of Loki whenever possible.It is enbaled by default: set it to 'false' to disable this feature.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+										MarkdownDescription: "When 'enable' is 'true', the Console plugin queries flow metrics from Prometheus instead of Loki whenever possible.It is enbaled by default: set it to 'false' to disable this feature.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"manual": schema.SingleNestedAttribute{
+										Description:         "Prometheus configuration for 'Manual' mode.",
+										MarkdownDescription: "Prometheus configuration for 'Manual' mode.",
+										Attributes: map[string]schema.Attribute{
+											"forward_user_token": schema.BoolAttribute{
+												Description:         "Set 'true' to forward logged in user token in queries to Prometheus",
+												MarkdownDescription: "Set 'true' to forward logged in user token in queries to Prometheus",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tls": schema.SingleNestedAttribute{
+												Description:         "TLS client configuration for Prometheus URL.",
+												MarkdownDescription: "TLS client configuration for Prometheus URL.",
+												Attributes: map[string]schema.Attribute{
+													"ca_cert": schema.SingleNestedAttribute{
+														Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
+														MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+														Attributes: map[string]schema.Attribute{
+															"cert_file": schema.StringAttribute{
+																Description:         "'certFile' defines the path to the certificate file name within the config map or secret",
+																MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"cert_key": schema.StringAttribute{
+																Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the config map or secret containing certificates",
+																MarkdownDescription: "Name of the config map or secret containing certificates",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type for the certificate reference: 'configmap' or 'secret'",
+																MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("configmap", "secret"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"enable": schema.BoolAttribute{
+														Description:         "Enable TLS",
+														MarkdownDescription: "Enable TLS",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"insecure_skip_verify": schema.BoolAttribute{
+														Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user_cert": schema.SingleNestedAttribute{
+														Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+														MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+														Attributes: map[string]schema.Attribute{
+															"cert_file": schema.StringAttribute{
+																Description:         "'certFile' defines the path to the certificate file name within the config map or secret",
+																MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"cert_key": schema.StringAttribute{
+																Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the config map or secret containing certificates",
+																MarkdownDescription: "Name of the config map or secret containing certificates",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type for the certificate reference: 'configmap' or 'secret'",
+																MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("configmap", "secret"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"url": schema.StringAttribute{
+												Description:         "'url' is the address of an existing Prometheus service to use for querying metrics.",
+												MarkdownDescription: "'url' is the address of an existing Prometheus service to use for querying metrics.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": schema.StringAttribute{
+										Description:         "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
+										MarkdownDescription: "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Manual", "Auto"),
+										},
+									},
+
+									"timeout": schema.StringAttribute{
+										Description:         "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
+										MarkdownDescription: "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

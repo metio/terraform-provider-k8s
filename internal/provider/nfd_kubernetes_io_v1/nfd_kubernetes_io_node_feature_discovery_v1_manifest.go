@@ -44,6 +44,7 @@ type NfdKubernetesIoNodeFeatureDiscoveryV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		EnableTaints   *bool     `tfsdk:"enable_taints" json:"enableTaints,omitempty"`
 		ExtraLabelNs   *[]string `tfsdk:"extra_label_ns" json:"extraLabelNs,omitempty"`
 		Instance       *string   `tfsdk:"instance" json:"instance,omitempty"`
 		LabelWhiteList *string   `tfsdk:"label_white_list" json:"labelWhiteList,omitempty"`
@@ -138,6 +139,14 @@ func (r *NfdKubernetesIoNodeFeatureDiscoveryV1Manifest) Schema(_ context.Context
 				Description:         "NodeFeatureDiscoverySpec defines the desired state of NodeFeatureDiscovery",
 				MarkdownDescription: "NodeFeatureDiscoverySpec defines the desired state of NodeFeatureDiscovery",
 				Attributes: map[string]schema.Attribute{
+					"enable_taints": schema.BoolAttribute{
+						Description:         "EnableTaints enables the enable the experimental tainting feature This allows keeping nodes with specialized hardware away from running general workload i and instead leave them for workloads that need the specialized hardware.",
+						MarkdownDescription: "EnableTaints enables the enable the experimental tainting feature This allows keeping nodes with specialized hardware away from running general workload i and instead leave them for workloads that need the specialized hardware.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"extra_label_ns": schema.ListAttribute{
 						Description:         "ExtraLabelNs defines the list of of allowed extra label namespaces By default, only allow labels in the default 'feature.node.kubernetes.io' label namespace",
 						MarkdownDescription: "ExtraLabelNs defines the list of of allowed extra label namespaces By default, only allow labels in the default 'feature.node.kubernetes.io' label namespace",

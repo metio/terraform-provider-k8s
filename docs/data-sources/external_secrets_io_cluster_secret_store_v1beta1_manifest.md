@@ -762,6 +762,7 @@ Optional:
 Optional:
 
 - `auth` (Attributes) Auth defines the information necessary to authenticate against GCP (see [below for nested schema](#nestedatt--spec--provider--gcpsm--auth))
+- `location` (String) Location optionally defines a location for a secret
 - `project_id` (String) ProjectID project where secret is located
 
 <a id="nestedatt--spec--provider--gcpsm--auth"></a>

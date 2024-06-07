@@ -366,6 +366,7 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						Capabilities             *struct {
@@ -770,6 +771,19 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"driver" json:"driver,omitempty"`
+			DriverIngressOptions *[]struct {
+				IngressAnnotations *map[string]string `tfsdk:"ingress_annotations" json:"ingressAnnotations,omitempty"`
+				IngressTLS         *[]struct {
+					Hosts      *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
+					SecretName *string   `tfsdk:"secret_name" json:"secretName,omitempty"`
+				} `tfsdk:"ingress_tls" json:"ingressTLS,omitempty"`
+				IngressURLFormat   *string            `tfsdk:"ingress_url_format" json:"ingressURLFormat,omitempty"`
+				ServiceAnnotations *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
+				ServiceLabels      *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
+				ServicePort        *int64             `tfsdk:"service_port" json:"servicePort,omitempty"`
+				ServicePortName    *string            `tfsdk:"service_port_name" json:"servicePortName,omitempty"`
+				ServiceType        *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
+			} `tfsdk:"driver_ingress_options" json:"driverIngressOptions,omitempty"`
 			DynamicAllocation *struct {
 				Enabled                *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 				InitialExecutors       *int64 `tfsdk:"initial_executors" json:"initialExecutors,omitempty"`
@@ -1078,6 +1092,7 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						Capabilities             *struct {
@@ -3961,6 +3976,14 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 													Computed: false,
 												},
 
+												"restart_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"security_context": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -6694,6 +6717,104 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 								Computed: false,
 							},
 
+							"driver_ingress_options": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"ingress_annotations": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ingress_tls": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"hosts": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"secret_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"ingress_url_format": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"service_annotations": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"service_labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"service_port": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"service_port_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"service_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"dynamic_allocation": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -8715,6 +8836,14 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"restart_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{

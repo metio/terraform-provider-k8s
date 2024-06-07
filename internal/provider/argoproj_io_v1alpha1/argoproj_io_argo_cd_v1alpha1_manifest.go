@@ -166,7 +166,8 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 				Replicas              *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"sharding" json:"sharding,omitempty"`
 		} `tfsdk:"controller" json:"controller,omitempty"`
-		Dex *struct {
+		DefaultClusterScopedRoleDisabled *bool `tfsdk:"default_cluster_scoped_role_disabled" json:"defaultClusterScopedRoleDisabled,omitempty"`
+		Dex                              *struct {
 			Config         *string   `tfsdk:"config" json:"config,omitempty"`
 			Groups         *[]string `tfsdk:"groups" json:"groups,omitempty"`
 			Image          *string   `tfsdk:"image" json:"image,omitempty"`
@@ -253,7 +254,8 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"kustomize_versions" json:"kustomizeVersions,omitempty"`
 		Monitoring *struct {
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			DisableMetrics *bool `tfsdk:"disable_metrics" json:"disableMetrics,omitempty"`
+			Enabled        *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
 		NodePlacement *struct {
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -1313,6 +1315,7 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 			} `tfsdk:"dex" json:"dex,omitempty"`
 			Image    *string `tfsdk:"image" json:"image,omitempty"`
 			Keycloak *struct {
+				Host      *string `tfsdk:"host" json:"host,omitempty"`
 				Image     *string `tfsdk:"image" json:"image,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
@@ -2245,6 +2248,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 						Computed: false,
 					},
 
+					"default_cluster_scoped_role_disabled": schema.BoolAttribute{
+						Description:         "DefaultClusterScopedRoleDisabled will disable creation of default ClusterRoles for a cluster scoped instance.",
+						MarkdownDescription: "DefaultClusterScopedRoleDisabled will disable creation of default ClusterRoles for a cluster scoped instance.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"dex": schema.SingleNestedAttribute{
 						Description:         "Deprecated field. Support dropped in v1beta1 version. Dex defines the Dex server options for ArgoCD.",
 						MarkdownDescription: "Deprecated field. Support dropped in v1beta1 version. Dex defines the Dex server options for ArgoCD.",
@@ -2847,6 +2858,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 						Description:         "Monitoring defines whether workload status monitoring configuration for this instance.",
 						MarkdownDescription: "Monitoring defines whether workload status monitoring configuration for this instance.",
 						Attributes: map[string]schema.Attribute{
+							"disable_metrics": schema.BoolAttribute{
+								Description:         "DisableMetrics field can be used to enable or disable the collection of Metrics on Openshift",
+								MarkdownDescription: "DisableMetrics field can be used to enable or disable the collection of Metrics on Openshift",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled defines whether workload status monitoring is enabled for this instance or not",
 								MarkdownDescription: "Enabled defines whether workload status monitoring is enabled for this instance or not",
@@ -9946,6 +9965,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 								Description:         "Keycloak contains the configuration for Argo CD keycloak authentication",
 								MarkdownDescription: "Keycloak contains the configuration for Argo CD keycloak authentication",
 								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "Host is the hostname to use for Ingress/Route resources.",
+										MarkdownDescription: "Host is the hostname to use for Ingress/Route resources.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"image": schema.StringAttribute{
 										Description:         "Image is the Keycloak container image.",
 										MarkdownDescription: "Image is the Keycloak container image.",

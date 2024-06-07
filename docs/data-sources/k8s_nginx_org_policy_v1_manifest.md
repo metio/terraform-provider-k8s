@@ -152,6 +152,7 @@ Optional:
 - `no_delay` (Boolean)
 - `rate` (String)
 - `reject_code` (Number)
+- `scale` (Boolean)
 - `zone_size` (String)
 
 

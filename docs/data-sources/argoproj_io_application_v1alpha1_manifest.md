@@ -226,6 +226,7 @@ Optional:
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
+- `label_without_selector` (Boolean) LabelWithoutSelector specifies whether to apply common labels to resource selectors or not
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
@@ -412,6 +413,7 @@ Optional:
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
+- `label_without_selector` (Boolean) LabelWithoutSelector specifies whether to apply common labels to resource selectors or not
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
@@ -725,6 +727,7 @@ Optional:
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
+- `label_without_selector` (Boolean) LabelWithoutSelector specifies whether to apply common labels to resource selectors or not
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
@@ -911,6 +914,7 @@ Optional:
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
+- `label_without_selector` (Boolean) LabelWithoutSelector specifies whether to apply common labels to resource selectors or not
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources

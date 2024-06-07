@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -189,8 +190,11 @@ type CephRookIoCephClusterV1ManifestData struct {
 			AllowMultiplePerNode *bool  `tfsdk:"allow_multiple_per_node" json:"allowMultiplePerNode,omitempty"`
 			Count                *int64 `tfsdk:"count" json:"count,omitempty"`
 			Modules              *[]struct {
-				Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Enabled  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Settings *struct {
+					BalancerMode *string `tfsdk:"balancer_mode" json:"balancerMode,omitempty"`
+				} `tfsdk:"settings" json:"settings,omitempty"`
 			} `tfsdk:"modules" json:"modules,omitempty"`
 		} `tfsdk:"mgr" json:"mgr,omitempty"`
 		Mon *struct {
@@ -388,11 +392,14 @@ type CephRookIoCephClusterV1ManifestData struct {
 		} `tfsdk:"security" json:"security,omitempty"`
 		SkipUpgradeChecks *bool `tfsdk:"skip_upgrade_checks" json:"skipUpgradeChecks,omitempty"`
 		Storage           *struct {
+			BackfillFullRatio            *float64           `tfsdk:"backfill_full_ratio" json:"backfillFullRatio,omitempty"`
 			Config                       *map[string]string `tfsdk:"config" json:"config,omitempty"`
 			DeviceFilter                 *string            `tfsdk:"device_filter" json:"deviceFilter,omitempty"`
 			DevicePathFilter             *string            `tfsdk:"device_path_filter" json:"devicePathFilter,omitempty"`
 			Devices                      *map[string]string `tfsdk:"devices" json:"devices,omitempty"`
 			FlappingRestartIntervalHours *int64             `tfsdk:"flapping_restart_interval_hours" json:"flappingRestartIntervalHours,omitempty"`
+			FullRatio                    *float64           `tfsdk:"full_ratio" json:"fullRatio,omitempty"`
+			NearFullRatio                *float64           `tfsdk:"near_full_ratio" json:"nearFullRatio,omitempty"`
 			Nodes                        *[]struct {
 				Config           *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				DeviceFilter     *string            `tfsdk:"device_filter" json:"deviceFilter,omitempty"`
@@ -1928,6 +1935,26 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"settings": schema.SingleNestedAttribute{
+											Description:         "Settings to further configure the module",
+											MarkdownDescription: "Settings to further configure the module",
+											Attributes: map[string]schema.Attribute{
+												"balancer_mode": schema.StringAttribute{
+													Description:         "BalancerMode sets the 'balancer' module with different modes like 'upmap', 'crush-compact' etc",
+													MarkdownDescription: "BalancerMode sets the 'balancer' module with different modes like 'upmap', 'crush-compact' etc",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("", "crush-compat", "upmap", "upmap-read"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
 									},
 								},
 								Required: false,
@@ -3277,6 +3304,18 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "A spec for available storage in the cluster and how it should be used",
 						MarkdownDescription: "A spec for available storage in the cluster and how it should be used",
 						Attributes: map[string]schema.Attribute{
+							"backfill_full_ratio": schema.Float64Attribute{
+								Description:         "BackfillFullRatio is the ratio at which the cluster is too full for backfill. Backfill will be disabled if above this threshold. Default is 0.90.",
+								MarkdownDescription: "BackfillFullRatio is the ratio at which the cluster is too full for backfill. Backfill will be disabled if above this threshold. Default is 0.90.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Float64{
+									float64validator.AtLeast(0),
+									float64validator.AtMost(1),
+								},
+							},
+
 							"config": schema.MapAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -3317,6 +3356,30 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"full_ratio": schema.Float64Attribute{
+								Description:         "FullRatio is the ratio at which the cluster is considered full and ceph will stop accepting writes. Default is 0.95.",
+								MarkdownDescription: "FullRatio is the ratio at which the cluster is considered full and ceph will stop accepting writes. Default is 0.95.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Float64{
+									float64validator.AtLeast(0),
+									float64validator.AtMost(1),
+								},
+							},
+
+							"near_full_ratio": schema.Float64Attribute{
+								Description:         "NearFullRatio is the ratio at which the cluster is considered nearly full and will raise a ceph health warning. Default is 0.85.",
+								MarkdownDescription: "NearFullRatio is the ratio at which the cluster is considered nearly full and will raise a ceph health warning. Default is 0.85.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Float64{
+									float64validator.AtLeast(0),
+									float64validator.AtMost(1),
+								},
 							},
 
 							"nodes": schema.ListNestedAttribute{

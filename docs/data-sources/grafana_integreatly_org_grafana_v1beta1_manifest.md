@@ -1879,10 +1879,13 @@ Optional:
 <a id="nestedatt--spec--deployment--spec--template--spec--host_aliases"></a>
 ### Nested Schema for `spec.deployment.spec.template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--image_pull_secrets"></a>

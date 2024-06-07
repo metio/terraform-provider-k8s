@@ -89,7 +89,7 @@ Optional:
 
 - `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']
 - `location` (String) Location in golang time location form, e.g. UTC
-- `months` (List of String) Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
+- `months` (List of String) Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
 - `times` (Attributes List) Times defines time range for mute (see [below for nested schema](#nestedatt--spec--mute_time_intervals--time_intervals--times))
 - `weekdays` (List of String) Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.
 - `years` (List of String) Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']
@@ -1757,7 +1757,7 @@ Optional:
 
 - `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']
 - `location` (String) Location in golang time location form, e.g. UTC
-- `months` (List of String) Months  defines list of calendar months identified by a case-insentive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
+- `months` (List of String) Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
 - `times` (Attributes List) Times defines time range for mute (see [below for nested schema](#nestedatt--spec--time_intervals--time_intervals--times))
 - `weekdays` (List of String) Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.
 - `years` (List of String) Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']

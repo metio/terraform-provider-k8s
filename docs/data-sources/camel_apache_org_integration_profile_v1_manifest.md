@@ -315,7 +315,7 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) When using 'pod' strategy, annotation to use for the builder pod.
-- `base_image` (String) Specify a base image
+- `base_image` (String) Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `incremental_image_build` (Boolean) Use the incremental image build option, to reuse existing containers (default 'true')
@@ -469,6 +469,7 @@ Optional:
 - `liveness_failure_threshold` (Number) Minimum consecutive failures for the liveness probe to be considered failed after having succeeded.
 - `liveness_initial_delay` (Number) Number of seconds after the container has started before the liveness probe is initiated.
 - `liveness_period` (Number) How often to perform the liveness probe.
+- `liveness_probe` (String) The liveness probe path to use (default provided by the Catalog runtime used).
 - `liveness_probe_enabled` (Boolean) Configures the liveness probe for the integration container (default 'false').
 - `liveness_scheme` (String) Scheme to use when connecting to the liveness probe (default 'HTTP').
 - `liveness_success_threshold` (Number) Minimum consecutive successes for the liveness probe to be considered successful after having failed.
@@ -476,6 +477,7 @@ Optional:
 - `readiness_failure_threshold` (Number) Minimum consecutive failures for the readiness probe to be considered failed after having succeeded.
 - `readiness_initial_delay` (Number) Number of seconds after the container has started before the readiness probe is initiated.
 - `readiness_period` (Number) How often to perform the readiness probe.
+- `readiness_probe` (String) The readiness probe path to use (default provided by the Catalog runtime used).
 - `readiness_probe_enabled` (Boolean) Configures the readiness probe for the integration container (default 'true').
 - `readiness_scheme` (String) Scheme to use when connecting to the readiness probe (default 'HTTP').
 - `readiness_success_threshold` (Number) Minimum consecutive successes for the readiness probe to be considered successful after having failed.
@@ -483,6 +485,7 @@ Optional:
 - `startup_failure_threshold` (Number) Minimum consecutive failures for the startup probe to be considered failed after having succeeded.
 - `startup_initial_delay` (Number) Number of seconds after the container has started before the startup probe is initiated.
 - `startup_period` (Number) How often to perform the startup probe.
+- `startup_probe` (String) The startup probe path to use (default provided by the Catalog runtime used).
 - `startup_probe_enabled` (Boolean) Configures the startup probe for the integration container (default 'false').
 - `startup_scheme` (String) Scheme to use when connecting to the startup probe (default 'HTTP').
 - `startup_success_threshold` (Number) Minimum consecutive successes for the startup probe to be considered successful after having failed.
@@ -545,8 +548,9 @@ Optional:
 - `debug_address` (String) Transport address at which to listen for the newly launched JVM (default '*:5005')
 - `debug_suspend` (Boolean) Suspends the target JVM immediately before the main class is loaded
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `jar` (String) The Jar dependency which will run the application. Leave it empty for managed Integrations.
 - `options` (List of String) A list of JVM options
-- `print_command` (Boolean) Prints the command used the start the JVM in the container logs (default 'true')
+- `print_command` (Boolean) Prints the command used the start the JVM in the container logs (default 'true') Deprecated: no longer in use.
 
 
 <a id="nestedatt--spec--traits--kamelets"></a>

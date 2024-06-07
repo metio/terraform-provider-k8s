@@ -59,6 +59,7 @@ Optional:
 - `allow_unverified_email` (Boolean) AllowUnverifiedEmail tells the connector to accept OIDC users with unverified emails.
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a dynamic mapping from claims to roles. (see [below for nested schema](#nestedatt--spec--claims_to_roles))
 - `client_id` (String) ClientID is the id of the authentication client (Teleport Auth server).
+- `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
 - `client_secret` (String) ClientSecret is used to authenticate the client.
 - `display` (String) Display is the friendly name for this provider.
 - `google_admin_email` (String) GoogleAdminEmail is the email of a google admin to impersonate.
@@ -80,3 +81,11 @@ Optional:
 - `claim` (String) Claim is a claim name.
 - `roles` (List of String) Roles is a list of static teleport roles to match.
 - `value` (String) Value is a claim value to match.
+
+
+<a id="nestedatt--spec--client_redirect_settings"></a>
+### Nested Schema for `spec.client_redirect_settings`
+
+Optional:
+
+- `allowed_https_hostnames` (List of String) a list of hostnames allowed for https client redirect URLs

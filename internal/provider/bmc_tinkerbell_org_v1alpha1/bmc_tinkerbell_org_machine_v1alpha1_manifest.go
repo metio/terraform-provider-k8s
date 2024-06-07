@@ -53,7 +53,8 @@ type BmcTinkerbellOrgMachineV1Alpha1ManifestData struct {
 			Port            *int64  `tfsdk:"port" json:"port,omitempty"`
 			ProviderOptions *struct {
 				IntelAMT *struct {
-					Port *int64 `tfsdk:"port" json:"port,omitempty"`
+					HostScheme *string `tfsdk:"host_scheme" json:"hostScheme,omitempty"`
+					Port       *int64  `tfsdk:"port" json:"port,omitempty"`
 				} `tfsdk:"intel_amt" json:"intelAMT,omitempty"`
 				Ipmitool *struct {
 					CipherSuite *string `tfsdk:"cipher_suite" json:"cipherSuite,omitempty"`
@@ -173,8 +174,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Connection contains connection data for a Baseboard Management Controller.",
 						Attributes: map[string]schema.Attribute{
 							"auth_secret_ref": schema.SingleNestedAttribute{
-								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
-								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
+								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
+								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "name is unique within a namespace to reference a secret resource.",
@@ -232,6 +233,17 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "IntelAMT contains the options to customize the IntelAMT provider.",
 										MarkdownDescription: "IntelAMT contains the options to customize the IntelAMT provider.",
 										Attributes: map[string]schema.Attribute{
+											"host_scheme": schema.StringAttribute{
+												Description:         "HostScheme determines whether to use http or https for intelAMT calls.",
+												MarkdownDescription: "HostScheme determines whether to use http or https for intelAMT calls.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("http", "https"),
+												},
+											},
+
 											"port": schema.Int64Attribute{
 												Description:         "Port that intelAMT will use for calls.",
 												MarkdownDescription: "Port that intelAMT will use for calls.",
@@ -292,8 +304,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "RPC contains the options to customize the RPC provider.",
 										Attributes: map[string]schema.Attribute{
 											"consumer_url": schema.StringAttribute{
-												Description:         "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
-												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
+												Description:         "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
+												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -413,8 +425,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 												MarkdownDescription: "Signature is the options used for adding an HMAC signature to an HTTP request.",
 												Attributes: map[string]schema.Attribute{
 													"append_algo_to_header_disabled": schema.BoolAttribute{
-														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
-														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -429,8 +441,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"included_payload_headers": schema.ListAttribute{
-														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
-														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
+														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
+														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,

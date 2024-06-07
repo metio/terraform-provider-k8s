@@ -3,12 +3,12 @@
 page_title: "k8s_bitnami_com_sealed_secret_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "bitnami.com"
 description: |-
-  SealedSecret is the K8s representation of a 'sealed Secret' - a regular k8s Secret that has been sealed (encrypted) using the controller's key.
+  SealedSecret is the K8s representation of a 'sealed Secret' - aregular k8s Secret that has been sealed (encrypted) using thecontroller's key.
 ---
 
 # k8s_bitnami_com_sealed_secret_v1alpha1_manifest (Data Source)
 
-SealedSecret is the K8s representation of a 'sealed Secret' - a regular k8s Secret that has been sealed (encrypted) using the controller's key.
+SealedSecret is the K8s representation of a 'sealed Secret' - aregular k8s Secret that has been sealed (encrypted) using thecontroller's key.
 
 ## Example Usage
 
@@ -27,7 +27,7 @@ data "k8s_bitnami_com_sealed_secret_v1alpha1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) SealedSecretSpec is the specification of a SealedSecret (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SealedSecretSpec is the specification of a SealedSecret. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -57,16 +57,16 @@ Required:
 Optional:
 
 - `data` (String) Data is deprecated and will be removed eventually. Use per-value EncryptedData instead.
-- `template` (Attributes) Template defines the structure of the Secret that will be created from this sealed secret. (see [below for nested schema](#nestedatt--spec--template))
+- `template` (Attributes) Template defines the structure of the Secret that will becreated from this sealed secret. (see [below for nested schema](#nestedatt--spec--template))
 
 <a id="nestedatt--spec--template"></a>
 ### Nested Schema for `spec.template`
 
 Optional:
 
-- `data` (Map of String) Keys that should be templated using decrypted data
-- `immutable` (Boolean) Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
-- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--template--metadata))
+- `data` (Map of String) Keys that should be templated using decrypted data.
+- `immutable` (Boolean) Immutable, if set to true, ensures that data stored in the Secret cannotbe updated (only object metadata can be modified).If not set to true, the field can be modified at any time.Defaulted to nil.
+- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--template--metadata))
 - `type` (String) Used to facilitate programmatic handling of secret data.
 
 <a id="nestedatt--spec--template--metadata"></a>

@@ -105,7 +105,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 
@@ -220,19 +220,19 @@ Optional:
 
 Optional:
 
-- `authority` (Attributes) HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--authority))
+- `authority` (Attributes) HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--authority))
 - `gateways` (List of String) Names of gateways where the rule should be applied.
 - `headers` (Attributes) The header keys must be lowercase and use hyphen as the separator, e.g. (see [below for nested schema](#nestedatt--spec--http--match--headers))
 - `ignore_uri_case` (Boolean) Flag to specify whether the URI matching should be case-insensitive.
-- `method` (Attributes) HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--method))
+- `method` (Attributes) HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--method))
 - `name` (String) The name assigned to a match.
 - `port` (Number) Specifies the ports on the host that is being addressed.
 - `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--http--match--query_params))
-- `scheme` (Attributes) URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--scheme))
+- `scheme` (Attributes) URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--scheme))
 - `source_labels` (Map of String) One or more labels that constrain the applicability of a rule to source (client) workloads with the given labels.
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
 - `stat_prefix` (String) The human readable prefix to use when emitting statistics for this route.
-- `uri` (Attributes) URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--uri))
+- `uri` (Attributes) URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--uri))
 - `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--http--match--without_headers))
 
 <a id="nestedatt--spec--http--match--authority"></a>
@@ -242,7 +242,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--headers"></a>
@@ -252,7 +252,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--method"></a>
@@ -262,7 +262,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--query_params"></a>
@@ -272,7 +272,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--scheme"></a>
@@ -282,7 +282,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--uri"></a>
@@ -292,7 +292,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 <a id="nestedatt--spec--http--match--without_headers"></a>
@@ -302,7 +302,7 @@ Optional:
 
 - `exact` (String)
 - `prefix` (String)
-- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `regex` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 
 
 
@@ -414,7 +414,7 @@ Optional:
 
 Optional:
 
-- `match` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+- `match` (String) [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).
 - `rewrite` (String) The string that should replace into matching portions of original URI.
 
 

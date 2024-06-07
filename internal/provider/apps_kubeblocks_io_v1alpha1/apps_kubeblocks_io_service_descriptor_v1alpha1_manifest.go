@@ -117,6 +117,30 @@ type AppsKubeblocksIoServiceDescriptorV1Alpha1ManifestData struct {
 				} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		Host *struct {
+			Value     *string `tfsdk:"value" json:"value,omitempty"`
+			ValueFrom *struct {
+				ConfigMapKeyRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+				FieldRef *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+				} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+				ResourceFieldRef *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+					Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+				} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+				SecretKeyRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+		} `tfsdk:"host" json:"host,omitempty"`
 		Port *struct {
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -533,8 +557,158 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"endpoint": schema.SingleNestedAttribute{
-						Description:         "Specifies the URL or IP address of the external service.",
-						MarkdownDescription: "Specifies the URL or IP address of the external service.",
+						Description:         "Specifies the endpoint of the external service.  If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
+						MarkdownDescription: "Specifies the endpoint of the external service.  If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
+						Attributes: map[string]schema.Attribute{
+							"value": schema.StringAttribute{
+								Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"value_from": schema.SingleNestedAttribute{
+								Description:         "Specifies the source for the variable's value.",
+								MarkdownDescription: "Specifies the source for the variable's value.",
+								Attributes: map[string]schema.Attribute{
+									"config_map_key_ref": schema.SingleNestedAttribute{
+										Description:         "Selects a key of a ConfigMap.",
+										MarkdownDescription: "Selects a key of a ConfigMap.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"field_ref": schema.SingleNestedAttribute{
+										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										Attributes: map[string]schema.Attribute{
+											"api_version": schema.StringAttribute{
+												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"field_path": schema.StringAttribute{
+												Description:         "Path of the field to select in the specified API version.",
+												MarkdownDescription: "Path of the field to select in the specified API version.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resource_field_ref": schema.SingleNestedAttribute{
+										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										Attributes: map[string]schema.Attribute{
+											"container_name": schema.StringAttribute{
+												Description:         "Container name: required for volumes, optional for env vars",
+												MarkdownDescription: "Container name: required for volumes, optional for env vars",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"divisor": schema.StringAttribute{
+												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resource": schema.StringAttribute{
+												Description:         "Required: resource to select",
+												MarkdownDescription: "Required: resource to select",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_key_ref": schema.SingleNestedAttribute{
+										Description:         "Selects a key of a secret in the pod's namespace",
+										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host": schema.SingleNestedAttribute{
+						Description:         "Specifies the service or IP address of the external service.",
+						MarkdownDescription: "Specifies the service or IP address of the external service.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
 								Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",

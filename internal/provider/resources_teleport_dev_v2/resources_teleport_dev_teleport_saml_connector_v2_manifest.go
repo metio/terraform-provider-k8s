@@ -54,8 +54,11 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 			Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 			Value *string   `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"attributes_to_roles" json:"attributes_to_roles,omitempty"`
-		Audience                *string `tfsdk:"audience" json:"audience,omitempty"`
-		Cert                    *string `tfsdk:"cert" json:"cert,omitempty"`
+		Audience                 *string `tfsdk:"audience" json:"audience,omitempty"`
+		Cert                     *string `tfsdk:"cert" json:"cert,omitempty"`
+		Client_redirect_settings *struct {
+			Allowed_https_hostnames *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
 		Display                 *string `tfsdk:"display" json:"display,omitempty"`
 		Entity_descriptor       *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
 		Entity_descriptor_url   *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
@@ -238,6 +241,24 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"client_redirect_settings": schema.SingleNestedAttribute{
+						Description:         "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						MarkdownDescription: "ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones.",
+						Attributes: map[string]schema.Attribute{
+							"allowed_https_hostnames": schema.ListAttribute{
+								Description:         "a list of hostnames allowed for https client redirect URLs",
+								MarkdownDescription: "a list of hostnames allowed for https client redirect URLs",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"display": schema.StringAttribute{

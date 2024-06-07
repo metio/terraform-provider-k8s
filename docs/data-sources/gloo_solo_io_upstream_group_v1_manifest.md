@@ -189,6 +189,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values--value))
@@ -486,6 +487,7 @@ Optional:
 - `escape_characters` (Boolean)
 - `inherit_transformation` (Boolean)
 - `log_request_response_info` (Boolean)
+- `post_routing` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing))
 - `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--regular))
 
 <a id="nestedatt--spec--destinations--options--staged_transformations--early"></a>
@@ -591,6 +593,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
@@ -703,6 +706,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
@@ -836,6 +840,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
@@ -890,6 +895,422 @@ Optional:
 
 <a id="nestedatt--spec--destinations--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
 ### Nested Schema for `spec.destinations.options.staged_transformations.early.response_transforms.response_transformation.xslt_transformation`
+
+Optional:
+
+- `non_xml_transform` (Boolean)
+- `set_content_type` (String)
+- `xslt` (String)
+
+
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing`
+
+Optional:
+
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms`
+
+Optional:
+
+- `clear_route_cache` (Boolean)
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.matcher`
+
+Optional:
+
+- `case_sensitive` (Boolean)
+- `connect_matcher` (Map of String)
+- `exact` (String)
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher--headers))
+- `methods` (List of String)
+- `prefix` (String)
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher--query_parameters))
+- `regex` (String)
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.matcher.headers`
+
+Optional:
+
+- `invert_match` (Boolean)
+- `name` (String)
+- `regex` (Boolean)
+- `value` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.matcher.query_parameters`
+
+Optional:
+
+- `name` (String)
+- `regex` (Boolean)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation`
+
+Optional:
+
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--header_body_transform))
+- `log_request_response_info` (Boolean)
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--xslt_transformation))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.header_body_transform`
+
+Optional:
+
+- `add_request_metadata` (Boolean)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template`
+
+Optional:
+
+- `advanced_templates` (Boolean)
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
+- `escape_characters` (Boolean)
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers_to_append))
+- `headers_to_remove` (List of String)
+- `ignore_error_on_parse` (Boolean)
+- `merge_extractors_to_body` (Map of String)
+- `parse_body_behavior` (String)
+- `passthrough` (Map of String)
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.body`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
+
+Optional:
+
+- `json_to_proto` (Boolean)
+- `key` (String)
+- `metadata_namespace` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.extractors`
+
+Optional:
+
+- `body` (Map of String)
+- `header` (String)
+- `mode` (String)
+- `regex` (String)
+- `replacement_text` (String)
+- `subgroup` (Number)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.headers`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.headers_to_append`
+
+Optional:
+
+- `key` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers_to_append--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.headers_to_append.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.request_transformation.xslt_transformation`
+
+Optional:
+
+- `non_xml_transform` (Boolean)
+- `set_content_type` (String)
+- `xslt` (String)
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation`
+
+Optional:
+
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--header_body_transform))
+- `log_request_response_info` (Boolean)
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--xslt_transformation))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.header_body_transform`
+
+Optional:
+
+- `add_request_metadata` (Boolean)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template`
+
+Optional:
+
+- `advanced_templates` (Boolean)
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
+- `escape_characters` (Boolean)
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers_to_append))
+- `headers_to_remove` (List of String)
+- `ignore_error_on_parse` (Boolean)
+- `merge_extractors_to_body` (Map of String)
+- `parse_body_behavior` (String)
+- `passthrough` (Map of String)
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.body`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
+
+Optional:
+
+- `json_to_proto` (Boolean)
+- `key` (String)
+- `metadata_namespace` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.extractors`
+
+Optional:
+
+- `body` (Map of String)
+- `header` (String)
+- `mode` (String)
+- `regex` (String)
+- `replacement_text` (String)
+- `subgroup` (Number)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.headers`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.headers_to_append`
+
+Optional:
+
+- `key` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers_to_append--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.headers_to_append.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.request_transforms.response_transformation.xslt_transformation`
+
+Optional:
+
+- `non_xml_transform` (Boolean)
+- `set_content_type` (String)
+- `xslt` (String)
+
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms`
+
+Optional:
+
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--matchers))
+- `response_code_details` (String)
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--matchers"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.matchers`
+
+Optional:
+
+- `invert_match` (Boolean)
+- `name` (String)
+- `regex` (Boolean)
+- `value` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation`
+
+Optional:
+
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--header_body_transform))
+- `log_request_response_info` (Boolean)
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--xslt_transformation))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.header_body_transform`
+
+Optional:
+
+- `add_request_metadata` (Boolean)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template`
+
+Optional:
+
+- `advanced_templates` (Boolean)
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
+- `escape_characters` (Boolean)
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers_to_append))
+- `headers_to_remove` (List of String)
+- `ignore_error_on_parse` (Boolean)
+- `merge_extractors_to_body` (Map of String)
+- `parse_body_behavior` (String)
+- `passthrough` (Map of String)
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.body`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
+
+Optional:
+
+- `json_to_proto` (Boolean)
+- `key` (String)
+- `metadata_namespace` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.extractors`
+
+Optional:
+
+- `body` (Map of String)
+- `header` (String)
+- `mode` (String)
+- `regex` (String)
+- `replacement_text` (String)
+- `subgroup` (Number)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.headers`
+
+Optional:
+
+- `text` (String)
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.headers_to_append`
+
+Optional:
+
+- `key` (String)
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers_to_append--value))
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.headers_to_append.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+
+<a id="nestedatt--spec--destinations--options--staged_transformations--post_routing--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.destinations.options.staged_transformations.post_routing.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -1004,6 +1425,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
@@ -1116,6 +1538,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
@@ -1249,6 +1672,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
@@ -1373,6 +1797,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value))
@@ -1485,6 +1910,7 @@ Optional:
 
 Optional:
 
+- `json_to_proto` (Boolean)
 - `key` (String)
 - `metadata_namespace` (String)
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value))

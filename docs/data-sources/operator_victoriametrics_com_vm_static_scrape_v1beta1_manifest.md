@@ -94,7 +94,7 @@ Optional:
 - `scrape_timeout` (String) Timeout after which the scrape is ended
 - `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.
 - `tls_config` (Attributes) TLSConfig configuration to use when scraping the endpoint (see [below for nested schema](#nestedatt--spec--target_endpoints--tls_config))
-- `vm_scrape_params` (Attributes) VMScrapeParams defines VictoriaMetrics specific scrape parametrs (see [below for nested schema](#nestedatt--spec--target_endpoints--vm_scrape_params))
+- `vm_scrape_params` (Attributes) VMScrapeParams defines VictoriaMetrics specific scrape parameters (see [below for nested schema](#nestedatt--spec--target_endpoints--vm_scrape_params))
 
 <a id="nestedatt--spec--target_endpoints--authorization"></a>
 ### Nested Schema for `spec.target_endpoints.authorization`

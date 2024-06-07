@@ -60,6 +60,7 @@ Optional:
 - `banner` (Attributes) Banner defines an additional banner to be displayed in Argo CD UI (see [below for nested schema](#nestedatt--spec--banner))
 - `config_management_plugins` (String) ConfigManagementPlugins is used to specify additional config management plugins.
 - `controller` (Attributes) Controller defines the Application Controller options for ArgoCD. (see [below for nested schema](#nestedatt--spec--controller))
+- `default_cluster_scoped_role_disabled` (Boolean) DefaultClusterScopedRoleDisabled will disable creation of default ClusterRoles for a cluster scoped instance.
 - `dex` (Attributes) Deprecated field. Support dropped in v1beta1 version. Dex defines the Dex server options for ArgoCD. (see [below for nested schema](#nestedatt--spec--dex))
 - `disable_admin` (Boolean) DisableAdmin will disable the admin user.
 - `extra_config` (Map of String) ExtraConfig can be used to add fields to Argo CD configmap that are not supported by Argo CD CRD.  Note: ExtraConfig takes precedence over Argo CD CRD. For example, A user sets 'argocd.Spec.DisableAdmin' = true and also 'a.Spec.ExtraConfig['admin.enabled']' = true. In this case, operator updates Argo CD Configmap as follows -> argocd-cm.Data['admin.enabled'] = true.
@@ -605,6 +606,10 @@ Optional:
 Required:
 
 - `enabled` (Boolean) Enabled defines whether workload status monitoring is enabled for this instance or not
+
+Optional:
+
+- `disable_metrics` (Boolean) DisableMetrics field can be used to enable or disable the collection of Metrics on Openshift
 
 
 <a id="nestedatt--spec--node_placement"></a>
@@ -3306,6 +3311,7 @@ Required:
 
 Optional:
 
+- `host` (String) Host is the hostname to use for Ingress/Route resources.
 - `image` (String) Image is the Keycloak container image.
 - `resources` (Attributes) Resources defines the Compute Resources required by the container for Keycloak. (see [below for nested schema](#nestedatt--spec--sso--keycloak--resources))
 - `root_ca` (String) Custom root CA certificate for communicating with the Keycloak OIDC provider

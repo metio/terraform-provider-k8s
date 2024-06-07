@@ -66,6 +66,7 @@ Optional:
 
 - `bootable_jar` (Boolean) BootableJar specifies whether the application image is using S2I Builder/Runtime images or Bootable Jar. If omitted, it defaults to false (application image is expected to use S2I Builder/Runtime images)
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.
+- `deactivate_transaction_recovery` (Boolean) DeactivateTransactionRecovery disables the process of recovering transactions (false if omitted)
 - `disable_http_route` (Boolean) DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)
 - `env` (Attributes List) Env contains environment variables for the containers running the WildFlyServer application (see [below for nested schema](#nestedatt--spec--env))
 - `env_from` (Attributes List) EnvFrom contains environment variables from a source such as a ConfigMap or a Secret (see [below for nested schema](#nestedatt--spec--env_from))

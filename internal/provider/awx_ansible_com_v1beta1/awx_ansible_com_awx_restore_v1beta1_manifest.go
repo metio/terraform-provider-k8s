@@ -68,7 +68,8 @@ type AwxAnsibleComAwxrestoreV1Beta1ManifestData struct {
 				Memory *string `tfsdk:"memory" json:"memory,omitempty"`
 			} `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"restore_resource_requirements" json:"restore_resource_requirements,omitempty"`
-		Set_self_labels *bool `tfsdk:"set_self_labels" json:"set_self_labels,omitempty"`
+		Set_self_labels *bool              `tfsdk:"set_self_labels" json:"set_self_labels,omitempty"`
+		Spec_overrides  *map[string]string `tfsdk:"spec_overrides" json:"spec_overrides,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -338,6 +339,15 @@ func (r *AwxAnsibleComAwxrestoreV1Beta1Manifest) Schema(_ context.Context, _ dat
 					"set_self_labels": schema.BoolAttribute{
 						Description:         "Maintain some of the recommended 'app.kubernetes.io/*' labels on the resource (self)",
 						MarkdownDescription: "Maintain some of the recommended 'app.kubernetes.io/*' labels on the resource (self)",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"spec_overrides": schema.MapAttribute{
+						Description:         "Overrides for the AWX spec",
+						MarkdownDescription: "Overrides for the AWX spec",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

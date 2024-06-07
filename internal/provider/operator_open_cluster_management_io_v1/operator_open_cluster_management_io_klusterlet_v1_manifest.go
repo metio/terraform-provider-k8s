@@ -72,8 +72,10 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 		RegistrationConfiguration *struct {
 			BootstrapKubeConfigs *struct {
 				LocalSecretsConfig *struct {
-					HubConnectionTimeoutSeconds *int64    `tfsdk:"hub_connection_timeout_seconds" json:"hubConnectionTimeoutSeconds,omitempty"`
-					SecretNames                 *[]string `tfsdk:"secret_names" json:"secretNames,omitempty"`
+					HubConnectionTimeoutSeconds *int64 `tfsdk:"hub_connection_timeout_seconds" json:"hubConnectionTimeoutSeconds,omitempty"`
+					KubeConfigSecrets           *[]struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"kube_config_secrets" json:"kubeConfigSecrets,omitempty"`
 				} `tfsdk:"local_secrets_config" json:"localSecretsConfig,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"bootstrap_kube_configs" json:"bootstrapKubeConfigs,omitempty"`
@@ -385,13 +387,23 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 												},
 											},
 
-											"secret_names": schema.ListAttribute{
-												Description:         "SecretNames is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
-												MarkdownDescription: "SecretNames is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
+											"kube_config_secrets": schema.ListNestedAttribute{
+												Description:         "KubeConfigSecrets is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
+												MarkdownDescription: "KubeConfigSecrets is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name is the name of the secret.",
+															MarkdownDescription: "Name is the name of the secret.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,

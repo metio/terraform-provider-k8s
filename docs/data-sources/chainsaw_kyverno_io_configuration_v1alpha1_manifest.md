@@ -54,6 +54,7 @@ Optional:
 - `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--catch))
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--clusters))
 - `delay_before_cleanup` (String) DelayBeforeCleanup adds a delay between the time a test ends and the time cleanup starts.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.
 - `exclude_test_regex` (String) ExcludeTestRegex is used to exclude tests based on a regular expression.
 - `fail_fast` (Boolean) FailFast determines whether the test should stop upon encountering the first failure.
 - `force_termination_grace_period` (String) ForceTerminationGracePeriod forces the termination grace period on pods, statefulsets, daemonsets and deployments.
@@ -153,33 +154,17 @@ Optional:
 <a id="nestedatt--spec--catch--delete"></a>
 ### Nested Schema for `spec.catch.delete`
 
-Required:
-
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--catch--delete--ref))
-
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--catch--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--catch--delete--ref"></a>
-### Nested Schema for `spec.catch.delete.ref`
-
-Required:
-
-- `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-
-Optional:
-
-- `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-
 
 <a id="nestedatt--spec--catch--delete--bindings"></a>
 ### Nested Schema for `spec.catch.delete.bindings`
@@ -214,19 +199,36 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--catch--delete--ref"></a>
+### Nested Schema for `spec.catch.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
 
 <a id="nestedatt--spec--catch--describe"></a>
 ### Nested Schema for `spec.catch.describe`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--describe--clusters))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -273,16 +275,18 @@ Optional:
 <a id="nestedatt--spec--catch--get"></a>
 ### Nested Schema for `spec.catch.get`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -398,18 +402,17 @@ Required:
 
 Required:
 
+- `api_version` (String) API version of the referent.
 - `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
 

@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `machine_ref` (Attributes) MachineRef represents the Machine resource to execute the job. All the tasks in the job are executed for the same Machine. (see [below for nested schema](#nestedatt--spec--machine_ref))
-- `tasks` (Attributes List) Tasks represents a list of baseboard management actions to be executed. The tasks are executed sequentially. Controller waits for one task to complete before executing the next. If a single task fails, job execution stops and sets condition Failed. Condition Completed is set only if all the tasks were successful. (see [below for nested schema](#nestedatt--spec--tasks))
+- `machine_ref` (Attributes) MachineRef represents the Machine resource to execute the job.All the tasks in the job are executed for the same Machine. (see [below for nested schema](#nestedatt--spec--machine_ref))
+- `tasks` (Attributes List) Tasks represents a list of baseboard management actions to be executed.The tasks are executed sequentially. Controller waits for one task to complete before executing the next.If a single task fails, job execution stops and sets condition Failed.Condition Completed is set only if all the tasks were successful. (see [below for nested schema](#nestedatt--spec--tasks))
 
 <a id="nestedatt--spec--machine_ref"></a>
 ### Nested Schema for `spec.machine_ref`
@@ -81,7 +81,7 @@ Optional:
 
 Required:
 
-- `device` (List of String) Devices represents the boot devices, in order for setting one time boot. Currently only the first device in the slice is used to set one time boot.
+- `device` (List of String) Devices represents the boot devices, in order for setting one time boot.Currently only the first device in the slice is used to set one time boot.
 
 Optional:
 
@@ -97,4 +97,4 @@ Required:
 
 Optional:
 
-- `media_url` (String) mediaURL represents the URL of the image to be inserted into the virtual media, or empty to eject media.
+- `media_url` (String) mediaURL represents the URL of the image to be inserted into the virtual media, or empty toeject media.

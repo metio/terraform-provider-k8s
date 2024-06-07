@@ -61,7 +61,7 @@ Required:
 Optional:
 
 - `failure_domains` (List of String) FailureDomains is the list of failure domains this MachinePool should be attached to.
-- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)NOTE: No logic is implemented for this field and it currently has no behaviour.
+- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)
 - `provider_id_list` (List of String) ProviderIDList are the identification IDs of machine instances provided by the provider.This field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.
 - `replicas` (Number) Number of desired machines. Defaults to 1.This is a pointer to distinguish between explicit zero and not specified.
 

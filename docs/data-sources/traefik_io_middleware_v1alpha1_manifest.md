@@ -149,6 +149,7 @@ Optional:
 
 Optional:
 
+- `default_encoding` (String) DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').
 - `excluded_content_types` (List of String) ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing.'application/grpc' is always excluded.
 - `included_content_types` (List of String) IncludedContentTypes defines the list of content types to compare the Content-Type header of the responses before compressing.
 - `min_response_body_bytes` (Number) MinResponseBodyBytes defines the minimum amount of bytes a response body must have to be compressed.Default: 1024.
@@ -191,6 +192,7 @@ Required:
 
 Optional:
 
+- `health_check` (Attributes) Healthcheck defines health checks for ExternalName services. (see [below for nested schema](#nestedatt--spec--errors--service--health_check))
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
@@ -203,6 +205,24 @@ Optional:
 - `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--errors--service--sticky))
 - `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
+
+<a id="nestedatt--spec--errors--service--health_check"></a>
+### Nested Schema for `spec.errors.service.health_check`
+
+Optional:
+
+- `follow_redirects` (Boolean) FollowRedirects defines whether redirects should be followed during the health check calls.Default: true
+- `headers` (Map of String) Headers defines custom headers to be sent to the health check endpoint.
+- `hostname` (String) Hostname defines the value of hostname in the Host header of the health check request.
+- `interval` (String) Interval defines the frequency of the health check calls.Default: 30s
+- `method` (String) Method defines the healthcheck method.
+- `mode` (String) Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http
+- `path` (String) Path defines the server URL path for the health check endpoint.
+- `port` (Number) Port defines the server URL port for the health check endpoint.
+- `scheme` (String) Scheme replaces the server URL scheme for the health check endpoint.
+- `status` (Number) Status defines the expected HTTP status code of the response to the health check request.
+- `timeout` (String) Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s
+
 
 <a id="nestedatt--spec--errors--service--response_forwarding"></a>
 ### Nested Schema for `spec.errors.service.response_forwarding`
@@ -283,6 +303,7 @@ Optional:
 - `allowed_hosts` (List of String) AllowedHosts defines the fully qualified list of allowed domain names.
 - `browser_xss_filter` (Boolean) BrowserXSSFilter defines whether to add the X-XSS-Protection header with the value 1; mode=block.
 - `content_security_policy` (String) ContentSecurityPolicy defines the Content-Security-Policy header value.
+- `content_security_policy_report_only` (String) ContentSecurityPolicyReportOnly defines the Content-Security-Policy-Report-Only header value.
 - `content_type_nosniff` (Boolean) ContentTypeNosniff defines whether to add the X-Content-Type-Options header with the nosniff value.
 - `custom_browser_xss_value` (String) CustomBrowserXSSValue defines the X-XSS-Protection header value.This overrides the BrowserXssFilter option.
 - `custom_frame_options_value` (String) CustomFrameOptionsValue defines the X-Frame-Options header value.This overrides the FrameDeny option.

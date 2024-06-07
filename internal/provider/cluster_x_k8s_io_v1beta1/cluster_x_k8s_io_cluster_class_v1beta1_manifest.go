@@ -379,8 +379,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"node_startup_timeout": schema.StringAttribute{
-										Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
-										MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+										Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+										MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1314,8 +1314,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"node_startup_timeout": schema.StringAttribute{
-													Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
-													MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+													Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+													MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

@@ -450,6 +450,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 				Steps *[]string `tfsdk:"steps" json:"steps,omitempty"`
 			} `tfsdk:"package" json:"package,omitempty"`
 			S2i *struct {
+				BaseImage     *string `tfsdk:"base_image" json:"baseImage,omitempty"`
 				Configuration *struct {
 					Annotations       *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					LimitCPU          *string            `tfsdk:"limit_cpu" json:"limitCPU,omitempty"`
@@ -464,8 +465,16 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					ToolImage         *string            `tfsdk:"tool_image" json:"toolImage,omitempty"`
 				} `tfsdk:"configuration" json:"configuration,omitempty"`
 				ContextDir *string `tfsdk:"context_dir" json:"contextDir,omitempty"`
+				Image      *string `tfsdk:"image" json:"image,omitempty"`
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
-				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
+				Registry   *struct {
+					Address      *string `tfsdk:"address" json:"address,omitempty"`
+					Ca           *string `tfsdk:"ca" json:"ca,omitempty"`
+					Insecure     *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+					Organization *string `tfsdk:"organization" json:"organization,omitempty"`
+					Secret       *string `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"registry" json:"registry,omitempty"`
+				Tag *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"s2i" json:"s2i,omitempty"`
 			Spectrum *struct {
 				BaseImage     *string `tfsdk:"base_image" json:"baseImage,omitempty"`
@@ -3512,6 +3521,14 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 									Description:         "a S2iTask, for S2I strategy",
 									MarkdownDescription: "a S2iTask, for S2I strategy",
 									Attributes: map[string]schema.Attribute{
+										"base_image": schema.StringAttribute{
+											Description:         "base image layer",
+											MarkdownDescription: "base image layer",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"configuration": schema.SingleNestedAttribute{
 											Description:         "The configuration that should be used to perform the Build.",
 											MarkdownDescription: "The configuration that should be used to perform the Build.",
@@ -3626,12 +3643,69 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 											Computed:            false,
 										},
 
+										"image": schema.StringAttribute{
+											Description:         "final image name",
+											MarkdownDescription: "final image name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"name": schema.StringAttribute{
 											Description:         "name of the task",
 											MarkdownDescription: "name of the task",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"registry": schema.SingleNestedAttribute{
+											Description:         "where to publish the final image",
+											MarkdownDescription: "where to publish the final image",
+											Attributes: map[string]schema.Attribute{
+												"address": schema.StringAttribute{
+													Description:         "the URI to access",
+													MarkdownDescription: "the URI to access",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ca": schema.StringAttribute{
+													Description:         "the configmap which stores the Certificate Authority",
+													MarkdownDescription: "the configmap which stores the Certificate Authority",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"insecure": schema.BoolAttribute{
+													Description:         "if the container registry is insecure (ie, http only)",
+													MarkdownDescription: "if the container registry is insecure (ie, http only)",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"organization": schema.StringAttribute{
+													Description:         "the registry organization",
+													MarkdownDescription: "the registry organization",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"secret": schema.StringAttribute{
+													Description:         "the secret where credentials are stored",
+													MarkdownDescription: "the secret where credentials are stored",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"tag": schema.StringAttribute{

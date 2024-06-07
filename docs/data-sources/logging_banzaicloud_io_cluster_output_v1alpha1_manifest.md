@@ -2129,6 +2129,7 @@ Optional:
 - `security` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--security))
 - `send_timeout` (Number)
 - `slow_flush_log_threshold` (String)
+- `time_as_integer` (Boolean)
 - `tls_allow_self_signed_cert` (Boolean)
 - `tls_cert_logical_store_name` (String)
 - `tls_cert_path` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_cert_path))

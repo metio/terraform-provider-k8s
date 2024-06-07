@@ -152,6 +152,7 @@ Optional:
 - `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'
 - `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.
 - `replicas` (Number) Replicas is the number of control plane nodes.If the value is nil, the ControlPlane object is created without the number of Replicasand it's assumed that the control plane controller does not implement support for this field.When specified against a control plane provider that lacks support for this field, this value will be ignored.
+- `variables` (Attributes) Variables can be used to customize the ControlPlane through patches. (see [below for nested schema](#nestedatt--spec--topology--control_plane--variables))
 
 <a id="nestedatt--spec--topology--control_plane--machine_health_check"></a>
 ### Nested Schema for `spec.topology.control_plane.machine_health_check`
@@ -160,7 +161,7 @@ Optional:
 
 - `enable` (Boolean) Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
-- `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.
+- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.
 - `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--control_plane--machine_health_check--remediation_template))
 - `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--control_plane--machine_health_check--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
@@ -197,6 +198,27 @@ Optional:
 
 - `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+
+
+<a id="nestedatt--spec--topology--control_plane--variables"></a>
+### Nested Schema for `spec.topology.control_plane.variables`
+
+Optional:
+
+- `overrides` (Attributes List) Overrides can be used to override Cluster level variables. (see [below for nested schema](#nestedatt--spec--topology--control_plane--variables--overrides))
+
+<a id="nestedatt--spec--topology--control_plane--variables--overrides"></a>
+### Nested Schema for `spec.topology.control_plane.variables.overrides`
+
+Required:
+
+- `name` (String) Name of the variable.
+- `value` (Map of String) Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111
+
+Optional:
+
+- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'
+
 
 
 
@@ -249,7 +271,7 @@ Optional:
 
 - `enable` (Boolean) Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
-- `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.
+- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.
 - `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--machine_health_check--remediation_template))
 - `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--machine_health_check--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines

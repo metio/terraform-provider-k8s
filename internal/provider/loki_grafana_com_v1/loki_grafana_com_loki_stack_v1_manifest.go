@@ -1520,8 +1520,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effective_date": schema.StringAttribute{
-											Description:         "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
-											MarkdownDescription: "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
+											Description:         "EffectiveDate contains a date in YYYY-MM-DD format which is interpreted in the UTC time zone.The configuration always needs at least one schema that is currently valid. This means that when creating a newLokiStack it is recommended to add a schema with the latest available version and an effective date of 'yesterday'.New schema versions added to the configuration always needs to be placed 'in the future', so that Loki can startusing it once the day rolls over.",
+											MarkdownDescription: "EffectiveDate contains a date in YYYY-MM-DD format which is interpreted in the UTC time zone.The configuration always needs at least one schema that is currently valid. This means that when creating a newLokiStack it is recommended to add a schema with the latest available version and an effective date of 'yesterday'.New schema versions added to the configuration always needs to be placed 'in the future', so that Loki can startusing it once the day rolls over.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

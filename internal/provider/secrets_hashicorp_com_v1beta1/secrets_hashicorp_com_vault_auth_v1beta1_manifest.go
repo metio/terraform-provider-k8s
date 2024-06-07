@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -88,6 +89,14 @@ type SecretsHashicorpComVaultAuthV1Beta1ManifestData struct {
 			KeyName *string `tfsdk:"key_name" json:"keyName,omitempty"`
 			Mount   *string `tfsdk:"mount" json:"mount,omitempty"`
 		} `tfsdk:"storage_encryption" json:"storageEncryption,omitempty"`
+		VaultAuthGlobalRef *struct {
+			MergeStrategy *struct {
+				Headers *string `tfsdk:"headers" json:"headers,omitempty"`
+				Params  *string `tfsdk:"params" json:"params,omitempty"`
+			} `tfsdk:"merge_strategy" json:"mergeStrategy,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"vault_auth_global_ref" json:"vaultAuthGlobalRef,omitempty"`
 		VaultConnectionRef *string `tfsdk:"vault_connection_ref" json:"vaultConnectionRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -185,16 +194,16 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"role_id": schema.StringAttribute{
 								Description:         "RoleID of the AppRole Role to use for authenticating to Vault.",
 								MarkdownDescription: "RoleID of the AppRole Role to use for authenticating to Vault.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
 							"secret_ref": schema.StringAttribute{
 								Description:         "SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the AppRole Role's SecretID. The secret must have a key named 'id' which holds theAppRole Role's secretID.",
 								MarkdownDescription: "SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the AppRole Role's SecretID. The secret must have a key named 'id' which holds theAppRole Role's secretID.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},
@@ -242,8 +251,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"role": schema.StringAttribute{
 								Description:         "Vault role to use for authenticating",
 								MarkdownDescription: "Vault role to use for authenticating",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -307,16 +316,16 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"role": schema.StringAttribute{
 								Description:         "Vault role to use for authenticating",
 								MarkdownDescription: "Vault role to use for authenticating",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
 							"workload_identity_service_account": schema.StringAttribute{
 								Description:         "WorkloadIdentityServiceAccount is the name of a Kubernetes serviceaccount (in the same Kubernetes namespace as the Vault*Secret referencingthis resource) which has been configured for workload identity in GKE.Should be annotated with 'iam.gke.io/gcp-service-account'.",
 								MarkdownDescription: "WorkloadIdentityServiceAccount is the name of a Kubernetes serviceaccount (in the same Kubernetes namespace as the Vault*Secret referencingthis resource) which has been configured for workload identity in GKE.Should be annotated with 'iam.gke.io/gcp-service-account'.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},
@@ -350,8 +359,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"role": schema.StringAttribute{
 								Description:         "Role to use for authenticating to Vault.",
 								MarkdownDescription: "Role to use for authenticating to Vault.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -403,16 +412,16 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"role": schema.StringAttribute{
 								Description:         "Role to use for authenticating to Vault.",
 								MarkdownDescription: "Role to use for authenticating to Vault.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
 							"service_account": schema.StringAttribute{
 								Description:         "ServiceAccount to use when authenticating to Vault'sauthentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.",
 								MarkdownDescription: "ServiceAccount to use when authenticating to Vault'sauthentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -435,8 +444,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 					"method": schema.StringAttribute{
 						Description:         "Method to use when authenticating to Vault.",
 						MarkdownDescription: "Method to use when authenticating to Vault.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("kubernetes", "jwt", "appRole", "aws", "gcp"),
@@ -446,8 +455,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 					"mount": schema.StringAttribute{
 						Description:         "Mount to use when authenticating to auth method.",
 						MarkdownDescription: "Mount to use when authenticating to auth method.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -486,6 +495,68 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"vault_auth_global_ref": schema.SingleNestedAttribute{
+						Description:         "VaultAuthGlobalRef.",
+						MarkdownDescription: "VaultAuthGlobalRef.",
+						Attributes: map[string]schema.Attribute{
+							"merge_strategy": schema.SingleNestedAttribute{
+								Description:         "MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests.",
+								MarkdownDescription: "MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests.",
+								Attributes: map[string]schema.Attribute{
+									"headers": schema.StringAttribute{
+										Description:         "Headers configures the merge strategy for HTTP headers that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the headers from the VaultAuthGlobal and VaultAuthresources are merged. The headers from the VaultAuth always take precedence.If 'replace' is set, the first set of non-empty headers taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default headers.If 'none' is set, the headers from theVaultAuthGlobal resource are ignored and only the headers from the VaultAuthresource are used. The default is 'none'.",
+										MarkdownDescription: "Headers configures the merge strategy for HTTP headers that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the headers from the VaultAuthGlobal and VaultAuthresources are merged. The headers from the VaultAuth always take precedence.If 'replace' is set, the first set of non-empty headers taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default headers.If 'none' is set, the headers from theVaultAuthGlobal resource are ignored and only the headers from the VaultAuthresource are used. The default is 'none'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("union", "replace", "none"),
+										},
+									},
+
+									"params": schema.StringAttribute{
+										Description:         "Params configures the merge strategy for HTTP parameters that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the parameters from the VaultAuthGlobal and VaultAuthresources are merged. The parameters from the VaultAuth always takeprecedence.If 'replace' is set, the first set of non-empty parameters taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default parameters.If 'none' is set, the parameters from the VaultAuthGlobal resource are ignoredand only the parameters from the VaultAuth resource are used. The default is'none'.",
+										MarkdownDescription: "Params configures the merge strategy for HTTP parameters that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the parameters from the VaultAuthGlobal and VaultAuthresources are merged. The parameters from the VaultAuth always takeprecedence.If 'replace' is set, the first set of non-empty parameters taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default parameters.If 'none' is set, the parameters from the VaultAuthGlobal resource are ignoredand only the parameters from the VaultAuth resource are used. The default is'none'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("union", "replace", "none"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the VaultAuthGlobal resource.",
+								MarkdownDescription: "Name of the VaultAuthGlobal resource.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9.-]{1,253})$`), ""),
+								},
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace of the VaultAuthGlobal resource. If not provided, the namespace ofthe referring VaultAuth resource is used.",
+								MarkdownDescription: "Namespace of the VaultAuthGlobal resource. If not provided, the namespace ofthe referring VaultAuth resource is used.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9.-]{1,253})$`), ""),
+								},
 							},
 						},
 						Required: false,

@@ -66,8 +66,8 @@ func (r *BitnamiComSealedSecretV1Alpha1Manifest) Metadata(_ context.Context, req
 
 func (r *BitnamiComSealedSecretV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "SealedSecret is the K8s representation of a 'sealed Secret' - a regular k8s Secret that has been sealed (encrypted) using the controller's key.",
-		MarkdownDescription: "SealedSecret is the K8s representation of a 'sealed Secret' - a regular k8s Secret that has been sealed (encrypted) using the controller's key.",
+		Description:         "SealedSecret is the K8s representation of a 'sealed Secret' - aregular k8s Secret that has been sealed (encrypted) using thecontroller's key.",
+		MarkdownDescription: "SealedSecret is the K8s representation of a 'sealed Secret' - aregular k8s Secret that has been sealed (encrypted) using thecontroller's key.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -134,8 +134,8 @@ func (r *BitnamiComSealedSecretV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SealedSecretSpec is the specification of a SealedSecret",
-				MarkdownDescription: "SealedSecretSpec is the specification of a SealedSecret",
+				Description:         "SealedSecretSpec is the specification of a SealedSecret.",
+				MarkdownDescription: "SealedSecretSpec is the specification of a SealedSecret.",
 				Attributes: map[string]schema.Attribute{
 					"data": schema.StringAttribute{
 						Description:         "Data is deprecated and will be removed eventually. Use per-value EncryptedData instead.",
@@ -158,12 +158,12 @@ func (r *BitnamiComSealedSecretV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"template": schema.SingleNestedAttribute{
-						Description:         "Template defines the structure of the Secret that will be created from this sealed secret.",
-						MarkdownDescription: "Template defines the structure of the Secret that will be created from this sealed secret.",
+						Description:         "Template defines the structure of the Secret that will becreated from this sealed secret.",
+						MarkdownDescription: "Template defines the structure of the Secret that will becreated from this sealed secret.",
 						Attributes: map[string]schema.Attribute{
 							"data": schema.MapAttribute{
-								Description:         "Keys that should be templated using decrypted data",
-								MarkdownDescription: "Keys that should be templated using decrypted data",
+								Description:         "Keys that should be templated using decrypted data.",
+								MarkdownDescription: "Keys that should be templated using decrypted data.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -171,16 +171,16 @@ func (r *BitnamiComSealedSecretV1Alpha1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"immutable": schema.BoolAttribute{
-								Description:         "Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.",
-								MarkdownDescription: "Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.",
+								Description:         "Immutable, if set to true, ensures that data stored in the Secret cannotbe updated (only object metadata can be modified).If not set to true, the field can be modified at any time.Defaulted to nil.",
+								MarkdownDescription: "Immutable, if set to true, ensures that data stored in the Secret cannotbe updated (only object metadata can be modified).If not set to true, the field can be modified at any time.Defaulted to nil.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata",
-								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata",
+								Description:         "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata",
+								MarkdownDescription: "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",

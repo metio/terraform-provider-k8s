@@ -152,16 +152,16 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 						MarkdownDescription: "DeleteOptions defines the deleting options for the migrated Pod and preempted Pods",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
-								Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+								Description:         "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"dry_run": schema.ListAttribute{
-								Description:         "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
-								MarkdownDescription: "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+								Description:         "When present, indicates that modifications should not bepersisted. An invalid or unrecognized dryRun directive willresult in an error response and no further processing of therequest. Valid values are:- All: all dry run stages will be processed",
+								MarkdownDescription: "When present, indicates that modifications should not bepersisted. An invalid or unrecognized dryRun directive willresult in an error response and no further processing of therequest. Valid values are:- All: all dry run stages will be processed",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -169,32 +169,32 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"grace_period_seconds": schema.Int64Attribute{
-								Description:         "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
-								MarkdownDescription: "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+								Description:         "The duration in seconds before the object should be deleted. Value must be non-negative integer.The value zero indicates delete immediately. If this value is nil, the default grace period for thespecified type will be used.Defaults to a per object value if not specified. zero means delete immediately.",
+								MarkdownDescription: "The duration in seconds before the object should be deleted. Value must be non-negative integer.The value zero indicates delete immediately. If this value is nil, the default grace period for thespecified type will be used.Defaults to a per object value if not specified. zero means delete immediately.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"orphan_dependents": schema.BoolAttribute{
-								Description:         "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the 'orphan' finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
-								MarkdownDescription: "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the 'orphan' finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+								Description:         "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7.Should the dependent objects be orphaned. If true/false, the 'orphan'finalizer will be added to/removed from the object's finalizers list.Either this field or PropagationPolicy may be set, but not both.",
+								MarkdownDescription: "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7.Should the dependent objects be orphaned. If true/false, the 'orphan'finalizer will be added to/removed from the object's finalizers list.Either this field or PropagationPolicy may be set, but not both.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"preconditions": schema.SingleNestedAttribute{
-								Description:         "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned.",
-								MarkdownDescription: "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned.",
+								Description:         "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will bereturned.",
+								MarkdownDescription: "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will bereturned.",
 								Attributes: map[string]schema.Attribute{
 									"resource_version": schema.StringAttribute{
 										Description:         "Specifies the target ResourceVersion",
@@ -218,8 +218,8 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"propagation_policy": schema.StringAttribute{
-								Description:         "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
-								MarkdownDescription: "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+								Description:         "Whether and how garbage collection will be performed.Either this field or OrphanDependents may be set, but not both.The default policy is decided by the existing finalizer set in themetadata.finalizers and the resource-specific default policy.Acceptable values are: 'Orphan' - orphan the dependents; 'Background' -allow the garbage collector to delete the dependents in the background;'Foreground' - a cascading policy that deletes all dependents in theforeground.",
+								MarkdownDescription: "Whether and how garbage collection will be performed.Either this field or OrphanDependents may be set, but not both.The default policy is decided by the existing finalizer set in themetadata.finalizers and the resource-specific default policy.Acceptable values are: 'Orphan' - orphan the dependents; 'Background' -allow the garbage collector to delete the dependents in the background;'Foreground' - a cascading policy that deletes all dependents in theforeground.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -231,16 +231,16 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode represents the operating mode of the Job Default is PodMigrationJobModeReservationFirst",
-						MarkdownDescription: "Mode represents the operating mode of the Job Default is PodMigrationJobModeReservationFirst",
+						Description:         "Mode represents the operating mode of the JobDefault is PodMigrationJobModeReservationFirst",
+						MarkdownDescription: "Mode represents the operating mode of the JobDefault is PodMigrationJobModeReservationFirst",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused indicates whether the PodMigrationJob should to work or not. Default is false",
-						MarkdownDescription: "Paused indicates whether the PodMigrationJob should to work or not. Default is false",
+						Description:         "Paused indicates whether the PodMigrationJob should to work or not.Default is false",
+						MarkdownDescription: "Paused indicates whether the PodMigrationJob should to work or not.Default is false",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -259,48 +259,48 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -316,8 +316,8 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 						MarkdownDescription: "ReservationOptions defines the Reservation options for migrated Pod",
 						Attributes: map[string]schema.Attribute{
 							"preemption_options": schema.MapAttribute{
-								Description:         "PreemptionOption decides whether to preempt other Pods. The preemption is safe and reserves resources for preempted Pods.",
-								MarkdownDescription: "PreemptionOption decides whether to preempt other Pods. The preemption is safe and reserves resources for preempted Pods.",
+								Description:         "PreemptionOption decides whether to preempt other Pods.The preemption is safe and reserves resources for preempted Pods.",
+								MarkdownDescription: "PreemptionOption decides whether to preempt other Pods.The preemption is safe and reserves resources for preempted Pods.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -325,8 +325,8 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"reservation_ref": schema.SingleNestedAttribute{
-								Description:         "ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available. ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template, and update the ReservationRef to reference the Reservation",
-								MarkdownDescription: "ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available. ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template, and update the ReservationRef to reference the Reservation",
+								Description:         "ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available.ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template,and update the ReservationRef to reference the Reservation",
+								MarkdownDescription: "ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available.ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template,and update the ReservationRef to reference the Reservation",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -337,48 +337,48 @@ func (r *SchedulingKoordinatorShPodMigrationJobV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+										Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"kind": schema.StringAttribute{
-										Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-										MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-										MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resource_version": schema.StringAttribute{
-										Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"uid": schema.StringAttribute{
-										Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-										MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

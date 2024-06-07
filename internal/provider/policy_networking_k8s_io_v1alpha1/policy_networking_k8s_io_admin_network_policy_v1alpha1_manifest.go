@@ -845,8 +845,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"priority": schema.Int64Attribute{
-						Description:         "Priority is a value from 0 to 1000. Rules with lower priority values havehigher precedence, and are checked before rules with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesThe behavior is undefined if two ANP objects have same priority.Support: Core",
-						MarkdownDescription: "Priority is a value from 0 to 1000. Rules with lower priority values havehigher precedence, and are checked before rules with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesThe behavior is undefined if two ANP objects have same priority.Support: Core",
+						Description:         "Priority is a value from 0 to 1000. Policies with lower priority values havehigher precedence, and are checked before policies with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesEvery AdminNetworkPolicy should have a unique priority value; if two (or more)policies with the same priority could both match a connection, then theimplementation can apply any of the matching policies to the connection, andthere is no way for the user to reliably determine which one it will choose.Support: Core",
+						MarkdownDescription: "Priority is a value from 0 to 1000. Policies with lower priority values havehigher precedence, and are checked before policies with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesEvery AdminNetworkPolicy should have a unique priority value; if two (or more)policies with the same priority could both match a connection, then theimplementation can apply any of the matching policies to the connection, andthere is no way for the user to reliably determine which one it will choose.Support: Core",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

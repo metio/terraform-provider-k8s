@@ -327,6 +327,7 @@ type ExternalSecretsIoSecretStoreV1Beta1ManifestData struct {
 						} `tfsdk:"service_account_ref" json:"serviceAccountRef,omitempty"`
 					} `tfsdk:"workload_identity" json:"workloadIdentity,omitempty"`
 				} `tfsdk:"auth" json:"auth,omitempty"`
+				Location  *string `tfsdk:"location" json:"location,omitempty"`
 				ProjectID *string `tfsdk:"project_id" json:"projectID,omitempty"`
 			} `tfsdk:"gcpsm" json:"gcpsm,omitempty"`
 			Gitlab *struct {
@@ -2672,6 +2673,14 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Manifest) Schema(_ context.Context, 
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"location": schema.StringAttribute{
+										Description:         "Location optionally defines a location for a secret",
+										MarkdownDescription: "Location optionally defines a location for a secret",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"project_id": schema.StringAttribute{

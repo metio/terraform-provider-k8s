@@ -87,6 +87,7 @@ Optional:
 - `batch_scheduler` (String)
 - `batch_scheduler_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--batch_scheduler_options))
 - `deps` (Attributes) (see [below for nested schema](#nestedatt--spec--template--deps))
+- `driver_ingress_options` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver_ingress_options))
 - `dynamic_allocation` (Attributes) (see [below for nested schema](#nestedatt--spec--template--dynamic_allocation))
 - `failure_retries` (Number)
 - `hadoop_conf` (Map of String)
@@ -612,6 +613,7 @@ Optional:
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--init_containers--readiness_probe))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--init_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--init_containers--startup_probe))
 - `stdin` (Boolean)
@@ -2416,6 +2418,7 @@ Optional:
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--executor--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--init_containers--readiness_probe))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--init_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--init_containers--startup_probe))
 - `stdin` (Boolean)
@@ -3625,6 +3628,30 @@ Optional:
 - `packages` (List of String)
 - `py_files` (List of String)
 - `repositories` (List of String)
+
+
+<a id="nestedatt--spec--template--driver_ingress_options"></a>
+### Nested Schema for `spec.template.driver_ingress_options`
+
+Optional:
+
+- `ingress_annotations` (Map of String)
+- `ingress_tls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver_ingress_options--ingress_tls))
+- `ingress_url_format` (String)
+- `service_annotations` (Map of String)
+- `service_labels` (Map of String)
+- `service_port` (Number)
+- `service_port_name` (String)
+- `service_type` (String)
+
+<a id="nestedatt--spec--template--driver_ingress_options--ingress_tls"></a>
+### Nested Schema for `spec.template.driver_ingress_options.ingress_tls`
+
+Optional:
+
+- `hosts` (List of String)
+- `secret_name` (String)
+
 
 
 <a id="nestedatt--spec--template--dynamic_allocation"></a>

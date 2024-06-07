@@ -3,12 +3,12 @@
 page_title: "k8s_stunner_l7mp_io_static_service_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "stunner.l7mp.io"
 description: |-
-  StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.
+  StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (orTCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports onthe given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.
 ---
 
 # k8s_stunner_l7mp_io_static_service_v1_manifest (Data Source)
 
-StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.
+StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (orTCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports onthe given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.
 
 ## Example Usage
 

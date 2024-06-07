@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `disabled` (Boolean) Disabled will disable the webhook
 - `events` (List of String) Events declare list if events on which webhook should be called
 - `headers` (Map of String) webhook headers (golang template supported)
 - `payload_object_field` (String) will load the generated payload for notification inside the object

@@ -234,6 +234,7 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 				LivenessFailureThreshold  *int64             `tfsdk:"liveness_failure_threshold" json:"livenessFailureThreshold,omitempty"`
 				LivenessInitialDelay      *int64             `tfsdk:"liveness_initial_delay" json:"livenessInitialDelay,omitempty"`
 				LivenessPeriod            *int64             `tfsdk:"liveness_period" json:"livenessPeriod,omitempty"`
+				LivenessProbe             *string            `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 				LivenessProbeEnabled      *bool              `tfsdk:"liveness_probe_enabled" json:"livenessProbeEnabled,omitempty"`
 				LivenessScheme            *string            `tfsdk:"liveness_scheme" json:"livenessScheme,omitempty"`
 				LivenessSuccessThreshold  *int64             `tfsdk:"liveness_success_threshold" json:"livenessSuccessThreshold,omitempty"`
@@ -241,6 +242,7 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 				ReadinessFailureThreshold *int64             `tfsdk:"readiness_failure_threshold" json:"readinessFailureThreshold,omitempty"`
 				ReadinessInitialDelay     *int64             `tfsdk:"readiness_initial_delay" json:"readinessInitialDelay,omitempty"`
 				ReadinessPeriod           *int64             `tfsdk:"readiness_period" json:"readinessPeriod,omitempty"`
+				ReadinessProbe            *string            `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				ReadinessProbeEnabled     *bool              `tfsdk:"readiness_probe_enabled" json:"readinessProbeEnabled,omitempty"`
 				ReadinessScheme           *string            `tfsdk:"readiness_scheme" json:"readinessScheme,omitempty"`
 				ReadinessSuccessThreshold *int64             `tfsdk:"readiness_success_threshold" json:"readinessSuccessThreshold,omitempty"`
@@ -248,6 +250,7 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 				StartupFailureThreshold   *int64             `tfsdk:"startup_failure_threshold" json:"startupFailureThreshold,omitempty"`
 				StartupInitialDelay       *int64             `tfsdk:"startup_initial_delay" json:"startupInitialDelay,omitempty"`
 				StartupPeriod             *int64             `tfsdk:"startup_period" json:"startupPeriod,omitempty"`
+				StartupProbe              *string            `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 				StartupProbeEnabled       *bool              `tfsdk:"startup_probe_enabled" json:"startupProbeEnabled,omitempty"`
 				StartupScheme             *string            `tfsdk:"startup_scheme" json:"startupScheme,omitempty"`
 				StartupSuccessThreshold   *int64             `tfsdk:"startup_success_threshold" json:"startupSuccessThreshold,omitempty"`
@@ -290,6 +293,7 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 				DebugAddress  *string            `tfsdk:"debug_address" json:"debugAddress,omitempty"`
 				DebugSuspend  *bool              `tfsdk:"debug_suspend" json:"debugSuspend,omitempty"`
 				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Jar           *string            `tfsdk:"jar" json:"jar,omitempty"`
 				Options       *[]string          `tfsdk:"options" json:"options,omitempty"`
 				PrintCommand  *bool              `tfsdk:"print_command" json:"printCommand,omitempty"`
 			} `tfsdk:"jvm" json:"jvm,omitempty"`
@@ -1112,8 +1116,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"base_image": schema.StringAttribute{
-										Description:         "Specify a base image",
-										MarkdownDescription: "Specify a base image",
+										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
+										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1921,6 +1925,14 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 										Computed:            false,
 									},
 
+									"liveness_probe": schema.StringAttribute{
+										Description:         "The liveness probe path to use (default provided by the Catalog runtime used).",
+										MarkdownDescription: "The liveness probe path to use (default provided by the Catalog runtime used).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"liveness_probe_enabled": schema.BoolAttribute{
 										Description:         "Configures the liveness probe for the integration container (default 'false').",
 										MarkdownDescription: "Configures the liveness probe for the integration container (default 'false').",
@@ -1977,6 +1989,14 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 										Computed:            false,
 									},
 
+									"readiness_probe": schema.StringAttribute{
+										Description:         "The readiness probe path to use (default provided by the Catalog runtime used).",
+										MarkdownDescription: "The readiness probe path to use (default provided by the Catalog runtime used).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"readiness_probe_enabled": schema.BoolAttribute{
 										Description:         "Configures the readiness probe for the integration container (default 'true').",
 										MarkdownDescription: "Configures the readiness probe for the integration container (default 'true').",
@@ -2028,6 +2048,14 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									"startup_period": schema.Int64Attribute{
 										Description:         "How often to perform the startup probe.",
 										MarkdownDescription: "How often to perform the startup probe.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"startup_probe": schema.StringAttribute{
+										Description:         "The startup probe path to use (default provided by the Catalog runtime used).",
+										MarkdownDescription: "The startup probe path to use (default provided by the Catalog runtime used).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2351,6 +2379,14 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 										Computed:            false,
 									},
 
+									"jar": schema.StringAttribute{
+										Description:         "The Jar dependency which will run the application. Leave it empty for managed Integrations.",
+										MarkdownDescription: "The Jar dependency which will run the application. Leave it empty for managed Integrations.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"options": schema.ListAttribute{
 										Description:         "A list of JVM options",
 										MarkdownDescription: "A list of JVM options",
@@ -2361,8 +2397,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"print_command": schema.BoolAttribute{
-										Description:         "Prints the command used the start the JVM in the container logs (default 'true')",
-										MarkdownDescription: "Prints the command used the start the JVM in the container logs (default 'true')",
+										Description:         "Prints the command used the start the JVM in the container logs (default 'true') Deprecated: no longer in use.",
+										MarkdownDescription: "Prints the command used the start the JVM in the container logs (default 'true') Deprecated: no longer in use.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

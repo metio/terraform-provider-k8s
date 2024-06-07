@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `enable_taints` (Boolean) EnableTaints enables the enable the experimental tainting feature This allows keeping nodes with specialized hardware away from running general workload i and instead leave them for workloads that need the specialized hardware.
 - `extra_label_ns` (List of String) ExtraLabelNs defines the list of of allowed extra label namespaces By default, only allow labels in the default 'feature.node.kubernetes.io' label namespace
 - `instance` (String) Instance name. Used to separate annotation namespaces for multiple parallel deployments.
 - `label_white_list` (String) LabelWhiteList defines a regular expression for filtering feature labels based on their name. Each label must match against the given reqular expression in order to be published.

@@ -7,6 +7,7 @@ package opentelemetry_io_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -477,7 +478,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				Telemetry  *map[string]string `tfsdk:"telemetry" json:"telemetry,omitempty"`
 			} `tfsdk:"service" json:"service,omitempty"`
 		} `tfsdk:"config" json:"config,omitempty"`
-		Configmaps *[]struct {
+		ConfigVersions *int64 `tfsdk:"config_versions" json:"configVersions,omitempty"`
+		Configmaps     *[]struct {
 			Mountpath *string `tfsdk:"mountpath" json:"mountpath,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"configmaps" json:"configmaps,omitempty"`
@@ -4604,6 +4606,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"config_versions": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(1),
+						},
 					},
 
 					"configmaps": schema.ListNestedAttribute{

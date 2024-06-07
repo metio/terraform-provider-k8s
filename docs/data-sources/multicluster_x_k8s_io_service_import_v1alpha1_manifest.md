@@ -56,12 +56,12 @@ Optional:
 Required:
 
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ports))
-- `type` (String) type defines the type of this service. Must be ClusterSetIP or Headless.
+- `type` (String) type defines the type of this service.Must be ClusterSetIP or Headless.
 
 Optional:
 
 - `ips` (List of String) ip will be used as the VIP for this service when type is ClusterSetIP.
-- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. Ignored when type is Headless More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.Ignored when type is HeadlessMore info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains session affinity configuration. (see [below for nested schema](#nestedatt--spec--session_affinity_config))
 
 <a id="nestedatt--spec--ports"></a>
@@ -73,9 +73,9 @@ Required:
 
 Optional:
 
-- `app_protocol` (String) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate.
-- `name` (String) The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
-- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.
+- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.Field can be enabled with ServiceAppProtocol feature gate.
+- `name` (String) The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.
+- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.
 
 
 <a id="nestedatt--spec--session_affinity_config"></a>
@@ -90,4 +90,4 @@ Optional:
 
 Optional:
 
-- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).

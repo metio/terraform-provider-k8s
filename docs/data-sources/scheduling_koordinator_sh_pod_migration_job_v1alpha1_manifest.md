@@ -59,8 +59,8 @@ Required:
 Optional:
 
 - `delete_options` (Attributes) DeleteOptions defines the deleting options for the migrated Pod and preempted Pods (see [below for nested schema](#nestedatt--spec--delete_options))
-- `mode` (String) Mode represents the operating mode of the Job Default is PodMigrationJobModeReservationFirst
-- `paused` (Boolean) Paused indicates whether the PodMigrationJob should to work or not. Default is false
+- `mode` (String) Mode represents the operating mode of the JobDefault is PodMigrationJobModeReservationFirst
+- `paused` (Boolean) Paused indicates whether the PodMigrationJob should to work or not.Default is false
 - `reservation_options` (Attributes) ReservationOptions defines the Reservation options for migrated Pod (see [below for nested schema](#nestedatt--spec--reservation_options))
 - `ttl` (String) TTL controls the PodMigrationJob timeout duration.
 
@@ -70,12 +70,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--delete_options"></a>
@@ -83,13 +83,13 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `dry_run` (List of String) When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
-- `grace_period_seconds` (Number) The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `orphan_dependents` (Boolean) Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the 'orphan' finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
-- `preconditions` (Attributes) Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. (see [below for nested schema](#nestedatt--spec--delete_options--preconditions))
-- `propagation_policy` (String) Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `dry_run` (List of String) When present, indicates that modifications should not bepersisted. An invalid or unrecognized dryRun directive willresult in an error response and no further processing of therequest. Valid values are:- All: all dry run stages will be processed
+- `grace_period_seconds` (Number) The duration in seconds before the object should be deleted. Value must be non-negative integer.The value zero indicates delete immediately. If this value is nil, the default grace period for thespecified type will be used.Defaults to a per object value if not specified. zero means delete immediately.
+- `kind` (String) Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `orphan_dependents` (Boolean) Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7.Should the dependent objects be orphaned. If true/false, the 'orphan'finalizer will be added to/removed from the object's finalizers list.Either this field or PropagationPolicy may be set, but not both.
+- `preconditions` (Attributes) Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will bereturned. (see [below for nested schema](#nestedatt--spec--delete_options--preconditions))
+- `propagation_policy` (String) Whether and how garbage collection will be performed.Either this field or OrphanDependents may be set, but not both.The default policy is decided by the existing finalizer set in themetadata.finalizers and the resource-specific default policy.Acceptable values are: 'Orphan' - orphan the dependents; 'Background' -allow the garbage collector to delete the dependents in the background;'Foreground' - a cascading policy that deletes all dependents in theforeground.
 
 <a id="nestedatt--spec--delete_options--preconditions"></a>
 ### Nested Schema for `spec.delete_options.preconditions`
@@ -106,8 +106,8 @@ Optional:
 
 Optional:
 
-- `preemption_options` (Map of String) PreemptionOption decides whether to preempt other Pods. The preemption is safe and reserves resources for preempted Pods.
-- `reservation_ref` (Attributes) ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available. ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template, and update the ReservationRef to reference the Reservation (see [below for nested schema](#nestedatt--spec--reservation_options--reservation_ref))
+- `preemption_options` (Map of String) PreemptionOption decides whether to preempt other Pods.The preemption is safe and reserves resources for preempted Pods.
+- `reservation_ref` (Attributes) ReservationRef if specified, PodMigrationJob will check if the status of Reservation is available.ReservationRef if not specified, PodMigrationJob controller will create Reservation by Template,and update the ReservationRef to reference the Reservation (see [below for nested schema](#nestedatt--spec--reservation_options--reservation_ref))
 - `template` (Map of String) Template is the object that describes the Reservation that will be created if not specified ReservationRef
 
 <a id="nestedatt--spec--reservation_options--reservation_ref"></a>
@@ -116,9 +116,9 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

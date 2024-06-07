@@ -49,9 +49,16 @@ type CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
-		Name          *string            `tfsdk:"name" json:"name,omitempty"`
-		RetentionDays *int64             `tfsdk:"retention_days" json:"retentionDays,omitempty"`
-		Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+		Name                *string `tfsdk:"name" json:"name,omitempty"`
+		RetentionDays       *int64  `tfsdk:"retention_days" json:"retentionDays,omitempty"`
+		SubscriptionFilters *[]struct {
+			DestinationARN *string `tfsdk:"destination_arn" json:"destinationARN,omitempty"`
+			Distribution   *string `tfsdk:"distribution" json:"distribution,omitempty"`
+			FilterName     *string `tfsdk:"filter_name" json:"filterName,omitempty"`
+			FilterPattern  *string `tfsdk:"filter_pattern" json:"filterPattern,omitempty"`
+			RoleARN        *string `tfsdk:"role_arn" json:"roleARN,omitempty"`
+		} `tfsdk:"subscription_filters" json:"subscriptionFilters,omitempty"`
+		Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -180,6 +187,57 @@ func (r *CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"subscription_filters": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"destination_arn": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"distribution": schema.StringAttribute{
+									Description:         "The method used to distribute log data to the destination, which can be eitherrandom or grouped by log stream.",
+									MarkdownDescription: "The method used to distribute log data to the destination, which can be eitherrandom or grouped by log stream.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"filter_name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"filter_pattern": schema.StringAttribute{
+									Description:         "A symbolic description of how CloudWatch Logs should interpret the data ineach log event. For example, a log event can contain timestamps, IP addresses,strings, and so on. You use the filter pattern to specify what to look forin the log event message.",
+									MarkdownDescription: "A symbolic description of how CloudWatch Logs should interpret the data ineach log event. For example, a log event can contain timestamps, IP addresses,strings, and so on. You use the filter pattern to specify what to look forin the log event message.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"role_arn": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tags": schema.MapAttribute{

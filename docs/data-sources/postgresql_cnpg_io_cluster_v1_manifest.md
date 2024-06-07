@@ -77,6 +77,7 @@ Optional:
 - `image_pull_policy` (String) Image pull policy.One of 'Always', 'Never' or 'IfNotPresent'.If not defined, it defaults to 'IfNotPresent'.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
 - `image_pull_secrets` (Attributes List) The list of pull secrets to be used to pull the images (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `inherited_metadata` (Attributes) Metadata that will be inherited by all objects related to the Cluster (see [below for nested schema](#nestedatt--spec--inherited_metadata))
+- `liveness_probe_timeout` (Number) LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instanceto successfully respond to the liveness probe (default 30).The Liveness probe failure threshold is derived from this value using the formula:ceiling(livenessProbe / 10).
 - `log_level` (String) The instances' log level, one of the following values: error, warning, info (default), debug, trace
 - `managed` (Attributes) The configuration that is used by the portions of PostgreSQL that are managed by the instance manager (see [below for nested schema](#nestedatt--spec--managed))
 - `max_sync_replicas` (Number) The target value for the synchronous replication quorum, that can bedecreased if the number of ready standbys is lower than this.Undefined or 0 disable synchronous replication.

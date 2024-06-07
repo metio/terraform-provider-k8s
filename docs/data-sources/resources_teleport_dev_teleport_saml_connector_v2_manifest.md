@@ -61,6 +61,7 @@ Optional:
 - `attributes_to_roles` (Attributes List) AttributesToRoles is a list of mappings of attribute statements to roles. (see [below for nested schema](#nestedatt--spec--attributes_to_roles))
 - `audience` (String) Audience uniquely identifies our service provider.
 - `cert` (String) Cert is the identity provider certificate PEM. IDP signs <Response> responses using this certificate.
+- `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
 - `display` (String) Display controls how this connector is displayed.
 - `entity_descriptor` (String) EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.
 - `entity_descriptor_url` (String) EntityDescriptorURL is a URL that supplies a configuration XML.
@@ -87,6 +88,14 @@ Optional:
 - `name` (String) Name is an attribute statement name.
 - `roles` (List of String) Roles is a list of static teleport roles to map to.
 - `value` (String) Value is an attribute statement value to match.
+
+
+<a id="nestedatt--spec--client_redirect_settings"></a>
+### Nested Schema for `spec.client_redirect_settings`
+
+Optional:
+
+- `allowed_https_hostnames` (List of String) a list of hostnames allowed for https client redirect URLs
 
 
 <a id="nestedatt--spec--signing_key_pair"></a>

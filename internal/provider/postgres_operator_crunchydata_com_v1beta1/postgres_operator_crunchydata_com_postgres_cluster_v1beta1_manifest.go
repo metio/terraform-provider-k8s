@@ -2049,7 +2049,9 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				Service *struct {
-					Metadata *struct {
+					ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+					InternalTrafficPolicy *string `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+					Metadata              *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -2088,7 +2090,9 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 			} `tfsdk:"pg_bouncer" json:"pgBouncer,omitempty"`
 		} `tfsdk:"proxy" json:"proxy,omitempty"`
 		ReplicaService *struct {
-			Metadata *struct {
+			ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			InternalTrafficPolicy *string `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+			Metadata              *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -2096,7 +2100,9 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 			Type     *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"replica_service" json:"replicaService,omitempty"`
 		Service *struct {
-			Metadata *struct {
+			ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			InternalTrafficPolicy *string `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+			Metadata              *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -2324,7 +2330,9 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				Service *struct {
-					Metadata *struct {
+					ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+					InternalTrafficPolicy *string `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+					Metadata              *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -15723,6 +15731,28 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 										Description:         "Specification of the service that exposes PgBouncer.",
 										MarkdownDescription: "Specification of the service that exposes PgBouncer.",
 										Attributes: map[string]schema.Attribute{
+											"external_traffic_policy": schema.StringAttribute{
+												Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Cluster", "Local"),
+												},
+											},
+
+											"internal_traffic_policy": schema.StringAttribute{
+												Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Cluster", "Local"),
+												},
+											},
+
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "Metadata contains metadata for custom resources",
 												MarkdownDescription: "Metadata contains metadata for custom resources",
@@ -15981,6 +16011,28 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 						Description:         "Specification of the service that exposes PostgreSQL replica instances",
 						MarkdownDescription: "Specification of the service that exposes PostgreSQL replica instances",
 						Attributes: map[string]schema.Attribute{
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
+							},
+
+							"internal_traffic_policy": schema.StringAttribute{
+								Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
+							},
+
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "Metadata contains metadata for custom resources",
 								MarkdownDescription: "Metadata contains metadata for custom resources",
@@ -16036,6 +16088,28 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 						Description:         "Specification of the service that exposes the PostgreSQL primary instance.",
 						MarkdownDescription: "Specification of the service that exposes the PostgreSQL primary instance.",
 						Attributes: map[string]schema.Attribute{
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
+							},
+
+							"internal_traffic_policy": schema.StringAttribute{
+								Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
+							},
+
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "Metadata contains metadata for custom resources",
 								MarkdownDescription: "Metadata contains metadata for custom resources",
@@ -17549,6 +17623,28 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 										Description:         "Specification of the service that exposes pgAdmin.",
 										MarkdownDescription: "Specification of the service that exposes pgAdmin.",
 										Attributes: map[string]schema.Attribute{
+											"external_traffic_policy": schema.StringAttribute{
+												Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Cluster", "Local"),
+												},
+											},
+
+											"internal_traffic_policy": schema.StringAttribute{
+												Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-policies",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Cluster", "Local"),
+												},
+											},
+
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "Metadata contains metadata for custom resources",
 												MarkdownDescription: "Metadata contains metadata for custom resources",

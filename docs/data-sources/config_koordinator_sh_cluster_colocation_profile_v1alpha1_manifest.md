@@ -54,18 +54,18 @@ Optional:
 
 Optional:
 
-- `annotation_keys_mapping` (Map of String) AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.
+- `annotation_keys_mapping` (Map of String) AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values.It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.
 - `annotations` (Map of String) Annotations describes the k/v pair that needs to inject into Pod.Annotations
-- `koordinator_priority` (Number) KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.
-- `label_keys_mapping` (Map of String) LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.
+- `koordinator_priority` (Number) KoordinatorPriority defines the Pod sub-priority in Koordinator.The priority value will be injected into Pod as label koordinator.sh/priority.Various Koordinator components determine the priority of the Podin the Koordinator through KoordinatorPriority and the priority value in PriorityClassName.The higher the value, the higher the priority.
+- `label_keys_mapping` (Map of String) LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values.It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.
 - `labels` (Map of String) Labels describes the k/v pair that needs to inject into Pod.Labels
-- `namespace_selector` (Attributes) NamespaceSelector decides whether to mutate/validate Pods if the namespace matches the selector. Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector decides whether to mutate/validate Pods if thenamespace matches the selector.Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `patch` (Map of String) Patch indicates patching podTemplate that will be injected to the Pod.
-- `priority_class_name` (String) If specified, the priorityClassName and the priority value defined in PriorityClass will be injected into the Pod. The PriorityClassName, priority value in PriorityClassName and KoordinatorPriority will affect the scheduling, preemption and other behaviors of Koordinator system.
+- `priority_class_name` (String) If specified, the priorityClassName and the priority value defined in PriorityClasswill be injected into the Pod.The PriorityClassName, priority value in PriorityClassName andKoordinatorPriority will affect the scheduling, preemption andother behaviors of Koordinator system.
 - `probability` (String) Probability indicates profile will make effect with a probability.
-- `qos_class` (String) QoSClass describes the type of Koordinator QoS that the Pod is running. The value will be injected into Pod as label koordinator.sh/qosClass. Options are LSE/LSR/LS/BE/SYSTEM.
+- `qos_class` (String) QoSClass describes the type of Koordinator QoS that the Pod is running.The value will be injected into Pod as label koordinator.sh/qosClass.Options are LSE/LSR/LS/BE/SYSTEM.
 - `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler.
-- `selector` (Attributes) Selector decides whether to mutate/validate Pods if the Pod matches the selector. Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--selector))
+- `selector` (Attributes) Selector decides whether to mutate/validate Pods if thePod matches the selector.Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--selector))
 
 <a id="nestedatt--spec--namespace_selector"></a>
 ### Nested Schema for `spec.namespace_selector`
@@ -73,7 +73,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.namespace_selector.match_expressions`
@@ -81,11 +81,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -95,7 +95,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.selector.match_expressions`
@@ -103,8 +103,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

@@ -81,7 +81,7 @@ Optional:
 - `log_level` (String) Log level for VMAlertmanager to be configured with.
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoint to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the alertmanager pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `port_name` (String) PortName used for the pods and governing service.This defaults to web

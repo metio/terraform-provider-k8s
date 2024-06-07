@@ -63,6 +63,7 @@ Optional:
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--clusters))
 - `concurrent` (Boolean) Concurrent determines whether the test should run concurrently with other tests.
 - `delay_before_cleanup` (String) DelayBeforeCleanup adds a delay between the time a test ends and the time cleanup starts.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration.
 - `description` (String) Description contains a description of the test.
 - `force_termination_grace_period` (String) ForceTerminationGracePeriod forces the termination grace period on pods, statefulsets, daemonsets and deployments.
 - `namespace` (String) Namespace determines whether the test should run in a random ephemeral namespace or not.
@@ -83,8 +84,10 @@ Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--bindings))
 - `catch` (Attributes List) Catch defines what the step will execute when an error happens. (see [below for nested schema](#nestedatt--spec--steps--catch))
+- `cleanup` (Attributes List) Cleanup defines what will be executed after the test is terminated. (see [below for nested schema](#nestedatt--spec--steps--cleanup))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in both the Configuration and the Test.
 - `description` (String) Description contains a description of the test step.
 - `finally` (Attributes List) Finally defines what the step will execute after the step is terminated. (see [below for nested schema](#nestedatt--spec--steps--finally))
 - `name` (String) Name of the step.
@@ -103,9 +106,13 @@ Optional:
 - `continue_on_error` (Boolean) ContinueOnError determines whether a test should continue or not in case the operation was not successful.Even if the test continues executing, it will still be reported as failed.
 - `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--try--create))
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--try--delete))
+- `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--describe))
 - `description` (String) Description contains a description of the operation.
 - `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--try--error))
+- `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--events))
+- `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--get))
 - `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--try--patch))
+- `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--pod_logs))
 - `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--try--script))
 - `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--try--sleep))
 - `update` (Attributes) Update represents an update operation. (see [below for nested schema](#nestedatt--spec--steps--try--update))
@@ -338,33 +345,17 @@ Optional:
 <a id="nestedatt--spec--steps--try--delete"></a>
 ### Nested Schema for `spec.steps.try.delete`
 
-Required:
-
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref))
-
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--delete--ref"></a>
-### Nested Schema for `spec.steps.try.delete.ref`
-
-Required:
-
-- `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-
-Optional:
-
-- `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-
 
 <a id="nestedatt--spec--steps--try--delete--bindings"></a>
 ### Nested Schema for `spec.steps.try.delete.bindings`
@@ -399,6 +390,52 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--try--delete--ref"></a>
+### Nested Schema for `spec.steps.try.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
+
+<a id="nestedatt--spec--steps--try--describe"></a>
+### Nested Schema for `spec.steps.try.describe`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--describe--clusters))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `show_events` (Boolean) Show Events indicates whether to include related events.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--try--describe--clusters"></a>
+### Nested Schema for `spec.steps.try.describe.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
 
 <a id="nestedatt--spec--steps--try--error"></a>
 ### Nested Schema for `spec.steps.try.error`
@@ -424,6 +461,63 @@ Required:
 
 <a id="nestedatt--spec--steps--try--error--clusters"></a>
 ### Nested Schema for `spec.steps.try.error.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--try--events"></a>
+### Nested Schema for `spec.steps.try.events`
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--events--clusters))
+- `format` (String) Format determines the output format (json or yaml).
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--try--events--clusters"></a>
+### Nested Schema for `spec.steps.try.events.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--try--get"></a>
+### Nested Schema for `spec.steps.try.get`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--get--clusters))
+- `format` (String) Format determines the output format (json or yaml).
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--try--get--clusters"></a>
+### Nested Schema for `spec.steps.try.get.clusters`
 
 Required:
 
@@ -495,6 +589,33 @@ Required:
 Optional:
 
 - `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--try--pod_logs"></a>
+### Nested Schema for `spec.steps.try.pod_logs`
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--pod_logs--clusters))
+- `container` (String) Container in pod to get logs from else --all-containers is used.
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--try--pod_logs--clusters"></a>
+### Nested Schema for `spec.steps.try.pod_logs.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
 
 
 
@@ -633,18 +754,17 @@ Optional:
 
 Required:
 
+- `api_version` (String) API version of the referent.
 - `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
 
@@ -784,33 +904,17 @@ Optional:
 <a id="nestedatt--spec--steps--catch--delete"></a>
 ### Nested Schema for `spec.steps.catch.delete`
 
-Required:
-
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref))
-
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--delete--ref"></a>
-### Nested Schema for `spec.steps.catch.delete.ref`
-
-Required:
-
-- `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-
-Optional:
-
-- `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-
 
 <a id="nestedatt--spec--steps--catch--delete--bindings"></a>
 ### Nested Schema for `spec.steps.catch.delete.bindings`
@@ -845,19 +949,36 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--catch--delete--ref"></a>
+### Nested Schema for `spec.steps.catch.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
 
 <a id="nestedatt--spec--steps--catch--describe"></a>
 ### Nested Schema for `spec.steps.catch.describe`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--describe--clusters))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -904,16 +1025,18 @@ Optional:
 <a id="nestedatt--spec--steps--catch--get"></a>
 ### Nested Schema for `spec.steps.catch.get`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1029,18 +1152,17 @@ Required:
 
 Required:
 
+- `api_version` (String) API version of the referent.
 - `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
 
@@ -1077,6 +1199,395 @@ Required:
 
 <a id="nestedatt--spec--steps--catch--wait--clusters"></a>
 ### Nested Schema for `spec.steps.catch.wait.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+
+<a id="nestedatt--spec--steps--cleanup"></a>
+### Nested Schema for `spec.steps.cleanup`
+
+Optional:
+
+- `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command))
+- `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete))
+- `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe))
+- `description` (String) Description contains a description of the operation.
+- `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events))
+- `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get))
+- `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--pod_logs))
+- `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script))
+- `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--cleanup--sleep))
+- `wait` (Attributes) Wait determines the resource wait collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait))
+
+<a id="nestedatt--spec--steps--cleanup--command"></a>
+### Nested Schema for `spec.steps.cleanup.command`
+
+Required:
+
+- `entrypoint` (String) Entrypoint is the command entry point to run.
+
+Optional:
+
+- `args` (List of String) Args is the command arguments.
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--bindings))
+- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--clusters))
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--outputs))
+- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--command--bindings"></a>
+### Nested Schema for `spec.steps.cleanup.command.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--command--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.command.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+<a id="nestedatt--spec--steps--cleanup--command--env"></a>
+### Nested Schema for `spec.steps.cleanup.command.env`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--command--outputs"></a>
+### Nested Schema for `spec.steps.cleanup.command.outputs`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--delete"></a>
+### Nested Schema for `spec.steps.cleanup.delete`
+
+Optional:
+
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--bindings))
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--ref))
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--delete--bindings"></a>
+### Nested Schema for `spec.steps.cleanup.delete.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--delete--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.delete.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+<a id="nestedatt--spec--steps--cleanup--delete--expect"></a>
+### Nested Schema for `spec.steps.cleanup.delete.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+<a id="nestedatt--spec--steps--cleanup--delete--ref"></a>
+### Nested Schema for `spec.steps.cleanup.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
+
+<a id="nestedatt--spec--steps--cleanup--describe"></a>
+### Nested Schema for `spec.steps.cleanup.describe`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe--clusters))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `show_events` (Boolean) Show Events indicates whether to include related events.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--describe--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.describe.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--events"></a>
+### Nested Schema for `spec.steps.cleanup.events`
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events--clusters))
+- `format` (String) Format determines the output format (json or yaml).
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--events--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.events.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--get"></a>
+### Nested Schema for `spec.steps.cleanup.get`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get--clusters))
+- `format` (String) Format determines the output format (json or yaml).
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--get--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.get.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--pod_logs"></a>
+### Nested Schema for `spec.steps.cleanup.pod_logs`
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--pod_logs--clusters))
+- `container` (String) Container in pod to get logs from else --all-containers is used.
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--pod_logs--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.pod_logs.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--script"></a>
+### Nested Schema for `spec.steps.cleanup.script`
+
+Optional:
+
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--bindings))
+- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--clusters))
+- `content` (String) Content defines a shell script (run with 'sh -c ...').
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--env))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--outputs))
+- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--script--bindings"></a>
+### Nested Schema for `spec.steps.cleanup.script.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--script--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.script.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+<a id="nestedatt--spec--steps--cleanup--script--env"></a>
+### Nested Schema for `spec.steps.cleanup.script.env`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--script--outputs"></a>
+### Nested Schema for `spec.steps.cleanup.script.outputs`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--sleep"></a>
+### Nested Schema for `spec.steps.cleanup.sleep`
+
+Required:
+
+- `duration` (String) Duration is the delay used for sleeping.
+
+
+<a id="nestedatt--spec--steps--cleanup--wait"></a>
+### Nested Schema for `spec.steps.cleanup.wait`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--clusters))
+- `format` (String) Format determines the output format (json or yaml).
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+
+<a id="nestedatt--spec--steps--cleanup--wait--for"></a>
+### Nested Schema for `spec.steps.cleanup.wait.for`
+
+Optional:
+
+- `condition` (Attributes) Condition specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for--condition))
+- `deletion` (Map of String) Deletion specifies parameters for waiting on a resource's deletion.
+- `json_path` (Attributes) JsonPath specifies the json path condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for--json_path))
+
+<a id="nestedatt--spec--steps--cleanup--wait--for--condition"></a>
+### Nested Schema for `spec.steps.cleanup.wait.for.condition`
+
+Required:
+
+- `name` (String) Name defines the specific condition to wait for, e.g., 'Available', 'Ready'.
+
+Optional:
+
+- `value` (String) Value defines the specific condition status to wait for, e.g., 'True', 'False'.
+
+
+<a id="nestedatt--spec--steps--cleanup--wait--for--json_path"></a>
+### Nested Schema for `spec.steps.cleanup.wait.for.json_path`
+
+Required:
+
+- `path` (String) Path defines the json path to wait for, e.g. '{.status.phase}'.
+- `value` (String) Value defines the expected value to wait for, e.g., 'Running'.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--wait--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.wait.clusters`
 
 Required:
 
@@ -1183,33 +1694,17 @@ Optional:
 <a id="nestedatt--spec--steps--finally--delete"></a>
 ### Nested Schema for `spec.steps.finally.delete`
 
-Required:
-
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref))
-
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--delete--ref"></a>
-### Nested Schema for `spec.steps.finally.delete.ref`
-
-Required:
-
-- `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-
-Optional:
-
-- `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-
 
 <a id="nestedatt--spec--steps--finally--delete--bindings"></a>
 ### Nested Schema for `spec.steps.finally.delete.bindings`
@@ -1244,19 +1739,36 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--finally--delete--ref"></a>
+### Nested Schema for `spec.steps.finally.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
 
 <a id="nestedatt--spec--steps--finally--describe"></a>
 ### Nested Schema for `spec.steps.finally.describe`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--describe--clusters))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1303,16 +1815,18 @@ Optional:
 <a id="nestedatt--spec--steps--finally--get"></a>
 ### Nested Schema for `spec.steps.finally.get`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1428,18 +1942,17 @@ Required:
 
 Required:
 
+- `api_version` (String) API version of the referent.
 - `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
 
@@ -1593,33 +2106,17 @@ Optional:
 <a id="nestedatt--spec--catch--delete"></a>
 ### Nested Schema for `spec.catch.delete`
 
-Required:
-
-- `ref` (Attributes) ObjectReference determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--catch--delete--ref))
-
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--delete--clusters))
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--catch--delete--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--catch--delete--ref"></a>
-### Nested Schema for `spec.catch.delete.ref`
-
-Required:
-
-- `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-
-Optional:
-
-- `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-
 
 <a id="nestedatt--spec--catch--delete--bindings"></a>
 ### Nested Schema for `spec.catch.delete.bindings`
@@ -1654,19 +2151,36 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--catch--delete--ref"></a>
+### Nested Schema for `spec.catch.delete.ref`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `labels` (Map of String) Label selector to match objects to delete
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+
 
 <a id="nestedatt--spec--catch--describe"></a>
 ### Nested Schema for `spec.catch.describe`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--describe--clusters))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1713,16 +2227,18 @@ Optional:
 <a id="nestedatt--spec--catch--get"></a>
 ### Nested Schema for `spec.catch.get`
 
-Optional:
+Required:
 
 - `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1838,18 +2354,17 @@ Required:
 
 Required:
 
+- `api_version` (String) API version of the referent.
 - `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for))
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource` (String) Resource name of the referent.
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
 

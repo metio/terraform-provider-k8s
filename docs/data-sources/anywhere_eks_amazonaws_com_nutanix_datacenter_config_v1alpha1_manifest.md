@@ -62,6 +62,7 @@ Optional:
 
 - `additional_trust_bundle` (String) AdditionalTrustBundle is the optional PEM-encoded certificate bundle for users that configured their Prism Central with certificates from non-publicly trusted CAs
 - `credential_ref` (Attributes) CredentialRef is the reference to the secret name that contains the credentials for the Nutanix Prism Central. The namespace for the secret is assumed to be a constant i.e. eksa-system. (see [below for nested schema](#nestedatt--spec--credential_ref))
+- `failure_domains` (Attributes List) FailureDomains is the optional list of failure domains for the Nutanix Datacenter. (see [below for nested schema](#nestedatt--spec--failure_domains))
 - `insecure` (Boolean) Insecure is the optional flag to skip TLS verification. Nutanix Prism Central installation by default ships with a self-signed certificate that will fail TLS verification because the certificate is not issued by a public CA and does not have the IP SANs with the Prism Central endpoint. To accommodate the scenario where the user has not changed the default Certificate that ships with Prism Central, we allow the user to skip TLS verification. This is not recommended for production use.
 
 <a id="nestedatt--spec--credential_ref"></a>
@@ -71,3 +72,41 @@ Optional:
 
 - `kind` (String)
 - `name` (String)
+
+
+<a id="nestedatt--spec--failure_domains"></a>
+### Nested Schema for `spec.failure_domains`
+
+Required:
+
+- `name` (String) Name is the unique name of the failure domain. Name must be between 1 and 64 characters long. It must consist of only lower case alphanumeric characters and hyphens (-). It must start and end with an alphanumeric character.
+
+Optional:
+
+- `cluster` (Attributes) Cluster is the Prism Element cluster name or uuid that is connected to the Prism Central. (see [below for nested schema](#nestedatt--spec--failure_domains--cluster))
+- `subnets` (Attributes List) Subnets holds the list of subnets identifiers cluster's network subnets. (see [below for nested schema](#nestedatt--spec--failure_domains--subnets))
+
+<a id="nestedatt--spec--failure_domains--cluster"></a>
+### Nested Schema for `spec.failure_domains.cluster`
+
+Required:
+
+- `type` (String) Type is the identifier type to use for this resource.
+
+Optional:
+
+- `name` (String) name is the resource name in the PC
+- `uuid` (String) uuid is the UUID of the resource in the PC.
+
+
+<a id="nestedatt--spec--failure_domains--subnets"></a>
+### Nested Schema for `spec.failure_domains.subnets`
+
+Required:
+
+- `type` (String) Type is the identifier type to use for this resource.
+
+Optional:
+
+- `name` (String) name is the resource name in the PC
+- `uuid` (String) uuid is the UUID of the resource in the PC.

@@ -63,6 +63,7 @@ Optional:
 - `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity))
 - `args` (Map of String)
 - `autoscaler` (Attributes) (see [below for nested schema](#nestedatt--spec--autoscaler))
+- `config_versions` (Number)
 - `configmaps` (Attributes List) (see [below for nested schema](#nestedatt--spec--configmaps))
 - `daemon_set_update_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--daemon_set_update_strategy))
 - `deployment_update_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment_update_strategy))

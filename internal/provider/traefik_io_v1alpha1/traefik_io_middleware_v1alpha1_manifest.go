@@ -73,6 +73,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			ResponseCode     *int64  `tfsdk:"response_code" json:"responseCode,omitempty"`
 		} `tfsdk:"circuit_breaker" json:"circuitBreaker,omitempty"`
 		Compress *struct {
+			DefaultEncoding      *string   `tfsdk:"default_encoding" json:"defaultEncoding,omitempty"`
 			ExcludedContentTypes *[]string `tfsdk:"excluded_content_types" json:"excludedContentTypes,omitempty"`
 			IncludedContentTypes *[]string `tfsdk:"included_content_types" json:"includedContentTypes,omitempty"`
 			MinResponseBodyBytes *int64    `tfsdk:"min_response_body_bytes" json:"minResponseBodyBytes,omitempty"`
@@ -89,6 +90,19 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 		Errors *struct {
 			Query   *string `tfsdk:"query" json:"query,omitempty"`
 			Service *struct {
+				HealthCheck *struct {
+					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method          *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path            *string            `tfsdk:"path" json:"path,omitempty"`
+					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -144,6 +158,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			AllowedHosts                      *[]string          `tfsdk:"allowed_hosts" json:"allowedHosts,omitempty"`
 			BrowserXssFilter                  *bool              `tfsdk:"browser_xss_filter" json:"browserXssFilter,omitempty"`
 			ContentSecurityPolicy             *string            `tfsdk:"content_security_policy" json:"contentSecurityPolicy,omitempty"`
+			ContentSecurityPolicyReportOnly   *string            `tfsdk:"content_security_policy_report_only" json:"contentSecurityPolicyReportOnly,omitempty"`
 			ContentTypeNosniff                *bool              `tfsdk:"content_type_nosniff" json:"contentTypeNosniff,omitempty"`
 			CustomBrowserXSSValue             *string            `tfsdk:"custom_browser_xss_value" json:"customBrowserXSSValue,omitempty"`
 			CustomFrameOptionsValue           *string            `tfsdk:"custom_frame_options_value" json:"customFrameOptionsValue,omitempty"`
@@ -538,6 +553,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip compression.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/compress/",
 						MarkdownDescription: "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip compression.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/compress/",
 						Attributes: map[string]schema.Attribute{
+							"default_encoding": schema.StringAttribute{
+								Description:         "DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').",
+								MarkdownDescription: "DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"excluded_content_types": schema.ListAttribute{
 								Description:         "ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing.'application/grpc' is always excluded.",
 								MarkdownDescription: "ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing.'application/grpc' is always excluded.",
@@ -643,6 +666,104 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Description:         "Service defines the reference to a Kubernetes Service that will serve the error page.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/errorpages/#service",
 								MarkdownDescription: "Service defines the reference to a Kubernetes Service that will serve the error page.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/errorpages/#service",
 								Attributes: map[string]schema.Attribute{
+									"health_check": schema.SingleNestedAttribute{
+										Description:         "Healthcheck defines health checks for ExternalName services.",
+										MarkdownDescription: "Healthcheck defines health checks for ExternalName services.",
+										Attributes: map[string]schema.Attribute{
+											"follow_redirects": schema.BoolAttribute{
+												Description:         "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+												MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.MapAttribute{
+												Description:         "Headers defines custom headers to be sent to the health check endpoint.",
+												MarkdownDescription: "Headers defines custom headers to be sent to the health check endpoint.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"hostname": schema.StringAttribute{
+												Description:         "Hostname defines the value of hostname in the Host header of the health check request.",
+												MarkdownDescription: "Hostname defines the value of hostname in the Host header of the health check request.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"interval": schema.StringAttribute{
+												Description:         "Interval defines the frequency of the health check calls.Default: 30s",
+												MarkdownDescription: "Interval defines the frequency of the health check calls.Default: 30s",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Method defines the healthcheck method.",
+												MarkdownDescription: "Method defines the healthcheck method.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"mode": schema.StringAttribute{
+												Description:         "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+												MarkdownDescription: "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "Path defines the server URL path for the health check endpoint.",
+												MarkdownDescription: "Path defines the server URL path for the health check endpoint.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "Port defines the server URL port for the health check endpoint.",
+												MarkdownDescription: "Port defines the server URL port for the health check endpoint.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "Scheme replaces the server URL scheme for the health check endpoint.",
+												MarkdownDescription: "Scheme replaces the server URL scheme for the health check endpoint.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"status": schema.Int64Attribute{
+												Description:         "Status defines the expected HTTP status code of the response to the health check request.",
+												MarkdownDescription: "Status defines the expected HTTP status code of the response to the health check request.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout": schema.StringAttribute{
+												Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+												MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"kind": schema.StringAttribute{
 										Description:         "Kind defines the kind of the Service.",
 										MarkdownDescription: "Kind defines the kind of the Service.",
@@ -1040,6 +1161,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							"content_security_policy": schema.StringAttribute{
 								Description:         "ContentSecurityPolicy defines the Content-Security-Policy header value.",
 								MarkdownDescription: "ContentSecurityPolicy defines the Content-Security-Policy header value.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"content_security_policy_report_only": schema.StringAttribute{
+								Description:         "ContentSecurityPolicyReportOnly defines the Content-Security-Policy-Report-Only header value.",
+								MarkdownDescription: "ContentSecurityPolicyReportOnly defines the Content-Security-Policy-Report-Only header value.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -57,11 +57,20 @@ Optional:
 
 - `api_endpoint_url` (String) APIEndpointURL is the URL of the API endpoint of the Github instance this connector is for.
 - `client_id` (String) ClientID is the Github OAuth app client ID.
+- `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
 - `client_secret` (String) ClientSecret is the Github OAuth app client secret.
 - `display` (String) Display is the connector display name.
 - `endpoint_url` (String) EndpointURL is the URL of the GitHub instance this connector is for.
 - `redirect_url` (String) RedirectURL is the authorization callback URL.
 - `teams_to_roles` (Attributes List) TeamsToRoles maps Github team memberships onto allowed roles. (see [below for nested schema](#nestedatt--spec--teams_to_roles))
+
+<a id="nestedatt--spec--client_redirect_settings"></a>
+### Nested Schema for `spec.client_redirect_settings`
+
+Optional:
+
+- `allowed_https_hostnames` (List of String) a list of hostnames allowed for https client redirect URLs
+
 
 <a id="nestedatt--spec--teams_to_roles"></a>
 ### Nested Schema for `spec.teams_to_roles`

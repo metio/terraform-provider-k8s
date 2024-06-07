@@ -534,6 +534,7 @@ Optional:
 - `ingress` (Attributes) Ingress defines the Ingress configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--ingress))
 - `resources` (Attributes) Resources defines the compute resource requirements of the Jaeger UI container. (see [below for nested schema](#nestedatt--spec--jaegerui--resources))
 - `route` (Attributes) Route defines the OpenShift route configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--route))
+- `services_query_duration` (String) ServicesQueryDuration defines how long the services will be available in the services list
 
 <a id="nestedatt--spec--jaegerui--authentication"></a>
 ### Nested Schema for `spec.jaegerui.authentication`

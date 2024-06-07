@@ -306,6 +306,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/leaksignal_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta4"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta5"
+	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta6"
 	"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/litmuschaos_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/logging_banzaicloud_io_v1alpha1"
@@ -369,6 +370,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cluster_x_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cluster_x_k8s_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cryostat_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cryostat_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_knative_dev_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_marin3r_3scale_net_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_open_cluster_management_io_v1"
@@ -1164,6 +1166,8 @@ func allDataSources() []func() datasource.DataSource {
 		chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoTestV1Alpha1Manifest,
 		// chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoConfigurationV1Alpha2DataSource,
 		chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoConfigurationV1Alpha2Manifest,
+		// chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoTestV1Alpha2DataSource,
+		chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoTestV1Alpha2Manifest,
 		// chaos_mesh_org_v1alpha1.NewChaosMeshOrgAwschaosV1Alpha1DataSource,
 		chaos_mesh_org_v1alpha1.NewChaosMeshOrgAwschaosV1Alpha1Manifest,
 		// chaos_mesh_org_v1alpha1.NewChaosMeshOrgAzureChaosV1Alpha1DataSource,
@@ -2582,6 +2586,12 @@ func allDataSources() []func() datasource.DataSource {
 		lerentis_uploadfilter24_eu_v1beta5.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta5Manifest,
 		// lerentis_uploadfilter24_eu_v1beta5.NewLerentisUploadfilter24EuRegistryCredentialV1Beta5DataSource,
 		lerentis_uploadfilter24_eu_v1beta5.NewLerentisUploadfilter24EuRegistryCredentialV1Beta5Manifest,
+		// lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuBitwardenSecretV1Beta6DataSource,
+		lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuBitwardenSecretV1Beta6Manifest,
+		// lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta6DataSource,
+		lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest,
+		// lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuRegistryCredentialV1Beta6DataSource,
+		lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuRegistryCredentialV1Beta6Manifest,
 		// limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1DataSource,
 		limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1Manifest,
 		// litmuschaos_io_v1alpha1.NewLitmuschaosIoChaosEngineV1Alpha1DataSource,
@@ -3022,6 +3032,8 @@ func allDataSources() []func() datasource.DataSource {
 		operator_cluster_x_k8s_io_v1alpha2.NewOperatorClusterXK8SIoInfrastructureProviderV1Alpha2Manifest,
 		// operator_cryostat_io_v1beta1.NewOperatorCryostatIoCryostatV1Beta1DataSource,
 		operator_cryostat_io_v1beta1.NewOperatorCryostatIoCryostatV1Beta1Manifest,
+		// operator_cryostat_io_v1beta2.NewOperatorCryostatIoCryostatV1Beta2DataSource,
+		operator_cryostat_io_v1beta2.NewOperatorCryostatIoCryostatV1Beta2Manifest,
 		// operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeEventingV1Beta1DataSource,
 		operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeEventingV1Beta1Manifest,
 		// operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeServingV1Beta1DataSource,

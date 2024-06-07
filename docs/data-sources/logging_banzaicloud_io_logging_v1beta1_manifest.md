@@ -2548,6 +2548,7 @@ Optional:
 - `keepalive` (Boolean)
 - `keepalive_idle_timeout` (Number)
 - `keepalive_max_recycle` (Number)
+- `max_worker_connections` (Number)
 - `source_address` (String)
 
 
@@ -2809,6 +2810,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2819,6 +2821,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--fluentbit--security--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentbit.security.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentbit--security--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.fluentbit.security.pod_security_context.se_linux_options`
@@ -2870,6 +2884,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -2880,6 +2895,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--security_context--windows_options))
+
+<a id="nestedatt--spec--fluentbit--security--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentbit.security.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentbit--security--security_context--capabilities"></a>
 ### Nested Schema for `spec.fluentbit.security.security_context.capabilities`
@@ -3035,6 +3062,7 @@ Optional:
 - `buffer_volume_metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics))
 - `buffer_volume_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_resources))
 - `compress_config_file` (Boolean)
+- `config_check` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--config_check))
 - `config_check_annotations` (Map of String)
 - `config_check_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--config_check_resources))
 - `config_reloader_image` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--config_reloader_image))
@@ -3801,6 +3829,16 @@ Required:
 
 - `name` (String)
 
+
+
+<a id="nestedatt--spec--fluentd--config_check"></a>
+### Nested Schema for `spec.fluentd.config_check`
+
+Optional:
+
+- `labels` (Map of String)
+- `strategy` (String)
+- `timeout_seconds` (Number)
 
 
 <a id="nestedatt--spec--fluentd--config_check_resources"></a>
@@ -4782,6 +4820,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--drain--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--drain--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4792,6 +4831,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--drain--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--drain--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--drain--security_context--windows_options))
+
+<a id="nestedatt--spec--fluentd--scaling--drain--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentd.scaling.drain.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentd--scaling--drain--security_context--capabilities"></a>
 ### Nested Schema for `spec.fluentd.scaling.drain.security_context.capabilities`
@@ -4855,6 +4906,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -4865,6 +4917,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--fluentd--security--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentd.security.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentd--security--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.fluentd.security.pod_security_context.se_linux_options`
@@ -4916,6 +4980,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4926,6 +4991,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--security_context--windows_options))
+
+<a id="nestedatt--spec--fluentd--security--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentd.security.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentd--security--security_context--capabilities"></a>
 ### Nested Schema for `spec.fluentd.security.security_context.capabilities`
@@ -5479,6 +5556,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5489,6 +5567,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--fluentd--sidecar_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.fluentd.sidecar_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.fluentd.sidecar_containers.security_context.capabilities`
@@ -5628,6 +5718,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -7812,6 +7903,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -7822,6 +7914,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.containers.security_context.capabilities`
@@ -7961,6 +8065,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -8451,6 +8556,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -8461,6 +8567,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.ephemeral_containers.security_context.capabilities`
@@ -8600,6 +8718,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -8608,10 +8727,13 @@ Optional:
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--host_aliases"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--image_pull_secrets"></a>
@@ -9087,6 +9209,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -9097,6 +9220,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.init_containers.security_context.capabilities`
@@ -9236,6 +9371,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -9254,6 +9390,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -9264,6 +9401,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.security_context.se_linux_options`
@@ -10489,6 +10638,7 @@ Optional:
 - `selector` (Map of String)
 - `session_affinity` (String)
 - `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--metrics_service--spec--session_affinity_config))
+- `traffic_distribution` (String)
 - `type` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics_service--spec--ports"></a>
@@ -10538,6 +10688,7 @@ Optional:
 - `keepalive` (Boolean)
 - `keepalive_idle_timeout` (Number)
 - `keepalive_max_recycle` (Number)
+- `max_worker_connections` (Number)
 - `source_address` (String)
 
 
@@ -10708,6 +10859,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -10718,6 +10870,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.security.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.security.pod_security_context.se_linux_options`
@@ -10769,6 +10933,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -10779,6 +10944,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--windows_options))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.security.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--security--security_context--capabilities"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.security.security_context.capabilities`
@@ -10889,6 +11066,7 @@ Optional:
 
 - `buffer_volume_metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics))
 - `buffer_volume_metrics_service` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics_service))
+- `config_check` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check))
 - `config_check_pod` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod))
 - `global_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--global_options))
 - `json_key_delim` (String)
@@ -11101,6 +11279,7 @@ Optional:
 - `selector` (Map of String)
 - `session_affinity` (String)
 - `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics_service--spec--session_affinity_config))
+- `traffic_distribution` (String)
 - `type` (String)
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics_service--spec--ports"></a>
@@ -11135,6 +11314,16 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--syslog_ng--config_check"></a>
+### Nested Schema for `spec.syslog_ng.config_check`
+
+Optional:
+
+- `labels` (Map of String)
+- `strategy` (String)
+- `timeout_seconds` (Number)
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod"></a>
@@ -12024,6 +12213,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -12034,6 +12224,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.config_check_pod.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.containers.security_context.capabilities`
@@ -12173,6 +12375,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -12663,6 +12866,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -12673,6 +12877,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.config_check_pod.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.ephemeral_containers.security_context.capabilities`
@@ -12812,6 +13028,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -12820,10 +13037,13 @@ Optional:
 <a id="nestedatt--spec--syslog_ng--config_check_pod--host_aliases"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--image_pull_secrets"></a>
@@ -13299,6 +13519,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -13309,6 +13530,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.config_check_pod.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.init_containers.security_context.capabilities`
@@ -13448,6 +13681,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -13466,6 +13700,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -13476,6 +13711,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--config_check_pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.config_check_pod.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.security_context.se_linux_options`
@@ -14582,6 +14829,7 @@ Optional:
 - `selector` (Map of String)
 - `session_affinity` (String)
 - `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics_service--spec--session_affinity_config))
+- `traffic_distribution` (String)
 - `type` (String)
 
 <a id="nestedatt--spec--syslog_ng--metrics_service--spec--ports"></a>
@@ -14674,6 +14922,7 @@ Optional:
 - `selector` (Map of String)
 - `session_affinity` (String)
 - `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--service--spec--session_affinity_config))
+- `traffic_distribution` (String)
 - `type` (String)
 
 <a id="nestedatt--spec--syslog_ng--service--spec--ports"></a>
@@ -15728,6 +15977,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -15738,6 +15988,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.containers.security_context.capabilities`
@@ -15877,6 +16139,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -16367,6 +16630,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -16377,6 +16641,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.ephemeral_containers.security_context.capabilities`
@@ -16516,6 +16792,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -16524,10 +16801,13 @@ Optional:
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--host_aliases"></a>
 ### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--image_pull_secrets"></a>
@@ -17003,6 +17283,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -17013,6 +17294,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.init_containers.security_context.capabilities`
@@ -17152,6 +17445,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -17170,6 +17464,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -17180,6 +17475,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.security_context.se_linux_options`

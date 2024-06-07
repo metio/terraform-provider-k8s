@@ -97,6 +97,7 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			NoDelay    *bool   `tfsdk:"no_delay" json:"noDelay,omitempty"`
 			Rate       *string `tfsdk:"rate" json:"rate,omitempty"`
 			RejectCode *int64  `tfsdk:"reject_code" json:"rejectCode,omitempty"`
+			Scale      *bool   `tfsdk:"scale" json:"scale,omitempty"`
 			ZoneSize   *string `tfsdk:"zone_size" json:"zoneSize,omitempty"`
 		} `tfsdk:"rate_limit" json:"rateLimit,omitempty"`
 		Waf *struct {
@@ -578,6 +579,14 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 							},
 
 							"reject_code": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scale": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

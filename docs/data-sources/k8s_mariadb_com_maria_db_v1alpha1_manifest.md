@@ -58,7 +58,7 @@ Optional:
 - `bootstrap_from` (Attributes) BootstrapFrom defines a source to bootstrap from. (see [below for nested schema](#nestedatt--spec--bootstrap_from))
 - `command` (List of String) Command to be used in the Container.
 - `connection` (Attributes) Connection defines templates to configure the general Connection object. (see [below for nested schema](#nestedatt--spec--connection))
-- `database` (String) Database is the database to be created on bootstrap.
+- `database` (String) Database is the initial database to be created by the operator once MariaDB is ready.
 - `env` (Attributes List) Env represents the environment variables to be injected in a container. (see [below for nested schema](#nestedatt--spec--env))
 - `env_from` (Attributes List) EnvFrom represents the references (via ConfigMap and Secrets) to environment variables to be injected in the container. (see [below for nested schema](#nestedatt--spec--env_from))
 - `galera` (Attributes) Replication configures high availability via Galera. (see [below for nested schema](#nestedatt--spec--galera))
@@ -71,10 +71,10 @@ Optional:
 - `max_scale` (Attributes) MaxScale is the MaxScale specification that defines the MaxScale resource to be used with the current MariaDB.When enabling this field, MaxScaleRef is automatically set. (see [below for nested schema](#nestedatt--spec--max_scale))
 - `max_scale_ref` (Attributes) MaxScaleRef is a reference to a MaxScale resource to be used with the current MariaDB.Providing this field implies delegating high availability tasks such as primary failover to MaxScale. (see [below for nested schema](#nestedatt--spec--max_scale_ref))
 - `metrics` (Attributes) Metrics configures metrics and how to scrape them. (see [below for nested schema](#nestedatt--spec--metrics))
-- `my_cnf` (String) MyCnf allows to specify the my.cnf file mounted by Mariadb.
-- `my_cnf_config_map_key_ref` (Attributes) MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with reference to a ConfigMap with the contents of the MyCnf field. (see [below for nested schema](#nestedatt--spec--my_cnf_config_map_key_ref))
+- `my_cnf` (String) MyCnf allows to specify the my.cnf file mounted by Mariadb.Updating this field will trigger an update to the Mariadb resource.
+- `my_cnf_config_map_key_ref` (Attributes) MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with a reference to a ConfigMap containing the MyCnf field.If the referred ConfigMap is labeled with 'k8s.mariadb.com/watch', an update to the Mariadb resource will be triggered when the ConfigMap is updated. (see [below for nested schema](#nestedatt--spec--my_cnf_config_map_key_ref))
 - `node_selector` (Map of String) NodeSelector to be used in the Pod.
-- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to a Secret that contains the password for the initial user.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget defines the budget for replica availability. (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata defines extra metadata for the Pod. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `pod_security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--pod_security_context))
@@ -97,8 +97,8 @@ Optional:
 - `storage` (Attributes) Storage defines the storage options to be used for provisioning the PVCs mounted by MariaDB. (see [below for nested schema](#nestedatt--spec--storage))
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints to be used in the Pod. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
-- `update_strategy` (Attributes) PodDisruptionBudget defines the update strategy for the StatefulSet object. (see [below for nested schema](#nestedatt--spec--update_strategy))
-- `username` (String) Username is the username of the initial user created on bootstrap.
+- `update_strategy` (Attributes) UpdateStrategy defines how a MariaDB resource is updated. (see [below for nested schema](#nestedatt--spec--update_strategy))
+- `username` (String) Username is the initial username to be created by the operator once MariaDB is ready. It has all privileges on the initial database.
 - `volume_mounts` (Attributes List) VolumeMounts to be used in the Container. (see [below for nested schema](#nestedatt--spec--volume_mounts))
 - `volumes` (Attributes List) Volumes to be used in the Pod. (see [below for nested schema](#nestedatt--spec--volumes))
 
@@ -3733,20 +3733,20 @@ Optional:
 - `admin_password_secret_key_ref` (Attributes) AdminPasswordSecretKeyRef is Secret key reference to the admin password to call the admin REST API. It is defaulted if not provided. (see [below for nested schema](#nestedatt--spec--max_scale--auth--admin_password_secret_key_ref))
 - `admin_username` (String) AdminUsername is an admin username to call the admin REST API. It is defaulted if not provided.
 - `client_max_connections` (Number) ClientMaxConnections defines the maximum number of connections that the client can establish.If HA is enabled, make sure to increase this value, as more MaxScale replicas implies more connections.It defaults to 30 times the number of MaxScale replicas.
-- `client_password_secret_key_ref` (Attributes) ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided. (see [below for nested schema](#nestedatt--spec--max_scale--auth--client_password_secret_key_ref))
+- `client_password_secret_key_ref` (Attributes) ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--max_scale--auth--client_password_secret_key_ref))
 - `client_username` (String) ClientUsername is the user to connect to MaxScale. It is defaulted if not provided.
 - `delete_default_admin` (Boolean) DeleteDefaultAdmin determines whether the default admin user should be deleted after the initial configuration. If not provided, it defaults to true.
 - `generate` (Boolean) Generate  defies whether the operator should generate users and grants for MaxScale to work.It only supports MariaDBs specified via spec.mariaDbRef.
-- `metrics_password_secret_key_ref` (Attributes) MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled. (see [below for nested schema](#nestedatt--spec--max_scale--auth--metrics_password_secret_key_ref))
+- `metrics_password_secret_key_ref` (Attributes) MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--max_scale--auth--metrics_password_secret_key_ref))
 - `metrics_username` (String) MetricsUsername is an metrics username to call the REST API. It is defaulted if metrics are enabled.
 - `monitor_max_connections` (Number) MonitorMaxConnections defines the maximum number of connections that the monitor can establish.If HA is enabled, make sure to increase this value, as more MaxScale replicas implies more connections.It defaults to 30 times the number of MaxScale replicas.
-- `monitor_password_secret_key_ref` (Attributes) MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided. (see [below for nested schema](#nestedatt--spec--max_scale--auth--monitor_password_secret_key_ref))
+- `monitor_password_secret_key_ref` (Attributes) MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--max_scale--auth--monitor_password_secret_key_ref))
 - `monitor_username` (String) MonitorUsername is the user used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.
 - `server_max_connections` (Number) ServerMaxConnections defines the maximum number of connections that the server can establish.If HA is enabled, make sure to increase this value, as more MaxScale replicas implies more connections.It defaults to 30 times the number of MaxScale replicas.
-- `server_password_secret_key_ref` (Attributes) ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided. (see [below for nested schema](#nestedatt--spec--max_scale--auth--server_password_secret_key_ref))
+- `server_password_secret_key_ref` (Attributes) ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--max_scale--auth--server_password_secret_key_ref))
 - `server_username` (String) ServerUsername is the user used by MaxScale to connect to MariaDB server. It is defaulted if not provided.
 - `sync_max_connections` (Number) SyncMaxConnections defines the maximum number of connections that the sync can establish.If HA is enabled, make sure to increase this value, as more MaxScale replicas implies more connections.It defaults to 30 times the number of MaxScale replicas.
-- `sync_password_secret_key_ref` (Attributes) SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled. (see [below for nested schema](#nestedatt--spec--max_scale--auth--sync_password_secret_key_ref))
+- `sync_password_secret_key_ref` (Attributes) SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--max_scale--auth--sync_password_secret_key_ref))
 - `sync_username` (String) MonitoSyncUsernamerUsername is the user used by MaxScale config sync to connect to MariaDB server. It is defaulted when HA is enabled.
 
 <a id="nestedatt--spec--max_scale--auth--admin_password_secret_key_ref"></a>
@@ -6551,7 +6551,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled is a flag to enable Metrics
 - `exporter` (Attributes) Exporter defines the metrics exporter container. (see [below for nested schema](#nestedatt--spec--metrics--exporter))
-- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter. (see [below for nested schema](#nestedatt--spec--metrics--password_secret_key_ref))
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password of the monitoring user used by the exporter.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--metrics--password_secret_key_ref))
 - `service_monitor` (Attributes) ServiceMonitor defines the ServiceMonior object. (see [below for nested schema](#nestedatt--spec--metrics--service_monitor))
 - `username` (String) Username is the username of the monitoring user used by the exporter.
 
@@ -9991,8 +9991,8 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType. (see [below for nested schema](#nestedatt--spec--update_strategy--rolling_update))
-- `type` (String) Type indicates the type of the StatefulSetUpdateStrategy.Default is RollingUpdate.
+- `rolling_update` (Attributes) RollingUpdate defines parameters for the RollingUpdate type. (see [below for nested schema](#nestedatt--spec--update_strategy--rolling_update))
+- `type` (String) Type defines the type of updates. One of 'ReplicasFirstPrimaryLast', 'RollingUpdate' or 'OnDelete'. If not defined, it defaults to 'ReplicasFirstPrimaryLast'.
 
 <a id="nestedatt--spec--update_strategy--rolling_update"></a>
 ### Nested Schema for `spec.update_strategy.rolling_update`

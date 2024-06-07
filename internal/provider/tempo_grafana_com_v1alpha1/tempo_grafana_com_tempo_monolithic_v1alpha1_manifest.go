@@ -231,6 +231,7 @@ type TempoGrafanaComTempoMonolithicV1Alpha1ManifestData struct {
 				Host        *string            `tfsdk:"host" json:"host,omitempty"`
 				Termination *string            `tfsdk:"termination" json:"termination,omitempty"`
 			} `tfsdk:"route" json:"route,omitempty"`
+			ServicesQueryDuration *string `tfsdk:"services_query_duration" json:"servicesQueryDuration,omitempty"`
 		} `tfsdk:"jaegerui" json:"jaegerui,omitempty"`
 		Management   *string `tfsdk:"management" json:"management,omitempty"`
 		Multitenancy *struct {
@@ -1657,6 +1658,14 @@ func (r *TempoGrafanaComTempoMonolithicV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"services_query_duration": schema.StringAttribute{
+								Description:         "ServicesQueryDuration defines how long the services will be available in the services list",
+								MarkdownDescription: "ServicesQueryDuration defines how long the services will be available in the services list",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

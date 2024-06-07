@@ -51,7 +51,7 @@ Optional:
 
 Required:
 
-- `priority` (Number) Priority is a value from 0 to 1000. Rules with lower priority values havehigher precedence, and are checked before rules with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesThe behavior is undefined if two ANP objects have same priority.Support: Core
+- `priority` (Number) Priority is a value from 0 to 1000. Policies with lower priority values havehigher precedence, and are checked before policies with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesEvery AdminNetworkPolicy should have a unique priority value; if two (or more)policies with the same priority could both match a connection, then theimplementation can apply any of the matching policies to the connection, andthere is no way for the user to reliably determine which one it will choose.Support: Core
 - `subject` (Attributes) Subject defines the pods to which this AdminNetworkPolicy applies.Note that host-networked pods are not included in subject selection.Support: Core (see [below for nested schema](#nestedatt--spec--subject))
 
 Optional:

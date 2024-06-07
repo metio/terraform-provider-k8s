@@ -318,6 +318,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			IstioOptions *struct {
 				AppendXForwardedHost *bool `tfsdk:"append_x_forwarded_host" json:"appendXForwardedHost,omitempty"`
 				EnableAutoMtls       *bool `tfsdk:"enable_auto_mtls" json:"enableAutoMtls,omitempty"`
+				EnableIntegration    *bool `tfsdk:"enable_integration" json:"enableIntegration,omitempty"`
 			} `tfsdk:"istio_options" json:"istioOptions,omitempty"`
 			LogTransformationRequestResponseInfo *bool   `tfsdk:"log_transformation_request_response_info" json:"logTransformationRequestResponseInfo,omitempty"`
 			ProxyDebugBindAddr                   *string `tfsdk:"proxy_debug_bind_addr" json:"proxyDebugBindAddr,omitempty"`
@@ -2455,6 +2456,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"enable_auto_mtls": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_integration": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

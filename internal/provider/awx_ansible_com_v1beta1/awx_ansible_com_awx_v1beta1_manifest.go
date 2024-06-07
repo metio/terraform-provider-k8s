@@ -209,6 +209,16 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 			Setting *string            `tfsdk:"setting" json:"setting,omitempty"`
 			Value   *map[string]string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"extra_settings" json:"extra_settings,omitempty"`
+		Extra_settings_files *struct {
+			Configmaps *[]struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"configmaps" json:"configmaps,omitempty"`
+			Secrets *[]struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"secrets" json:"secrets,omitempty"`
+		} `tfsdk:"extra_settings_files" json:"extra_settings_files,omitempty"`
 		Extra_volumes           *string `tfsdk:"extra_volumes" json:"extra_volumes,omitempty"`
 		Garbage_collect_secrets *bool   `tfsdk:"garbage_collect_secrets" json:"garbage_collect_secrets,omitempty"`
 		Host_aliases            *[]struct {
@@ -517,6 +527,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Task_liveness_initial_delay      *int64    `tfsdk:"task_liveness_initial_delay" json:"task_liveness_initial_delay,omitempty"`
 		Task_liveness_period             *int64    `tfsdk:"task_liveness_period" json:"task_liveness_period,omitempty"`
 		Task_liveness_timeout            *int64    `tfsdk:"task_liveness_timeout" json:"task_liveness_timeout,omitempty"`
+		Task_manage_replicas             *bool     `tfsdk:"task_manage_replicas" json:"task_manage_replicas,omitempty"`
 		Task_node_selector               *string   `tfsdk:"task_node_selector" json:"task_node_selector,omitempty"`
 		Task_privileged                  *bool     `tfsdk:"task_privileged" json:"task_privileged,omitempty"`
 		Task_readiness_failure_threshold *int64    `tfsdk:"task_readiness_failure_threshold" json:"task_readiness_failure_threshold,omitempty"`
@@ -677,6 +688,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Web_liveness_initial_delay      *int64    `tfsdk:"web_liveness_initial_delay" json:"web_liveness_initial_delay,omitempty"`
 		Web_liveness_period             *int64    `tfsdk:"web_liveness_period" json:"web_liveness_period,omitempty"`
 		Web_liveness_timeout            *int64    `tfsdk:"web_liveness_timeout" json:"web_liveness_timeout,omitempty"`
+		Web_manage_replicas             *bool     `tfsdk:"web_manage_replicas" json:"web_manage_replicas,omitempty"`
 		Web_node_selector               *string   `tfsdk:"web_node_selector" json:"web_node_selector,omitempty"`
 		Web_readiness_failure_threshold *int64    `tfsdk:"web_readiness_failure_threshold" json:"web_readiness_failure_threshold,omitempty"`
 		Web_readiness_initial_delay     *int64    `tfsdk:"web_readiness_initial_delay" json:"web_readiness_initial_delay,omitempty"`
@@ -1893,6 +1905,69 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"extra_settings_files": schema.SingleNestedAttribute{
+						Description:         "Extra ConfigMaps or Secrets of settings files to specify for AWX",
+						MarkdownDescription: "Extra ConfigMaps or Secrets of settings files to specify for AWX",
+						Attributes: map[string]schema.Attribute{
+							"configmaps": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secrets": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -4086,6 +4161,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"task_manage_replicas": schema.BoolAttribute{
+						Description:         "Enables operator control of replicas count for the task deployment when set to 'true'",
+						MarkdownDescription: "Enables operator control of replicas count for the task deployment when set to 'true'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"task_node_selector": schema.StringAttribute{
 						Description:         "nodeSelector for the task pods",
 						MarkdownDescription: "nodeSelector for the task pods",
@@ -5164,6 +5247,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 					"web_liveness_timeout": schema.Int64Attribute{
 						Description:         "Number of seconds to wait for a probe response from web pod",
 						MarkdownDescription: "Number of seconds to wait for a probe response from web pod",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"web_manage_replicas": schema.BoolAttribute{
+						Description:         "Enables operator control of replicas count for the web deployment when set to 'true'",
+						MarkdownDescription: "Enables operator control of replicas count for the web deployment when set to 'true'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

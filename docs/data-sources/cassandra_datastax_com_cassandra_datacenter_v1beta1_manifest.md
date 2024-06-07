@@ -56,7 +56,7 @@ Optional:
 Required:
 
 - `cluster_name` (String) The name by which CQL clients and instances will know the cluster. If the samecluster name is shared by multiple Datacenters in the same Kubernetes namespace,they will join together in a multi-datacenter cluster.
-- `server_type` (String) Server type: 'cassandra' or 'dse'
+- `server_type` (String) Server type: 'cassandra', 'dse' or 'hcd'
 - `server_version` (String) Version string for config builder,used to generate Cassandra server configuration
 - `size` (Number) Desired number of Cassandra server nodes
 - `storage_config` (Attributes) StorageConfig describes the persistent storage request of each server node (see [below for nested schema](#nestedatt--spec--storage_config))

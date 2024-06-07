@@ -79,6 +79,7 @@ Optional:
 - `ee_pull_credentials_secret` (String) Secret where pull credentials for registered ees can be found
 - `ee_resource_requirements` (Attributes) Resource requirements for the ee container (see [below for nested schema](#nestedatt--spec--ee_resource_requirements))
 - `extra_settings` (Attributes List) Extra settings to specify for AWX (see [below for nested schema](#nestedatt--spec--extra_settings))
+- `extra_settings_files` (Attributes) Extra ConfigMaps or Secrets of settings files to specify for AWX (see [below for nested schema](#nestedatt--spec--extra_settings_files))
 - `extra_volumes` (String) Specify extra volumes to add to the application pod
 - `garbage_collect_secrets` (Boolean) Whether or not to remove secrets upon instance removal
 - `host_aliases` (Attributes List) HostAliases for app containers (see [below for nested schema](#nestedatt--spec--host_aliases))
@@ -193,6 +194,7 @@ Optional:
 - `task_liveness_initial_delay` (Number) Initial delay before starting liveness checks on task pod
 - `task_liveness_period` (Number) Time period in seconds between each liveness check for the task pod
 - `task_liveness_timeout` (Number) Number of seconds to wait for a probe response from task pod
+- `task_manage_replicas` (Boolean) Enables operator control of replicas count for the task deployment when set to 'true'
 - `task_node_selector` (String) nodeSelector for the task pods
 - `task_privileged` (Boolean) If a privileged security context should be enabled
 - `task_readiness_failure_threshold` (Number) Number of consecutive failure events to identify failure of task pod
@@ -218,6 +220,7 @@ Optional:
 - `web_liveness_initial_delay` (Number) Initial delay before starting liveness checks on web pod
 - `web_liveness_period` (Number) Time period in seconds between each liveness check for the web pod
 - `web_liveness_timeout` (Number) Number of seconds to wait for a probe response from web pod
+- `web_manage_replicas` (Boolean) Enables operator control of replicas count for the web deployment when set to 'true'
 - `web_node_selector` (String) nodeSelector for the web pods
 - `web_readiness_failure_threshold` (Number) Number of consecutive failure events to identify failure of web pod
 - `web_readiness_initial_delay` (Number) Initial delay before starting readiness checks on web pod
@@ -649,6 +652,33 @@ Optional:
 
 - `setting` (String)
 - `value` (Map of String)
+
+
+<a id="nestedatt--spec--extra_settings_files"></a>
+### Nested Schema for `spec.extra_settings_files`
+
+Optional:
+
+- `configmaps` (Attributes List) (see [below for nested schema](#nestedatt--spec--extra_settings_files--configmaps))
+- `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--extra_settings_files--secrets))
+
+<a id="nestedatt--spec--extra_settings_files--configmaps"></a>
+### Nested Schema for `spec.extra_settings_files.configmaps`
+
+Optional:
+
+- `key` (String)
+- `name` (String)
+
+
+<a id="nestedatt--spec--extra_settings_files--secrets"></a>
+### Nested Schema for `spec.extra_settings_files.secrets`
+
+Optional:
+
+- `key` (String)
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--host_aliases"></a>
