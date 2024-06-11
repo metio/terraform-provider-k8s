@@ -8,7 +8,7 @@ go 1.22.0
 toolchain go1.22.2
 
 require (
-	github.com/getkin/kin-openapi v0.124.0
+	github.com/getkin/kin-openapi v0.125.0
 	github.com/gruntwork-io/terratest v0.46.15
 	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-framework v1.9.0
