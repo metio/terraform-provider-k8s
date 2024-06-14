@@ -1841,6 +1841,7 @@ func allResources() []func() resource.Resource {
 		//pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgbackupV2Resource,
 		//pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgclusterV2Resource,
 		//pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgrestoreV2Resource,
+		//pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgupgradeV2Resource,
 		//pipes_services_k8s_aws_v1alpha1.NewPipesServicesK8SAwsPipeV1Alpha1Resource,
 		//pkg_crossplane_io_v1.NewPkgCrossplaneIoConfigurationRevisionV1Resource,
 		//pkg_crossplane_io_v1.NewPkgCrossplaneIoConfigurationV1Resource,

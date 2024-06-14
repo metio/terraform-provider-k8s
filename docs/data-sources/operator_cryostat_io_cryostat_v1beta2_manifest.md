@@ -143,6 +143,7 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations to add to the Ingress or Route during its creation.
+- `external_host` (String) Externally routable host to be used to reach thisCryostat service. Used to define a Route's host onOpenShift when it is first created.On Kubernetes, define this using 'spec.ingressSpec'.
 - `ingress_spec` (Attributes) Configuration for an Ingress object.Currently subpaths are not supported, so unique hosts must be specified(if a single external IP is being used) to differentiate between ingresses/services. (see [below for nested schema](#nestedatt--spec--network_options--core_config--ingress_spec))
 - `labels` (Map of String) Labels to add to the Ingress or Route during its creation.The label with key 'app' is reserved for use by the operator.
 

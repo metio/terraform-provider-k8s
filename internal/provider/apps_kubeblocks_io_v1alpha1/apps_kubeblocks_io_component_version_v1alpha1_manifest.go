@@ -126,8 +126,8 @@ func (r *AppsKubeblocksIoComponentVersionV1Alpha1Manifest) Schema(_ context.Cont
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"comp_defs": schema.ListAttribute{
-									Description:         "CompDefs specifies names for the component definitions associated with this ComponentVersion. Each name in the list can represent an exact name, or a name prefix.  For example:  - 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1' - 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
-									MarkdownDescription: "CompDefs specifies names for the component definitions associated with this ComponentVersion. Each name in the list can represent an exact name, or a name prefix.  For example:  - 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1' - 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
+									Description:         "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, or a name prefix.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
+									MarkdownDescription: "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, or a name prefix.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -175,8 +175,8 @@ func (r *AppsKubeblocksIoComponentVersionV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is a unique identifier for this release. Cannot be updated.",
-									MarkdownDescription: "Name is a unique identifier for this release. Cannot be updated.",
+									Description:         "Name is a unique identifier for this release.Cannot be updated.",
+									MarkdownDescription: "Name is a unique identifier for this release.Cannot be updated.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -186,8 +186,8 @@ func (r *AppsKubeblocksIoComponentVersionV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"service_version": schema.StringAttribute{
-									Description:         "ServiceVersion defines the version of the well-known service that the component provides. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If the release is used, it will serve as the service version for component instances, overriding the one defined in the component definition. Cannot be updated.",
-									MarkdownDescription: "ServiceVersion defines the version of the well-known service that the component provides. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If the release is used, it will serve as the service version for component instances, overriding the one defined in the component definition. Cannot be updated.",
+									Description:         "ServiceVersion defines the version of the well-known service that the component provides.The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/).If the release is used, it will serve as the service version for component instances, overriding the one defined in the component definition.Cannot be updated.",
+									MarkdownDescription: "ServiceVersion defines the version of the well-known service that the component provides.The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/).If the release is used, it will serve as the service version for component instances, overriding the one defined in the component definition.Cannot be updated.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

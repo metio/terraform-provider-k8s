@@ -73,8 +73,9 @@ type OperatorCryostatIoCryostatV1Beta2ManifestData struct {
 		} `tfsdk:"event_templates" json:"eventTemplates,omitempty"`
 		NetworkOptions *struct {
 			CoreConfig *struct {
-				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-				IngressSpec *struct {
+				Annotations  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				ExternalHost *string            `tfsdk:"external_host" json:"externalHost,omitempty"`
+				IngressSpec  *struct {
 					DefaultBackend *struct {
 						Resource *struct {
 							ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
@@ -1048,6 +1049,14 @@ func (r *OperatorCryostatIoCryostatV1Beta2Manifest) Schema(_ context.Context, _ 
 										Description:         "Annotations to add to the Ingress or Route during its creation.",
 										MarkdownDescription: "Annotations to add to the Ingress or Route during its creation.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"external_host": schema.StringAttribute{
+										Description:         "Externally routable host to be used to reach thisCryostat service. Used to define a Route's host onOpenShift when it is first created.On Kubernetes, define this using 'spec.ingressSpec'.",
+										MarkdownDescription: "Externally routable host to be used to reach thisCryostat service. Used to define a Route's host onOpenShift when it is first created.On Kubernetes, define this using 'spec.ingressSpec'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

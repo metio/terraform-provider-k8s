@@ -56,10 +56,11 @@ type LokiGrafanaComRulerConfigV1ManifestData struct {
 					Type            *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"header_auth" json:"headerAuth,omitempty"`
 				Tls *struct {
-					CaPath     *string `tfsdk:"ca_path" json:"caPath,omitempty"`
-					CertPath   *string `tfsdk:"cert_path" json:"certPath,omitempty"`
-					KeyPath    *string `tfsdk:"key_path" json:"keyPath,omitempty"`
-					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+					CaPath             *string `tfsdk:"ca_path" json:"caPath,omitempty"`
+					CertPath           *string `tfsdk:"cert_path" json:"certPath,omitempty"`
+					InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeyPath            *string `tfsdk:"key_path" json:"keyPath,omitempty"`
+					ServerName         *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls" json:"tls,omitempty"`
 			} `tfsdk:"client" json:"client,omitempty"`
 			Discovery *struct {
@@ -101,10 +102,11 @@ type LokiGrafanaComRulerConfigV1ManifestData struct {
 						Type            *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"header_auth" json:"headerAuth,omitempty"`
 					Tls *struct {
-						CaPath     *string `tfsdk:"ca_path" json:"caPath,omitempty"`
-						CertPath   *string `tfsdk:"cert_path" json:"certPath,omitempty"`
-						KeyPath    *string `tfsdk:"key_path" json:"keyPath,omitempty"`
-						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+						CaPath             *string `tfsdk:"ca_path" json:"caPath,omitempty"`
+						CertPath           *string `tfsdk:"cert_path" json:"certPath,omitempty"`
+						InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						KeyPath            *string `tfsdk:"key_path" json:"keyPath,omitempty"`
+						ServerName         *string `tfsdk:"server_name" json:"serverName,omitempty"`
 					} `tfsdk:"tls" json:"tls,omitempty"`
 				} `tfsdk:"client" json:"client,omitempty"`
 				Discovery *struct {
@@ -327,6 +329,14 @@ func (r *LokiGrafanaComRulerConfigV1Manifest) Schema(_ context.Context, _ dataso
 											"cert_path": schema.StringAttribute{
 												Description:         "The client-side certificate file path for the TLS configuration.",
 												MarkdownDescription: "The client-side certificate file path for the TLS configuration.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"insecure_skip_verify": schema.BoolAttribute{
+												Description:         "Skip validating server certificate.",
+												MarkdownDescription: "Skip validating server certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -653,6 +663,14 @@ func (r *LokiGrafanaComRulerConfigV1Manifest) Schema(_ context.Context, _ dataso
 													"cert_path": schema.StringAttribute{
 														Description:         "The client-side certificate file path for the TLS configuration.",
 														MarkdownDescription: "The client-side certificate file path for the TLS configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"insecure_skip_verify": schema.BoolAttribute{
+														Description:         "Skip validating server certificate.",
+														MarkdownDescription: "Skip validating server certificate.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

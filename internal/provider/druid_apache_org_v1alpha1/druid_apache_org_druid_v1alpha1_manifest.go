@@ -1052,7 +1052,8 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
-			Services *[]struct {
+			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			Services           *[]struct {
 				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 				Metadata   *struct {
@@ -8874,6 +8875,14 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"service_account_name": schema.StringAttribute{
+								Description:         "ServiceAccountName Kubernetes native 'serviceAccountName' specification.",
+								MarkdownDescription: "ServiceAccountName Kubernetes native 'serviceAccountName' specification.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"services": schema.ListNestedAttribute{

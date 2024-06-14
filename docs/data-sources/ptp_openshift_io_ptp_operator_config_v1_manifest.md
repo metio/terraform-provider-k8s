@@ -68,5 +68,5 @@ Optional:
 Optional:
 
 - `enable_event_publisher` (Boolean) EnableEventPublisher will deploy event proxy as a sidecar
-- `storage_type` (String) StorageType is the name of StorageClass providing persist storage used by HTTP transport to store subscription data
-- `transport_host` (String) TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043' Example AMQP transport: 'amqp://amq-router-service-name.amq-namespace.svc.cluster.local'
+- `storage_type` (String) StorageType is the type of storage to store subscription data
+- `transport_host` (String) TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'

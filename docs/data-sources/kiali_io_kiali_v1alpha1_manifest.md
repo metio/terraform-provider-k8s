@@ -629,7 +629,6 @@ Optional:
 Optional:
 
 - `certificates_information_indicators` (Attributes) Flag to enable/disable displaying certificates information and which secrets to grant read permissions. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--certificates_information_indicators))
-- `clustering` (Attributes) Multi-cluster related features. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--clustering))
 - `disabled_features` (List of String) There may be some features that admins do not want to be accessible to users (even in 'view only' mode). In this case, this setting allows you to disable one or more of those features entirely.
 - `istio_annotation_action` (Boolean) Flag to enable/disable an Action to edit annotations.
 - `istio_injection_action` (Boolean) Flag to enable/disable an Action to label a namespace for automatic Istio Sidecar injection.
@@ -644,45 +643,6 @@ Optional:
 
 - `enabled` (Boolean)
 - `secrets` (List of String)
-
-
-<a id="nestedatt--spec--kiali_feature_flags--clustering"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering`
-
-Optional:
-
-- `autodetect_secrets` (Attributes) Settings to allow cluster secrets to be auto-detected. Secrets must exist in the Kiali deployment namespace. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--clustering--autodetect_secrets))
-- `clusters` (Attributes List) A list of clusters that the Kiali Server can access. You need to specify the remote clusters here if 'autodetect_secrets.enabled' is false. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--clustering--clusters))
-- `kiali_urls` (Attributes List) A map between cluster name, instance name and namespace to a Kiali URL. Will be used showing the Mesh page's Kiali URLs. The Kiali service's 'kiali.io/external-url' annotation will be overridden when this property is set. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--clustering--kiali_urls))
-
-<a id="nestedatt--spec--kiali_feature_flags--clustering--autodetect_secrets"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering.autodetect_secrets`
-
-Optional:
-
-- `enabled` (Boolean) If true then remote cluster secrets will be autodetected during the installation of the Kiali Server Deployment. Any remote cluster secrets found in the Kiali deployment namespace will be mounted to the Kiali Server's file system. If false, you can still manually specify the remote cluster secret information in the 'clusters' setting if you wish to utilize multicluster features.
-- `label` (String) The name and value of a label that exists on all remote cluster secrets. Default is 'kiali.io/multiCluster=true'.
-
-
-<a id="nestedatt--spec--kiali_feature_flags--clustering--clusters"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering.clusters`
-
-Optional:
-
-- `name` (String) The name of the cluster.
-- `secret_name` (String) The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace. If a secret name is not provided then it's assumed that the cluster is inaccessible.
-
-
-<a id="nestedatt--spec--kiali_feature_flags--clustering--kiali_urls"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering.kiali_urls`
-
-Optional:
-
-- `cluster_name` (String) The name of the cluster.
-- `instance_name` (String) The instance name of this Kiali installation. This should be the value used in 'deployment.instance_name' for Kiali resource name.
-- `namespace` (String) The namespace into which Kiali is installed.
-- `url` (String) The URL of Kiali in the cluster.
-
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults"></a>

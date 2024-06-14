@@ -9754,6 +9754,9 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 
 								"node_selector": schema.MapAttribute{

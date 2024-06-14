@@ -98,6 +98,9 @@ Optional:
 
 - `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--try--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--try--assert))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--bindings))
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--clusters))
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--try--command))
 - `continue_on_error` (Boolean) ContinueOnError determines whether a test should continue or not in case the operation was not successful.Even if the test continues executing, it will still be reported as failed.
 - `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--try--create))
@@ -107,6 +110,7 @@ Optional:
 - `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--try--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--get))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--outputs))
 - `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--try--patch))
 - `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--pod_logs))
 - `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--try--script))
@@ -119,37 +123,12 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--apply--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--apply--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--apply--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--apply--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--apply--bindings"></a>
-### Nested Schema for `spec.steps.try.apply.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--apply--clusters"></a>
-### Nested Schema for `spec.steps.try.apply.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--apply--expect"></a>
 ### Nested Schema for `spec.steps.try.apply.expect`
@@ -163,35 +142,20 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--apply--outputs"></a>
-### Nested Schema for `spec.steps.try.apply.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
-
-
 
 <a id="nestedatt--spec--steps--try--assert"></a>
 ### Nested Schema for `spec.steps.try.assert`
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--assert--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--assert--clusters))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--assert--bindings"></a>
-### Nested Schema for `spec.steps.try.assert.bindings`
+
+<a id="nestedatt--spec--steps--try--bindings"></a>
+### Nested Schema for `spec.steps.try.bindings`
 
 Required:
 
@@ -199,8 +163,8 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--assert--clusters"></a>
-### Nested Schema for `spec.steps.try.assert.clusters`
+<a id="nestedatt--spec--steps--try--clusters"></a>
+### Nested Schema for `spec.steps.try.clusters`
 
 Required:
 
@@ -209,7 +173,6 @@ Required:
 Optional:
 
 - `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--try--command"></a>
@@ -222,35 +185,10 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--command--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--command--bindings"></a>
-### Nested Schema for `spec.steps.try.command.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--command--clusters"></a>
-### Nested Schema for `spec.steps.try.command.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--command--env"></a>
 ### Nested Schema for `spec.steps.try.command.env`
@@ -261,56 +199,18 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--try--command--outputs"></a>
-### Nested Schema for `spec.steps.try.command.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
-
-
 
 <a id="nestedatt--spec--steps--try--create"></a>
 ### Nested Schema for `spec.steps.try.create`
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--create--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--create--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--create--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--create--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--create--bindings"></a>
-### Nested Schema for `spec.steps.try.create.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--create--clusters"></a>
-### Nested Schema for `spec.steps.try.create.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--create--expect"></a>
 ### Nested Schema for `spec.steps.try.create.expect`
@@ -324,55 +224,18 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--create--outputs"></a>
-### Nested Schema for `spec.steps.try.create.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
-
-
 
 <a id="nestedatt--spec--steps--try--delete"></a>
 ### Nested Schema for `spec.steps.try.delete`
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--delete--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--delete--clusters))
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--delete--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--delete--bindings"></a>
-### Nested Schema for `spec.steps.try.delete.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--delete--clusters"></a>
-### Nested Schema for `spec.steps.try.delete.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--delete--expect"></a>
 ### Nested Schema for `spec.steps.try.delete.expect`
@@ -412,25 +275,11 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--describe--clusters))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--describe--clusters"></a>
-### Nested Schema for `spec.steps.try.describe.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--try--error"></a>
@@ -438,34 +287,10 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--error--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--error--clusters))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--error--bindings"></a>
-### Nested Schema for `spec.steps.try.error.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--error--clusters"></a>
-### Nested Schema for `spec.steps.try.error.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--try--events"></a>
@@ -473,25 +298,11 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--events--clusters"></a>
-### Nested Schema for `spec.steps.try.events.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--try--get"></a>
@@ -504,25 +315,24 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--get--clusters"></a>
-### Nested Schema for `spec.steps.try.get.clusters`
+
+<a id="nestedatt--spec--steps--try--outputs"></a>
+### Nested Schema for `spec.steps.try.outputs`
 
 Required:
 
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
 
 Optional:
 
-- `context` (String) Context is the name of the context to use.
-
+- `match` (Map of String) Match defines the matching statement.
 
 
 <a id="nestedatt--spec--steps--try--patch"></a>
@@ -530,37 +340,12 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--patch--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--patch--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--patch--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--patch--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--patch--bindings"></a>
-### Nested Schema for `spec.steps.try.patch.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--patch--clusters"></a>
-### Nested Schema for `spec.steps.try.patch.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--patch--expect"></a>
 ### Nested Schema for `spec.steps.try.patch.expect`
@@ -574,27 +359,12 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--patch--outputs"></a>
-### Nested Schema for `spec.steps.try.patch.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
-
-
 
 <a id="nestedatt--spec--steps--try--pod_logs"></a>
 ### Nested Schema for `spec.steps.try.pod_logs`
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -602,54 +372,17 @@ Optional:
 - `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--try--pod_logs--clusters"></a>
-### Nested Schema for `spec.steps.try.pod_logs.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
 
 <a id="nestedatt--spec--steps--try--script"></a>
 ### Nested Schema for `spec.steps.try.script`
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--try--script--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--script--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--script--bindings"></a>
-### Nested Schema for `spec.steps.try.script.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--script--clusters"></a>
-### Nested Schema for `spec.steps.try.script.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--script--env"></a>
 ### Nested Schema for `spec.steps.try.script.env`
@@ -658,19 +391,6 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--script--outputs"></a>
-### Nested Schema for `spec.steps.try.script.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
 
 
 
@@ -687,37 +407,12 @@ Required:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--update--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--update--clusters))
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--update--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--update--outputs))
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--try--update--bindings"></a>
-### Nested Schema for `spec.steps.try.update.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--try--update--clusters"></a>
-### Nested Schema for `spec.steps.try.update.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--try--update--expect"></a>
 ### Nested Schema for `spec.steps.try.update.expect`
@@ -731,19 +426,6 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
-<a id="nestedatt--spec--steps--try--update--outputs"></a>
-### Nested Schema for `spec.steps.try.update.outputs`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-Optional:
-
-- `match` (Map of String) Match defines the matching statement.
-
-
 
 <a id="nestedatt--spec--steps--try--wait"></a>
 ### Nested Schema for `spec.steps.try.wait`
@@ -751,18 +433,16 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--try--wait--for"></a>
 ### Nested Schema for `spec.steps.try.wait.for`
@@ -795,18 +475,6 @@ Required:
 
 
 
-<a id="nestedatt--spec--steps--try--wait--clusters"></a>
-### Nested Schema for `spec.steps.try.wait.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
 
 
 <a id="nestedatt--spec--steps--bindings"></a>
@@ -823,16 +491,83 @@ Required:
 
 Optional:
 
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--catch--apply))
+- `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--catch--assert))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--bindings))
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--clusters))
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--catch--command))
+- `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--catch--create))
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--catch--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--describe))
 - `description` (String) Description contains a description of the operation.
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--catch--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--get))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--outputs))
+- `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--catch--patch))
 - `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--pod_logs))
 - `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--catch--script))
 - `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--catch--sleep))
+- `update` (Attributes) Update represents an update operation. (see [below for nested schema](#nestedatt--spec--steps--catch--update))
 - `wait` (Attributes) Wait determines the resource wait collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--wait))
+
+<a id="nestedatt--spec--steps--catch--apply"></a>
+### Nested Schema for `spec.steps.catch.apply`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--apply--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--catch--apply--expect"></a>
+### Nested Schema for `spec.steps.catch.apply.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--catch--assert"></a>
+### Nested Schema for `spec.steps.catch.assert`
+
+Optional:
+
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--catch--bindings"></a>
+### Nested Schema for `spec.steps.catch.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--catch--clusters"></a>
+### Nested Schema for `spec.steps.catch.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
 
 <a id="nestedatt--spec--steps--catch--command"></a>
 ### Nested Schema for `spec.steps.catch.command`
@@ -844,35 +579,10 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--command--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--command--bindings"></a>
-### Nested Schema for `spec.steps.catch.command.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--catch--command--clusters"></a>
-### Nested Schema for `spec.steps.catch.command.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--catch--command--env"></a>
 ### Nested Schema for `spec.steps.catch.command.env`
@@ -883,13 +593,25 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--catch--command--outputs"></a>
-### Nested Schema for `spec.steps.catch.command.outputs`
+
+<a id="nestedatt--spec--steps--catch--create"></a>
+### Nested Schema for `spec.steps.catch.create`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--create--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--catch--create--expect"></a>
+### Nested Schema for `spec.steps.catch.create.expect`
 
 Required:
 
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
+- `check` (Map of String) Check defines the verification statement.
 
 Optional:
 
@@ -902,36 +624,12 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--clusters))
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--delete--bindings"></a>
-### Nested Schema for `spec.steps.catch.delete.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--catch--delete--clusters"></a>
-### Nested Schema for `spec.steps.catch.delete.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--catch--delete--expect"></a>
 ### Nested Schema for `spec.steps.catch.delete.expect`
@@ -971,25 +669,22 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--describe--clusters))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--describe--clusters"></a>
-### Nested Schema for `spec.steps.catch.describe.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+<a id="nestedatt--spec--steps--catch--error"></a>
+### Nested Schema for `spec.steps.catch.error`
 
 Optional:
 
-- `context` (String) Context is the name of the context to use.
-
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
 <a id="nestedatt--spec--steps--catch--events"></a>
@@ -997,25 +692,11 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--events--clusters"></a>
-### Nested Schema for `spec.steps.catch.events.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--catch--get"></a>
@@ -1028,101 +709,15 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--catch--get--clusters"></a>
-### Nested Schema for `spec.steps.catch.get.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--catch--pod_logs"></a>
-### Nested Schema for `spec.steps.catch.pod_logs`
-
-Optional:
-
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--pod_logs--clusters))
-- `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--pod_logs--clusters"></a>
-### Nested Schema for `spec.steps.catch.pod_logs.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--catch--script"></a>
-### Nested Schema for `spec.steps.catch.script`
-
-Optional:
-
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--script--bindings))
-- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--script--clusters))
-- `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--script--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--script--outputs))
-- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--catch--script--bindings"></a>
-### Nested Schema for `spec.steps.catch.script.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--catch--script--clusters"></a>
-### Nested Schema for `spec.steps.catch.script.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-<a id="nestedatt--spec--steps--catch--script--env"></a>
-### Nested Schema for `spec.steps.catch.script.env`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--catch--script--outputs"></a>
-### Nested Schema for `spec.steps.catch.script.outputs`
+<a id="nestedatt--spec--steps--catch--outputs"></a>
+### Nested Schema for `spec.steps.catch.outputs`
 
 Required:
 
@@ -1134,6 +729,64 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--catch--patch"></a>
+### Nested Schema for `spec.steps.catch.patch`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--patch--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--catch--patch--expect"></a>
+### Nested Schema for `spec.steps.catch.patch.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--catch--pod_logs"></a>
+### Nested Schema for `spec.steps.catch.pod_logs`
+
+Optional:
+
+- `container` (String) Container in pod to get logs from else --all-containers is used.
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--catch--script"></a>
+### Nested Schema for `spec.steps.catch.script`
+
+Optional:
+
+- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
+- `content` (String) Content defines a shell script (run with 'sh -c ...').
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--catch--script--env))
+- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--catch--script--env"></a>
+### Nested Schema for `spec.steps.catch.script.env`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
 
 <a id="nestedatt--spec--steps--catch--sleep"></a>
 ### Nested Schema for `spec.steps.catch.sleep`
@@ -1143,24 +796,47 @@ Required:
 - `duration` (String) Duration is the delay used for sleeping.
 
 
+<a id="nestedatt--spec--steps--catch--update"></a>
+### Nested Schema for `spec.steps.catch.update`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--update--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--catch--update--expect"></a>
+### Nested Schema for `spec.steps.catch.update.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
 <a id="nestedatt--spec--steps--catch--wait"></a>
 ### Nested Schema for `spec.steps.catch.wait`
 
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--catch--wait--for"></a>
 ### Nested Schema for `spec.steps.catch.wait.for`
@@ -1193,8 +869,81 @@ Required:
 
 
 
-<a id="nestedatt--spec--steps--catch--wait--clusters"></a>
-### Nested Schema for `spec.steps.catch.wait.clusters`
+
+
+<a id="nestedatt--spec--steps--cleanup"></a>
+### Nested Schema for `spec.steps.cleanup`
+
+Optional:
+
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--cleanup--apply))
+- `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--cleanup--assert))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--bindings))
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--clusters))
+- `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command))
+- `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--create))
+- `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete))
+- `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe))
+- `description` (String) Description contains a description of the operation.
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--cleanup--error))
+- `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events))
+- `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--outputs))
+- `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--patch))
+- `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--pod_logs))
+- `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script))
+- `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--cleanup--sleep))
+- `update` (Attributes) Update represents an update operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--update))
+- `wait` (Attributes) Wait determines the resource wait collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait))
+
+<a id="nestedatt--spec--steps--cleanup--apply"></a>
+### Nested Schema for `spec.steps.cleanup.apply`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--apply--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--apply--expect"></a>
+### Nested Schema for `spec.steps.cleanup.apply.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--assert"></a>
+### Nested Schema for `spec.steps.cleanup.assert`
+
+Optional:
+
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--cleanup--bindings"></a>
+### Nested Schema for `spec.steps.cleanup.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--cleanup--clusters"></a>
+### Nested Schema for `spec.steps.cleanup.clusters`
 
 Required:
 
@@ -1204,24 +953,6 @@ Optional:
 
 - `context` (String) Context is the name of the context to use.
 
-
-
-
-<a id="nestedatt--spec--steps--cleanup"></a>
-### Nested Schema for `spec.steps.cleanup`
-
-Optional:
-
-- `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command))
-- `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete))
-- `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe))
-- `description` (String) Description contains a description of the operation.
-- `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events))
-- `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get))
-- `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--pod_logs))
-- `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script))
-- `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--cleanup--sleep))
-- `wait` (Attributes) Wait determines the resource wait collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait))
 
 <a id="nestedatt--spec--steps--cleanup--command"></a>
 ### Nested Schema for `spec.steps.cleanup.command`
@@ -1233,35 +964,10 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--cleanup--command--bindings"></a>
-### Nested Schema for `spec.steps.cleanup.command.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--cleanup--command--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.command.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--cleanup--command--env"></a>
 ### Nested Schema for `spec.steps.cleanup.command.env`
@@ -1272,13 +978,25 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--cleanup--command--outputs"></a>
-### Nested Schema for `spec.steps.cleanup.command.outputs`
+
+<a id="nestedatt--spec--steps--cleanup--create"></a>
+### Nested Schema for `spec.steps.cleanup.create`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--create--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--create--expect"></a>
+### Nested Schema for `spec.steps.cleanup.create.expect`
 
 Required:
 
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
+- `check` (Map of String) Check defines the verification statement.
 
 Optional:
 
@@ -1291,36 +1009,12 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--clusters))
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--cleanup--delete--bindings"></a>
-### Nested Schema for `spec.steps.cleanup.delete.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--cleanup--delete--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.delete.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--cleanup--delete--expect"></a>
 ### Nested Schema for `spec.steps.cleanup.delete.expect`
@@ -1360,25 +1054,22 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe--clusters))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--cleanup--describe--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.describe.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+<a id="nestedatt--spec--steps--cleanup--error"></a>
+### Nested Schema for `spec.steps.cleanup.error`
 
 Optional:
 
-- `context` (String) Context is the name of the context to use.
-
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
 <a id="nestedatt--spec--steps--cleanup--events"></a>
@@ -1386,25 +1077,11 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--cleanup--events--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.events.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--cleanup--get"></a>
@@ -1417,101 +1094,15 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--cleanup--get--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.get.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--cleanup--pod_logs"></a>
-### Nested Schema for `spec.steps.cleanup.pod_logs`
-
-Optional:
-
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--pod_logs--clusters))
-- `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--cleanup--pod_logs--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.pod_logs.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--cleanup--script"></a>
-### Nested Schema for `spec.steps.cleanup.script`
-
-Optional:
-
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--bindings))
-- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--clusters))
-- `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--outputs))
-- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--cleanup--script--bindings"></a>
-### Nested Schema for `spec.steps.cleanup.script.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--cleanup--script--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.script.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-<a id="nestedatt--spec--steps--cleanup--script--env"></a>
-### Nested Schema for `spec.steps.cleanup.script.env`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--cleanup--script--outputs"></a>
-### Nested Schema for `spec.steps.cleanup.script.outputs`
+<a id="nestedatt--spec--steps--cleanup--outputs"></a>
+### Nested Schema for `spec.steps.cleanup.outputs`
 
 Required:
 
@@ -1523,6 +1114,64 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--cleanup--patch"></a>
+### Nested Schema for `spec.steps.cleanup.patch`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--patch--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--patch--expect"></a>
+### Nested Schema for `spec.steps.cleanup.patch.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--cleanup--pod_logs"></a>
+### Nested Schema for `spec.steps.cleanup.pod_logs`
+
+Optional:
+
+- `container` (String) Container in pod to get logs from else --all-containers is used.
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--cleanup--script"></a>
+### Nested Schema for `spec.steps.cleanup.script`
+
+Optional:
+
+- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
+- `content` (String) Content defines a shell script (run with 'sh -c ...').
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--cleanup--script--env))
+- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--script--env"></a>
+### Nested Schema for `spec.steps.cleanup.script.env`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
 
 <a id="nestedatt--spec--steps--cleanup--sleep"></a>
 ### Nested Schema for `spec.steps.cleanup.sleep`
@@ -1532,24 +1181,47 @@ Required:
 - `duration` (String) Duration is the delay used for sleeping.
 
 
+<a id="nestedatt--spec--steps--cleanup--update"></a>
+### Nested Schema for `spec.steps.cleanup.update`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--update--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--cleanup--update--expect"></a>
+### Nested Schema for `spec.steps.cleanup.update.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
 <a id="nestedatt--spec--steps--cleanup--wait"></a>
 ### Nested Schema for `spec.steps.cleanup.wait`
 
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--cleanup--wait--for"></a>
 ### Nested Schema for `spec.steps.cleanup.wait.for`
@@ -1582,18 +1254,6 @@ Required:
 
 
 
-<a id="nestedatt--spec--steps--cleanup--wait--clusters"></a>
-### Nested Schema for `spec.steps.cleanup.wait.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
 
 
 <a id="nestedatt--spec--steps--clusters"></a>
@@ -1613,16 +1273,83 @@ Optional:
 
 Optional:
 
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--finally--apply))
+- `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--finally--assert))
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--bindings))
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--clusters))
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--finally--command))
+- `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--finally--create))
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--finally--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--describe))
 - `description` (String) Description contains a description of the operation.
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--finally--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--get))
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--outputs))
+- `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--finally--patch))
 - `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--pod_logs))
 - `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--finally--script))
 - `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--finally--sleep))
+- `update` (Attributes) Update represents an update operation. (see [below for nested schema](#nestedatt--spec--steps--finally--update))
 - `wait` (Attributes) Wait determines the resource wait collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--wait))
+
+<a id="nestedatt--spec--steps--finally--apply"></a>
+### Nested Schema for `spec.steps.finally.apply`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--apply--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--finally--apply--expect"></a>
+### Nested Schema for `spec.steps.finally.apply.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--finally--assert"></a>
+### Nested Schema for `spec.steps.finally.assert`
+
+Optional:
+
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--finally--bindings"></a>
+### Nested Schema for `spec.steps.finally.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--steps--finally--clusters"></a>
+### Nested Schema for `spec.steps.finally.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
 
 <a id="nestedatt--spec--steps--finally--command"></a>
 ### Nested Schema for `spec.steps.finally.command`
@@ -1634,35 +1361,10 @@ Required:
 Optional:
 
 - `args` (List of String) Args is the command arguments.
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--command--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--command--bindings"></a>
-### Nested Schema for `spec.steps.finally.command.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--finally--command--clusters"></a>
-### Nested Schema for `spec.steps.finally.command.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--finally--command--env"></a>
 ### Nested Schema for `spec.steps.finally.command.env`
@@ -1673,13 +1375,25 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
-<a id="nestedatt--spec--steps--finally--command--outputs"></a>
-### Nested Schema for `spec.steps.finally.command.outputs`
+
+<a id="nestedatt--spec--steps--finally--create"></a>
+### Nested Schema for `spec.steps.finally.create`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--create--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--finally--create--expect"></a>
+### Nested Schema for `spec.steps.finally.create.expect`
 
 Required:
 
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
+- `check` (Map of String) Check defines the verification statement.
 
 Optional:
 
@@ -1692,36 +1406,12 @@ Optional:
 
 Optional:
 
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--clusters))
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--expect))
 - `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--delete--bindings"></a>
-### Nested Schema for `spec.steps.finally.delete.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--finally--delete--clusters"></a>
-### Nested Schema for `spec.steps.finally.delete.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 <a id="nestedatt--spec--steps--finally--delete--expect"></a>
 ### Nested Schema for `spec.steps.finally.delete.expect`
@@ -1761,25 +1451,22 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--describe--clusters))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--describe--clusters"></a>
-### Nested Schema for `spec.steps.finally.describe.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+<a id="nestedatt--spec--steps--finally--error"></a>
+### Nested Schema for `spec.steps.finally.error`
 
 Optional:
 
-- `context` (String) Context is the name of the context to use.
-
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Check provides a check used in assertions.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
 <a id="nestedatt--spec--steps--finally--events"></a>
@@ -1787,25 +1474,11 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--events--clusters"></a>
-### Nested Schema for `spec.steps.finally.events.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
 
 
 <a id="nestedatt--spec--steps--finally--get"></a>
@@ -1818,101 +1491,15 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
-<a id="nestedatt--spec--steps--finally--get--clusters"></a>
-### Nested Schema for `spec.steps.finally.get.clusters`
 
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--finally--pod_logs"></a>
-### Nested Schema for `spec.steps.finally.pod_logs`
-
-Optional:
-
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--pod_logs--clusters))
-- `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--pod_logs--clusters"></a>
-### Nested Schema for `spec.steps.finally.pod_logs.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-
-<a id="nestedatt--spec--steps--finally--script"></a>
-### Nested Schema for `spec.steps.finally.script`
-
-Optional:
-
-- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--script--bindings))
-- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--script--clusters))
-- `content` (String) Content defines a shell script (run with 'sh -c ...').
-- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--script--env))
-- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--script--outputs))
-- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
-- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
-
-<a id="nestedatt--spec--steps--finally--script--bindings"></a>
-### Nested Schema for `spec.steps.finally.script.bindings`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--finally--script--clusters"></a>
-### Nested Schema for `spec.steps.finally.script.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
-
-
-<a id="nestedatt--spec--steps--finally--script--env"></a>
-### Nested Schema for `spec.steps.finally.script.env`
-
-Required:
-
-- `name` (String) Name the name of the binding.
-- `value` (Map of String) Value value of the binding.
-
-
-<a id="nestedatt--spec--steps--finally--script--outputs"></a>
-### Nested Schema for `spec.steps.finally.script.outputs`
+<a id="nestedatt--spec--steps--finally--outputs"></a>
+### Nested Schema for `spec.steps.finally.outputs`
 
 Required:
 
@@ -1924,6 +1511,64 @@ Optional:
 - `match` (Map of String) Match defines the matching statement.
 
 
+<a id="nestedatt--spec--steps--finally--patch"></a>
+### Nested Schema for `spec.steps.finally.patch`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--patch--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--finally--patch--expect"></a>
+### Nested Schema for `spec.steps.finally.patch.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
+<a id="nestedatt--spec--steps--finally--pod_logs"></a>
+### Nested Schema for `spec.steps.finally.pod_logs`
+
+Optional:
+
+- `container` (String) Container in pod to get logs from else --all-containers is used.
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `selector` (String) Selector defines labels selector.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+
+<a id="nestedatt--spec--steps--finally--script"></a>
+### Nested Schema for `spec.steps.finally.script`
+
+Optional:
+
+- `check` (Map of String) Check is an assertion tree to validate the operation outcome.
+- `content` (String) Content defines a shell script (run with 'sh -c ...').
+- `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--steps--finally--script--env))
+- `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--finally--script--env"></a>
+### Nested Schema for `spec.steps.finally.script.env`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
 
 <a id="nestedatt--spec--steps--finally--sleep"></a>
 ### Nested Schema for `spec.steps.finally.sleep`
@@ -1933,24 +1578,47 @@ Required:
 - `duration` (String) Duration is the delay used for sleeping.
 
 
+<a id="nestedatt--spec--steps--finally--update"></a>
+### Nested Schema for `spec.steps.finally.update`
+
+Optional:
+
+- `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
+- `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--update--expect))
+- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `resource` (Map of String) Resource provides a resource to be applied.
+- `template` (Boolean) Template determines whether resources should be considered for templating.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--finally--update--expect"></a>
+### Nested Schema for `spec.steps.finally.update.expect`
+
+Required:
+
+- `check` (Map of String) Check defines the verification statement.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
+
+
+
 <a id="nestedatt--spec--steps--finally--wait"></a>
 ### Nested Schema for `spec.steps.finally.wait`
 
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
-- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--finally--wait--for"></a>
 ### Nested Schema for `spec.steps.finally.wait.for`
@@ -1981,18 +1649,6 @@ Required:
 - `path` (String) Path defines the json path to wait for, e.g. '{.status.phase}'.
 - `value` (String) Value defines the expected value to wait for, e.g., 'Running'.
 
-
-
-<a id="nestedatt--spec--steps--finally--wait--clusters"></a>
-### Nested Schema for `spec.steps.finally.wait.clusters`
-
-Required:
-
-- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
-
-Optional:
-
-- `context` (String) Context is the name of the context to use.
 
 
 
@@ -2387,18 +2043,18 @@ Required:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--error--catch--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--error--catch--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--error--catch--wait--for"></a>
 ### Nested Schema for `spec.error.catch.wait.for`

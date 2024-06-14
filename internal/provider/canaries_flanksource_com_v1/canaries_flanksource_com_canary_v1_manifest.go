@@ -44,9 +44,28 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 
 	Spec *struct {
 		Alertmanager *[]struct {
-			Alerts      *[]string `tfsdk:"alerts" json:"alerts,omitempty"`
-			Connection  *string   `tfsdk:"connection" json:"connection,omitempty"`
-			Description *string   `tfsdk:"description" json:"description,omitempty"`
+			Alerts *[]string `tfsdk:"alerts" json:"alerts,omitempty"`
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
+			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
+			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
 				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
 				Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
@@ -70,7 +89,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -920,6 +982,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"dynatrace" json:"dynatrace,omitempty"`
 		Elasticsearch *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -943,7 +1024,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -1396,9 +1520,71 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Path           *string `tfsdk:"path" json:"path,omitempty"`
 			Recursive      *bool   `tfsdk:"recursive" json:"recursive,omitempty"`
 			SftpConnection *struct {
+				Bearer *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"bearer" json:"bearer,omitempty"`
 				Connection *string `tfsdk:"connection" json:"connection,omitempty"`
 				Host       *string `tfsdk:"host" json:"host,omitempty"`
-				Password   *struct {
+				Oauth      *struct {
+					ClientID *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							HelmRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+							SecretKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"client_id" json:"clientID,omitempty"`
+					ClientSecret *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							HelmRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+							SecretKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+					Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+					Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+					TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+				} `tfsdk:"oauth" json:"oauth,omitempty"`
+				Password *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Value     *string `tfsdk:"value" json:"value,omitempty"`
 					ValueFrom *struct {
@@ -1439,9 +1625,71 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				} `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"sftp_connection" json:"sftpConnection,omitempty"`
 			SmbConnection *struct {
+				Bearer *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"bearer" json:"bearer,omitempty"`
 				Connection *string `tfsdk:"connection" json:"connection,omitempty"`
 				Domain     *string `tfsdk:"domain" json:"domain,omitempty"`
-				Password   *struct {
+				Oauth      *struct {
+					ClientID *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							HelmRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+							SecretKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"client_id" json:"clientID,omitempty"`
+					ClientSecret *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							HelmRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+							SecretKeyRef *struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+					Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+					Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+					TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+				} `tfsdk:"oauth" json:"oauth,omitempty"`
+				Password *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Value     *string `tfsdk:"value" json:"value,omitempty"`
 					ValueFrom *struct {
@@ -1691,6 +1939,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"helm" json:"helm,omitempty"`
 		Http *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Body        *string `tfsdk:"body" json:"body,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
@@ -1757,7 +2024,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			Ntlm      *bool   `tfsdk:"ntlm" json:"ntlm,omitempty"`
 			Ntlmv2    *bool   `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
-			Oauth2    *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Oauth2 *struct {
 				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
 				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
 				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
@@ -2072,6 +2382,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"wait_for" json:"waitFor,omitempty"`
 		} `tfsdk:"kubernetes_resource" json:"kubernetesResource,omitempty"`
 		Ldap *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			BindDN      *string            `tfsdk:"bind_dn" json:"bindDN,omitempty"`
 			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
@@ -2089,7 +2418,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2133,6 +2505,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"ldap" json:"ldap,omitempty"`
 		Mongodb *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
 			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
@@ -2149,7 +2540,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2191,6 +2625,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"mongodb" json:"mongodb,omitempty"`
 		Mssql *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -2213,7 +2666,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2269,6 +2765,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"mssql" json:"mssql,omitempty"`
 		Mysql *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -2291,7 +2806,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2383,6 +2941,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string            `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"namespace" json:"namespace,omitempty"`
 		Opensearch *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -2406,7 +2983,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2498,6 +3118,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"pod" json:"pod,omitempty"`
 		Postgres *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -2520,7 +3159,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2576,6 +3258,25 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"postgres" json:"postgres,omitempty"`
 		Prometheus *[]struct {
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Display     *struct {
@@ -2599,7 +3300,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2654,7 +3398,26 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"prometheus" json:"prometheus,omitempty"`
 		Redis *[]struct {
-			Addr        *string            `tfsdk:"addr" json:"addr,omitempty"`
+			Addr   *string `tfsdk:"addr" json:"addr,omitempty"`
+			Bearer *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
 			Db          *int64             `tfsdk:"db" json:"db,omitempty"`
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
@@ -2672,7 +3435,50 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Oauth     *struct {
+				ClientID *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_id" json:"clientID,omitempty"`
+				ClientSecret *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						HelmRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
+				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
+				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
+			} `tfsdk:"oauth" json:"oauth,omitempty"`
+			Password *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -3050,6 +3856,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -3235,6 +4158,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -8913,6 +10105,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -9079,6 +10388,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -11984,6 +13562,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"bearer": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"connection": schema.StringAttribute{
 											Description:         "ConnectionName of the connection. It'll be used to populate the connection fields.",
 											MarkdownDescription: "ConnectionName of the connection. It'll be used to populate the connection fields.",
@@ -11998,6 +13693,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+										},
+
+										"oauth": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"helm_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"service_account": schema.StringAttribute{
+																	Description:         "ServiceAccount specifies the service account whose token should be fetched",
+																	MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"client_secret": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"helm_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"service_account": schema.StringAttribute{
+																	Description:         "ServiceAccount specifies the service account whose token should be fetched",
+																	MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"params": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"scope": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"token_url": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"password": schema.SingleNestedAttribute{
@@ -12251,6 +14215,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"bearer": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"connection": schema.StringAttribute{
 											Description:         "ConnectionName of the connection. It'll be used to populate the connection fields.",
 											MarkdownDescription: "ConnectionName of the connection. It'll be used to populate the connection fields.",
@@ -12265,6 +14346,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"oauth": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"helm_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"service_account": schema.StringAttribute{
+																	Description:         "ServiceAccount specifies the service account whose token should be fetched",
+																	MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"client_secret": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"helm_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"service_account": schema.StringAttribute{
+																	Description:         "ServiceAccount specifies the service account whose token should be fetched",
+																	MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"params": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"scope": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"token_url": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"password": schema.SingleNestedAttribute{
@@ -13909,6 +16259,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"body": schema.StringAttribute{
 									Description:         "Request Body Contents",
 									MarkdownDescription: "Request Body Contents",
@@ -14353,6 +16820,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
@@ -16511,6 +19247,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"bind_dn": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -16636,6 +19489,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -16915,6 +20037,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -17032,6 +20271,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -17295,6 +20803,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -17453,6 +21078,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -17814,6 +21708,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -17972,6 +21983,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -18610,6 +22890,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -18776,6 +23173,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -19412,6 +24078,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -19570,6 +24353,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -19931,6 +24983,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -20097,6 +25266,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{
@@ -20458,6 +25896,123 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"bearer": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "Connection name e.g. connection://http/google",
 									MarkdownDescription: "Connection name e.g. connection://http/google",
@@ -20583,6 +26138,275 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"oauth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"helm_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"service_account": schema.StringAttribute{
+															Description:         "ServiceAccount specifies the service account whose token should be fetched",
+															MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"params": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"password": schema.SingleNestedAttribute{

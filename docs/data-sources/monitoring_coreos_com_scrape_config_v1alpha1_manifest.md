@@ -77,6 +77,7 @@ Optional:
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.
+- `light_sail_sd_configs` (Attributes List) LightsailSDConfigs defines a list of Lightsail service discovery configurations. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs))
 - `linode_sd_configs` (Attributes List) LinodeSDConfigs defines a list of Linode service discovery configurations. (see [below for nested schema](#nestedatt--spec--linode_sd_configs))
 - `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--metric_relabelings))
 - `metrics_path` (String) MetricsPath HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. /metrics).
@@ -2378,6 +2379,271 @@ Optional:
 
 <a id="nestedatt--spec--kuma_sd_configs--tls_config--key_secret"></a>
 ### Nested Schema for `spec.kuma_sd_configs.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs"></a>
+### Nested Schema for `spec.light_sail_sd_configs`
+
+Optional:
+
+- `access_key` (Attributes) AccessKey is the AWS API key. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--access_key))
+- `authorization` (Attributes) Optional 'authorization' HTTP header configuration.Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--authorization))
+- `basic_auth` (Attributes) Optional HTTP basic authentication information.Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--basic_auth))
+- `enable_http2` (Boolean) Configure whether to enable HTTP2.
+- `endpoint` (String) Custom endpoint to be used.
+- `follow_redirects` (Boolean) Configure whether the HTTP requests should follow HTTP 3xx redirects.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `oauth2` (Attributes) Optional OAuth2.0 configuration.Cannot be set at the same time as 'basicAuth', or 'authorization'. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2))
+- `port` (Number) Port to scrape the metrics from.If using the public IP address, this must instead be specified in the relabeling rule.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `refresh_interval` (String) Refresh interval to re-read the list of instances.
+- `region` (String) The AWS region.
+- `role_arn` (String) AWS Role ARN, an alternative to using AWS API keys.
+- `secret_key` (Attributes) SecretKey is the AWS API secret. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--secret_key))
+- `tls_config` (Attributes) TLS configuration to connect to the Puppet DB. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config))
+
+<a id="nestedatt--spec--light_sail_sd_configs--access_key"></a>
+### Nested Schema for `spec.light_sail_sd_configs.access_key`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--authorization"></a>
+### Nested Schema for `spec.light_sail_sd_configs.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
+
+<a id="nestedatt--spec--light_sail_sd_configs--authorization--credentials"></a>
+### Nested Schema for `spec.light_sail_sd_configs.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--basic_auth"></a>
+### Nested Schema for `spec.light_sail_sd_configs.basic_auth`
+
+Optional:
+
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password forauthentication. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username forauthentication. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--basic_auth--username))
+
+<a id="nestedatt--spec--light_sail_sd_configs--basic_auth--password"></a>
+### Nested Schema for `spec.light_sail_sd_configs.basic_auth.password`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--basic_auth--username"></a>
+### Nested Schema for `spec.light_sail_sd_configs.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--oauth2"></a>
+### Nested Schema for `spec.light_sail_sd_configs.oauth2`
+
+Required:
+
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
+
+Optional:
+
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+
+<a id="nestedatt--spec--light_sail_sd_configs--oauth2--client_id"></a>
+### Nested Schema for `spec.light_sail_sd_configs.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--light_sail_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.light_sail_sd_configs.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.light_sail_sd_configs.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--oauth2--client_secret"></a>
+### Nested Schema for `spec.light_sail_sd_configs.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--secret_key"></a>
+### Nested Schema for `spec.light_sail_sd_configs.secret_key`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--ca"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--ca--secret))
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--cert"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--cert--secret))
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--light_sail_sd_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.light_sail_sd_configs.tls_config.key_secret`
 
 Required:
 

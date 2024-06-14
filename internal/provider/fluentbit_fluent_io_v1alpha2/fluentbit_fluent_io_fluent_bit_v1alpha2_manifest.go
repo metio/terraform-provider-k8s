@@ -889,8 +889,9 @@ type FluentbitFluentIoFluentBitV1Alpha2ManifestData struct {
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"service" json:"service,omitempty"`
-		ServiceAccountAnnotations *map[string]string `tfsdk:"service_account_annotations" json:"serviceAccountAnnotations,omitempty"`
-		Tolerations               *[]struct {
+		ServiceAccountAnnotations     *map[string]string `tfsdk:"service_account_annotations" json:"serviceAccountAnnotations,omitempty"`
+		TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+		Tolerations                   *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -6958,6 +6959,14 @@ func (r *FluentbitFluentIoFluentBitV1Alpha2Manifest) Schema(_ context.Context, _
 						Description:         "Annotations to add to the Fluentbit service account",
 						MarkdownDescription: "Annotations to add to the Fluentbit service account",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"termination_grace_period_seconds": schema.Int64Attribute{
+						Description:         "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer.",
+						MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -214,8 +214,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 				MarkdownDescription: "VSphereVMSpec defines the desired state of VSphereVM.",
 				Attributes: map[string]schema.Attribute{
 					"additional_disks_gi_b": schema.ListAttribute{
-						Description:         "AdditionalDisksGiB holds the sizes of additional disks of the virtual machine, in GiB Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-						MarkdownDescription: "AdditionalDisksGiB holds the sizes of additional disks of the virtual machine, in GiB Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+						Description:         "AdditionalDisksGiB holds the sizes of additional disks of the virtual machine, in GiBDefaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+						MarkdownDescription: "AdditionalDisksGiB holds the sizes of additional disks of the virtual machine, in GiBDefaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -223,16 +223,16 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"bios_uuid": schema.StringAttribute{
-						Description:         "BiosUUID is the VM's BIOS UUID that is assigned at runtime after the VM has been created. This field is required at runtime for other controllers that read this CRD as unstructured data.",
-						MarkdownDescription: "BiosUUID is the VM's BIOS UUID that is assigned at runtime after the VM has been created. This field is required at runtime for other controllers that read this CRD as unstructured data.",
+						Description:         "BiosUUID is the VM's BIOS UUID that is assigned at runtime afterthe VM has been created.This field is required at runtime for other controllers that readthis CRD as unstructured data.",
+						MarkdownDescription: "BiosUUID is the VM's BIOS UUID that is assigned at runtime afterthe VM has been created.This field is required at runtime for other controllers that readthis CRD as unstructured data.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bootstrap_ref": schema.SingleNestedAttribute{
-						Description:         "BootstrapRef is a reference to a bootstrap provider-specific resource that holds configuration details. This field is optional in case no bootstrap data is required to create a VM.",
-						MarkdownDescription: "BootstrapRef is a reference to a bootstrap provider-specific resource that holds configuration details. This field is optional in case no bootstrap data is required to create a VM.",
+						Description:         "BootstrapRef is a reference to a bootstrap provider-specific resourcethat holds configuration details.This field is optional in case no bootstrap data is required to createa VM.",
+						MarkdownDescription: "BootstrapRef is a reference to a bootstrap provider-specific resourcethat holds configuration details.This field is optional in case no bootstrap data is required to createa VM.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -243,48 +243,48 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -296,16 +296,16 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"clone_mode": schema.StringAttribute{
-						Description:         "CloneMode specifies the type of clone operation. The LinkedClone mode is only support for templates that have at least one snapshot. If the template has no snapshots, then CloneMode defaults to FullClone. When LinkedClone mode is enabled the DiskGiB field is ignored as it is not possible to expand disks of linked clones. Defaults to LinkedClone, but fails gracefully to FullClone if the source of the clone operation has no snapshots.",
-						MarkdownDescription: "CloneMode specifies the type of clone operation. The LinkedClone mode is only support for templates that have at least one snapshot. If the template has no snapshots, then CloneMode defaults to FullClone. When LinkedClone mode is enabled the DiskGiB field is ignored as it is not possible to expand disks of linked clones. Defaults to LinkedClone, but fails gracefully to FullClone if the source of the clone operation has no snapshots.",
+						Description:         "CloneMode specifies the type of clone operation.The LinkedClone mode is only support for templates that have at leastone snapshot. If the template has no snapshots, then CloneMode defaultsto FullClone.When LinkedClone mode is enabled the DiskGiB field is ignored as it isnot possible to expand disks of linked clones.Defaults to LinkedClone, but fails gracefully to FullClone if the sourceof the clone operation has no snapshots.",
+						MarkdownDescription: "CloneMode specifies the type of clone operation.The LinkedClone mode is only support for templates that have at leastone snapshot. If the template has no snapshots, then CloneMode defaultsto FullClone.When LinkedClone mode is enabled the DiskGiB field is ignored as it isnot possible to expand disks of linked clones.Defaults to LinkedClone, but fails gracefully to FullClone if the sourceof the clone operation has no snapshots.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"custom_vmx_keys": schema.MapAttribute{
-						Description:         "CustomVMXKeys is a dictionary of advanced VMX options that can be set on VM Defaults to empty map",
-						MarkdownDescription: "CustomVMXKeys is a dictionary of advanced VMX options that can be set on VM Defaults to empty map",
+						Description:         "CustomVMXKeys is a dictionary of advanced VMX options that can be set on VMDefaults to empty map",
+						MarkdownDescription: "CustomVMXKeys is a dictionary of advanced VMX options that can be set on VMDefaults to empty map",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -313,56 +313,56 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"datacenter": schema.StringAttribute{
-						Description:         "Datacenter is the name or inventory path of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
-						MarkdownDescription: "Datacenter is the name or inventory path of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
+						Description:         "Datacenter is the name or inventory path of the datacenter in which thevirtual machine is created/located.Defaults to * which selects the default datacenter.",
+						MarkdownDescription: "Datacenter is the name or inventory path of the datacenter in which thevirtual machine is created/located.Defaults to * which selects the default datacenter.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"datastore": schema.StringAttribute{
-						Description:         "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
-						MarkdownDescription: "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
+						Description:         "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
+						MarkdownDescription: "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"disk_gi_b": schema.Int64Attribute{
-						Description:         "DiskGiB is the size of a virtual machine's disk, in GiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-						MarkdownDescription: "DiskGiB is the size of a virtual machine's disk, in GiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+						Description:         "DiskGiB is the size of a virtual machine's disk, in GiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+						MarkdownDescription: "DiskGiB is the size of a virtual machine's disk, in GiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"folder": schema.StringAttribute{
-						Description:         "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
-						MarkdownDescription: "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
+						Description:         "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
+						MarkdownDescription: "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"guest_soft_power_off_timeout": schema.StringAttribute{
-						Description:         "GuestSoftPowerOffTimeout sets the wait timeout for shutdown in the VM guest. The VM will be powered off forcibly after the timeout if the VM is still up and running when the PowerOffMode is set to trySoft.  This parameter only applies when the PowerOffMode is set to trySoft.  If omitted, the timeout defaults to 5 minutes.",
-						MarkdownDescription: "GuestSoftPowerOffTimeout sets the wait timeout for shutdown in the VM guest. The VM will be powered off forcibly after the timeout if the VM is still up and running when the PowerOffMode is set to trySoft.  This parameter only applies when the PowerOffMode is set to trySoft.  If omitted, the timeout defaults to 5 minutes.",
+						Description:         "GuestSoftPowerOffTimeout sets the wait timeout for shutdown in the VM guest.The VM will be powered off forcibly after the timeout if the VM is stillup and running when the PowerOffMode is set to trySoft.This parameter only applies when the PowerOffMode is set to trySoft.If omitted, the timeout defaults to 5 minutes.",
+						MarkdownDescription: "GuestSoftPowerOffTimeout sets the wait timeout for shutdown in the VM guest.The VM will be powered off forcibly after the timeout if the VM is stillup and running when the PowerOffMode is set to trySoft.This parameter only applies when the PowerOffMode is set to trySoft.If omitted, the timeout defaults to 5 minutes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"hardware_version": schema.StringAttribute{
-						Description:         "HardwareVersion is the hardware version of the virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned. Check the compatibility with the ESXi version before setting the value.",
-						MarkdownDescription: "HardwareVersion is the hardware version of the virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned. Check the compatibility with the ESXi version before setting the value.",
+						Description:         "HardwareVersion is the hardware version of the virtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Check the compatibility with the ESXi version before setting the value.",
+						MarkdownDescription: "HardwareVersion is the hardware version of the virtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Check the compatibility with the ESXi version before setting the value.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"memory_mi_b": schema.Int64Attribute{
-						Description:         "MemoryMiB is the size of a virtual machine's memory, in MiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-						MarkdownDescription: "MemoryMiB is the size of a virtual machine's memory, in MiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+						Description:         "MemoryMiB is the size of a virtual machine's memory, in MiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+						MarkdownDescription: "MemoryMiB is the size of a virtual machine's memory, in MiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -373,18 +373,18 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 						MarkdownDescription: "Network is the network configuration for this machine's VM.",
 						Attributes: map[string]schema.Attribute{
 							"devices": schema.ListNestedAttribute{
-								Description:         "Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name",
-								MarkdownDescription: "Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name",
+								Description:         "Devices is the list of network devices used by the virtual machine.TODO(akutz) Make sure at least one network matches the            ClusterSpec.CloudProviderConfiguration.Network.Name",
+								MarkdownDescription: "Devices is the list of network devices used by the virtual machine.TODO(akutz) Make sure at least one network matches the            ClusterSpec.CloudProviderConfiguration.Network.Name",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"addresses_from_pools": schema.ListNestedAttribute{
-											Description:         "AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider.",
-											MarkdownDescription: "AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider.",
+											Description:         "AddressesFromPools is a list of IPAddressPools that should be assignedto IPAddressClaims. The machine's cloud-init metadata will be populatedwith IPAddresses fulfilled by an IPAM provider.",
+											MarkdownDescription: "AddressesFromPools is a list of IPAddressPools that should be assignedto IPAddressClaims. The machine's cloud-init metadata will be populatedwith IPAddresses fulfilled by an IPAM provider.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
-														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-														MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+														Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+														MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -413,92 +413,92 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"device_name": schema.StringAttribute{
-											Description:         "DeviceName may be used to explicitly assign a name to the network device as it exists in the guest operating system.",
-											MarkdownDescription: "DeviceName may be used to explicitly assign a name to the network device as it exists in the guest operating system.",
+											Description:         "DeviceName may be used to explicitly assign a name to the network deviceas it exists in the guest operating system.",
+											MarkdownDescription: "DeviceName may be used to explicitly assign a name to the network deviceas it exists in the guest operating system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"dhcp4": schema.BoolAttribute{
-											Description:         "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4 on this device. If true then IPAddrs should not contain any IPv4 addresses.",
-											MarkdownDescription: "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4 on this device. If true then IPAddrs should not contain any IPv4 addresses.",
+											Description:         "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4on this device.If true then IPAddrs should not contain any IPv4 addresses.",
+											MarkdownDescription: "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4on this device.If true then IPAddrs should not contain any IPv4 addresses.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"dhcp4_overrides": schema.SingleNestedAttribute{
-											Description:         "DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
-											MarkdownDescription: "DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											Description:         "DHCP4Overrides allows for the control over several DHCP behaviors.Overrides will only be applied when the corresponding DHCP flag is set.Only configured values will be sent, omitted values will default todistribution defaults.Dependent on support in the network stack for your distribution.For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											MarkdownDescription: "DHCP4Overrides allows for the control over several DHCP behaviors.Overrides will only be applied when the corresponding DHCP flag is set.Only configured values will be sent, omitted values will default todistribution defaults.Dependent on support in the network stack for your distribution.For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
 											Attributes: map[string]schema.Attribute{
 												"hostname": schema.StringAttribute{
-													Description:         "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
-													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													Description:         "Hostname is the name which will be sent to the DHCP server instead ofthe machine's hostname.",
+													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead ofthe machine's hostname.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"route_metric": schema.Int64Attribute{
-													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
-													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric foran interface will have a higher priority.",
+													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric foran interface will have a higher priority.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"send_hostname": schema.BoolAttribute{
-													Description:         "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
-													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													Description:         "SendHostname when 'true', the hostname of the machine will be sent to theDHCP server.",
+													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to theDHCP server.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_dns": schema.BoolAttribute{
-													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
-													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used andtake precedence.",
+													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used andtake precedence.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_domains": schema.StringAttribute{
-													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
-													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true',the domain name from the DHCP server will be used as the DNS searchdomain for this device. When 'route', the domain name from the DHCPresponse will be used for routing DNS only, not for searching.",
+													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true',the domain name from the DHCP server will be used as the DNS searchdomain for this device. When 'route', the domain name from the DHCPresponse will be used for routing DNS only, not for searching.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_hostname": schema.BoolAttribute{
-													Description:         "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
-													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													Description:         "UseHostname when 'true', the hostname from the DHCP server will be setas the transient hostname of the machine.",
+													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be setas the transient hostname of the machine.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_mtu": schema.BoolAttribute{
-													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
-													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as theMTU of the device.",
+													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as theMTU of the device.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_ntp": schema.BoolAttribute{
-													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
-													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be usedby systemd-timesyncd and take precedence.",
+													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be usedby systemd-timesyncd and take precedence.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_routes": schema.StringAttribute{
-													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
-													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installedin the routing table.",
+													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installedin the routing table.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -510,84 +510,84 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"dhcp6": schema.BoolAttribute{
-											Description:         "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6 on this device. If true then IPAddrs should not contain any IPv6 addresses.",
-											MarkdownDescription: "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6 on this device. If true then IPAddrs should not contain any IPv6 addresses.",
+											Description:         "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6on this device.If true then IPAddrs should not contain any IPv6 addresses.",
+											MarkdownDescription: "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6on this device.If true then IPAddrs should not contain any IPv6 addresses.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"dhcp6_overrides": schema.SingleNestedAttribute{
-											Description:         "DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
-											MarkdownDescription: "DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											Description:         "DHCP6Overrides allows for the control over several DHCP behaviors.Overrides will only be applied when the corresponding DHCP flag is set.Only configured values will be sent, omitted values will default todistribution defaults.Dependent on support in the network stack for your distribution.For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											MarkdownDescription: "DHCP6Overrides allows for the control over several DHCP behaviors.Overrides will only be applied when the corresponding DHCP flag is set.Only configured values will be sent, omitted values will default todistribution defaults.Dependent on support in the network stack for your distribution.For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
 											Attributes: map[string]schema.Attribute{
 												"hostname": schema.StringAttribute{
-													Description:         "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
-													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													Description:         "Hostname is the name which will be sent to the DHCP server instead ofthe machine's hostname.",
+													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead ofthe machine's hostname.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"route_metric": schema.Int64Attribute{
-													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
-													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric foran interface will have a higher priority.",
+													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric foran interface will have a higher priority.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"send_hostname": schema.BoolAttribute{
-													Description:         "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
-													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													Description:         "SendHostname when 'true', the hostname of the machine will be sent to theDHCP server.",
+													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to theDHCP server.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_dns": schema.BoolAttribute{
-													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
-													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used andtake precedence.",
+													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used andtake precedence.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_domains": schema.StringAttribute{
-													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
-													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true',the domain name from the DHCP server will be used as the DNS searchdomain for this device. When 'route', the domain name from the DHCPresponse will be used for routing DNS only, not for searching.",
+													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true',the domain name from the DHCP server will be used as the DNS searchdomain for this device. When 'route', the domain name from the DHCPresponse will be used for routing DNS only, not for searching.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_hostname": schema.BoolAttribute{
-													Description:         "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
-													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													Description:         "UseHostname when 'true', the hostname from the DHCP server will be setas the transient hostname of the machine.",
+													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be setas the transient hostname of the machine.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_mtu": schema.BoolAttribute{
-													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
-													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as theMTU of the device.",
+													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as theMTU of the device.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_ntp": schema.BoolAttribute{
-													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
-													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be usedby systemd-timesyncd and take precedence.",
+													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be usedby systemd-timesyncd and take precedence.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_routes": schema.StringAttribute{
-													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
-													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installedin the routing table.",
+													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installedin the routing table.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -599,8 +599,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"gateway4": schema.StringAttribute{
-											Description:         "Gateway4 is the IPv4 gateway used by this device. Required when DHCP4 is false.",
-											MarkdownDescription: "Gateway4 is the IPv4 gateway used by this device. Required when DHCP4 is false.",
+											Description:         "Gateway4 is the IPv4 gateway used by this device.Required when DHCP4 is false.",
+											MarkdownDescription: "Gateway4 is the IPv4 gateway used by this device.Required when DHCP4 is false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -615,8 +615,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"ip_addrs": schema.ListAttribute{
-											Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
-											MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
+											Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assignto this device. IP addresses must also specify the segment length inCIDR notation.Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
+											MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assignto this device. IP addresses must also specify the segment length inCIDR notation.Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -624,8 +624,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"mac_addr": schema.StringAttribute{
-											Description:         "MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.",
-											MarkdownDescription: "MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.",
+											Description:         "MACAddr is the MAC address used by this device.It is generally a good idea to omit this field and allow a MAC addressto be generated.Please note that this value must use the VMware OUI to work with thein-tree vSphere cloud provider.",
+											MarkdownDescription: "MACAddr is the MAC address used by this device.It is generally a good idea to omit this field and allow a MAC addressto be generated.Please note that this value must use the VMware OUI to work with thein-tree vSphere cloud provider.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -640,8 +640,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"nameservers": schema.ListAttribute{
-											Description:         "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
-											MarkdownDescription: "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
+											Description:         "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNSnameservers.Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
+											MarkdownDescription: "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNSnameservers.Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -649,8 +649,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"network_name": schema.StringAttribute{
-											Description:         "NetworkName is the name of the vSphere network to which the device will be connected.",
-											MarkdownDescription: "NetworkName is the name of the vSphere network to which the device will be connected.",
+											Description:         "NetworkName is the name of the vSphere network to which the devicewill be connected.",
+											MarkdownDescription: "NetworkName is the name of the vSphere network to which the devicewill be connected.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -692,8 +692,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"search_domains": schema.ListAttribute{
-											Description:         "SearchDomains is a list of search domains used when resolving IP addresses with DNS.",
-											MarkdownDescription: "SearchDomains is a list of search domains used when resolving IP addresses with DNS.",
+											Description:         "SearchDomains is a list of search domains used when resolving IPaddresses with DNS.",
+											MarkdownDescription: "SearchDomains is a list of search domains used when resolving IPaddresses with DNS.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -701,8 +701,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"skip_ip_allocation": schema.BoolAttribute{
-											Description:         "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
-											MarkdownDescription: "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
+											Description:         "SkipIPAllocation allows the device to not have IP address or DHCP configured.This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI.If true, CAPV will not verify IP address allocation.",
+											MarkdownDescription: "SkipIPAllocation allows the device to not have IP address or DHCP configured.This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI.If true, CAPV will not verify IP address allocation.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -715,16 +715,16 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 							},
 
 							"preferred_api_server_cidr": schema.StringAttribute{
-								Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
-								MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
+								Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes APIserver endpoint on this machineDeprecated: This field is going to be removed in a future release.",
+								MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes APIserver endpoint on this machineDeprecated: This field is going to be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"routes": schema.ListNestedAttribute{
-								Description:         "Routes is a list of optional, static routes applied to the virtual machine.",
-								MarkdownDescription: "Routes is a list of optional, static routes applied to the virtual machine.",
+								Description:         "Routes is a list of optional, static routes applied to the virtualmachine.",
+								MarkdownDescription: "Routes is a list of optional, static routes applied to the virtualmachine.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"metric": schema.Int64Attribute{
@@ -763,24 +763,24 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"num_cp_us": schema.Int64Attribute{
-						Description:         "NumCPUs is the number of virtual processors in a virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-						MarkdownDescription: "NumCPUs is the number of virtual processors in a virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+						Description:         "NumCPUs is the number of virtual processors in a virtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+						MarkdownDescription: "NumCPUs is the number of virtual processors in a virtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"num_cores_per_socket": schema.Int64Attribute{
-						Description:         "NumCPUs is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-						MarkdownDescription: "NumCPUs is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+						Description:         "NumCPUs is the number of cores among which to distribute CPUs in thisvirtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+						MarkdownDescription: "NumCPUs is the number of cores among which to distribute CPUs in thisvirtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"os": schema.StringAttribute{
-						Description:         "OS is the Operating System of the virtual machine Defaults to Linux",
-						MarkdownDescription: "OS is the Operating System of the virtual machine Defaults to Linux",
+						Description:         "OS is the Operating System of the virtual machineDefaults to Linux",
+						MarkdownDescription: "OS is the Operating System of the virtual machineDefaults to Linux",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -792,24 +792,24 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"custom_label": schema.StringAttribute{
-									Description:         "CustomLabel is the hardware label of a virtual machine's PCI device. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-									MarkdownDescription: "CustomLabel is the hardware label of a virtual machine's PCI device. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+									Description:         "CustomLabel is the hardware label of a virtual machine's PCI device.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+									MarkdownDescription: "CustomLabel is the hardware label of a virtual machine's PCI device.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"device_id": schema.Int64Attribute{
-									Description:         "DeviceID is the device ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-									MarkdownDescription: "DeviceID is the device ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+									Description:         "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+									MarkdownDescription: "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"vendor_id": schema.Int64Attribute{
-									Description:         "VendorId is the vendor ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-									MarkdownDescription: "VendorId is the vendor ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+									Description:         "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+									MarkdownDescription: "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -822,8 +822,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"power_off_mode": schema.StringAttribute{
-						Description:         "PowerOffMode describes the desired behavior when powering off a VM.  There are three, supported power off modes: hard, soft, and trySoft. The first mode, hard, is the equivalent of a physical system's power cord being ripped from the wall. The soft mode requires the VM's guest to have VM Tools installed and attempts to gracefully shut down the VM. Its variant, trySoft, first attempts a graceful shutdown, and if that fails or the VM is not in a powered off state after reaching the GuestSoftPowerOffTimeout, the VM is halted.  If omitted, the mode defaults to hard.",
-						MarkdownDescription: "PowerOffMode describes the desired behavior when powering off a VM.  There are three, supported power off modes: hard, soft, and trySoft. The first mode, hard, is the equivalent of a physical system's power cord being ripped from the wall. The soft mode requires the VM's guest to have VM Tools installed and attempts to gracefully shut down the VM. Its variant, trySoft, first attempts a graceful shutdown, and if that fails or the VM is not in a powered off state after reaching the GuestSoftPowerOffTimeout, the VM is halted.  If omitted, the mode defaults to hard.",
+						Description:         "PowerOffMode describes the desired behavior when powering off a VM.There are three, supported power off modes: hard, soft, andtrySoft. The first mode, hard, is the equivalent of a physicalsystem's power cord being ripped from the wall. The soft moderequires the VM's guest to have VM Tools installed and attempts togracefully shut down the VM. Its variant, trySoft, first attemptsa graceful shutdown, and if that fails or the VM is not in a powered offstate after reaching the GuestSoftPowerOffTimeout, the VM is halted.If omitted, the mode defaults to hard.",
+						MarkdownDescription: "PowerOffMode describes the desired behavior when powering off a VM.There are three, supported power off modes: hard, soft, andtrySoft. The first mode, hard, is the equivalent of a physicalsystem's power cord being ripped from the wall. The soft moderequires the VM's guest to have VM Tools installed and attempts togracefully shut down the VM. Its variant, trySoft, first attemptsa graceful shutdown, and if that fails or the VM is not in a powered offstate after reaching the GuestSoftPowerOffTimeout, the VM is halted.If omitted, the mode defaults to hard.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -833,40 +833,40 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"resource_pool": schema.StringAttribute{
-						Description:         "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
-						MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
+						Description:         "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
+						MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"server": schema.StringAttribute{
-						Description:         "Server is the IP address or FQDN of the vSphere server on which the virtual machine is created/located.",
-						MarkdownDescription: "Server is the IP address or FQDN of the vSphere server on which the virtual machine is created/located.",
+						Description:         "Server is the IP address or FQDN of the vSphere server on whichthe virtual machine is created/located.",
+						MarkdownDescription: "Server is the IP address or FQDN of the vSphere server on whichthe virtual machine is created/located.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"snapshot": schema.StringAttribute{
-						Description:         "Snapshot is the name of the snapshot from which to create a linked clone. This field is ignored if LinkedClone is not enabled. Defaults to the source's current snapshot.",
-						MarkdownDescription: "Snapshot is the name of the snapshot from which to create a linked clone. This field is ignored if LinkedClone is not enabled. Defaults to the source's current snapshot.",
+						Description:         "Snapshot is the name of the snapshot from which to create a linked clone.This field is ignored if LinkedClone is not enabled.Defaults to the source's current snapshot.",
+						MarkdownDescription: "Snapshot is the name of the snapshot from which to create a linked clone.This field is ignored if LinkedClone is not enabled.Defaults to the source's current snapshot.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"storage_policy_name": schema.StringAttribute{
-						Description:         "StoragePolicyName of the storage policy to use with this Virtual Machine",
-						MarkdownDescription: "StoragePolicyName of the storage policy to use with this Virtual Machine",
+						Description:         "StoragePolicyName of the storage policy to use with thisVirtual Machine",
+						MarkdownDescription: "StoragePolicyName of the storage policy to use with thisVirtual Machine",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tag_i_ds": schema.ListAttribute{
-						Description:         "TagIDs is an optional set of tags to add to an instance. Specified tagIDs must use URN-notation instead of display names.",
-						MarkdownDescription: "TagIDs is an optional set of tags to add to an instance. Specified tagIDs must use URN-notation instead of display names.",
+						Description:         "TagIDs is an optional set of tags to add to an instance. Specified tagIDsmust use URN-notation instead of display names.",
+						MarkdownDescription: "TagIDs is an optional set of tags to add to an instance. Specified tagIDsmust use URN-notation instead of display names.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -874,8 +874,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"template": schema.StringAttribute{
-						Description:         "Template is the name or inventory path of the template used to clone the virtual machine.",
-						MarkdownDescription: "Template is the name or inventory path of the template used to clone the virtual machine.",
+						Description:         "Template is the name or inventory path of the template used to clonethe virtual machine.",
+						MarkdownDescription: "Template is the name or inventory path of the template used to clonethe virtual machine.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -885,8 +885,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 					},
 
 					"thumbprint": schema.StringAttribute{
-						Description:         "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When this is set to empty, this VirtualMachine would be created without TLS certificate validation of the communication between Cluster API Provider vSphere and the VMware vCenter server.",
-						MarkdownDescription: "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When this is set to empty, this VirtualMachine would be created without TLS certificate validation of the communication between Cluster API Provider vSphere and the VMware vCenter server.",
+						Description:         "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen this is set to empty, this VirtualMachine would be createdwithout TLS certificate validation of the communication between Cluster API Provider vSphereand the VMware vCenter server.",
+						MarkdownDescription: "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen this is set to empty, this VirtualMachine would be createdwithout TLS certificate validation of the communication between Cluster API Provider vSphereand the VMware vCenter server.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

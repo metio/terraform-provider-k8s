@@ -66,8 +66,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Alpha4Manifest) Meta
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Alpha4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API  Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API  Deprecated: This type will be removed in one of the next releases.",
+		Description:         "VSphereClusterTemplate is the Schema for the vsphereclustertemplates APIDeprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "VSphereClusterTemplate is the Schema for the vsphereclustertemplates APIDeprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -171,8 +171,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Alpha4Manifest) Sche
 									},
 
 									"identity_ref": schema.SingleNestedAttribute{
-										Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
-										MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
+										Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
+										MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
 										Attributes: map[string]schema.Attribute{
 											"kind": schema.StringAttribute{
 												Description:         "Kind of the identity. Can either be VSphereClusterIdentity or Secret",

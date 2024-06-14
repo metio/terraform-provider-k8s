@@ -1236,9 +1236,10 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			Storage         *struct {
-				Bucket *string `tfsdk:"bucket" json:"bucket,omitempty"`
-				Region *string `tfsdk:"region" json:"region,omitempty"`
-				Secret *struct {
+				Bucket   *string `tfsdk:"bucket" json:"bucket,omitempty"`
+				Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				Region   *string `tfsdk:"region" json:"region,omitempty"`
+				Secret   *struct {
 					Items *[]struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
@@ -10801,6 +10802,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"endpoint": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"region": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -16094,8 +16103,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 								},
 
 								"volume_mounts": schema.ListNestedAttribute{
-									Description:         "The list of volume mounts to mount to PostgreSQL instance pods. Chaning this value causesPostgreSQL to restart.",
-									MarkdownDescription: "The list of volume mounts to mount to PostgreSQL instance pods. Chaning this value causesPostgreSQL to restart.",
+									Description:         "The list of volume mounts to mount to PostgreSQL instance pods. Changing this value causesPostgreSQL to restart.",
+									MarkdownDescription: "The list of volume mounts to mount to PostgreSQL instance pods. Changing this value causesPostgreSQL to restart.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{

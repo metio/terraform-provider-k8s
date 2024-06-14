@@ -57,7 +57,7 @@ Optional:
 - `apply_rules` (String) ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.
 - `background` (Boolean) Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).
 - `failure_policy` (String) FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.Allowed values are Ignore or Fail. Defaults to Fail.
-- `generate_existing` (Boolean) GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.
+- `generate_existing` (Boolean) Deprecated, use generateExisting under the generate rule instead
 - `generate_existing_on_policy_update` (Boolean) Deprecated, use generateExisting instead
 - `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.
 - `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
@@ -384,6 +384,7 @@ Optional:
 - `clone` (Attributes) Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only. (see [below for nested schema](#nestedatt--spec--rules--generate--clone))
 - `clone_list` (Attributes) CloneList specifies the list of source resource used to populate each generated resource. (see [below for nested schema](#nestedatt--spec--rules--generate--clone_list))
 - `data` (Map of String) Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.
+- `generate_existing` (Boolean) GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.
 - `kind` (String) Kind specifies resource kind.
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.

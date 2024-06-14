@@ -3,12 +3,12 @@
 page_title: "k8s_storage_kubeblocks_io_storage_provider_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "storage.kubeblocks.io"
 description: |-
-  StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.  Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.
+  StorageProvider comprises specifications that provide guidance on accessing remote storage.Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool.In case of CSI driver, the specification expounds on provisioning PVCs for that driver.As for the 'datasafed' tool, the specification provides insights on generating the necessaryconfiguration file.Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group,will be removed in v0.11.
 ---
 
 # k8s_storage_kubeblocks_io_storage_provider_v1alpha1_manifest (Data Source)
 
-StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.  Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.
+StorageProvider comprises specifications that provide guidance on accessing remote storage.Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool.In case of CSI driver, the specification expounds on provisioning PVCs for that driver.As for the 'datasafed' tool, the specification provides insights on generating the necessaryconfiguration file.Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group,will be removed in v0.11.
 
 ## Example Usage
 
@@ -54,17 +54,17 @@ Optional:
 
 Optional:
 
-- `csi_driver_name` (String) Specifies the name of the CSI driver used to access remote storage. This field can be empty, it indicates that the storage is not accessible via CSI.
-- `csi_driver_secret_template` (String) A Go template that used to render and generate 'k8s.io/api/core/v1.Secret' resources for a specific CSI driver. For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this 'Secret' resource.
-- `datasafed_config_template` (String) A Go template used to render and generate 'k8s.io/api/core/v1.Secret'. This 'Secret' involves the configuration details required by the 'datasafed' tool to access remote storage. For example, the 'Secret' should contain 'endpoint', 'bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage. This field can be empty, it means this kind of storage is not accessible via the 'datasafed' tool.
-- `parameters_schema` (Attributes) Describes the parameters required for storage. The parameters defined here can be referenced in the above templates, and 'kbcli' uses this definition for dynamic command-line parameter parsing. (see [below for nested schema](#nestedatt--spec--parameters_schema))
-- `persistent_volume_claim_template` (String) A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim' resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate', allowing Pods to access remote storage by mounting the PVC.
-- `storage_class_template` (String) A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass' resources. The 'StorageClass' created by this template is aimed at using the CSI driver.
+- `csi_driver_name` (String) Specifies the name of the CSI driver used to access remote storage.This field can be empty, it indicates that the storage is not accessible via CSI.
+- `csi_driver_secret_template` (String) A Go template that used to render and generate 'k8s.io/api/core/v1.Secret'resources for a specific CSI driver.For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this'Secret' resource.
+- `datasafed_config_template` (String) A Go template used to render and generate 'k8s.io/api/core/v1.Secret'.This 'Secret' involves the configuration details required by the 'datasafed' toolto access remote storage. For example, the 'Secret' should contain 'endpoint','bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage.This field can be empty, it means this kind of storage is not accessible viathe 'datasafed' tool.
+- `parameters_schema` (Attributes) Describes the parameters required for storage.The parameters defined here can be referenced in the above templates,and 'kbcli' uses this definition for dynamic command-line parameter parsing. (see [below for nested schema](#nestedatt--spec--parameters_schema))
+- `persistent_volume_claim_template` (String) A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim'resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate',allowing Pods to access remote storage by mounting the PVC.
+- `storage_class_template` (String) A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass'resources. The 'StorageClass' created by this template is aimed at using the CSI driver.
 
 <a id="nestedatt--spec--parameters_schema"></a>
 ### Nested Schema for `spec.parameters_schema`
 
 Optional:
 
-- `credential_fields` (List of String) Defines which parameters are credential fields, which need to be handled specifically. For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.
+- `credential_fields` (List of String) Defines which parameters are credential fields, which need to be handled specifically.For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.
 - `open_apiv3_schema` (Map of String) Defines the parameters in OpenAPI V3.

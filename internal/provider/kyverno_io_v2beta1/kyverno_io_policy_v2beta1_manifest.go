@@ -183,6 +183,7 @@ type KyvernoIoPolicyV2Beta1ManifestData struct {
 					} `tfsdk:"selector" json:"selector,omitempty"`
 				} `tfsdk:"clone_list" json:"cloneList,omitempty"`
 				Data                           *map[string]string `tfsdk:"data" json:"data,omitempty"`
+				GenerateExisting               *bool              `tfsdk:"generate_existing" json:"generateExisting,omitempty"`
 				Kind                           *string            `tfsdk:"kind" json:"kind,omitempty"`
 				Name                           *string            `tfsdk:"name" json:"name,omitempty"`
 				Namespace                      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -876,8 +877,8 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 					},
 
 					"generate_existing": schema.BoolAttribute{
-						Description:         "GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.",
-						MarkdownDescription: "GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.",
+						Description:         "Deprecated, use generateExisting under the generate rule instead",
+						MarkdownDescription: "Deprecated, use generateExisting under the generate rule instead",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1798,6 +1799,14 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 											Description:         "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
 											MarkdownDescription: "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"generate_existing": schema.BoolAttribute{
+											Description:         "GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.",
+											MarkdownDescription: "GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

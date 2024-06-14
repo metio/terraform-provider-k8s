@@ -45,6 +45,7 @@ type KueueXK8SIoLocalQueueV1Beta1ManifestData struct {
 
 	Spec *struct {
 		ClusterQueue *string `tfsdk:"cluster_queue" json:"clusterQueue,omitempty"`
+		StopPolicy   *string `tfsdk:"stop_policy" json:"stopPolicy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -134,6 +135,17 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Schema(_ context.Context, _ datas
 						Validators: []validator.String{
 							stringvalidator.LengthAtMost(253),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
+					},
+
+					"stop_policy": schema.StringAttribute{
+						Description:         "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive,no new reservation being made.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
+						MarkdownDescription: "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive,no new reservation being made.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("None", "Hold", "HoldAndDrain"),
 						},
 					},
 				},

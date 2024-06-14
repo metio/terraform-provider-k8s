@@ -59,6 +59,9 @@ type ClusterXK8SIoMachineDeploymentV1Beta1ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
 		Strategy *struct {
+			Remediation *struct {
+				MaxInFlight *string `tfsdk:"max_in_flight" json:"maxInFlight,omitempty"`
+			} `tfsdk:"remediation" json:"remediation,omitempty"`
 			RollingUpdate *struct {
 				DeletePolicy   *string `tfsdk:"delete_policy" json:"deletePolicy,omitempty"`
 				MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
@@ -302,6 +305,23 @@ func (r *ClusterXK8SIoMachineDeploymentV1Beta1Manifest) Schema(_ context.Context
 						Description:         "The deployment strategy to use to replace existing machines withnew ones.",
 						MarkdownDescription: "The deployment strategy to use to replace existing machines withnew ones.",
 						Attributes: map[string]schema.Attribute{
+							"remediation": schema.SingleNestedAttribute{
+								Description:         "Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+								MarkdownDescription: "Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+								Attributes: map[string]schema.Attribute{
+									"max_in_flight": schema.StringAttribute{
+										Description:         "MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.",
+										MarkdownDescription: "MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"rolling_update": schema.SingleNestedAttribute{
 								Description:         "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",
 								MarkdownDescription: "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",

@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.
+  ClusterVersion is the Schema for the ClusterVersions API.Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9.This struct is maintained for backward compatibility and its use is discouraged.
 ---
 
 # k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest (Data Source)
 
-ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.
+ClusterVersion is the Schema for the ClusterVersions API.Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9.This struct is maintained for backward compatibility and its use is discouraged.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ClusterVersionSpec defines the desired state of ClusterVersion.  Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterVersionSpec defines the desired state of ClusterVersion.Deprecated since v0.9.This struct is maintained for backward compatibility and its use is discouraged. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -63,21 +63,21 @@ Required:
 Required:
 
 - `component_def_ref` (String) Specifies a reference to one of the cluster component definition names in the ClusterDefinition API (spec.componentDefs.name).
-- `versions_context` (Attributes) Defines the context for container images for component versions. This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers]. (see [below for nested schema](#nestedatt--spec--component_versions--versions_context))
+- `versions_context` (Attributes) Defines the context for container images for component versions.This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers]. (see [below for nested schema](#nestedatt--spec--component_versions--versions_context))
 
 Optional:
 
-- `config_specs` (Attributes List) Defines a configuration extension mechanism to handle configuration differences between versions. The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determines the final configuration file. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs))
-- `switchover_spec` (Attributes) Defines the images for the component to perform a switchover. This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem. (see [below for nested schema](#nestedatt--spec--component_versions--switchover_spec))
-- `system_account_spec` (Attributes) Defines the image for the component to connect to databases or engines. This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig. To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list. (see [below for nested schema](#nestedatt--spec--component_versions--system_account_spec))
+- `config_specs` (Attributes List) Defines a configuration extension mechanism to handle configuration differences between versions.The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determinesthe final configuration file. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs))
+- `switchover_spec` (Attributes) Defines the images for the component to perform a switchover.This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem. (see [below for nested schema](#nestedatt--spec--component_versions--switchover_spec))
+- `system_account_spec` (Attributes) Defines the image for the component to connect to databases or engines.This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig.To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list. (see [below for nested schema](#nestedatt--spec--component_versions--system_account_spec))
 
 <a id="nestedatt--spec--component_versions--versions_context"></a>
 ### Nested Schema for `spec.component_versions.versions_context`
 
 Optional:
 
-- `containers` (Map of String) Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers. Typically used in scenarios such as updating application container images.
-- `init_containers` (Map of String) Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers. Typically used in scenarios such as updating application container images.
+- `containers` (Map of String) Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers.Typically used in scenarios such as updating application container images.
+- `init_containers` (Map of String) Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers.Typically used in scenarios such as updating application container images.
 
 
 <a id="nestedatt--spec--component_versions--config_specs"></a>
@@ -86,18 +86,18 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
-- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.
+- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
 
-- `as_env_from` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.
+- `as_env_from` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0.Use 'injectEnvTo' instead.
 - `constraint_ref` (String) Specifies the name of the referenced configuration constraints object.
-- `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
-- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.
-- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.
-- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec))
-- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
-- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
+- `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
+- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.
+- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.A configuration template (provided in the form of a ConfigMap) may contain templates for multipleconfiguration files.Each configuration file corresponds to a key in the ConfigMap.Some of these configuration files may support dynamic modification and reloading without requiringa pod restart.If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates,and ConfigConstraint applies to all keys.
+- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the maintemplate's render result to generate the final configuration file.This field is intended to handle scenarios where different pods within the same Component havevarying configurations. It allows for pod-specific customization of the configuration.Note: This field will be deprecated in future versions, and the functionality will be moved to'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec))
+- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
+- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.In some scenarios, the configuration may need to be updated to reflect the changes in resource allocationor cluster topology. Examples:- Redis: adjust maxmemory after v-scale operation.- MySQL: increase max connections after v-scale operation.- Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
 - `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 
 <a id="nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec"></a>
@@ -109,7 +109,7 @@ Required:
 
 Optional:
 
-- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
+- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
 - `policy` (String) Defines the strategy for merging externally imported templates into component templates.
 
 

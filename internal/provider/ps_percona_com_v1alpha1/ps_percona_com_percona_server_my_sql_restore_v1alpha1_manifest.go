@@ -192,7 +192,11 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 				} `tfsdk:"azure" json:"azure,omitempty"`
 				ContainerSecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -229,6 +233,10 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 				Labels             *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				PodSecurityContext *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1430,6 +1438,31 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 												Computed:            false,
 											},
 
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capabilities": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1688,6 +1721,31 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",

@@ -54,13 +54,13 @@ Optional:
 
 Required:
 
-- `backup_type` (String) Specifies the backup type. Supported values include:  - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.  Continuous backup is essential for implementing Point-in-Time Recovery (PITR).
+- `backup_type` (String) Specifies the backup type. Supported values include:- 'Full' for a full backup.- 'Incremental' back up data that have changed since the last backup (either full or incremental).- 'Differential' back up data that has changed since the last full backup.- 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.Continuous backup is essential for implementing Point-in-Time Recovery (PITR).
 
 Optional:
 
 - `backup` (Attributes) Specifies the backup action. (see [below for nested schema](#nestedatt--spec--backup))
 - `env` (Map of String) Specifies a list of environment variables to be set in the container.
-- `env_from` (Map of String) Specifies a list of sources to populate environment variables in the container. The keys within a source must be a C_IDENTIFIER. Any invalid keys will be reported as an event when the container starts. If a key exists in multiple sources, the value from the last source will take precedence. Any values defined by an Env with a duplicate key will take precedence.  This field cannot be updated.
+- `env_from` (Map of String) Specifies a list of sources to populate environment variables in the container.The keys within a source must be a C_IDENTIFIER. Any invalid keys will bereported as an event when the container starts. If a key exists in multiplesources, the value from the last source will take precedence. Any valuesdefined by an Env with a duplicate key will take precedence.This field cannot be updated.
 - `restore` (Attributes) Specifies the restore action. (see [below for nested schema](#nestedatt--spec--restore))
 
 <a id="nestedatt--spec--backup"></a>
@@ -71,7 +71,7 @@ Optional:
 - `backup_data` (Attributes) Represents the action to be performed for backing up data. (see [below for nested schema](#nestedatt--spec--backup--backup_data))
 - `post_backup` (Attributes List) Represents a set of actions that should be executed after the backup process has completed. (see [below for nested schema](#nestedatt--spec--backup--post_backup))
 - `pre_backup` (Attributes List) Represents a set of actions that should be executed before the backup process begins. (see [below for nested schema](#nestedatt--spec--backup--pre_backup))
-- `pre_delete` (Attributes) Represents a custom deletion action that can be executed before the built-in deletion action. Note: The preDelete action job will ignore the env/envFrom. (see [below for nested schema](#nestedatt--spec--backup--pre_delete))
+- `pre_delete` (Attributes) Represents a custom deletion action that can be executed before the built-in deletion action.Note: The preDelete action job will ignore the env/envFrom. (see [below for nested schema](#nestedatt--spec--backup--pre_delete))
 
 <a id="nestedatt--spec--backup--backup_data"></a>
 ### Nested Schema for `spec.backup.backup_data`
@@ -84,15 +84,15 @@ Required:
 Optional:
 
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.
-- `sync_progress` (Attributes) Determines if the backup progress should be synchronized and the interval for synchronization in seconds. (see [below for nested schema](#nestedatt--spec--backup--backup_data--sync_progress))
+- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.
+- `sync_progress` (Attributes) Determines if the backup progress should be synchronized and the intervalfor synchronization in seconds. (see [below for nested schema](#nestedatt--spec--backup--backup_data--sync_progress))
 
 <a id="nestedatt--spec--backup--backup_data--sync_progress"></a>
 ### Nested Schema for `spec.backup.backup_data.sync_progress`
 
 Optional:
 
-- `enabled` (Boolean) Determines if the backup progress should be synchronized. If set to true, a sidecar container will be instantiated to synchronize the backup progress with the Backup Custom Resource (CR) status.
+- `enabled` (Boolean) Determines if the backup progress should be synchronized. If set to true,a sidecar container will be instantiated to synchronize the backup progress with theBackup Custom Resource (CR) status.
 - `interval_seconds` (Number) Defines the interval in seconds for synchronizing the backup progress.
 
 
@@ -114,9 +114,9 @@ Required:
 
 Optional:
 
-- `container` (String) Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.
+- `container` (String) Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `timeout` (String) Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.
+- `timeout` (String) Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.
 
 
 <a id="nestedatt--spec--backup--post_backup--job"></a>
@@ -130,7 +130,7 @@ Required:
 Optional:
 
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.
+- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.
 
 
 
@@ -151,9 +151,9 @@ Required:
 
 Optional:
 
-- `container` (String) Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.
+- `container` (String) Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `timeout` (String) Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.
+- `timeout` (String) Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.
 
 
 <a id="nestedatt--spec--backup--pre_backup--job"></a>
@@ -167,7 +167,7 @@ Required:
 Optional:
 
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.
+- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.
 
 
 
@@ -206,9 +206,9 @@ Required:
 
 Optional:
 
-- `container` (String) Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.
+- `container` (String) Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `timeout` (String) Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.
+- `timeout` (String) Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.
 
 
 <a id="nestedatt--spec--restore--post_ready--job"></a>
@@ -222,7 +222,7 @@ Required:
 Optional:
 
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.
+- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.
 
 
 
@@ -237,4 +237,4 @@ Required:
 Optional:
 
 - `on_error` (String) Indicates how to behave if an error is encountered during the execution of this action.
-- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.
+- `run_on_target_pod_node` (Boolean) Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.

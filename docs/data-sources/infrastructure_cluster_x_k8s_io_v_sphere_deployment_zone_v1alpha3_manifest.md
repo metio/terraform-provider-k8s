@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_deployment_zone_v1alpha3_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereDeploymentZone is the Schema for the vspheredeploymentzones API  Deprecated: This type will be removed in one of the next releases.
+  VSphereDeploymentZone is the Schema for the vspheredeploymentzones APIDeprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_deployment_zone_v1alpha3_manifest (Data Source)
 
-VSphereDeploymentZone is the Schema for the vspheredeploymentzones API  Deprecated: This type will be removed in one of the next releases.
+VSphereDeploymentZone is the Schema for the vspheredeploymentzones APIDeprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -54,7 +54,7 @@ Optional:
 
 Required:
 
-- `placement_constraint` (Attributes) PlacementConstraint encapsulates the placement constraints used within this deployment zone. (see [below for nested schema](#nestedatt--spec--placement_constraint))
+- `placement_constraint` (Attributes) PlacementConstraint encapsulates the placement constraintsused within this deployment zone. (see [below for nested schema](#nestedatt--spec--placement_constraint))
 
 Optional:
 
@@ -67,5 +67,5 @@ Optional:
 
 Optional:
 
-- `folder` (String) Folder is the name or inventory path of the folder in which the virtual machine is created/located.
-- `resource_pool` (String) ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.
+- `folder` (String) Folder is the name or inventory path of the folder in which thevirtual machine is created/located.
+- `resource_pool` (String) ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.

@@ -371,6 +371,7 @@ Optional:
 - `time_key_format` (String) When Logstash_Format is enabled, this property defines the format of the timestamp.
 - `time_key_nanos` (Boolean) When Logstash_Format is enabled, enabling this property sends nanosecond precision timestamps.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--es--tls))
+- `total_limit_size` (String) Limit the maximum number of Chunks in the filesystem for the current output logical destination.
 - `trace_error` (Boolean) When enabled print the elasticsearch API calls to stdout when elasticsearch returns an error
 - `trace_output` (Boolean) When enabled print the elasticsearch API calls to stdout (for diag only)
 - `type` (String) Type name

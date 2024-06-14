@@ -6746,8 +6746,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"override_honor_labels": schema.BoolAttribute{
-						Description:         "When true, Prometheus resolves label conflicts by renaming the labels inthe scraped data to 'exported_<label value>' for all targets createdfrom service and pod monitors.Otherwise the HonorLabels field of the service or pod monitor applies.",
-						MarkdownDescription: "When true, Prometheus resolves label conflicts by renaming the labels inthe scraped data to 'exported_<label value>' for all targets createdfrom service and pod monitors.Otherwise the HonorLabels field of the service or pod monitor applies.",
+						Description:         "When true, Prometheus resolves label conflicts by renaming the labels in the scraped data to “exported_” for all targets created from ServiceMonitor, PodMonitor andScrapeConfig objects. Otherwise the HonorLabels field of the service or pod monitor applies.In practice,'overrideHonorLaels:true' enforces 'honorLabels:false'for all ServiceMonitor, PodMonitor and ScrapeConfig objects.",
+						MarkdownDescription: "When true, Prometheus resolves label conflicts by renaming the labels in the scraped data to “exported_” for all targets created from ServiceMonitor, PodMonitor andScrapeConfig objects. Otherwise the HonorLabels field of the service or pod monitor applies.In practice,'overrideHonorLaels:true' enforces 'honorLabels:false'for all ServiceMonitor, PodMonitor and ScrapeConfig objects.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -99,6 +99,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -109,6 +110,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--windows_options))
+
+<a id="nestedatt--spec--backup--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.backup.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--backup--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.backup.container_security_context.capabilities`
@@ -610,6 +623,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -620,6 +634,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--container_security_context--windows_options))
+
+<a id="nestedatt--spec--backup--storages--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.backup.storages.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--backup--storages--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.backup.storages.container_security_context.capabilities`
@@ -685,6 +711,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -695,6 +722,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--backup--storages--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.backup.storages.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--backup--storages--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.backup.storages.pod_security_context.se_linux_options`
@@ -1371,6 +1410,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1381,6 +1421,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--container_security_context--windows_options))
+
+<a id="nestedatt--spec--mysql--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.mysql.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--mysql--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.mysql.container_security_context.capabilities`
@@ -1630,6 +1682,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1640,6 +1693,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--mysql--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.mysql.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--mysql--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.mysql.pod_security_context.se_linux_options`
@@ -3118,6 +3183,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3128,6 +3194,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecars--security_context--windows_options))
+
+<a id="nestedatt--spec--mysql--sidecars--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.mysql.sidecars.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--mysql--sidecars--security_context--capabilities"></a>
 ### Nested Schema for `spec.mysql.sidecars.security_context.capabilities`
@@ -3267,6 +3345,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -3937,6 +4016,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3947,6 +4027,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--container_security_context--windows_options))
+
+<a id="nestedatt--spec--orchestrator--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.orchestrator.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--orchestrator--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.orchestrator.container_security_context.capabilities`
@@ -4195,6 +4287,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -4205,6 +4298,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--orchestrator--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.orchestrator.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--orchestrator--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.orchestrator.pod_security_context.se_linux_options`
@@ -4595,6 +4700,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4605,6 +4711,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--windows_options))
+
+<a id="nestedatt--spec--pmm--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pmm.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--pmm--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.pmm.container_security_context.capabilities`
@@ -5111,6 +5229,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5121,6 +5240,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--container_security_context--windows_options))
+
+<a id="nestedatt--spec--proxy--haproxy--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.proxy.haproxy.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--proxy--haproxy--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.proxy.haproxy.container_security_context.capabilities`
@@ -5369,6 +5500,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -5379,6 +5511,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--proxy--haproxy--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.proxy.haproxy.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--proxy--haproxy--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.proxy.haproxy.pod_security_context.se_linux_options`
@@ -6180,6 +6324,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -6190,6 +6335,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--container_security_context--windows_options))
+
+<a id="nestedatt--spec--proxy--router--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.proxy.router.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--proxy--router--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.proxy.router.container_security_context.capabilities`
@@ -6438,6 +6595,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -6448,6 +6606,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--proxy--router--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.proxy.router.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--proxy--router--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.proxy.router.pod_security_context.se_linux_options`
@@ -6863,6 +7033,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -6873,6 +7044,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit--container_security_context--windows_options))
+
+<a id="nestedatt--spec--toolkit--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.toolkit.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--toolkit--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.toolkit.container_security_context.capabilities`

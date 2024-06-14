@@ -202,6 +202,10 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 				Type  *string `tfsdk:"type" json:"type,omitempty"`
 				Url   *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"artifacts" json:"artifacts,omitempty"`
+			InitContainer *struct {
+				Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
+				Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			VolumeClaimName *string `tfsdk:"volume_claim_name" json:"volumeClaimName,omitempty"`
 		} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 		Expose *struct {
@@ -1600,6 +1604,31 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 												stringvalidator.RegexMatches(regexp.MustCompile(`^$|^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]`), ""),
 											},
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_container": schema.SingleNestedAttribute{
+								Description:         "InitDependenciesContainerSpec describes the configuration options for the dependency download init container",
+								MarkdownDescription: "InitDependenciesContainerSpec describes the configuration options for the dependency download init container",
+								Attributes: map[string]schema.Attribute{
+									"cpu": schema.StringAttribute{
+										Description:         "CPU in limit:request format",
+										MarkdownDescription: "CPU in limit:request format",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"memory": schema.StringAttribute{
+										Description:         "Memory in limit:request format",
+										MarkdownDescription: "Memory in limit:request format",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

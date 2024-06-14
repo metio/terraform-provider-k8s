@@ -57,8 +57,8 @@ Required:
 Optional:
 
 - `health_check` (Attributes) The health check configuration.  Changes to this value will update VPC Lattice resource in place. (see [below for nested schema](#nestedatt--spec--health_check))
-- `protocol` (String) The protocol to use for routing traffic to the targets. Supported values are HTTP (default) and HTTPS.  Changes to this value results in a replacement of VPC Lattice target group.
-- `protocol_version` (String) The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.
+- `protocol` (String) The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.
+- `protocol_version` (String) The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`
@@ -85,7 +85,7 @@ Optional:
 - `path` (String) The destination for health checks on the targets.
 - `port` (Number) The port used when performing health checks on targets. If not specified, health check defaults to the port that a target receives traffic on.
 - `protocol` (String) The protocol used when performing health checks on targets.
-- `protocol_version` (String) The protocol version used when performing health checks on targets. Defaults to HTTP/1.
+- `protocol_version` (String) The protocol version used when performing health checks on targets.
 - `status_match` (String) A regular expression to match HTTP status codes when checking for successful response from a target.
 - `timeout_seconds` (Number) The amount of time, in seconds, to wait before reporting a target as unhealthy.
 - `unhealthy_threshold_count` (Number) The number of consecutive failed health checks required before considering a target unhealthy.

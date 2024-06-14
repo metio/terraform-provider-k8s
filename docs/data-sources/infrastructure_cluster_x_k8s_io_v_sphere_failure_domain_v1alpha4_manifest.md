@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_failure_domain_v1alpha4_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereFailureDomain is the Schema for the vspherefailuredomains API  Deprecated: This type will be removed in one of the next releases.
+  VSphereFailureDomain is the Schema for the vspherefailuredomains APIDeprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_failure_domain_v1alpha4_manifest (Data Source)
 
-VSphereFailureDomain is the Schema for the vspherefailuredomains API  Deprecated: This type will be removed in one of the next releases.
+VSphereFailureDomain is the Schema for the vspherefailuredomains APIDeprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -77,12 +77,12 @@ Optional:
 
 Required:
 
-- `datacenter` (String) The underlying infrastructure for this failure domain Datacenter as the failure domain
+- `datacenter` (String) The underlying infrastructure for this failure domainDatacenter as the failure domain
 
 Optional:
 
 - `compute_cluster` (String) ComputeCluster as the failure domain
-- `datastore` (String) Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.
+- `datastore` (String) Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.
 - `hosts` (Attributes) Hosts has information required for placement of machines on VSphere hosts. (see [below for nested schema](#nestedatt--spec--topology--hosts))
 - `networks` (List of String) Networks is the list of networks within this failure domain
 
