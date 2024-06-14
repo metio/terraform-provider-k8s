@@ -318,7 +318,9 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 				EndpointSources      *[]string          `tfsdk:"endpoint_sources" json:"endpointSources,omitempty"`
 				EventSinks           *[]string          `tfsdk:"event_sinks" json:"eventSinks,omitempty"`
 				EventSources         *[]string          `tfsdk:"event_sources" json:"eventSources,omitempty"`
+				FilterEventType      *bool              `tfsdk:"filter_event_type" json:"filterEventType,omitempty"`
 				FilterSourceChannels *bool              `tfsdk:"filter_source_channels" json:"filterSourceChannels,omitempty"`
+				Filters              *[]string          `tfsdk:"filters" json:"filters,omitempty"`
 				NamespaceLabel       *bool              `tfsdk:"namespace_label" json:"namespaceLabel,omitempty"`
 				SinkBinding          *bool              `tfsdk:"sink_binding" json:"sinkBinding,omitempty"`
 			} `tfsdk:"knative" json:"knative,omitempty"`
@@ -2568,9 +2570,26 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 										Computed:            false,
 									},
 
+									"filter_event_type": schema.BoolAttribute{
+										Description:         "Enables the default filtering for the Knative trigger using the event type If this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
+										MarkdownDescription: "Enables the default filtering for the Knative trigger using the event type If this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"filter_source_channels": schema.BoolAttribute{
 										Description:         "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions of Knative, filtering is disabled by default.",
 										MarkdownDescription: "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions of Knative, filtering is disabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"filters": schema.ListAttribute{
+										Description:         "Sets filter attributes on the event stream (such as event type, source, subject and so on). A list of key-value pairs that represent filter attributes and its values. The syntax is KEY=VALUE, e.g., 'source='my.source''. Filter attributes get set on the Knative trigger that is being created as part of this integration.",
+										MarkdownDescription: "Sets filter attributes on the event stream (such as event type, source, subject and so on). A list of key-value pairs that represent filter attributes and its values. The syntax is KEY=VALUE, e.g., 'source='my.source''. Filter attributes get set on the Knative trigger that is being created as part of this integration.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

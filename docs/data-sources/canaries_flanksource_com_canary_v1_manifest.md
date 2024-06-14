@@ -113,6 +113,7 @@ Required:
 Optional:
 
 - `alerts` (List of String)
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--display))
@@ -123,6 +124,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--alertmanager--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--password))
 - `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--test))
@@ -130,6 +132,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--username))
+
+<a id="nestedatt--spec--alertmanager--bearer"></a>
+### Nested Schema for `spec.alertmanager.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from))
+
+<a id="nestedatt--spec--alertmanager--bearer--value_from"></a>
+### Nested Schema for `spec.alertmanager.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--alertmanager--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.alertmanager.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.alertmanager.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.alertmanager.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--alertmanager--display"></a>
 ### Nested Schema for `spec.alertmanager.display`
@@ -163,6 +222,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--alertmanager--oauth"></a>
+### Nested Schema for `spec.alertmanager.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--alertmanager--oauth--client_id"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--alertmanager--oauth--client_secret"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -2304,6 +2489,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--display))
@@ -2312,6 +2498,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password))
 - `query` (String)
 - `results` (Number)
@@ -2320,6 +2507,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--username))
+
+<a id="nestedatt--spec--elasticsearch--bearer"></a>
+### Nested Schema for `spec.elasticsearch.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from))
+
+<a id="nestedatt--spec--elasticsearch--bearer--value_from"></a>
+### Nested Schema for `spec.elasticsearch.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--elasticsearch--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.elasticsearch.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--elasticsearch--display"></a>
 ### Nested Schema for `spec.elasticsearch.display`
@@ -2353,6 +2597,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--elasticsearch--oauth"></a>
+### Nested Schema for `spec.elasticsearch.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_id"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_secret"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -3607,10 +3977,195 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer))
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--password))
 - `port` (Number) Port for the SSH server. Defaults to 22
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--username))
+
+<a id="nestedatt--spec--folder--sftp_connection--bearer"></a>
+### Nested Schema for `spec.folder.sftp_connection.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from))
+
+<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from"></a>
+### Nested Schema for `spec.folder.sftp_connection.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
 
 <a id="nestedatt--spec--folder--sftp_connection--password"></a>
 ### Nested Schema for `spec.folder.sftp_connection.password`
@@ -3732,11 +4287,196 @@ Optional:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer))
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
 - `domain` (String) Domain...
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--password))
 - `port` (Number) Port on which smb server is running. Defaults to 445
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--username))
+
+<a id="nestedatt--spec--folder--smb_connection--bearer"></a>
+### Nested Schema for `spec.folder.smb_connection.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from))
+
+<a id="nestedatt--spec--folder--smb_connection--bearer--value_from"></a>
+### Nested Schema for `spec.folder.smb_connection.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_id"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
 
 <a id="nestedatt--spec--folder--smb_connection--password"></a>
 ### Nested Schema for `spec.folder.smb_connection.password`
@@ -4385,6 +5125,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer))
 - `body` (String) Request Body Contents
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
@@ -4400,6 +5141,7 @@ Optional:
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `ntlm` (Boolean) NTLM when set to true will do authentication using NTLM v1 protocol
 - `ntlmv2` (Boolean) NTLM when set to true will do authentication using NTLM v2 protocol
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth))
 - `oauth2` (Attributes) Oauth2 Configuration. The client ID & Client secret should go to username & password respectively. (see [below for nested schema](#nestedatt--spec--http--oauth2))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--http--password))
 - `response_codes` (List of String) Expected response codes for the HTTP Request.
@@ -4412,6 +5154,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--http--username))
+
+<a id="nestedatt--spec--http--bearer"></a>
+### Nested Schema for `spec.http.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from))
+
+<a id="nestedatt--spec--http--bearer--value_from"></a>
+### Nested Schema for `spec.http.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--http--display"></a>
 ### Nested Schema for `spec.http.display`
@@ -4559,6 +5358,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--http--oauth"></a>
+### Nested Schema for `spec.http.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--http--oauth--client_id"></a>
+### Nested Schema for `spec.http.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--http--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.http.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--http--oauth--client_secret"></a>
+### Nested Schema for `spec.http.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--http--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.http.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -5290,18 +6215,77 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--ldap--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--password))
 - `skip_tls_verify` (Boolean)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `user_search` (String)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--username))
+
+<a id="nestedatt--spec--ldap--bearer"></a>
+### Nested Schema for `spec.ldap.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from))
+
+<a id="nestedatt--spec--ldap--bearer--value_from"></a>
+### Nested Schema for `spec.ldap.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--ldap--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ldap.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.ldap.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ldap.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--ldap--metrics"></a>
 ### Nested Schema for `spec.ldap.metrics`
@@ -5324,6 +6308,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--ldap--oauth"></a>
+### Nested Schema for `spec.ldap.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--ldap--oauth--client_id"></a>
+### Nested Schema for `spec.ldap.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--ldap--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.ldap.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--ldap--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--ldap--oauth--client_secret"></a>
+### Nested Schema for `spec.ldap.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--ldap--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.ldap.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ldap.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -5451,16 +6561,75 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mongodb--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--password))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--username))
+
+<a id="nestedatt--spec--mongodb--bearer"></a>
+### Nested Schema for `spec.mongodb.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from))
+
+<a id="nestedatt--spec--mongodb--bearer--value_from"></a>
+### Nested Schema for `spec.mongodb.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mongodb--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mongodb.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.mongodb.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mongodb.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--mongodb--metrics"></a>
 ### Nested Schema for `spec.mongodb.metrics`
@@ -5483,6 +6652,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--mongodb--oauth"></a>
+### Nested Schema for `spec.mongodb.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--mongodb--oauth--client_id"></a>
+### Nested Schema for `spec.mongodb.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--mongodb--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.mongodb.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--mongodb--oauth--client_secret"></a>
+### Nested Schema for `spec.mongodb.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.mongodb.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -5610,6 +6905,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--display))
@@ -5617,6 +6913,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mssql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--password))
 - `query` (String)
 - `results` (Number) Number rows to check for
@@ -5625,6 +6922,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--username))
+
+<a id="nestedatt--spec--mssql--bearer"></a>
+### Nested Schema for `spec.mssql.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from))
+
+<a id="nestedatt--spec--mssql--bearer--value_from"></a>
+### Nested Schema for `spec.mssql.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mssql--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mssql.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.mssql.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mssql.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--mssql--display"></a>
 ### Nested Schema for `spec.mssql.display`
@@ -5658,6 +7012,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--mssql--oauth"></a>
+### Nested Schema for `spec.mssql.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--mssql--oauth--client_id"></a>
+### Nested Schema for `spec.mssql.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--mssql--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.mssql.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mssql--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--mssql--oauth--client_secret"></a>
+### Nested Schema for `spec.mssql.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--mssql--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.mssql.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mssql.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -5807,6 +7287,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--display))
@@ -5814,6 +7295,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mysql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--password))
 - `query` (String)
 - `results` (Number) Number rows to check for
@@ -5822,6 +7304,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--username))
+
+<a id="nestedatt--spec--mysql--bearer"></a>
+### Nested Schema for `spec.mysql.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from))
+
+<a id="nestedatt--spec--mysql--bearer--value_from"></a>
+### Nested Schema for `spec.mysql.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mysql--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mysql.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.mysql.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mysql.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--mysql--display"></a>
 ### Nested Schema for `spec.mysql.display`
@@ -5855,6 +7394,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--mysql--oauth"></a>
+### Nested Schema for `spec.mysql.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--mysql--oauth--client_id"></a>
+### Nested Schema for `spec.mysql.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--mysql--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.mysql.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mysql--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--mysql--oauth--client_secret"></a>
+### Nested Schema for `spec.mysql.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--mysql--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.mysql.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mysql.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -6065,6 +7730,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--display))
@@ -6072,6 +7738,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--opensearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--password))
 - `results` (Number)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--test))
@@ -6079,6 +7746,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--username))
+
+<a id="nestedatt--spec--opensearch--bearer"></a>
+### Nested Schema for `spec.opensearch.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from))
+
+<a id="nestedatt--spec--opensearch--bearer--value_from"></a>
+### Nested Schema for `spec.opensearch.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--opensearch--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.opensearch.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.opensearch.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--opensearch--display"></a>
 ### Nested Schema for `spec.opensearch.display`
@@ -6112,6 +7836,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--opensearch--oauth"></a>
+### Nested Schema for `spec.opensearch.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--opensearch--oauth--client_id"></a>
+### Nested Schema for `spec.opensearch.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--opensearch--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.opensearch.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--opensearch--oauth--client_secret"></a>
+### Nested Schema for `spec.opensearch.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.opensearch.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -6319,6 +8169,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--display))
@@ -6326,6 +8177,7 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--postgres--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--password))
 - `query` (String)
 - `results` (Number) Number rows to check for
@@ -6334,6 +8186,63 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--username))
+
+<a id="nestedatt--spec--postgres--bearer"></a>
+### Nested Schema for `spec.postgres.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from))
+
+<a id="nestedatt--spec--postgres--bearer--value_from"></a>
+### Nested Schema for `spec.postgres.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--postgres--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.postgres.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.postgres.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.postgres.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--postgres--display"></a>
 ### Nested Schema for `spec.postgres.display`
@@ -6367,6 +8276,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--postgres--oauth"></a>
+### Nested Schema for `spec.postgres.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--postgres--oauth--client_id"></a>
+### Nested Schema for `spec.postgres.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--postgres--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.postgres.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--postgres--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--postgres--oauth--client_secret"></a>
+### Nested Schema for `spec.postgres.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--postgres--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.postgres.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.postgres.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -6517,6 +8552,7 @@ Required:
 
 Optional:
 
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--display))
@@ -6525,12 +8561,70 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--password))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--username))
+
+<a id="nestedatt--spec--prometheus--bearer"></a>
+### Nested Schema for `spec.prometheus.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer--value_from))
+
+<a id="nestedatt--spec--prometheus--bearer--value_from"></a>
+### Nested Schema for `spec.prometheus.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--prometheus--display"></a>
 ### Nested Schema for `spec.prometheus.display`
@@ -6564,6 +8658,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--prometheus--oauth"></a>
+### Nested Schema for `spec.prometheus.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--prometheus--oauth--client_id"></a>
+### Nested Schema for `spec.prometheus.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--prometheus--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.prometheus.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--prometheus--oauth--client_secret"></a>
+### Nested Schema for `spec.prometheus.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--prometheus--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.prometheus.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -6714,6 +8934,7 @@ Required:
 Optional:
 
 - `addr` (String) Deprecated: Use url instead
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `db` (Number)
 - `description` (String) Description for the check
@@ -6721,10 +8942,68 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--redis--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--password))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--username))
+
+<a id="nestedatt--spec--redis--bearer"></a>
+### Nested Schema for `spec.redis.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from))
+
+<a id="nestedatt--spec--redis--bearer--value_from"></a>
+### Nested Schema for `spec.redis.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--redis--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.redis.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.redis.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 <a id="nestedatt--spec--redis--metrics"></a>
 ### Nested Schema for `spec.redis.metrics`
@@ -6747,6 +9026,132 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--redis--oauth"></a>
+### Nested Schema for `spec.redis.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--redis--oauth--client_id"></a>
+### Nested Schema for `spec.redis.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--redis--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.redis.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--redis--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--redis--oauth--client_secret"></a>
+### Nested Schema for `spec.redis.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--redis--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.redis.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--redis--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--redis--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
 
 
 

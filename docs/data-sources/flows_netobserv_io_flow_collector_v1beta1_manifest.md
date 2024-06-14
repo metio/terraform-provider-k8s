@@ -124,7 +124,7 @@ Optional:
 
 Optional:
 
-- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
+- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>
 - `enable` (Boolean) Set 'enable' to 'false' to disable eBPF agent metrics collection, by default it's 'true'.
 - `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 

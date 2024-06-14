@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_configuration_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  Configuration represents the complete set of configurations for a specific Component of a Cluster. This includes templates for each configuration file, their corresponding ConfigConstraints, volume mounts, and other relevant details.
+  Configuration represents the complete set of configurations for a specific Component of a Cluster.This includes templates for each configuration file, their corresponding ConfigConstraints, volume mounts,and other relevant details.
 ---
 
 # k8s_apps_kubeblocks_io_configuration_v1alpha1_manifest (Data Source)
 
-Configuration represents the complete set of configurations for a specific Component of a Cluster. This includes templates for each configuration file, their corresponding ConfigConstraints, volume mounts, and other relevant details.
+Configuration represents the complete set of configurations for a specific Component of a Cluster.This includes templates for each configuration file, their corresponding ConfigConstraints, volume mounts,and other relevant details.
 
 ## Example Usage
 
@@ -60,21 +60,21 @@ Required:
 
 Optional:
 
-- `config_item_details` (Attributes List) ConfigItemDetails is an array of ConfigurationItemDetail objects.  Each ConfigurationItemDetail corresponds to a configuration template, which is a ConfigMap that contains multiple configuration files. Each configuration file is stored as a key-value pair within the ConfigMap.  The ConfigurationItemDetail includes information such as:  - The configuration template (a ConfigMap) - The corresponding ConfigConstraint (constraints and validation rules for the configuration) - Volume mounts (for mounting the configuration files) (see [below for nested schema](#nestedatt--spec--config_item_details))
+- `config_item_details` (Attributes List) ConfigItemDetails is an array of ConfigurationItemDetail objects.Each ConfigurationItemDetail corresponds to a configuration template,which is a ConfigMap that contains multiple configuration files.Each configuration file is stored as a key-value pair within the ConfigMap.The ConfigurationItemDetail includes information such as:- The configuration template (a ConfigMap)- The corresponding ConfigConstraint (constraints and validation rules for the configuration)- Volume mounts (for mounting the configuration files) (see [below for nested schema](#nestedatt--spec--config_item_details))
 
 <a id="nestedatt--spec--config_item_details"></a>
 ### Nested Schema for `spec.config_item_details`
 
 Required:
 
-- `name` (String) Defines the unique identifier of the configuration template.  It must be a string of maximum 63 characters, and can only include lowercase alphanumeric characters, hyphens, and periods. The name must start and end with an alphanumeric character.
+- `name` (String) Defines the unique identifier of the configuration template.It must be a string of maximum 63 characters, and can only include lowercase alphanumeric characters,hyphens, and periods.The name must start and end with an alphanumeric character.
 
 Optional:
 
-- `config_file_params` (Attributes) Specifies the user-defined configuration parameters.  When provided, the parameter values in 'configFileParams' override the default configuration parameters. This allows users to override the default configuration according to their specific needs. (see [below for nested schema](#nestedatt--spec--config_item_details--config_file_params))
-- `config_spec` (Attributes) Specifies the name of the configuration template (a ConfigMap), ConfigConstraint, and other miscellaneous options.  The configuration template is a ConfigMap that contains multiple configuration files. Each configuration file is stored as a key-value pair within the ConfigMap.  ConfigConstraint allows defining constraints and validation rules for configuration parameters. It ensures that the configuration adheres to certain requirements and limitations. (see [below for nested schema](#nestedatt--spec--config_item_details--config_spec))
-- `import_template_ref` (Attributes) Specifies the user-defined configuration template.  When provided, the 'importTemplateRef' overrides the default configuration template specified in 'configSpec.templateRef'. This allows users to customize the configuration template according to their specific requirements. (see [below for nested schema](#nestedatt--spec--config_item_details--import_template_ref))
-- `payload` (Map of String) External controllers can trigger a configuration rerender by modifying this field.  Note: Currently, the 'payload' field is opaque and its content is not interpreted by the system. Modifying this field will cause a rerender, regardless of the specific content of this field.
+- `config_file_params` (Attributes) Specifies the user-defined configuration parameters.When provided, the parameter values in 'configFileParams' override the default configuration parameters.This allows users to override the default configuration according to their specific needs. (see [below for nested schema](#nestedatt--spec--config_item_details--config_file_params))
+- `config_spec` (Attributes) Specifies the name of the configuration template (a ConfigMap), ConfigConstraint, and other miscellaneous options.The configuration template is a ConfigMap that contains multiple configuration files.Each configuration file is stored as a key-value pair within the ConfigMap.ConfigConstraint allows defining constraints and validation rules for configuration parameters.It ensures that the configuration adheres to certain requirements and limitations. (see [below for nested schema](#nestedatt--spec--config_item_details--config_spec))
+- `import_template_ref` (Attributes) Specifies the user-defined configuration template.When provided, the 'importTemplateRef' overrides the default configuration templatespecified in 'configSpec.templateRef'.This allows users to customize the configuration template according to their specific requirements. (see [below for nested schema](#nestedatt--spec--config_item_details--import_template_ref))
+- `payload` (Map of String) External controllers can trigger a configuration rerender by modifying this field.Note: Currently, the 'payload' field is opaque and its content is not interpreted by the system.Modifying this field will cause a rerender, regardless of the specific content of this field.
 - `version` (String) Deprecated: No longer used. Please use 'Payload' instead. Previously represented the version of the configuration template.
 
 <a id="nestedatt--spec--config_item_details--config_file_params"></a>
@@ -82,7 +82,7 @@ Optional:
 
 Optional:
 
-- `content` (String) Holds the configuration keys and values. This field is a workaround for issues found in kubebuilder and code-generator. Refer to https://github.com/kubernetes-sigs/kubebuilder/issues/528 and https://github.com/kubernetes/code-generator/issues/50 for more details.  Represents the content of the configuration file.
+- `content` (String) Holds the configuration keys and values. This field is a workaround for issues found in kubebuilder and code-generator.Refer to https://github.com/kubernetes-sigs/kubebuilder/issues/528 and https://github.com/kubernetes/code-generator/issues/50 for more details.Represents the content of the configuration file.
 - `parameters` (Map of String) Represents the updated parameters for a single configuration file.
 
 
@@ -92,18 +92,18 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
-- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.
+- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
 
-- `as_env_from` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.
+- `as_env_from` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0.Use 'injectEnvTo' instead.
 - `constraint_ref` (String) Specifies the name of the referenced configuration constraints object.
-- `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here.  Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions.  Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
-- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.
-- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.
-- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--config_item_details--config_spec--legacy_rendered_config_spec))
-- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
-- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
+- `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
+- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.
+- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.A configuration template (provided in the form of a ConfigMap) may contain templates for multipleconfiguration files.Each configuration file corresponds to a key in the ConfigMap.Some of these configuration files may support dynamic modification and reloading without requiringa pod restart.If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates,and ConfigConstraint applies to all keys.
+- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the maintemplate's render result to generate the final configuration file.This field is intended to handle scenarios where different pods within the same Component havevarying configurations. It allows for pod-specific customization of the configuration.Note: This field will be deprecated in future versions, and the functionality will be moved to'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--config_item_details--config_spec--legacy_rendered_config_spec))
+- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
+- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.In some scenarios, the configuration may need to be updated to reflect the changes in resource allocationor cluster topology. Examples:- Redis: adjust maxmemory after v-scale operation.- MySQL: increase max connections after v-scale operation.- Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
 - `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 
 <a id="nestedatt--spec--config_item_details--config_spec--legacy_rendered_config_spec"></a>
@@ -115,7 +115,7 @@ Required:
 
 Optional:
 
-- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
+- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
 - `policy` (String) Defines the strategy for merging externally imported templates into component templates.
 
 
@@ -129,5 +129,5 @@ Required:
 
 Optional:
 
-- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
+- `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
 - `policy` (String) Defines the strategy for merging externally imported templates into component templates.

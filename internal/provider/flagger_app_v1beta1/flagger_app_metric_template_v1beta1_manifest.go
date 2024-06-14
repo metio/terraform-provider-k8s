@@ -185,7 +185,7 @@ func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Schema(_ context.Context, _ da
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("prometheus", "influxdb", "datadog", "stackdriver", "cloudwatch", "newrelic", "graphite", "dynatrace"),
+									stringvalidator.OneOf("prometheus", "influxdb", "datadog", "stackdriver", "cloudwatch", "newrelic", "graphite", "dynatrace", "keptn"),
 								},
 							},
 						},

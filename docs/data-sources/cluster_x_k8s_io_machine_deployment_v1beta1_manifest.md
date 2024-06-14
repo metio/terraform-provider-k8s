@@ -170,8 +170,17 @@ Optional:
 
 Optional:
 
+- `remediation` (Attributes) Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets. (see [below for nested schema](#nestedatt--spec--strategy--remediation))
 - `rolling_update` (Attributes) Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate. (see [below for nested schema](#nestedatt--spec--strategy--rolling_update))
 - `type` (String) Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.
+
+<a id="nestedatt--spec--strategy--remediation"></a>
+### Nested Schema for `spec.strategy.remediation`
+
+Optional:
+
+- `max_in_flight` (String) MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.
+
 
 <a id="nestedatt--spec--strategy--rolling_update"></a>
 ### Nested Schema for `spec.strategy.rolling_update`

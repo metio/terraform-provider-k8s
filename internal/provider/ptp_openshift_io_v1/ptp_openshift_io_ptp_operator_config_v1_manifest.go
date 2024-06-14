@@ -161,16 +161,16 @@ func (r *PtpOpenshiftIoPtpOperatorConfigV1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"storage_type": schema.StringAttribute{
-								Description:         "StorageType is the name of StorageClass providing persist storage used by HTTP transport to store subscription data",
-								MarkdownDescription: "StorageType is the name of StorageClass providing persist storage used by HTTP transport to store subscription data",
+								Description:         "StorageType is the type of storage to store subscription data",
+								MarkdownDescription: "StorageType is the type of storage to store subscription data",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"transport_host": schema.StringAttribute{
-								Description:         "TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043' Example AMQP transport: 'amqp://amq-router-service-name.amq-namespace.svc.cluster.local'",
-								MarkdownDescription: "TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043' Example AMQP transport: 'amqp://amq-router-service-name.amq-namespace.svc.cluster.local'",
+								Description:         "TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'",
+								MarkdownDescription: "TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

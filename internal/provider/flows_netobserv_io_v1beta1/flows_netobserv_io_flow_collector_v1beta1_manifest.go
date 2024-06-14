@@ -832,8 +832,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'metrics' defines the eBPF agent configuration regarding metrics",
 										Attributes: map[string]schema.Attribute{
 											"disable_alerts": schema.ListAttribute{
-												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>",
-												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>",
+												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
+												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

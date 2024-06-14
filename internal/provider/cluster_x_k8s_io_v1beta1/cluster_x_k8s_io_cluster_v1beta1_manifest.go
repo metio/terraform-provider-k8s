@@ -158,6 +158,9 @@ type ClusterXK8SIoClusterV1Beta1ManifestData struct {
 					NodeVolumeDetachTimeout *string `tfsdk:"node_volume_detach_timeout" json:"nodeVolumeDetachTimeout,omitempty"`
 					Replicas                *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 					Strategy                *struct {
+						Remediation *struct {
+							MaxInFlight *string `tfsdk:"max_in_flight" json:"maxInFlight,omitempty"`
+						} `tfsdk:"remediation" json:"remediation,omitempty"`
 						RollingUpdate *struct {
 							DeletePolicy   *string `tfsdk:"delete_policy" json:"deletePolicy,omitempty"`
 							MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
@@ -537,8 +540,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"node_startup_timeout": schema.StringAttribute{
-												Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
-												MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+												Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+												MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -876,8 +879,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"node_startup_timeout": schema.StringAttribute{
-															Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
-															MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure and control plane ready condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+															Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+															MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1084,6 +1087,23 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 													Description:         "The deployment strategy to use to replace existing machines withnew ones.",
 													MarkdownDescription: "The deployment strategy to use to replace existing machines withnew ones.",
 													Attributes: map[string]schema.Attribute{
+														"remediation": schema.SingleNestedAttribute{
+															Description:         "Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+															MarkdownDescription: "Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+															Attributes: map[string]schema.Attribute{
+																"max_in_flight": schema.StringAttribute{
+																	Description:         "MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.",
+																	MarkdownDescription: "MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"rolling_update": schema.SingleNestedAttribute{
 															Description:         "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",
 															MarkdownDescription: "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",

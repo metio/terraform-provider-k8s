@@ -69,7 +69,7 @@ Required:
 
 Optional:
 
-- `auto_configure` (Boolean) AutoConfigure tags the Type which is specified in the Topology  Deprecated: This field is going to be removed in a future release.
+- `auto_configure` (Boolean) AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.
 
 
 <a id="nestedatt--spec--topology"></a>
@@ -82,7 +82,7 @@ Required:
 Optional:
 
 - `compute_cluster` (String) ComputeCluster as the failure domain
-- `datastore` (String) Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.
+- `datastore` (String) Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.
 - `hosts` (Attributes) Hosts has information required for placement of machines on VSphere hosts. (see [below for nested schema](#nestedatt--spec--topology--hosts))
 - `networks` (List of String) Networks is the list of networks within this failure domain
 
@@ -107,4 +107,4 @@ Required:
 
 Optional:
 
-- `auto_configure` (Boolean) AutoConfigure tags the Type which is specified in the Topology  Deprecated: This field is going to be removed in a future release.
+- `auto_configure` (Boolean) AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.

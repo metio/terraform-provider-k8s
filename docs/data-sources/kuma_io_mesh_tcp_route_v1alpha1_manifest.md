@@ -67,9 +67,12 @@ Optional:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
 - `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
 - `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
 - `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
@@ -90,9 +93,12 @@ Optional:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
 - `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
 - `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
 - `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
@@ -116,9 +122,12 @@ Required:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
 - `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
 - `port` (Number) Port is only supported when this ref refers to a real MeshService object
 - `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
 - `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 - `weight` (Number)

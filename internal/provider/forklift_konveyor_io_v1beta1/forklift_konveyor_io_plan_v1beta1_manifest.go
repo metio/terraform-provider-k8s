@@ -110,7 +110,16 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 				} `tfsdk:"hook" json:"hook,omitempty"`
 				Step *string `tfsdk:"step" json:"step,omitempty"`
 			} `tfsdk:"hooks" json:"hooks,omitempty"`
-			Id        *string `tfsdk:"id" json:"id,omitempty"`
+			Id   *string `tfsdk:"id" json:"id,omitempty"`
+			Luks *struct {
+				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+				FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+				Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name            *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
+				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
+			} `tfsdk:"luks" json:"luks,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			Type      *string `tfsdk:"type" json:"type,omitempty"`
@@ -674,6 +683,71 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"luks": schema.SingleNestedAttribute{
+									Description:         "Disk decryption LUKS keys",
+									MarkdownDescription: "Disk decryption LUKS keys",
+									Attributes: map[string]schema.Attribute{
+										"api_version": schema.StringAttribute{
+											Description:         "API version of the referent.",
+											MarkdownDescription: "API version of the referent.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"field_path": schema.StringAttribute{
+											Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kind": schema.StringAttribute{
+											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"resource_version": schema.StringAttribute{
+											Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"uid": schema.StringAttribute{
+											Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+											MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"name": schema.StringAttribute{

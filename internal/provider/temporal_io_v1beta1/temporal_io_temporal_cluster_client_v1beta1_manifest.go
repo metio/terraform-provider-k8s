@@ -132,16 +132,16 @@ func (r *TemporalIoTemporalClusterClientV1Beta1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Reference to the temporal cluster the client will get access to.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "The name of the TemporalCluster to reference.",
-								MarkdownDescription: "The name of the TemporalCluster to reference.",
+								Description:         "The name of the temporal object to reference.",
+								MarkdownDescription: "The name of the temporal object to reference.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "The namespace of the TemporalCluster to reference. Defaults to the namespace of the requested resource if omitted.",
-								MarkdownDescription: "The namespace of the TemporalCluster to reference. Defaults to the namespace of the requested resource if omitted.",
+								Description:         "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
+								MarkdownDescription: "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -158,8 +158,8 @@ func (r *DataprotectionKubeblocksIoBackupScheduleV1Alpha1Manifest) Schema(_ cont
 								},
 
 								"cron_expression": schema.StringAttribute{
-									Description:         "Specifies the cron expression for the schedule. The timezone is in UTC. see https://en.wikipedia.org/wiki/Cron.",
-									MarkdownDescription: "Specifies the cron expression for the schedule. The timezone is in UTC. see https://en.wikipedia.org/wiki/Cron.",
+									Description:         "Specifies the cron expression for the schedule. The timezone is in UTC.see https://en.wikipedia.org/wiki/Cron.",
+									MarkdownDescription: "Specifies the cron expression for the schedule. The timezone is in UTC.see https://en.wikipedia.org/wiki/Cron.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -174,8 +174,8 @@ func (r *DataprotectionKubeblocksIoBackupScheduleV1Alpha1Manifest) Schema(_ cont
 								},
 
 								"retention_period": schema.StringAttribute{
-									Description:         "Determines the duration for which the backup should be kept. KubeBlocks will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  You can also combine the above durations. For example: 30d12h30m",
-									MarkdownDescription: "Determines the duration for which the backup should be kept. KubeBlocks will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  You can also combine the above durations. For example: 30d12h30m",
+									Description:         "Determines the duration for which the backup should be kept.KubeBlocks will remove all backups that are older than the RetentionPeriod.For example, RetentionPeriod of '30d' will keep only the backups of last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mYou can also combine the above durations. For example: 30d12h30m",
+									MarkdownDescription: "Determines the duration for which the backup should be kept.KubeBlocks will remove all backups that are older than the RetentionPeriod.For example, RetentionPeriod of '30d' will keep only the backups of last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mYou can also combine the above durations. For example: 30d12h30m",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -188,8 +188,8 @@ func (r *DataprotectionKubeblocksIoBackupScheduleV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"starting_deadline_minutes": schema.Int64Attribute{
-						Description:         "Defines the deadline in minutes for starting the backup workload if it misses its scheduled time for any reason.",
-						MarkdownDescription: "Defines the deadline in minutes for starting the backup workload if it misses its scheduled time for any reason.",
+						Description:         "Defines the deadline in minutes for starting the backup workload if itmisses its scheduled time for any reason.",
+						MarkdownDescription: "Defines the deadline in minutes for starting the backup workload if itmisses its scheduled time for any reason.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

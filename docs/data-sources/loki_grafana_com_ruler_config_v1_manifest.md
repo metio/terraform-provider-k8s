@@ -113,6 +113,7 @@ Optional:
 
 - `ca_path` (String) The CA certificate file path for the TLS configuration.
 - `cert_path` (String) The client-side certificate file path for the TLS configuration.
+- `insecure_skip_verify` (Boolean) Skip validating server certificate.
 - `key_path` (String) The client-side key file path for the TLS configuration.
 - `server_name` (String) The server name to validate in the alertmanager server certificates.
 
@@ -216,6 +217,7 @@ Optional:
 
 - `ca_path` (String) The CA certificate file path for the TLS configuration.
 - `cert_path` (String) The client-side certificate file path for the TLS configuration.
+- `insecure_skip_verify` (Boolean) Skip validating server certificate.
 - `key_path` (String) The client-side key file path for the TLS configuration.
 - `server_name` (String) The server name to validate in the alertmanager server certificates.
 

@@ -248,8 +248,8 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Schema(_ context.Context
 								},
 
 								"pod_sets": schema.ListNestedAttribute{
-									Description:         "PodSets contained in the Component",
-									MarkdownDescription: "PodSets contained in the Component",
+									Description:         "DeclaredPodSets for the Component (optional for known PodCreating GVKs)",
+									MarkdownDescription: "DeclaredPodSets for the Component (optional for known PodCreating GVKs)",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{

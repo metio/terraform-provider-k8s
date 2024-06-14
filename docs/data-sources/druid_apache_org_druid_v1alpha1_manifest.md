@@ -144,6 +144,7 @@ Optional:
 - `replicas` (Number) Replicas replica of the workload
 - `resources` (Attributes) Resources Kubernetes Native 'resources' specification. (see [below for nested schema](#nestedatt--spec--nodes--resources))
 - `security_context` (Attributes) PodSecurityContext Overrides 'securityContext' at top level. (see [below for nested schema](#nestedatt--spec--nodes--security_context))
+- `service_account_name` (String) ServiceAccountName Kubernetes native 'serviceAccountName' specification.
 - `services` (Attributes List) Services Overrides services at top level. (see [below for nested schema](#nestedatt--spec--nodes--services))
 - `start_up_probe` (Attributes) StartUpProbe (see [below for nested schema](#nestedatt--spec--nodes--start_up_probe))
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds

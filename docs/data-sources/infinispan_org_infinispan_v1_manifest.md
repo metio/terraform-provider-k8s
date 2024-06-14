@@ -515,6 +515,7 @@ Optional:
 Optional:
 
 - `artifacts` (Attributes List) (see [below for nested schema](#nestedatt--spec--dependencies--artifacts))
+- `init_container` (Attributes) InitDependenciesContainerSpec describes the configuration options for the dependency download init container (see [below for nested schema](#nestedatt--spec--dependencies--init_container))
 - `volume_claim_name` (String) The Persistent Volume Claim that holds custom libraries
 
 <a id="nestedatt--spec--dependencies--artifacts"></a>
@@ -526,6 +527,15 @@ Optional:
 - `maven` (String) Coordinates of a maven artifact in the 'groupId:artifactId:version' format, for example 'org.postgresql:postgresql:42.3.1'.
 - `type` (String) Deprecated, no longer has any effect. Specifies the type of file you want to download. If not specified, the file type is automatically determined from the extension.
 - `url` (String) URL of the file you want to download.
+
+
+<a id="nestedatt--spec--dependencies--init_container"></a>
+### Nested Schema for `spec.dependencies.init_container`
+
+Optional:
+
+- `cpu` (String) CPU in limit:request format
+- `memory` (String) Memory in limit:request format
 
 
 

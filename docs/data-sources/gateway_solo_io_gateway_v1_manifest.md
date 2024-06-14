@@ -105,6 +105,7 @@ Optional:
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--router))
 - `sanitize_cluster_header` (Boolean)
+- `stateful_session` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--stateful_session))
 - `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap))
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf))
 - `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm))
@@ -1297,6 +1298,42 @@ Optional:
 - `suppress_envoy_headers` (Boolean)
 
 
+<a id="nestedatt--spec--http_gateway--options--stateful_session"></a>
+### Nested Schema for `spec.http_gateway.options.stateful_session`
+
+Optional:
+
+- `cookie_based` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--stateful_session--cookie_based))
+- `header_based` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--stateful_session--header_based))
+- `strict` (Boolean)
+
+<a id="nestedatt--spec--http_gateway--options--stateful_session--cookie_based"></a>
+### Nested Schema for `spec.http_gateway.options.stateful_session.cookie_based`
+
+Optional:
+
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--stateful_session--cookie_based--cookie))
+
+<a id="nestedatt--spec--http_gateway--options--stateful_session--cookie_based--cookie"></a>
+### Nested Schema for `spec.http_gateway.options.stateful_session.cookie_based.cookie`
+
+Optional:
+
+- `name` (String)
+- `path` (String)
+- `ttl` (String)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--stateful_session--header_based"></a>
+### Nested Schema for `spec.http_gateway.options.stateful_session.header_based`
+
+Optional:
+
+- `header_name` (String)
+
+
+
 <a id="nestedatt--spec--http_gateway--options--tap"></a>
 ### Nested Schema for `spec.http_gateway.options.tap`
 
@@ -1970,6 +2007,7 @@ Optional:
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--router))
 - `sanitize_cluster_header` (Boolean)
+- `stateful_session` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session))
 - `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap))
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf))
 - `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm))
@@ -3160,6 +3198,42 @@ Optional:
 
 - `dynamic_stats` (Boolean)
 - `suppress_envoy_headers` (Boolean)
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.stateful_session`
+
+Optional:
+
+- `cookie_based` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--cookie_based))
+- `header_based` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--header_based))
+- `strict` (Boolean)
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--cookie_based"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.stateful_session.cookie_based`
+
+Optional:
+
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--cookie_based--cookie))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--cookie_based--cookie"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.stateful_session.cookie_based.cookie`
+
+Optional:
+
+- `name` (String)
+- `path` (String)
+- `ttl` (String)
+
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--stateful_session--header_based"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.stateful_session.header_based`
+
+Optional:
+
+- `header_name` (String)
+
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap"></a>

@@ -588,7 +588,9 @@ Optional:
 - `endpoint_sources` (List of String) List of channels used as source of integration routes.
 - `event_sinks` (List of String) List of event types that the integration will produce. Can contain simple event types or full Camel URIs (to use a specific broker).
 - `event_sources` (List of String) List of event types that the integration will be subscribed to. Can contain simple event types or full Camel URIs (to use a specific broker different from 'default').
+- `filter_event_type` (Boolean) Enables the default filtering for the Knative trigger using the event type If this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)
 - `filter_source_channels` (Boolean) Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions of Knative, filtering is disabled by default.
+- `filters` (List of String) Sets filter attributes on the event stream (such as event type, source, subject and so on). A list of key-value pairs that represent filter attributes and its values. The syntax is KEY=VALUE, e.g., 'source='my.source''. Filter attributes get set on the Knative trigger that is being created as part of this integration.
 - `namespace_label` (Boolean) Enables the camel-k-operator to set the 'bindings.knative.dev/include=true' label to the namespace As Knative requires this label to perform injection of K_SINK URL into the service. If this is false, the integration pod may start and fail, read the SinkBinding Knative documentation. (default: true)
 - `sink_binding` (Boolean) Allows binding the integration to a sink via a Knative SinkBinding resource. This can be used when the integration targets a single sink. It's enabled by default when the integration targets a single sink (except when the integration is owned by a Knative source).
 

@@ -73,8 +73,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Alpha4Manifest) Metada
 
 func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Alpha4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereFailureDomain is the Schema for the vspherefailuredomains API  Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "VSphereFailureDomain is the Schema for the vspherefailuredomains API  Deprecated: This type will be removed in one of the next releases.",
+		Description:         "VSphereFailureDomain is the Schema for the vspherefailuredomains APIDeprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "VSphereFailureDomain is the Schema for the vspherefailuredomains APIDeprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -189,16 +189,16 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Alpha4Manifest) Schema
 							},
 
 							"datacenter": schema.StringAttribute{
-								Description:         "The underlying infrastructure for this failure domain Datacenter as the failure domain",
-								MarkdownDescription: "The underlying infrastructure for this failure domain Datacenter as the failure domain",
+								Description:         "The underlying infrastructure for this failure domainDatacenter as the failure domain",
+								MarkdownDescription: "The underlying infrastructure for this failure domainDatacenter as the failure domain",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"datastore": schema.StringAttribute{
-								Description:         "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
-								MarkdownDescription: "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
+								Description:         "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
+								MarkdownDescription: "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

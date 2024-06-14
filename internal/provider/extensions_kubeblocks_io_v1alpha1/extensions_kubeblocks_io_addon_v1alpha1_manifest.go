@@ -321,8 +321,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 												MarkdownDescription: "Specifies the resource requirements.",
 												Attributes: map[string]schema.Attribute{
 													"limits": schema.MapAttribute{
-														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+														Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -330,8 +330,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 													},
 
 													"requests": schema.MapAttribute{
-														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+														Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -386,8 +386,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 									MarkdownDescription: "Specifies the resource requirements.",
 									Attributes: map[string]schema.Attribute{
 										"limits": schema.MapAttribute{
-											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+											Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -395,8 +395,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -409,13 +409,13 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 								},
 
 								"selectors": schema.ListNestedAttribute{
-									Description:         "Indicates the default selectors for add-on installations. If multiple selectors are provided, all selectors must evaluate to true.",
-									MarkdownDescription: "Indicates the default selectors for add-on installations. If multiple selectors are provided, all selectors must evaluate to true.",
+									Description:         "Indicates the default selectors for add-on installations. If multiple selectors are provided,all selectors must evaluate to true.",
+									MarkdownDescription: "Indicates the default selectors for add-on installations. If multiple selectors are provided,all selectors must evaluate to true.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.  - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
-												MarkdownDescription: "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.  - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
+												Description:         "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
+												MarkdownDescription: "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -425,8 +425,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 											},
 
 											"operator": schema.StringAttribute{
-												Description:         "Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.  Possible enum values:  - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
-												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.  Possible enum values:  - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
+												Description:         "Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
+												MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -481,8 +481,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"helm": schema.SingleNestedAttribute{
-						Description:         "Represents the Helm installation specifications. This is only processed when the type is set to 'helm'.",
-						MarkdownDescription: "Represents the Helm installation specifications. This is only processed when the type is set to 'helm'.",
+						Description:         "Represents the Helm installation specifications. This is only processedwhen the type is set to 'helm'.",
+						MarkdownDescription: "Represents the Helm installation specifications. This is only processedwhen the type is set to 'helm'.",
 						Attributes: map[string]schema.Attribute{
 							"chart_location_url": schema.StringAttribute{
 								Description:         "Specifies the URL location of the Helm Chart.",
@@ -501,8 +501,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"charts_path_in_image": schema.StringAttribute{
-								Description:         "Defines the path of Helm charts in the image. This path is used to copy Helm charts from the image to the shared volume. The default path is '/charts'.",
-								MarkdownDescription: "Defines the path of Helm charts in the image. This path is used to copy Helm charts from the image to the shared volume. The default path is '/charts'.",
+								Description:         "Defines the path of Helm charts in the image. This path is used to copyHelm charts from the image to the shared volume. The default path is '/charts'.",
+								MarkdownDescription: "Defines the path of Helm charts in the image. This path is used to copyHelm charts from the image to the shared volume. The default path is '/charts'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -522,8 +522,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "Defines the set values for Helm release installation.",
 								Attributes: map[string]schema.Attribute{
 									"config_map_refs": schema.ListNestedAttribute{
-										Description:         "Selects a key from a ConfigMap item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type.",
-										MarkdownDescription: "Selects a key from a ConfigMap item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type.",
+										Description:         "Selects a key from a ConfigMap item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type.",
+										MarkdownDescription: "Selects a key from a ConfigMap item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
@@ -552,8 +552,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"secret_refs": schema.ListNestedAttribute{
-										Description:         "Selects a key from a Secrets item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type.",
-										MarkdownDescription: "Selects a key from a Secrets item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type.",
+										Description:         "Selects a key from a Secrets item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type.",
+										MarkdownDescription: "Selects a key from a Secrets item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
@@ -623,8 +623,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"json_map": schema.SingleNestedAttribute{
-													Description:         "Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key.",
-													MarkdownDescription: "Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key.",
+													Description:         "Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key.",
+													MarkdownDescription: "Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key.",
 													Attributes: map[string]schema.Attribute{
 														"tolerations": schema.StringAttribute{
 															Description:         "Specifies the toleration mapping key.",
@@ -715,8 +715,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 												},
 
 												"value_map": schema.SingleNestedAttribute{
-													Description:         "Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key.",
-													MarkdownDescription: "Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key.",
+													Description:         "Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key.",
+													MarkdownDescription: "Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key.",
 													Attributes: map[string]schema.Attribute{
 														"persistent_volume_enabled": schema.StringAttribute{
 															Description:         "Indicates whether the persistent volume is enabled in the Helm values map.",
@@ -754,8 +754,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"json_map": schema.SingleNestedAttribute{
-										Description:         "Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key.",
-										MarkdownDescription: "Defines the 'key' mapping values. The valid key is tolerations. Enum values explained:  - 'tolerations' sets the toleration mapping key.",
+										Description:         "Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key.",
+										MarkdownDescription: "Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key.",
 										Attributes: map[string]schema.Attribute{
 											"tolerations": schema.StringAttribute{
 												Description:         "Specifies the toleration mapping key.",
@@ -838,8 +838,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"value_map": schema.SingleNestedAttribute{
-										Description:         "Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key.",
-										MarkdownDescription: "Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key.",
+										Description:         "Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key.",
+										MarkdownDescription: "Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key.",
 										Attributes: map[string]schema.Attribute{
 											"persistent_volume_enabled": schema.StringAttribute{
 												Description:         "Indicates whether the persistent volume is enabled in the Helm values map.",
@@ -926,8 +926,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 											MarkdownDescription: "Specifies the resource requirements.",
 											Attributes: map[string]schema.Attribute{
 												"limits": schema.MapAttribute{
-													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+													Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -935,8 +935,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 												},
 
 												"requests": schema.MapAttribute{
-													Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-													MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+													Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+													MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -991,8 +991,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "Specifies the resource requirements.",
 								Attributes: map[string]schema.Attribute{
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1000,8 +1000,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1035,8 +1035,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"installable": schema.SingleNestedAttribute{
-						Description:         "Represents the installable specifications of the add-on. This includes the selector and auto-install settings.",
-						MarkdownDescription: "Represents the installable specifications of the add-on. This includes the selector and auto-install settings.",
+						Description:         "Represents the installable specifications of the add-on. This includesthe selector and auto-install settings.",
+						MarkdownDescription: "Represents the installable specifications of the add-on. This includesthe selector and auto-install settings.",
 						Attributes: map[string]schema.Attribute{
 							"auto_install": schema.BoolAttribute{
 								Description:         "Indicates whether an add-on should be installed automatically.",
@@ -1047,13 +1047,13 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"selectors": schema.ListNestedAttribute{
-								Description:         "Specifies the selectors for add-on installation. If multiple selectors are provided, they must all evaluate to true for the add-on to be installed.",
-								MarkdownDescription: "Specifies the selectors for add-on installation. If multiple selectors are provided, they must all evaluate to true for the add-on to be installed.",
+								Description:         "Specifies the selectors for add-on installation. If multiple selectors are provided,they must all evaluate to true for the add-on to be installed.",
+								MarkdownDescription: "Specifies the selectors for add-on installation. If multiple selectors are provided,they must all evaluate to true for the add-on to be installed.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.  - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
-											MarkdownDescription: "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.  - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
+											Description:         "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
+											MarkdownDescription: "The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1063,8 +1063,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.  Possible enum values:  - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
-											MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.  Possible enum values:  - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
+											Description:         "Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
+											MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

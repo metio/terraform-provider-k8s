@@ -82,19 +82,25 @@ type KumaIoMeshCircuitBreakerV1Alpha1ManifestData struct {
 				} `tfsdk:"outlier_detection" json:"outlierDetection,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name       *string            `tfsdk:"name" json:"name,omitempty"`
-				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
-				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Mesh        *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
+				Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+				ProxyTypes  *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				SectionName *string            `tfsdk:"section_name" json:"sectionName,omitempty"`
+				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
 		TargetRef *struct {
-			Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-			Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-			Name       *string            `tfsdk:"name" json:"name,omitempty"`
-			ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
-			Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Mesh        *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			ProxyTypes  *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+			SectionName *string            `tfsdk:"section_name" json:"sectionName,omitempty"`
+			Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		To *[]struct {
 			Default *struct {
@@ -135,11 +141,14 @@ type KumaIoMeshCircuitBreakerV1Alpha1ManifestData struct {
 				} `tfsdk:"outlier_detection" json:"outlierDetection,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name       *string            `tfsdk:"name" json:"name,omitempty"`
-				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
-				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Mesh        *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
+				Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+				ProxyTypes  *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				SectionName *string            `tfsdk:"section_name" json:"sectionName,omitempty"`
+				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"to" json:"to,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -471,8 +480,17 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
 											},
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"mesh": schema.StringAttribute{
@@ -491,10 +509,26 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Computed:            false,
 										},
 
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"proxy_types": schema.ListAttribute{
 											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"section_name": schema.StringAttribute{
+											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -531,8 +565,17 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
 								},
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"mesh": schema.StringAttribute{
@@ -551,10 +594,26 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"proxy_types": schema.ListAttribute{
 								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"section_name": schema.StringAttribute{
+								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -823,8 +882,17 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
 											},
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"mesh": schema.StringAttribute{
@@ -843,10 +911,26 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Computed:            false,
 										},
 
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"proxy_types": schema.ListAttribute{
 											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"section_name": schema.StringAttribute{
+											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

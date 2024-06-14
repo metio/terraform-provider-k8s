@@ -76,12 +76,14 @@ Optional:
 - `chef` (Attributes) Chef configures this store to sync secrets with chef server (see [below for nested schema](#nestedatt--spec--provider--chef))
 - `conjur` (Attributes) Conjur configures this store to sync secrets using conjur provider (see [below for nested schema](#nestedatt--spec--provider--conjur))
 - `delinea` (Attributes) Delinea DevOps Secrets Vaulthttps://docs.delinea.com/online-help/products/devops-secrets-vault/current (see [below for nested schema](#nestedatt--spec--provider--delinea))
+- `device42` (Attributes) Device42 configures this store to sync secrets using the Device42 provider (see [below for nested schema](#nestedatt--spec--provider--device42))
 - `doppler` (Attributes) Doppler configures this store to sync secrets using the Doppler provider (see [below for nested schema](#nestedatt--spec--provider--doppler))
 - `fake` (Attributes) Fake configures a store with static key/value pairs (see [below for nested schema](#nestedatt--spec--provider--fake))
 - `fortanix` (Attributes) Fortanix configures this store to sync secrets using the Fortanix provider (see [below for nested schema](#nestedatt--spec--provider--fortanix))
 - `gcpsm` (Attributes) GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider (see [below for nested schema](#nestedatt--spec--provider--gcpsm))
 - `gitlab` (Attributes) GitLab configures this store to sync secrets using GitLab Variables provider (see [below for nested schema](#nestedatt--spec--provider--gitlab))
 - `ibm` (Attributes) IBM configures this store to sync secrets using IBM Cloud provider (see [below for nested schema](#nestedatt--spec--provider--ibm))
+- `infisical` (Attributes) Infisical configures this store to sync secrets using the Infisical provider (see [below for nested schema](#nestedatt--spec--provider--infisical))
 - `keepersecurity` (Attributes) KeeperSecurity configures this store to sync secrets using the KeeperSecurity provider (see [below for nested schema](#nestedatt--spec--provider--keepersecurity))
 - `kubernetes` (Attributes) Kubernetes configures this store to sync secrets using a Kubernetes cluster provider (see [below for nested schema](#nestedatt--spec--provider--kubernetes))
 - `onboardbase` (Attributes) Onboardbase configures this store to sync secrets using the Onboardbase provider (see [below for nested schema](#nestedatt--spec--provider--onboardbase))
@@ -651,6 +653,41 @@ Optional:
 
 
 
+<a id="nestedatt--spec--provider--device42"></a>
+### Nested Schema for `spec.provider.device42`
+
+Required:
+
+- `auth` (Attributes) Auth configures how secret-manager authenticates with a Device42 instance. (see [below for nested schema](#nestedatt--spec--provider--device42--auth))
+- `host` (String) URL configures the Device42 instance URL.
+
+<a id="nestedatt--spec--provider--device42--auth"></a>
+### Nested Schema for `spec.provider.device42.auth`
+
+Required:
+
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--device42--auth--secret_ref))
+
+<a id="nestedatt--spec--provider--device42--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.device42.auth.secret_ref`
+
+Optional:
+
+- `credentials` (Attributes) Username / Password is used for authentication. (see [below for nested schema](#nestedatt--spec--provider--device42--auth--secret_ref--credentials))
+
+<a id="nestedatt--spec--provider--device42--auth--secret_ref--credentials"></a>
+### Nested Schema for `spec.provider.device42.auth.secret_ref.credentials`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+
+
 <a id="nestedatt--spec--provider--doppler"></a>
 ### Nested Schema for `spec.provider.doppler`
 
@@ -896,6 +933,69 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
+
+
+
+<a id="nestedatt--spec--provider--infisical"></a>
+### Nested Schema for `spec.provider.infisical`
+
+Required:
+
+- `auth` (Attributes) Auth configures how the Operator authenticates with the Infisical API (see [below for nested schema](#nestedatt--spec--provider--infisical--auth))
+- `secrets_scope` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--infisical--secrets_scope))
+
+Optional:
+
+- `host_api` (String)
+
+<a id="nestedatt--spec--provider--infisical--auth"></a>
+### Nested Schema for `spec.provider.infisical.auth`
+
+Optional:
+
+- `universal_auth_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials))
+
+<a id="nestedatt--spec--provider--infisical--auth--universal_auth_credentials"></a>
+### Nested Schema for `spec.provider.infisical.auth.universal_auth_credentials`
+
+Required:
+
+- `client_id` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_id))
+- `client_secret` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_secret))
+
+<a id="nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_id"></a>
+### Nested Schema for `spec.provider.infisical.auth.universal_auth_credentials.client_id`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_secret"></a>
+### Nested Schema for `spec.provider.infisical.auth.universal_auth_credentials.client_secret`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+
+<a id="nestedatt--spec--provider--infisical--secrets_scope"></a>
+### Nested Schema for `spec.provider.infisical.secrets_scope`
+
+Required:
+
+- `environment_slug` (String)
+- `project_slug` (String)
+
+Optional:
+
+- `secrets_path` (String)
 
 
 

@@ -159,13 +159,13 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 								MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster.",
 								Attributes: map[string]schema.Attribute{
 									"cluster_modules": schema.ListNestedAttribute{
-										Description:         "ClusterModules hosts information regarding the anti-affinity vSphere constructs for each of the objects responsible for creation of VM objects belonging to the cluster.",
-										MarkdownDescription: "ClusterModules hosts information regarding the anti-affinity vSphere constructs for each of the objects responsible for creation of VM objects belonging to the cluster.",
+										Description:         "ClusterModules hosts information regarding the anti-affinity vSphere constructsfor each of the objects responsible for creation of VM objects belonging to the cluster.",
+										MarkdownDescription: "ClusterModules hosts information regarding the anti-affinity vSphere constructsfor each of the objects responsible for creation of VM objects belonging to the cluster.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"control_plane": schema.BoolAttribute{
-													Description:         "ControlPlane indicates whether the referred object is responsible for control plane nodes. Currently, only the KubeadmControlPlane objects have this flag set to true. Only a single object in the slice can have this value set to true.",
-													MarkdownDescription: "ControlPlane indicates whether the referred object is responsible for control plane nodes. Currently, only the KubeadmControlPlane objects have this flag set to true. Only a single object in the slice can have this value set to true.",
+													Description:         "ControlPlane indicates whether the referred object is responsible for control plane nodes.Currently, only the KubeadmControlPlane objects have this flag set to true.Only a single object in the slice can have this value set to true.",
+													MarkdownDescription: "ControlPlane indicates whether the referred object is responsible for control plane nodes.Currently, only the KubeadmControlPlane objects have this flag set to true.Only a single object in the slice can have this value set to true.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -180,8 +180,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 												},
 
 												"target_object_name": schema.StringAttribute{
-													Description:         "TargetObjectName points to the object that uses the Cluster Module information to enforce anti-affinity amongst its descendant VM objects.",
-													MarkdownDescription: "TargetObjectName points to the object that uses the Cluster Module information to enforce anti-affinity amongst its descendant VM objects.",
+													Description:         "TargetObjectName points to the object that uses the Cluster Module information to enforceanti-affinity amongst its descendant VM objects.",
+													MarkdownDescription: "TargetObjectName points to the object that uses the Cluster Module information to enforceanti-affinity amongst its descendant VM objects.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -219,8 +219,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 									},
 
 									"failure_domain_selector": schema.SingleNestedAttribute{
-										Description:         "FailureDomainSelector is the label selector to use for failure domain selection for the control plane nodes of the cluster. If not set ('nil'), selecting failure domains will be disabled. An empty value ('{}') selects all existing failure domains. A valid selector will select all failure domains which match the selector.",
-										MarkdownDescription: "FailureDomainSelector is the label selector to use for failure domain selection for the control plane nodes of the cluster. If not set ('nil'), selecting failure domains will be disabled. An empty value ('{}') selects all existing failure domains. A valid selector will select all failure domains which match the selector.",
+										Description:         "FailureDomainSelector is the label selector to use for failure domain selectionfor the control plane nodes of the cluster.If not set ('nil'), selecting failure domains will be disabled.An empty value ('{}') selects all existing failure domains.A valid selector will select all failure domains which match the selector.",
+										MarkdownDescription: "FailureDomainSelector is the label selector to use for failure domain selectionfor the control plane nodes of the cluster.If not set ('nil'), selecting failure domains will be disabled.An empty value ('{}') selects all existing failure domains.A valid selector will select all failure domains which match the selector.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -236,16 +236,16 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -259,8 +259,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -273,8 +273,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 									},
 
 									"identity_ref": schema.SingleNestedAttribute{
-										Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
-										MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
+										Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
+										MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
 										Attributes: map[string]schema.Attribute{
 											"kind": schema.StringAttribute{
 												Description:         "Kind of the identity. Can either be VSphereClusterIdentity or Secret",

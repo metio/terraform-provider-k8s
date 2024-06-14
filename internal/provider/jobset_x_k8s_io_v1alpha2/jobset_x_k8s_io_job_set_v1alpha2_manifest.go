@@ -1521,8 +1521,8 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 											Description:         "The requirement on the job failure reasons. The requirementis satisfied if at least one reason matches the list.The rules are evaluated in order, and the first matchingrule is executed.An empty list applies the rule to any job failure reason.",
 											MarkdownDescription: "The requirement on the job failure reasons. The requirementis satisfied if at least one reason matches the list.The rules are evaluated in order, and the first matchingrule is executed.An empty list applies the rule to any job failure reason.",
 											ElementType:         types.StringType,
-											Required:            true,
-											Optional:            false,
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 

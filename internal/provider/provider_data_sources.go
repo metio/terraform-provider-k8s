@@ -3154,6 +3154,8 @@ func allDataSources() []func() datasource.DataSource {
 		pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgclusterV2Manifest,
 		// pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgrestoreV2DataSource,
 		pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgrestoreV2Manifest,
+		// pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgupgradeV2DataSource,
+		pgv2_percona_com_v2.NewPgv2PerconaComPerconaPgupgradeV2Manifest,
 		// pipes_services_k8s_aws_v1alpha1.NewPipesServicesK8SAwsPipeV1Alpha1DataSource,
 		pipes_services_k8s_aws_v1alpha1.NewPipesServicesK8SAwsPipeV1Alpha1Manifest,
 		// pkg_crossplane_io_v1.NewPkgCrossplaneIoConfigurationRevisionV1DataSource,

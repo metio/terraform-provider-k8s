@@ -580,7 +580,20 @@ type GatewaySoloIoGatewayV1ManifestData struct {
 					SuppressEnvoyHeaders *bool `tfsdk:"suppress_envoy_headers" json:"suppressEnvoyHeaders,omitempty"`
 				} `tfsdk:"router" json:"router,omitempty"`
 				SanitizeClusterHeader *bool `tfsdk:"sanitize_cluster_header" json:"sanitizeClusterHeader,omitempty"`
-				Tap                   *struct {
+				StatefulSession       *struct {
+					CookieBased *struct {
+						Cookie *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+							Ttl  *string `tfsdk:"ttl" json:"ttl,omitempty"`
+						} `tfsdk:"cookie" json:"cookie,omitempty"`
+					} `tfsdk:"cookie_based" json:"cookieBased,omitempty"`
+					HeaderBased *struct {
+						HeaderName *string `tfsdk:"header_name" json:"headerName,omitempty"`
+					} `tfsdk:"header_based" json:"headerBased,omitempty"`
+					Strict *bool `tfsdk:"strict" json:"strict,omitempty"`
+				} `tfsdk:"stateful_session" json:"statefulSession,omitempty"`
+				Tap *struct {
 					Sinks *[]struct {
 						GrpcService *struct {
 							TapServer *struct {
@@ -1394,7 +1407,20 @@ type GatewaySoloIoGatewayV1ManifestData struct {
 							SuppressEnvoyHeaders *bool `tfsdk:"suppress_envoy_headers" json:"suppressEnvoyHeaders,omitempty"`
 						} `tfsdk:"router" json:"router,omitempty"`
 						SanitizeClusterHeader *bool `tfsdk:"sanitize_cluster_header" json:"sanitizeClusterHeader,omitempty"`
-						Tap                   *struct {
+						StatefulSession       *struct {
+							CookieBased *struct {
+								Cookie *struct {
+									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Path *string `tfsdk:"path" json:"path,omitempty"`
+									Ttl  *string `tfsdk:"ttl" json:"ttl,omitempty"`
+								} `tfsdk:"cookie" json:"cookie,omitempty"`
+							} `tfsdk:"cookie_based" json:"cookieBased,omitempty"`
+							HeaderBased *struct {
+								HeaderName *string `tfsdk:"header_name" json:"headerName,omitempty"`
+							} `tfsdk:"header_based" json:"headerBased,omitempty"`
+							Strict *bool `tfsdk:"strict" json:"strict,omitempty"`
+						} `tfsdk:"stateful_session" json:"statefulSession,omitempty"`
+						Tap *struct {
 							Sinks *[]struct {
 								GrpcService *struct {
 									TapServer *struct {
@@ -7400,6 +7426,82 @@ func (r *GatewaySoloIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.
 										Computed:            false,
 									},
 
+									"stateful_session": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"cookie_based": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"cookie": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"ttl": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"header_based": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"header_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"strict": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"tap": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -12969,6 +13071,82 @@ func (r *GatewaySoloIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+
+														"stateful_session": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"cookie_based": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"cookie": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"path": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"ttl": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"header_based": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"header_name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 
 														"tap": schema.SingleNestedAttribute{

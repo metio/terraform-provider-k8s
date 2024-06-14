@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_vm_v1alpha3_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereVM is the Schema for the vspherevms API  Deprecated: This type will be removed in one of the next releases.
+  VSphereVM is the Schema for the vspherevms APIDeprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_vm_v1alpha3_manifest (Data Source)
 
-VSphereVM is the Schema for the vspherevms API  Deprecated: This type will be removed in one of the next releases.
+VSphereVM is the Schema for the vspherevms APIDeprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -56,59 +56,59 @@ Optional:
 Required:
 
 - `network` (Attributes) Network is the network configuration for this machine's VM. (see [below for nested schema](#nestedatt--spec--network))
-- `template` (String) Template is the name or inventory path of the template used to clone the virtual machine.
+- `template` (String) Template is the name or inventory path of the template used to clonethe virtual machine.
 
 Optional:
 
-- `bios_uuid` (String) BiosUUID is the VM's BIOS UUID that is assigned at runtime after the VM has been created. This field is required at runtime for other controllers that read this CRD as unstructured data.
-- `bootstrap_ref` (Attributes) BootstrapRef is a reference to a bootstrap provider-specific resource that holds configuration details. This field is optional in case no bootstrap data is required to create a VM. (see [below for nested schema](#nestedatt--spec--bootstrap_ref))
-- `clone_mode` (String) CloneMode specifies the type of clone operation. The LinkedClone mode is only support for templates that have at least one snapshot. If the template has no snapshots, then CloneMode defaults to FullClone. When LinkedClone mode is enabled the DiskGiB field is ignored as it is not possible to expand disks of linked clones. Defaults to LinkedClone, but fails gracefully to FullClone if the source of the clone operation has no snapshots.
-- `custom_vmx_keys` (Map of String) CustomVMXKeys is a dictionary of advanced VMX options that can be set on VM Defaults to empty map
-- `datacenter` (String) Datacenter is the name or inventory path of the datacenter in which the virtual machine is created/located.
-- `datastore` (String) Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.
-- `disk_gi_b` (Number) DiskGiB is the size of a virtual machine's disk, in GiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.
-- `folder` (String) Folder is the name or inventory path of the folder in which the virtual machine is created/located.
-- `memory_mi_b` (Number) MemoryMiB is the size of a virtual machine's memory, in MiB. Defaults to the eponymous property value in the template from which the virtual machine is cloned.
-- `num_cores_per_socket` (Number) NumCPUs is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.
-- `num_cp_us` (Number) NumCPUs is the number of virtual processors in a virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.
-- `resource_pool` (String) ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.
-- `server` (String) Server is the IP address or FQDN of the vSphere server on which the virtual machine is created/located.
-- `snapshot` (String) Snapshot is the name of the snapshot from which to create a linked clone. This field is ignored if LinkedClone is not enabled. Defaults to the source's current snapshot.
-- `storage_policy_name` (String) StoragePolicyName of the storage policy to use with this Virtual Machine
-- `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When this is set to empty, this VirtualMachine would be created without TLS certificate validation of the communication between Cluster API Provider vSphere and the VMware vCenter server.
+- `bios_uuid` (String) BiosUUID is the VM's BIOS UUID that is assigned at runtime afterthe VM has been created.This field is required at runtime for other controllers that readthis CRD as unstructured data.
+- `bootstrap_ref` (Attributes) BootstrapRef is a reference to a bootstrap provider-specific resourcethat holds configuration details.This field is optional in case no bootstrap data is required to createa VM. (see [below for nested schema](#nestedatt--spec--bootstrap_ref))
+- `clone_mode` (String) CloneMode specifies the type of clone operation.The LinkedClone mode is only support for templates that have at leastone snapshot. If the template has no snapshots, then CloneMode defaultsto FullClone.When LinkedClone mode is enabled the DiskGiB field is ignored as it isnot possible to expand disks of linked clones.Defaults to LinkedClone, but fails gracefully to FullClone if the sourceof the clone operation has no snapshots.
+- `custom_vmx_keys` (Map of String) CustomVMXKeys is a dictionary of advanced VMX options that can be set on VMDefaults to empty map
+- `datacenter` (String) Datacenter is the name or inventory path of the datacenter in which thevirtual machine is created/located.
+- `datastore` (String) Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.
+- `disk_gi_b` (Number) DiskGiB is the size of a virtual machine's disk, in GiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
+- `folder` (String) Folder is the name or inventory path of the folder in which thevirtual machine is created/located.
+- `memory_mi_b` (Number) MemoryMiB is the size of a virtual machine's memory, in MiB.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
+- `num_cores_per_socket` (Number) NumCPUs is the number of cores among which to distribute CPUs in thisvirtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
+- `num_cp_us` (Number) NumCPUs is the number of virtual processors in a virtual machine.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
+- `resource_pool` (String) ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.
+- `server` (String) Server is the IP address or FQDN of the vSphere server on whichthe virtual machine is created/located.
+- `snapshot` (String) Snapshot is the name of the snapshot from which to create a linked clone.This field is ignored if LinkedClone is not enabled.Defaults to the source's current snapshot.
+- `storage_policy_name` (String) StoragePolicyName of the storage policy to use with thisVirtual Machine
+- `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen this is set to empty, this VirtualMachine would be createdwithout TLS certificate validation of the communication between Cluster API Provider vSphereand the VMware vCenter server.
 
 <a id="nestedatt--spec--network"></a>
 ### Nested Schema for `spec.network`
 
 Required:
 
-- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--network--devices))
+- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine.TODO(akutz) Make sure at least one network matches the            ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--network--devices))
 
 Optional:
 
-- `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine
-- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--network--routes))
+- `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes APIserver endpoint on this machine
+- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtualmachine. (see [below for nested schema](#nestedatt--spec--network--routes))
 
 <a id="nestedatt--spec--network--devices"></a>
 ### Nested Schema for `spec.network.devices`
 
 Required:
 
-- `network_name` (String) NetworkName is the name of the vSphere network to which the device will be connected.
+- `network_name` (String) NetworkName is the name of the vSphere network to which the devicewill be connected.
 
 Optional:
 
-- `device_name` (String) DeviceName may be used to explicitly assign a name to the network device as it exists in the guest operating system.
-- `dhcp4` (Boolean) DHCP4 is a flag that indicates whether or not to use DHCP for IPv4 on this device. If true then IPAddrs should not contain any IPv4 addresses.
-- `dhcp6` (Boolean) DHCP6 is a flag that indicates whether or not to use DHCP for IPv6 on this device. If true then IPAddrs should not contain any IPv6 addresses.
-- `gateway4` (String) Gateway4 is the IPv4 gateway used by this device. Required when DHCP4 is false.
-- `gateway6` (String) Gateway4 is the IPv4 gateway used by this device. Required when DHCP6 is false.
-- `ip_addrs` (List of String) IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.
-- `mac_addr` (String) MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.
+- `device_name` (String) DeviceName may be used to explicitly assign a name to the network deviceas it exists in the guest operating system.
+- `dhcp4` (Boolean) DHCP4 is a flag that indicates whether or not to use DHCP for IPv4on this device.If true then IPAddrs should not contain any IPv4 addresses.
+- `dhcp6` (Boolean) DHCP6 is a flag that indicates whether or not to use DHCP for IPv6on this device.If true then IPAddrs should not contain any IPv6 addresses.
+- `gateway4` (String) Gateway4 is the IPv4 gateway used by this device.Required when DHCP4 is false.
+- `gateway6` (String) Gateway4 is the IPv4 gateway used by this device.Required when DHCP6 is false.
+- `ip_addrs` (List of String) IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assignto this device. IP addresses must also specify the segment length inCIDR notation.Required when DHCP4 and DHCP6 are both false.
+- `mac_addr` (String) MACAddr is the MAC address used by this device.It is generally a good idea to omit this field and allow a MAC addressto be generated.Please note that this value must use the VMware OUI to work with thein-tree vSphere cloud provider.
 - `mtu` (Number) MTU is the device’s Maximum Transmission Unit size in bytes.
-- `nameservers` (List of String) Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).
+- `nameservers` (List of String) Nameservers is a list of IPv4 and/or IPv6 addresses used as DNSnameservers.Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).
 - `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--network--devices--routes))
-- `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
+- `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IPaddresses with DNS.
 
 <a id="nestedatt--spec--network--devices--routes"></a>
 ### Nested Schema for `spec.network.devices.routes`
@@ -138,9 +138,9 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

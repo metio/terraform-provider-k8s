@@ -335,22 +335,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Enabled *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 				Secrets *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 			} `tfsdk:"certificates_information_indicators" json:"certificates_information_indicators,omitempty"`
-			Clustering *struct {
-				Autodetect_secrets *struct {
-					Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-					Label   *string `tfsdk:"label" json:"label,omitempty"`
-				} `tfsdk:"autodetect_secrets" json:"autodetect_secrets,omitempty"`
-				Clusters *[]struct {
-					Name        *string `tfsdk:"name" json:"name,omitempty"`
-					Secret_name *string `tfsdk:"secret_name" json:"secret_name,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
-				Kiali_urls *[]struct {
-					Cluster_name  *string `tfsdk:"cluster_name" json:"cluster_name,omitempty"`
-					Instance_name *string `tfsdk:"instance_name" json:"instance_name,omitempty"`
-					Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					Url           *string `tfsdk:"url" json:"url,omitempty"`
-				} `tfsdk:"kiali_urls" json:"kiali_urls,omitempty"`
-			} `tfsdk:"clustering" json:"clustering,omitempty"`
 			Disabled_features       *[]string `tfsdk:"disabled_features" json:"disabled_features,omitempty"`
 			Istio_annotation_action *bool     `tfsdk:"istio_annotation_action" json:"istio_annotation_action,omitempty"`
 			Istio_injection_action  *bool     `tfsdk:"istio_injection_action" json:"istio_injection_action,omitempty"`
@@ -2593,110 +2577,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"clustering": schema.SingleNestedAttribute{
-								Description:         "Multi-cluster related features.",
-								MarkdownDescription: "Multi-cluster related features.",
-								Attributes: map[string]schema.Attribute{
-									"autodetect_secrets": schema.SingleNestedAttribute{
-										Description:         "Settings to allow cluster secrets to be auto-detected. Secrets must exist in the Kiali deployment namespace.",
-										MarkdownDescription: "Settings to allow cluster secrets to be auto-detected. Secrets must exist in the Kiali deployment namespace.",
-										Attributes: map[string]schema.Attribute{
-											"enabled": schema.BoolAttribute{
-												Description:         "If true then remote cluster secrets will be autodetected during the installation of the Kiali Server Deployment. Any remote cluster secrets found in the Kiali deployment namespace will be mounted to the Kiali Server's file system. If false, you can still manually specify the remote cluster secret information in the 'clusters' setting if you wish to utilize multicluster features.",
-												MarkdownDescription: "If true then remote cluster secrets will be autodetected during the installation of the Kiali Server Deployment. Any remote cluster secrets found in the Kiali deployment namespace will be mounted to the Kiali Server's file system. If false, you can still manually specify the remote cluster secret information in the 'clusters' setting if you wish to utilize multicluster features.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"label": schema.StringAttribute{
-												Description:         "The name and value of a label that exists on all remote cluster secrets. Default is 'kiali.io/multiCluster=true'.",
-												MarkdownDescription: "The name and value of a label that exists on all remote cluster secrets. Default is 'kiali.io/multiCluster=true'.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"clusters": schema.ListNestedAttribute{
-										Description:         "A list of clusters that the Kiali Server can access. You need to specify the remote clusters here if 'autodetect_secrets.enabled' is false.",
-										MarkdownDescription: "A list of clusters that the Kiali Server can access. You need to specify the remote clusters here if 'autodetect_secrets.enabled' is false.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"name": schema.StringAttribute{
-													Description:         "The name of the cluster.",
-													MarkdownDescription: "The name of the cluster.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"secret_name": schema.StringAttribute{
-													Description:         "The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace. If a secret name is not provided then it's assumed that the cluster is inaccessible.",
-													MarkdownDescription: "The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace. If a secret name is not provided then it's assumed that the cluster is inaccessible.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kiali_urls": schema.ListNestedAttribute{
-										Description:         "A map between cluster name, instance name and namespace to a Kiali URL. Will be used showing the Mesh page's Kiali URLs. The Kiali service's 'kiali.io/external-url' annotation will be overridden when this property is set.",
-										MarkdownDescription: "A map between cluster name, instance name and namespace to a Kiali URL. Will be used showing the Mesh page's Kiali URLs. The Kiali service's 'kiali.io/external-url' annotation will be overridden when this property is set.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"cluster_name": schema.StringAttribute{
-													Description:         "The name of the cluster.",
-													MarkdownDescription: "The name of the cluster.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"instance_name": schema.StringAttribute{
-													Description:         "The instance name of this Kiali installation. This should be the value used in 'deployment.instance_name' for Kiali resource name.",
-													MarkdownDescription: "The instance name of this Kiali installation. This should be the value used in 'deployment.instance_name' for Kiali resource name.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"namespace": schema.StringAttribute{
-													Description:         "The namespace into which Kiali is installed.",
-													MarkdownDescription: "The namespace into which Kiali is installed.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"url": schema.StringAttribute{
-													Description:         "The URL of Kiali in the cluster.",
-													MarkdownDescription: "The URL of Kiali in the cluster.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
 									},
 								},
 								Required: false,

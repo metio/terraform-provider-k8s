@@ -755,18 +755,18 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--try--wait--for"></a>
 ### Nested Schema for `spec.steps.try.wait.for`
@@ -1153,18 +1153,18 @@ Required:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--catch--wait--for"></a>
 ### Nested Schema for `spec.steps.catch.wait.for`
@@ -1542,18 +1542,18 @@ Required:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--cleanup--wait--for"></a>
 ### Nested Schema for `spec.steps.cleanup.wait.for`
@@ -1943,18 +1943,18 @@ Required:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--steps--finally--wait--for"></a>
 ### Nested Schema for `spec.steps.finally.wait.for`
@@ -2355,18 +2355,18 @@ Required:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `for` (Attributes) For specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for))
+- `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--catch--wait--for))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `timeout` (String) Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--catch--wait--for"></a>
 ### Nested Schema for `spec.catch.wait.for`

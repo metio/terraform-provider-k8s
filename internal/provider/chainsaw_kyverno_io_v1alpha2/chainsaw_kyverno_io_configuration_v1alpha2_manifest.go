@@ -1398,8 +1398,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 												},
 
 												"cluster": schema.StringAttribute{
-													Description:         "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
-													MarkdownDescription: "Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).",
+													Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+													MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1431,8 +1431,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 												},
 
 												"for": schema.SingleNestedAttribute{
-													Description:         "For specifies the condition to wait for.",
-													MarkdownDescription: "For specifies the condition to wait for.",
+													Description:         "WaitFor specifies the condition to wait for.",
+													MarkdownDescription: "WaitFor specifies the condition to wait for.",
 													Attributes: map[string]schema.Attribute{
 														"condition": schema.SingleNestedAttribute{
 															Description:         "Condition specifies the condition to wait for.",
@@ -1542,8 +1542,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
-													MarkdownDescription: "Timeout for the operation. Specifies how long to wait for the condition to be met before timing out.",
+													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

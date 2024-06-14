@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1alpha4_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereCluster is the Schema for the vsphereclusters API  Deprecated: This type will be removed in one of the next releases.
+  VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1alpha4_manifest (Data Source)
 
-VSphereCluster is the Schema for the vsphereclusters API  Deprecated: This type will be removed in one of the next releases.
+VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
-- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--identity_ref))
+- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--identity_ref))
 - `server` (String) Server is the address of the vSphere endpoint.
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate
 

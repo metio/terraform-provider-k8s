@@ -213,8 +213,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Metadata(_ contex
 
 func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinition and its associated ComponentDefinitions. It is responsible for generating BackupPolicies for Components that require backup operations, also determining the suitable backup methods and strategies. This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitions when a Cluster is created.",
-		MarkdownDescription: "BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinition and its associated ComponentDefinitions. It is responsible for generating BackupPolicies for Components that require backup operations, also determining the suitable backup methods and strategies. This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitions when a Cluster is created.",
+		Description:         "BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinitionand its associated ComponentDefinitions.It is responsible for generating BackupPolicies for Components that require backup operations,also determining the suitable backup methods and strategies.This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitionswhen a Cluster is created.",
+		MarkdownDescription: "BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinitionand its associated ComponentDefinitions.It is responsible for generating BackupPolicies for Components that require backup operations,also determining the suitable backup methods and strategies.This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitionswhen a Cluster is created.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -273,8 +273,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 				MarkdownDescription: "Defines the desired state of the BackupPolicyTemplate.",
 				Attributes: map[string]schema.Attribute{
 					"backup_policies": schema.ListNestedAttribute{
-						Description:         "Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinition or to a group of ComponentDefinitions that are different versions of definitions of the same component.",
-						MarkdownDescription: "Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinition or to a group of ComponentDefinitions that are different versions of definitions of the same component.",
+						Description:         "Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinitionor to a group of ComponentDefinitions that are different versions of definitions of the same component.",
+						MarkdownDescription: "Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinitionor to a group of ComponentDefinitions that are different versions of definitions of the same component.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"backoff_limit": schema.Int64Attribute{
@@ -295,8 +295,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action_set_name": schema.StringAttribute{
-												Description:         "Refers to the ActionSet object that defines the backup actions. For volume snapshot backup, the actionSet is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
-												MarkdownDescription: "Refers to the ActionSet object that defines the backup actions. For volume snapshot backup, the actionSet is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
+												Description:         "Refers to the ActionSet object that defines the backup actions.For volume snapshot backup, the actionSet is not required, the controllerwill use the CSI volume snapshotter to create the snapshot.",
+												MarkdownDescription: "Refers to the ActionSet object that defines the backup actions.For volume snapshot backup, the actionSet is not required, the controllerwill use the CSI volume snapshotter to create the snapshot.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -316,8 +316,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -340,8 +340,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -361,8 +361,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_version": schema.StringAttribute{
 																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -386,8 +386,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																	Attributes: map[string]schema.Attribute{
 																		"container_name": schema.StringAttribute{
 																			Description:         "Container name: required for volumes, optional for env vars",
@@ -431,8 +431,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -463,8 +463,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"env_mapping": schema.ListNestedAttribute{
-												Description:         "Specifies a mapping of an environment variable key to the appropriate version of the tool image required for backups, as determined by ClusterVersion and ComponentDefinition. The environment variable is then injected into the container executing the backup task.",
-												MarkdownDescription: "Specifies a mapping of an environment variable key to the appropriate version of the tool image required for backups, as determined by ClusterVersion and ComponentDefinition. The environment variable is then injected into the container executing the backup task.",
+												Description:         "Specifies a mapping of an environment variable key to the appropriate version of the tool imagerequired for backups, as determined by ClusterVersion and ComponentDefinition.The environment variable is then injected into the container executing the backup task.",
+												MarkdownDescription: "Specifies a mapping of an environment variable key to the appropriate version of the tool imagerequired for backups, as determined by ClusterVersion and ComponentDefinition.The environment variable is then injected into the container executing the backup task.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
@@ -476,12 +476,12 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														},
 
 														"value_from": schema.SingleNestedAttribute{
-															Description:         "Specifies the source used to derive the value of the environment variable, which typically represents the tool image required for backup operation.",
-															MarkdownDescription: "Specifies the source used to derive the value of the environment variable, which typically represents the tool image required for backup operation.",
+															Description:         "Specifies the source used to derive the value of the environment variable,which typically represents the tool image required for backup operation.",
+															MarkdownDescription: "Specifies the source used to derive the value of the environment variable,which typically represents the tool image required for backup operation.",
 															Attributes: map[string]schema.Attribute{
 																"cluster_version_ref": schema.ListNestedAttribute{
-																	Description:         "Determine the appropriate version of the backup tool image from ClusterVersion.  Deprecated since v0.9, since ClusterVersion is deprecated.",
-																	MarkdownDescription: "Determine the appropriate version of the backup tool image from ClusterVersion.  Deprecated since v0.9, since ClusterVersion is deprecated.",
+																	Description:         "Determine the appropriate version of the backup tool image from ClusterVersion.Deprecated since v0.9, since ClusterVersion is deprecated.",
+																	MarkdownDescription: "Determine the appropriate version of the backup tool image from ClusterVersion.Deprecated since v0.9, since ClusterVersion is deprecated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mapping_value": schema.StringAttribute{
@@ -493,8 +493,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																			},
 
 																			"names": schema.ListAttribute{
-																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped to the appropriate version of the backup tool image.  This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
-																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped to the appropriate version of the backup tool image.  This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
 																				ElementType:         types.StringType,
 																				Required:            true,
 																				Optional:            false,
@@ -521,8 +521,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																			},
 
 																			"names": schema.ListAttribute{
-																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped to the appropriate version of the backup tool image.  This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
-																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped to the appropriate version of the backup tool image.  This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
 																				ElementType:         types.StringType,
 																				Required:            true,
 																				Optional:            false,
@@ -562,17 +562,17 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 												MarkdownDescription: "Specifies runtime settings for the backup workload container.",
 												Attributes: map[string]schema.Attribute{
 													"resources": schema.SingleNestedAttribute{
-														Description:         "Specifies the resource required by container. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-														MarkdownDescription: "Specifies the resource required by container. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+														Description:         "Specifies the resource required by container.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+														MarkdownDescription: "Specifies the resource required by container.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
 														Attributes: map[string]schema.Attribute{
 															"claims": schema.ListNestedAttribute{
-																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -585,8 +585,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"limits": schema.MapAttribute{
-																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -594,8 +594,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"requests": schema.MapAttribute{
-																Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -613,8 +613,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"snapshot_volumes": schema.BoolAttribute{
-												Description:         "Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
-												MarkdownDescription: "Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
+												Description:         "Specifies whether to take snapshots of persistent volumes. If true,the ActionSetName is not required, the controller will use the CSI volumesnapshotter to create the snapshot.",
+												MarkdownDescription: "Specifies whether to take snapshots of persistent volumes. If true,the ActionSetName is not required, the controller will use the CSI volumesnapshotter to create the snapshot.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -625,8 +625,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 												MarkdownDescription: "Specifies the target information to back up, it will override the target in backup policy.",
 												Attributes: map[string]schema.Attribute{
 													"account": schema.StringAttribute{
-														Description:         "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.  If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in 'clusterDefinition.spec.ConnectionCredential' is used instead.",
-														MarkdownDescription: "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.  If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in 'clusterDefinition.spec.ConnectionCredential' is used instead.",
+														Description:         "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.",
+														MarkdownDescription: "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -645,8 +645,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"password_key": schema.StringAttribute{
-																Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-																MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+																Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+																MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -685,8 +685,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"connection_credential_key": schema.SingleNestedAttribute{
-														Description:         "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'. It will be ignored when the 'account' is set.",
-														MarkdownDescription: "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'. It will be ignored when the 'account' is set.",
+														Description:         "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set.",
+														MarkdownDescription: "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set.",
 														Attributes: map[string]schema.Attribute{
 															"host_key": schema.StringAttribute{
 																Description:         "Defines the key of the host in the connection credential secret.",
@@ -697,8 +697,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"password_key": schema.StringAttribute{
-																Description:         "Represents the key of the password in the connection credential secret. If not specified, the default key 'password' is used.",
-																MarkdownDescription: "Represents the key of the password in the connection credential secret. If not specified, the default key 'password' is used.",
+																Description:         "Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.",
+																MarkdownDescription: "Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -713,8 +713,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"username_key": schema.StringAttribute{
-																Description:         "Represents the key of the username in the connection credential secret. If not specified, the default key 'username' is used.",
-																MarkdownDescription: "Represents the key of the username in the connection credential secret. If not specified, the default key 'username' is used.",
+																Description:         "Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.",
+																MarkdownDescription: "Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -726,8 +726,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
-														MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+														Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+														MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -751,16 +751,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -774,8 +774,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -783,8 +783,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"strategy": schema.StringAttribute{
-																Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
-																MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+																Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+																MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -803,8 +803,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														MarkdownDescription: "Specifies the kubernetes resources to back up.",
 														Attributes: map[string]schema.Attribute{
 															"excluded": schema.ListAttribute{
-																Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
-																MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+																Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+																MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -812,8 +812,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"included": schema.ListAttribute{
-																Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
-																MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+																Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+																MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -821,8 +821,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
-																MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+																Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+																MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -838,16 +838,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -861,8 +861,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -880,8 +880,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"role": schema.StringAttribute{
-														Description:         "Specifies the role to select one or more replicas for backup.  - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.",
-														MarkdownDescription: "Specifies the role to select one or more replicas for backup.  - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.",
+														Description:         "Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.",
+														MarkdownDescription: "Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -896,8 +896,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"strategy": schema.StringAttribute{
-														Description:         "Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are:  - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.",
-														MarkdownDescription: "Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are:  - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.",
+														Description:         "Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.",
+														MarkdownDescription: "Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -921,16 +921,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"mount_path": schema.StringAttribute{
-																	Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-																	MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+																	Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+																	MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"mount_propagation": schema.StringAttribute{
-																	Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																	Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -945,24 +945,24 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"read_only": schema.BoolAttribute{
-																	Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-																	MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																	Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+																	MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"sub_path": schema.StringAttribute{
-																	Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-																	MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+																	Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+																	MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"sub_path_expr": schema.StringAttribute{
-																	Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-																	MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+																	Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+																	MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -975,8 +975,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"volumes": schema.ListAttribute{
-														Description:         "Specifies the list of volumes of targeted application that should be mounted on the backup workload.",
-														MarkdownDescription: "Specifies the list of volumes of targeted application that should be mounted on the backup workload.",
+														Description:         "Specifies the list of volumes of targeted application that should be mountedon the backup workload.",
+														MarkdownDescription: "Specifies the list of volumes of targeted application that should be mountedon the backup workload.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -989,8 +989,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"targets": schema.ListNestedAttribute{
-												Description:         "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
-												MarkdownDescription: "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
+												Description:         "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.",
+												MarkdownDescription: "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"connection_credential": schema.SingleNestedAttribute{
@@ -1006,8 +1006,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"password_key": schema.StringAttribute{
-																	Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-																	MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+																	Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+																	MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1046,8 +1046,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
-															MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+															Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+															MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1071,16 +1071,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1094,8 +1094,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1103,8 +1103,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"strategy": schema.StringAttribute{
-																	Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
-																	MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+																	Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+																	MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1123,8 +1123,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															MarkdownDescription: "Specifies the kubernetes resources to back up.",
 															Attributes: map[string]schema.Attribute{
 																"excluded": schema.ListAttribute{
-																	Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
-																	MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+																	Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+																	MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1132,8 +1132,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"included": schema.ListAttribute{
-																	Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
-																	MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+																	Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+																	MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1141,8 +1141,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
-																	MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+																	Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+																	MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1158,16 +1158,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1181,8 +1181,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1220,8 +1220,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"component_def_ref": schema.StringAttribute{
-									Description:         "Specifies the name of ClusterComponentDefinition defined in the ClusterDefinition. Must comply with the IANA Service Naming rule.  Deprecated since v0.9, should use 'componentDefs' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-									MarkdownDescription: "Specifies the name of ClusterComponentDefinition defined in the ClusterDefinition. Must comply with the IANA Service Naming rule.  Deprecated since v0.9, should use 'componentDefs' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									Description:         "Specifies the name of ClusterComponentDefinition defined in the ClusterDefinition.Must comply with the IANA Service Naming rule.Deprecated since v0.9, should use 'componentDefs' instead.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									MarkdownDescription: "Specifies the name of ClusterComponentDefinition defined in the ClusterDefinition.Must comply with the IANA Service Naming rule.Deprecated since v0.9, should use 'componentDefs' instead.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1232,8 +1232,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"component_defs": schema.ListAttribute{
-									Description:         "Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references. They should be different versions of definitions of the same component, thus allowing them to share a single BackupPolicy. Each name must adhere to the IANA Service Naming rule.",
-									MarkdownDescription: "Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references. They should be different versions of definitions of the same component, thus allowing them to share a single BackupPolicy. Each name must adhere to the IANA Service Naming rule.",
+									Description:         "Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references.They should be different versions of definitions of the same component,thus allowing them to share a single BackupPolicy.Each name must adhere to the IANA Service Naming rule.",
+									MarkdownDescription: "Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references.They should be different versions of definitions of the same component,thus allowing them to share a single BackupPolicy.Each name must adhere to the IANA Service Naming rule.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1241,8 +1241,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"schedules": schema.ListNestedAttribute{
-									Description:         "Defines the execution plans for backup tasks, specifying when and how backups should occur, and the retention period of backup files.",
-									MarkdownDescription: "Defines the execution plans for backup tasks, specifying when and how backups should occur, and the retention period of backup files.",
+									Description:         "Defines the execution plans for backup tasks, specifying when and how backups should occur,and the retention period of backup files.",
+									MarkdownDescription: "Defines the execution plans for backup tasks, specifying when and how backups should occur,and the retention period of backup files.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"backup_method": schema.StringAttribute{
@@ -1254,8 +1254,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"cron_expression": schema.StringAttribute{
-												Description:         "Represents the cron expression for schedule, with the timezone set in UTC. Refer to https://en.wikipedia.org/wiki/Cron for more details.",
-												MarkdownDescription: "Represents the cron expression for schedule, with the timezone set in UTC. Refer to https://en.wikipedia.org/wiki/Cron for more details.",
+												Description:         "Represents the cron expression for schedule, with the timezone set in UTC.Refer to https://en.wikipedia.org/wiki/Cron for more details.",
+												MarkdownDescription: "Represents the cron expression for schedule, with the timezone set in UTC.Refer to https://en.wikipedia.org/wiki/Cron for more details.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1270,8 +1270,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"retention_period": schema.StringAttribute{
-												Description:         "Determines the duration for which the backup should be retained. The controller will remove all backups that are older than the RetentionPeriod. For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  These durations can also be combined, for example: 30d12h30m.",
-												MarkdownDescription: "Determines the duration for which the backup should be retained. The controller will remove all backups that are older than the RetentionPeriod. For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  These durations can also be combined, for example: 30d12h30m.",
+												Description:         "Determines the duration for which the backup should be retained.The controller will remove all backups that are older than the RetentionPeriod.For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mThese durations can also be combined, for example: 30d12h30m.",
+												MarkdownDescription: "Determines the duration for which the backup should be retained.The controller will remove all backups that are older than the RetentionPeriod.For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mThese durations can also be combined, for example: 30d12h30m.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1284,20 +1284,20 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"target": schema.SingleNestedAttribute{
-									Description:         "Defines the selection criteria of instance to be backed up, and the connection credential to be used during the backup process.",
-									MarkdownDescription: "Defines the selection criteria of instance to be backed up, and the connection credential to be used during the backup process.",
+									Description:         "Defines the selection criteria of instance to be backed up, and the connection credential to be usedduring the backup process.",
+									MarkdownDescription: "Defines the selection criteria of instance to be backed up, and the connection credential to be usedduring the backup process.",
 									Attributes: map[string]schema.Attribute{
 										"account": schema.StringAttribute{
-											Description:         "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.  If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in 'clusterDefinition.spec.ConnectionCredential' is used instead.",
-											MarkdownDescription: "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.  If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in 'clusterDefinition.spec.ConnectionCredential' is used instead.",
+											Description:         "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.",
+											MarkdownDescription: "If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"connection_credential_key": schema.SingleNestedAttribute{
-											Description:         "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'. It will be ignored when the 'account' is set.",
-											MarkdownDescription: "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'. It will be ignored when the 'account' is set.",
+											Description:         "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set.",
+											MarkdownDescription: "Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set.",
 											Attributes: map[string]schema.Attribute{
 												"host_key": schema.StringAttribute{
 													Description:         "Defines the key of the host in the connection credential secret.",
@@ -1308,8 +1308,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"password_key": schema.StringAttribute{
-													Description:         "Represents the key of the password in the connection credential secret. If not specified, the default key 'password' is used.",
-													MarkdownDescription: "Represents the key of the password in the connection credential secret. If not specified, the default key 'password' is used.",
+													Description:         "Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.",
+													MarkdownDescription: "Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1324,8 +1324,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"username_key": schema.StringAttribute{
-													Description:         "Represents the key of the username in the connection credential secret. If not specified, the default key 'username' is used.",
-													MarkdownDescription: "Represents the key of the username in the connection credential secret. If not specified, the default key 'username' is used.",
+													Description:         "Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.",
+													MarkdownDescription: "Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1337,16 +1337,16 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"role": schema.StringAttribute{
-											Description:         "Specifies the role to select one or more replicas for backup.  - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.",
-											MarkdownDescription: "Specifies the role to select one or more replicas for backup.  - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.",
+											Description:         "Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.",
+											MarkdownDescription: "Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are:  - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.",
-											MarkdownDescription: "Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are:  - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.",
+											Description:         "Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.",
+											MarkdownDescription: "Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1367,8 +1367,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"cluster_definition_ref": schema.StringAttribute{
-						Description:         "Specifies the name of a ClusterDefinition. This is an immutable attribute that cannot be changed after creation. And this field is deprecated since v0.9, consider using the ComponentDef instead.",
-						MarkdownDescription: "Specifies the name of a ClusterDefinition. This is an immutable attribute that cannot be changed after creation. And this field is deprecated since v0.9, consider using the ComponentDef instead.",
+						Description:         "Specifies the name of a ClusterDefinition.This is an immutable attribute that cannot be changed after creation.And this field is deprecated since v0.9, consider using the ComponentDef instead.",
+						MarkdownDescription: "Specifies the name of a ClusterDefinition.This is an immutable attribute that cannot be changed after creation.And this field is deprecated since v0.9, consider using the ComponentDef instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1378,8 +1378,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"identifier": schema.StringAttribute{
-						Description:         "Specifies a unique identifier for the BackupPolicyTemplate.  This identifier will be used as the suffix of the name of automatically generated BackupPolicy. This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplates are present. For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale ops can differentiate the policies.",
-						MarkdownDescription: "Specifies a unique identifier for the BackupPolicyTemplate.  This identifier will be used as the suffix of the name of automatically generated BackupPolicy. This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplates are present. For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale ops can differentiate the policies.",
+						Description:         "Specifies a unique identifier for the BackupPolicyTemplate.This identifier will be used as the suffix of the name of automatically generated BackupPolicy.This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplatesare present.For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale opscan differentiate the policies.",
+						MarkdownDescription: "Specifies a unique identifier for the BackupPolicyTemplate.This identifier will be used as the suffix of the name of automatically generated BackupPolicy.This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplatesare present.For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale opscan differentiate the policies.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

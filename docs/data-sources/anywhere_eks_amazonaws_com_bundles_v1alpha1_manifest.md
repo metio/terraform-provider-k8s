@@ -1573,8 +1573,10 @@ Required:
 - `hegel` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hegel))
 - `hook` (Attributes) Tinkerbell hook OS. (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook))
 - `rufio` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--rufio))
+- `stack` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--stack))
 - `tink` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink))
 - `tinkerbell_chart` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tinkerbell_chart))
+- `tinkerbell_crds` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tinkerbell_crds))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions"></a>
 ### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions`
@@ -1847,14 +1849,43 @@ Optional:
 - `uri` (String) The image repository, name, and tag
 
 
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--stack"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.stack`
+
+Optional:
+
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
+
+
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink"></a>
 ### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink`
 
 Required:
 
+- `nginx` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--nginx))
 - `tink_controller` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_controller))
 - `tink_server` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_server))
 - `tink_worker` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_worker))
+
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--nginx"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.nginx`
+
+Optional:
+
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
+
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_controller"></a>
 ### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_controller`
@@ -1901,6 +1932,20 @@ Optional:
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tinkerbell_chart"></a>
 ### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tinkerbell_chart`
+
+Optional:
+
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
+
+
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tinkerbell_crds"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tinkerbell_crds`
 
 Optional:
 

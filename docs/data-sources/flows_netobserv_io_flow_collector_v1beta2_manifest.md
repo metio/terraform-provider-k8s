@@ -30,7 +30,7 @@ data "k8s_flows_netobserv_io_flow_collector_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported' or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,7 +56,7 @@ Optional:
 
 - `agent` (Attributes) Agent configuration for flows extraction. (see [below for nested schema](#nestedatt--spec--agent))
 - `console_plugin` (Attributes) 'consolePlugin' defines the settings related to the OpenShift Console plugin, when available. (see [below for nested schema](#nestedatt--spec--console_plugin))
-- `deployment_model` (String) 'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'Direct' (default) to make the flow processor listening directly from the agents.<br>- 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).
+- `deployment_model` (String) 'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'Direct' (default) to make the flow processor listen directly from the agents.<br>- 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).
 - `exporters` (Attributes List) 'exporters' define additional optional exporters for custom consumption or storage. (see [below for nested schema](#nestedatt--spec--exporters))
 - `kafka` (Attributes) Kafka configuration, allowing to use Kafka as a broker as part of the flow collection pipeline. Available when the 'spec.deploymentModel' is 'Kafka'. (see [below for nested schema](#nestedatt--spec--kafka))
 - `loki` (Attributes) 'loki', the flow store, client settings. (see [below for nested schema](#nestedatt--spec--loki))
@@ -83,14 +83,14 @@ Optional:
 - `cache_max_flows` (Number) 'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.
 - `exclude_interfaces` (List of String) 'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
 - `features` (List of String) List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>
-- `flow_filter` (Attributes) 'flowFilter' defines the eBPF agent configuration regarding flow filtering (see [below for nested schema](#nestedatt--spec--agent--ebpf--flow_filter))
+- `flow_filter` (Attributes) 'flowFilter' defines the eBPF agent configuration regarding flow filtering. (see [below for nested schema](#nestedatt--spec--agent--ebpf--flow_filter))
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
 - `interfaces` (List of String) 'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in 'excludeInterfaces'.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
 - `kafka_batch_size` (Number) 'kafkaBatchSize' limits the maximum size of a request in bytes before being sent to a partition. Ignored when not using Kafka. Default: 1MB.
 - `log_level` (String) 'logLevel' defines the log level for the NetObserv eBPF Agent
-- `metrics` (Attributes) 'metrics' defines the eBPF agent configuration regarding metrics (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics))
+- `metrics` (Attributes) 'metrics' defines the eBPF agent configuration regarding metrics. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics))
 - `privileged` (Boolean) Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.
-- `resources` (Attributes) 'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources))
+- `resources` (Attributes) 'resources' are the compute resources required by this container.For more information, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources))
 - `sampling` (Number) Sampling rate of the flow reporter. 100 means one flow on 100 is sent. 0 or 1 means all flows are sampled.
 
 <a id="nestedatt--spec--agent--ebpf--advanced"></a>
@@ -107,7 +107,7 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--affinity))
-- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `node_selector` (Map of String) 'nodeSelector' allows scheduling of pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
 - `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
 - `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced--scheduling--tolerations))
 
@@ -514,15 +514,15 @@ Optional:
 
 - `action` (String) 'action' defines the action to perform on the flows that match the filter.
 - `cidr` (String) 'cidr' defines the IP CIDR to filter flows by.Examples: '10.10.10.0/24' or '100:100:100:100::/64'
-- `dest_ports` (String) 'destPorts' defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'destPorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'destPorts: '80-100''.
+- `dest_ports` (String) 'destPorts' defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'destPorts: 80'.To filter a range of ports, use a 'start-end' range in string format. For example: 'destPorts: '80-100''.
 - `direction` (String) 'direction' defines the direction to filter flows by.
-- `enable` (Boolean) Set 'enable' to 'true' to enable eBPF flow filtering feature.
-- `icmp_code` (Number) 'icmpCode' defines the ICMP code to filter flows by.
-- `icmp_type` (Number) 'icmpType' defines the ICMP type to filter flows by.
+- `enable` (Boolean) Set 'enable' to 'true' to enable the eBPF flow filtering feature.
+- `icmp_code` (Number) 'icmpCode', for Internet Control Message Protocol (ICMP) traffic, defines the ICMP code to filter flows by.
+- `icmp_type` (Number) 'icmpType', for ICMP traffic, defines the ICMP type to filter flows by.
 - `peer_ip` (String) 'peerIP' defines the IP address to filter flows by.Example: '10.10.10.10'.
-- `ports` (String) 'ports' defines the ports to filter flows by, used both for source and destination ports.To filter a single port, set a single port as an integer value. For example: 'ports: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'ports: '80-100''.
+- `ports` (String) 'ports' defines the ports to filter flows by. It is used both for source and destination ports.To filter a single port, set a single port as an integer value. For example: 'ports: 80'.To filter a range of ports, use a 'start-end' range in string format. For example: 'ports: '80-100''.
 - `protocol` (String) 'protocol' defines the protocol to filter flows by.
-- `source_ports` (String) 'sourcePorts' defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'sourcePorts: 80'.To filter a range of ports, use a 'start-end' range, string format. For example: 'sourcePorts: '80-100''.
+- `source_ports` (String) 'sourcePorts' defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example: 'sourcePorts: 80'.To filter a range of ports, use a 'start-end' range in string format. For example: 'sourcePorts: '80-100''.
 
 
 <a id="nestedatt--spec--agent--ebpf--metrics"></a>
@@ -530,16 +530,16 @@ Optional:
 
 Optional:
 
-- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
+- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter is being triggered.<br>
 - `enable` (Boolean) Set 'enable' to 'false' to disable eBPF agent metrics collection. It is enabled by default.
-- `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
+- `server` (Attributes) Metrics server endpoint configuration for the Prometheus scraper. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server"></a>
 ### Nested Schema for `spec.agent.ebpf.metrics.server`
 
 Optional:
 
-- `port` (Number) The metrics server HTTP port
+- `port` (Number) The metrics server HTTP port.
 - `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls))
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server--tls"></a>
@@ -557,11 +557,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file"></a>
@@ -569,10 +569,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 
@@ -636,24 +636,24 @@ Optional:
 
 - `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the console plugin.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced))
 - `autoscaler` (Attributes) 'autoscaler' spec of a horizontal pod autoscaler to set up for the plugin Deployment. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler))
-- `enable` (Boolean) Enables the console plugin deployment.'spec.loki.enable' must also be 'true'
+- `enable` (Boolean) Enables the console plugin deployment.
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
 - `log_level` (String) 'logLevel' for the console plugin backend
 - `port_naming` (Attributes) 'portNaming' defines the configuration of the port-to-service name translation (see [below for nested schema](#nestedatt--spec--console_plugin--port_naming))
 - `quick_filters` (Attributes List) 'quickFilters' configures quick filter presets for the Console plugin (see [below for nested schema](#nestedatt--spec--console_plugin--quick_filters))
 - `replicas` (Number) 'replicas' defines the number of replicas (pods) to start.
-- `resources` (Attributes) 'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--console_plugin--resources))
+- `resources` (Attributes) 'resources', in terms of compute resources, required by this container.For more information, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--console_plugin--resources))
 
 <a id="nestedatt--spec--console_plugin--advanced"></a>
 ### Nested Schema for `spec.console_plugin.advanced`
 
 Optional:
 
-- `args` (List of String) 'args' allows passing custom arguments to underlying components. Useful for overridingsome parameters, such as an url or a configuration path, that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
+- `args` (List of String) 'args' allows passing custom arguments to underlying components. Useful for overridingsome parameters, such as a URL or a configuration path, that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
 - `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
 - `port` (Number) 'port' is the plugin service port. Do not use 9002, which is reserved for metrics.
 - `register` (Boolean) 'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''
-- `scheduling` (Attributes) scheduling controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling))
+- `scheduling` (Attributes) 'scheduling' controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling))
 
 <a id="nestedatt--spec--console_plugin--advanced--scheduling"></a>
 ### Nested Schema for `spec.console_plugin.advanced.scheduling`
@@ -661,7 +661,7 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity))
-- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `node_selector` (Map of String) 'nodeSelector' allows scheduling of pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
 - `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
 - `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--tolerations))
 
@@ -1413,10 +1413,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--exporters--kafka--sasl--client_secret_reference"></a>
@@ -1424,10 +1424,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 
@@ -1446,11 +1446,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--exporters--kafka--tls--user_cert"></a>
@@ -1458,11 +1458,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1495,10 +1495,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--kafka--sasl--client_secret_reference"></a>
@@ -1506,10 +1506,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 
@@ -1528,11 +1528,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--kafka--tls--user_cert"></a>
@@ -1540,11 +1540,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1614,11 +1614,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--loki--manual--status_tls--user_cert"></a>
@@ -1626,11 +1626,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1649,11 +1649,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--loki--manual--tls--user_cert"></a>
@@ -1661,11 +1661,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1695,11 +1695,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--loki--microservices--tls--user_cert"></a>
@@ -1707,11 +1707,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1740,11 +1740,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--loki--monolithic--tls--user_cert"></a>
@@ -1752,11 +1752,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 
@@ -1779,7 +1779,7 @@ Optional:
 - `log_types` (String) 'logTypes' defines the desired record types to generate. Possible values are:<br>- 'Flows' (default) to export regular network flows<br>- 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'EndedConversations' to generate only ended conversations events<br>- 'All' to generate both network flows and all conversations events<br>
 - `metrics` (Attributes) 'Metrics' define the processor configuration regarding metrics (see [below for nested schema](#nestedatt--spec--processor--metrics))
 - `multi_cluster_deployment` (Boolean) Set 'multiClusterDeployment' to 'true' to enable multi clusters feature. This adds 'clusterName' label to flows data
-- `resources` (Attributes) 'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--processor--resources))
+- `resources` (Attributes) 'resources' are the compute resources required by this container.For more information, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--processor--resources))
 - `subnet_labels` (Attributes) 'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift, which is used to identify cluster external traffic.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'. (see [below for nested schema](#nestedatt--spec--processor--subnet_labels))
 
 <a id="nestedatt--spec--processor--advanced"></a>
@@ -1804,7 +1804,7 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity))
-- `node_selector` (Map of String) 'nodeSelector' allows to schedule pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
+- `node_selector` (Map of String) 'nodeSelector' allows scheduling of pods only onto nodes that have each of the specified labels.For documentation, refer to https://kubernetes.io/docs/concepts/configuration/assign-pod-node/.
 - `priority_class_name` (String) If specified, indicates the pod's priority. For documentation, refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#how-to-use-priority-and-preemption.If not specified, default priority is used, or zero if there is no default.
 - `tolerations` (Attributes List) 'tolerations' is a list of tolerations that allow the pod to schedule onto nodes with matching taints.For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--tolerations))
 
@@ -2477,7 +2477,7 @@ Optional:
 
 Optional:
 
-- `port` (Number) The metrics server HTTP port
+- `port` (Number) The metrics server HTTP port.
 - `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls))
 
 <a id="nestedatt--spec--processor--metrics--server--tls"></a>
@@ -2495,11 +2495,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--processor--metrics--server--tls--provided_ca_file"></a>
@@ -2507,10 +2507,10 @@ Optional:
 
 Optional:
 
-- `file` (String) File name within the config map or secret
-- `name` (String) Name of the config map or secret containing the file
+- `file` (String) File name within the config map or secret.
+- `name` (String) Name of the config map or secret containing the file.
 - `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the file reference: 'configmap' or 'secret'
+- `type` (String) Type for the file reference: 'configmap' or 'secret'.
 
 
 
@@ -2594,11 +2594,11 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
 
 
 <a id="nestedatt--spec--prometheus--querier--manual--tls--user_cert"></a>
@@ -2606,8 +2606,8 @@ Optional:
 
 Optional:
 
-- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
-- `name` (String) Name of the config map or secret containing certificates
+- `name` (String) Name of the config map or secret containing certificates.
 - `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
-- `type` (String) Type for the certificate reference: 'configmap' or 'secret'
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.

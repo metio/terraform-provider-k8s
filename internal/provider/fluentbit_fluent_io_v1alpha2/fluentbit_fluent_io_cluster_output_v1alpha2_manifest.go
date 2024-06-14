@@ -214,6 +214,7 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 				Verify *bool   `tfsdk:"verify" json:"verify,omitempty"`
 				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
+			TotalLimitSize *string `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
 			TraceError     *bool   `tfsdk:"trace_error" json:"traceError,omitempty"`
 			TraceOutput    *bool   `tfsdk:"trace_output" json:"traceOutput,omitempty"`
 			Type           *string `tfsdk:"type" json:"type,omitempty"`
@@ -2127,6 +2128,14 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"trace_error": schema.BoolAttribute{

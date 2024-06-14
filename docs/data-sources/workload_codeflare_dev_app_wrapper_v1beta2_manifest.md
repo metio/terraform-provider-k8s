@@ -72,7 +72,7 @@ Optional:
 
 - `annotations` (Map of String) Annotations is an unstructured key value map that may be used to store and retrievearbitrary metadata about the Component to customize its treatment by the AppWrapper controller.
 - `pod_set_infos` (Attributes List) PodSetInfos assigned to the Component's PodSets by Kueue (see [below for nested schema](#nestedatt--spec--components--pod_set_infos))
-- `pod_sets` (Attributes List) PodSets contained in the Component (see [below for nested schema](#nestedatt--spec--components--pod_sets))
+- `pod_sets` (Attributes List) DeclaredPodSets for the Component (optional for known PodCreating GVKs) (see [below for nested schema](#nestedatt--spec--components--pod_sets))
 
 <a id="nestedatt--spec--components--pod_set_infos"></a>
 ### Nested Schema for `spec.components.pod_set_infos`

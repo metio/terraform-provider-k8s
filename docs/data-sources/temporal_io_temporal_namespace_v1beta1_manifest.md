@@ -60,10 +60,10 @@ Required:
 
 Optional:
 
-- `active_cluster_name` (String) The name of active Temporal Cluster. Only applicable if the namespace is a global namespace.
-- `allow_deletion` (Boolean) AllowDeletion makes the controller delete the Temporal namespace if the CRD is deleted.
-- `archival` (Attributes) Archival is a per-namespace archival configuration. If not set, the default cluster configuration is used. (see [below for nested schema](#nestedatt--spec--archival))
-- `clusters` (List of String) List of clusters names to which the namespace can fail over. Only applicable if the namespace is a global namespace.
+- `active_cluster_name` (String) The name of active Temporal Cluster.Only applicable if the namespace is a global namespace.
+- `allow_deletion` (Boolean) AllowDeletion makes the controller delete the Temporal namespace if theCRD is deleted.
+- `archival` (Attributes) Archival is a per-namespace archival configuration.If not set, the default cluster configuration is used. (see [below for nested schema](#nestedatt--spec--archival))
+- `clusters` (List of String) List of clusters names to which the namespace can fail over.Only applicable if the namespace is a global namespace.
 - `data` (Map of String) Data is a key-value map for any customized purpose.
 - `description` (String) Namespace description.
 - `is_global_namespace` (Boolean) IsGlobalNamespace defines whether the namespace is a global namespace.
@@ -75,8 +75,8 @@ Optional:
 
 Optional:
 
-- `name` (String) The name of the TemporalCluster to reference.
-- `namespace` (String) The namespace of the TemporalCluster to reference. Defaults to the namespace of the requested resource if omitted.
+- `name` (String) The name of the temporal object to reference.
+- `namespace` (String) The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.
 
 
 <a id="nestedatt--spec--archival"></a>
@@ -98,7 +98,7 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
+- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
 
 
 <a id="nestedatt--spec--archival--visibility"></a>
@@ -112,4 +112,4 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
+- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).

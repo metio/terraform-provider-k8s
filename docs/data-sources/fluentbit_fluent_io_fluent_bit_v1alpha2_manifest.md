@@ -89,6 +89,7 @@ Optional:
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service` (Attributes) Service represents configurations on the fluent-bit service. (see [below for nested schema](#nestedatt--spec--service))
 - `service_account_annotations` (Map of String) Annotations to add to the Fluentbit service account
+- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer.
 - `tolerations` (Attributes List) Tolerations (see [below for nested schema](#nestedatt--spec--tolerations))
 - `volumes` (Attributes List) List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--volumes))
 - `volumes_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. (see [below for nested schema](#nestedatt--spec--volumes_mounts))

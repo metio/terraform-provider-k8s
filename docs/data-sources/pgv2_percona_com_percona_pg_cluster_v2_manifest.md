@@ -2087,7 +2087,7 @@ Optional:
 - `tablespace_volumes` (Attributes List) The list of tablespaces volumes to mount for this postgresclusterThis field requires enabling TablespaceVolumes feature gate (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes))
 - `tolerations` (Attributes List) Tolerations of a PostgreSQL pod. Changing this value causes PostgreSQL to restart.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--instances--tolerations))
 - `topology_spread_constraints` (Attributes List) Topology spread constraints of a PostgreSQL pod. Changing this value causesPostgreSQL to restart.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--instances--topology_spread_constraints))
-- `volume_mounts` (Attributes List) The list of volume mounts to mount to PostgreSQL instance pods. Chaning this value causesPostgreSQL to restart. (see [below for nested schema](#nestedatt--spec--instances--volume_mounts))
+- `volume_mounts` (Attributes List) The list of volume mounts to mount to PostgreSQL instance pods. Changing this value causesPostgreSQL to restart. (see [below for nested schema](#nestedatt--spec--instances--volume_mounts))
 - `wal_volume_claim_spec` (Attributes) Defines a separate PersistentVolumeClaim for PostgreSQL's write-ahead log.More info: https://www.postgresql.org/docs/current/wal.html (see [below for nested schema](#nestedatt--spec--instances--wal_volume_claim_spec))
 
 <a id="nestedatt--spec--instances--data_volume_claim_spec"></a>
@@ -5493,6 +5493,7 @@ Optional:
 Optional:
 
 - `bucket` (String)
+- `endpoint` (String)
 - `region` (String)
 - `secret` (Attributes) Adapts a secret into a projected volume.The contents of the target Secret's Data field will be presented in aprojected volume as files using the keys in the Data field as the file names.Note that this is identical to a secret volume source without the defaultmode. (see [below for nested schema](#nestedatt--spec--extensions--storage--secret))
 - `type` (String)

@@ -216,20 +216,20 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"run_on_target_pod_node": schema.BoolAttribute{
-										Description:         "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
-										MarkdownDescription: "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
+										Description:         "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
+										MarkdownDescription: "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"sync_progress": schema.SingleNestedAttribute{
-										Description:         "Determines if the backup progress should be synchronized and the interval for synchronization in seconds.",
-										MarkdownDescription: "Determines if the backup progress should be synchronized and the interval for synchronization in seconds.",
+										Description:         "Determines if the backup progress should be synchronized and the intervalfor synchronization in seconds.",
+										MarkdownDescription: "Determines if the backup progress should be synchronized and the intervalfor synchronization in seconds.",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
-												Description:         "Determines if the backup progress should be synchronized. If set to true, a sidecar container will be instantiated to synchronize the backup progress with the Backup Custom Resource (CR) status.",
-												MarkdownDescription: "Determines if the backup progress should be synchronized. If set to true, a sidecar container will be instantiated to synchronize the backup progress with the Backup Custom Resource (CR) status.",
+												Description:         "Determines if the backup progress should be synchronized. If set to true,a sidecar container will be instantiated to synchronize the backup progress with theBackup Custom Resource (CR) status.",
+												MarkdownDescription: "Determines if the backup progress should be synchronized. If set to true,a sidecar container will be instantiated to synchronize the backup progress with theBackup Custom Resource (CR) status.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -272,8 +272,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"container": schema.StringAttribute{
-													Description:         "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
-													MarkdownDescription: "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
+													Description:         "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
+													MarkdownDescription: "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -291,8 +291,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
-													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
+													Description:         "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
+													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -336,8 +336,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"run_on_target_pod_node": schema.BoolAttribute{
-													Description:         "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
-													MarkdownDescription: "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
+													Description:         "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
+													MarkdownDescription: "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -373,8 +373,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"container": schema.StringAttribute{
-													Description:         "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
-													MarkdownDescription: "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
+													Description:         "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
+													MarkdownDescription: "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -392,8 +392,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
-													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
+													Description:         "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
+													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -437,8 +437,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"run_on_target_pod_node": schema.BoolAttribute{
-													Description:         "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
-													MarkdownDescription: "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
+													Description:         "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
+													MarkdownDescription: "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -456,8 +456,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"pre_delete": schema.SingleNestedAttribute{
-								Description:         "Represents a custom deletion action that can be executed before the built-in deletion action. Note: The preDelete action job will ignore the env/envFrom.",
-								MarkdownDescription: "Represents a custom deletion action that can be executed before the built-in deletion action. Note: The preDelete action job will ignore the env/envFrom.",
+								Description:         "Represents a custom deletion action that can be executed before the built-in deletion action.Note: The preDelete action job will ignore the env/envFrom.",
+								MarkdownDescription: "Represents a custom deletion action that can be executed before the built-in deletion action.Note: The preDelete action job will ignore the env/envFrom.",
 								Attributes: map[string]schema.Attribute{
 									"command": schema.ListAttribute{
 										Description:         "Defines the commands to back up the volume data.",
@@ -487,8 +487,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"backup_type": schema.StringAttribute{
-						Description:         "Specifies the backup type. Supported values include:  - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.  Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
-						MarkdownDescription: "Specifies the backup type. Supported values include:  - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.  Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
+						Description:         "Specifies the backup type. Supported values include:- 'Full' for a full backup.- 'Incremental' back up data that have changed since the last backup (either full or incremental).- 'Differential' back up data that has changed since the last full backup.- 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
+						MarkdownDescription: "Specifies the backup type. Supported values include:- 'Full' for a full backup.- 'Incremental' back up data that have changed since the last backup (either full or incremental).- 'Differential' back up data that has changed since the last full backup.- 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc.Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -504,8 +504,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"env_from": schema.MapAttribute{
-						Description:         "Specifies a list of sources to populate environment variables in the container. The keys within a source must be a C_IDENTIFIER. Any invalid keys will be reported as an event when the container starts. If a key exists in multiple sources, the value from the last source will take precedence. Any values defined by an Env with a duplicate key will take precedence.  This field cannot be updated.",
-						MarkdownDescription: "Specifies a list of sources to populate environment variables in the container. The keys within a source must be a C_IDENTIFIER. Any invalid keys will be reported as an event when the container starts. If a key exists in multiple sources, the value from the last source will take precedence. Any values defined by an Env with a duplicate key will take precedence.  This field cannot be updated.",
+						Description:         "Specifies a list of sources to populate environment variables in the container.The keys within a source must be a C_IDENTIFIER. Any invalid keys will bereported as an event when the container starts. If a key exists in multiplesources, the value from the last source will take precedence. Any valuesdefined by an Env with a duplicate key will take precedence.This field cannot be updated.",
+						MarkdownDescription: "Specifies a list of sources to populate environment variables in the container.The keys within a source must be a C_IDENTIFIER. Any invalid keys will bereported as an event when the container starts. If a key exists in multiplesources, the value from the last source will take precedence. Any valuesdefined by an Env with a duplicate key will take precedence.This field cannot be updated.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -535,8 +535,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"container": schema.StringAttribute{
-													Description:         "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
-													MarkdownDescription: "Specifies the container within the pod where the command should be executed. If not specified, the first container in the pod is used by default.",
+													Description:         "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
+													MarkdownDescription: "Specifies the container within the pod where the command should be executed.If not specified, the first container in the pod is used by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -554,8 +554,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
-													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete before considering the execution a failure.",
+													Description:         "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
+													MarkdownDescription: "Specifies the maximum duration to wait for the hook to complete beforeconsidering the execution a failure.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -599,8 +599,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"run_on_target_pod_node": schema.BoolAttribute{
-													Description:         "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
-													MarkdownDescription: "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
+													Description:         "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
+													MarkdownDescription: "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -650,8 +650,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"run_on_target_pod_node": schema.BoolAttribute{
-										Description:         "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
-										MarkdownDescription: "Determines whether to run the job workload on the target pod node. If the backup container needs to mount the target pod's volumes, this field should be set to true. Otherwise, the target pod's volumes will be ignored.",
+										Description:         "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
+										MarkdownDescription: "Determines whether to run the job workload on the target pod node.If the backup container needs to mount the target pod's volumes, this fieldshould be set to true. Otherwise, the target pod's volumes will be ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

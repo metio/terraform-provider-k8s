@@ -213,8 +213,8 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Schema(_ 
 							},
 
 							"protocol_version": schema.StringAttribute{
-								Description:         "The protocol version used when performing health checks on targets. Defaults to HTTP/1.",
-								MarkdownDescription: "The protocol version used when performing health checks on targets. Defaults to HTTP/1.",
+								Description:         "The protocol version used when performing health checks on targets.",
+								MarkdownDescription: "The protocol version used when performing health checks on targets.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -261,16 +261,16 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Schema(_ 
 					},
 
 					"protocol": schema.StringAttribute{
-						Description:         "The protocol to use for routing traffic to the targets. Supported values are HTTP (default) and HTTPS.  Changes to this value results in a replacement of VPC Lattice target group.",
-						MarkdownDescription: "The protocol to use for routing traffic to the targets. Supported values are HTTP (default) and HTTPS.  Changes to this value results in a replacement of VPC Lattice target group.",
+						Description:         "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.",
+						MarkdownDescription: "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"protocol_version": schema.StringAttribute{
-						Description:         "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
-						MarkdownDescription: "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
+						Description:         "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
+						MarkdownDescription: "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
