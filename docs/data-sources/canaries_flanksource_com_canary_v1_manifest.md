@@ -5150,6 +5150,7 @@ Optional:
 - `template_body` (Boolean) Template the request body
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--http--test))
 - `threshold_millis` (Number) Maximum duration in milliseconds for the HTTP request. It will fail the check if it takes longer.
+- `tls_config` (Attributes) TLS Config (see [below for nested schema](#nestedatt--spec--http--tls_config))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--http--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
@@ -5572,6 +5573,189 @@ Optional:
 - `javascript` (String)
 - `json_path` (String)
 - `template` (String)
+
+
+<a id="nestedatt--spec--http--tls_config"></a>
+### Nested Schema for `spec.http.tls_config`
+
+Optional:
+
+- `ca` (Attributes) PEM encoded certificate of the CA to verify the server certificate (see [below for nested schema](#nestedatt--spec--http--tls_config--ca))
+- `cert` (Attributes) PEM encoded client certificate (see [below for nested schema](#nestedatt--spec--http--tls_config--cert))
+- `handshake_timeout` (Number) HandshakeTimeout defaults to 10 seconds
+- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name
+- `key` (Attributes) PEM encoded client private key (see [below for nested schema](#nestedatt--spec--http--tls_config--key))
+
+<a id="nestedatt--spec--http--tls_config--ca"></a>
+### Nested Schema for `spec.http.tls_config.ca`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--ca--value_from))
+
+<a id="nestedatt--spec--http--tls_config--ca--value_from"></a>
+### Nested Schema for `spec.http.tls_config.ca.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--ca--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--ca--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--ca--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--tls_config--ca--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.ca.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--ca--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.tls_config.ca.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--ca--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.ca.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--http--tls_config--cert"></a>
+### Nested Schema for `spec.http.tls_config.cert`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--cert--value_from))
+
+<a id="nestedatt--spec--http--tls_config--cert--value_from"></a>
+### Nested Schema for `spec.http.tls_config.cert.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--cert--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--cert--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--cert--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--tls_config--cert--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.cert.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--cert--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.tls_config.cert.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--cert--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.cert.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--http--tls_config--key"></a>
+### Nested Schema for `spec.http.tls_config.key`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--key--value_from))
+
+<a id="nestedatt--spec--http--tls_config--key--value_from"></a>
+### Nested Schema for `spec.http.tls_config.key.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--key--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--key--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_config--key--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--http--tls_config--key--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.key.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--key--value_from--helm_ref"></a>
+### Nested Schema for `spec.http.tls_config.key.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--http--tls_config--key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_config.key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 
 <a id="nestedatt--spec--http--transform"></a>

@@ -159,6 +159,8 @@ Optional:
 
 - `claim_name` (String) Claim name if the existing volume is a PVC
 - `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
+- `empty_dir` (Boolean)
+- `empty_dir_medium` (String) Add an empty directory custom type
 - `host_path` (String) An existing hostPath to bind to path
 - `items` (Map of String) Items (key and paths) for the config map
 - `path` (String) Path and claim name are always required if a secret isn't defined
@@ -381,6 +383,8 @@ Optional:
 
 - `claim_name` (String) Claim name if the existing volume is a PVC
 - `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
+- `empty_dir` (Boolean)
+- `empty_dir_medium` (String) Add an empty directory custom type
 - `host_path` (String) An existing hostPath to bind to path
 - `items` (Map of String) Items (key and paths) for the config map
 - `path` (String) Path and claim name are always required if a secret isn't defined

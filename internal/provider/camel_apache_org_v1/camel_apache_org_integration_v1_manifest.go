@@ -1283,6 +1283,8 @@ type CamelApacheOrgIntegrationV1ManifestData struct {
 				Host          *string            `tfsdk:"host" json:"host,omitempty"`
 				Path          *string            `tfsdk:"path" json:"path,omitempty"`
 				PathType      *string            `tfsdk:"path_type" json:"pathType,omitempty"`
+				TlsHosts      *[]string          `tfsdk:"tls_hosts" json:"tlsHosts,omitempty"`
+				TlsSecretName *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
 			} `tfsdk:"ingress" json:"ingress,omitempty"`
 			Istio *struct {
 				Allow         *string            `tfsdk:"allow" json:"allow,omitempty"`
@@ -1354,6 +1356,7 @@ type CamelApacheOrgIntegrationV1ManifestData struct {
 				MaxScale          *int64             `tfsdk:"max_scale" json:"maxScale,omitempty"`
 				MinScale          *int64             `tfsdk:"min_scale" json:"minScale,omitempty"`
 				RolloutDuration   *string            `tfsdk:"rollout_duration" json:"rolloutDuration,omitempty"`
+				TimeoutSeconds    *int64             `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				Visibility        *string            `tfsdk:"visibility" json:"visibility,omitempty"`
 			} `tfsdk:"knative_service" json:"knative-service,omitempty"`
 			Logging *struct {
@@ -10036,6 +10039,23 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 											stringvalidator.OneOf("Exact", "Prefix", "ImplementationSpecific"),
 										},
 									},
+
+									"tls_hosts": schema.ListAttribute{
+										Description:         "To configure tls hosts",
+										MarkdownDescription: "To configure tls hosts",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tls_secret_name": schema.StringAttribute{
+										Description:         "To configure tls secret name",
+										MarkdownDescription: "To configure tls secret name",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -10572,6 +10592,14 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 									"rollout_duration": schema.StringAttribute{
 										Description:         "Enables to gradually shift traffic to the latest Revision and sets the rollout duration. It's disabled by default and must be expressed as a Golang 'time.Duration' string representation, rounded to a second precision.",
 										MarkdownDescription: "Enables to gradually shift traffic to the latest Revision and sets the rollout duration. It's disabled by default and must be expressed as a Golang 'time.Duration' string representation, rounded to a second precision.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "The maximum duration in seconds that the request instance is allowed to respond to a request. This field propagates to the integration pod's terminationGracePeriodSeconds  Refer to the Knative documentation for more information.",
+										MarkdownDescription: "The maximum duration in seconds that the request instance is allowed to respond to a request. This field propagates to the integration pod's terminationGracePeriodSeconds  Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

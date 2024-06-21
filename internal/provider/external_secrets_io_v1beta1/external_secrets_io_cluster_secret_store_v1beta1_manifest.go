@@ -45,6 +45,7 @@ type ExternalSecretsIoClusterSecretStoreV1Beta1ManifestData struct {
 
 	Spec *struct {
 		Conditions *[]struct {
+			NamespaceRegexes  *[]string `tfsdk:"namespace_regexes" json:"namespaceRegexes,omitempty"`
 			NamespaceSelector *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -856,6 +857,15 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Used to constraint a ClusterSecretStore to specific namespaces. Relevant only to ClusterSecretStore",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"namespace_regexes": schema.ListAttribute{
+									Description:         "Choose namespaces by using regex matching",
+									MarkdownDescription: "Choose namespaces by using regex matching",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"namespace_selector": schema.SingleNestedAttribute{
 									Description:         "Choose namespace using a labelSelector",
 									MarkdownDescription: "Choose namespace using a labelSelector",

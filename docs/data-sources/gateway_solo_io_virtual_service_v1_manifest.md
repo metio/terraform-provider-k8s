@@ -3456,6 +3456,7 @@ Optional:
 - `faults` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--faults))
 - `header_manipulation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--header_manipulation))
 - `host_rewrite` (String)
+- `host_rewrite_header` (String)
 - `host_rewrite_path_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--host_rewrite_path_regex))
 - `idle_timeout` (String)
 - `jwt` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--jwt))

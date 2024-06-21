@@ -807,7 +807,8 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 				ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
 			} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
 		} `tfsdk:"monitor" json:"monitor,omitempty"`
-		PolicyRules *[]struct {
+		PodManagementPolicy *string `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
+		PolicyRules         *[]struct {
 			ApiGroups       *[]string `tfsdk:"api_groups" json:"apiGroups,omitempty"`
 			NonResourceURLs *[]string `tfsdk:"non_resource_urls" json:"nonResourceURLs,omitempty"`
 			ResourceNames   *[]string `tfsdk:"resource_names" json:"resourceNames,omitempty"`
@@ -7463,6 +7464,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"pod_management_policy": schema.StringAttribute{
+						Description:         "InstanceSet controls the creation of pods during initial scale up, replacement of pods on nodes, and scaling down.- 'OrderedReady': Creates pods in increasing order (pod-0, then pod-1, etc). The controller waits until each podis ready before continuing. Pods are removed in reverse order when scaling down.- 'Parallel': Creates pods in parallel to match the desired scale without waiting. All pods are deleted at oncewhen scaling down.",
+						MarkdownDescription: "InstanceSet controls the creation of pods during initial scale up, replacement of pods on nodes, and scaling down.- 'OrderedReady': Creates pods in increasing order (pod-0, then pod-1, etc). The controller waits until each podis ready before continuing. Pods are removed in reverse order when scaling down.- 'Parallel': Creates pods in parallel to match the desired scale without waiting. All pods are deleted at oncewhen scaling down.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"policy_rules": schema.ListNestedAttribute{
@@ -16339,8 +16348,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"init_account": schema.BoolAttribute{
-									Description:         "Indicates if this account is the unique system initialization account (e.g., MySQL root).Only one system initialization account is permitted.This field is immutable once set.",
-									MarkdownDescription: "Indicates if this account is the unique system initialization account (e.g., MySQL root).Only one system initialization account is permitted.This field is immutable once set.",
+									Description:         "Indicates if this account is a system initialization account (e.g., MySQL root).This field is immutable once set.",
+									MarkdownDescription: "Indicates if this account is a system initialization account (e.g., MySQL root).This field is immutable once set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

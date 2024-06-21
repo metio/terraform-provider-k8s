@@ -46,6 +46,7 @@ type ExecutorTestkubeIoWebhookV1ManifestData struct {
 		Disabled                 *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
 		Events                   *[]string          `tfsdk:"events" json:"events,omitempty"`
 		Headers                  *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+		OnStateChange            *bool              `tfsdk:"on_state_change" json:"onStateChange,omitempty"`
 		PayloadObjectField       *string            `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
 		PayloadTemplate          *string            `tfsdk:"payload_template" json:"payloadTemplate,omitempty"`
 		PayloadTemplateReference *string            `tfsdk:"payload_template_reference" json:"payloadTemplateReference,omitempty"`
@@ -152,6 +153,14 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "webhook headers (golang template supported)",
 						MarkdownDescription: "webhook headers (golang template supported)",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"on_state_change": schema.BoolAttribute{
+						Description:         "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflow",
+						MarkdownDescription: "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflow",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

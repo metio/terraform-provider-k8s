@@ -47,6 +47,13 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			Allow *[]string `tfsdk:"allow" json:"allow,omitempty"`
 			Deny  *[]string `tfsdk:"deny" json:"deny,omitempty"`
 		} `tfsdk:"access_control" json:"accessControl,omitempty"`
+		ApiKey *struct {
+			ClientSecret *string `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+			SuppliedIn   *struct {
+				Header *[]string `tfsdk:"header" json:"header,omitempty"`
+				Query  *[]string `tfsdk:"query" json:"query,omitempty"`
+			} `tfsdk:"supplied_in" json:"suppliedIn,omitempty"`
+		} `tfsdk:"api_key" json:"apiKey,omitempty"`
 		BasicAuth *struct {
 			Realm  *string `tfsdk:"realm" json:"realm,omitempty"`
 			Secret *string `tfsdk:"secret" json:"secret,omitempty"`
@@ -217,6 +224,50 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"api_key": schema.SingleNestedAttribute{
+						Description:         "APIKey defines an API Key policy.",
+						MarkdownDescription: "APIKey defines an API Key policy.",
+						Attributes: map[string]schema.Attribute{
+							"client_secret": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"supplied_in": schema.SingleNestedAttribute{
+								Description:         "SuppliedIn defines the locations API Key should be supplied in.",
+								MarkdownDescription: "SuppliedIn defines the locations API Key should be supplied in.",
+								Attributes: map[string]schema.Attribute{
+									"header": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"query": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

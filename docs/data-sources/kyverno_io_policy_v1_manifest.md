@@ -56,17 +56,17 @@ Optional:
 - `admission` (Boolean) Admission controls if rules are applied during admission.Optional. Default value is 'true'.
 - `apply_rules` (String) ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.
 - `background` (Boolean) Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).
-- `failure_policy` (String) FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.
+- `failure_policy` (String) Deprecated, use failurePolicy under the webhookConfiguration instead.
 - `generate_existing` (Boolean) Deprecated, use generateExisting under the generate rule instead
 - `generate_existing_on_policy_update` (Boolean) Deprecated, use generateExisting instead
-- `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.
+- `mutate_existing_on_policy_update` (Boolean) Deprecated, use mutateExistingOnPolicyUpdate under the mutate rule instead
 - `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
 - `schema_validation` (Boolean) Deprecated.
 - `use_server_side_apply` (Boolean) UseServerSideApply controls whether to use server-side apply for generate rulesIf is set to 'true' create & update for generate rules will use apply instead of create/update.Defaults to 'false' if not specified.
 - `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.
 - `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
-- `webhook_configuration` (Attributes) WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later. (see [below for nested schema](#nestedatt--spec--webhook_configuration))
-- `webhook_timeout_seconds` (Number) WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.
+- `webhook_configuration` (Attributes) WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration. (see [below for nested schema](#nestedatt--spec--webhook_configuration))
+- `webhook_timeout_seconds` (Number) Deprecated, use webhookTimeoutSeconds under webhookConfiguration instead.
 
 <a id="nestedatt--spec--rules"></a>
 ### Nested Schema for `spec.rules`
@@ -771,6 +771,7 @@ Optional:
 Optional:
 
 - `foreach` (Attributes List) ForEach applies mutation rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach))
+- `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if the mutateExisting rule will be applied on policy events.
 - `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
 - `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
 - `targets` (Attributes List) Targets defines the target resources to be mutated. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets))
@@ -1501,6 +1502,7 @@ Optional:
 - `annotations` (Map of String) Deprecated. Use annotations per Attestor instead.
 - `attestations` (Attributes List) Attestations are optional checks for signed in-toto Statements used to verify the image.See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from theOCI registry and decodes them into a list of Statement declarations. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations))
 - `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors))
+- `cosign_oci11` (Boolean) CosignOCI11 enables the experimental OCI 1.1 behaviour in cosign image verification.Defaults to false.
 - `image` (String) Deprecated. Use ImageReferences instead.
 - `image_references` (List of String) ImageReferences is a list of matching image reference patterns. At least one pattern in thelist must match the image for the rule to apply. Each image reference consists of a registryaddress (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry. (see [below for nested schema](#nestedatt--spec--rules--verify_images--image_registry_credentials))
@@ -1863,7 +1865,9 @@ Optional:
 
 Optional:
 
-- `match_conditions` (Attributes List) MatchCondition configures admission webhook matchConditions. (see [below for nested schema](#nestedatt--spec--webhook_configuration--match_conditions))
+- `failure_policy` (String) FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.
+- `match_conditions` (Attributes List) MatchCondition configures admission webhook matchConditions.Requires Kubernetes 1.27 or later. (see [below for nested schema](#nestedatt--spec--webhook_configuration--match_conditions))
+- `timeout_seconds` (Number) TimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.
 
 <a id="nestedatt--spec--webhook_configuration--match_conditions"></a>
 ### Nested Schema for `spec.webhook_configuration.match_conditions`

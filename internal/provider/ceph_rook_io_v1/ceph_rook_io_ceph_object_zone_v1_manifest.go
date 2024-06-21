@@ -47,12 +47,13 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 	Spec *struct {
 		CustomEndpoints *[]string `tfsdk:"custom_endpoints" json:"customEndpoints,omitempty"`
 		DataPool        *struct {
-			Application     *string `tfsdk:"application" json:"application,omitempty"`
-			CompressionMode *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
-			CrushRoot       *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
-			DeviceClass     *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
-			EnableRBDStats  *bool   `tfsdk:"enable_rbd_stats" json:"enableRBDStats,omitempty"`
-			ErasureCoded    *struct {
+			Application        *string `tfsdk:"application" json:"application,omitempty"`
+			CompressionMode    *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
+			CrushRoot          *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
+			DeviceClass        *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
+			EnableCrushUpdates *bool   `tfsdk:"enable_crush_updates" json:"enableCrushUpdates,omitempty"`
+			EnableRBDStats     *bool   `tfsdk:"enable_rbd_stats" json:"enableRBDStats,omitempty"`
+			ErasureCoded       *struct {
 				Algorithm    *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
 				CodingChunks *int64  `tfsdk:"coding_chunks" json:"codingChunks,omitempty"`
 				DataChunks   *int64  `tfsdk:"data_chunks" json:"dataChunks,omitempty"`
@@ -96,12 +97,13 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 			} `tfsdk:"status_check" json:"statusCheck,omitempty"`
 		} `tfsdk:"data_pool" json:"dataPool,omitempty"`
 		MetadataPool *struct {
-			Application     *string `tfsdk:"application" json:"application,omitempty"`
-			CompressionMode *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
-			CrushRoot       *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
-			DeviceClass     *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
-			EnableRBDStats  *bool   `tfsdk:"enable_rbd_stats" json:"enableRBDStats,omitempty"`
-			ErasureCoded    *struct {
+			Application        *string `tfsdk:"application" json:"application,omitempty"`
+			CompressionMode    *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
+			CrushRoot          *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
+			DeviceClass        *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
+			EnableCrushUpdates *bool   `tfsdk:"enable_crush_updates" json:"enableCrushUpdates,omitempty"`
+			EnableRBDStats     *bool   `tfsdk:"enable_rbd_stats" json:"enableRBDStats,omitempty"`
+			ErasureCoded       *struct {
 				Algorithm    *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
 				CodingChunks *int64  `tfsdk:"coding_chunks" json:"codingChunks,omitempty"`
 				DataChunks   *int64  `tfsdk:"data_chunks" json:"dataChunks,omitempty"`
@@ -274,6 +276,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 							"device_class": schema.StringAttribute{
 								Description:         "The device class the OSD should set to for use in the pool",
 								MarkdownDescription: "The device class the OSD should set to for use in the pool",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_crush_updates": schema.BoolAttribute{
+								Description:         "Allow rook operator to change the pool CRUSH tunables once the pool is created",
+								MarkdownDescription: "Allow rook operator to change the pool CRUSH tunables once the pool is created",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -624,6 +634,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 							"device_class": schema.StringAttribute{
 								Description:         "The device class the OSD should set to for use in the pool",
 								MarkdownDescription: "The device class the OSD should set to for use in the pool",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_crush_updates": schema.BoolAttribute{
+								Description:         "Allow rook operator to change the pool CRUSH tunables once the pool is created",
+								MarkdownDescription: "Allow rook operator to change the pool CRUSH tunables once the pool is created",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

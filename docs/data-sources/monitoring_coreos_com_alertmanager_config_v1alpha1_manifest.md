@@ -1486,6 +1486,7 @@ Optional:
 - `title` (String) Notification title.
 - `token` (Attributes) The secret's key that contains the registered application's API token, see https://pushover.net/apps.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'token' or 'tokenFile' is required. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
 - `token_file` (String) The token file that contains the registered application's API token, see https://pushover.net/apps.Either 'token' or 'tokenFile' is required.It requires Alertmanager >= v0.26.0.
+- `ttl` (String) The time to live definition for the alert notification
 - `url` (String) A supplementary URL shown alongside the message.
 - `url_title` (String) A title for supplementary URL, otherwise just the URL is shown
 - `user_key` (Attributes) The secret's key that contains the recipient user's user key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'userKey' or 'userKeyFile' is required. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))

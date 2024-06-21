@@ -1579,8 +1579,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Metadata(_ context.Context
 
 func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "",
-		MarkdownDescription: "",
+		Description:         "Grafana is the Schema for the grafanas API",
+		MarkdownDescription: "Grafana is the Schema for the grafanas API",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1647,16 +1647,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "GrafanaSpec defines the desired state of Grafana",
+				MarkdownDescription: "GrafanaSpec defines the desired state of Grafana",
 				Attributes: map[string]schema.Attribute{
 					"client": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Client defines how the grafana-operator talks to the grafana instance.",
+						MarkdownDescription: "Client defines how the grafana-operator talks to the grafana instance.",
 						Attributes: map[string]schema.Attribute{
 							"prefer_ingress": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "If the operator should send it's request through the grafana instances ingress object instead of through the service.",
+								MarkdownDescription: "If the operator should send it's request through the grafana instances ingress object instead of through the service.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1676,8 +1676,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"config": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Config defines how your grafana ini file should looks like.",
+						MarkdownDescription: "Config defines how your grafana ini file should looks like.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1685,12 +1685,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"deployment": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deployment sets how the deployment object should look like with your grafana instance, contains a number of defaults.",
+						MarkdownDescription: "Deployment sets how the deployment object should look like with your grafana instance, contains a number of defaults.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -1760,33 +1760,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"selector": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+										MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1800,8 +1800,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1814,24 +1814,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"strategy": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "DeploymentStrategy describes how to replace existing pods with new ones.",
+										MarkdownDescription: "DeploymentStrategy describes how to replace existing pods with new ones.",
 										Attributes: map[string]schema.Attribute{
 											"rolling_update": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Rolling update config params. Present only if DeploymentStrategyType =RollingUpdate.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be.",
+												MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType =RollingUpdate.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be.",
 												Attributes: map[string]schema.Attribute{
 													"max_surge": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 25%.Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately whenthe rolling update starts, such that the total number of old and new pods do not exceed130% of desired pods. Once old pods have been killed,new ReplicaSet can be scaled up further, ensuring that total number of pods runningat any time during the update is at most 130% of desired pods.",
+														MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 25%.Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately whenthe rolling update starts, such that the total number of old and new pods do not exceed130% of desired pods. Once old pods have been killed,new ReplicaSet can be scaled up further, ensuring that total number of pods runningat any time during the update is at most 130% of desired pods.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"max_unavailable": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 25%.Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired podsimmediately when the rolling update starts. Once new pods are ready, old ReplicaSetcan be scaled down further, followed by scaling up the new ReplicaSet, ensuringthat the total number of pods available at all times during the update is atleast 70% of desired pods.",
+														MarkdownDescription: "The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 25%.Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired podsimmediately when the rolling update starts. Once new pods are ready, old ReplicaSetcan be scaled down further, followed by scaling up the new ReplicaSet, ensuringthat the total number of pods available at all times during the update is atleast 70% of desired pods.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1843,8 +1843,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Type of deployment. Can be 'Recreate' or 'RollingUpdate'. Default is RollingUpdate.",
+												MarkdownDescription: "Type of deployment. Can be 'Recreate' or 'RollingUpdate'. Default is RollingUpdate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1860,8 +1860,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+												MarkdownDescription: "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
 														Description:         "",
@@ -1887,8 +1887,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"spec": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Specification of the desired behavior of the pod.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+												MarkdownDescription: "Specification of the desired behavior of the pod.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 												Attributes: map[string]schema.Attribute{
 													"active_deadline_seconds": schema.Int64Attribute{
 														Description:         "",
@@ -1899,46 +1899,46 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"affinity": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, the pod's scheduling constraints",
+														MarkdownDescription: "If specified, the pod's scheduling constraints",
 														Attributes: map[string]schema.Attribute{
 															"node_affinity": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Describes node affinity scheduling rules for the pod.",
+																MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 																Attributes: map[string]schema.Attribute{
 																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"preference": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "A node selector term, associated with the corresponding weight.",
+																					MarkdownDescription: "A node selector term, associated with the corresponding weight.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A list of node selector requirements by node's labels.",
+																							MarkdownDescription: "A list of node selector requirements by node's labels.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -1952,29 +1952,29 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_fields": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A list of node selector requirements by node's fields.",
+																							MarkdownDescription: "A list of node selector requirements by node's fields.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -1993,8 +1993,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"weight": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																					MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2007,38 +2007,38 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																	},
 
 																	"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																		MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
 																		Attributes: map[string]schema.Attribute{
 																			"node_selector_terms": schema.ListNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Required. A list of node selector terms. The terms are ORed.",
+																				MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
 																				NestedObject: schema.NestedAttributeObject{
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A list of node selector requirements by node's labels.",
+																							MarkdownDescription: "A list of node selector requirements by node's labels.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2052,29 +2052,29 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_fields": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A list of node selector requirements by node's fields.",
+																							MarkdownDescription: "A list of node selector requirements by node's fields.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2104,46 +2104,46 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"pod_affinity": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+																MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 																Attributes: map[string]schema.Attribute{
 																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"pod_affinity_term": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																					MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																					Attributes: map[string]schema.Attribute{
 																						"label_selector": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"key": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"operator": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"values": schema.ListAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2157,8 +2157,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"match_labels": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2171,8 +2171,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2180,8 +2180,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2189,33 +2189,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"namespace_selector": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"key": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"operator": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"values": schema.ListAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2229,8 +2229,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"match_labels": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2243,8 +2243,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"namespaces": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2252,8 +2252,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"topology_key": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -2265,8 +2265,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"weight": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2279,38 +2279,38 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																	},
 
 																	"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2324,8 +2324,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2338,8 +2338,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2347,8 +2347,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2356,33 +2356,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2396,8 +2396,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2410,8 +2410,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"namespaces": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2419,8 +2419,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"topology_key": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2438,46 +2438,46 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"pod_anti_affinity": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+																MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 																Attributes: map[string]schema.Attribute{
 																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"pod_affinity_term": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																					MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																					Attributes: map[string]schema.Attribute{
 																						"label_selector": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"key": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"operator": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"values": schema.ListAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2491,8 +2491,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"match_labels": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2505,8 +2505,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2514,8 +2514,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2523,33 +2523,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"namespace_selector": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"key": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"operator": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"values": schema.ListAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2563,8 +2563,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"match_labels": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2577,8 +2577,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"namespaces": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2586,8 +2586,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"topology_key": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -2599,8 +2599,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"weight": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2613,38 +2613,38 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																	},
 
 																	"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2658,8 +2658,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2672,8 +2672,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2681,8 +2681,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2690,33 +2690,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2730,8 +2730,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2744,8 +2744,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"namespaces": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2753,8 +2753,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"topology_key": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2777,8 +2777,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"automount_service_account_token": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
+														MarkdownDescription: "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2790,8 +2790,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"args": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Arguments to the entrypoint.The container image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Arguments to the entrypoint.The container image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2799,8 +2799,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"command": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Entrypoint array. Not executed within a shell.The container image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Entrypoint array. Not executed within a shell.The container image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2808,53 +2808,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of environment variables to set in the container.Cannot be updated.",
+																	MarkdownDescription: "List of environment variables to set in the container.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"value": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																				MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"value_from": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																				MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 																				Attributes: map[string]schema.Attribute{
 																					"config_map_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a ConfigMap.",
+																						MarkdownDescription: "Selects a key of a ConfigMap.",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key to select.",
+																								MarkdownDescription: "The key to select.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the ConfigMap or its key must be defined",
+																								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -2866,20 +2866,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																						MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																						Attributes: map[string]schema.Attribute{
 																							"api_version": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																								MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"field_path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Path of the field to select in the specified API version.",
+																								MarkdownDescription: "Path of the field to select in the specified API version.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -2891,28 +2891,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"resource_field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																						MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																						Attributes: map[string]schema.Attribute{
 																							"container_name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Container name: required for volumes, optional for env vars",
+																								MarkdownDescription: "Container name: required for volumes, optional for env vars",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"divisor": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																								MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"resource": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Required: resource to select",
+																								MarkdownDescription: "Required: resource to select",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -2924,28 +2924,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"secret_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a secret in the pod's namespace",
+																						MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the Secret or its key must be defined",
+																								MarkdownDescription: "Specify whether the Secret or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -2968,25 +2968,25 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The ConfigMap to select from",
+																				MarkdownDescription: "The ConfigMap to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the ConfigMap must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2998,28 +2998,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"secret_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The Secret to select from",
+																				MarkdownDescription: "The Secret to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the Secret must be defined",
+																						MarkdownDescription: "Specify whether the Secret must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3037,36 +3037,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"image": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container image name.More info: https://kubernetes.io/docs/concepts/containers/imagesThis field is optional to allow higher level config management to default or overridecontainer images in workload controllers like Deployments and StatefulSets.",
+																	MarkdownDescription: "Container image name.More info: https://kubernetes.io/docs/concepts/containers/imagesThis field is optional to allow higher level config management to default or overridecontainer images in workload controllers like Deployments and StatefulSets.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"image_pull_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																	MarkdownDescription: "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"lifecycle": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Actions that the management system should take in response to container lifecycle events.Cannot be updated.",
+																	MarkdownDescription: "Actions that the management system should take in response to container lifecycle events.Cannot be updated.",
 																	Attributes: map[string]schema.Attribute{
 																		"post_start": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -3079,33 +3079,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3118,24 +3118,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3147,12 +3147,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -3164,20 +3164,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -3194,16 +3194,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"pre_stop": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -3216,33 +3216,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3255,24 +3255,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3284,12 +3284,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -3301,20 +3301,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -3336,16 +3336,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"liveness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3358,28 +3358,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3391,33 +3391,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -3430,24 +3430,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3459,44 +3459,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -3508,16 +3508,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3529,53 +3529,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Name of the container specified as a DNS_LABEL.Each container in a pod must have a unique name (DNS_LABEL).Cannot be updated.",
+																	MarkdownDescription: "Name of the container specified as a DNS_LABEL.Each container in a pod must have a unique name (DNS_LABEL).Cannot be updated.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"ports": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated.",
+																	MarkdownDescription: "List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"container_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
+																				MarkdownDescription: "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"host_ip": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "What host IP to bind the external port to.",
+																				MarkdownDescription: "What host IP to bind the external port to.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"host_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
+																				MarkdownDescription: "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
+																				MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"protocol": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
+																				MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3588,16 +3588,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"readiness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3610,28 +3610,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3643,33 +3643,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -3682,24 +3682,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3711,44 +3711,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -3760,16 +3760,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3781,21 +3781,21 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resize_policy": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Resources resize policy for the container.",
+																	MarkdownDescription: "Resources resize policy for the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"resource_name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+																				MarkdownDescription: "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"restart_policy": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+																				MarkdownDescription: "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -3808,17 +3808,17 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -3831,8 +3831,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3840,8 +3840,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3854,40 +3854,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"restart_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+																	MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"security_context": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+																	MarkdownDescription: "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 																	Attributes: map[string]schema.Attribute{
 																		"allow_privilege_escalation": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"app_armor_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+																					MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																					MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -3899,12 +3899,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"capabilities": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"add": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Added capabilities",
+																					MarkdownDescription: "Added capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3912,8 +3912,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"drop": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Removed capabilities",
+																					MarkdownDescription: "Removed capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3926,84 +3926,84 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"privileged": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"proc_mount": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only_root_filesystem": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_group": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_non_root": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_user": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"se_linux_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"level": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Level is SELinux level label that applies to the container.",
+																					MarkdownDescription: "Level is SELinux level label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"role": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Role is a SELinux role label that applies to the container.",
+																					MarkdownDescription: "Role is a SELinux role label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Type is a SELinux type label that applies to the container.",
+																					MarkdownDescription: "Type is a SELinux type label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"user": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "User is a SELinux user label that applies to the container.",
+																					MarkdownDescription: "User is a SELinux user label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4015,20 +4015,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"seccomp_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																					MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																					MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -4040,36 +4040,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"windows_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+																			MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
 																			Attributes: map[string]schema.Attribute{
 																				"gmsa_credential_spec": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+																					MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"gmsa_credential_spec_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																					MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"host_process": schema.BoolAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																					MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_user_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4086,16 +4086,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"startup_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4108,28 +4108,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4141,33 +4141,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -4180,24 +4180,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4209,44 +4209,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -4258,16 +4258,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4279,61 +4279,61 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"stdin": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"stdin_once": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
+																	MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_path": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
+																	MarkdownDescription: "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
+																	MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"tty": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"volume_devices": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "volumeDevices is the list of block devices to be used by the container.",
+																	MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"device_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "devicePath is the path inside of the container that the device will be mapped to.",
+																				MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "name must match the name of a persistentVolumeClaim in the pod",
+																				MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -4346,61 +4346,61 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"volume_mounts": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Pod volumes to mount into the container's filesystem.Cannot be updated.",
+																	MarkdownDescription: "Pod volumes to mount into the container's filesystem.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mount_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+																				MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"mount_propagation": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+																				MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "This must match the Name of a Volume.",
+																				MarkdownDescription: "This must match the Name of a Volume.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"read_only": schema.BoolAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+																				MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"recursive_read_only": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																				MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+																				MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path_expr": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+																				MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4413,8 +4413,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"working_dir": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
+																	MarkdownDescription: "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4427,12 +4427,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"dns_config": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
+														MarkdownDescription: "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
 														Attributes: map[string]schema.Attribute{
 															"nameservers": schema.ListAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
+																MarkdownDescription: "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4440,13 +4440,13 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"options": schema.ListNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
+																MarkdownDescription: "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Required.",
+																			MarkdownDescription: "Required.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4467,8 +4467,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"searches": schema.ListAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
+																MarkdownDescription: "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4481,16 +4481,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"dns_policy": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "DNSPolicy defines how a pod's DNS will be configured.",
+														MarkdownDescription: "DNSPolicy defines how a pod's DNS will be configured.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"enable_service_links": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "EnableServiceLinks indicates whether information about services should be injected into pod'senvironment variables, matching the syntax of Docker links.Optional: Defaults to true.",
+														MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod'senvironment variables, matching the syntax of Docker links.Optional: Defaults to true.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4502,8 +4502,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"args": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Arguments to the entrypoint.The image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Arguments to the entrypoint.The image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4511,8 +4511,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"command": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Entrypoint array. Not executed within a shell.The image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Entrypoint array. Not executed within a shell.The image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4520,53 +4520,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of environment variables to set in the container.Cannot be updated.",
+																	MarkdownDescription: "List of environment variables to set in the container.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"value": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																				MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"value_from": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																				MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 																				Attributes: map[string]schema.Attribute{
 																					"config_map_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a ConfigMap.",
+																						MarkdownDescription: "Selects a key of a ConfigMap.",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key to select.",
+																								MarkdownDescription: "The key to select.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the ConfigMap or its key must be defined",
+																								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4578,20 +4578,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																						MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																						Attributes: map[string]schema.Attribute{
 																							"api_version": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																								MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"field_path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Path of the field to select in the specified API version.",
+																								MarkdownDescription: "Path of the field to select in the specified API version.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -4603,28 +4603,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"resource_field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																						MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																						Attributes: map[string]schema.Attribute{
 																							"container_name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Container name: required for volumes, optional for env vars",
+																								MarkdownDescription: "Container name: required for volumes, optional for env vars",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"divisor": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																								MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"resource": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Required: resource to select",
+																								MarkdownDescription: "Required: resource to select",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -4636,28 +4636,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"secret_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a secret in the pod's namespace",
+																						MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the Secret or its key must be defined",
+																								MarkdownDescription: "Specify whether the Secret or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4680,25 +4680,25 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The ConfigMap to select from",
+																				MarkdownDescription: "The ConfigMap to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the ConfigMap must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4710,28 +4710,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"secret_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The Secret to select from",
+																				MarkdownDescription: "The Secret to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the Secret must be defined",
+																						MarkdownDescription: "Specify whether the Secret must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4749,36 +4749,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"image": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container image name.More info: https://kubernetes.io/docs/concepts/containers/images",
+																	MarkdownDescription: "Container image name.More info: https://kubernetes.io/docs/concepts/containers/images",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"image_pull_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																	MarkdownDescription: "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"lifecycle": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Lifecycle is not allowed for ephemeral containers.",
+																	MarkdownDescription: "Lifecycle is not allowed for ephemeral containers.",
 																	Attributes: map[string]schema.Attribute{
 																		"post_start": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -4791,33 +4791,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -4830,24 +4830,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4859,12 +4859,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -4876,20 +4876,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -4906,16 +4906,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"pre_stop": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -4928,33 +4928,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -4967,24 +4967,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4996,12 +4996,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -5013,20 +5013,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -5048,16 +5048,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"liveness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Probes are not allowed for ephemeral containers.",
+																	MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5070,28 +5070,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5103,33 +5103,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -5142,24 +5142,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5171,44 +5171,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5220,16 +5220,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5241,53 +5241,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Name of the ephemeral container specified as a DNS_LABEL.This name must be unique among all containers, init containers and ephemeral containers.",
+																	MarkdownDescription: "Name of the ephemeral container specified as a DNS_LABEL.This name must be unique among all containers, init containers and ephemeral containers.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"ports": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Ports are not allowed for ephemeral containers.",
+																	MarkdownDescription: "Ports are not allowed for ephemeral containers.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"container_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
+																				MarkdownDescription: "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"host_ip": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "What host IP to bind the external port to.",
+																				MarkdownDescription: "What host IP to bind the external port to.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"host_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
+																				MarkdownDescription: "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
+																				MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"protocol": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
+																				MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5300,16 +5300,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"readiness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Probes are not allowed for ephemeral containers.",
+																	MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5322,28 +5322,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5355,33 +5355,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -5394,24 +5394,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5423,44 +5423,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5472,16 +5472,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5493,21 +5493,21 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resize_policy": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Resources resize policy for the container.",
+																	MarkdownDescription: "Resources resize policy for the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"resource_name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+																				MarkdownDescription: "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"restart_policy": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+																				MarkdownDescription: "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5520,17 +5520,17 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod.",
+																	MarkdownDescription: "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5543,8 +5543,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -5552,8 +5552,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -5566,40 +5566,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"restart_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Restart policy for the container to manage the restart behavior of eachcontainer within a pod.This may only be set for init containers. You cannot set this field onephemeral containers.",
+																	MarkdownDescription: "Restart policy for the container to manage the restart behavior of eachcontainer within a pod.This may only be set for init containers. You cannot set this field onephemeral containers.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"security_context": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Optional: SecurityContext defines the security options the ephemeral container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
+																	MarkdownDescription: "Optional: SecurityContext defines the security options the ephemeral container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
 																	Attributes: map[string]schema.Attribute{
 																		"allow_privilege_escalation": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"app_armor_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+																					MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																					MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5611,12 +5611,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"capabilities": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"add": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Added capabilities",
+																					MarkdownDescription: "Added capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5624,8 +5624,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"drop": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Removed capabilities",
+																					MarkdownDescription: "Removed capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5638,84 +5638,84 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"privileged": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"proc_mount": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only_root_filesystem": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_group": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_non_root": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_user": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"se_linux_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"level": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Level is SELinux level label that applies to the container.",
+																					MarkdownDescription: "Level is SELinux level label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"role": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Role is a SELinux role label that applies to the container.",
+																					MarkdownDescription: "Role is a SELinux role label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Type is a SELinux type label that applies to the container.",
+																					MarkdownDescription: "Type is a SELinux type label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"user": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "User is a SELinux user label that applies to the container.",
+																					MarkdownDescription: "User is a SELinux user label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5727,20 +5727,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"seccomp_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																					MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																					MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5752,36 +5752,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"windows_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+																			MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
 																			Attributes: map[string]schema.Attribute{
 																				"gmsa_credential_spec": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+																					MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"gmsa_credential_spec_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																					MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"host_process": schema.BoolAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																					MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_user_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5798,16 +5798,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"startup_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Probes are not allowed for ephemeral containers.",
+																	MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5820,28 +5820,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5853,33 +5853,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -5892,24 +5892,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5921,44 +5921,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5970,16 +5970,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5991,69 +5991,69 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"stdin": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"stdin_once": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
+																	MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"target_container_name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "If set, the name of the container from PodSpec that this ephemeral container targets.The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container.If not set then the ephemeral container uses the namespaces configured in the Pod spec.The container runtime must implement support for this feature. If the runtime does notsupport namespace targeting then the result of setting this field is undefined.",
+																	MarkdownDescription: "If set, the name of the container from PodSpec that this ephemeral container targets.The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container.If not set then the ephemeral container uses the namespaces configured in the Pod spec.The container runtime must implement support for this feature. If the runtime does notsupport namespace targeting then the result of setting this field is undefined.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_path": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
+																	MarkdownDescription: "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
+																	MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"tty": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"volume_devices": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "volumeDevices is the list of block devices to be used by the container.",
+																	MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"device_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "devicePath is the path inside of the container that the device will be mapped to.",
+																				MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "name must match the name of a persistentVolumeClaim in the pod",
+																				MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -6066,61 +6066,61 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"volume_mounts": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Pod volumes to mount into the container's filesystem. Subpath mounts are not allowed for ephemeral containers.Cannot be updated.",
+																	MarkdownDescription: "Pod volumes to mount into the container's filesystem. Subpath mounts are not allowed for ephemeral containers.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mount_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+																				MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"mount_propagation": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+																				MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "This must match the Name of a Volume.",
+																				MarkdownDescription: "This must match the Name of a Volume.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"read_only": schema.BoolAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+																				MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"recursive_read_only": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																				MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+																				MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path_expr": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+																				MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6133,8 +6133,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"working_dir": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
+																	MarkdownDescription: "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -6147,13 +6147,13 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"host_aliases": schema.ListNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hostsfile if specified. This is only valid for non-hostNetwork pods.",
+														MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hostsfile if specified. This is only valid for non-hostNetwork pods.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"hostnames": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Hostnames for the above IP address.",
+																	MarkdownDescription: "Hostnames for the above IP address.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -6161,8 +6161,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"ip": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "IP address of the host file entry.",
+																	MarkdownDescription: "IP address of the host file entry.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -6175,53 +6175,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"host_ipc": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Use the host's ipc namespace.Optional: Default to false.",
+														MarkdownDescription: "Use the host's ipc namespace.Optional: Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"host_network": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Host networking requested for this pod. Use the host's network namespace.If this option is set, the ports that will be used must be specified.Default to false.",
+														MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace.If this option is set, the ports that will be used must be specified.Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"host_pid": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Use the host's pid namespace.Optional: Default to false.",
+														MarkdownDescription: "Use the host's pid namespace.Optional: Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"host_users": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Use the host's user namespace.Optional: Default to true.If set to true or not present, the pod will be run in the host user namespace, usefulfor when the pod needs a feature only available to the host user namespace, such asloading a kernel module with CAP_SYS_MODULE.When set to false, a new userns is created for the pod. Setting false is useful formitigating container breakout vulnerabilities even allowing users to run theircontainers as root without actually having root privileges on the host.This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
+														MarkdownDescription: "Use the host's user namespace.Optional: Default to true.If set to true or not present, the pod will be run in the host user namespace, usefulfor when the pod needs a feature only available to the host user namespace, such asloading a kernel module with CAP_SYS_MODULE.When set to false, a new userns is created for the pod. Setting false is useful formitigating container breakout vulnerabilities even allowing users to run theircontainers as root without actually having root privileges on the host.This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"hostname": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Specifies the hostname of the PodIf not specified, the pod's hostname will be set to a system-defined value.",
+														MarkdownDescription: "Specifies the hostname of the PodIf not specified, the pod's hostname will be set to a system-defined value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"image_pull_secrets": schema.ListNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+														MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -6239,8 +6239,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"args": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Arguments to the entrypoint.The container image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Arguments to the entrypoint.The container image's CMD is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -6248,8 +6248,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"command": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Entrypoint array. Not executed within a shell.The container image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																	MarkdownDescription: "Entrypoint array. Not executed within a shell.The container image's ENTRYPOINT is used if this is not provided.Variable references $(VAR_NAME) are expanded using the container's environment. If a variablecannot be resolved, the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' willproduce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardlessof whether the variable exists or not. Cannot be updated.More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -6257,53 +6257,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of environment variables to set in the container.Cannot be updated.",
+																	MarkdownDescription: "List of environment variables to set in the container.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"value": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																				MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"value_from": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																				MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 																				Attributes: map[string]schema.Attribute{
 																					"config_map_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a ConfigMap.",
+																						MarkdownDescription: "Selects a key of a ConfigMap.",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key to select.",
+																								MarkdownDescription: "The key to select.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the ConfigMap or its key must be defined",
+																								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -6315,20 +6315,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																						MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																						Attributes: map[string]schema.Attribute{
 																							"api_version": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																								MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"field_path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Path of the field to select in the specified API version.",
+																								MarkdownDescription: "Path of the field to select in the specified API version.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -6340,28 +6340,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"resource_field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																						MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																						Attributes: map[string]schema.Attribute{
 																							"container_name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Container name: required for volumes, optional for env vars",
+																								MarkdownDescription: "Container name: required for volumes, optional for env vars",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"divisor": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																								MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"resource": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Required: resource to select",
+																								MarkdownDescription: "Required: resource to select",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -6373,28 +6373,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"secret_key_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a key of a secret in the pod's namespace",
+																						MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specify whether the Secret or its key must be defined",
+																								MarkdownDescription: "Specify whether the Secret or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -6417,25 +6417,25 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container.The keys defined within a source must be a C_IDENTIFIER. All invalid keyswill be reported as an event when the container is starting. When a key exists in multiplesources, the value associated with the last source will take precedence.Values defined by an Env with a duplicate key will take precedence.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The ConfigMap to select from",
+																				MarkdownDescription: "The ConfigMap to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the ConfigMap must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -6447,28 +6447,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"secret_ref": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The Secret to select from",
+																				MarkdownDescription: "The Secret to select from",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"optional": schema.BoolAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Specify whether the Secret must be defined",
+																						MarkdownDescription: "Specify whether the Secret must be defined",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -6486,36 +6486,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"image": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container image name.More info: https://kubernetes.io/docs/concepts/containers/imagesThis field is optional to allow higher level config management to default or overridecontainer images in workload controllers like Deployments and StatefulSets.",
+																	MarkdownDescription: "Container image name.More info: https://kubernetes.io/docs/concepts/containers/imagesThis field is optional to allow higher level config management to default or overridecontainer images in workload controllers like Deployments and StatefulSets.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"image_pull_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																	MarkdownDescription: "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"lifecycle": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Actions that the management system should take in response to container lifecycle events.Cannot be updated.",
+																	MarkdownDescription: "Actions that the management system should take in response to container lifecycle events.Cannot be updated.",
 																	Attributes: map[string]schema.Attribute{
 																		"post_start": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails,the container is terminated and restarted according to its restart policy.Other management of the container blocks until the hook completes.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -6528,33 +6528,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -6567,24 +6567,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6596,12 +6596,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6613,20 +6613,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6643,16 +6643,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"pre_stop": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																			MarkdownDescription: "PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 																			Attributes: map[string]schema.Attribute{
 																				"exec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Exec specifies the action to take.",
+																					MarkdownDescription: "Exec specifies the action to take.",
 																					Attributes: map[string]schema.Attribute{
 																						"command": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																							MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -6665,33 +6665,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"http_get": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HTTPGet specifies the http request to perform.",
+																					MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																							MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"http_headers": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																							MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																										MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"value": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "The header field value",
+																										MarkdownDescription: "The header field value",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -6704,24 +6704,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Path to access on the HTTP server.",
+																							MarkdownDescription: "Path to access on the HTTP server.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"scheme": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																							MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6733,12 +6733,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"sleep": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																					MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
 																					Attributes: map[string]schema.Attribute{
 																						"seconds": schema.Int64Attribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Seconds is the number of seconds to sleep.",
+																							MarkdownDescription: "Seconds is the number of seconds to sleep.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6750,20 +6750,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"tcp_socket": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
+																					MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified.",
 																					Attributes: map[string]schema.Attribute{
 																						"host": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																							MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"port": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																							MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6785,16 +6785,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"liveness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -6807,28 +6807,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -6840,33 +6840,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -6879,24 +6879,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -6908,44 +6908,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -6957,16 +6957,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -6978,53 +6978,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Name of the container specified as a DNS_LABEL.Each container in a pod must have a unique name (DNS_LABEL).Cannot be updated.",
+																	MarkdownDescription: "Name of the container specified as a DNS_LABEL.Each container in a pod must have a unique name (DNS_LABEL).Cannot be updated.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"ports": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated.",
+																	MarkdownDescription: "List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"container_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
+																				MarkdownDescription: "Number of port to expose on the pod's IP address.This must be a valid port number, 0 < x < 65536.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"host_ip": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "What host IP to bind the external port to.",
+																				MarkdownDescription: "What host IP to bind the external port to.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"host_port": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
+																				MarkdownDescription: "Number of port to expose on the host.If specified, this must be a valid port number, 0 < x < 65536.If HostNetwork is specified, this must match ContainerPort.Most containers do not need this.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
+																				MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"protocol": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
+																				MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP.Defaults to 'TCP'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7037,16 +7037,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"readiness_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -7059,28 +7059,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7092,33 +7092,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -7131,24 +7131,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7160,44 +7160,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -7209,16 +7209,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -7230,21 +7230,21 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resize_policy": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Resources resize policy for the container.",
+																	MarkdownDescription: "Resources resize policy for the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"resource_name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+																				MarkdownDescription: "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"restart_policy": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+																				MarkdownDescription: "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -7257,17 +7257,17 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -7280,8 +7280,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -7289,8 +7289,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -7303,40 +7303,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"restart_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+																	MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"security_context": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+																	MarkdownDescription: "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 																	Attributes: map[string]schema.Attribute{
 																		"allow_privilege_escalation": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"app_armor_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+																					MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																					MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -7348,12 +7348,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"capabilities": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"add": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Added capabilities",
+																					MarkdownDescription: "Added capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -7361,8 +7361,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"drop": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Removed capabilities",
+																					MarkdownDescription: "Removed capabilities",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -7375,84 +7375,84 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"privileged": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"proc_mount": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only_root_filesystem": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_group": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_non_root": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"run_as_user": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"se_linux_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"level": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Level is SELinux level label that applies to the container.",
+																					MarkdownDescription: "Level is SELinux level label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"role": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Role is a SELinux role label that applies to the container.",
+																					MarkdownDescription: "Role is a SELinux role label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Type is a SELinux type label that applies to the container.",
+																					MarkdownDescription: "Type is a SELinux type label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"user": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "User is a SELinux user label that applies to the container.",
+																					MarkdownDescription: "User is a SELinux user label that applies to the container.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7464,20 +7464,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"seccomp_profile": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
+																			MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 																			Attributes: map[string]schema.Attribute{
 																				"localhost_profile": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																					MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																					MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -7489,36 +7489,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"windows_options": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+																			MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
 																			Attributes: map[string]schema.Attribute{
 																				"gmsa_credential_spec": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+																					MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"gmsa_credential_spec_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																					MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"host_process": schema.BoolAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																					MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_user_name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7535,16 +7535,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"startup_probe": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																	MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																	Attributes: map[string]schema.Attribute{
 																		"exec": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Exec specifies the action to take.",
+																			MarkdownDescription: "Exec specifies the action to take.",
 																			Attributes: map[string]schema.Attribute{
 																				"command": schema.ListAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																					MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -7557,28 +7557,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"failure_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPC specifies an action involving a GRPC port.",
+																			MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+																					MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"service": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+																					MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7590,33 +7590,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"http_get": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "HTTPGet specifies the http request to perform.",
+																			MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																					MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"http_headers": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																					MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"value": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -7629,24 +7629,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Path to access on the HTTP server.",
+																					MarkdownDescription: "Path to access on the HTTP server.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"scheme": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+																					MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -7658,44 +7658,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"initial_delay_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																			MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"success_threshold": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																			MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"tcp_socket": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TCPSocket specifies an action involving a TCP port.",
+																			MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 																			Attributes: map[string]schema.Attribute{
 																				"host": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																					MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"port": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																					MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -7707,16 +7707,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"termination_grace_period_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																			MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, thisvalue overrides the value provided by the pod spec.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"timeout_seconds": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																			MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -7728,61 +7728,61 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"stdin": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"stdin_once": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
+																	MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened bya single attach. When stdin is true the stdin stream will remain open across multiple attachsessions. If stdinOnce is set to true, stdin is opened on container start, is empty until thefirst client attaches to stdin, and then remains open and accepts data until the client disconnects,at which time stdin is closed and remains closed until the container is restarted. If thisflag is false, a container processes that reads from stdin will never receive an EOF.Default is false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_path": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
+																	MarkdownDescription: "Optional: Path at which the file to which the container's termination messagewill be written is mounted into the container's filesystem.Message written is intended to be brief final status, such as an assertion failure message.Will be truncated by the node if greater than 4096 bytes. The total message length acrossall containers will be limited to 12kb.Defaults to /dev/termination-log.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"termination_message_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
+																	MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents ofterminationMessagePath to populate the container status message on both success and failure.FallbackToLogsOnError will use the last chunk of container log output if the terminationmessage file is empty and the container exited with an error.The log output is limited to 2048 bytes or 80 lines, whichever is smaller.Defaults to File.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"tty": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
+																	MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true.Default is false.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"volume_devices": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "volumeDevices is the list of block devices to be used by the container.",
+																	MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"device_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "devicePath is the path inside of the container that the device will be mapped to.",
+																				MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "name must match the name of a persistentVolumeClaim in the pod",
+																				MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -7795,61 +7795,61 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"volume_mounts": schema.ListNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Pod volumes to mount into the container's filesystem.Cannot be updated.",
+																	MarkdownDescription: "Pod volumes to mount into the container's filesystem.Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mount_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+																				MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"mount_propagation": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+																				MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "This must match the Name of a Volume.",
+																				MarkdownDescription: "This must match the Name of a Volume.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"read_only": schema.BoolAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+																				MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"recursive_read_only": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																				MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+																				MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"sub_path_expr": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+																				MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7862,8 +7862,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"working_dir": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
+																	MarkdownDescription: "Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -7876,16 +7876,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"node_name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.",
+														MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"node_selector": schema.MapAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+														MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -7893,12 +7893,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"os": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup",
+														MarkdownDescription: "Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Name is the name of the operating system. The currently supported values are linux and windows.Additional value may be defined in future and can be one of:https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configurationClients should expect to handle additional values and treat unrecognized values in this field as os: null",
+																MarkdownDescription: "Name is the name of the operating system. The currently supported values are linux and windows.Additional value may be defined in future and can be one of:https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configurationClients should expect to handle additional values and treat unrecognized values in this field as os: null",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -7910,8 +7910,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"overhead": schema.MapAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
+														MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -7919,37 +7919,37 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"preemption_policy": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.",
+														MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"priority": schema.Int64Attribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.",
+														MarkdownDescription: "The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"priority_class_name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+														MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"readiness_gates": schema.ListNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, all readiness gates will be evaluated for pod readiness.A pod is ready when all its containers are ready ANDall conditions specified in the readiness gates have status equal to 'True'More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
+														MarkdownDescription: "If specified, all readiness gates will be evaluated for pod readiness.A pod is ready when all its containers are ready ANDall conditions specified in the readiness gates have status equal to 'True'More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"condition_type": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "ConditionType refers to a condition in the pod's condition list with matching type.",
+																	MarkdownDescription: "ConditionType refers to a condition in the pod's condition list with matching type.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -7962,48 +7962,48 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"restart_policy": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "RestartPolicy describes how the container should be restarted.Only one of the following restart policies may be specified.If none of the following policies is specified, the default oneis RestartPolicyAlways.",
+														MarkdownDescription: "RestartPolicy describes how the container should be restarted.Only one of the following restart policies may be specified.If none of the following policies is specified, the default oneis RestartPolicyAlways.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"runtime_class_name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
+														MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"scheduler_name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, the pod will be dispatched by specified scheduler.If not specified, the pod will be dispatched by default scheduler.",
+														MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler.If not specified, the pod will be dispatched by default scheduler.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"security_context": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "SecurityContext holds pod-level security attributes and common container settings.Optional: Defaults to empty.  See type description for default values of each field.",
+														MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings.Optional: Defaults to empty.  See type description for default values of each field.",
 														Attributes: map[string]schema.Attribute{
 															"app_armor_profile": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
 																Attributes: map[string]schema.Attribute{
 																	"localhost_profile": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
+																		MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used.The profile must be preconfigured on the node to work.Must match the loaded name of the profile.Must be set if and only if type is 'Localhost'.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"type": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																		MarkdownDescription: "type indicates which kind of AppArmor profile will be applied.Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -8015,76 +8015,76 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"fs_group": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"fs_group_change_policy": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"run_as_group": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"run_as_non_root": schema.BoolAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"run_as_user": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"se_linux_options": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
 																Attributes: map[string]schema.Attribute{
 																	"level": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Level is SELinux level label that applies to the container.",
+																		MarkdownDescription: "Level is SELinux level label that applies to the container.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"role": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Role is a SELinux role label that applies to the container.",
+																		MarkdownDescription: "Role is a SELinux role label that applies to the container.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"type": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Type is a SELinux type label that applies to the container.",
+																		MarkdownDescription: "Type is a SELinux type label that applies to the container.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"user": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "User is a SELinux user label that applies to the container.",
+																		MarkdownDescription: "User is a SELinux user label that applies to the container.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8096,20 +8096,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"seccomp_profile": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
 																Attributes: map[string]schema.Attribute{
 																	"localhost_profile": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"type": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																		MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -8121,8 +8121,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"supplemental_groups": schema.ListAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8130,21 +8130,21 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"sysctls": schema.ListNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Name of a property to set",
+																			MarkdownDescription: "Name of a property to set",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"value": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Value of a property to set",
+																			MarkdownDescription: "Value of a property to set",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -8157,36 +8157,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 															},
 
 															"windows_options": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+																MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
 																Attributes: map[string]schema.Attribute{
 																	"gmsa_credential_spec": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+																		MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"gmsa_credential_spec_name": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																		MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"host_process": schema.BoolAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"run_as_user_name": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8203,40 +8203,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"service_account": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName.Deprecated: Use serviceAccountName instead.",
+														MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName.Deprecated: Use serviceAccountName instead.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_account_name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+														MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"set_hostname_as_fqdn": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN.If a pod does not have FQDN, this has no effect.Default to false.",
+														MarkdownDescription: "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN.If a pod does not have FQDN, this has no effect.Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"share_process_namespace": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Share a single process namespace between all of the containers in a pod.When this is set containers will be able to view and signal processes from other containersin the same pod, and the first process in each container will not be assigned PID 1.HostPID and ShareProcessNamespace cannot both be set.Optional: Default to false.",
+														MarkdownDescription: "Share a single process namespace between all of the containers in a pod.When this is set containers will be able to view and signal processes from other containersin the same pod, and the first process in each container will not be assigned PID 1.HostPID and ShareProcessNamespace cannot both be set.Optional: Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"subdomain": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'.If not specified, the pod will not have a domainname at all.",
+														MarkdownDescription: "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'.If not specified, the pod will not have a domainname at all.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8251,45 +8251,45 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"tolerations": schema.ListNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "If specified, the pod's tolerations.",
+														MarkdownDescription: "If specified, the pod's tolerations.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"effect": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																	MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																	MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"operator": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																	MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"toleration_seconds": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																	MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																	MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -8302,38 +8302,38 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 													},
 
 													"topology_spread_constraints": schema.ListNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed.",
+														MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
+																	MarkdownDescription: "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -8347,8 +8347,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -8361,8 +8361,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8370,48 +8370,48 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"max_skew": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
+																	MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"min_domains": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
+																	MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"node_affinity_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"node_taints_policy": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
+																	MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"when_unsatisfiable": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
+																	MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -8429,36 +8429,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"aws_elastic_block_store": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																	MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstoreTODO: how do we prevent errors in the filesystem from compromising the machine",
+																			MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstoreTODO: how do we prevent errors in the filesystem from compromising the machine",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"partition": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
+																			MarkdownDescription: "partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly value true will force the readOnly setting in VolumeMounts.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																			MarkdownDescription: "readOnly value true will force the readOnly setting in VolumeMounts.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume_id": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume).More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																			MarkdownDescription: "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume).More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -8470,52 +8470,52 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"azure_disk": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+																	MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
 																	Attributes: map[string]schema.Attribute{
 																		"caching_mode": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
+																			MarkdownDescription: "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"disk_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "diskName is the Name of the data disk in the blob storage",
+																			MarkdownDescription: "diskName is the Name of the data disk in the blob storage",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"disk_uri": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "diskURI is the URI of data disk in the blob storage",
+																			MarkdownDescription: "diskURI is the URI of data disk in the blob storage",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is Filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																			MarkdownDescription: "fsType is Filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"kind": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																			MarkdownDescription: "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8527,28 +8527,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"azure_file": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+																	MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
 																	Attributes: map[string]schema.Attribute{
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretName is the  name of secret that contains Azure Storage Account Name and Key",
+																			MarkdownDescription: "secretName is the  name of secret that contains Azure Storage Account Name and Key",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"share_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "shareName is the azure share Name",
+																			MarkdownDescription: "shareName is the azure share Name",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -8560,12 +8560,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"cephfs": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+																	MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
 																	Attributes: map[string]schema.Attribute{
 																		"monitors": schema.ListAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "monitors is Required: Monitors is a collection of Ceph monitorsMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																			MarkdownDescription: "monitors is Required: Monitors is a collection of Ceph monitorsMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																			ElementType:         types.StringType,
 																			Required:            true,
 																			Optional:            false,
@@ -8573,36 +8573,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
+																			MarkdownDescription: "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																			MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_file": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secretMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																			MarkdownDescription: "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secretMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																			MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -8614,8 +8614,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"user": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "user is optional: User is the rados user name, default is adminMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																			MarkdownDescription: "user is optional: User is the rados user name, default is adminMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8627,32 +8627,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"cinder": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																	MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																			MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef is optional: points to a secret object containing parameters used to connectto OpenStack.",
+																			MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connectto OpenStack.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -8664,8 +8664,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"volume_id": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeID used to identify the volume in cinder.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																			MarkdownDescription: "volumeID used to identify the volume in cinder.More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -8677,41 +8677,41 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"config_map": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "configMap represents a configMap that should populate this volume",
+																	MarkdownDescription: "configMap represents a configMap that should populate this volume",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																			MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"items": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+																			MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "key is the key to project.",
+																						MarkdownDescription: "key is the key to project.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"mode": schema.Int64Attribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"path": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+																						MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -8724,16 +8724,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "optional specify whether the ConfigMap or its keys must be defined",
+																			MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8745,32 +8745,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"csi": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+																	MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
 																	Attributes: map[string]schema.Attribute{
 																		"driver": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "driver is the name of the CSI driver that handles this volume.Consult with your admin for the correct name as registered in the cluster.",
+																			MarkdownDescription: "driver is the name of the CSI driver that handles this volume.Consult with your admin for the correct name as registered in the cluster.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'.If not provided, the empty value is passed to the associated CSI driverwhich will determine the default filesystem to apply.",
+																			MarkdownDescription: "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'.If not provided, the empty value is passed to the associated CSI driverwhich will determine the default filesystem to apply.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"node_publish_secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed.",
+																			MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -8782,16 +8782,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly specifies a read-only configuration for the volume.Defaults to false (read/write).",
+																			MarkdownDescription: "readOnly specifies a read-only configuration for the volume.Defaults to false (read/write).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume_attributes": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeAttributes stores driver-specific properties that are passed to the CSIdriver. Consult your driver's documentation for supported values.",
+																			MarkdownDescription: "volumeAttributes stores driver-specific properties that are passed to the CSIdriver. Consult your driver's documentation for supported values.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -8804,37 +8804,37 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"downward_api": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "downwardAPI represents downward API about the pod that should populate this volume",
+																	MarkdownDescription: "downwardAPI represents downward API about the pod that should populate this volume",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Optional: mode bits to use on created files by default. Must be aOptional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																			MarkdownDescription: "Optional: mode bits to use on created files by default. Must be aOptional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"items": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Items is a list of downward API volume file",
+																			MarkdownDescription: "Items is a list of downward API volume file",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																						MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																						Attributes: map[string]schema.Attribute{
 																							"api_version": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																								MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"field_path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Path of the field to select in the specified API version.",
+																								MarkdownDescription: "Path of the field to select in the specified API version.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -8846,44 +8846,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"mode": schema.Int64Attribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																						MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"path": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																						MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"resource_field_ref": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																						MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
 																						Attributes: map[string]schema.Attribute{
 																							"container_name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Container name: required for volumes, optional for env vars",
+																								MarkdownDescription: "Container name: required for volumes, optional for env vars",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"divisor": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																								MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"resource": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Required: resource to select",
+																								MarkdownDescription: "Required: resource to select",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -8906,20 +8906,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"empty_dir": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "emptyDir represents a temporary directory that shares a pod's lifetime.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																	MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																	Attributes: map[string]schema.Attribute{
 																		"medium": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "medium represents what type of storage medium should back this directory.The default is '' which means to use the node's default medium.Must be an empty string (default) or Memory.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																			MarkdownDescription: "medium represents what type of storage medium should back this directory.The default is '' which means to use the node's default medium.Must be an empty string (default) or Memory.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"size_limit": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																			MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8931,16 +8931,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"ephemeral": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "ephemeral represents a volume that is handled by a cluster storage driver.The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts,and deleted when the pod is removed.Use this if:a) the volume is only needed while the pod runs,b) features of normal volumes like restoring from snapshot or capacity   tracking are needed,c) the storage driver is specified through a storage class, andd) the storage driver supports dynamic volume provisioning through   a PersistentVolumeClaim (see EphemeralVolumeSource for more   information on the connection between this volume type   and PersistentVolumeClaim).Use PersistentVolumeClaim or one of the vendor-specificAPIs for volumes that persist for longer than the lifecycleof an individual pod.Use CSI for light-weight local ephemeral volumes if the CSI driver is meant tobe used that way - see the documentation of the driver formore information.A pod can use both types of ephemeral volumes andpersistent volumes at the same time.",
+																	MarkdownDescription: "ephemeral represents a volume that is handled by a cluster storage driver.The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts,and deleted when the pod is removed.Use this if:a) the volume is only needed while the pod runs,b) features of normal volumes like restoring from snapshot or capacity   tracking are needed,c) the storage driver is specified through a storage class, andd) the storage driver supports dynamic volume provisioning through   a PersistentVolumeClaim (see EphemeralVolumeSource for more   information on the connection between this volume type   and PersistentVolumeClaim).Use PersistentVolumeClaim or one of the vendor-specificAPIs for volumes that persist for longer than the lifecycleof an individual pod.Use CSI for light-weight local ephemeral volumes if the CSI driver is meant tobe used that way - see the documentation of the driver formore information.A pod can use both types of ephemeral volumes andpersistent volumes at the same time.",
 																	Attributes: map[string]schema.Attribute{
 																		"volume_claim_template": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil.",
+																			MarkdownDescription: "Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil.",
 																			Attributes: map[string]schema.Attribute{
 																				"metadata": schema.MapAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.",
+																					MarkdownDescription: "May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -8948,12 +8948,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				},
 
 																				"spec": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here.",
+																					MarkdownDescription: "The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here.",
 																					Attributes: map[string]schema.Attribute{
 																						"access_modes": schema.ListAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																							MarkdownDescription: "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -8961,28 +8961,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"data_source": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																							MarkdownDescription: "dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 																							Attributes: map[string]schema.Attribute{
 																								"api_group": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																									MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"kind": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Kind is the type of resource being referenced",
+																									MarkdownDescription: "Kind is the type of resource being referenced",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Name is the name of resource being referenced",
+																									MarkdownDescription: "Name is the name of resource being referenced",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -8994,36 +8994,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"data_source_ref": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																							Attributes: map[string]schema.Attribute{
 																								"api_group": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																									MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"kind": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Kind is the type of resource being referenced",
+																									MarkdownDescription: "Kind is the type of resource being referenced",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Name is the name of resource being referenced",
+																									MarkdownDescription: "Name is the name of resource being referenced",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"namespace": schema.StringAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																									MarkdownDescription: "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -9035,12 +9035,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"resources": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																							MarkdownDescription: "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																							Attributes: map[string]schema.Attribute{
 																								"limits": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																									MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -9048,8 +9048,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"requests": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																									MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -9062,33 +9062,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"selector": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "selector is a label query over volumes to consider for binding.",
+																							MarkdownDescription: "selector is a label query over volumes to consider for binding.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"key": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"operator": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"values": schema.ListAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -9102,8 +9102,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																								},
 
 																								"match_labels": schema.MapAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -9116,32 +9116,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"storage_class_name": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																							MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"volume_attributes_class_name": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																							MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"volume_mode": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
+																							MarkdownDescription: "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"volume_name": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+																							MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -9163,36 +9163,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"fc": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+																	MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.TODO: how do we prevent errors in the filesystem from compromising the machine",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.TODO: how do we prevent errors in the filesystem from compromising the machine",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"lun": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "lun is Optional: FC target lun number",
+																			MarkdownDescription: "lun is Optional: FC target lun number",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"target_ww_ns": schema.ListAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "targetWWNs is Optional: FC target worldwide names (WWNs)",
+																			MarkdownDescription: "targetWWNs is Optional: FC target worldwide names (WWNs)",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -9200,8 +9200,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"wwids": schema.ListAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "wwids Optional: FC volume world wide identifiers (wwids)Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+																			MarkdownDescription: "wwids Optional: FC volume world wide identifiers (wwids)Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -9214,28 +9214,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"flex_volume": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "flexVolume represents a generic volume resource that isprovisioned/attached using an exec based plugin.",
+																	MarkdownDescription: "flexVolume represents a generic volume resource that isprovisioned/attached using an exec based plugin.",
 																	Attributes: map[string]schema.Attribute{
 																		"driver": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "driver is the name of the driver to use for this volume.",
+																			MarkdownDescription: "driver is the name of the driver to use for this volume.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"options": schema.MapAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "options is Optional: this field holds extra command options if any.",
+																			MarkdownDescription: "options is Optional: this field holds extra command options if any.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -9243,20 +9243,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly is Optional: defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly is Optional: defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts.",
+																			MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -9273,20 +9273,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"flocker": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+																	MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
 																	Attributes: map[string]schema.Attribute{
 																		"dataset_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flockershould be considered as deprecated",
+																			MarkdownDescription: "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flockershould be considered as deprecated",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"dataset_uuid": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
+																			MarkdownDescription: "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9298,36 +9298,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"gce_persistent_disk": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																	MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdiskTODO: how do we prevent errors in the filesystem from compromising the machine",
+																			MarkdownDescription: "fsType is filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdiskTODO: how do we prevent errors in the filesystem from compromising the machine",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"partition": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																			MarkdownDescription: "partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"pd_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																			MarkdownDescription: "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																			MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9339,28 +9339,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"git_repo": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "gitRepo represents a git repository at a particular revision.DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount anEmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDirinto the Pod's container.",
+																	MarkdownDescription: "gitRepo represents a git repository at a particular revision.DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount anEmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDirinto the Pod's container.",
 																	Attributes: map[string]schema.Attribute{
 																		"directory": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "directory is the target directory name.Must not contain or start with '..'.  If '.' is supplied, the volume directory will be thegit repository.  Otherwise, if specified, the volume will contain the git repository inthe subdirectory with the given name.",
+																			MarkdownDescription: "directory is the target directory name.Must not contain or start with '..'.  If '.' is supplied, the volume directory will be thegit repository.  Otherwise, if specified, the volume will contain the git repository inthe subdirectory with the given name.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"repository": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "repository is the URL",
+																			MarkdownDescription: "repository is the URL",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"revision": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "revision is the commit hash for the specified revision.",
+																			MarkdownDescription: "revision is the commit hash for the specified revision.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9372,28 +9372,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"glusterfs": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+																	MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 																	Attributes: map[string]schema.Attribute{
 																		"endpoints": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "endpoints is the endpoint name that details Glusterfs topology.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																			MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "path is the Glusterfs volume path.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																			MarkdownDescription: "path is the Glusterfs volume path.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the Glusterfs volume to be mounted with read-only permissions.Defaults to false.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																			MarkdownDescription: "readOnly here will force the Glusterfs volume to be mounted with read-only permissions.Defaults to false.More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9405,20 +9405,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"host_path": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "hostPath represents a pre-existing file or directory on the hostmachine that is directly exposed to the container. This is generallyused for system agents or other privileged things that are allowedto see the host machine. Most containers will NOT need this.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath---TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can notmount host directories as read/write.",
+																	MarkdownDescription: "hostPath represents a pre-existing file or directory on the hostmachine that is directly exposed to the container. This is generallyused for system agents or other privileged things that are allowedto see the host machine. Most containers will NOT need this.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath---TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can notmount host directories as read/write.",
 																	Attributes: map[string]schema.Attribute{
 																		"path": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "path of the directory on the host.If the path is a symlink, it will follow the link to the real path.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																			MarkdownDescription: "path of the directory on the host.If the path is a symlink, it will follow the link to the real path.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "type for HostPath VolumeDefaults to ''More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																			MarkdownDescription: "type for HostPath VolumeDefaults to ''More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9430,68 +9430,68 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"iscsi": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "iscsi represents an ISCSI Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://examples.k8s.io/volumes/iscsi/README.md",
+																	MarkdownDescription: "iscsi represents an ISCSI Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://examples.k8s.io/volumes/iscsi/README.md",
 																	Attributes: map[string]schema.Attribute{
 																		"chap_auth_discovery": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
+																			MarkdownDescription: "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"chap_auth_session": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "chapAuthSession defines whether support iSCSI Session CHAP authentication",
+																			MarkdownDescription: "chapAuthSession defines whether support iSCSI Session CHAP authentication",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsiTODO: how do we prevent errors in the filesystem from compromising the machine",
+																			MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsiTODO: how do we prevent errors in the filesystem from compromising the machine",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"initiator_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "initiatorName is the custom iSCSI Initiator Name.If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface<target portal>:<volume name> will be created for the connection.",
+																			MarkdownDescription: "initiatorName is the custom iSCSI Initiator Name.If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface<target portal>:<volume name> will be created for the connection.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"iqn": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "iqn is the target iSCSI Qualified Name.",
+																			MarkdownDescription: "iqn is the target iSCSI Qualified Name.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"iscsi_interface": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "iscsiInterface is the interface Name that uses an iSCSI transport.Defaults to 'default' (tcp).",
+																			MarkdownDescription: "iscsiInterface is the interface Name that uses an iSCSI transport.Defaults to 'default' (tcp).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"lun": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "lun represents iSCSI Target Lun number.",
+																			MarkdownDescription: "lun represents iSCSI Target Lun number.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"portals": schema.ListAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).",
+																			MarkdownDescription: "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -9499,20 +9499,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.",
+																			MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
+																			MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -9524,8 +9524,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"target_portal": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).",
+																			MarkdownDescription: "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9537,36 +9537,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"nfs": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "nfs represents an NFS mount on the host that shares a pod's lifetimeMore info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																	MarkdownDescription: "nfs represents an NFS mount on the host that shares a pod's lifetimeMore info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 																	Attributes: map[string]schema.Attribute{
 																		"path": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "path that is exported by the NFS server.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																			MarkdownDescription: "path that is exported by the NFS server.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the NFS export to be mounted with read-only permissions.Defaults to false.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																			MarkdownDescription: "readOnly here will force the NFS export to be mounted with read-only permissions.Defaults to false.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"server": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "server is the hostname or IP address of the NFS server.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																			MarkdownDescription: "server is the hostname or IP address of the NFS server.More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9578,20 +9578,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"persistent_volume_claim": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																	MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																	Attributes: map[string]schema.Attribute{
 																		"claim_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+																			MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9603,20 +9603,20 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"photon_persistent_disk": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+																	MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"pd_id": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "pdID is the ID that identifies Photon Controller persistent disk",
+																			MarkdownDescription: "pdID is the ID that identifies Photon Controller persistent disk",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9628,28 +9628,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"portworx_volume": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+																	MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fSType represents the filesystem type to mountMust be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																			MarkdownDescription: "fSType represents the filesystem type to mountMust be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume_id": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeID uniquely identifies a Portworx volume",
+																			MarkdownDescription: "volumeID uniquely identifies a Portworx volume",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9661,54 +9661,54 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"projected": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "projected items for all in one resources secrets, configmaps, and downward API",
+																	MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																			MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"sources": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "sources is the list of volume projections",
+																			MarkdownDescription: "sources is the list of volume projections",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"cluster_trust_bundle": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time.",
+																						MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time.",
 																						Attributes: map[string]schema.Attribute{
 																							"label_selector": schema.SingleNestedAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'.",
+																								MarkdownDescription: "Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'.",
 																								Attributes: map[string]schema.Attribute{
 																									"match_expressions": schema.ListNestedAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																										NestedObject: schema.NestedAttributeObject{
 																											Attributes: map[string]schema.Attribute{
 																												"key": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "key is the label key that the selector applies to.",
+																													MarkdownDescription: "key is the label key that the selector applies to.",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
 																												},
 
 																												"operator": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
 																												},
 
 																												"values": schema.ListAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																													ElementType:         types.StringType,
 																													Required:            false,
 																													Optional:            true,
@@ -9722,8 +9722,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																									},
 
 																									"match_labels": schema.MapAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -9736,32 +9736,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.",
+																								MarkdownDescription: "Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.",
+																								MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Relative path from the volume root to write the bundle.",
+																								MarkdownDescription: "Relative path from the volume root to write the bundle.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"signer_name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.",
+																								MarkdownDescription: "Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -9773,33 +9773,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"config_map": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "configMap information about the configMap data to project",
+																						MarkdownDescription: "configMap information about the configMap data to project",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+																								MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"key": schema.StringAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "key is the key to project.",
+																											MarkdownDescription: "key is the key to project.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																											MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+																											MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -9812,16 +9812,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "optional specify whether the ConfigMap or its keys must be defined",
+																								MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -9833,29 +9833,29 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"downward_api": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "downwardAPI information about the downwardAPI data to project",
+																						MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Items is a list of DownwardAPIVolume file",
+																								MarkdownDescription: "Items is a list of DownwardAPIVolume file",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"field_ref": schema.SingleNestedAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																											MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																											Attributes: map[string]schema.Attribute{
 																												"api_version": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																													MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"field_path": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "Path of the field to select in the specified API version.",
+																													MarkdownDescription: "Path of the field to select in the specified API version.",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
@@ -9867,44 +9867,44 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																											MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																											MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"resource_field_ref": schema.SingleNestedAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																											MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
 																											Attributes: map[string]schema.Attribute{
 																												"container_name": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "Container name: required for volumes, optional for env vars",
+																													MarkdownDescription: "Container name: required for volumes, optional for env vars",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"divisor": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																													MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"resource": schema.StringAttribute{
-																													Description:         "",
-																													MarkdownDescription: "",
+																													Description:         "Required: resource to select",
+																													MarkdownDescription: "Required: resource to select",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
@@ -9927,33 +9927,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"secret": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "secret information about the secret data to project",
+																						MarkdownDescription: "secret information about the secret data to project",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+																								MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"key": schema.StringAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "key is the key to project.",
+																											MarkdownDescription: "key is the key to project.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																											MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "",
-																											MarkdownDescription: "",
+																											Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+																											MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -9966,16 +9966,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "optional field specify whether the Secret or its key must be defined",
+																								MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -9987,28 +9987,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					},
 
 																					"service_account_token": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
+																						MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
 																						Attributes: map[string]schema.Attribute{
 																							"audience": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "audience is the intended audience of the token. A recipient of a tokenmust identify itself with an identifier specified in the audience of thetoken, and otherwise should reject the token. The audience defaults to theidentifier of the apiserver.",
+																								MarkdownDescription: "audience is the intended audience of the token. A recipient of a tokenmust identify itself with an identifier specified in the audience of thetoken, and otherwise should reject the token. The audience defaults to theidentifier of the apiserver.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"expiration_seconds": schema.Int64Attribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "expirationSeconds is the requested duration of validity of the serviceaccount token. As the token approaches expiration, the kubelet volumeplugin will proactively rotate the service account token. The kubelet willstart trying to rotate the token if the token is older than 80 percent ofits time to live or if the token is older than 24 hours.Defaults to 1 hourand must be at least 10 minutes.",
+																								MarkdownDescription: "expirationSeconds is the requested duration of validity of the serviceaccount token. As the token approaches expiration, the kubelet volumeplugin will proactively rotate the service account token. The kubelet willstart trying to rotate the token if the token is older than 80 percent ofits time to live or if the token is older than 24 hours.Defaults to 1 hourand must be at least 10 minutes.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "path is the path relative to the mount point of the file to project thetoken into.",
+																								MarkdownDescription: "path is the path relative to the mount point of the file to project thetoken into.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -10031,52 +10031,52 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"quobyte": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+																	MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
 																	Attributes: map[string]schema.Attribute{
 																		"group": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "group to map volume access toDefault is no group",
+																			MarkdownDescription: "group to map volume access toDefault is no group",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the Quobyte volume to be mounted with read-only permissions.Defaults to false.",
+																			MarkdownDescription: "readOnly here will force the Quobyte volume to be mounted with read-only permissions.Defaults to false.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"registry": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "registry represents a single or multiple Quobyte Registry servicesspecified as a string as host:port pair (multiple entries are separated with commas)which acts as the central registry for volumes",
+																			MarkdownDescription: "registry represents a single or multiple Quobyte Registry servicesspecified as a string as host:port pair (multiple entries are separated with commas)which acts as the central registry for volumes",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"tenant": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "tenant owning the given Quobyte volume in the BackendUsed with dynamically provisioned Quobyte volumes, value is set by the plugin",
+																			MarkdownDescription: "tenant owning the given Quobyte volume in the BackendUsed with dynamically provisioned Quobyte volumes, value is set by the plugin",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"user": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "user to map volume access toDefaults to serivceaccount user",
+																			MarkdownDescription: "user to map volume access toDefaults to serivceaccount user",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volume is a string that references an already created Quobyte volume by name.",
+																			MarkdownDescription: "volume is a string that references an already created Quobyte volume by name.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -10088,36 +10088,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"rbd": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.More info: https://examples.k8s.io/volumes/rbd/README.md",
+																	MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.More info: https://examples.k8s.io/volumes/rbd/README.md",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#rbdTODO: how do we prevent errors in the filesystem from compromising the machine",
+																			MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#rbdTODO: how do we prevent errors in the filesystem from compromising the machine",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"image": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "image is the rados image name.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "image is the rados image name.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"keyring": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "keyring is the path to key ring for RBDUser.Default is /etc/ceph/keyring.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "keyring is the path to key ring for RBDUser.Default is /etc/ceph/keyring.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"monitors": schema.ListAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "monitors is a collection of Ceph monitors.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "monitors is a collection of Ceph monitors.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			ElementType:         types.StringType,
 																			Required:            true,
 																			Optional:            false,
@@ -10125,28 +10125,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"pool": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "pool is the rados pool name.Default is rbd.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "pool is the rados pool name.Default is rbd.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -10158,8 +10158,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"user": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "user is the rados user name.Default is admin.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																			MarkdownDescription: "user is the rados user name.Default is admin.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10171,48 +10171,48 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"scale_io": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+																	MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'.Default is 'xfs'.",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'.Default is 'xfs'.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"gateway": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "gateway is the host address of the ScaleIO API Gateway.",
+																			MarkdownDescription: "gateway is the host address of the ScaleIO API Gateway.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"protection_domain": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
+																			MarkdownDescription: "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail.",
+																			MarkdownDescription: "secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -10224,40 +10224,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"ssl_enabled": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
+																			MarkdownDescription: "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"storage_mode": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned.Default is ThinProvisioned.",
+																			MarkdownDescription: "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned.Default is ThinProvisioned.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"storage_pool": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
+																			MarkdownDescription: "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"system": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "system is the name of the storage system as configured in ScaleIO.",
+																			MarkdownDescription: "system is the name of the storage system as configured in ScaleIO.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"volume_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeName is the name of a volume already created in the ScaleIO systemthat is associated with this volume source.",
+																			MarkdownDescription: "volumeName is the name of a volume already created in the ScaleIO systemthat is associated with this volume source.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10269,41 +10269,41 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"secret": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																	MarkdownDescription: "secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																			MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"items": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+																			MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "key is the key to project.",
+																						MarkdownDescription: "key is the key to project.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"mode": schema.Int64Attribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"path": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+																						MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -10316,16 +10316,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "optional field specify whether the Secret or its keys must be defined",
+																			MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																			MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10337,32 +10337,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"storageos": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+																	MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																			MarkdownDescription: "fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
+																			MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted.",
+																			MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -10374,16 +10374,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																		},
 
 																		"volume_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeName is the human-readable name of the StorageOS volume.  Volumenames are only unique within a namespace.",
+																			MarkdownDescription: "volumeName is the human-readable name of the StorageOS volume.  Volumenames are only unique within a namespace.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume_namespace": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumeNamespace specifies the scope of the volume within StorageOS.  If nonamespace is specified then the Pod's namespace will be used.  This allows theKubernetes name scoping to be mirrored within StorageOS for tighter integration.Set VolumeName to any name to override the default behaviour.Set to 'default' if you are not using namespaces within StorageOS.Namespaces that do not pre-exist within StorageOS will be created.",
+																			MarkdownDescription: "volumeNamespace specifies the scope of the volume within StorageOS.  If nonamespace is specified then the Pod's namespace will be used.  This allows theKubernetes name scoping to be mirrored within StorageOS for tighter integration.Set VolumeName to any name to override the default behaviour.Set to 'default' if you are not using namespaces within StorageOS.Namespaces that do not pre-exist within StorageOS will be created.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10395,36 +10395,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																},
 
 																"vsphere_volume": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+																	MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
 																	Attributes: map[string]schema.Attribute{
 																		"fs_type": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "fsType is filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																			MarkdownDescription: "fsType is filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"storage_policy_id": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
+																			MarkdownDescription: "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"storage_policy_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
+																			MarkdownDescription: "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"volume_path": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "volumePath is the path that identifies vSphere volume vmdk",
+																			MarkdownDescription: "volumePath is the path that identifies vSphere volume vmdk",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -10462,32 +10462,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"external": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "External enables you to configure external grafana instances that is not managed by the operator.",
+						MarkdownDescription: "External enables you to configure external grafana instances that is not managed by the operator.",
 						Attributes: map[string]schema.Attribute{
 							"admin_password": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "AdminPassword key to talk to the external grafana instance.",
+								MarkdownDescription: "AdminPassword key to talk to the external grafana instance.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"optional": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10499,28 +10499,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"admin_user": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "AdminUser key to talk to the external grafana instance.",
+								MarkdownDescription: "AdminUser key to talk to the external grafana instance.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"optional": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10532,28 +10532,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"api_key": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The API key to talk to the external grafana instance, you need to define ether apiKey or adminUser/adminPassword.",
+								MarkdownDescription: "The API key to talk to the external grafana instance, you need to define ether apiKey or adminUser/adminPassword.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"optional": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10565,8 +10565,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"url": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "URL of the external grafana instance you want to manage.",
+								MarkdownDescription: "URL of the external grafana instance you want to manage.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -10578,12 +10578,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"ingress": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Ingress sets how the ingress object should look like with your grafana instance.",
+						MarkdownDescription: "Ingress sets how the ingress object should look like with your grafana instance.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -10609,36 +10609,36 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"spec": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "IngressSpec describes the Ingress the user wishes to exist.",
+								MarkdownDescription: "IngressSpec describes the Ingress the user wishes to exist.",
 								Attributes: map[string]schema.Attribute{
 									"default_backend": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "defaultBackend is the backend that should handle requests that don'tmatch any rule. If Rules are not specified, DefaultBackend must be specified.If DefaultBackend is not set, the handling of requests that do not match anyof the rules will be up to the Ingress controller.",
+										MarkdownDescription: "defaultBackend is the backend that should handle requests that don'tmatch any rule. If Rules are not specified, DefaultBackend must be specified.If DefaultBackend is not set, the handling of requests that do not match anyof the rules will be up to the Ingress controller.",
 										Attributes: map[string]schema.Attribute{
 											"resource": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+												MarkdownDescription: "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+														MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Kind is the type of resource being referenced",
+														MarkdownDescription: "Kind is the type of resource being referenced",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Name is the name of resource being referenced",
+														MarkdownDescription: "Name is the name of resource being referenced",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -10650,32 +10650,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"service": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
+												MarkdownDescription: "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+														MarkdownDescription: "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"port": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+														MarkdownDescription: "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+																MarkdownDescription: "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"number": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+																MarkdownDescription: "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10697,62 +10697,62 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"ingress_class_name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "ingressClassName is the name of an IngressClass cluster resource. Ingresscontroller implementations use this field to know whether they should beserving this Ingress resource, by a transitive connection(controller -> IngressClass -> Ingress resource). Although the'kubernetes.io/ingress.class' annotation (simple constant name) was neverformally defined, it was widely supported by Ingress controllers to createa direct binding between Ingress controller and Ingress resources. Newlycreated Ingress resources should prefer using the field. However, eventhough the annotation is officially deprecated, for backwards compatibilityreasons, ingress controllers should still honor that annotation if present.",
+										MarkdownDescription: "ingressClassName is the name of an IngressClass cluster resource. Ingresscontroller implementations use this field to know whether they should beserving this Ingress resource, by a transitive connection(controller -> IngressClass -> Ingress resource). Although the'kubernetes.io/ingress.class' annotation (simple constant name) was neverformally defined, it was widely supported by Ingress controllers to createa direct binding between Ingress controller and Ingress resources. Newlycreated Ingress resources should prefer using the field. However, eventhough the annotation is officially deprecated, for backwards compatibilityreasons, ingress controllers should still honor that annotation if present.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"rules": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "rules is a list of host rules used to configure the Ingress. If unspecified,or no rule matches, all traffic is sent to the default backend.",
+										MarkdownDescription: "rules is a list of host rules used to configure the Ingress. If unspecified,or no rule matches, all traffic is sent to the default backend.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "host is the fully qualified domain name of a network host, as defined by RFC 3986.Note the following deviations from the 'host' part of theURI as defined in RFC 3986:1. IPs are not allowed. Currently an IngressRuleValue can only apply to   the IP in the Spec of the parent Ingress.2. The ':' delimiter is not respected because ports are not allowed.	  Currently the port of an Ingress is implicitly :80 for http and	  :443 for https.Both these may change in the future.Incoming requests are matched against the host before theIngressRuleValue. If the host is unspecified, the Ingress routes alltraffic based on the specified IngressRuleValue.host can be 'precise' which is a domain name without the terminating dot ofa network host (e.g. 'foo.bar.com') or 'wildcard', which is a domain nameprefixed with a single wildcard label (e.g. '*.foo.com').The wildcard character '*' must appear by itself as the first DNS label andmatches only a single label. You cannot have a wildcard label by itself (e.g. Host == '*').Requests will be matched against the Host field in the following way:1. If host is precise, the request matches this rule if the http host header is equal to Host.2. If host is a wildcard, then the request matches this rule if the http host headeris to equal to the suffix (removing the first label) of the wildcard rule.",
+													MarkdownDescription: "host is the fully qualified domain name of a network host, as defined by RFC 3986.Note the following deviations from the 'host' part of theURI as defined in RFC 3986:1. IPs are not allowed. Currently an IngressRuleValue can only apply to   the IP in the Spec of the parent Ingress.2. The ':' delimiter is not respected because ports are not allowed.	  Currently the port of an Ingress is implicitly :80 for http and	  :443 for https.Both these may change in the future.Incoming requests are matched against the host before theIngressRuleValue. If the host is unspecified, the Ingress routes alltraffic based on the specified IngressRuleValue.host can be 'precise' which is a domain name without the terminating dot ofa network host (e.g. 'foo.bar.com') or 'wildcard', which is a domain nameprefixed with a single wildcard label (e.g. '*.foo.com').The wildcard character '*' must appear by itself as the first DNS label andmatches only a single label. You cannot have a wildcard label by itself (e.g. Host == '*').Requests will be matched against the Host field in the following way:1. If host is precise, the request matches this rule if the http host header is equal to Host.2. If host is a wildcard, then the request matches this rule if the http host headeris to equal to the suffix (removing the first label) of the wildcard rule.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "HTTPIngressRuleValue is a list of http selectors pointing to backends.In the example: http://<host>/<path>?<searchpart> -> backend wherewhere parts of the url correspond to RFC 3986, this resource will be usedto match against everything after the last '/' and before the first '?'or '#'.",
+													MarkdownDescription: "HTTPIngressRuleValue is a list of http selectors pointing to backends.In the example: http://<host>/<path>?<searchpart> -> backend wherewhere parts of the url correspond to RFC 3986, this resource will be usedto match against everything after the last '/' and before the first '?'or '#'.",
 													Attributes: map[string]schema.Attribute{
 														"paths": schema.ListNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "paths is a collection of paths that map requests to backends.",
+															MarkdownDescription: "paths is a collection of paths that map requests to backends.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"backend": schema.SingleNestedAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
+																		MarkdownDescription: "backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
 																		Attributes: map[string]schema.Attribute{
 																			"resource": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+																				MarkdownDescription: "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
 																				Attributes: map[string]schema.Attribute{
 																					"api_group": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																						MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"kind": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Kind is the type of resource being referenced",
+																						MarkdownDescription: "Kind is the type of resource being referenced",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "Name is the name of resource being referenced",
+																						MarkdownDescription: "Name is the name of resource being referenced",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -10764,32 +10764,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"service": schema.SingleNestedAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
+																				MarkdownDescription: "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+																						MarkdownDescription: "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"port": schema.SingleNestedAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
+																						Description:         "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+																						MarkdownDescription: "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+																								MarkdownDescription: "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"number": schema.Int64Attribute{
-																								Description:         "",
-																								MarkdownDescription: "",
+																								Description:         "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+																								MarkdownDescription: "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -10811,16 +10811,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																	},
 
 																	"path": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
+																		MarkdownDescription: "path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"path_type": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
+																		MarkdownDescription: "pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -10844,13 +10844,13 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"tls": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "tls represents the TLS configuration. Currently the Ingress only supports asingle TLS port, 443. If multiple members of this list specify different hosts,they will be multiplexed on the same port according to the hostname specifiedthrough the SNI TLS extension, if the ingress controller fulfilling theingress supports SNI.",
+										MarkdownDescription: "tls represents the TLS configuration. Currently the Ingress only supports asingle TLS port, 443. If multiple members of this list specify different hosts,they will be multiplexed on the same port according to the hostname specifiedthrough the SNI TLS extension, if the ingress controller fulfilling theingress supports SNI.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hosts": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
+													MarkdownDescription: "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -10858,8 +10858,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 												},
 
 												"secret_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
+													MarkdownDescription: "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10886,33 +10886,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"library_label_selector": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+								MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "key is the label key that the selector applies to.",
+													MarkdownDescription: "key is the label key that the selector applies to.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -10926,8 +10926,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -10945,12 +10945,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"persistent_volume_claim": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "PersistentVolumeClaim creates a PVC if you need to attach one to your grafana instance.",
+						MarkdownDescription: "PersistentVolumeClaim creates a PVC if you need to attach one to your grafana instance.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -10989,28 +10989,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"data_source": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "TypedLocalObjectReference contains enough information to let you locate thetyped referenced object inside the same namespace.",
+										MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate thetyped referenced object inside the same namespace.",
 										Attributes: map[string]schema.Attribute{
 											"api_group": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+												MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Kind is the type of resource being referenced",
+												MarkdownDescription: "Kind is the type of resource being referenced",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Name is the name of resource being referenced",
+												MarkdownDescription: "Name is the name of resource being referenced",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -11022,28 +11022,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"data_source_ref": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "TypedLocalObjectReference contains enough information to let you locate thetyped referenced object inside the same namespace.",
+										MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate thetyped referenced object inside the same namespace.",
 										Attributes: map[string]schema.Attribute{
 											"api_group": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+												MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Kind is the type of resource being referenced",
+												MarkdownDescription: "Kind is the type of resource being referenced",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Name is the name of resource being referenced",
+												MarkdownDescription: "Name is the name of resource being referenced",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -11055,17 +11055,17 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "ResourceRequirements describes the compute resource requirements.",
+										MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -11078,8 +11078,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -11087,8 +11087,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -11101,33 +11101,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"selector": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+										MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -11141,8 +11141,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -11163,16 +11163,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"volume_mode": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "PersistentVolumeMode describes how a volume is intended to be consumed, either Block or Filesystem.",
+										MarkdownDescription: "PersistentVolumeMode describes how a volume is intended to be consumed, either Block or Filesystem.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"volume_name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+										MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11189,8 +11189,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"preferences": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Preferences holds the Grafana Preferences settings",
+						MarkdownDescription: "Preferences holds the Grafana Preferences settings",
 						Attributes: map[string]schema.Attribute{
 							"home_dashboard_uid": schema.StringAttribute{
 								Description:         "",
@@ -11206,12 +11206,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"route": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Route sets how the ingress object should look like with your grafana instance, this only works in Openshift.",
+						MarkdownDescription: "Route sets how the ingress object should look like with your grafana instance, this only works in Openshift.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -11246,24 +11246,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"kind": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The kind of target that the route is referring to. Currently, only 'Service' is allowed",
+													MarkdownDescription: "The kind of target that the route is referring to. Currently, only 'Service' is allowed",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "name of the service/target that is being referred to. e.g. name of the service",
+													MarkdownDescription: "name of the service/target that is being referred to. e.g. name of the service",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"weight": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "weight as an integer between 0 and 256, default 100, that specifies the target's relative weightagainst other target reference objects. 0 suppresses requests to this backend.",
+													MarkdownDescription: "weight as an integer between 0 and 256, default 100, that specifies the target's relative weightagainst other target reference objects. 0 suppresses requests to this backend.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -11292,12 +11292,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"port": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "RoutePort defines a port mapping from a router to an endpoint in the service endpoints.",
+										MarkdownDescription: "RoutePort defines a port mapping from a router to an endpoint in the service endpoints.",
 										Attributes: map[string]schema.Attribute{
 											"target_port": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "The target port on pods selected by the service this route points to.If this is a string, it will be looked up as a named port in the targetendpoints port list. Required",
+												MarkdownDescription: "The target port on pods selected by the service this route points to.If this is a string, it will be looked up as a named port in the targetendpoints port list. Required",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -11309,52 +11309,52 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"tls": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "TLSConfig defines config used to secure a route and provide termination",
+										MarkdownDescription: "TLSConfig defines config used to secure a route and provide termination",
 										Attributes: map[string]schema.Attribute{
 											"ca_certificate": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "caCertificate provides the cert authority certificate contents",
+												MarkdownDescription: "caCertificate provides the cert authority certificate contents",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "certificate provides certificate contents",
+												MarkdownDescription: "certificate provides certificate contents",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"destination_ca_certificate": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "destinationCACertificate provides the contents of the ca certificate of the final destination.  When using reencrypttermination this file should be provided in order to have routers use it for health checks on the secure connection.If this field is not specified, the router may provide its own destination CA and perform hostname validation usingthe short service name (service.namespace.svc), which allows infrastructure generated certificates to automaticallyverify.",
+												MarkdownDescription: "destinationCACertificate provides the contents of the ca certificate of the final destination.  When using reencrypttermination this file should be provided in order to have routers use it for health checks on the secure connection.If this field is not specified, the router may provide its own destination CA and perform hostname validation usingthe short service name (service.namespace.svc), which allows infrastructure generated certificates to automaticallyverify.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. Whileeach router may make its own decisions on which ports to expose, this is normally port 80.* Allow - traffic is sent to the server on the insecure port (default)* Disable - no traffic is allowed on the insecure port.* Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. Whileeach router may make its own decisions on which ports to expose, this is normally port 80.* Allow - traffic is sent to the server on the insecure port (default)* Disable - no traffic is allowed on the insecure port.* Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"key": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "key provides key file contents",
+												MarkdownDescription: "key provides key file contents",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "termination indicates termination type.",
+												MarkdownDescription: "termination indicates termination type.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -11366,28 +11366,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"to": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "RouteTargetReference specifies the target that resolve into endpoints. Only the 'Service'kind is allowed. Use 'weight' field to emphasize one over others.",
+										MarkdownDescription: "RouteTargetReference specifies the target that resolve into endpoints. Only the 'Service'kind is allowed. Use 'weight' field to emphasize one over others.",
 										Attributes: map[string]schema.Attribute{
 											"kind": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "The kind of target that the route is referring to. Currently, only 'Service' is allowed",
+												MarkdownDescription: "The kind of target that the route is referring to. Currently, only 'Service' is allowed",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "name of the service/target that is being referred to. e.g. name of the service",
+												MarkdownDescription: "name of the service/target that is being referred to. e.g. name of the service",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"weight": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "weight as an integer between 0 and 256, default 100, that specifies the target's relative weightagainst other target reference objects. 0 suppresses requests to this backend.",
+												MarkdownDescription: "weight as an integer between 0 and 256, default 100, that specifies the target's relative weightagainst other target reference objects. 0 suppresses requests to this backend.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -11399,8 +11399,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"wildcard_policy": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "WildcardPolicyType indicates the type of wildcard support needed by routes.",
+										MarkdownDescription: "WildcardPolicyType indicates the type of wildcard support needed by routes.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11417,12 +11417,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"service": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Service sets how the service object should look like with your grafana instance, contains a number of defaults.",
+						MarkdownDescription: "Service sets how the service object should look like with your grafana instance, contains a number of defaults.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -11448,28 +11448,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"spec": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ServiceSpec describes the attributes that a user creates on a service.",
+								MarkdownDescription: "ServiceSpec describes the attributes that a user creates on a service.",
 								Attributes: map[string]schema.Attribute{
 									"allocate_load_balancer_node_ports": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
+										MarkdownDescription: "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cluster_ip": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										MarkdownDescription: "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cluster_i_ps": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										MarkdownDescription: "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11477,8 +11477,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"external_i_ps": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
+										MarkdownDescription: "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11486,40 +11486,40 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"external_name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
+										MarkdownDescription: "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"external_traffic_policy": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
+										MarkdownDescription: "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"health_check_node_port": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
+										MarkdownDescription: "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"internal_traffic_policy": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
+										MarkdownDescription: "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"ip_families": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
+										MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11527,32 +11527,32 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"ip_family_policy": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
+										MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"load_balancer_class": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
+										MarkdownDescription: "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"load_balancer_ip": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
+										MarkdownDescription: "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"load_balancer_source_ranges": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+										MarkdownDescription: "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11560,53 +11560,53 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"ports": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The list of ports that are exposed by this service.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										MarkdownDescription: "The list of ports that are exposed by this service.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"app_protocol": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
+													MarkdownDescription: "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.",
+													MarkdownDescription: "The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_port": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport",
+													MarkdownDescription: "The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The port that will be exposed by this service.",
+													MarkdownDescription: "The port that will be exposed by this service.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"protocol": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.",
+													MarkdownDescription: "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"target_port": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Number or name of the port to access on the pods targeted by the service.Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.If this is a string, it will be looked up as a named port in thetarget Pod's container ports. If this is not specified, the valueof the 'port' field is used (an identity map).This field is ignored for services with clusterIP=None, and should beomitted or set equal to the 'port' field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
+													MarkdownDescription: "Number or name of the port to access on the pods targeted by the service.Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.If this is a string, it will be looked up as a named port in thetarget Pod's container ports. If this is not specified, the valueof the 'port' field is used (an identity map).This field is ignored for services with clusterIP=None, and should beomitted or set equal to the 'port' field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11619,16 +11619,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"publish_not_ready_addresses": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "publishNotReadyAddresses indicates that any agent which deals with endpoints for thisService should disregard any indications of ready/not-ready.The primary use case for setting this field is for a StatefulSet's Headless Service topropagate SRV DNS records for its Pods for the purpose of peer discovery.The Kubernetes controllers that generate Endpoints and EndpointSlice resources forServices interpret this to mean that all endpoints are considered 'ready' even if thePods themselves are not. Agents which consume only Kubernetes generated endpointsthrough the Endpoints or EndpointSlice resources can safely assume this behavior.",
+										MarkdownDescription: "publishNotReadyAddresses indicates that any agent which deals with endpoints for thisService should disregard any indications of ready/not-ready.The primary use case for setting this field is for a StatefulSet's Headless Service topropagate SRV DNS records for its Pods for the purpose of peer discovery.The Kubernetes controllers that generate Endpoints and EndpointSlice resources forServices interpret this to mean that all endpoints are considered 'ready' even if thePods themselves are not. Agents which consume only Kubernetes generated endpointsthrough the Endpoints or EndpointSlice resources can safely assume this behavior.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"selector": schema.MapAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Route service traffic to pods with label keys and values matching thisselector. If empty or not present, the service is assumed to have anexternal process managing its endpoints, which Kubernetes will notmodify. Only applies to types ClusterIP, NodePort, and LoadBalancer.Ignored if type is ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/",
+										MarkdownDescription: "Route service traffic to pods with label keys and values matching thisselector. If empty or not present, the service is assumed to have anexternal process managing its endpoints, which Kubernetes will notmodify. Only applies to types ClusterIP, NodePort, and LoadBalancer.Ignored if type is ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11636,24 +11636,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"session_affinity": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"session_affinity_config": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "sessionAffinityConfig contains the configurations of session affinity.",
+										MarkdownDescription: "sessionAffinityConfig contains the configurations of session affinity.",
 										Attributes: map[string]schema.Attribute{
 											"client_ip": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "clientIP contains the configurations of Client IP based session affinity.",
+												MarkdownDescription: "clientIP contains the configurations of Client IP based session affinity.",
 												Attributes: map[string]schema.Attribute{
 													"timeout_seconds": schema.Int64Attribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
+														MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -11670,16 +11670,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									},
 
 									"traffic_distribution": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "TrafficDistribution offers a way to express preferences for how traffic isdistributed to Service endpoints. Implementations can use this field as ahint, but are not required to guarantee strict adherence. If the field isnot set, the implementation will apply its default routing strategy. If setto 'PreferClose', implementations should prioritize endpoints that aretopologically close (e.g., same zone).This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
+										MarkdownDescription: "TrafficDistribution offers a way to express preferences for how traffic isdistributed to Service endpoints. Implementations can use this field as ahint, but are not required to guarantee strict adherence. If the field isnot set, the implementation will apply its default routing strategy. If setto 'PreferClose', implementations should prioritize endpoints that aretopologically close (e.g., same zone).This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+										MarkdownDescription: "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11696,8 +11696,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"service_account": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "ServiceAccount sets how the ServiceAccount object should look like with your grafana instance, contains a number of defaults.",
+						MarkdownDescription: "ServiceAccount sets how the ServiceAccount object should look like with your grafana instance, contains a number of defaults.",
 						Attributes: map[string]schema.Attribute{
 							"automount_service_account_token": schema.BoolAttribute{
 								Description:         "",
@@ -11713,8 +11713,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11727,8 +11727,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
+								MarkdownDescription: "ObjectMeta contains only a [subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta).",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "",
@@ -11759,56 +11759,56 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"api_version": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "API version of the referent.",
+											MarkdownDescription: "API version of the referent.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"field_path": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"kind": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"resource_version": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"uid": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+											MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11826,8 +11826,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Version specifies the version of Grafana to use for this deployment. It follows the same format as the docker.io/grafana/grafana tags",
+						MarkdownDescription: "Version specifies the version of Grafana to use for this deployment. It follows the same format as the docker.io/grafana/grafana tags",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

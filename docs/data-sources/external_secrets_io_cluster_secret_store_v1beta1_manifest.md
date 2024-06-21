@@ -2005,6 +2005,7 @@ Optional:
 
 Optional:
 
+- `namespace_regexes` (List of String) Choose namespaces by using regex matching
 - `namespace_selector` (Attributes) Choose namespace using a labelSelector (see [below for nested schema](#nestedatt--spec--conditions--namespace_selector))
 - `namespaces` (List of String) Choose namespaces by name
 

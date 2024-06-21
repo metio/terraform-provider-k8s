@@ -1115,13 +1115,13 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															},
 														},
 													},
-													Required: false,
-													Optional: true,
+													Required: true,
+													Optional: false,
 													Computed: false,
 												},
 											},
-											Required: false,
-											Optional: true,
+											Required: true,
+											Optional: false,
 											Computed: false,
 										},
 									},
@@ -1146,8 +1146,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 										"address": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -1287,8 +1287,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 										"app_url": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -1437,8 +1437,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 														"introspection_url": schema.StringAttribute{
 															Description:         "",
 															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 
@@ -1482,8 +1482,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																"inline_string": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 															},
@@ -1507,8 +1507,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																"url": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 															},
@@ -1568,16 +1568,16 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"app_url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
 												"auth_endpoint": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -1593,16 +1593,16 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"callback_path": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
 												"client_id": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -1918,8 +1918,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"token_endpoint": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -1996,8 +1996,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"app_url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -2129,8 +2129,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"callback_path": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -2204,8 +2204,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 																	},
-																	Required: false,
-																	Optional: true,
+																	Required: true,
+																	Optional: false,
 																	Computed: false,
 																},
 
@@ -2230,8 +2230,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"client_id": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -2494,8 +2494,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"issuer_url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -2900,8 +2900,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 										"query": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},
@@ -2942,8 +2942,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 										"package": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -2996,8 +2996,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"address": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -3179,8 +3179,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 												"url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},
@@ -3202,8 +3202,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -3237,8 +3237,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 								},
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 

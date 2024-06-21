@@ -988,6 +988,7 @@ Optional:
 Optional:
 
 - `app_role` (Attributes) AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource. (see [below for nested schema](#nestedatt--spec--vault--auth--app_role))
+- `client_certificate` (Attributes) ClientCertificate authenticates with Vault by presenting a clientcertificate during the request's TLS handshake.Works only when using HTTPS protocol. (see [below for nested schema](#nestedatt--spec--vault--auth--client_certificate))
 - `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--vault--auth--kubernetes))
 - `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--vault--auth--token_secret_ref))
 
@@ -1011,6 +1012,16 @@ Optional:
 
 - `key` (String) The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.
 
+
+
+<a id="nestedatt--spec--vault--auth--client_certificate"></a>
+### Nested Schema for `spec.vault.auth.client_certificate`
+
+Optional:
+
+- `mount_path` (String) The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/cert' will be used.
+- `name` (String) Name of the certificate role to authenticate against.If not set, matching any certificate role, if available.
+- `secret_name` (String) Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containingtls.crt and tls.key) used to authenticate to Vault using TLS clientauthentication.
 
 
 <a id="nestedatt--spec--vault--auth--kubernetes"></a>

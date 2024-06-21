@@ -153,6 +153,7 @@ Optional:
 - `luks` (Attributes) Disk decryption LUKS keys (see [below for nested schema](#nestedatt--spec--vms--luks))
 - `name` (String) An object Name.vsphere:  A qualified name.
 - `namespace` (String) The VM NamespaceOnly relevant for an openshift source.
+- `root_disk` (String) Choose the primary disk the VM boots from
 - `type` (String) Type used to qualify the name.
 
 <a id="nestedatt--spec--vms--hooks"></a>

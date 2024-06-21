@@ -504,6 +504,8 @@ Optional:
 - `host` (String) To configure the host exposed by the ingress.
 - `path` (String) To configure the path exposed by the ingress (default '/').
 - `path_type` (String) To configure the path type exposed by the ingress. One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').
+- `tls_hosts` (List of String) To configure tls hosts
+- `tls_secret_name` (String) To configure tls secret name
 
 
 <a id="nestedatt--spec--traits--istio"></a>
@@ -610,6 +612,7 @@ Optional:
 - `max_scale` (Number) An upper bound for the number of Pods that can be running in parallel for the integration. Knative has its own cap value that depends on the installation.  Refer to the Knative documentation for more information.
 - `min_scale` (Number) The minimum number of Pods that should be running at any time for the integration. It's **zero** by default, meaning that the integration is scaled down to zero when not used for a configured amount of time.  Refer to the Knative documentation for more information.
 - `rollout_duration` (String) Enables to gradually shift traffic to the latest Revision and sets the rollout duration. It's disabled by default and must be expressed as a Golang 'time.Duration' string representation, rounded to a second precision.
+- `timeout_seconds` (Number) The maximum duration in seconds that the request instance is allowed to respond to a request. This field propagates to the integration pod's terminationGracePeriodSeconds  Refer to the Knative documentation for more information.
 - `visibility` (String) Setting 'cluster-local', Knative service becomes a private service. Specifically, this option applies the 'networking.knative.dev/visibility' label to Knative service.  Refer to the Knative documentation for more information.
 
 

@@ -88,13 +88,15 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				Privileged      *bool     `tfsdk:"privileged" json:"privileged,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
 			Volumes *struct {
-				ClaimName     *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
-				ConfigMapName *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
-				HostPath      *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Items         *map[string]string `tfsdk:"items" json:"items,omitempty"`
-				Path          *string            `tfsdk:"path" json:"path,omitempty"`
-				ReadOnly      *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SecretName    *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
+				ClaimName      *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
+				ConfigMapName  *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+				EmptyDir       *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+				EmptyDirMedium *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
+				HostPath       *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Items          *map[string]string `tfsdk:"items" json:"items,omitempty"`
+				Path           *string            `tfsdk:"path" json:"path,omitempty"`
+				ReadOnly       *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SecretName     *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
@@ -207,13 +209,15 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				Privileged      *bool     `tfsdk:"privileged" json:"privileged,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
 			Volumes *struct {
-				ClaimName     *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
-				ConfigMapName *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
-				HostPath      *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Items         *map[string]string `tfsdk:"items" json:"items,omitempty"`
-				Path          *string            `tfsdk:"path" json:"path,omitempty"`
-				ReadOnly      *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SecretName    *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
+				ClaimName      *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
+				ConfigMapName  *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+				EmptyDir       *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+				EmptyDirMedium *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
+				HostPath       *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Items          *map[string]string `tfsdk:"items" json:"items,omitempty"`
+				Path           *string            `tfsdk:"path" json:"path,omitempty"`
+				ReadOnly       *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SecretName     *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
@@ -627,6 +631,22 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										"config_map_name": schema.StringAttribute{
 											Description:         "Config map name if the existing volume is a config mapYou should also define items if you are using this",
 											MarkdownDescription: "Config map name if the existing volume is a config mapYou should also define items if you are using this",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir_medium": schema.StringAttribute{
+											Description:         "Add an empty directory custom type",
+											MarkdownDescription: "Add an empty directory custom type",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1477,6 +1497,22 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										"config_map_name": schema.StringAttribute{
 											Description:         "Config map name if the existing volume is a config mapYou should also define items if you are using this",
 											MarkdownDescription: "Config map name if the existing volume is a config mapYou should also define items if you are using this",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir_medium": schema.StringAttribute{
+											Description:         "Add an empty directory custom type",
+											MarkdownDescription: "Add an empty directory custom type",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

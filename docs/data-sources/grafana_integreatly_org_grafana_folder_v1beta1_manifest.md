@@ -3,12 +3,12 @@
 page_title: "k8s_grafana_integreatly_org_grafana_folder_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "grafana.integreatly.org"
 description: |-
-  
+  GrafanaFolder is the Schema for the grafanafolders API
 ---
 
 # k8s_grafana_integreatly_org_grafana_folder_v1beta1_manifest (Data Source)
 
-
+GrafanaFolder is the Schema for the grafanafolders API
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_grafana_integreatly_org_grafana_folder_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) GrafanaFolderSpec defines the desired state of GrafanaFolder (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,13 +55,13 @@ Optional:
 
 Required:
 
-- `instance_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--instance_selector))
+- `instance_selector` (Attributes) selects Grafanas for import (see [below for nested schema](#nestedatt--spec--instance_selector))
 
 Optional:
 
-- `allow_cross_namespace_import` (Boolean)
-- `permissions` (String)
-- `resync_period` (String)
+- `allow_cross_namespace_import` (Boolean) allow to import this resources from an operator in a different namespace
+- `permissions` (String) raw json with folder permissions
+- `resync_period` (String) how often the folder is synced, defaults to 5m if not set
 - `title` (String)
 
 <a id="nestedatt--spec--instance_selector"></a>
@@ -69,17 +69,17 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--instance_selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--instance_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instance_selector--match_expressions"></a>
 ### Nested Schema for `spec.instance_selector.match_expressions`
 
 Required:
 
-- `key` (String)
-- `operator` (String)
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String)
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

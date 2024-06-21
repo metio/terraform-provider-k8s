@@ -657,6 +657,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"token" json:"token,omitempty"`
 				TokenFile *string `tfsdk:"token_file" json:"tokenFile,omitempty"`
+				Ttl       *string `tfsdk:"ttl" json:"ttl,omitempty"`
 				Url       *string `tfsdk:"url" json:"url,omitempty"`
 				UrlTitle  *string `tfsdk:"url_title" json:"urlTitle,omitempty"`
 				UserKey   *struct {
@@ -5547,6 +5548,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"ttl": schema.StringAttribute{
+												Description:         "The time to live definition for the alert notification",
+												MarkdownDescription: "The time to live definition for the alert notification",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+												},
 											},
 
 											"url": schema.StringAttribute{

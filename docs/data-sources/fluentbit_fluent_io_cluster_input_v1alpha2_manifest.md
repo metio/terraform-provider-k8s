@@ -61,6 +61,7 @@ Optional:
 - `fluent_bit_metrics` (Attributes) FluentBitMetrics defines Fluent Bit Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--fluent_bit_metrics))
 - `forward` (Attributes) Forward defines forward  input plugin configuration (see [below for nested schema](#nestedatt--spec--forward))
 - `http` (Attributes) HTTP defines the HTTP input plugin configuration (see [below for nested schema](#nestedatt--spec--http))
+- `kubernetes_events` (Attributes) KubernetesEvents defines the KubernetesEvents input plugin configuration (see [below for nested schema](#nestedatt--spec--kubernetes_events))
 - `log_level` (String)
 - `mqtt` (Attributes) MQTT defines the MQTT input plugin configuration (see [below for nested schema](#nestedatt--spec--mqtt))
 - `nginx` (Attributes) Nginx defines the Nginx input plugin configuration (see [below for nested schema](#nestedatt--spec--nginx))
@@ -185,6 +186,29 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--kubernetes_events"></a>
+### Nested Schema for `spec.kubernetes_events`
+
+Optional:
+
+- `db` (String) Set a database file to keep track of recorded Kubernetes events
+- `db_sync` (String) Set a database sync method. values: extra, full, normal and off
+- `interval_nsec` (Number) Set the polling interval for each channel (sub seconds: nanoseconds).
+- `interval_sec` (Number) Set the polling interval for each channel.
+- `kube_ca_file` (String) CA certificate file
+- `kube_ca_path` (String) Absolute path to scan for certificate files
+- `kube_namespace` (String) Kubernetes namespace to query events from. Gets events from all namespaces by default
+- `kube_request_limit` (Number) kubernetes limit parameter for events query, no limit applied when set to 0.
+- `kube_retention_time` (String) Kubernetes retention time for events.
+- `kube_token_file` (String) Token file
+- `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
+- `kube_url` (String) API Server end-point
+- `tag` (String) Tag name associated to all records comming from this plugin.
+- `tls_debug` (Number) Debug level between 0 (nothing) and 4 (every detail).
+- `tls_verify` (Boolean) When enabled, turns on certificate validation when connecting to the Kubernetes API server.
+- `tls_vhost` (String) Set optional TLS virtual host.
 
 
 <a id="nestedatt--spec--mqtt"></a>

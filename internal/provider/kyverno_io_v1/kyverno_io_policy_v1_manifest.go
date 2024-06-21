@@ -386,9 +386,10 @@ type KyvernoIoPolicyV1ManifestData struct {
 						} `tfsdk:"any" json:"any,omitempty"`
 					} `tfsdk:"preconditions" json:"preconditions,omitempty"`
 				} `tfsdk:"foreach" json:"foreach,omitempty"`
-				PatchStrategicMerge *map[string]string `tfsdk:"patch_strategic_merge" json:"patchStrategicMerge,omitempty"`
-				PatchesJson6902     *string            `tfsdk:"patches_json6902" json:"patchesJson6902,omitempty"`
-				Targets             *[]struct {
+				MutateExistingOnPolicyUpdate *bool              `tfsdk:"mutate_existing_on_policy_update" json:"mutateExistingOnPolicyUpdate,omitempty"`
+				PatchStrategicMerge          *map[string]string `tfsdk:"patch_strategic_merge" json:"patchStrategicMerge,omitempty"`
+				PatchesJson6902              *string            `tfsdk:"patches_json6902" json:"patchesJson6902,omitempty"`
+				Targets                      *[]struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Context    *[]struct {
 						ApiCall *struct {
@@ -761,6 +762,7 @@ type KyvernoIoPolicyV1ManifestData struct {
 						Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 					} `tfsdk:"entries" json:"entries,omitempty"`
 				} `tfsdk:"attestors" json:"attestors,omitempty"`
+				CosignOCI11              *bool     `tfsdk:"cosign_oci11" json:"cosignOCI11,omitempty"`
 				Image                    *string   `tfsdk:"image" json:"image,omitempty"`
 				ImageReferences          *[]string `tfsdk:"image_references" json:"imageReferences,omitempty"`
 				ImageRegistryCredentials *struct {
@@ -797,10 +799,12 @@ type KyvernoIoPolicyV1ManifestData struct {
 			Namespaces *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 		} `tfsdk:"validation_failure_action_overrides" json:"validationFailureActionOverrides,omitempty"`
 		WebhookConfiguration *struct {
+			FailurePolicy   *string `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
 			MatchConditions *[]struct {
 				Expression *string `tfsdk:"expression" json:"expression,omitempty"`
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"match_conditions" json:"matchConditions,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"webhook_configuration" json:"webhookConfiguration,omitempty"`
 		WebhookTimeoutSeconds *int64 `tfsdk:"webhook_timeout_seconds" json:"webhookTimeoutSeconds,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -911,8 +915,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"failure_policy": schema.StringAttribute{
-						Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.",
-						MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.",
+						Description:         "Deprecated, use failurePolicy under the webhookConfiguration instead.",
+						MarkdownDescription: "Deprecated, use failurePolicy under the webhookConfiguration instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -938,8 +942,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"mutate_existing_on_policy_update": schema.BoolAttribute{
-						Description:         "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.",
-						MarkdownDescription: "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.",
+						Description:         "Deprecated, use mutateExistingOnPolicyUpdate under the mutate rule instead",
+						MarkdownDescription: "Deprecated, use mutateExistingOnPolicyUpdate under the mutate rule instead",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3290,6 +3294,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"mutate_existing_on_policy_update": schema.BoolAttribute{
+											Description:         "MutateExistingOnPolicyUpdate controls if the mutateExisting rule will be applied on policy events.",
+											MarkdownDescription: "MutateExistingOnPolicyUpdate controls if the mutateExisting rule will be applied on policy events.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"patch_strategic_merge": schema.MapAttribute{
@@ -5859,6 +5871,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												Computed: false,
 											},
 
+											"cosign_oci11": schema.BoolAttribute{
+												Description:         "CosignOCI11 enables the experimental OCI 1.1 behaviour in cosign image verification.Defaults to false.",
+												MarkdownDescription: "CosignOCI11 enables the experimental OCI 1.1 behaviour in cosign image verification.Defaults to false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"image": schema.StringAttribute{
 												Description:         "Deprecated. Use ImageReferences instead.",
 												MarkdownDescription: "Deprecated. Use ImageReferences instead.",
@@ -6128,12 +6148,23 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"webhook_configuration": schema.SingleNestedAttribute{
-						Description:         "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later.",
-						MarkdownDescription: "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later.",
+						Description:         "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.",
+						MarkdownDescription: "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.",
 						Attributes: map[string]schema.Attribute{
+							"failure_policy": schema.StringAttribute{
+								Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.",
+								MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.This field should not be accessed directly, instead 'GetFailurePolicy()' should be used.Allowed values are Ignore or Fail. Defaults to Fail.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Ignore", "Fail"),
+								},
+							},
+
 							"match_conditions": schema.ListNestedAttribute{
-								Description:         "MatchCondition configures admission webhook matchConditions.",
-								MarkdownDescription: "MatchCondition configures admission webhook matchConditions.",
+								Description:         "MatchCondition configures admission webhook matchConditions.Requires Kubernetes 1.27 or later.",
+								MarkdownDescription: "MatchCondition configures admission webhook matchConditions.Requires Kubernetes 1.27 or later.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"expression": schema.StringAttribute{
@@ -6157,6 +6188,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 								Optional: true,
 								Computed: false,
 							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "TimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
+								MarkdownDescription: "TimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -6164,8 +6203,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"webhook_timeout_seconds": schema.Int64Attribute{
-						Description:         "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
-						MarkdownDescription: "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
+						Description:         "Deprecated, use webhookTimeoutSeconds under webhookConfiguration instead.",
+						MarkdownDescription: "Deprecated, use webhookTimeoutSeconds under webhookConfiguration instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

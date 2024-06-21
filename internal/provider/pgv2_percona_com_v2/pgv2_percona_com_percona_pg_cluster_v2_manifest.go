@@ -10777,8 +10777,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 							"image": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 

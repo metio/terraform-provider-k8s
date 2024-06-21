@@ -98,8 +98,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Metadata(_ conte
 
 func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "",
-		MarkdownDescription: "",
+		Description:         "GrafanaDatasource is the Schema for the grafanadatasources API",
+		MarkdownDescription: "GrafanaDatasource is the Schema for the grafanadatasources API",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -166,12 +166,12 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "GrafanaDatasourceSpec defines the desired state of GrafanaDatasource",
+				MarkdownDescription: "GrafanaDatasourceSpec defines the desired state of GrafanaDatasource",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "allow to import this resources from an operator in a different namespace",
+						MarkdownDescription: "allow to import this resources from an operator in a different namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -214,8 +214,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							},
 
 							"editable": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Deprecated field, it has no effect",
+								MarkdownDescription: "Deprecated field, it has no effect",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -247,8 +247,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							},
 
 							"org_id": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Deprecated field, it has no effect",
+								MarkdownDescription: "Deprecated field, it has no effect",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -301,33 +301,33 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "selects Grafana instances for import",
+						MarkdownDescription: "selects Grafana instances for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -341,8 +341,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -355,8 +355,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"plugins": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "plugins",
+						MarkdownDescription: "plugins",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -382,8 +382,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "how often the datasource is refreshed, defaults to 5m if not set",
+						MarkdownDescription: "how often the datasource is refreshed, defaults to 5m if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -393,8 +393,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"values_from": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "environments variables from secrets or config maps",
+						MarkdownDescription: "environments variables from secrets or config maps",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"target_path": schema.StringAttribute{
@@ -410,28 +410,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"config_map_key_ref": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Selects a key of a ConfigMap.",
+											MarkdownDescription: "Selects a key of a ConfigMap.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The key to select.",
+													MarkdownDescription: "The key to select.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Specify whether the ConfigMap or its key must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -443,28 +443,28 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 										},
 
 										"secret_key_ref": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Selects a key of a Secret.",
+											MarkdownDescription: "Selects a key of a Secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

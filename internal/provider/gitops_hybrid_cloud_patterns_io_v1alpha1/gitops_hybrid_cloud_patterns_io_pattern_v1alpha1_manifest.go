@@ -56,6 +56,7 @@ type GitopsHybridCloudPatternsIoPatternV1Alpha1ManifestData struct {
 		} `tfsdk:"git_ops_spec" json:"gitOpsSpec,omitempty"`
 		GitSpec *struct {
 			Hostname             *string `tfsdk:"hostname" json:"hostname,omitempty"`
+			InClusterGitServer   *bool   `tfsdk:"in_cluster_git_server" json:"inClusterGitServer,omitempty"`
 			OriginRepo           *string `tfsdk:"origin_repo" json:"originRepo,omitempty"`
 			OriginRevision       *string `tfsdk:"origin_revision" json:"originRevision,omitempty"`
 			PollInterval         *int64  `tfsdk:"poll_interval" json:"pollInterval,omitempty"`
@@ -240,17 +241,25 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 
+							"in_cluster_git_server": schema.BoolAttribute{
+								Description:         "Enable in-cluster git server (avoids the need of forking the upstream repository)",
+								MarkdownDescription: "Enable in-cluster git server (avoids the need of forking the upstream repository)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"origin_repo": schema.StringAttribute{
-								Description:         "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository",
-								MarkdownDescription: "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository",
+								Description:         "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo",
+								MarkdownDescription: "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"origin_revision": schema.StringAttribute{
-								Description:         "Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD",
-								MarkdownDescription: "Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD",
+								Description:         "(DEPRECATED) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD",
+								MarkdownDescription: "(DEPRECATED) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -267,8 +276,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							"target_repo": schema.StringAttribute{
 								Description:         "Git repo containing the pattern to deploy. Must use https/http or, for ssh, git@server:foo/bar.git",
 								MarkdownDescription: "Git repo containing the pattern to deploy. Must use https/http or, for ssh, git@server:foo/bar.git",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

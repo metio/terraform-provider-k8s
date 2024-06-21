@@ -1583,6 +1583,7 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 						ResponseHeadersToRemove *[]string `tfsdk:"response_headers_to_remove" json:"responseHeadersToRemove,omitempty"`
 					} `tfsdk:"header_manipulation" json:"headerManipulation,omitempty"`
 					HostRewrite          *string `tfsdk:"host_rewrite" json:"hostRewrite,omitempty"`
+					HostRewriteHeader    *string `tfsdk:"host_rewrite_header" json:"hostRewriteHeader,omitempty"`
 					HostRewritePathRegex *struct {
 						Pattern *struct {
 							GoogleRe2 *struct {
@@ -13837,6 +13838,14 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"host_rewrite": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"host_rewrite_header": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,

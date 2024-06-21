@@ -372,6 +372,11 @@ type CertManagerIoIssuerV1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"app_role" json:"appRole,omitempty"`
+				ClientCertificate *struct {
+					MountPath  *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+				} `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 				Kubernetes *struct {
 					MountPath *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					Role      *string `tfsdk:"role" json:"role,omitempty"`
@@ -2670,6 +2675,39 @@ func (r *CertManagerIoIssuerV1Manifest) Schema(_ context.Context, _ datasource.S
 												Required: true,
 												Optional: false,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"client_certificate": schema.SingleNestedAttribute{
+										Description:         "ClientCertificate authenticates with Vault by presenting a clientcertificate during the request's TLS handshake.Works only when using HTTPS protocol.",
+										MarkdownDescription: "ClientCertificate authenticates with Vault by presenting a clientcertificate during the request's TLS handshake.Works only when using HTTPS protocol.",
+										Attributes: map[string]schema.Attribute{
+											"mount_path": schema.StringAttribute{
+												Description:         "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/cert' will be used.",
+												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/cert' will be used.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the certificate role to authenticate against.If not set, matching any certificate role, if available.",
+												MarkdownDescription: "Name of the certificate role to authenticate against.If not set, matching any certificate role, if available.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"secret_name": schema.StringAttribute{
+												Description:         "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containingtls.crt and tls.key) used to authenticate to Vault using TLS clientauthentication.",
+												MarkdownDescription: "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containingtls.crt and tls.key) used to authenticate to Vault using TLS clientauthentication.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,

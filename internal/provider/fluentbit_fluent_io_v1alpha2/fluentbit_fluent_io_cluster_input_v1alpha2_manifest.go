@@ -102,6 +102,24 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"http" json:"http,omitempty"`
+		KubernetesEvents *struct {
+			Db                *string `tfsdk:"db" json:"db,omitempty"`
+			DbSync            *string `tfsdk:"db_sync" json:"dbSync,omitempty"`
+			IntervalNsec      *int64  `tfsdk:"interval_nsec" json:"intervalNsec,omitempty"`
+			IntervalSec       *int64  `tfsdk:"interval_sec" json:"intervalSec,omitempty"`
+			KubeCAFile        *string `tfsdk:"kube_ca_file" json:"kubeCAFile,omitempty"`
+			KubeCAPath        *string `tfsdk:"kube_ca_path" json:"kubeCAPath,omitempty"`
+			KubeNamespace     *string `tfsdk:"kube_namespace" json:"kubeNamespace,omitempty"`
+			KubeRequestLimit  *int64  `tfsdk:"kube_request_limit" json:"kubeRequestLimit,omitempty"`
+			KubeRetentionTime *string `tfsdk:"kube_retention_time" json:"kubeRetentionTime,omitempty"`
+			KubeTokenFile     *string `tfsdk:"kube_token_file" json:"kubeTokenFile,omitempty"`
+			KubeTokenTTL      *string `tfsdk:"kube_token_ttl" json:"kubeTokenTTL,omitempty"`
+			KubeURL           *string `tfsdk:"kube_url" json:"kubeURL,omitempty"`
+			Tag               *string `tfsdk:"tag" json:"tag,omitempty"`
+			TlsDebug          *int64  `tfsdk:"tls_debug" json:"tlsDebug,omitempty"`
+			TlsVerify         *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
+			TlsVhost          *string `tfsdk:"tls_vhost" json:"tlsVhost,omitempty"`
+		} `tfsdk:"kubernetes_events" json:"kubernetesEvents,omitempty"`
 		LogLevel *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 		Mqtt     *struct {
 			Listen *string `tfsdk:"listen" json:"listen,omitempty"`
@@ -687,6 +705,143 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"kubernetes_events": schema.SingleNestedAttribute{
+						Description:         "KubernetesEvents defines the KubernetesEvents input plugin configuration",
+						MarkdownDescription: "KubernetesEvents defines the KubernetesEvents input plugin configuration",
+						Attributes: map[string]schema.Attribute{
+							"db": schema.StringAttribute{
+								Description:         "Set a database file to keep track of recorded Kubernetes events",
+								MarkdownDescription: "Set a database file to keep track of recorded Kubernetes events",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"db_sync": schema.StringAttribute{
+								Description:         "Set a database sync method. values: extra, full, normal and off",
+								MarkdownDescription: "Set a database sync method. values: extra, full, normal and off",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"interval_nsec": schema.Int64Attribute{
+								Description:         "Set the polling interval for each channel (sub seconds: nanoseconds).",
+								MarkdownDescription: "Set the polling interval for each channel (sub seconds: nanoseconds).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"interval_sec": schema.Int64Attribute{
+								Description:         "Set the polling interval for each channel.",
+								MarkdownDescription: "Set the polling interval for each channel.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_ca_file": schema.StringAttribute{
+								Description:         "CA certificate file",
+								MarkdownDescription: "CA certificate file",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_ca_path": schema.StringAttribute{
+								Description:         "Absolute path to scan for certificate files",
+								MarkdownDescription: "Absolute path to scan for certificate files",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_namespace": schema.StringAttribute{
+								Description:         "Kubernetes namespace to query events from. Gets events from all namespaces by default",
+								MarkdownDescription: "Kubernetes namespace to query events from. Gets events from all namespaces by default",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_request_limit": schema.Int64Attribute{
+								Description:         "kubernetes limit parameter for events query, no limit applied when set to 0.",
+								MarkdownDescription: "kubernetes limit parameter for events query, no limit applied when set to 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_retention_time": schema.StringAttribute{
+								Description:         "Kubernetes retention time for events.",
+								MarkdownDescription: "Kubernetes retention time for events.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_token_file": schema.StringAttribute{
+								Description:         "Token file",
+								MarkdownDescription: "Token file",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_token_ttl": schema.StringAttribute{
+								Description:         "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+								MarkdownDescription: "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_url": schema.StringAttribute{
+								Description:         "API Server end-point",
+								MarkdownDescription: "API Server end-point",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tag": schema.StringAttribute{
+								Description:         "Tag name associated to all records comming from this plugin.",
+								MarkdownDescription: "Tag name associated to all records comming from this plugin.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls_debug": schema.Int64Attribute{
+								Description:         "Debug level between 0 (nothing) and 4 (every detail).",
+								MarkdownDescription: "Debug level between 0 (nothing) and 4 (every detail).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls_verify": schema.BoolAttribute{
+								Description:         "When enabled, turns on certificate validation when connecting to the Kubernetes API server.",
+								MarkdownDescription: "When enabled, turns on certificate validation when connecting to the Kubernetes API server.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls_vhost": schema.StringAttribute{
+								Description:         "Set optional TLS virtual host.",
+								MarkdownDescription: "Set optional TLS virtual host.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

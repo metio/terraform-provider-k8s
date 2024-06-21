@@ -879,13 +879,15 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			BearerToken     *string            `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
 			BearerTokenFile *string            `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
 			EnableHTTP2     *bool              `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 			Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
 			MetadataConfig  *struct {
 				Send         *bool   `tfsdk:"send" json:"send,omitempty"`
 				SendInterval *string `tfsdk:"send_interval" json:"sendInterval,omitempty"`
 			} `tfsdk:"metadata_config" json:"metadataConfig,omitempty"`
-			Name   *string `tfsdk:"name" json:"name,omitempty"`
-			Oauth2 *struct {
+			Name    *string `tfsdk:"name" json:"name,omitempty"`
+			NoProxy *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2  *struct {
 				ClientId *struct {
 					ConfigMap *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -907,8 +909,10 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			ProxyUrl    *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			QueueConfig *struct {
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			QueueConfig          *struct {
 				BatchSendDeadline *string `tfsdk:"batch_send_deadline" json:"batchSendDeadline,omitempty"`
 				Capacity          *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
 				MaxBackoff        *string `tfsdk:"max_backoff" json:"maxBackoff,omitempty"`
@@ -3106,8 +3110,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"body_size_limit": schema.StringAttribute{
-						Description:         "BodySizeLimit defines per-scrape on response body size.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "BodySizeLimit defines per-scrape on response body size.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "BodySizeLimit defines per-scrape on response body size.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedBodySizeLimit.",
+						MarkdownDescription: "BodySizeLimit defines per-scrape on response body size.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedBodySizeLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4785,8 +4789,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"enforced_body_size_limit": schema.StringAttribute{
-						Description:         "When defined, enforcedBodySizeLimit specifies a global limit on the sizeof uncompressed response body that will be accepted by Prometheus.Targets responding with a body larger than this many bytes will causethe scrape to fail.It requires Prometheus >= v2.28.0.",
-						MarkdownDescription: "When defined, enforcedBodySizeLimit specifies a global limit on the sizeof uncompressed response body that will be accepted by Prometheus.Targets responding with a body larger than this many bytes will causethe scrape to fail.It requires Prometheus >= v2.28.0.",
+						Description:         "When defined, enforcedBodySizeLimit specifies a global limit on the sizeof uncompressed response body that will be accepted by Prometheus.Targets responding with a body larger than this many bytes will causethe scrape to fail.It requires Prometheus >= v2.28.0.When both 'enforcedBodySizeLimit' and 'bodySizeLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined bodySizeLimit value will inherit the global bodySizeLimit value (Prometheus >= 2.45.0) or the enforcedBodySizeLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedBodySizeLimit' is greater than the 'bodySizeLimit', the 'bodySizeLimit' will be set to 'enforcedBodySizeLimit'.* Scrape objects with a bodySizeLimit value less than or equal to enforcedBodySizeLimit keep their specific value.* Scrape objects with a bodySizeLimit value greater than enforcedBodySizeLimit are set to enforcedBodySizeLimit.",
+						MarkdownDescription: "When defined, enforcedBodySizeLimit specifies a global limit on the sizeof uncompressed response body that will be accepted by Prometheus.Targets responding with a body larger than this many bytes will causethe scrape to fail.It requires Prometheus >= v2.28.0.When both 'enforcedBodySizeLimit' and 'bodySizeLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined bodySizeLimit value will inherit the global bodySizeLimit value (Prometheus >= 2.45.0) or the enforcedBodySizeLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedBodySizeLimit' is greater than the 'bodySizeLimit', the 'bodySizeLimit' will be set to 'enforcedBodySizeLimit'.* Scrape objects with a bodySizeLimit value less than or equal to enforcedBodySizeLimit keep their specific value.* Scrape objects with a bodySizeLimit value greater than enforcedBodySizeLimit are set to enforcedBodySizeLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4796,32 +4800,32 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"enforced_keep_dropped_targets": schema.Int64Attribute{
-						Description:         "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targetsdropped by relabeling that will be kept in memory. The value overridesany 'spec.keepDroppedTargets' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' isgreater than zero and less than 'spec.enforcedKeepDroppedTargets'.It requires Prometheus >= v2.47.0.",
-						MarkdownDescription: "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targetsdropped by relabeling that will be kept in memory. The value overridesany 'spec.keepDroppedTargets' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' isgreater than zero and less than 'spec.enforcedKeepDroppedTargets'.It requires Prometheus >= v2.47.0.",
+						Description:         "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targetsdropped by relabeling that will be kept in memory. The value overridesany 'spec.keepDroppedTargets' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' isgreater than zero and less than 'spec.enforcedKeepDroppedTargets'.It requires Prometheus >= v2.47.0.When both 'enforcedKeepDroppedTargets' and 'keepDroppedTargets' are defined and greater than zero, the following rules apply:* Scrape objects without a defined keepDroppedTargets value will inherit the global keepDroppedTargets value (Prometheus >= 2.45.0) or the enforcedKeepDroppedTargets value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedKeepDroppedTargets' is greater than the 'keepDroppedTargets', the 'keepDroppedTargets' will be set to 'enforcedKeepDroppedTargets'.* Scrape objects with a keepDroppedTargets value less than or equal to enforcedKeepDroppedTargets keep their specific value.* Scrape objects with a keepDroppedTargets value greater than enforcedKeepDroppedTargets are set to enforcedKeepDroppedTargets.",
+						MarkdownDescription: "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targetsdropped by relabeling that will be kept in memory. The value overridesany 'spec.keepDroppedTargets' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' isgreater than zero and less than 'spec.enforcedKeepDroppedTargets'.It requires Prometheus >= v2.47.0.When both 'enforcedKeepDroppedTargets' and 'keepDroppedTargets' are defined and greater than zero, the following rules apply:* Scrape objects without a defined keepDroppedTargets value will inherit the global keepDroppedTargets value (Prometheus >= 2.45.0) or the enforcedKeepDroppedTargets value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedKeepDroppedTargets' is greater than the 'keepDroppedTargets', the 'keepDroppedTargets' will be set to 'enforcedKeepDroppedTargets'.* Scrape objects with a keepDroppedTargets value less than or equal to enforcedKeepDroppedTargets keep their specific value.* Scrape objects with a keepDroppedTargets value greater than enforcedKeepDroppedTargets are set to enforcedKeepDroppedTargets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enforced_label_limit": schema.Int64Attribute{
-						Description:         "When defined, enforcedLabelLimit specifies a global limit on the numberof labels per sample. The value overrides any 'spec.labelLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelLimit' isgreater than zero and less than 'spec.enforcedLabelLimit'.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "When defined, enforcedLabelLimit specifies a global limit on the numberof labels per sample. The value overrides any 'spec.labelLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelLimit' isgreater than zero and less than 'spec.enforcedLabelLimit'.It requires Prometheus >= v2.27.0.",
+						Description:         "When defined, enforcedLabelLimit specifies a global limit on the numberof labels per sample. The value overrides any 'spec.labelLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelLimit' isgreater than zero and less than 'spec.enforcedLabelLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelLimit' and 'labelLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelLimit value will inherit the global labelLimit value (Prometheus >= 2.45.0) or the enforcedLabelLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelLimit' is greater than the 'labelLimit', the 'labelLimit' will be set to 'enforcedLabelLimit'.* Scrape objects with a labelLimit value less than or equal to enforcedLabelLimit keep their specific value.* Scrape objects with a labelLimit value greater than enforcedLabelLimit are set to enforcedLabelLimit.",
+						MarkdownDescription: "When defined, enforcedLabelLimit specifies a global limit on the numberof labels per sample. The value overrides any 'spec.labelLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelLimit' isgreater than zero and less than 'spec.enforcedLabelLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelLimit' and 'labelLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelLimit value will inherit the global labelLimit value (Prometheus >= 2.45.0) or the enforcedLabelLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelLimit' is greater than the 'labelLimit', the 'labelLimit' will be set to 'enforcedLabelLimit'.* Scrape objects with a labelLimit value less than or equal to enforcedLabelLimit keep their specific value.* Scrape objects with a labelLimit value greater than enforcedLabelLimit are set to enforcedLabelLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enforced_label_name_length_limit": schema.Int64Attribute{
-						Description:         "When defined, enforcedLabelNameLengthLimit specifies a global limit on the lengthof labels name per sample. The value overrides any 'spec.labelNameLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelNameLengthLimit' isgreater than zero and less than 'spec.enforcedLabelNameLengthLimit'.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "When defined, enforcedLabelNameLengthLimit specifies a global limit on the lengthof labels name per sample. The value overrides any 'spec.labelNameLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelNameLengthLimit' isgreater than zero and less than 'spec.enforcedLabelNameLengthLimit'.It requires Prometheus >= v2.27.0.",
+						Description:         "When defined, enforcedLabelNameLengthLimit specifies a global limit on the lengthof labels name per sample. The value overrides any 'spec.labelNameLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelNameLengthLimit' isgreater than zero and less than 'spec.enforcedLabelNameLengthLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelNameLengthLimit' and 'labelNameLengthLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelNameLengthLimit value will inherit the global labelNameLengthLimit value (Prometheus >= 2.45.0) or the enforcedLabelNameLengthLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelNameLengthLimit' is greater than the 'labelNameLengthLimit', the 'labelNameLengthLimit' will be set to 'enforcedLabelNameLengthLimit'.* Scrape objects with a labelNameLengthLimit value less than or equal to enforcedLabelNameLengthLimit keep their specific value.* Scrape objects with a labelNameLengthLimit value greater than enforcedLabelNameLengthLimit are set to enforcedLabelNameLengthLimit.",
+						MarkdownDescription: "When defined, enforcedLabelNameLengthLimit specifies a global limit on the lengthof labels name per sample. The value overrides any 'spec.labelNameLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelNameLengthLimit' isgreater than zero and less than 'spec.enforcedLabelNameLengthLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelNameLengthLimit' and 'labelNameLengthLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelNameLengthLimit value will inherit the global labelNameLengthLimit value (Prometheus >= 2.45.0) or the enforcedLabelNameLengthLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelNameLengthLimit' is greater than the 'labelNameLengthLimit', the 'labelNameLengthLimit' will be set to 'enforcedLabelNameLengthLimit'.* Scrape objects with a labelNameLengthLimit value less than or equal to enforcedLabelNameLengthLimit keep their specific value.* Scrape objects with a labelNameLengthLimit value greater than enforcedLabelNameLengthLimit are set to enforcedLabelNameLengthLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enforced_label_value_length_limit": schema.Int64Attribute{
-						Description:         "When not null, enforcedLabelValueLengthLimit defines a global limit on the lengthof labels value per sample. The value overrides any 'spec.labelValueLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelValueLengthLimit' isgreater than zero and less than 'spec.enforcedLabelValueLengthLimit'.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "When not null, enforcedLabelValueLengthLimit defines a global limit on the lengthof labels value per sample. The value overrides any 'spec.labelValueLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelValueLengthLimit' isgreater than zero and less than 'spec.enforcedLabelValueLengthLimit'.It requires Prometheus >= v2.27.0.",
+						Description:         "When not null, enforcedLabelValueLengthLimit defines a global limit on the lengthof labels value per sample. The value overrides any 'spec.labelValueLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelValueLengthLimit' isgreater than zero and less than 'spec.enforcedLabelValueLengthLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelValueLengthLimit' and 'labelValueLengthLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelValueLengthLimit value will inherit the global labelValueLengthLimit value (Prometheus >= 2.45.0) or the enforcedLabelValueLengthLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelValueLengthLimit' is greater than the 'labelValueLengthLimit', the 'labelValueLengthLimit' will be set to 'enforcedLabelValueLengthLimit'.* Scrape objects with a labelValueLengthLimit value less than or equal to enforcedLabelValueLengthLimit keep their specific value.* Scrape objects with a labelValueLengthLimit value greater than enforcedLabelValueLengthLimit are set to enforcedLabelValueLengthLimit.",
+						MarkdownDescription: "When not null, enforcedLabelValueLengthLimit defines a global limit on the lengthof labels value per sample. The value overrides any 'spec.labelValueLengthLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.labelValueLengthLimit' isgreater than zero and less than 'spec.enforcedLabelValueLengthLimit'.It requires Prometheus >= v2.27.0.When both 'enforcedLabelValueLengthLimit' and 'labelValueLengthLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined labelValueLengthLimit value will inherit the global labelValueLengthLimit value (Prometheus >= 2.45.0) or the enforcedLabelValueLengthLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedLabelValueLengthLimit' is greater than the 'labelValueLengthLimit', the 'labelValueLengthLimit' will be set to 'enforcedLabelValueLengthLimit'.* Scrape objects with a labelValueLengthLimit value less than or equal to enforcedLabelValueLengthLimit keep their specific value.* Scrape objects with a labelValueLengthLimit value greater than enforcedLabelValueLengthLimit are set to enforcedLabelValueLengthLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4836,16 +4840,16 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"enforced_sample_limit": schema.Int64Attribute{
-						Description:         "When defined, enforcedSampleLimit specifies a global limit on the numberof scraped samples that will be accepted. This overrides any'spec.sampleLimit' set by ServiceMonitor, PodMonitor, Probe objectsunless 'spec.sampleLimit' is greater than zero and less than'spec.enforcedSampleLimit'.It is meant to be used by admins to keep the overall number ofsamples/series under a desired limit.",
-						MarkdownDescription: "When defined, enforcedSampleLimit specifies a global limit on the numberof scraped samples that will be accepted. This overrides any'spec.sampleLimit' set by ServiceMonitor, PodMonitor, Probe objectsunless 'spec.sampleLimit' is greater than zero and less than'spec.enforcedSampleLimit'.It is meant to be used by admins to keep the overall number ofsamples/series under a desired limit.",
+						Description:         "When defined, enforcedSampleLimit specifies a global limit on the numberof scraped samples that will be accepted. This overrides any'spec.sampleLimit' set by ServiceMonitor, PodMonitor, Probe objectsunless 'spec.sampleLimit' is greater than zero and less than'spec.enforcedSampleLimit'.It is meant to be used by admins to keep the overall number ofsamples/series under a desired limit.When both 'enforcedSampleLimit' and 'sampleLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined sampleLimit value will inherit the global sampleLimit value (Prometheus >= 2.45.0) or the enforcedSampleLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedSampleLimit' is greater than the 'sampleLimit', the 'sampleLimit' will be set to 'enforcedSampleLimit'.* Scrape objects with a sampleLimit value less than or equal to enforcedSampleLimit keep their specific value.* Scrape objects with a sampleLimit value greater than enforcedSampleLimit are set to enforcedSampleLimit.",
+						MarkdownDescription: "When defined, enforcedSampleLimit specifies a global limit on the numberof scraped samples that will be accepted. This overrides any'spec.sampleLimit' set by ServiceMonitor, PodMonitor, Probe objectsunless 'spec.sampleLimit' is greater than zero and less than'spec.enforcedSampleLimit'.It is meant to be used by admins to keep the overall number ofsamples/series under a desired limit.When both 'enforcedSampleLimit' and 'sampleLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined sampleLimit value will inherit the global sampleLimit value (Prometheus >= 2.45.0) or the enforcedSampleLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedSampleLimit' is greater than the 'sampleLimit', the 'sampleLimit' will be set to 'enforcedSampleLimit'.* Scrape objects with a sampleLimit value less than or equal to enforcedSampleLimit keep their specific value.* Scrape objects with a sampleLimit value greater than enforcedSampleLimit are set to enforcedSampleLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enforced_target_limit": schema.Int64Attribute{
-						Description:         "When defined, enforcedTargetLimit specifies a global limit on the numberof scraped targets. The value overrides any 'spec.targetLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.targetLimit' isgreater than zero and less than 'spec.enforcedTargetLimit'.It is meant to be used by admins to to keep the overall number oftargets under a desired limit.",
-						MarkdownDescription: "When defined, enforcedTargetLimit specifies a global limit on the numberof scraped targets. The value overrides any 'spec.targetLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.targetLimit' isgreater than zero and less than 'spec.enforcedTargetLimit'.It is meant to be used by admins to to keep the overall number oftargets under a desired limit.",
+						Description:         "When defined, enforcedTargetLimit specifies a global limit on the numberof scraped targets. The value overrides any 'spec.targetLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.targetLimit' isgreater than zero and less than 'spec.enforcedTargetLimit'.It is meant to be used by admins to to keep the overall number oftargets under a desired limit.When both 'enforcedTargetLimit' and 'targetLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined targetLimit value will inherit the global targetLimit value (Prometheus >= 2.45.0) or the enforcedTargetLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedTargetLimit' is greater than the 'targetLimit', the 'targetLimit' will be set to 'enforcedTargetLimit'.* Scrape objects with a targetLimit value less than or equal to enforcedTargetLimit keep their specific value.* Scrape objects with a targetLimit value greater than enforcedTargetLimit are set to enforcedTargetLimit.",
+						MarkdownDescription: "When defined, enforcedTargetLimit specifies a global limit on the numberof scraped targets. The value overrides any 'spec.targetLimit' set byServiceMonitor, PodMonitor, Probe objects unless 'spec.targetLimit' isgreater than zero and less than 'spec.enforcedTargetLimit'.It is meant to be used by admins to to keep the overall number oftargets under a desired limit.When both 'enforcedTargetLimit' and 'targetLimit' are defined and greater than zero, the following rules apply:* Scrape objects without a defined targetLimit value will inherit the global targetLimit value (Prometheus >= 2.45.0) or the enforcedTargetLimit value (Prometheus < v2.45.0).  If Prometheus version is >= 2.45.0 and the 'enforcedTargetLimit' is greater than the 'targetLimit', the 'targetLimit' will be set to 'enforcedTargetLimit'.* Scrape objects with a targetLimit value less than or equal to enforcedTargetLimit keep their specific value.* Scrape objects with a targetLimit value greater than enforcedTargetLimit are set to enforcedTargetLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6645,32 +6649,32 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"keep_dropped_targets": schema.Int64Attribute{
-						Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
-						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
+						Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedKeepDroppedTargets.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedKeepDroppedTargets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelLimit.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_name_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelNameLengthLimit.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelNameLengthLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_value_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelValueLengthLimit.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedLabelValueLengthLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -7373,6 +7377,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									Computed:            false,
 								},
 
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.It requires Prometheus >= v2.26.0.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.It requires Prometheus >= v2.26.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"headers": schema.MapAttribute{
 									Description:         "Custom HTTP headers to be sent along with each remote write request.Be aware that headers that are set by Prometheus itself can't be overwritten.It requires Prometheus >= v2.25.0.",
 									MarkdownDescription: "Custom HTTP headers to be sent along with each remote write request.Be aware that headers that are set by Prometheus itself can't be overwritten.It requires Prometheus >= v2.25.0.",
@@ -7413,6 +7425,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								"name": schema.StringAttribute{
 									Description:         "The name of the remote write queue, it must be unique if specified. Thename is used in metrics and logging in order to differentiate queues.It requires Prometheus >= v2.15.0.",
 									MarkdownDescription: "The name of the remote write queue, it must be unique if specified. Thename is used in metrics and logging in order to differentiate queues.It requires Prometheus >= v2.15.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -7564,12 +7584,32 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									Computed: false,
 								},
 
-								"proxy_url": schema.StringAttribute{
-									Description:         "Optional ProxyURL.",
-									MarkdownDescription: "Optional ProxyURL.",
+								"proxy_connect_header": schema.MapAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
 								},
 
 								"queue_config": schema.SingleNestedAttribute{
@@ -8187,8 +8227,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"sample_limit": schema.Int64Attribute{
-						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedSampleLimit.",
+						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedSampleLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -9778,8 +9818,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"target_limit": schema.Int64Attribute{
-						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.",
-						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.",
+						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedTargetLimit.",
+						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.Only valid in Prometheus versions 2.45.0 and newer.Note that the global limit only applies to scrape objects that don't specify an explicit limit value.If you want to enforce a maximum limit for all scrape objects, refer to enforcedTargetLimit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -48,11 +48,6 @@ type CiliumIoCiliumLoadBalancerIppoolV2Alpha1ManifestData struct {
 			Start *string `tfsdk:"start" json:"start,omitempty"`
 			Stop  *string `tfsdk:"stop" json:"stop,omitempty"`
 		} `tfsdk:"blocks" json:"blocks,omitempty"`
-		Cidrs *[]struct {
-			Cidr  *string `tfsdk:"cidr" json:"cidr,omitempty"`
-			Start *string `tfsdk:"start" json:"start,omitempty"`
-			Stop  *string `tfsdk:"stop" json:"stop,omitempty"`
-		} `tfsdk:"cidrs" json:"cidrs,omitempty"`
 		Disabled        *bool `tfsdk:"disabled" json:"disabled,omitempty"`
 		ServiceSelector *struct {
 			MatchExpressions *[]struct {
@@ -144,41 +139,6 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 					"blocks": schema.ListNestedAttribute{
 						Description:         "Blocks is a list of CIDRs comprising this IP Pool",
 						MarkdownDescription: "Blocks is a list of CIDRs comprising this IP Pool",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"cidr": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"start": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"stop": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cidrs": schema.ListNestedAttribute{
-						Description:         "Cidrs is a list of CIDRs comprising this IP Pool Deprecated: please use the 'blocks' field instead. This field will be removed in a future release. https://github.com/cilium/cilium/issues/28590",
-						MarkdownDescription: "Cidrs is a list of CIDRs comprising this IP Pool Deprecated: please use the 'blocks' field instead. This field will be removed in a future release. https://github.com/cilium/cilium/issues/28590",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cidr": schema.StringAttribute{

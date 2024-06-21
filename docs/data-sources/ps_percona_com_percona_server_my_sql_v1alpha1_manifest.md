@@ -55,7 +55,6 @@ Optional:
 
 Optional:
 
-- `allow_unsafe_configurations` (Boolean)
 - `backup` (Attributes) (see [below for nested schema](#nestedatt--spec--backup))
 - `cr_version` (String)
 - `ignore_annotations` (List of String)
@@ -71,6 +70,7 @@ Optional:
 - `ssl_secret_name` (String)
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--tls))
 - `toolkit` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit))
+- `unsafe_flags` (Attributes) (see [below for nested schema](#nestedatt--spec--unsafe_flags))
 - `update_strategy` (String)
 - `upgrade_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade_options))
 
@@ -7448,6 +7448,18 @@ Optional:
 - `host` (String)
 
 
+
+
+<a id="nestedatt--spec--unsafe_flags"></a>
+### Nested Schema for `spec.unsafe_flags`
+
+Optional:
+
+- `mysql_size` (Boolean)
+- `orchestrator` (Boolean)
+- `orchestrator_size` (Boolean)
+- `proxy` (Boolean)
+- `proxy_size` (Boolean)
 
 
 <a id="nestedatt--spec--upgrade_options"></a>

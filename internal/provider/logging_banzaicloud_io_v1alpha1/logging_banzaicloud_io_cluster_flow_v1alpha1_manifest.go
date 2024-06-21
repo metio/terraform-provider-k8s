@@ -489,16 +489,18 @@ type LoggingBanzaicloudIoClusterFlowV1Alpha1ManifestData struct {
 		LoggingRef           *string   `tfsdk:"logging_ref" json:"loggingRef,omitempty"`
 		Match                *[]struct {
 			Exclude *struct {
-				Container_names *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
-				Hosts           *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
-				Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				Namespaces      *[]string          `tfsdk:"namespaces" json:"namespaces,omitempty"`
+				Container_names  *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
+				Hosts            *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
+				Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Namespace_labels *map[string]string `tfsdk:"namespace_labels" json:"namespace_labels,omitempty"`
+				Namespaces       *[]string          `tfsdk:"namespaces" json:"namespaces,omitempty"`
 			} `tfsdk:"exclude" json:"exclude,omitempty"`
 			Select *struct {
-				Container_names *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
-				Hosts           *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
-				Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				Namespaces      *[]string          `tfsdk:"namespaces" json:"namespaces,omitempty"`
+				Container_names  *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
+				Hosts            *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
+				Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Namespace_labels *map[string]string `tfsdk:"namespace_labels" json:"namespace_labels,omitempty"`
+				Namespaces       *[]string          `tfsdk:"namespaces" json:"namespaces,omitempty"`
 			} `tfsdk:"select" json:"select,omitempty"`
 		} `tfsdk:"match" json:"match,omitempty"`
 		OutputRefs *[]string          `tfsdk:"output_refs" json:"outputRefs,omitempty"`
@@ -3724,6 +3726,15 @@ func (r *LoggingBanzaicloudIoClusterFlowV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"namespace_labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"namespaces": schema.ListAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -3761,6 +3772,15 @@ func (r *LoggingBanzaicloudIoClusterFlowV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_labels": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
