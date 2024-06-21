@@ -69,7 +69,7 @@ Optional:
 - `storage_options` (Attributes) Options to customize the storage provisioned for the database and object storage. (see [below for nested schema](#nestedatt--spec--storage_options))
 - `target_connection_cache_options` (Attributes) Options to customize the target connections cache for the Cryostat application. (see [below for nested schema](#nestedatt--spec--target_connection_cache_options))
 - `target_discovery_options` (Attributes) Options to configure the Cryostat application's target discovery mechanisms. (see [below for nested schema](#nestedatt--spec--target_discovery_options))
-- `target_namespaces` (List of String) List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v2.4.0/docs/multi-namespace.md#data-isolation
+- `target_namespaces` (List of String) List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v3.0.0/docs/config.md#data-isolation
 - `trusted_cert_secrets` (Attributes List) List of TLS certificates to trust when connecting to targets. (see [below for nested schema](#nestedatt--spec--trusted_cert_secrets))
 
 <a id="nestedatt--spec--authorization_options"></a>

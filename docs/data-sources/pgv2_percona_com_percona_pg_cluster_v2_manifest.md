@@ -5460,11 +5460,14 @@ Optional:
 <a id="nestedatt--spec--extensions"></a>
 ### Nested Schema for `spec.extensions`
 
+Required:
+
+- `image` (String)
+
 Optional:
 
 - `builtin` (Attributes) (see [below for nested schema](#nestedatt--spec--extensions--builtin))
 - `custom` (Attributes List) (see [below for nested schema](#nestedatt--spec--extensions--custom))
-- `image` (String)
 - `image_pull_policy` (String) PullPolicy describes a policy for if/when to pull a container image
 - `storage` (Attributes) (see [below for nested schema](#nestedatt--spec--extensions--storage))
 

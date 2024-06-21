@@ -53,10 +53,13 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs))
+
 Optional:
 
 - `boolean_expr` (String)
-- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs))
 - `fail_on_redirect` (Boolean)
 - `namespaced_statuses` (Attributes) (see [below for nested schema](#nestedatt--spec--namespaced_statuses))
 
@@ -249,15 +252,18 @@ Optional:
 <a id="nestedatt--spec--configs--hmac_auth"></a>
 ### Nested Schema for `spec.configs.hmac_auth`
 
+Required:
+
+- `secret_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--hmac_auth--secret_refs))
+
 Optional:
 
 - `parameters_in_headers` (Map of String)
-- `secret_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--hmac_auth--secret_refs))
 
 <a id="nestedatt--spec--configs--hmac_auth--secret_refs"></a>
 ### Nested Schema for `spec.configs.hmac_auth.secret_refs`
 
-Optional:
+Required:
 
 - `secret_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs--hmac_auth--secret_refs--secret_refs))
 
@@ -275,9 +281,12 @@ Optional:
 <a id="nestedatt--spec--configs--ldap"></a>
 ### Nested Schema for `spec.configs.ldap`
 
-Optional:
+Required:
 
 - `address` (String)
+
+Optional:
+
 - `allowed_groups` (List of String)
 - `disable_group_checking` (Boolean)
 - `group_lookup_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--ldap--group_lookup_settings))
@@ -317,9 +326,12 @@ Optional:
 <a id="nestedatt--spec--configs--oauth"></a>
 ### Nested Schema for `spec.configs.oauth`
 
-Optional:
+Required:
 
 - `app_url` (String)
+
+Optional:
+
 - `auth_endpoint_query_params` (Map of String)
 - `callback_path` (String)
 - `client_id` (String)
@@ -362,12 +374,15 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--access_token_validation--introspection"></a>
 ### Nested Schema for `spec.configs.oauth2.access_token_validation.introspection`
 
+Required:
+
+- `introspection_url` (String)
+
 Optional:
 
 - `client_id` (String)
 - `client_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--access_token_validation--introspection--client_secret_ref))
 - `disable_client_secret` (Boolean)
-- `introspection_url` (String)
 - `user_id_attribute_name` (String)
 
 <a id="nestedatt--spec--configs--oauth2--access_token_validation--introspection--client_secret_ref"></a>
@@ -392,7 +407,7 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--access_token_validation--jwt--local_jwks"></a>
 ### Nested Schema for `spec.configs.oauth2.access_token_validation.jwt.local_jwks`
 
-Optional:
+Required:
 
 - `inline_string` (String)
 
@@ -400,10 +415,13 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--access_token_validation--jwt--remote_jwks"></a>
 ### Nested Schema for `spec.configs.oauth2.access_token_validation.jwt.remote_jwks`
 
+Required:
+
+- `url` (String)
+
 Optional:
 
 - `refresh_interval` (String)
-- `url` (String)
 
 
 
@@ -419,21 +437,24 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--oauth2"></a>
 ### Nested Schema for `spec.configs.oauth2.oauth2`
 
+Required:
+
+- `app_url` (String)
+- `auth_endpoint` (String)
+- `callback_path` (String)
+- `client_id` (String)
+- `token_endpoint` (String)
+
 Optional:
 
 - `after_logout_url` (String)
-- `app_url` (String)
-- `auth_endpoint` (String)
 - `auth_endpoint_query_params` (Map of String)
-- `callback_path` (String)
-- `client_id` (String)
 - `client_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oauth2--client_secret_ref))
 - `disable_client_secret` (Boolean)
 - `logout_path` (String)
 - `revocation_endpoint` (String)
 - `scopes` (List of String)
 - `session` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oauth2--session))
-- `token_endpoint` (String)
 - `token_endpoint_query_params` (Map of String)
 
 <a id="nestedatt--spec--configs--oauth2--oauth2--client_secret_ref"></a>
@@ -527,17 +548,21 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code"></a>
 ### Nested Schema for `spec.configs.oauth2.oidc_authorization_code`
 
+Required:
+
+- `app_url` (String)
+- `callback_path` (String)
+- `client_id` (String)
+- `issuer_url` (String)
+
 Optional:
 
 - `access_token` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--access_token))
 - `after_logout_url` (String)
-- `app_url` (String)
 - `auth_endpoint_query_params` (Map of String)
 - `auto_map_from_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--auto_map_from_metadata))
 - `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--azure))
-- `callback_path` (String)
 - `client_authentication` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication))
-- `client_id` (String)
 - `client_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--client_secret_ref))
 - `default` (Map of String)
 - `disable_client_secret` (Boolean)
@@ -547,7 +572,6 @@ Optional:
 - `end_session_properties` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--end_session_properties))
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--headers))
 - `identity_token` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token))
-- `issuer_url` (String)
 - `jwks_cache_refresh_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--jwks_cache_refresh_policy))
 - `logout_path` (String)
 - `parse_callback_path_as_regex` (Boolean)
@@ -643,9 +667,12 @@ Optional:
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt"></a>
 ### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt`
 
-Optional:
+Required:
 
 - `signing_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt--signing_key_ref))
+
+Optional:
+
 - `valid_for` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt--signing_key_ref"></a>
@@ -815,11 +842,14 @@ Optional:
 <a id="nestedatt--spec--configs--opa_auth"></a>
 ### Nested Schema for `spec.configs.opa_auth`
 
+Required:
+
+- `query` (String)
+
 Optional:
 
 - `modules` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs--opa_auth--modules))
 - `options` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--opa_auth--options))
-- `query` (String)
 
 <a id="nestedatt--spec--configs--opa_auth--modules"></a>
 ### Nested Schema for `spec.configs.opa_auth.modules`
@@ -843,10 +873,13 @@ Optional:
 <a id="nestedatt--spec--configs--opa_server_auth"></a>
 ### Nested Schema for `spec.configs.opa_server_auth`
 
+Required:
+
+- `package` (String)
+
 Optional:
 
 - `options` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--opa_server_auth--options))
-- `package` (String)
 - `rule_name` (String)
 - `server_addr` (String)
 
@@ -873,9 +906,12 @@ Optional:
 <a id="nestedatt--spec--configs--pass_through_auth--grpc"></a>
 ### Nested Schema for `spec.configs.pass_through_auth.grpc`
 
-Optional:
+Required:
 
 - `address` (String)
+
+Optional:
+
 - `connection_timeout` (String)
 - `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--pass_through_auth--grpc--retry_policy))
 - `tls_config` (Map of String)
@@ -902,12 +938,15 @@ Optional:
 <a id="nestedatt--spec--configs--pass_through_auth--http"></a>
 ### Nested Schema for `spec.configs.pass_through_auth.http`
 
+Required:
+
+- `url` (String)
+
 Optional:
 
 - `connection_timeout` (String)
 - `request` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--pass_through_auth--http--request))
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--pass_through_auth--http--response))
-- `url` (String)
 
 <a id="nestedatt--spec--configs--pass_through_auth--http--request"></a>
 ### Nested Schema for `spec.configs.pass_through_auth.http.request`
@@ -937,9 +976,12 @@ Optional:
 <a id="nestedatt--spec--configs--plugin_auth"></a>
 ### Nested Schema for `spec.configs.plugin_auth`
 
-Optional:
+Required:
 
 - `config` (Map of String)
+
+Optional:
+
 - `exported_symbol_name` (String)
 - `name` (String)
 - `plugin_file_name` (String)

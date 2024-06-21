@@ -66,6 +66,7 @@ Optional:
 
 - `admission_controller` (Attributes) AdmissionController configuration. (see [below for nested schema](#nestedatt--spec--features--admission_controller))
 - `apm` (Attributes) APM (Application Performance Monitoring) configuration. (see [below for nested schema](#nestedatt--spec--features--apm))
+- `asm` (Attributes) ASM (Application Security Management) configuration. (see [below for nested schema](#nestedatt--spec--features--asm))
 - `cluster_checks` (Attributes) ClusterChecks configuration. (see [below for nested schema](#nestedatt--spec--features--cluster_checks))
 - `cspm` (Attributes) CSPM (Cloud Security Posture Management) configuration. (see [below for nested schema](#nestedatt--spec--features--cspm))
 - `cws` (Attributes) CWS (Cloud Workload Security) configuration. (see [below for nested schema](#nestedatt--spec--features--cws))
@@ -73,6 +74,7 @@ Optional:
 - `ebpf_check` (Attributes) EBPFCheck configuration. (see [below for nested schema](#nestedatt--spec--features--ebpf_check))
 - `event_collection` (Attributes) EventCollection configuration. (see [below for nested schema](#nestedatt--spec--features--event_collection))
 - `external_metrics_server` (Attributes) ExternalMetricsServer configuration. (see [below for nested schema](#nestedatt--spec--features--external_metrics_server))
+- `helm_check` (Attributes) HelmCheck configuration. (see [below for nested schema](#nestedatt--spec--features--helm_check))
 - `kube_state_metrics_core` (Attributes) KubeStateMetricsCore check configuration. (see [below for nested schema](#nestedatt--spec--features--kube_state_metrics_core))
 - `live_container_collection` (Attributes) LiveContainerCollection configuration. (see [below for nested schema](#nestedatt--spec--features--live_container_collection))
 - `live_process_collection` (Attributes) LiveProcessCollection configuration. (see [below for nested schema](#nestedatt--spec--features--live_process_collection))
@@ -94,11 +96,203 @@ Optional:
 Optional:
 
 - `agent_communication_mode` (String) AgentCommunicationMode corresponds to the mode used by the Datadog application libraries to communicate with the Agent. It can be 'hostip', 'service', or 'socket'.
+- `agent_sidecar_injection` (Attributes) AgentSidecarInjection contains Agent sidecar injection configurations. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection))
+- `cws_instrumentation` (Attributes) CWSInstrumentation holds the CWS Instrumentation endpoint configuration (see [below for nested schema](#nestedatt--spec--features--admission_controller--cws_instrumentation))
 - `enabled` (Boolean) Enabled enables the Admission Controller. Default: true
 - `failure_policy` (String) FailurePolicy determines how unrecognized and timeout errors are handled.
 - `mutate_unlabelled` (Boolean) MutateUnlabelled enables config injection without the need of pod label 'admission.datadoghq.com/enabled='true''. Default: false
+- `registry` (String) Registry defines an image registry for the admission controller.
 - `service_name` (String) ServiceName corresponds to the webhook service name.
 - `webhook_name` (String) WebhookName is a custom name for the MutatingWebhookConfiguration. Default: 'datadog-webhook'
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection`
+
+Optional:
+
+- `cluster_agent_communication_enabled` (Boolean) ClusterAgentCommunicationEnabled enables communication between Agent sidecars and the Cluster Agent. Default : true
+- `enabled` (Boolean) Enabled enables Sidecar injections. Default: false
+- `image` (Attributes) Image overrides the default Agent image name and tag for the Agent sidecar. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--image))
+- `profiles` (Attributes List) Profiles define the sidecar configuration override. Only one profile is supported. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles))
+- `provider` (String) Provider is used to add infrastructure provider-specific configurations to the Agent sidecar. Currently only 'fargate' is supported. To use the feature in other environments (including local testing) omit the config. See also: https://docs.datadoghq.com/integrations/eks_fargate
+- `registry` (String) Registry overrides the default registry for the sidecar Agent.
+- `selectors` (Attributes List) Selectors define the pod selector for sidecar injection. Only one rule is supported. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors))
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--image"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.image`
+
+Optional:
+
+- `jmx_enabled` (Boolean) Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.
+- `name` (String) Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.
+- `pull_policy` (String) The Kubernetes pull policy: Use Always, Never, or IfNotPresent.
+- `pull_secrets` (Attributes List) It is possible to specify Docker registry credentials. See https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--image--pull_secrets))
+- `tag` (String) Define the image tag to use. To be used if the Name field does not correspond to a full image string.
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--image--pull_secrets"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.image.pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles`
+
+Optional:
+
+- `env` (Attributes List) EnvVars specifies the environment variables for the profile. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env))
+- `resources` (Attributes) ResourceRequirements specifies the resource requirements for the profile. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--resources))
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from))
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--field_ref"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--resources"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.resources`
+
+Optional:
+
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.selectors`
+
+Optional:
+
+- `namespace_selector` (Attributes) NamespaceSelector specifies the label selector for namespaces. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--namespace_selector))
+- `object_selector` (Attributes) ObjectSelector specifies the label selector for objects. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--object_selector))
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--namespace_selector"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.selectors.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.selectors.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--object_selector"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.selectors.object_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--object_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--selectors--object_selector--match_expressions"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.selectors.object_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--features--admission_controller--cws_instrumentation"></a>
+### Nested Schema for `spec.features.admission_controller.cws_instrumentation`
+
+Optional:
+
+- `enabled` (Boolean) Enable the CWS Instrumentation admission controller endpoint. Default: false
+- `mode` (String) Mode defines the behavior of the CWS Instrumentation endpoint, and can be either 'init_container' or 'remote_copy'. Default: 'remote_copy'
+
 
 
 <a id="nestedatt--spec--features--apm"></a>
@@ -108,6 +302,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled enables Application Performance Monitoring. Default: true
 - `host_port_config` (Attributes) HostPortConfig contains host port configuration. Enabled Default: false Port Default: 8126 (see [below for nested schema](#nestedatt--spec--features--apm--host_port_config))
+- `instrumentation` (Attributes) SingleStepInstrumentation allows the agent to inject the Datadog APM libraries into all pods in the cluster. Feature is in beta. See also: https://docs.datadoghq.com/tracing/trace_collection/single-step-apm Enabled Default: false (see [below for nested schema](#nestedatt--spec--features--apm--instrumentation))
 - `unix_domain_socket_config` (Attributes) UnixDomainSocketConfig contains socket configuration. See also: https://docs.datadoghq.com/agent/kubernetes/apm/?tab=helm#agent-environment-variables Enabled Default: true Path Default: '/var/run/datadog/apm.socket' (see [below for nested schema](#nestedatt--spec--features--apm--unix_domain_socket_config))
 
 <a id="nestedatt--spec--features--apm--host_port_config"></a>
@@ -119,6 +314,17 @@ Optional:
 - `host_port` (Number) Port takes a port number (0 < x < 65536) to expose on the host. (Most containers do not need this.) If HostNetwork is enabled, this value must match the ContainerPort.
 
 
+<a id="nestedatt--spec--features--apm--instrumentation"></a>
+### Nested Schema for `spec.features.apm.instrumentation`
+
+Optional:
+
+- `disabled_namespaces` (List of String) DisabledNamespaces disables injecting the Datadog APM libraries into pods in specific namespaces.
+- `enabled` (Boolean) Enabled enables injecting the Datadog APM libraries into all pods in the cluster. Default: false
+- `enabled_namespaces` (List of String) EnabledNamespaces enables injecting the Datadog APM libraries into pods in specific namespaces.
+- `lib_versions` (Map of String) LibVersions configures injection of specific tracing library versions with Single Step Instrumentation. <Library>: <Version> ex: 'java': 'v1.18.0'
+
+
 <a id="nestedatt--spec--features--apm--unix_domain_socket_config"></a>
 ### Nested Schema for `spec.features.apm.unix_domain_socket_config`
 
@@ -126,6 +332,40 @@ Optional:
 
 - `enabled` (Boolean) Enabled enables Unix Domain Socket. Default: true
 - `path` (String) Path defines the socket path used when enabled.
+
+
+
+<a id="nestedatt--spec--features--asm"></a>
+### Nested Schema for `spec.features.asm`
+
+Optional:
+
+- `iast` (Attributes) IAST configures Interactive Application Security Testing. Enabled Default: false (see [below for nested schema](#nestedatt--spec--features--asm--iast))
+- `sca` (Attributes) SCA configures Software Composition Analysis. Enabled Default: false (see [below for nested schema](#nestedatt--spec--features--asm--sca))
+- `threats` (Attributes) Threats configures ASM App & API Protection. Enabled Default: false (see [below for nested schema](#nestedatt--spec--features--asm--threats))
+
+<a id="nestedatt--spec--features--asm--iast"></a>
+### Nested Schema for `spec.features.asm.iast`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables Interactive Application Security Testing (IAST). Default: false
+
+
+<a id="nestedatt--spec--features--asm--sca"></a>
+### Nested Schema for `spec.features.asm.sca`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables Software Composition Analysis (SCA). Default: false
+
+
+<a id="nestedatt--spec--features--asm--threats"></a>
+### Nested Schema for `spec.features.asm.threats`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables ASM App & API Protection. Default: false
 
 
 
@@ -169,12 +409,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -221,12 +461,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -297,12 +537,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -390,6 +630,16 @@ Optional:
 
 
 
+<a id="nestedatt--spec--features--helm_check"></a>
+### Nested Schema for `spec.features.helm_check`
+
+Optional:
+
+- `collect_events` (Boolean) CollectEvents set to 'true' enables event collection in the Helm check (Requires Agent 7.36.0+ and Cluster Agent 1.20.0+) Default: false
+- `enabled` (Boolean) Enabled enables the Helm check. Default: false
+- `values_as_tags` (Map of String) ValuesAsTags collects Helm values from a release and uses them as tags (Requires Agent and Cluster Agent 7.40.0+). Default: {}
+
+
 <a id="nestedatt--spec--features--kube_state_metrics_core"></a>
 ### Nested Schema for `spec.features.kube_state_metrics_core`
 
@@ -419,12 +669,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -514,12 +764,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -654,12 +904,14 @@ Optional:
 - `disable_non_resource_rules` (Boolean) Set DisableNonResourceRules to exclude NonResourceURLs from default ClusterRoles. Required 'true' for Google Cloud Marketplace.
 - `docker_socket_path` (String) Path to the docker runtime socket.
 - `endpoint` (Attributes) Endpoint is the Datadog intake URL the Agent data are sent to. Only set this option if you need the Agent to send data to a custom URL. Overrides the site setting defined in 'Site'. (see [below for nested schema](#nestedatt--spec--global--endpoint))
+- `fips` (Attributes) FIPS contains configuration used to customize the FIPS proxy sidecar. (see [below for nested schema](#nestedatt--spec--global--fips))
 - `kubelet` (Attributes) Kubelet contains the kubelet configuration parameters. (see [below for nested schema](#nestedatt--spec--global--kubelet))
 - `local_service` (Attributes) LocalService contains configuration to customize the internal traffic policy service. (see [below for nested schema](#nestedatt--spec--global--local_service))
 - `log_level` (String) LogLevel sets logging verbosity. This can be overridden by container. Valid log levels are: trace, debug, info, warn, error, critical, and off. Default: 'info'
 - `namespace_labels_as_tags` (Map of String) Provide a mapping of Kubernetes Namespace Labels to Datadog Tags. <KUBERNETES_NAMESPACE_LABEL>: <DATADOG_TAG_KEY>
 - `network_policy` (Attributes) NetworkPolicy contains the network configuration. (see [below for nested schema](#nestedatt--spec--global--network_policy))
 - `node_labels_as_tags` (Map of String) Provide a mapping of Kubernetes Node Labels to Datadog Tags. <KUBERNETES_NODE_LABEL>: <DATADOG_TAG_KEY>
+- `origin_detection_unified` (Attributes) OriginDetectionUnified defines the origin detection unified mechanism behavior. (see [below for nested schema](#nestedatt--spec--global--origin_detection_unified))
 - `pod_annotations_as_tags` (Map of String) Provide a mapping of Kubernetes Annotations to Datadog Tags. <KUBERNETES_ANNOTATIONS>: <DATADOG_TAG_KEY>
 - `pod_labels_as_tags` (Map of String) Provide a mapping of Kubernetes Labels to Datadog Tags. <KUBERNETES_LABEL>: <DATADOG_TAG_KEY>
 - `registry` (String) Registry is the image registry to use for all Agent images. Use 'public.ecr.aws/datadog' for AWS ECR. Use 'docker.io/datadog' for DockerHub. Default: 'gcr.io/datadoghq'
@@ -754,6 +1006,81 @@ Optional:
 
 - `key_name` (String) KeyName is the key of the secret to use.
 
+
+
+
+<a id="nestedatt--spec--global--fips"></a>
+### Nested Schema for `spec.global.fips`
+
+Optional:
+
+- `custom_fips_config` (Attributes) CustomFIPSConfig configures a custom configMap to provide the FIPS configuration. Specify custom contents for the FIPS proxy sidecar container config (/etc/datadog-fips-proxy/datadog-fips-proxy.cfg). If empty, the default FIPS proxy sidecar container config is used. (see [below for nested schema](#nestedatt--spec--global--fips--custom_fips_config))
+- `enabled` (Boolean) Enable FIPS sidecar.
+- `image` (Attributes) The container image of the FIPS sidecar. (see [below for nested schema](#nestedatt--spec--global--fips--image))
+- `local_address` (String) Set the local IP address. Default: '127.0.0.1'
+- `port` (Number) Port specifies which port is used by the containers to communicate to the FIPS sidecar. Default: 9803
+- `port_range` (Number) PortRange specifies the number of ports used. Default: 15
+- `resources` (Attributes) Resources is the requests and limits for the FIPS sidecar container. (see [below for nested schema](#nestedatt--spec--global--fips--resources))
+- `use_https` (Boolean) UseHTTPS enables HTTPS. Default: false
+
+<a id="nestedatt--spec--global--fips--custom_fips_config"></a>
+### Nested Schema for `spec.global.fips.custom_fips_config`
+
+Optional:
+
+- `config_data` (String) ConfigData corresponds to the configuration file content.
+- `config_map` (Attributes) ConfigMap references an existing ConfigMap with the configuration file content. (see [below for nested schema](#nestedatt--spec--global--fips--custom_fips_config--config_map))
+
+<a id="nestedatt--spec--global--fips--custom_fips_config--config_map"></a>
+### Nested Schema for `spec.global.fips.custom_fips_config.config_map`
+
+Optional:
+
+- `items` (Attributes List) Items maps a ConfigMap data 'key' to a file 'path' mount. (see [below for nested schema](#nestedatt--spec--global--fips--custom_fips_config--config_map--items))
+- `name` (String) Name is the name of the ConfigMap.
+
+<a id="nestedatt--spec--global--fips--custom_fips_config--config_map--items"></a>
+### Nested Schema for `spec.global.fips.custom_fips_config.config_map.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+
+<a id="nestedatt--spec--global--fips--image"></a>
+### Nested Schema for `spec.global.fips.image`
+
+Optional:
+
+- `jmx_enabled` (Boolean) Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.
+- `name` (String) Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.
+- `pull_policy` (String) The Kubernetes pull policy: Use Always, Never, or IfNotPresent.
+- `pull_secrets` (Attributes List) It is possible to specify Docker registry credentials. See https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--global--fips--image--pull_secrets))
+- `tag` (String) Define the image tag to use. To be used if the Name field does not correspond to a full image string.
+
+<a id="nestedatt--spec--global--fips--image--pull_secrets"></a>
+### Nested Schema for `spec.global.fips.image.pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--global--fips--resources"></a>
+### Nested Schema for `spec.global.fips.resources`
+
+Optional:
+
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 
@@ -869,6 +1196,14 @@ Optional:
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
+
+
+<a id="nestedatt--spec--global--origin_detection_unified"></a>
+### Nested Schema for `spec.global.origin_detection_unified`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables unified mechanism for origin detection. Default: false
 
 
 
@@ -1030,8 +1365,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--override--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.override.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1089,8 +1424,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--override--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.override.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1164,8 +1499,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1223,8 +1558,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1374,7 +1709,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -1447,7 +1782,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -1551,12 +1886,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1661,12 +1996,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1767,12 +2102,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1798,12 +2133,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1905,52 +2240,52 @@ Optional:
 
 Required:
 
-- `name` (String) Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--override--volumes--aws_elastic_block_store))
-- `azure_disk` (Attributes) AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--azure_disk))
-- `azure_file` (Attributes) AzureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--azure_file))
-- `cephfs` (Attributes) CephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--override--volumes--cephfs))
-- `cinder` (Attributes) Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--cinder))
-- `config_map` (Attributes) ConfigMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--override--volumes--config_map))
-- `csi` (Attributes) CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--override--volumes--csi))
-- `downward_api` (Attributes) DownwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--override--volumes--downward_api))
-- `empty_dir` (Attributes) EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--override--volumes--empty_dir))
-- `ephemeral` (Attributes) Ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral))
-- `fc` (Attributes) FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--fc))
-- `flex_volume` (Attributes) FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--override--volumes--flex_volume))
-- `flocker` (Attributes) Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--override--volumes--flocker))
-- `gce_persistent_disk` (Attributes) GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--override--volumes--gce_persistent_disk))
-- `git_repo` (Attributes) GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--override--volumes--git_repo))
-- `glusterfs` (Attributes) Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--glusterfs))
-- `host_path` (Attributes) HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--override--volumes--host_path))
-- `iscsi` (Attributes) ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--iscsi))
-- `nfs` (Attributes) NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--override--volumes--nfs))
-- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--override--volumes--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--photon_persistent_disk))
-- `portworx_volume` (Attributes) PortworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--portworx_volume))
-- `projected` (Attributes) Items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--override--volumes--projected))
-- `quobyte` (Attributes) Quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--override--volumes--quobyte))
-- `rbd` (Attributes) RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--rbd))
-- `scale_io` (Attributes) ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--override--volumes--scale_io))
-- `secret` (Attributes) Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--override--volumes--secret))
-- `storageos` (Attributes) StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--override--volumes--storageos))
-- `vsphere_volume` (Attributes) VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--override--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--override--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--override--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--override--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--override--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--override--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--override--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--override--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--override--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--override--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--override--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--override--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--override--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--override--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--override--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--override--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--override--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--override--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--override--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--override--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--override--volumes--aws_elastic_block_store"></a>
 ### Nested Schema for `spec.override.volumes.aws_elastic_block_store`
 
 Required:
 
-- `volume_id` (String) Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+- `volume_id` (String) volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 
 Optional:
 
-- `fs_type` (String) Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine
-- `partition` (Number) The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
-- `read_only` (Boolean) Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
+- `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 
 
 <a id="nestedatt--spec--override--volumes--azure_disk"></a>
@@ -1958,15 +2293,15 @@ Optional:
 
 Required:
 
-- `disk_name` (String) The Name of the data disk in the blob storage
-- `disk_uri` (String) The URI the data disk in the blob storage
+- `disk_name` (String) diskName is the Name of the data disk in the blob storage
+- `disk_uri` (String) diskURI is the URI of data disk in the blob storage
 
 Optional:
 
-- `caching_mode` (String) Host Caching mode: None, Read Only, Read Write.
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
-- `kind` (String) Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
-- `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `caching_mode` (String) cachingMode is the Host Caching mode: None, Read Only, Read Write.
+- `fs_type` (String) fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `kind` (String) kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
 <a id="nestedatt--spec--override--volumes--azure_file"></a>
@@ -1974,12 +2309,12 @@ Optional:
 
 Required:
 
-- `secret_name` (String) the name of secret that contains Azure Storage Account Name and Key
-- `share_name` (String) Share Name
+- `secret_name` (String) secretName is the  name of secret that contains Azure Storage Account Name and Key
+- `share_name` (String) shareName is the azure share Name
 
 Optional:
 
-- `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
 <a id="nestedatt--spec--override--volumes--cephfs"></a>
@@ -1987,15 +2322,15 @@ Optional:
 
 Required:
 
-- `monitors` (List of String) Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `monitors` (List of String) monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 Optional:
 
-- `path` (String) Optional: Used as the mounted root, rather than the full Ceph tree, default is /
-- `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_file` (String) Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--override--volumes--cephfs--secret_ref))
-- `user` (String) Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--override--volumes--cephfs--secret_ref))
+- `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--override--volumes--cephfs--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.cephfs.secret_ref`
@@ -2011,13 +2346,13 @@ Optional:
 
 Required:
 
-- `volume_id` (String) volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `volume_id` (String) volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) Optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--override--volumes--cinder--secret_ref))
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--override--volumes--cinder--secret_ref))
 
 <a id="nestedatt--spec--override--volumes--cinder--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.cinder.secret_ref`
@@ -2033,22 +2368,22 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--config_map--items))
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--override--volumes--config_map--items"></a>
 ### Nested Schema for `spec.override.volumes.config_map.items`
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -2057,14 +2392,14 @@ Optional:
 
 Required:
 
-- `driver` (String) Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+- `driver` (String) driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--override--volumes--csi--node_publish_secret_ref))
-- `read_only` (Boolean) Specifies a read-only configuration for the volume. Defaults to false (read/write).
-- `volume_attributes` (Map of String) VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+- `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--override--volumes--csi--node_publish_secret_ref))
+- `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
+- `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--override--volumes--csi--node_publish_secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.csi.node_publish_secret_ref`
@@ -2128,8 +2463,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--override--volumes--ephemeral"></a>
@@ -2155,14 +2490,14 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources))
-- `selector` (Attributes) A label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--selector))
-- `storage_class_name` (String) Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
-- `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
 ### Nested Schema for `spec.override.volumes.ephemeral.volume_claim_template.spec.data_source`
@@ -2229,11 +2564,11 @@ Optional:
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine
-- `lun` (Number) Optional: FC target lun number
-- `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `target_ww_ns` (List of String) Optional: FC target worldwide names (WWNs)
-- `wwids` (List of String) Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine
+- `lun` (Number) lun is Optional: FC target lun number
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `target_ww_ns` (List of String) targetWWNs is Optional: FC target worldwide names (WWNs)
+- `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
 
 
 <a id="nestedatt--spec--override--volumes--flex_volume"></a>
@@ -2241,14 +2576,14 @@ Optional:
 
 Required:
 
-- `driver` (String) Driver is the name of the driver to use for this volume.
+- `driver` (String) driver is the name of the driver to use for this volume.
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
-- `options` (Map of String) Optional: Extra command options if any.
-- `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--override--volumes--flex_volume--secret_ref))
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
+- `options` (Map of String) options is Optional: this field holds extra command options if any.
+- `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--override--volumes--flex_volume--secret_ref))
 
 <a id="nestedatt--spec--override--volumes--flex_volume--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.flex_volume.secret_ref`
@@ -2264,8 +2599,8 @@ Optional:
 
 Optional:
 
-- `dataset_name` (String) Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
-- `dataset_uuid` (String) UUID of the dataset. This is unique identifier of a Flocker dataset
+- `dataset_name` (String) datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
+- `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
 
 
 <a id="nestedatt--spec--override--volumes--gce_persistent_disk"></a>
@@ -2273,13 +2608,13 @@ Optional:
 
 Required:
 
-- `pd_name` (String) Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `pd_name` (String) pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 
 Optional:
 
-- `fs_type` (String) Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine
-- `partition` (Number) The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
-- `read_only` (Boolean) ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `fs_type` (String) fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 
 
 <a id="nestedatt--spec--override--volumes--git_repo"></a>
@@ -2287,12 +2622,12 @@ Optional:
 
 Required:
 
-- `repository` (String) Repository URL
+- `repository` (String) repository is the URL
 
 Optional:
 
-- `directory` (String) Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
-- `revision` (String) Commit hash for the specified revision.
+- `directory` (String) directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+- `revision` (String) revision is the commit hash for the specified revision.
 
 
 <a id="nestedatt--spec--override--volumes--glusterfs"></a>
@@ -2300,12 +2635,12 @@ Optional:
 
 Required:
 
-- `endpoints` (String) EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
-- `path` (String) Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `endpoints` (String) endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `path` (String) path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
 
 Optional:
 
-- `read_only` (Boolean) ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
 
 
 <a id="nestedatt--spec--override--volumes--host_path"></a>
@@ -2313,11 +2648,11 @@ Optional:
 
 Required:
 
-- `path` (String) Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
 
 Optional:
 
-- `type` (String) Type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
 
 
 <a id="nestedatt--spec--override--volumes--iscsi"></a>
@@ -2325,20 +2660,20 @@ Optional:
 
 Required:
 
-- `iqn` (String) Target iSCSI Qualified Name.
-- `lun` (Number) iSCSI Target Lun number.
-- `target_portal` (String) iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+- `iqn` (String) iqn is the target iSCSI Qualified Name.
+- `lun` (Number) lun represents iSCSI Target Lun number.
+- `target_portal` (String) targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 
 Optional:
 
-- `chap_auth_discovery` (Boolean) whether support iSCSI Discovery CHAP authentication
-- `chap_auth_session` (Boolean) whether support iSCSI Session CHAP authentication
-- `fs_type` (String) Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine
-- `initiator_name` (String) Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
-- `iscsi_interface` (String) iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
-- `portals` (List of String) iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
-- `read_only` (Boolean) ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--override--volumes--iscsi--secret_ref))
+- `chap_auth_discovery` (Boolean) chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
+- `chap_auth_session` (Boolean) chapAuthSession defines whether support iSCSI Session CHAP authentication
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine
+- `initiator_name` (String) initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+- `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+- `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--override--volumes--iscsi--secret_ref))
 
 <a id="nestedatt--spec--override--volumes--iscsi--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.iscsi.secret_ref`
@@ -2354,12 +2689,12 @@ Optional:
 
 Required:
 
-- `path` (String) Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
-- `server` (String) Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `path` (String) path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `server` (String) server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
 
 Optional:
 
-- `read_only` (Boolean) ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
 
 
 <a id="nestedatt--spec--override--volumes--persistent_volume_claim"></a>
@@ -2367,11 +2702,11 @@ Optional:
 
 Required:
 
-- `claim_name` (String) ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
 
 Optional:
 
-- `read_only` (Boolean) Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
 
 
 <a id="nestedatt--spec--override--volumes--photon_persistent_disk"></a>
@@ -2379,11 +2714,11 @@ Optional:
 
 Required:
 
-- `pd_id` (String) ID that identifies Photon Controller persistent disk
+- `pd_id` (String) pdID is the ID that identifies Photon Controller persistent disk
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 
 
 <a id="nestedatt--spec--override--volumes--portworx_volume"></a>
@@ -2391,12 +2726,12 @@ Optional:
 
 Required:
 
-- `volume_id` (String) VolumeID uniquely identifies a Portworx volume
+- `volume_id` (String) volumeID uniquely identifies a Portworx volume
 
 Optional:
 
-- `fs_type` (String) FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.
-- `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `fs_type` (String) fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
 <a id="nestedatt--spec--override--volumes--projected"></a>
@@ -2404,39 +2739,39 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) list of volume projections (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources))
+- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources))
 
 <a id="nestedatt--spec--override--volumes--projected--sources"></a>
 ### Nested Schema for `spec.override.volumes.projected.sources`
 
 Optional:
 
-- `config_map` (Attributes) information about the configMap data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--config_map))
-- `downward_api` (Attributes) information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--downward_api))
-- `secret` (Attributes) information about the secret data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--secret))
-- `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--service_account_token))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--override--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.override.volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--config_map--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--override--volumes--projected--sources--config_map--items"></a>
 ### Nested Schema for `spec.override.volumes.projected.sources.config_map.items`
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -2492,21 +2827,21 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--override--volumes--projected--sources--secret--items"></a>
 ### Nested Schema for `spec.override.volumes.projected.sources.secret.items`
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -2515,12 +2850,12 @@ Optional:
 
 Required:
 
-- `path` (String) Path is the path relative to the mount point of the file to project the token into.
+- `path` (String) path is the path relative to the mount point of the file to project the token into.
 
 Optional:
 
-- `audience` (String) Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
-- `expiration_seconds` (Number) ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
 
 
 
@@ -2530,15 +2865,15 @@ Optional:
 
 Required:
 
-- `registry` (String) Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
-- `volume` (String) Volume is a string that references an already created Quobyte volume by name.
+- `registry` (String) registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
+- `volume` (String) volume is a string that references an already created Quobyte volume by name.
 
 Optional:
 
-- `group` (String) Group to map volume access to Default is no group
-- `read_only` (Boolean) ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
-- `tenant` (String) Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
-- `user` (String) User to map volume access to Defaults to serivceaccount user
+- `group` (String) group to map volume access to Default is no group
+- `read_only` (Boolean) readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
+- `tenant` (String) tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
+- `user` (String) user to map volume access to Defaults to serivceaccount user
 
 
 <a id="nestedatt--spec--override--volumes--rbd"></a>
@@ -2546,17 +2881,17 @@ Optional:
 
 Required:
 
-- `image` (String) The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `monitors` (List of String) A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `image` (String) image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `monitors` (List of String) monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 Optional:
 
-- `fs_type` (String) Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine
-- `keyring` (String) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `pool` (String) The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `read_only` (Boolean) ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--override--volumes--rbd--secret_ref))
-- `user` (String) The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine
+- `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--override--volumes--rbd--secret_ref))
+- `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--override--volumes--rbd--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.rbd.secret_ref`
@@ -2572,19 +2907,19 @@ Optional:
 
 Required:
 
-- `gateway` (String) The host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--override--volumes--scale_io--secret_ref))
-- `system` (String) The name of the storage system as configured in ScaleIO.
+- `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--override--volumes--scale_io--secret_ref))
+- `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.
-- `protection_domain` (String) The name of the ScaleIO Protection Domain for the configured storage.
-- `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `ssl_enabled` (Boolean) Flag to enable/disable SSL communication with Gateway, default false
-- `storage_mode` (String) Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
-- `storage_pool` (String) The ScaleIO Storage Pool associated with the protection domain.
-- `volume_name` (String) The name of a volume already created in the ScaleIO system that is associated with this volume source.
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.
+- `protection_domain` (String) protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `ssl_enabled` (Boolean) sslEnabled Flag enable/disable SSL communication with Gateway, default false
+- `storage_mode` (String) storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+- `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
+- `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--override--volumes--scale_io--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.scale_io.secret_ref`
@@ -2600,22 +2935,22 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--secret--items))
-- `optional` (Boolean) Specify whether the Secret or its keys must be defined
-- `secret_name` (String) Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--override--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--override--volumes--secret--items"></a>
 ### Nested Schema for `spec.override.volumes.secret.items`
 
 Required:
 
-- `key` (String) The key to project.
-- `path` (String) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -2624,11 +2959,11 @@ Optional:
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
-- `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--override--volumes--storageos--secret_ref))
-- `volume_name` (String) VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
-- `volume_namespace` (String) VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--override--volumes--storageos--secret_ref))
+- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--override--volumes--storageos--secret_ref"></a>
 ### Nested Schema for `spec.override.volumes.storageos.secret_ref`
@@ -2644,10 +2979,10 @@ Optional:
 
 Required:
 
-- `volume_path` (String) Path that identifies vSphere volume vmdk
+- `volume_path` (String) volumePath is the path that identifies vSphere volume vmdk
 
 Optional:
 
-- `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
-- `storage_policy_id` (String) Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
-- `storage_policy_name` (String) Storage Policy Based Management (SPBM) profile name.
+- `fs_type` (String) fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `storage_policy_id` (String) storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
+- `storage_policy_name` (String) storagePolicyName is the storage Policy Based Management (SPBM) profile name.

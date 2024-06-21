@@ -109,6 +109,8 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		FeatureGates           *string `tfsdk:"feature_gates" json:"featureGates,omitempty"`
 		FloatingIPs            *string `tfsdk:"floating_i_ps" json:"floatingIPs,omitempty"`
 		GenericXDPEnabled      *bool   `tfsdk:"generic_xdp_enabled" json:"genericXDPEnabled,omitempty"`
+		GoGCThreshold          *int64  `tfsdk:"go_gc_threshold" json:"goGCThreshold,omitempty"`
+		GoMemoryLimitMB        *int64  `tfsdk:"go_memory_limit_mb" json:"goMemoryLimitMB,omitempty"`
 		HealthEnabled          *bool   `tfsdk:"health_enabled" json:"healthEnabled,omitempty"`
 		HealthHost             *string `tfsdk:"health_host" json:"healthHost,omitempty"`
 		HealthPort             *int64  `tfsdk:"health_port" json:"healthPort,omitempty"`
@@ -830,6 +832,22 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					"generic_xdp_enabled": schema.BoolAttribute{
 						Description:         "GenericXDPEnabled enables Generic XDP so network cards that don't support XDP offload or driver modes can use XDP. This is not recommended since it doesn't provide better performance than iptables. [Default: false]",
 						MarkdownDescription: "GenericXDPEnabled enables Generic XDP so network cards that don't support XDP offload or driver modes can use XDP. This is not recommended since it doesn't provide better performance than iptables. [Default: false]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"go_gc_threshold": schema.Int64Attribute{
+						Description:         "GoGCThreshold Sets the Go runtime's garbage collection threshold.  I.e. the percentage that the heap is allowed to grow before garbage collection is triggered.  In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead.  A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting.  This setting is overridden by the GOGC environment variable.  [Default: 40]",
+						MarkdownDescription: "GoGCThreshold Sets the Go runtime's garbage collection threshold.  I.e. the percentage that the heap is allowed to grow before garbage collection is triggered.  In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead.  A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting.  This setting is overridden by the GOGC environment variable.  [Default: 40]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"go_memory_limit_mb": schema.Int64Attribute{
+						Description:         "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
+						MarkdownDescription: "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

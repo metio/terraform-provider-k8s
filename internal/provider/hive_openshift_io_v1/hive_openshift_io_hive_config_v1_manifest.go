@@ -148,9 +148,10 @@ type HiveOpenshiftIoHiveConfigV1ManifestData struct {
 		GlobalPullSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"global_pull_secret_ref" json:"globalPullSecretRef,omitempty"`
-		LogLevel        *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-		MaintenanceMode *bool   `tfsdk:"maintenance_mode" json:"maintenanceMode,omitempty"`
-		ManagedDomains  *[]struct {
+		LogLevel                *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+		MachinePoolPollInterval *string `tfsdk:"machine_pool_poll_interval" json:"machinePoolPollInterval,omitempty"`
+		MaintenanceMode         *bool   `tfsdk:"maintenance_mode" json:"maintenanceMode,omitempty"`
+		ManagedDomains          *[]struct {
 			Aws *struct {
 				CredentialsSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -955,6 +956,14 @@ func (r *HiveOpenshiftIoHiveConfigV1Manifest) Schema(_ context.Context, _ dataso
 					"log_level": schema.StringAttribute{
 						Description:         "LogLevel is the level of logging to use for the Hive controllers. Acceptable levels, from coarsest to finest, are panic, fatal, error, warn, info, debug, and trace. The default level is info.",
 						MarkdownDescription: "LogLevel is the level of logging to use for the Hive controllers. Acceptable levels, from coarsest to finest, are panic, fatal, error, warn, info, debug, and trace. The default level is info.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"machine_pool_poll_interval": schema.StringAttribute{
+						Description:         "MachinePoolPollInterval is a string duration indicating how much time must pass before checking whether remote resources related to MachinePools need to be reapplied. Set to zero to disable polling -- we'll only reconcile when hub objects change. The default interval is 30m.",
+						MarkdownDescription: "MachinePoolPollInterval is a string duration indicating how much time must pass before checking whether remote resources related to MachinePools need to be reapplied. Set to zero to disable polling -- we'll only reconcile when hub objects change. The default interval is 30m.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

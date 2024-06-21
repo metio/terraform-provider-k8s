@@ -65,8 +65,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Metadata(_ context.C
 
 func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "",
-		MarkdownDescription: "",
+		Description:         "GrafanaFolder is the Schema for the grafanafolders API",
+		MarkdownDescription: "GrafanaFolder is the Schema for the grafanafolders API",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -133,45 +133,45 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "GrafanaFolderSpec defines the desired state of GrafanaFolder",
+				MarkdownDescription: "GrafanaFolderSpec defines the desired state of GrafanaFolder",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "allow to import this resources from an operator in a different namespace",
+						MarkdownDescription: "allow to import this resources from an operator in a different namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "selects Grafanas for import",
+						MarkdownDescription: "selects Grafanas for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -185,8 +185,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -199,16 +199,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"permissions": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "raw json with folder permissions",
+						MarkdownDescription: "raw json with folder permissions",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "how often the folder is synced, defaults to 5m if not set",
+						MarkdownDescription: "how often the folder is synced, defaults to 5m if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

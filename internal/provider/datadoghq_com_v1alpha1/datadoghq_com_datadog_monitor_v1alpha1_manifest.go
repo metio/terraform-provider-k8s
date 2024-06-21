@@ -49,18 +49,22 @@ type DatadoghqComDatadogMonitorV1Alpha1ManifestData struct {
 		Message *string `tfsdk:"message" json:"message,omitempty"`
 		Name    *string `tfsdk:"name" json:"name,omitempty"`
 		Options *struct {
-			EnableLogsSample       *bool   `tfsdk:"enable_logs_sample" json:"enableLogsSample,omitempty"`
-			EscalationMessage      *string `tfsdk:"escalation_message" json:"escalationMessage,omitempty"`
-			EvaluationDelay        *int64  `tfsdk:"evaluation_delay" json:"evaluationDelay,omitempty"`
-			IncludeTags            *bool   `tfsdk:"include_tags" json:"includeTags,omitempty"`
-			Locked                 *bool   `tfsdk:"locked" json:"locked,omitempty"`
-			NewGroupDelay          *int64  `tfsdk:"new_group_delay" json:"newGroupDelay,omitempty"`
-			NoDataTimeframe        *int64  `tfsdk:"no_data_timeframe" json:"noDataTimeframe,omitempty"`
-			NotificationPresetName *string `tfsdk:"notification_preset_name" json:"notificationPresetName,omitempty"`
-			NotifyAudit            *bool   `tfsdk:"notify_audit" json:"notifyAudit,omitempty"`
-			NotifyNoData           *bool   `tfsdk:"notify_no_data" json:"notifyNoData,omitempty"`
-			RenotifyInterval       *int64  `tfsdk:"renotify_interval" json:"renotifyInterval,omitempty"`
-			RequireFullWindow      *bool   `tfsdk:"require_full_window" json:"requireFullWindow,omitempty"`
+			EnableLogsSample       *bool     `tfsdk:"enable_logs_sample" json:"enableLogsSample,omitempty"`
+			EscalationMessage      *string   `tfsdk:"escalation_message" json:"escalationMessage,omitempty"`
+			EvaluationDelay        *int64    `tfsdk:"evaluation_delay" json:"evaluationDelay,omitempty"`
+			GroupbySimpleMonitor   *bool     `tfsdk:"groupby_simple_monitor" json:"groupbySimpleMonitor,omitempty"`
+			IncludeTags            *bool     `tfsdk:"include_tags" json:"includeTags,omitempty"`
+			Locked                 *bool     `tfsdk:"locked" json:"locked,omitempty"`
+			NewGroupDelay          *int64    `tfsdk:"new_group_delay" json:"newGroupDelay,omitempty"`
+			NoDataTimeframe        *int64    `tfsdk:"no_data_timeframe" json:"noDataTimeframe,omitempty"`
+			NotificationPresetName *string   `tfsdk:"notification_preset_name" json:"notificationPresetName,omitempty"`
+			NotifyAudit            *bool     `tfsdk:"notify_audit" json:"notifyAudit,omitempty"`
+			NotifyBy               *[]string `tfsdk:"notify_by" json:"notifyBy,omitempty"`
+			NotifyNoData           *bool     `tfsdk:"notify_no_data" json:"notifyNoData,omitempty"`
+			OnMissingData          *string   `tfsdk:"on_missing_data" json:"onMissingData,omitempty"`
+			RenotifyInterval       *int64    `tfsdk:"renotify_interval" json:"renotifyInterval,omitempty"`
+			RenotifyOccurrences    *int64    `tfsdk:"renotify_occurrences" json:"renotifyOccurrences,omitempty"`
+			RequireFullWindow      *bool     `tfsdk:"require_full_window" json:"requireFullWindow,omitempty"`
 			ThresholdWindows       *struct {
 				RecoveryWindow *string `tfsdk:"recovery_window" json:"recoveryWindow,omitempty"`
 				TriggerWindow  *string `tfsdk:"trigger_window" json:"triggerWindow,omitempty"`
@@ -221,6 +225,14 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"groupby_simple_monitor": schema.BoolAttribute{
+								Description:         "A Boolean indicating whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.",
+								MarkdownDescription: "A Boolean indicating whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"include_tags": schema.BoolAttribute{
 								Description:         "A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.",
 								MarkdownDescription: "A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.",
@@ -269,6 +281,15 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"notify_by": schema.ListAttribute{
+								Description:         "A string indicating the granularity a monitor alerts on. Only available for monitors with groupings. For instance, a monitor grouped by cluster, namespace, and pod can be configured to only notify on each new cluster violating the alert conditions by setting notify_by to ['cluster']. Tags mentioned in notify_by must be a subset of the grouping tags in the query. For example, a query grouped by cluster and namespace cannot notify on region. Setting notify_by to [*] configures the monitor to notify as a simple-alert.",
+								MarkdownDescription: "A string indicating the granularity a monitor alerts on. Only available for monitors with groupings. For instance, a monitor grouped by cluster, namespace, and pod can be configured to only notify on each new cluster violating the alert conditions by setting notify_by to ['cluster']. Tags mentioned in notify_by must be a subset of the grouping tags in the query. For example, a query grouped by cluster and namespace cannot notify on region. Setting notify_by to [*] configures the monitor to notify as a simple-alert.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"notify_no_data": schema.BoolAttribute{
 								Description:         "A Boolean indicating whether this monitor notifies when data stops reporting.",
 								MarkdownDescription: "A Boolean indicating whether this monitor notifies when data stops reporting.",
@@ -277,9 +298,25 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"on_missing_data": schema.StringAttribute{
+								Description:         "An enum that controls how groups or monitors are treated if an evaluation does not return data points. The default option results in different behavior depending on the monitor query type. For monitors using Count queries, an empty monitor evaluation is treated as 0 and is compared to the threshold conditions. For monitors using any query type other than Count, for example Gauge, Measure, or Rate, the monitor shows the last known status. This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors",
+								MarkdownDescription: "An enum that controls how groups or monitors are treated if an evaluation does not return data points. The default option results in different behavior depending on the monitor query type. For monitors using Count queries, an empty monitor evaluation is treated as 0 and is compared to the threshold conditions. For monitors using any query type other than Count, for example Gauge, Measure, or Rate, the monitor shows the last known status. This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"renotify_interval": schema.Int64Attribute{
 								Description:         "The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved.",
 								MarkdownDescription: "The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"renotify_occurrences": schema.Int64Attribute{
+								Description:         "The number of times re-notification messages should be sent on the current status at the provided re-notification interval.",
+								MarkdownDescription: "The number of times re-notification messages should be sent on the current status at the provided re-notification interval.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

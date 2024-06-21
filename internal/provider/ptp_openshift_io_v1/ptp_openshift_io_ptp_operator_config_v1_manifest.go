@@ -46,6 +46,7 @@ type PtpOpenshiftIoPtpOperatorConfigV1ManifestData struct {
 		DaemonNodeSelector *map[string]string `tfsdk:"daemon_node_selector" json:"daemonNodeSelector,omitempty"`
 		Plugins            *map[string]string `tfsdk:"plugins" json:"plugins,omitempty"`
 		PtpEventConfig     *struct {
+			ApiVersion           *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			EnableEventPublisher *bool   `tfsdk:"enable_event_publisher" json:"enableEventPublisher,omitempty"`
 			StorageType          *string `tfsdk:"storage_type" json:"storageType,omitempty"`
 			TransportHost        *string `tfsdk:"transport_host" json:"transportHost,omitempty"`
@@ -152,6 +153,14 @@ func (r *PtpOpenshiftIoPtpOperatorConfigV1Manifest) Schema(_ context.Context, _ 
 						Description:         "EventConfig to configure event sidecar",
 						MarkdownDescription: "EventConfig to configure event sidecar",
 						Attributes: map[string]schema.Attribute{
+							"api_version": schema.StringAttribute{
+								Description:         "ApiVersion is used to determine which API is used for the event service 1.0: default version. event service is mapped to internal REST-API. 2.x: event service is mapped to O-RAN v3.0 Compliant O-Cloud Notification REST-API.",
+								MarkdownDescription: "ApiVersion is used to determine which API is used for the event service 1.0: default version. event service is mapped to internal REST-API. 2.x: event service is mapped to O-RAN v3.0 Compliant O-Cloud Notification REST-API.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enable_event_publisher": schema.BoolAttribute{
 								Description:         "EnableEventPublisher will deploy event proxy as a sidecar",
 								MarkdownDescription: "EnableEventPublisher will deploy event proxy as a sidecar",

@@ -5779,8 +5779,8 @@ func (r *OperatorCryostatIoCryostatV1Beta2Manifest) Schema(_ context.Context, _ 
 					},
 
 					"target_namespaces": schema.ListAttribute{
-						Description:         "List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v2.4.0/docs/multi-namespace.md#data-isolation",
-						MarkdownDescription: "List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v2.4.0/docs/multi-namespace.md#data-isolation",
+						Description:         "List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v3.0.0/docs/config.md#data-isolation",
+						MarkdownDescription: "List of namespaces whose workloads Cryostat should bepermitted to access and profile. Defaults to this Cryostat's namespace.Warning: All Cryostat users will be able to create and managerecordings for workloads in the listed namespaces.More details: https://github.com/cryostatio/cryostat-operator/blob/v3.0.0/docs/config.md#data-isolation",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

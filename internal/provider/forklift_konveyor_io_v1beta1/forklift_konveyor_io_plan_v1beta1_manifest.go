@@ -122,6 +122,7 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 			} `tfsdk:"luks" json:"luks,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			RootDisk  *string `tfsdk:"root_disk" json:"rootDisk,omitempty"`
 			Type      *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"vms" json:"vms,omitempty"`
 		Warm *bool `tfsdk:"warm" json:"warm,omitempty"`
@@ -761,6 +762,14 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 								"namespace": schema.StringAttribute{
 									Description:         "The VM NamespaceOnly relevant for an openshift source.",
 									MarkdownDescription: "The VM NamespaceOnly relevant for an openshift source.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"root_disk": schema.StringAttribute{
+									Description:         "Choose the primary disk the VM boots from",
+									MarkdownDescription: "Choose the primary disk the VM boots from",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

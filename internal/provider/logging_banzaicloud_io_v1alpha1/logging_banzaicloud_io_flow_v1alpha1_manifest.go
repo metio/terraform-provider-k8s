@@ -490,9 +490,10 @@ type LoggingBanzaicloudIoFlowV1Alpha1ManifestData struct {
 		LoggingRef           *string   `tfsdk:"logging_ref" json:"loggingRef,omitempty"`
 		Match                *[]struct {
 			Exclude *struct {
-				Container_names *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
-				Hosts           *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
-				Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Container_names  *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
+				Hosts            *[]string          `tfsdk:"hosts" json:"hosts,omitempty"`
+				Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Namespace_labels *map[string]string `tfsdk:"namespace_labels" json:"namespace_labels,omitempty"`
 			} `tfsdk:"exclude" json:"exclude,omitempty"`
 			Select *struct {
 				Container_names *[]string          `tfsdk:"container_names" json:"container_names,omitempty"`
@@ -3724,6 +3725,15 @@ func (r *LoggingBanzaicloudIoFlowV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_labels": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,

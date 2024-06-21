@@ -70,16 +70,14 @@ Optional:
 <a id="nestedatt--spec--git_spec"></a>
 ### Nested Schema for `spec.git_spec`
 
-Required:
-
-- `target_repo` (String) Git repo containing the pattern to deploy. Must use https/http or, for ssh, git@server:foo/bar.git
-
 Optional:
 
 - `hostname` (String) Optional. FQDN of the git server if automatic parsing from TargetRepo is broken
-- `origin_repo` (String) Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository
-- `origin_revision` (String) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD
+- `in_cluster_git_server` (Boolean) Enable in-cluster git server (avoids the need of forking the upstream repository)
+- `origin_repo` (String) Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo
+- `origin_revision` (String) (DEPRECATED) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD
 - `poll_interval` (Number) Interval in seconds to poll for drifts between origin and target repositories. Default: 180 seconds
+- `target_repo` (String) Git repo containing the pattern to deploy. Must use https/http or, for ssh, git@server:foo/bar.git
 - `target_revision` (String) Branch, tag, or commit to deploy.  Does not support short-sha's. Default: HEAD
 - `token_secret` (String) Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported
 - `token_secret_namespace` (String) Optional. K8s secret namespace where the token for connecting to git can be found

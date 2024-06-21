@@ -57,6 +57,7 @@ Optional:
 - `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
+- `enable_crush_updates` (Boolean) Allow rook operator to change the pool CRUSH tunables once the pool is created
 - `enable_rbd_stats` (Boolean) EnableRBDStats is used to enable gathering of statistics for all RBD images in the pool
 - `erasure_coded` (Attributes) The erasure code settings (see [below for nested schema](#nestedatt--spec--erasure_coded))
 - `failure_domain` (String) The failure domain: osd/host/(region or zone if available) - technically also any type in the crush map

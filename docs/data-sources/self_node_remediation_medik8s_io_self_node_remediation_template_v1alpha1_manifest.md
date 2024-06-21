@@ -27,9 +27,6 @@ data "k8s_self_node_remediation_medik8s_io_self_node_remediation_template_v1alph
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-
-### Optional
-
 - `spec` (Attributes) SelfNodeRemediationTemplateSpec defines the desired state of SelfNodeRemediationTemplate (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only

@@ -1003,6 +1003,7 @@ Optional:
 - `container_names` (List of String)
 - `hosts` (List of String)
 - `labels` (Map of String)
+- `namespace_labels` (Map of String)
 
 
 <a id="nestedatt--spec--match--select"></a>

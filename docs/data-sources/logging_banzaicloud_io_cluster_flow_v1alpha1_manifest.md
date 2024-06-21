@@ -1002,6 +1002,7 @@ Optional:
 - `container_names` (List of String)
 - `hosts` (List of String)
 - `labels` (Map of String)
+- `namespace_labels` (Map of String)
 - `namespaces` (List of String)
 
 
@@ -1013,4 +1014,5 @@ Optional:
 - `container_names` (List of String)
 - `hosts` (List of String)
 - `labels` (Map of String)
+- `namespace_labels` (Map of String)
 - `namespaces` (List of String)

@@ -60,6 +60,8 @@ type PtpOpenshiftIoPtpConfigV1ManifestData struct {
 			PtpSchedulingPolicy   *string            `tfsdk:"ptp_scheduling_policy" json:"ptpSchedulingPolicy,omitempty"`
 			PtpSchedulingPriority *int64             `tfsdk:"ptp_scheduling_priority" json:"ptpSchedulingPriority,omitempty"`
 			PtpSettings           *map[string]string `tfsdk:"ptp_settings" json:"ptpSettings,omitempty"`
+			SyncEConf             *string            `tfsdk:"sync_e_conf" json:"syncEConf,omitempty"`
+			SyncEOpts             *string            `tfsdk:"sync_e_opts" json:"syncEOpts,omitempty"`
 			Ts2phcConf            *string            `tfsdk:"ts2phc_conf" json:"ts2phcConf,omitempty"`
 			Ts2phcOpts            *string            `tfsdk:"ts2phc_opts" json:"ts2phcOpts,omitempty"`
 		} `tfsdk:"profile" json:"profile,omitempty"`
@@ -273,6 +275,22 @@ func (r *PtpOpenshiftIoPtpConfigV1Manifest) Schema(_ context.Context, _ datasour
 									Description:         "",
 									MarkdownDescription: "",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"sync_e_conf": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"sync_e_opts": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -67,6 +67,7 @@ Optional:
 
 Optional:
 
+- `api_version` (String) ApiVersion is used to determine which API is used for the event service 1.0: default version. event service is mapped to internal REST-API. 2.x: event service is mapped to O-RAN v3.0 Compliant O-Cloud Notification REST-API.
 - `enable_event_publisher` (Boolean) EnableEventPublisher will deploy event proxy as a sidecar
 - `storage_type` (String) StorageType is the type of storage to store subscription data
 - `transport_host` (String) TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'

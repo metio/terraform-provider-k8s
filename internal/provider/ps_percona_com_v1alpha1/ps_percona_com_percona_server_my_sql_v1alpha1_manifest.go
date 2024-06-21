@@ -43,8 +43,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AllowUnsafeConfigurations *bool `tfsdk:"allow_unsafe_configurations" json:"allowUnsafeConfigurations,omitempty"`
-		Backup                    *struct {
+		Backup *struct {
 			BackoffLimit             *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -2899,6 +2898,13 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		} `tfsdk:"toolkit" json:"toolkit,omitempty"`
+		UnsafeFlags *struct {
+			MysqlSize        *bool `tfsdk:"mysql_size" json:"mysqlSize,omitempty"`
+			Orchestrator     *bool `tfsdk:"orchestrator" json:"orchestrator,omitempty"`
+			OrchestratorSize *bool `tfsdk:"orchestrator_size" json:"orchestratorSize,omitempty"`
+			Proxy            *bool `tfsdk:"proxy" json:"proxy,omitempty"`
+			ProxySize        *bool `tfsdk:"proxy_size" json:"proxySize,omitempty"`
+		} `tfsdk:"unsafe_flags" json:"unsafeFlags,omitempty"`
 		UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		UpgradeOptions *struct {
 			Apply                  *string `tfsdk:"apply" json:"apply,omitempty"`
@@ -2984,14 +2990,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
-					"allow_unsafe_configurations": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"backup": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -22191,6 +22189,55 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"unsafe_flags": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"mysql_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"orchestrator": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"orchestrator_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

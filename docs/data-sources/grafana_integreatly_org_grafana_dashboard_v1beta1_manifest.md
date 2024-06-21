@@ -3,12 +3,12 @@
 page_title: "k8s_grafana_integreatly_org_grafana_dashboard_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "grafana.integreatly.org"
 description: |-
-  
+  GrafanaDashboard is the Schema for the grafanadashboards API
 ---
 
 # k8s_grafana_integreatly_org_grafana_dashboard_v1beta1_manifest (Data Source)
 
-
+GrafanaDashboard is the Schema for the grafanadashboards API
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_grafana_integreatly_org_grafana_dashboard_v1beta1_manifest" "example" 
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) GrafanaDashboardSpec defines the desired state of GrafanaDashboard (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,45 +55,45 @@ Optional:
 
 Required:
 
-- `instance_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--instance_selector))
+- `instance_selector` (Attributes) selects Grafanas for import (see [below for nested schema](#nestedatt--spec--instance_selector))
 
 Optional:
 
-- `allow_cross_namespace_import` (Boolean)
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--config_map_ref))
-- `content_cache_duration` (String)
-- `datasources` (Attributes List) (see [below for nested schema](#nestedatt--spec--datasources))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--env_from))
-- `envs` (Attributes List) (see [below for nested schema](#nestedatt--spec--envs))
-- `folder` (String)
-- `grafana_com` (Attributes) (see [below for nested schema](#nestedatt--spec--grafana_com))
-- `gzip_json` (String)
-- `json` (String)
-- `jsonnet` (String)
-- `jsonnet_lib` (Attributes) (see [below for nested schema](#nestedatt--spec--jsonnet_lib))
-- `plugins` (Attributes List) (see [below for nested schema](#nestedatt--spec--plugins))
-- `resync_period` (String)
-- `url` (String)
+- `allow_cross_namespace_import` (Boolean) allow to import this resources from an operator in a different namespace
+- `config_map_ref` (Attributes) dashboard from configmap (see [below for nested schema](#nestedatt--spec--config_map_ref))
+- `content_cache_duration` (String) Cache duration for dashboards fetched from URLs
+- `datasources` (Attributes List) maps required data sources to existing ones (see [below for nested schema](#nestedatt--spec--datasources))
+- `env_from` (Attributes List) environments variables from secrets or config maps (see [below for nested schema](#nestedatt--spec--env_from))
+- `envs` (Attributes List) environments variables as a map (see [below for nested schema](#nestedatt--spec--envs))
+- `folder` (String) folder assignment for dashboard
+- `grafana_com` (Attributes) grafana.com/dashboards (see [below for nested schema](#nestedatt--spec--grafana_com))
+- `gzip_json` (String) GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.
+- `json` (String) dashboard json
+- `jsonnet` (String) Jsonnet
+- `jsonnet_lib` (Attributes) Jsonnet project build (see [below for nested schema](#nestedatt--spec--jsonnet_lib))
+- `plugins` (Attributes List) plugins (see [below for nested schema](#nestedatt--spec--plugins))
+- `resync_period` (String) how often the dashboard is refreshed, defaults to 5m if not set
+- `url` (String) dashboard url
 
 <a id="nestedatt--spec--instance_selector"></a>
 ### Nested Schema for `spec.instance_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--instance_selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--instance_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instance_selector--match_expressions"></a>
 ### Nested Schema for `spec.instance_selector.match_expressions`
 
 Required:
 
-- `key` (String)
-- `operator` (String)
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String)
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -102,12 +102,12 @@ Optional:
 
 Required:
 
-- `key` (String)
+- `key` (String) The key to select.
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
 <a id="nestedatt--spec--datasources"></a>
@@ -124,20 +124,20 @@ Required:
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env_from--config_map_key_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--env_from--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--env_from--secret_key_ref))
 
 <a id="nestedatt--spec--env_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.env_from.config_map_key_ref`
 
 Required:
 
-- `key` (String)
+- `key` (String) The key to select.
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
 <a id="nestedatt--spec--env_from--secret_key_ref"></a>
@@ -145,12 +145,12 @@ Optional:
 
 Required:
 
-- `key` (String)
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 
@@ -163,28 +163,28 @@ Required:
 
 Optional:
 
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--envs--value_from))
+- `value` (String) Inline evn value
+- `value_from` (Attributes) Reference on value source, might be the reference on a secret or config map (see [below for nested schema](#nestedatt--spec--envs--value_from))
 
 <a id="nestedatt--spec--envs--value_from"></a>
 ### Nested Schema for `spec.envs.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--envs--value_from--config_map_key_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--envs--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--envs--value_from--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--envs--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--envs--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.envs.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String)
+- `key` (String) The key to select.
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
 <a id="nestedatt--spec--envs--value_from--secret_key_ref"></a>
@@ -192,12 +192,12 @@ Optional:
 
 Required:
 
-- `key` (String)
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 
