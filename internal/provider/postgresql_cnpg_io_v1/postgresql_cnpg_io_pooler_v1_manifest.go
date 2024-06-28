@@ -89,6 +89,7 @@ type PostgresqlCnpgIoPoolerV1ManifestData struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
 				AllocateLoadBalancerNodePorts *bool     `tfsdk:"allocate_load_balancer_node_ports" json:"allocateLoadBalancerNodePorts,omitempty"`
@@ -128,6 +129,7 @@ type PostgresqlCnpgIoPoolerV1ManifestData struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
 				ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1822,6 +1824,14 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"name": schema.StringAttribute{
+										Description:         "The name of the resource. Only supported for certain types",
+										MarkdownDescription: "The name of the resource. Only supported for certain types",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -2097,6 +2107,14 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "The name of the resource. Only supported for certain types",
+										MarkdownDescription: "The name of the resource. Only supported for certain types",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

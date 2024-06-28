@@ -70,7 +70,7 @@ Optional:
 
 Required:
 
-- `monitortype` (String) MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https', 'icmp'.
+- `monitortype` (String) MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https','icmp'.
 - `path` (String) Path is the path URL to check for the pool members in the format '/healthz'
 - `port` (Number) Port is the port this monitor should check the pool members
 
@@ -84,7 +84,7 @@ Optional:
 
 Required:
 
-- `creds` (String) Creds is the credentials secret holding the 'username' and 'password' keys. Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'
+- `creds` (String) Creds is the credentials secret holding the 'username' and 'password' keys.Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'
 - `host` (String) Host is the Load Balancer API IP or Hostname in URL format. Eg. 'http://10.25.10.10'.
 - `port` (Number) Port is the Load Balancer API Port.
 - `vendor` (String) Vendor is the backend provider vendor
@@ -92,6 +92,6 @@ Required:
 Optional:
 
 - `debug` (Boolean) Debug is a flag to enable debug on the backend log output. Defaults to false.
-- `lbmethod` (String) Type is the Load-Balancing method. Defaults to 'round-robin'. Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME
+- `lbmethod` (String) Type is the Load-Balancing method. Defaults to 'round-robin'.Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME
 - `partition` (String) Partition is the F5 partition to create the Load Balancer instances. Defaults to 'Common'. (F5 BigIP only)
 - `validatecerts` (Boolean) ValidateCerts is a flag to validate or not the Load Balancer API certificate. Defaults to false.

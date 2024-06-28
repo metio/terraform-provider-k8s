@@ -785,6 +785,7 @@ Optional:
 - `tolerations` (Attributes List) The pod tolerations of the workspace pods limit where the workspace pods can run. (see [below for nested schema](#nestedatt--spec--dev_environments--tolerations))
 - `trusted_certs` (Attributes) Trusted certificate settings. (see [below for nested schema](#nestedatt--spec--dev_environments--trusted_certs))
 - `user` (Attributes) User configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--user))
+- `workspaces_pod_annotations` (Map of String) WorkspacesPodAnnotations defines additional annotations for workspace pods.
 
 <a id="nestedatt--spec--dev_environments--container_build_configuration"></a>
 ### Nested Schema for `spec.dev_environments.container_build_configuration`

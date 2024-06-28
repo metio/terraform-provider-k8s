@@ -151,9 +151,23 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 			Type          *string            `tfsdk:"type" json:"type,omitempty"`
 			Types         *[]string          `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
-		GroupByTag *string `tfsdk:"group_by_tag" json:"groupByTag,omitempty"`
-		Icon       *string `tfsdk:"icon" json:"icon,omitempty"`
-		Id         *struct {
+		GroupBy *struct {
+			Selector *struct {
+				Agent         *string   `tfsdk:"agent" json:"agent,omitempty"`
+				Cache         *string   `tfsdk:"cache" json:"cache,omitempty"`
+				FieldSelector *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+				Id            *string   `tfsdk:"id" json:"id,omitempty"`
+				LabelSelector *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Name          *string   `tfsdk:"name" json:"name,omitempty"`
+				Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+				Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
+				TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
+				Types         *[]string `tfsdk:"types" json:"types,omitempty"`
+			} `tfsdk:"selector" json:"selector,omitempty"`
+			Tag *string `tfsdk:"tag" json:"tag,omitempty"`
+		} `tfsdk:"group_by" json:"groupBy,omitempty"`
+		Icon *string `tfsdk:"icon" json:"icon,omitempty"`
+		Id   *struct {
 			Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
 			Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
 			JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
@@ -1108,12 +1122,112 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
-					"group_by_tag": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+					"group_by": schema.SingleNestedAttribute{
+						Description:         "Specify the catalog tag (& optionally the tag selector) to groupthe topology.",
+						MarkdownDescription: "Specify the catalog tag (& optionally the tag selector) to groupthe topology.",
+						Attributes: map[string]schema.Attribute{
+							"selector": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"agent": schema.StringAttribute{
+										Description:         "Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.",
+										MarkdownDescription: "Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cache": schema.StringAttribute{
+										Description:         "Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)",
+										MarkdownDescription: "Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"field_selector": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"label_selector": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"statuses": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tag_selector": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"types": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"icon": schema.StringAttribute{

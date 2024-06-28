@@ -270,7 +270,9 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kamaji_clastix_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/karpenter_k8s_aws_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/karpenter_k8s_aws_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/karpenter_sh_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/karpenter_sh_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/keda_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/keycloak_k8s_reddec_net_v1alpha1"
@@ -307,6 +309,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta4"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta5"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta6"
+	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta7"
 	"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/litmuschaos_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/logging_banzaicloud_io_v1alpha1"
@@ -2328,8 +2331,14 @@ func allDataSources() []func() datasource.DataSource {
 		kamaji_clastix_io_v1alpha1.NewKamajiClastixIoDataStoreV1Alpha1Manifest,
 		// kamaji_clastix_io_v1alpha1.NewKamajiClastixIoTenantControlPlaneV1Alpha1DataSource,
 		kamaji_clastix_io_v1alpha1.NewKamajiClastixIoTenantControlPlaneV1Alpha1Manifest,
+		// karpenter_k8s_aws_v1.NewKarpenterK8SAwsEc2NodeClassV1DataSource,
+		karpenter_k8s_aws_v1.NewKarpenterK8SAwsEc2NodeClassV1Manifest,
 		// karpenter_k8s_aws_v1beta1.NewKarpenterK8SAwsEc2NodeClassV1Beta1DataSource,
 		karpenter_k8s_aws_v1beta1.NewKarpenterK8SAwsEc2NodeClassV1Beta1Manifest,
+		// karpenter_sh_v1.NewKarpenterShNodeClaimV1DataSource,
+		karpenter_sh_v1.NewKarpenterShNodeClaimV1Manifest,
+		// karpenter_sh_v1.NewKarpenterShNodePoolV1DataSource,
+		karpenter_sh_v1.NewKarpenterShNodePoolV1Manifest,
 		// karpenter_sh_v1beta1.NewKarpenterShNodeClaimV1Beta1DataSource,
 		karpenter_sh_v1beta1.NewKarpenterShNodeClaimV1Beta1Manifest,
 		// karpenter_sh_v1beta1.NewKarpenterShNodePoolV1Beta1DataSource,
@@ -2592,6 +2601,12 @@ func allDataSources() []func() datasource.DataSource {
 		lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest,
 		// lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuRegistryCredentialV1Beta6DataSource,
 		lerentis_uploadfilter24_eu_v1beta6.NewLerentisUploadfilter24EuRegistryCredentialV1Beta6Manifest,
+		// lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenSecretV1Beta7DataSource,
+		lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenSecretV1Beta7Manifest,
+		// lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta7DataSource,
+		lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta7Manifest,
+		// lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7DataSource,
+		lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7Manifest,
 		// limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1DataSource,
 		limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1Manifest,
 		// litmuschaos_io_v1alpha1.NewLitmuschaosIoChaosEngineV1Alpha1DataSource,

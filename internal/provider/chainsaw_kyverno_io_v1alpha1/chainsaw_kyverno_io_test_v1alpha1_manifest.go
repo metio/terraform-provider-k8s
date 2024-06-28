@@ -218,9 +218,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 		ForceTerminationGracePeriod *string            `tfsdk:"force_termination_grace_period" json:"forceTerminationGracePeriod,omitempty"`
 		Namespace                   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 		NamespaceTemplate           *map[string]string `tfsdk:"namespace_template" json:"namespaceTemplate,omitempty"`
-		Skip                        *bool              `tfsdk:"skip" json:"skip,omitempty"`
-		SkipDelete                  *bool              `tfsdk:"skip_delete" json:"skipDelete,omitempty"`
-		Steps                       *[]struct {
+		Scenarios                   *[]struct {
+			Bindings *[]struct {
+				Name  *string            `tfsdk:"name" json:"name,omitempty"`
+				Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"bindings" json:"bindings,omitempty"`
+		} `tfsdk:"scenarios" json:"scenarios,omitempty"`
+		Skip       *bool `tfsdk:"skip" json:"skip,omitempty"`
+		SkipDelete *bool `tfsdk:"skip_delete" json:"skipDelete,omitempty"`
+		Steps      *[]struct {
 			Bindings *[]struct {
 				Name  *string            `tfsdk:"name" json:"name,omitempty"`
 				Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -932,6 +938,25 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Tail      *int64  `tfsdk:"tail" json:"tail,omitempty"`
 					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
+				Proxy *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Outputs   *[]struct {
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"outputs" json:"outputs,omitempty"`
+					Path    *string `tfsdk:"path" json:"path,omitempty"`
+					Port    *string `tfsdk:"port" json:"port,omitempty"`
+					Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				} `tfsdk:"proxy" json:"proxy,omitempty"`
 				Script *struct {
 					Bindings *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
@@ -2339,6 +2364,48 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"scenarios": schema.ListNestedAttribute{
+						Description:         "Scenarios defines test scenarios.",
+						MarkdownDescription: "Scenarios defines test scenarios.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"bindings": schema.ListNestedAttribute{
+									Description:         "Bindings defines binding key/values.",
+									MarkdownDescription: "Bindings defines binding key/values.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name the name of the binding.",
+												MarkdownDescription: "Name the name of the binding.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+												},
+											},
+
+											"value": schema.MapAttribute{
+												Description:         "Value value of the binding.",
+												MarkdownDescription: "Value value of the binding.",
+												ElementType:         types.StringType,
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"skip": schema.BoolAttribute{
@@ -7424,6 +7491,144 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"tail": schema.Int64Attribute{
 														Description:         "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
 														MarkdownDescription: "Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"timeout": schema.StringAttribute{
+														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proxy": schema.SingleNestedAttribute{
+												Description:         "Proxy runs a proxy request.",
+												MarkdownDescription: "Proxy runs a proxy request.",
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"cluster": schema.StringAttribute{
+														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"outputs": schema.ListNestedAttribute{
+														Description:         "Outputs defines output bindings.",
+														MarkdownDescription: "Outputs defines output bindings.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"match": schema.MapAttribute{
+																	Description:         "Match defines the matching statement.",
+																	MarkdownDescription: "Match defines the matching statement.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name the name of the binding.",
+																	MarkdownDescription: "Name the name of the binding.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																	},
+																},
+
+																"value": schema.MapAttribute{
+																	Description:         "Value value of the binding.",
+																	MarkdownDescription: "Value value of the binding.",
+																	ElementType:         types.StringType,
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "TargetPath defines the target path to proxy the request.",
+														MarkdownDescription: "TargetPath defines the target path to proxy the request.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "TargetPort defines the target port to proxy the request.",
+														MarkdownDescription: "TargetPort defines the target port to proxy the request.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

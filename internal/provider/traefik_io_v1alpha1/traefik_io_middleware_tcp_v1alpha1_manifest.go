@@ -61,8 +61,8 @@ func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Metadata(_ context.Context, req
 
 func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
-		MarkdownDescription: "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
+		Description:         "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/overview/",
+		MarkdownDescription: "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/overview/",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -150,8 +150,8 @@ func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"ip_allow_list": schema.SingleNestedAttribute{
-						Description:         "IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipallowlist/",
-						MarkdownDescription: "IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipallowlist/",
+						Description:         "IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipallowlist/",
+						MarkdownDescription: "IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipallowlist/",
 						Attributes: map[string]schema.Attribute{
 							"source_range": schema.ListAttribute{
 								Description:         "SourceRange defines the allowed IPs (or ranges of allowed IPs by using CIDR notation).",
@@ -168,8 +168,8 @@ func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"ip_white_list": schema.SingleNestedAttribute{
-						Description:         "IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipwhitelist/",
-						MarkdownDescription: "IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipwhitelist/",
+						Description:         "IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipwhitelist/",
+						MarkdownDescription: "IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipwhitelist/",
 						Attributes: map[string]schema.Attribute{
 							"source_range": schema.ListAttribute{
 								Description:         "SourceRange defines the allowed IPs (or ranges of allowed IPs by using CIDR notation).",

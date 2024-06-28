@@ -63,8 +63,8 @@ Optional:
 - `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
 - `schema_validation` (Boolean) Deprecated.
 - `use_server_side_apply` (Boolean) UseServerSideApply controls whether to use server-side apply for generate rulesIf is set to 'true' create & update for generate rules will use apply instead of create/update.Defaults to 'false' if not specified.
-- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.
-- `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
+- `validation_failure_action` (String) Deprecated, use validationFailureAction under the validate rule instead.
+- `validation_failure_action_overrides` (Attributes List) Deprecated, use validationFailureActionOverrides under the validate rule instead. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
 - `webhook_configuration` (Attributes) WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration. (see [below for nested schema](#nestedatt--spec--webhook_configuration))
 - `webhook_timeout_seconds` (Number) Deprecated, use webhookTimeoutSeconds under webhookConfiguration instead.
 
@@ -1049,6 +1049,8 @@ Optional:
 - `message` (String) Message specifies a custom message to be displayed on failure.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
 - `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
+- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.
+- `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides))
 
 <a id="nestedatt--spec--rules--validate--cel"></a>
 ### Nested Schema for `spec.rules.validate.cel`
@@ -1489,6 +1491,38 @@ Optional:
 - `images` (List of String) Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `restricted_field` (String) RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.
 - `values` (List of String) Values defines the allowed values that can be excluded.
+
+
+
+<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides"></a>
+### Nested Schema for `spec.rules.validate.validation_failure_action_overrides`
+
+Optional:
+
+- `action` (String) ValidationFailureAction defines the policy validation failure action
+- `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector"></a>
+### Nested Schema for `spec.rules.validate.validation_failure_action_overrides.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.validate.validation_failure_action_overrides.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
 
 
 

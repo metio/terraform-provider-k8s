@@ -135,21 +135,21 @@ func (r *FluentbitFluentIoClusterParserV1Alpha2Manifest) Schema(_ context.Contex
 				MarkdownDescription: "ParserSpec defines the desired state of ClusterParser",
 				Attributes: map[string]schema.Attribute{
 					"decoders": schema.ListNestedAttribute{
-						Description:         "Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders. There are two type of decoders type: Decode_Field and Decode_Field_As.",
-						MarkdownDescription: "Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders. There are two type of decoders type: Decode_Field and Decode_Field_As.",
+						Description:         "Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders.There are two type of decoders type: Decode_Field and Decode_Field_As.",
+						MarkdownDescription: "Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders.There are two type of decoders type: Decode_Field and Decode_Field_As.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"decode_field": schema.StringAttribute{
-									Description:         "If the content can be decoded in a structured message, append that structure message (keys and values) to the original log message.",
-									MarkdownDescription: "If the content can be decoded in a structured message, append that structure message (keys and values) to the original log message.",
+									Description:         "If the content can be decoded in a structured message,append that structure message (keys and values) to the original log message.",
+									MarkdownDescription: "If the content can be decoded in a structured message,append that structure message (keys and values) to the original log message.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"decode_field_as": schema.StringAttribute{
-									Description:         "Any content decoded (unstructured or structured) will be replaced in the same key/value, no extra keys are added.",
-									MarkdownDescription: "Any content decoded (unstructured or structured) will be replaced in the same key/value, no extra keys are added.",
+									Description:         "Any content decoded (unstructured or structured) will be replaced in the same key/value,no extra keys are added.",
+									MarkdownDescription: "Any content decoded (unstructured or structured) will be replaced in the same key/value,no extra keys are added.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

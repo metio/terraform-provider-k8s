@@ -56,6 +56,7 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 			Timeout *int64 `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"condition_spec" json:"conditionSpec,omitempty"`
 		Delay     *string `tfsdk:"delay" json:"delay,omitempty"`
+		Disabled  *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
 		Event     *string `tfsdk:"event" json:"event,omitempty"`
 		Execution *string `tfsdk:"execution" json:"execution,omitempty"`
 		ProbeSpec *struct {
@@ -272,6 +273,14 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 					"delay": schema.StringAttribute{
 						Description:         "Delay is a duration string which specifies how long should the test be delayed after a trigger is matched",
 						MarkdownDescription: "Delay is a duration string which specifies how long should the test be delayed after a trigger is matched",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disabled": schema.BoolAttribute{
+						Description:         "whether test trigger is disabled",
+						MarkdownDescription: "whether test trigger is disabled",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

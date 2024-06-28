@@ -293,14 +293,14 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"owner_id": schema.StringAttribute{
-						Description:         "ownerID is a unique string used to identify the owner of this record.",
-						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.",
-						Required:            true,
-						Optional:            false,
+						Description:         "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
+						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.LengthAtLeast(6),
-							stringvalidator.LengthAtMost(12),
+							stringvalidator.LengthAtMost(36),
 						},
 					},
 

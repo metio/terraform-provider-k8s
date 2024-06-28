@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_thanos_ruler_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  ThanosRuler defines a ThanosRuler deployment.
+  The 'ThanosRuler' custom resource definition (CRD) defines a desired Thanos Ruler https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md setup to run in a Kubernetes cluster.A 'ThanosRuler' instance requires at least one compatible Prometheus API endpoint (either Thanos Querier or Prometheus services).The resource defines via label and namespace selectors which 'PrometheusRule' objects should be associated to the deployed Thanos Ruler instances.
 ---
 
 # k8s_monitoring_coreos_com_thanos_ruler_v1_manifest (Data Source)
 
-ThanosRuler defines a ThanosRuler deployment.
+The 'ThanosRuler' custom resource definition (CRD) defines a desired [Thanos Ruler](https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md) setup to run in a Kubernetes cluster.A 'ThanosRuler' instance requires at least one compatible Prometheus API endpoint (either Thanos Querier or Prometheus services).The resource defines via label and namespace selectors which 'PrometheusRule' objects should be associated to the deployed Thanos Ruler instances.
 
 ## Example Usage
 

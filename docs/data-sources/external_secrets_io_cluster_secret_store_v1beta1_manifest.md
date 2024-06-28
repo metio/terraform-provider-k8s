@@ -88,6 +88,7 @@ Optional:
 - `alibaba` (Attributes) Alibaba configures this store to sync secrets using Alibaba Cloud provider (see [below for nested schema](#nestedatt--spec--provider--alibaba))
 - `aws` (Attributes) AWS configures this store to sync secrets using AWS Secret Manager provider (see [below for nested schema](#nestedatt--spec--provider--aws))
 - `azurekv` (Attributes) AzureKV configures this store to sync secrets using Azure Key Vault provider (see [below for nested schema](#nestedatt--spec--provider--azurekv))
+- `bitwardensecretsmanager` (Attributes) BitwardenSecretsManager configures this store to sync secrets using BitwardenSecretsManager provider (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager))
 - `chef` (Attributes) Chef configures this store to sync secrets with chef server (see [below for nested schema](#nestedatt--spec--provider--chef))
 - `conjur` (Attributes) Conjur configures this store to sync secrets using conjur provider (see [below for nested schema](#nestedatt--spec--provider--conjur))
 - `delinea` (Attributes) Delinea DevOps Secrets Vaulthttps://docs.delinea.com/online-help/products/devops-secrets-vault/current (see [below for nested schema](#nestedatt--spec--provider--delinea))
@@ -471,6 +472,49 @@ Optional:
 
 - `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--bitwardensecretsmanager"></a>
+### Nested Schema for `spec.provider.bitwardensecretsmanager`
+
+Required:
+
+- `auth` (Attributes) Auth configures how secret-manager authenticates with a bitwarden machine account instance.Make sure that the token being used has permissions on the given secret. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth))
+- `ca_bundle` (String) Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.
+- `organization_id` (String) OrganizationID determines which organization this secret store manages.
+- `project_id` (String) ProjectID determines which project this secret store manages.
+
+Optional:
+
+- `api_url` (String)
+- `bitwarden_server_sdk_url` (String)
+- `identity_url` (String)
+
+<a id="nestedatt--spec--provider--bitwardensecretsmanager--auth"></a>
+### Nested Schema for `spec.provider.bitwardensecretsmanager.auth`
+
+Required:
+
+- `secret_ref` (Attributes) BitwardenSecretsManagerSecretRef contains the credential ref to the bitwarden instance. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth--secret_ref))
+
+<a id="nestedatt--spec--provider--bitwardensecretsmanager--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.bitwardensecretsmanager.auth.secret_ref`
+
+Required:
+
+- `credentials` (Attributes) AccessToken used for the bitwarden instance. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth--secret_ref--credentials))
+
+<a id="nestedatt--spec--provider--bitwardensecretsmanager--auth--secret_ref--credentials"></a>
+### Nested Schema for `spec.provider.bitwardensecretsmanager.auth.secret_ref.credentials`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
 
 
 

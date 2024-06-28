@@ -92,39 +92,39 @@ Optional:
 - `calc_num_records` (String) Calculates the number of records, chunk size, during chunk resume.
 - `chunk_format` (String) ChunkFormat specifies the chunk format for calc_num_records.
 - `chunk_limit_records` (String) The max number of events that each chunks can store in it.
-- `chunk_limit_size` (String) Buffer parameters The max size of each chunks: events will be written into chunks until the size of chunks become this size Default: 8MB (memory) / 256MB (file)
-- `compress` (String) Fluentd will decompress these compressed chunks automatically before passing them to the output plugin If gzip is set, Fluentd compresses data records before writing to buffer chunks. Default:text.
+- `chunk_limit_size` (String) Buffer parametersThe max size of each chunks: events will be written into chunks until the size of chunks become this sizeDefault: 8MB (memory) / 256MB (file)
+- `compress` (String) Fluentd will decompress these compressed chunks automatically before passing them to the output pluginIf gzip is set, Fluentd compresses data records before writing to buffer chunks.Default:text.
 - `delayed_commit_timeout` (String) The timeout (seconds) until output plugin decides if the async write operation has failed. Default is 60s
 - `disable_chunk_backup` (Boolean) Instead of storing unrecoverable chunks in the backup directory, just discard them. This option is new in Fluentd v1.2.6.
-- `flush_at_shutdown` (Boolean) Flush parameters This specifies whether to flush/write all buffer chunks on shutdown or not.
+- `flush_at_shutdown` (Boolean) Flush parametersThis specifies whether to flush/write all buffer chunks on shutdown or not.
 - `flush_interval` (String) FlushInterval defines the flush interval
-- `flush_mode` (String) FlushMode defines the flush mode: lazy: flushes/writes chunks once per timekey interval: flushes/writes chunks per specified time via flush_interval immediate: flushes/writes chunks immediately after events are appended into chunks default: equals to lazy if time is specified as chunk key, interval otherwise
+- `flush_mode` (String) FlushMode defines the flush mode:lazy: flushes/writes chunks once per timekeyinterval: flushes/writes chunks per specified time via flush_intervalimmediate: flushes/writes chunks immediately after events are appended into chunksdefault: equals to lazy if time is specified as chunk key, interval otherwise
 - `flush_thread_count` (String) The number of threads to flush/write chunks in parallel
 - `id` (String) The @id parameter specifies a unique name for the configuration.
 - `localtime` (Boolean) If true, uses local time.
 - `log_level` (String) The @log_level parameter specifies the plugin-specific logging level
-- `overflow_action` (String) OverflowAtction defines the output plugin behave when its buffer queue is full. Default: throw_exception
+- `overflow_action` (String) OverflowAtction defines the output plugin behave when its buffer queue is full.Default: throw_exception
 - `path` (String) The path where buffer chunks are stored. This field would make no effect in memory buffer plugin.
 - `path_suffix` (String) Changes the suffix of the buffer file.
 - `queue_limit_length` (String) The queue length limitation of this buffer plugin instance. Default: 0.95
-- `queued_chunks_limit_size` (Number) Limit the number of queued chunks. Default: 1 If a smaller flush_interval is set, e.g. 1s, there are lots of small queued chunks in the buffer. With file buffer, it may consume a lot of fd resources when output destination has a problem. This parameter mitigates such situations.
+- `queued_chunks_limit_size` (Number) Limit the number of queued chunks. Default: 1If a smaller flush_interval is set, e.g. 1s,there are lots of small queued chunks in the buffer.With file buffer, it may consume a lot of fd resources when output destination has a problem.This parameter mitigates such situations.
 - `retry_exponential_backoff_base` (String) The base number of exponential backoff for retries.
 - `retry_forever` (Boolean) If true, plugin will ignore retry_timeout and retry_max_times options and retry flushing forever.
 - `retry_max_interval` (String) The maximum interval (seconds) for exponential backoff between retries while failing
 - `retry_max_times` (Number) The maximum number of times to retry to flush the failed chunks. Default: none
 - `retry_randomize` (Boolean) If true, the output plugin will retry after randomized interval not to do burst retries
 - `retry_secondary_threshold` (String) The ratio of retry_timeout to switch to use the secondary while failing.
-- `retry_timeout` (String) Retry parameters The maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks
+- `retry_timeout` (String) Retry parametersThe maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks
 - `retry_type` (String) Output plugin will retry periodically with fixed intervals.
 - `retry_wait` (String) Wait in seconds before the next retry to flush or constant factor of exponential backoff
-- `tag` (String) The output plugins group events into chunks. Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks. If tag is empty, which means blank Chunk Keys. Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc. See https://docs.fluentd.org/configuration/buffer-section.
+- `tag` (String) The output plugins group events into chunks.Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks.If tag is empty, which means blank Chunk Keys.Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc.See https://docs.fluentd.org/configuration/buffer-section.
 - `time_format` (String) Process value according to the specified format. This is available only when time_type is string
 - `time_format_fallbacks` (String) Uses the specified time format as a fallback in the specified order. You can parse undetermined time format by using time_format_fallbacks. This options is enabled when time_type is mixed.
 - `time_type` (String) parses/formats value according to this type, default is string
 - `timekey` (String) Output plugin will flush chunks per specified time (enabled when time is specified in chunk keys)
 - `timekey_wait` (String) Output plugin will write chunks after timekey_wait seconds later after timekey expiration
 - `timezone` (String) Uses the specified timezone.
-- `total_limit_size` (String) The size limitation of this buffer plugin instance Default: 512MB (memory) / 64GB (file)
+- `total_limit_size` (String) The size limitation of this buffer plugin instanceDefault: 512MB (memory) / 64GB (file)
 - `utc` (Boolean) If true, uses UTC.
 
 
@@ -202,7 +202,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -231,7 +231,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -304,7 +304,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -321,17 +321,30 @@ Optional:
 - `client_key` (String) Optional, Absolute path to client private Key file
 - `client_key_password` (Attributes) Optional, password for ClientKey file (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--client_key_password))
 - `cloud_auth` (Attributes) Authenticate towards Elastic Cloud using cloudAuth. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_auth))
-- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_id))
+- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--cloud_id))
+- `enable_ilm` (Boolean) Optional, Enable Index Lifecycle Management (ILM)
+- `fail_on_putting_template_retry_exceeded` (Boolean) Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)
 - `host` (String) The hostname of your Elasticsearch node (default: localhost).
 - `hosts` (String) Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes
+- `ilm_policy` (String) Optional, Specify ILM policy contents as Hash
+- `ilm_policy_id` (String) Optional, Specify ILM policy id
+- `ilm_policy_override` (Boolean) Optional, Specify whether overwriting ilm policy or not
 - `index_name` (String) IndexName defines the placeholder syntax of Fluentd plugin API. See https://docs.fluentd.org/configuration/buffer-section.
+- `log_es400_reason` (Boolean) Optional, Enable logging of 400 reason without enabling debug log level
 - `logstash_format` (Boolean) If true, Fluentd uses the conventional index name format logstash-%Y.%m.%d (default: false). This option supersedes the index_name option.
 - `logstash_prefix` (String) LogstashPrefix defines the logstash prefix index name to write events when logstash_format is true (default: logstash).
+- `max_retry_putting_template` (Number) Optional, You can specify times of retry putting template (default: 10)
 - `password` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--password))
 - `path` (String) Path defines the REST API endpoint of Elasticsearch to post write requests (default: nil).
 - `port` (Number) The port number of your Elasticsearch node (default: 9200).
+- `reconnect_on_error` (Boolean) Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)
+- `reload_connections` (Boolean) Optional, Automatically reload connection after 10000 documents (default: true)
+- `reload_on_failure` (Boolean) Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)
+- `request_timeout` (String) Optional, HTTP Timeout (default: 5)
 - `scheme` (String) Specify https if your Elasticsearch endpoint supports SSL (default: http).
 - `ssl_verify` (Boolean) Optional, Force certificate validation
+- `suppress_type_name` (Boolean) Optional, Suppress '[types removal]' warnings on elasticsearch 7.x
+- `template_overwrite` (Boolean) Optional, Always update the template, even if it already exists (default: false)
 - `user` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user))
 
 <a id="nestedatt--spec--outputs--elasticsearch--client_key_password"></a>
@@ -357,7 +370,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -386,7 +399,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -415,7 +428,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -444,7 +457,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -473,7 +486,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -494,14 +507,32 @@ Optional:
 - `client_key` (String) Optional, Absolute path to client private Key file
 - `client_key_password` (Attributes) Optional, password for ClientKey file (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password))
 - `cloud_auth` (Attributes) Authenticate towards Elastic Cloud using cloudAuth. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_auth))
-- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id))
+- `cloud_id` (Attributes) Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored. (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--cloud_id))
+- `data_stream_ilm_name` (String) Optional, You can specify the name of an existing ILM policy, which will be applied to the data stream. If not present, it creates a new ILM default policy (unless data_stream_template_name is defined, in that case the ILM will be set to the one specified in the matching index template)
+- `data_stream_ilm_policy` (String) Optional, You can specify the ILM policy contents as hash. If not present, it will apply the ILM default policy
+- `data_stream_ilm_policy_overwrite` (Boolean) Optional, Specify whether the data stream ILM policy should be overwritten
+- `data_stream_template_name` (String) Optional, You can specify an existing matching index template for the data stream. If not present, it creates a new matching index template
+- `data_stream_template_use_index_patterns_wildcard` (Boolean) Optional, Specify whether index patterns should include a wildcard (*) when creating an index template. This is particularly useful to prevent errors in scenarios where index templates are generated automatically, and multiple services with distinct suffixes are in use
+- `enable_ilm` (Boolean) Optional, Enable Index Lifecycle Management (ILM)
+- `fail_on_putting_template_retry_exceeded` (Boolean) Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)
 - `host` (String) The hostname of your Elasticsearch node (default: localhost).
 - `hosts` (String) Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes
+- `ilm_policy` (String) Optional, Specify ILM policy contents as Hash
+- `ilm_policy_id` (String) Optional, Specify ILM policy id
+- `ilm_policy_override` (Boolean) Optional, Specify whether overwriting ilm policy or not
+- `log_es400_reason` (Boolean) Optional, Enable logging of 400 reason without enabling debug log level
+- `max_retry_putting_template` (Number) Optional, You can specify times of retry putting template (default: 10)
 - `password` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--password))
 - `path` (String) Path defines the REST API endpoint of Elasticsearch to post write requests (default: nil).
 - `port` (Number) The port number of your Elasticsearch node (default: 9200).
+- `reconnect_on_error` (Boolean) Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)
+- `reload_connections` (Boolean) Optional, Automatically reload connection after 10000 documents (default: true)
+- `reload_on_failure` (Boolean) Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)
+- `request_timeout` (String) Optional, HTTP Timeout (default: 5)
 - `scheme` (String) Specify https if your Elasticsearch endpoint supports SSL (default: http).
 - `ssl_verify` (Boolean) Optional, Force certificate validation
+- `suppress_type_name` (Boolean) Optional, Suppress '[types removal]' warnings on elasticsearch 7.x
+- `template_overwrite` (Boolean) Optional, Always update the template, even if it already exists (default: false)
 - `user` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch_data_stream--user))
 
 <a id="nestedatt--spec--outputs--elasticsearch_data_stream--client_key_password"></a>
@@ -527,7 +558,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -556,7 +587,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -585,7 +616,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -614,7 +645,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -643,7 +674,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -681,7 +712,7 @@ Optional:
 
 - `ack_response_timeout` (String) This option is used when require_ack_response is true. This default value is based on popular tcp_syn_retries.
 - `connect_timeout` (String) The connection timeout for the socket. When the connection is timed out during the connection establishment, Errno::ETIMEDOUT error is raised.
-- `dns_round_robin` (Boolean) Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses. heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.
+- `dns_round_robin` (Boolean) Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses.heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.
 - `expire_dns_cache` (String) Sets TTL to expire DNS cache in seconds. Set 0 not to use DNS Cache.
 - `hard_timeout` (String) The hard timeout used to detect server failure. The default value is equal to the send_timeout parameter.
 - `heartbeat_interval` (String) The interval of the heartbeat packer.
@@ -750,7 +781,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -779,7 +810,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -828,7 +859,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -857,7 +888,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -926,7 +957,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -955,7 +986,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1022,7 +1053,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1051,7 +1082,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1109,15 +1140,15 @@ Optional:
 
 - `drop_single_key` (Boolean) If a record only has 1 key, then just set the log line to the value and discard the key.
 - `extract_kubernetes_labels` (Boolean) If set to true, it will add all Kubernetes labels to the Stream labels.
-- `http_password` (Attributes) Password for user defined in HTTP_User Set HTTP basic authentication password (see [below for nested schema](#nestedatt--spec--outputs--loki--http_password))
+- `http_password` (Attributes) Password for user defined in HTTP_UserSet HTTP basic authentication password (see [below for nested schema](#nestedatt--spec--outputs--loki--http_password))
 - `http_user` (Attributes) Set HTTP basic authentication user name. (see [below for nested schema](#nestedatt--spec--outputs--loki--http_user))
 - `include_thread_label` (Boolean) Whether or not to include the fluentd_thread label when multiple threads are used for flushing
 - `insecure` (Boolean) Disable certificate validation
-- `label_keys` (List of String) Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.
-- `labels` (List of String) Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).
-- `line_format` (String) Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.
-- `remove_keys` (List of String) Optional list of record keys that will be removed from stream labels. This configuration property is for records key only.
-- `tenant_id` (Attributes) Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent. (see [below for nested schema](#nestedatt--spec--outputs--loki--tenant_id))
+- `label_keys` (List of String) Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.
+- `labels` (List of String) Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).
+- `line_format` (String) Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.
+- `remove_keys` (List of String) Optional list of record keys that will be removed from stream labels.This configuration property is for records key only.
+- `tenant_id` (Attributes) Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent. (see [below for nested schema](#nestedatt--spec--outputs--loki--tenant_id))
 - `tls_ca_cert_file` (String) TlsCaCert defines the CA certificate file for TLS.
 - `tls_client_cert_file` (String) TlsClientCert defines the client certificate file for TLS.
 - `tls_private_key_file` (String) TlsPrivateKey defines the client private key file for TLS.
@@ -1145,7 +1176,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1174,7 +1205,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1203,7 +1234,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1249,7 +1280,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1278,7 +1309,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 

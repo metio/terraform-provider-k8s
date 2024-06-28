@@ -355,8 +355,8 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"group_ref": schema.SingleNestedAttribute{
-												Description:         "Reference field for GroupName",
-												MarkdownDescription: "Reference field for GroupName",
+												Description:         "Reference field for GroupID",
+												MarkdownDescription: "Reference field for GroupID",
 												Attributes: map[string]schema.Attribute{
 													"from": schema.SingleNestedAttribute{
 														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
@@ -590,8 +590,8 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"group_ref": schema.SingleNestedAttribute{
-												Description:         "Reference field for GroupName",
-												MarkdownDescription: "Reference field for GroupName",
+												Description:         "Reference field for GroupID",
+												MarkdownDescription: "Reference field for GroupID",
 												Attributes: map[string]schema.Attribute{
 													"from": schema.SingleNestedAttribute{
 														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",

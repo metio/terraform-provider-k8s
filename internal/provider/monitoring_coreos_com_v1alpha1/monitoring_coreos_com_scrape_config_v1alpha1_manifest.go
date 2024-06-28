@@ -1229,6 +1229,22 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			Userid   *string `tfsdk:"userid" json:"userid,omitempty"`
 			Username *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"openstack_sd_configs" json:"openstackSDConfigs,omitempty"`
+		OvhcloudSDConfigs *[]struct {
+			ApplicationKey    *string `tfsdk:"application_key" json:"applicationKey,omitempty"`
+			ApplicationSecret *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"application_secret" json:"applicationSecret,omitempty"`
+			ConsumerKey *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"consumer_key" json:"consumerKey,omitempty"`
+			Endpoint        *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			RefreshInterval *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Service         *string `tfsdk:"service" json:"service,omitempty"`
+		} `tfsdk:"ovhcloud_sd_configs" json:"ovhcloudSDConfigs,omitempty"`
 		Params               *map[string][]string `tfsdk:"params" json:"params,omitempty"`
 		ProxyConnectHeader   *map[string]string   `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 		ProxyFromEnvironment *bool                `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
@@ -3648,16 +3664,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Name of the Filter.",
+												MarkdownDescription: "Name of the Filter.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Value to filter on.",
+												MarkdownDescription: "Value to filter on.",
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,
@@ -4256,16 +4272,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name is the key of the field to check against.",
-												MarkdownDescription: "Name is the key of the field to check against.",
+												Description:         "Name of the Filter.",
+												MarkdownDescription: "Name of the Filter.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "Values is the value or set of values to check for a match.",
-												MarkdownDescription: "Values is the value or set of values to check for a match.",
+												Description:         "Value to filter on.",
+												MarkdownDescription: "Value to filter on.",
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,
@@ -4771,16 +4787,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Name of the Filter.",
+												MarkdownDescription: "Name of the Filter.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Value to filter on.",
+												MarkdownDescription: "Value to filter on.",
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,
@@ -9465,6 +9481,124 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									MarkdownDescription: "Username is required if using Identity V2 API. Consult with your provider'scontrol panel to discover your account's username.In Identity V3, either userid or a combination of usernameand domainId or domainName are needed",
 									Required:            false,
 									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ovhcloud_sd_configs": schema.ListNestedAttribute{
+						Description:         "OVHCloudSDConfigs defines a list of OVHcloud service discovery configurations.",
+						MarkdownDescription: "OVHCloudSDConfigs defines a list of OVHcloud service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"application_key": schema.StringAttribute{
+									Description:         "Access key to use. https://api.ovh.com.",
+									MarkdownDescription: "Access key to use. https://api.ovh.com.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"application_secret": schema.SingleNestedAttribute{
+									Description:         "SecretKeySelector selects a key of a Secret.",
+									MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"consumer_key": schema.SingleNestedAttribute{
+									Description:         "SecretKeySelector selects a key of a Secret.",
+									MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"endpoint": schema.StringAttribute{
+									Description:         "Custom endpoint to be used.",
+									MarkdownDescription: "Custom endpoint to be used.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "Refresh interval to re-read the resources list.",
+									MarkdownDescription: "Refresh interval to re-read the resources list.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"service": schema.StringAttribute{
+									Description:         "Service of the targets to retrieve. Must be 'VPS' or 'DedicatedServer'.",
+									MarkdownDescription: "Service of the targets to retrieve. Must be 'VPS' or 'DedicatedServer'.",
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},

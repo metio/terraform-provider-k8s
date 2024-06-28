@@ -173,8 +173,9 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
-		Args                     *[]string `tfsdk:"args" json:"args,omitempty"`
-		Command                  *[]string `tfsdk:"command" json:"command,omitempty"`
+		Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+		Args                     *[]string          `tfsdk:"args" json:"args,omitempty"`
+		Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
 		ContainerSecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 			Capabilities             *struct {
@@ -248,7 +249,8 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+		Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		Replicas  *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -1255,6 +1257,15 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						Computed: false,
 					},
 
+					"annotations": schema.MapAttribute{
+						Description:         "Custom annotations to add to dataplane pods. Note that this does not affect theannotations added to the Deployment (this come from the correspnding Gateway), just thepods. Note also that mandatory pod annotations override whatever you set here onconflict, and the annotations set here override annotations manually added to the pods.",
+						MarkdownDescription: "Custom annotations to add to dataplane pods. Note that this does not affect theannotations added to the Deployment (this come from the correspnding Gateway), just thepods. Note also that mandatory pod annotations override whatever you set here onconflict, and the annotations set here override annotations manually added to the pods.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"args": schema.ListAttribute{
 						Description:         "Arguments to the entrypoint.",
 						MarkdownDescription: "Arguments to the entrypoint.",
@@ -1758,6 +1769,15 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"labels": schema.MapAttribute{
+						Description:         "Custom labels to add to dataplane pods. Note that this does not affect the labels addedto the Deployment (those come from the Gateway), just the pods. Note also that mandatorypod labels override whatever you set here on conflict. The only way to set pod labels ishere: whatever you set manually on the dataplane pod will be reset by the opetator.",
+						MarkdownDescription: "Custom labels to add to dataplane pods. Note that this does not affect the labels addedto the Deployment (those come from the Gateway), just the pods. Note also that mandatorypod labels override whatever you set here on conflict. The only way to set pod labels ishere: whatever you set manually on the dataplane pod will be reset by the opetator.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"replicas": schema.Int64Attribute{

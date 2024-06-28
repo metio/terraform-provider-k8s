@@ -419,7 +419,11 @@ type CertManagerIoClusterIssuerV1ManifestData struct {
 				Url *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"cloud" json:"cloud,omitempty"`
 			Tpp *struct {
-				CaBundle       *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
+				CaBundle          *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
+				CaBundleSecretRef *struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"ca_bundle_secret_ref" json:"caBundleSecretRef,omitempty"`
 				CredentialsRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_ref" json:"credentialsRef,omitempty"`
@@ -2982,6 +2986,31 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 										Validators: []validator.String{
 											validators.Base64Validator(),
 										},
+									},
+
+									"ca_bundle_secret_ref": schema.SingleNestedAttribute{
+										Description:         "Reference to a Secret containing a base64-encoded bundle of PEM CAswhich will be used to validate the certificate chain presented by the TPP server.Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef is defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
+										MarkdownDescription: "Reference to a Secret containing a base64-encoded bundle of PEM CAswhich will be used to validate the certificate chain presented by the TPP server.Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef is defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"credentials_ref": schema.SingleNestedAttribute{

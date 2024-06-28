@@ -84,6 +84,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `nomad_sd_configs` (Attributes List) NomadSDConfigs defines a list of Nomad service discovery configurations. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs))
 - `openstack_sd_configs` (Attributes List) OpenStackSDConfigs defines a list of OpenStack service discovery configurations. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs))
+- `ovhcloud_sd_configs` (Attributes List) OVHCloudSDConfigs defines a list of OVHcloud service discovery configurations. (see [below for nested schema](#nestedatt--spec--ovhcloud_sd_configs))
 - `params` (Map of List of String) Optional HTTP URL parameters
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
@@ -748,8 +749,8 @@ Optional:
 
 Required:
 
-- `name` (String)
-- `values` (List of String)
+- `name` (String) Name of the Filter.
+- `values` (List of String) Value to filter on.
 
 
 <a id="nestedatt--spec--docker_sd_configs--oauth2"></a>
@@ -997,8 +998,8 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the key of the field to check against.
-- `values` (List of String) Values is the value or set of values to check for a match.
+- `name` (String) Name of the Filter.
+- `values` (List of String) Value to filter on.
 
 
 <a id="nestedatt--spec--docker_swarm_sd_configs--oauth2"></a>
@@ -1191,8 +1192,8 @@ Optional:
 
 Required:
 
-- `name` (String)
-- `values` (List of String)
+- `name` (String) Name of the Filter.
+- `values` (List of String) Value to filter on.
 
 
 <a id="nestedatt--spec--ec2_sd_configs--secret_key"></a>
@@ -3258,6 +3259,48 @@ Optional:
 - `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
+
+
+
+<a id="nestedatt--spec--ovhcloud_sd_configs"></a>
+### Nested Schema for `spec.ovhcloud_sd_configs`
+
+Required:
+
+- `application_key` (String) Access key to use. https://api.ovh.com.
+- `application_secret` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--ovhcloud_sd_configs--application_secret))
+- `consumer_key` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--ovhcloud_sd_configs--consumer_key))
+- `service` (String) Service of the targets to retrieve. Must be 'VPS' or 'DedicatedServer'.
+
+Optional:
+
+- `endpoint` (String) Custom endpoint to be used.
+- `refresh_interval` (String) Refresh interval to re-read the resources list.
+
+<a id="nestedatt--spec--ovhcloud_sd_configs--application_secret"></a>
+### Nested Schema for `spec.ovhcloud_sd_configs.application_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--ovhcloud_sd_configs--consumer_key"></a>
+### Nested Schema for `spec.ovhcloud_sd_configs.consumer_key`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 

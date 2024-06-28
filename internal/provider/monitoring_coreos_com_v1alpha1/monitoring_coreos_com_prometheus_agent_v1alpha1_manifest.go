@@ -1674,8 +1674,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Metadata(_ context.
 
 func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "PrometheusAgent defines a Prometheus agent deployment.",
-		MarkdownDescription: "PrometheusAgent defines a Prometheus agent deployment.",
+		Description:         "The 'PrometheusAgent' custom resource definition (CRD) defines a desired [Prometheus Agent](https://prometheus.io/blog/2021/11/16/agent/) setup to run in a Kubernetes cluster.The CRD is very similar to the 'Prometheus' CRD except for features which aren't available in agent mode like rule evaluation, persistent storage and Thanos sidecar.",
+		MarkdownDescription: "The 'PrometheusAgent' custom resource definition (CRD) defines a desired [Prometheus Agent](https://prometheus.io/blog/2021/11/16/agent/) setup to run in a Kubernetes cluster.The CRD is very similar to the 'Prometheus' CRD except for features which aren't available in agent mode like rule evaluation, persistent storage and Thanos sidecar.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

@@ -1406,8 +1406,8 @@ func (r *MonitoringCoreosComAlertmanagerV1Manifest) Metadata(_ context.Context, 
 
 func (r *MonitoringCoreosComAlertmanagerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Alertmanager describes an Alertmanager cluster.",
-		MarkdownDescription: "Alertmanager describes an Alertmanager cluster.",
+		Description:         "The 'Alertmanager' custom resource definition (CRD) defines a desired [Alertmanager](https://prometheus.io/docs/alerting) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage and many more.For each 'Alertmanager' resource, the Operator deploys a 'StatefulSet' in the same namespace. When there are two or more configured replicas, the Operator runs the Alertmanager instances in high-availability mode.The resource defines via label and namespace selectors which 'AlertmanagerConfig' objects should be associated to the deployed Alertmanager instances.",
+		MarkdownDescription: "The 'Alertmanager' custom resource definition (CRD) defines a desired [Alertmanager](https://prometheus.io/docs/alerting) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage and many more.For each 'Alertmanager' resource, the Operator deploys a 'StatefulSet' in the same namespace. When there are two or more configured replicas, the Operator runs the Alertmanager instances in high-availability mode.The resource defines via label and namespace selectors which 'AlertmanagerConfig' objects should be associated to the deployed Alertmanager instances.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

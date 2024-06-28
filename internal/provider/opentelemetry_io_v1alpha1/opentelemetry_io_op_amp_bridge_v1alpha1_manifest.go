@@ -214,13 +214,25 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		} `tfsdk:"env_from" json:"envFrom,omitempty"`
-		Headers            *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-		HostNetwork        *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Image              *string            `tfsdk:"image" json:"image,omitempty"`
-		ImagePullPolicy    *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-		NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		PodAnnotations     *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
+		Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+		HostNetwork     *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		Image           *string            `tfsdk:"image" json:"image,omitempty"`
+		ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		PodAnnotations  *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
+		PodDnsConfig    *struct {
+			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+			Options     *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"options" json:"options,omitempty"`
+			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+		} `tfsdk:"pod_dns_config" json:"podDnsConfig,omitempty"`
 		PodSecurityContext *struct {
+			AppArmorProfile *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -267,7 +279,11 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		SecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-			Capabilities             *struct {
+			AppArmorProfile          *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+			Capabilities *struct {
 				Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 				Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 			} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -321,12 +337,13 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 		} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		UpgradeStrategy *string `tfsdk:"upgrade_strategy" json:"upgradeStrategy,omitempty"`
 		VolumeMounts    *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		Volumes *[]struct {
 			AwsElasticBlockStore *struct {
@@ -1901,10 +1918,89 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"pod_dns_config": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"nameservers": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"options": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"searches": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pod_security_context": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"app_armor_profile": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"fs_group": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -2227,6 +2323,31 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"app_armor_profile": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"capabilities": schema.SingleNestedAttribute{
@@ -2638,6 +2759,14 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"read_only": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,

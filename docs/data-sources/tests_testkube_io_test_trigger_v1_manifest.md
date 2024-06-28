@@ -67,6 +67,7 @@ Optional:
 - `concurrency_policy` (String) ConcurrencyPolicy defines concurrency policy for selected Execution
 - `condition_spec` (Attributes) What resource conditions should be matched (see [below for nested schema](#nestedatt--spec--condition_spec))
 - `delay` (String) Delay is a duration string which specifies how long should the test be delayed after a trigger is matched
+- `disabled` (Boolean) whether test trigger is disabled
 - `probe_spec` (Attributes) What resource probes should be matched (see [below for nested schema](#nestedatt--spec--probe_spec))
 
 <a id="nestedatt--spec--resource_selector"></a>

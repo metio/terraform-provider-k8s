@@ -68,6 +68,7 @@ Optional:
 - `force_termination_grace_period` (String) ForceTerminationGracePeriod forces the termination grace period on pods, statefulsets, daemonsets and deployments.
 - `namespace` (String) Namespace determines whether the test should run in a random ephemeral namespace or not.
 - `namespace_template` (Map of String) NamespaceTemplate defines a template to create the test namespace.
+- `scenarios` (Attributes List) Scenarios defines test scenarios. (see [below for nested schema](#nestedatt--spec--scenarios))
 - `skip` (Boolean) Skip determines whether the test should skipped.
 - `skip_delete` (Boolean) SkipDelete determines whether the resources created by the test should be deleted after the test is executed.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
@@ -113,6 +114,7 @@ Optional:
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--get))
 - `patch` (Attributes) Patch represents a patch operation. (see [below for nested schema](#nestedatt--spec--steps--try--patch))
 - `pod_logs` (Attributes) PodLogs determines the pod logs collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--pod_logs))
+- `proxy` (Attributes) Proxy runs a proxy request. (see [below for nested schema](#nestedatt--spec--steps--try--proxy))
 - `script` (Attributes) Script defines a script to run. (see [below for nested schema](#nestedatt--spec--steps--try--script))
 - `sleep` (Attributes) Sleep defines zzzz. (see [below for nested schema](#nestedatt--spec--steps--try--sleep))
 - `update` (Attributes) Update represents an update operation. (see [below for nested schema](#nestedatt--spec--steps--try--update))
@@ -616,6 +618,51 @@ Required:
 Optional:
 
 - `context` (String) Context is the name of the context to use.
+
+
+
+<a id="nestedatt--spec--steps--try--proxy"></a>
+### Nested Schema for `spec.steps.try.proxy`
+
+Required:
+
+- `api_version` (String) API version of the referent.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+Optional:
+
+- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--proxy--clusters))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--proxy--outputs))
+- `path` (String) TargetPath defines the target path to proxy the request.
+- `port` (String) TargetPort defines the target port to proxy the request.
+- `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--steps--try--proxy--clusters"></a>
+### Nested Schema for `spec.steps.try.proxy.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
+<a id="nestedatt--spec--steps--try--proxy--outputs"></a>
+### Nested Schema for `spec.steps.try.proxy.outputs`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `match` (Map of String) Match defines the matching statement.
 
 
 
@@ -2423,6 +2470,23 @@ Required:
 Optional:
 
 - `context` (String) Context is the name of the context to use.
+
+
+<a id="nestedatt--spec--scenarios"></a>
+### Nested Schema for `spec.scenarios`
+
+Optional:
+
+- `bindings` (Attributes List) Bindings defines binding key/values. (see [below for nested schema](#nestedatt--spec--scenarios--bindings))
+
+<a id="nestedatt--spec--scenarios--bindings"></a>
+### Nested Schema for `spec.scenarios.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
 
 
 <a id="nestedatt--spec--timeouts"></a>

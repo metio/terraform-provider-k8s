@@ -77,8 +77,8 @@ Optional:
 - `ptp_scheduling_policy` (String)
 - `ptp_scheduling_priority` (Number)
 - `ptp_settings` (Map of String)
-- `sync_e_conf` (String)
-- `sync_e_opts` (String)
+- `synce4l_conf` (String)
+- `synce4l_opts` (String)
 - `ts2phc_conf` (String)
 - `ts2phc_opts` (String)
 

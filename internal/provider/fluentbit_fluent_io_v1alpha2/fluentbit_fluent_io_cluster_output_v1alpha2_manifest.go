@@ -52,8 +52,20 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			ContainerName       *string `tfsdk:"container_name" json:"containerName,omitempty"`
 			EmulatorMode        *string `tfsdk:"emulator_mode" json:"emulatorMode,omitempty"`
 			Endpoint            *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Path                *string `tfsdk:"path" json:"path,omitempty"`
-			SharedKey           *struct {
+			Networking          *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Path      *string `tfsdk:"path" json:"path,omitempty"`
+			SharedKey *struct {
 				ValueFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -124,7 +136,8 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			StsEndpoint       *string `tfsdk:"sts_endpoint" json:"stsEndpoint,omitempty"`
 		} `tfsdk:"cloud_watch" json:"cloudWatch,omitempty"`
 		CustomPlugin *struct {
-			Config *string `tfsdk:"config" json:"config,omitempty"`
+			Config     *string            `tfsdk:"config" json:"config,omitempty"`
+			YamlConfig *map[string]string `tfsdk:"yaml_config" json:"yamlConfig,omitempty"`
 		} `tfsdk:"custom_plugin" json:"customPlugin,omitempty"`
 		Datadog *struct {
 			Apikey *struct {
@@ -187,16 +200,28 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			LogstashFormat     *bool   `tfsdk:"logstash_format" json:"logstashFormat,omitempty"`
 			LogstashPrefix     *string `tfsdk:"logstash_prefix" json:"logstashPrefix,omitempty"`
 			LogstashPrefixKey  *string `tfsdk:"logstash_prefix_key" json:"logstashPrefixKey,omitempty"`
-			Path               *string `tfsdk:"path" json:"path,omitempty"`
-			Pipeline           *string `tfsdk:"pipeline" json:"pipeline,omitempty"`
-			Port               *int64  `tfsdk:"port" json:"port,omitempty"`
-			ReplaceDots        *bool   `tfsdk:"replace_dots" json:"replaceDots,omitempty"`
-			SuppressTypeName   *string `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
-			TagKey             *string `tfsdk:"tag_key" json:"tagKey,omitempty"`
-			TimeKey            *string `tfsdk:"time_key" json:"timeKey,omitempty"`
-			TimeKeyFormat      *string `tfsdk:"time_key_format" json:"timeKeyFormat,omitempty"`
-			TimeKeyNanos       *bool   `tfsdk:"time_key_nanos" json:"timeKeyNanos,omitempty"`
-			Tls                *struct {
+			Networking         *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Path             *string `tfsdk:"path" json:"path,omitempty"`
+			Pipeline         *string `tfsdk:"pipeline" json:"pipeline,omitempty"`
+			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
+			ReplaceDots      *bool   `tfsdk:"replace_dots" json:"replaceDots,omitempty"`
+			SuppressTypeName *string `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
+			TagKey           *string `tfsdk:"tag_key" json:"tagKey,omitempty"`
+			TimeKey          *string `tfsdk:"time_key" json:"timeKey,omitempty"`
+			TimeKeyFormat    *string `tfsdk:"time_key_format" json:"timeKeyFormat,omitempty"`
+			TimeKeyNanos     *bool   `tfsdk:"time_key_nanos" json:"timeKeyNanos,omitempty"`
+			Tls              *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -243,7 +268,19 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 		Forward *struct {
 			EmptySharedKey *bool   `tfsdk:"empty_shared_key" json:"emptySharedKey,omitempty"`
 			Host           *string `tfsdk:"host" json:"host,omitempty"`
-			Password       *struct {
+			Networking     *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Password *struct {
 				ValueFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -288,12 +325,24 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"forward" json:"forward,omitempty"`
 		Gelf *struct {
-			Compress        *bool   `tfsdk:"compress" json:"compress,omitempty"`
-			FullMessageKey  *string `tfsdk:"full_message_key" json:"fullMessageKey,omitempty"`
-			Host            *string `tfsdk:"host" json:"host,omitempty"`
-			HostKey         *string `tfsdk:"host_key" json:"hostKey,omitempty"`
-			LevelKey        *string `tfsdk:"level_key" json:"levelKey,omitempty"`
-			Mode            *string `tfsdk:"mode" json:"mode,omitempty"`
+			Compress       *bool   `tfsdk:"compress" json:"compress,omitempty"`
+			FullMessageKey *string `tfsdk:"full_message_key" json:"fullMessageKey,omitempty"`
+			Host           *string `tfsdk:"host" json:"host,omitempty"`
+			HostKey        *string `tfsdk:"host_key" json:"hostKey,omitempty"`
+			LevelKey       *string `tfsdk:"level_key" json:"levelKey,omitempty"`
+			Mode           *string `tfsdk:"mode" json:"mode,omitempty"`
+			Networking     *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
 			PacketSize      *int64  `tfsdk:"packet_size" json:"packetSize,omitempty"`
 			Port            *int64  `tfsdk:"port" json:"port,omitempty"`
 			ShortMessageKey *string `tfsdk:"short_message_key" json:"shortMessageKey,omitempty"`
@@ -349,9 +398,21 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
 			JsonDateFormat *string `tfsdk:"json_date_format" json:"jsonDateFormat,omitempty"`
 			JsonDateKey    *string `tfsdk:"json_date_key" json:"jsonDateKey,omitempty"`
-			Port           *int64  `tfsdk:"port" json:"port,omitempty"`
-			Proxy          *string `tfsdk:"proxy" json:"proxy,omitempty"`
-			Tls            *struct {
+			Networking     *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Port  *int64  `tfsdk:"port" json:"port,omitempty"`
+			Proxy *string `tfsdk:"proxy" json:"proxy,omitempty"`
+			Tls   *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -403,6 +464,18 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
+			Networking *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
 			Org             *string   `tfsdk:"org" json:"org,omitempty"`
 			Port            *int64    `tfsdk:"port" json:"port,omitempty"`
 			SequenceTag     *string   `tfsdk:"sequence_tag" json:"sequenceTag,omitempty"`
@@ -480,9 +553,21 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			LabelMapPath *string   `tfsdk:"label_map_path" json:"labelMapPath,omitempty"`
 			Labels       *[]string `tfsdk:"labels" json:"labels,omitempty"`
 			LineFormat   *string   `tfsdk:"line_format" json:"lineFormat,omitempty"`
-			Port         *int64    `tfsdk:"port" json:"port,omitempty"`
-			RemoveKeys   *[]string `tfsdk:"remove_keys" json:"removeKeys,omitempty"`
-			TenantID     *struct {
+			Networking   *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Port       *int64    `tfsdk:"port" json:"port,omitempty"`
+			RemoveKeys *[]string `tfsdk:"remove_keys" json:"removeKeys,omitempty"`
+			TenantID   *struct {
 				ValueFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -550,16 +635,28 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			LogstashFormat     *bool   `tfsdk:"logstash_format" json:"logstashFormat,omitempty"`
 			LogstashPrefix     *string `tfsdk:"logstash_prefix" json:"logstashPrefix,omitempty"`
 			LogstashPrefixKey  *string `tfsdk:"logstash_prefix_key" json:"logstashPrefixKey,omitempty"`
-			Path               *string `tfsdk:"path" json:"path,omitempty"`
-			Pipeline           *string `tfsdk:"pipeline" json:"pipeline,omitempty"`
-			Port               *int64  `tfsdk:"port" json:"port,omitempty"`
-			ReplaceDots        *bool   `tfsdk:"replace_dots" json:"replaceDots,omitempty"`
-			SuppressTypeName   *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
-			TagKey             *string `tfsdk:"tag_key" json:"tagKey,omitempty"`
-			TimeKey            *string `tfsdk:"time_key" json:"timeKey,omitempty"`
-			TimeKeyFormat      *string `tfsdk:"time_key_format" json:"timeKeyFormat,omitempty"`
-			TimeKeyNanos       *bool   `tfsdk:"time_key_nanos" json:"timeKeyNanos,omitempty"`
-			Tls                *struct {
+			Networking         *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Path             *string `tfsdk:"path" json:"path,omitempty"`
+			Pipeline         *string `tfsdk:"pipeline" json:"pipeline,omitempty"`
+			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
+			ReplaceDots      *bool   `tfsdk:"replace_dots" json:"replaceDots,omitempty"`
+			SuppressTypeName *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
+			TagKey           *string `tfsdk:"tag_key" json:"tagKey,omitempty"`
+			TimeKey          *string `tfsdk:"time_key" json:"timeKey,omitempty"`
+			TimeKeyFormat    *string `tfsdk:"time_key_format" json:"timeKeyFormat,omitempty"`
+			TimeKeyNanos     *bool   `tfsdk:"time_key_nanos" json:"timeKeyNanos,omitempty"`
+			Tls              *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -608,9 +705,21 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			LogResponsePayload *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
 			LogsUri            *string `tfsdk:"logs_uri" json:"logsUri,omitempty"`
 			MetricsUri         *string `tfsdk:"metrics_uri" json:"metricsUri,omitempty"`
-			Port               *int64  `tfsdk:"port" json:"port,omitempty"`
-			Proxy              *string `tfsdk:"proxy" json:"proxy,omitempty"`
-			Tls                *struct {
+			Networking         *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Port  *int64  `tfsdk:"port" json:"port,omitempty"`
+			Proxy *string `tfsdk:"proxy" json:"proxy,omitempty"`
+			Tls   *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -630,6 +739,7 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			TracesUri *string `tfsdk:"traces_uri" json:"tracesUri,omitempty"`
 		} `tfsdk:"opentelemetry" json:"opentelemetry,omitempty"`
+		Processors         *map[string]string `tfsdk:"processors" json:"processors,omitempty"`
 		PrometheusExporter *struct {
 			AddLabels *map[string]string `tfsdk:"add_labels" json:"addLabels,omitempty"`
 			Host      *string            `tfsdk:"host" json:"host,omitempty"`
@@ -657,10 +767,22 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
-			LogResponsePayload *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
-			Port               *int64  `tfsdk:"port" json:"port,omitempty"`
-			Proxy              *string `tfsdk:"proxy" json:"proxy,omitempty"`
-			Tls                *struct {
+			LogResponsePayload *bool `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
+			Networking         *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Port  *int64  `tfsdk:"port" json:"port,omitempty"`
+			Proxy *string `tfsdk:"proxy" json:"proxy,omitempty"`
+			Tls   *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -762,6 +884,18 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
+			Networking *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
 			Port          *int64 `tfsdk:"port" json:"port,omitempty"`
 			SplunkSendRaw *bool  `tfsdk:"splunk_send_raw" json:"splunkSendRaw,omitempty"`
 			SplunkToken   *struct {
@@ -838,8 +972,20 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			JsonDateKey    *string `tfsdk:"json_date_key" json:"jsonDateKey,omitempty"`
 		} `tfsdk:"stdout" json:"stdout,omitempty"`
 		Syslog *struct {
-			Host               *string `tfsdk:"host" json:"host,omitempty"`
-			Mode               *string `tfsdk:"mode" json:"mode,omitempty"`
+			Host       *string `tfsdk:"host" json:"host,omitempty"`
+			Mode       *string `tfsdk:"mode" json:"mode,omitempty"`
+			Networking *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
 			Port               *int64  `tfsdk:"port" json:"port,omitempty"`
 			SyslogAppnameKey   *string `tfsdk:"syslog_appname_key" json:"syslogAppnameKey,omitempty"`
 			SyslogFacilityKey  *string `tfsdk:"syslog_facility_key" json:"syslogFacilityKey,omitempty"`
@@ -875,8 +1021,20 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			Host           *string `tfsdk:"host" json:"host,omitempty"`
 			JsonDateFormat *string `tfsdk:"json_date_format" json:"jsonDateFormat,omitempty"`
 			JsonDateKey    *string `tfsdk:"json_date_key" json:"jsonDateKey,omitempty"`
-			Port           *int64  `tfsdk:"port" json:"port,omitempty"`
-			Tls            *struct {
+			Networking     *struct {
+				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
+				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
+				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
+				ConnectTimeout         *int64  `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				ConnectTimeoutLogError *bool   `tfsdk:"connect_timeout_log_error" json:"connectTimeoutLogError,omitempty"`
+				Keepalive              *string `tfsdk:"keepalive" json:"keepalive,omitempty"`
+				KeepaliveIdleTimeout   *int64  `tfsdk:"keepalive_idle_timeout" json:"keepaliveIdleTimeout,omitempty"`
+				KeepaliveMaxRecycle    *int64  `tfsdk:"keepalive_max_recycle" json:"keepaliveMaxRecycle,omitempty"`
+				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
+				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			Port *int64 `tfsdk:"port" json:"port,omitempty"`
+			Tls  *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
 				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
@@ -964,8 +1122,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 				MarkdownDescription: "OutputSpec defines the desired state of ClusterOutput",
 				Attributes: map[string]schema.Attribute{
 					"alias": schema.StringAttribute{
-						Description:         "A user friendly alias name for this output plugin. Used in metrics for distinction of each configured output.",
-						MarkdownDescription: "A user friendly alias name for this output plugin. Used in metrics for distinction of each configured output.",
+						Description:         "A user friendly alias name for this output plugin.Used in metrics for distinction of each configured output.",
+						MarkdownDescription: "A user friendly alias name for this output plugin.Used in metrics for distinction of each configured output.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1032,6 +1190,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"path": schema.StringAttribute{
 								Description:         "Optional path to store the blobs.",
 								MarkdownDescription: "Optional path to store the blobs.",
@@ -1061,8 +1317,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1120,8 +1376,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1159,8 +1415,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1240,8 +1496,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1299,8 +1555,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1454,8 +1710,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"metric_dimensions": schema.StringAttribute{
-								Description:         "Optional lists of lists for dimension keys to be added to all metrics. Use comma separated strings for one list of dimensions and semicolon separated strings for list of lists dimensions.",
-								MarkdownDescription: "Optional lists of lists for dimension keys to be added to all metrics. Use comma separated strings for one list of dimensions and semicolon separated strings for list of lists dimensions.",
+								Description:         "Optional lists of lists for dimension keys to be added to all metrics. Use comma separated stringsfor one list of dimensions and semicolon separated strings for list of lists dimensions.",
+								MarkdownDescription: "Optional lists of lists for dimension keys to be added to all metrics. Use comma separated stringsfor one list of dimensions and semicolon separated strings for list of lists dimensions.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1503,8 +1759,17 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 						MarkdownDescription: "CustomPlugin defines Custom Output configuration.",
 						Attributes: map[string]schema.Attribute{
 							"config": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
+								MarkdownDescription: "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"yaml_config": schema.MapAttribute{
+								Description:         "YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml",
+								MarkdownDescription: "YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1540,8 +1805,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1571,8 +1836,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"compress": schema.StringAttribute{
-								Description:         "Compress  the payload in GZIP format. Datadog supports and recommends setting this to gzip.",
-								MarkdownDescription: "Compress  the payload in GZIP format. Datadog supports and recommends setting this to gzip.",
+								Description:         "Compress  the payload in GZIP format.Datadog supports and recommends setting this to gzip.",
+								MarkdownDescription: "Compress  the payload in GZIP format.Datadog supports and recommends setting this to gzip.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1659,8 +1924,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"tls": schema.BoolAttribute{
-								Description:         "TLS controls whether to use end-to-end security communications security protocol. Datadog recommends setting this to on.",
-								MarkdownDescription: "TLS controls whether to use end-to-end security communications security protocol. Datadog recommends setting this to on.",
+								Description:         "TLS controls whether to use end-to-end security communications security protocol.Datadog recommends setting this to on.",
+								MarkdownDescription: "TLS controls whether to use end-to-end security communications security protocol.Datadog recommends setting this to on.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1716,8 +1981,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"buffer_size": schema.StringAttribute{
-								Description:         "Specify the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.",
-								MarkdownDescription: "Specify the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.",
+								Description:         "Specify the buffer size used to read the response from the Elasticsearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.",
+								MarkdownDescription: "Specify the buffer size used to read the response from the Elasticsearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1762,8 +2027,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"generate_id": schema.BoolAttribute{
-								Description:         "When enabled, generate _id for outgoing records. This prevents duplicate records when retrying ES.",
-								MarkdownDescription: "When enabled, generate _id for outgoing records. This prevents duplicate records when retrying ES.",
+								Description:         "When enabled, generate _id for outgoing records.This prevents duplicate records when retrying ES.",
+								MarkdownDescription: "When enabled, generate _id for outgoing records.This prevents duplicate records when retrying ES.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1798,8 +2063,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1849,8 +2114,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1912,16 +2177,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"logstash_format": schema.BoolAttribute{
-								Description:         "Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off",
-								MarkdownDescription: "Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off",
+								Description:         "Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off",
+								MarkdownDescription: "Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"logstash_prefix": schema.StringAttribute{
-								Description:         "When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.",
-								MarkdownDescription: "When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.",
+								Description:         "When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.",
+								MarkdownDescription: "When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1935,17 +2200,115 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"path": schema.StringAttribute{
-								Description:         "Elasticsearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.",
-								MarkdownDescription: "Elasticsearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.",
+								Description:         "Elasticsearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.",
+								MarkdownDescription: "Elasticsearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pipeline": schema.StringAttribute{
-								Description:         "Newer versions of Elasticsearch allows setting up filters called pipelines. This option allows defining which pipeline the database should use. For performance reasons is strongly suggested parsing and filtering on Fluent Bit side, avoid pipelines.",
-								MarkdownDescription: "Newer versions of Elasticsearch allows setting up filters called pipelines. This option allows defining which pipeline the database should use. For performance reasons is strongly suggested parsing and filtering on Fluent Bit side, avoid pipelines.",
+								Description:         "Newer versions of Elasticsearch allows setting up filters called pipelines.This option allows defining which pipeline the database should use.For performance reasons is strongly suggested parsingand filtering on Fluent Bit side, avoid pipelines.",
+								MarkdownDescription: "Newer versions of Elasticsearch allows setting up filters called pipelines.This option allows defining which pipeline the database should use.For performance reasons is strongly suggested parsingand filtering on Fluent Bit side, avoid pipelines.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1988,8 +2351,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"time_key": schema.StringAttribute{
-								Description:         "When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.",
-								MarkdownDescription: "When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.",
+								Description:         "When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.",
+								MarkdownDescription: "When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2040,8 +2403,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2079,8 +2442,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2344,6 +2707,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"password": schema.SingleNestedAttribute{
 								Description:         "Specify the password corresponding to the username.",
 								MarkdownDescription: "Specify the password corresponding to the username.",
@@ -2365,8 +2826,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2408,8 +2869,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"require_ack_response": schema.BoolAttribute{
-								Description:         "Send 'chunk'-option and wait for 'ack' response from server. Enables at-least-once and receiving server can control rate of traffic. (Requires Fluentd v0.14.0+ server)",
-								MarkdownDescription: "Send 'chunk'-option and wait for 'ack' response from server. Enables at-least-once and receiving server can control rate of traffic. (Requires Fluentd v0.14.0+ server)",
+								Description:         "Send 'chunk'-option and wait for 'ack' response from server.Enables at-least-once and receiving server can control rate of traffic.(Requires Fluentd v0.14.0+ server)",
+								MarkdownDescription: "Send 'chunk'-option and wait for 'ack' response from server.Enables at-least-once and receiving server can control rate of traffic.(Requires Fluentd v0.14.0+ server)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2440,8 +2901,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"tag": schema.StringAttribute{
-								Description:         "Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.",
-								MarkdownDescription: "Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.",
+								Description:         "Overwrite the tag as we transmit. This allows the receiving pipeline startfresh, or to attribute source.",
+								MarkdownDescription: "Overwrite the tag as we transmit. This allows the receiving pipeline startfresh, or to attribute source.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2484,8 +2945,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2523,8 +2984,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2595,8 +3056,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2685,6 +3146,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								},
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"packet_size": schema.Int64Attribute{
 								Description:         "If transport protocol is udp, it sets the size of packets to be sent.",
 								MarkdownDescription: "If transport protocol is udp, it sets the size of packets to be sent.",
@@ -2750,8 +3309,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2789,8 +3348,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2850,8 +3409,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 						MarkdownDescription: "HTTP defines HTTP Output configuration.",
 						Attributes: map[string]schema.Attribute{
 							"allow_duplicated_headers": schema.BoolAttribute{
-								Description:         "Specify if duplicated headers are allowed. If a duplicated header is found, the latest key/value set is preserved.",
-								MarkdownDescription: "Specify if duplicated headers are allowed. If a duplicated header is found, the latest key/value set is preserved.",
+								Description:         "Specify if duplicated headers are allowed.If a duplicated header is found, the latest key/value set is preserved.",
+								MarkdownDescription: "Specify if duplicated headers are allowed.If a duplicated header is found, the latest key/value set is preserved.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2866,8 +3425,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "Specify the data format to be used in the HTTP request body, by default it uses msgpack. Other supported formats are json, json_stream and json_lines and gelf.",
-								MarkdownDescription: "Specify the data format to be used in the HTTP request body, by default it uses msgpack. Other supported formats are json, json_stream and json_lines and gelf.",
+								Description:         "Specify the data format to be used in the HTTP request body, by default it uses msgpack.Other supported formats are json, json_stream and json_lines and gelf.",
+								MarkdownDescription: "Specify the data format to be used in the HTTP request body, by default it uses msgpack.Other supported formats are json, json_stream and json_lines and gelf.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2962,8 +3521,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3013,8 +3572,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3044,19 +3603,117 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"json_date_format": schema.StringAttribute{
-								Description:         "Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
-								MarkdownDescription: "Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
+								Description:         "Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
+								MarkdownDescription: "Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"json_date_key": schema.StringAttribute{
-								Description:         "Specify the name of the time key in the output record. To disable the time key just set the value to false.",
-								MarkdownDescription: "Specify the name of the time key in the output record. To disable the time key just set the value to false.",
+								Description:         "Specify the name of the time key in the output record.To disable the time key just set the value to false.",
+								MarkdownDescription: "Specify the name of the time key in the output record.To disable the time key just set the value to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"port": schema.Int64Attribute{
@@ -3072,16 +3729,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"proxy": schema.StringAttribute{
-								Description:         "Specify an HTTP Proxy. The expected format of this value is http://host:port. Note that https is not supported yet.",
-								MarkdownDescription: "Specify an HTTP Proxy. The expected format of this value is http://host:port. Note that https is not supported yet.",
+								Description:         "Specify an HTTP Proxy. The expected format of this value is http://host:port.Note that https is not supported yet.",
+								MarkdownDescription: "Specify an HTTP Proxy. The expected format of this value is http://host:port.Note that https is not supported yet.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "HTTP output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section.",
-								MarkdownDescription: "HTTP output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section.",
+								Description:         "HTTP output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section.",
+								MarkdownDescription: "HTTP output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section.",
 								Attributes: map[string]schema.Attribute{
 									"ca_file": schema.StringAttribute{
 										Description:         "Absolute path to CA certificate file",
@@ -3108,8 +3765,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3147,8 +3804,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3268,8 +3925,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3319,8 +3976,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3370,8 +4027,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3393,6 +4050,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -3482,8 +4237,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3521,8 +4276,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3614,16 +4369,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"message_key_field": schema.StringAttribute{
-								Description:         "If set, the value of Message_Key_Field in the record will indicate the message key. If not set nor found in the record, Message_Key will be used (if set).",
-								MarkdownDescription: "If set, the value of Message_Key_Field in the record will indicate the message key. If not set nor found in the record, Message_Key will be used (if set).",
+								Description:         "If set, the value of Message_Key_Field in the record will indicate the message key.If not set nor found in the record, Message_Key will be used (if set).",
+								MarkdownDescription: "If set, the value of Message_Key_Field in the record will indicate the message key.If not set nor found in the record, Message_Key will be used (if set).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"queue_full_retries": schema.Int64Attribute{
-								Description:         "Fluent Bit queues data into rdkafka library, if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records. The queue_full_retries option set the number of local retries to enqueue the data. The default value is 10 times, the interval between each retry is 1 second. Setting the queue_full_retries value to 0 set's an unlimited number of retries.",
-								MarkdownDescription: "Fluent Bit queues data into rdkafka library, if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records. The queue_full_retries option set the number of local retries to enqueue the data. The default value is 10 times, the interval between each retry is 1 second. Setting the queue_full_retries value to 0 set's an unlimited number of retries.",
+								Description:         "Fluent Bit queues data into rdkafka library,if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records.The queue_full_retries option set the number of local retries to enqueue the data.The default value is 10 times, the interval between each retry is 1 second.Setting the queue_full_retries value to 0 set's an unlimited number of retries.",
+								MarkdownDescription: "Fluent Bit queues data into rdkafka library,if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records.The queue_full_retries option set the number of local retries to enqueue the data.The default value is 10 times, the interval between each retry is 1 second.Setting the queue_full_retries value to 0 set's an unlimited number of retries.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3655,16 +4410,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"topic_key": schema.StringAttribute{
-								Description:         "If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use. E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'}, Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics, then by default the first topic in the Topics list will indicate the topic to be used.",
-								MarkdownDescription: "If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use. E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'}, Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics, then by default the first topic in the Topics list will indicate the topic to be used.",
+								Description:         "If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use.E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'},Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics,then by default the first topic in the Topics list will indicate the topic to be used.",
+								MarkdownDescription: "If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use.E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'},Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics,then by default the first topic in the Topics list will indicate the topic to be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"topics": schema.StringAttribute{
-								Description:         "Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka. If only one topic is set, that one will be used for all records. Instead if multiple topics exists, the one set in the record by Topic_Key will be used.",
-								MarkdownDescription: "Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka. If only one topic is set, that one will be used for all records. Instead if multiple topics exists, the one set in the record by Topic_Key will be used.",
+								Description:         "Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka.If only one topic is set, that one will be used for all records.Instead if multiple topics exists, the one set in the record by Topic_Key will be used.",
+								MarkdownDescription: "Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka.If only one topic is set, that one will be used for all records.Instead if multiple topics exists, the one set in the record by Topic_Key will be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3810,8 +4565,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"http_password": schema.SingleNestedAttribute{
-								Description:         "Password for user defined in HTTP_User Set HTTP basic authentication password",
-								MarkdownDescription: "Password for user defined in HTTP_User Set HTTP basic authentication password",
+								Description:         "Password for user defined in HTTP_UserSet HTTP basic authentication password",
+								MarkdownDescription: "Password for user defined in HTTP_UserSet HTTP basic authentication password",
 								Attributes: map[string]schema.Attribute{
 									"value_from": schema.SingleNestedAttribute{
 										Description:         "ValueSource defines how to find a value's key.",
@@ -3830,8 +4585,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3881,8 +4636,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3912,8 +4667,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"label_keys": schema.ListAttribute{
-								Description:         "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
-								MarkdownDescription: "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
+								Description:         "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
+								MarkdownDescription: "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3929,8 +4684,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"labels": schema.ListAttribute{
-								Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
-								MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+								Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+								MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3938,14 +4693,112 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"line_format": schema.StringAttribute{
-								Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json,  the log line sent to Loki will be the Fluent Bit record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
-								MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json,  the log line sent to Loki will be the Fluent Bit record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+								Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluent Bit record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+								MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluent Bit record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.OneOf("json", "key_value"),
 								},
+							},
+
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"port": schema.Int64Attribute{
@@ -3970,8 +4823,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"tenant_id": schema.SingleNestedAttribute{
-								Description:         "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
-								MarkdownDescription: "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+								Description:         "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+								MarkdownDescription: "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
 								Attributes: map[string]schema.Attribute{
 									"value_from": schema.SingleNestedAttribute{
 										Description:         "ValueSource defines how to find a value's key.",
@@ -3990,8 +4843,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4021,8 +4874,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"tenant_id_key": schema.StringAttribute{
-								Description:         "Specify the name of the key from the original record that contains the Tenant ID. The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.",
-								MarkdownDescription: "Specify the name of the key from the original record that contains the Tenant ID. The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.",
+								Description:         "Specify the name of the key from the original record that contains the Tenant ID.The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.",
+								MarkdownDescription: "Specify the name of the key from the original record that contains the Tenant ID.The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4057,8 +4910,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4096,8 +4949,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4153,16 +5006,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 					},
 
 					"match": schema.StringAttribute{
-						Description:         "A pattern to match against the tags of incoming records. It's case sensitive and support the star (*) character as a wildcard.",
-						MarkdownDescription: "A pattern to match against the tags of incoming records. It's case sensitive and support the star (*) character as a wildcard.",
+						Description:         "A pattern to match against the tags of incoming records.It's case sensitive and support the star (*) character as a wildcard.",
+						MarkdownDescription: "A pattern to match against the tags of incoming records.It's case sensitive and support the star (*) character as a wildcard.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"match_regex": schema.StringAttribute{
-						Description:         "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
-						MarkdownDescription: "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
+						Description:         "A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.",
+						MarkdownDescription: "A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4230,8 +5083,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"buffer_size": schema.StringAttribute{
-								Description:         "Specify the buffer size used to read the response from the OpenSearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.",
-								MarkdownDescription: "Specify the buffer size used to read the response from the OpenSearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.",
+								Description:         "Specify the buffer size used to read the response from the OpenSearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.",
+								MarkdownDescription: "Specify the buffer size used to read the response from the OpenSearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4249,8 +5102,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"generate_id": schema.BoolAttribute{
-								Description:         "When enabled, generate _id for outgoing records. This prevents duplicate records when retrying OpenSearch.",
-								MarkdownDescription: "When enabled, generate _id for outgoing records. This prevents duplicate records when retrying OpenSearch.",
+								Description:         "When enabled, generate _id for outgoing records.This prevents duplicate records when retrying OpenSearch.",
+								MarkdownDescription: "When enabled, generate _id for outgoing records.This prevents duplicate records when retrying OpenSearch.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4285,8 +5138,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4336,8 +5189,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4399,16 +5252,16 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"logstash_format": schema.BoolAttribute{
-								Description:         "Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off",
-								MarkdownDescription: "Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off",
+								Description:         "Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off",
+								MarkdownDescription: "Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"logstash_prefix": schema.StringAttribute{
-								Description:         "When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.",
-								MarkdownDescription: "When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.",
+								Description:         "When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.",
+								MarkdownDescription: "When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4422,17 +5275,115 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"path": schema.StringAttribute{
-								Description:         "OpenSearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve OpenSearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.",
-								MarkdownDescription: "OpenSearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve OpenSearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.",
+								Description:         "OpenSearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve OpenSearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.",
+								MarkdownDescription: "OpenSearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve OpenSearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pipeline": schema.StringAttribute{
-								Description:         "OpenSearch allows to setup filters called pipelines. This option allows to define which pipeline the database should use. For performance reasons is strongly suggested to do parsing and filtering on Fluent Bit side, avoid pipelines.",
-								MarkdownDescription: "OpenSearch allows to setup filters called pipelines. This option allows to define which pipeline the database should use. For performance reasons is strongly suggested to do parsing and filtering on Fluent Bit side, avoid pipelines.",
+								Description:         "OpenSearch allows to setup filters called pipelines.This option allows to define which pipeline the database should use.For performance reasons is strongly suggested to do parsingand filtering on Fluent Bit side, avoid pipelines.",
+								MarkdownDescription: "OpenSearch allows to setup filters called pipelines.This option allows to define which pipeline the database should use.For performance reasons is strongly suggested to do parsingand filtering on Fluent Bit side, avoid pipelines.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4475,8 +5426,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"time_key": schema.StringAttribute{
-								Description:         "When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.",
-								MarkdownDescription: "When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.",
+								Description:         "When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.",
+								MarkdownDescription: "When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4527,8 +5478,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4566,8 +5517,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4713,8 +5664,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4764,8 +5715,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4818,6 +5769,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"port": schema.Int64Attribute{
 								Description:         "TCP port of the target OpenSearch instance, default '80'",
 								MarkdownDescription: "TCP port of the target OpenSearch instance, default '80'",
@@ -4831,8 +5880,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"proxy": schema.StringAttribute{
-								Description:         "Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported. It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.",
-								MarkdownDescription: "Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported. It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.",
+								Description:         "Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported.It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.",
+								MarkdownDescription: "Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported.It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4867,8 +5916,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4906,8 +5955,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4968,6 +6017,15 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"processors": schema.MapAttribute{
+						Description:         "Processors defines the processors configuration",
+						MarkdownDescription: "Processors defines the processors configuration",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"prometheus_exporter": schema.SingleNestedAttribute{
@@ -5039,8 +6097,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"http_passwd": schema.SingleNestedAttribute{
-								Description:         "Basic Auth Password. Requires HTTP_user to be se",
-								MarkdownDescription: "Basic Auth Password. Requires HTTP_user to be se",
+								Description:         "Basic Auth Password.Requires HTTP_user to be se",
+								MarkdownDescription: "Basic Auth Password.Requires HTTP_user to be se",
 								Attributes: map[string]schema.Attribute{
 									"value_from": schema.SingleNestedAttribute{
 										Description:         "ValueSource defines how to find a value's key.",
@@ -5059,8 +6117,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5110,8 +6168,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5146,6 +6204,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"port": schema.Int64Attribute{
@@ -5197,8 +6353,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5236,8 +6392,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5309,8 +6465,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 					},
 
 					"retry_limit": schema.StringAttribute{
-						Description:         "RetryLimit represents configuration for the scheduler which can be set independently on each output section. This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.",
-						MarkdownDescription: "RetryLimit represents configuration for the scheduler which can be set independently on each output section. This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.",
+						Description:         "RetryLimit represents configuration for the scheduler which can be set independently on each output section.This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.",
+						MarkdownDescription: "RetryLimit represents configuration for the scheduler which can be set independently on each output section.This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5565,8 +6721,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5604,8 +6760,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5689,8 +6845,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"event_fields": schema.ListAttribute{
-								Description:         "Set event fields for the record. This option is an array and the format is 'key_name record_accessor_pattern'.",
-								MarkdownDescription: "Set event fields for the record. This option is an array and the format is 'key_name record_accessor_pattern'.",
+								Description:         "Set event fields for the record. This option is an array and the format is 'key_namerecord_accessor_pattern'.",
+								MarkdownDescription: "Set event fields for the record. This option is an array and the format is 'key_namerecord_accessor_pattern'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5714,8 +6870,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"event_index_key": schema.StringAttribute{
-								Description:         "Set a record key that will populate the index field. If the key is found, it will have precedence over the value set in event_index.",
-								MarkdownDescription: "Set a record key that will populate the index field. If the key is found, it will have precedence over the value set in event_index.",
+								Description:         "Set a record key that will populate the index field. If the key is found, it will have precedenceover the value set in event_index.",
+								MarkdownDescription: "Set a record key that will populate the index field. If the key is found, it will have precedenceover the value set in event_index.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5746,8 +6902,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"event_sourcetype_key": schema.StringAttribute{
-								Description:         "Set a record key that will populate 'sourcetype'. If the key is found, it will have precedence over the value set in event_sourcetype.",
-								MarkdownDescription: "Set a record key that will populate 'sourcetype'. If the key is found, it will have precedence over the value set in event_sourcetype.",
+								Description:         "Set a record key that will populate 'sourcetype'. If the key is found, it will have precedenceover the value set in event_sourcetype.",
+								MarkdownDescription: "Set a record key that will populate 'sourcetype'. If the key is found, it will have precedenceover the value set in event_sourcetype.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5773,8 +6929,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"http_debug_bad_request": schema.BoolAttribute{
-								Description:         "If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP request and response to the stdout interface. This feature is available for debugging purposes.",
-								MarkdownDescription: "If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP request and response to the stdout interface. This feature is available for debugging purposes.",
+								Description:         "If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP requestand response to the stdout interface. This feature is available for debugging purposes.",
+								MarkdownDescription: "If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP requestand response to the stdout interface. This feature is available for debugging purposes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5801,8 +6957,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5852,8 +7008,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5882,6 +7038,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"port": schema.Int64Attribute{
 								Description:         "TCP port of the target Splunk instance, default '8088'",
 								MarkdownDescription: "TCP port of the target Splunk instance, default '8088'",
@@ -5895,8 +7149,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"splunk_send_raw": schema.BoolAttribute{
-								Description:         "When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer to the Sending Raw Events section from the docs more details to make this option work properly.",
-								MarkdownDescription: "When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer to the Sending Raw Events section from the docs more details to make this option work properly.",
+								Description:         "When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer tothe Sending Raw Events section from the docs more details to make this option work properly.",
+								MarkdownDescription: "When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer tothe Sending Raw Events section from the docs more details to make this option work properly.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5923,8 +7177,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5982,8 +7236,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6021,8 +7275,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6232,8 +7486,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6283,8 +7537,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6409,6 +7663,104 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"port": schema.Int64Attribute{
 								Description:         "TCP or UDP port of the remote Syslog server.",
 								MarkdownDescription: "TCP or UDP port of the remote Syslog server.",
@@ -6502,8 +7854,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "Syslog output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section.",
-								MarkdownDescription: "Syslog output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section.",
+								Description:         "Syslog output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section.",
+								MarkdownDescription: "Syslog output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section.",
 								Attributes: map[string]schema.Attribute{
 									"ca_file": schema.StringAttribute{
 										Description:         "Absolute path to CA certificate file",
@@ -6530,8 +7882,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6569,8 +7921,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6649,8 +8001,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"json_date_format": schema.StringAttribute{
-								Description:         "Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
-								MarkdownDescription: "Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
+								Description:         "Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
+								MarkdownDescription: "Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6660,11 +8012,109 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							},
 
 							"json_date_key": schema.StringAttribute{
-								Description:         "TSpecify the name of the time key in the output record. To disable the time key just set the value to false.",
-								MarkdownDescription: "TSpecify the name of the time key in the output record. To disable the time key just set the value to false.",
+								Description:         "TSpecify the name of the time key in the output record.To disable the time key just set the value to false.",
+								MarkdownDescription: "TSpecify the name of the time key in the output record.To disable the time key just set the value to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Include fluentbit networking options for this output-plugin",
+								MarkdownDescription: "Include fluentbit networking options for this output-plugin",
+								Attributes: map[string]schema.Attribute{
+									"dns_mode": schema.StringAttribute{
+										Description:         "Select the primary DNS connection type (TCP or UDP).",
+										MarkdownDescription: "Select the primary DNS connection type (TCP or UDP).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TCP", "UDP"),
+										},
+									},
+
+									"dns_prefer_i_pv4": schema.BoolAttribute{
+										Description:         "Prioritize IPv4 DNS results when trying to establish a connection.",
+										MarkdownDescription: "Prioritize IPv4 DNS results when trying to establish a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dns_resolver": schema.StringAttribute{
+										Description:         "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										MarkdownDescription: "Select the primary DNS resolver type (LEGACY or ASYNC).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("LEGACY", "ASYNC"),
+										},
+									},
+
+									"connect_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										MarkdownDescription: "Set maximum time expressed in seconds to wait for a TCP connection to be established, this include the TLS handshake time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_timeout_log_error": schema.BoolAttribute{
+										Description:         "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										MarkdownDescription: "On connection timeout, specify if it should log an error. When disabled, the timeout is logged as a debug message.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive": schema.StringAttribute{
+										Description:         "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										MarkdownDescription: "Enable or disable connection keepalive support. Accepts a boolean value: on / off.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("on", "off"),
+										},
+									},
+
+									"keepalive_idle_timeout": schema.Int64Attribute{
+										Description:         "Set maximum time expressed in seconds for an idle keepalive connection.",
+										MarkdownDescription: "Set maximum time expressed in seconds for an idle keepalive connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"keepalive_max_recycle": schema.Int64Attribute{
+										Description:         "Set maximum number of times a keepalive connection can be used before it is retired.",
+										MarkdownDescription: "Set maximum number of times a keepalive connection can be used before it is retired.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_worker_connections": schema.Int64Attribute{
+										Description:         "Set maximum number of TCP connections that can be established per worker.",
+										MarkdownDescription: "Set maximum number of TCP connections that can be established per worker.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"source_address": schema.StringAttribute{
+										Description:         "Specify network address to bind for data traffic.",
+										MarkdownDescription: "Specify network address to bind for data traffic.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"port": schema.Int64Attribute{
@@ -6708,8 +8158,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6747,8 +8197,8 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,

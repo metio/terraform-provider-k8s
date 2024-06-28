@@ -69,7 +69,8 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 			Cert        *string `tfsdk:"cert" json:"cert,omitempty"`
 			Private_key *string `tfsdk:"private_key" json:"private_key,omitempty"`
 		} `tfsdk:"signing_key_pair" json:"signing_key_pair,omitempty"`
-		Sso *string `tfsdk:"sso" json:"sso,omitempty"`
+		Single_logout_url *string `tfsdk:"single_logout_url" json:"single_logout_url,omitempty"`
+		Sso               *string `tfsdk:"sso" json:"sso,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -332,6 +333,14 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"single_logout_url": schema.StringAttribute{
+						Description:         "SingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out). If this is not provided, SLO is disabled.",
+						MarkdownDescription: "SingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out). If this is not provided, SLO is disabled.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"sso": schema.StringAttribute{

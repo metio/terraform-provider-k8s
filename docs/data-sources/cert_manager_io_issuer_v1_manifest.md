@@ -1161,6 +1161,7 @@ Required:
 Optional:
 
 - `ca_bundle` (String) Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by the TPP server. Only used if using HTTPS; ignored for HTTP.If undefined, the certificate bundle in the cert-manager controller containeris used to validate the chain.
+- `ca_bundle_secret_ref` (Attributes) Reference to a Secret containing a base64-encoded bundle of PEM CAswhich will be used to validate the certificate chain presented by the TPP server.Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef is defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection. (see [below for nested schema](#nestedatt--spec--venafi--tpp--ca_bundle_secret_ref))
 
 <a id="nestedatt--spec--venafi--tpp--credentials_ref"></a>
 ### Nested Schema for `spec.venafi.tpp.credentials_ref`
@@ -1168,3 +1169,15 @@ Optional:
 Required:
 
 - `name` (String) Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+
+<a id="nestedatt--spec--venafi--tpp--ca_bundle_secret_ref"></a>
+### Nested Schema for `spec.venafi.tpp.ca_bundle_secret_ref`
+
+Required:
+
+- `name` (String) Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.

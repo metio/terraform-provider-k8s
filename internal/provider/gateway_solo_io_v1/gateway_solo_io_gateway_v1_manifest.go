@@ -399,6 +399,9 @@ type GatewaySoloIoGatewayV1ManifestData struct {
 					RemoveAcceptEncodingHeader *bool     `tfsdk:"remove_accept_encoding_header" json:"removeAcceptEncodingHeader,omitempty"`
 					WindowBits                 *int64    `tfsdk:"window_bits" json:"windowBits,omitempty"`
 				} `tfsdk:"gzip" json:"gzip,omitempty"`
+				HeaderValidationSettings *struct {
+					DisableHttp1MethodValidation *map[string]string `tfsdk:"disable_http1_method_validation" json:"disableHttp1MethodValidation,omitempty"`
+				} `tfsdk:"header_validation_settings" json:"headerValidationSettings,omitempty"`
 				HealthCheck *struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
@@ -1226,6 +1229,9 @@ type GatewaySoloIoGatewayV1ManifestData struct {
 							RemoveAcceptEncodingHeader *bool     `tfsdk:"remove_accept_encoding_header" json:"removeAcceptEncodingHeader,omitempty"`
 							WindowBits                 *int64    `tfsdk:"window_bits" json:"windowBits,omitempty"`
 						} `tfsdk:"gzip" json:"gzip,omitempty"`
+						HeaderValidationSettings *struct {
+							DisableHttp1MethodValidation *map[string]string `tfsdk:"disable_http1_method_validation" json:"disableHttp1MethodValidation,omitempty"`
+						} `tfsdk:"header_validation_settings" json:"headerValidationSettings,omitempty"`
 						HealthCheck *struct {
 							Path *string `tfsdk:"path" json:"path,omitempty"`
 						} `tfsdk:"health_check" json:"healthCheck,omitempty"`
@@ -6150,6 +6156,24 @@ func (r *GatewaySoloIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.
 													int64validator.AtLeast(0),
 													int64validator.AtMost(4.294967295e+09),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"header_validation_settings": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"disable_http1_method_validation": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -11797,6 +11821,24 @@ func (r *GatewaySoloIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.
 																		int64validator.AtLeast(0),
 																		int64validator.AtMost(4.294967295e+09),
 																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"header_validation_settings": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"disable_http1_method_validation": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 															},
 															Required: false,

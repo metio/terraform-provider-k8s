@@ -1332,8 +1332,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Metadata(_ context.Context, r
 
 func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ThanosRuler defines a ThanosRuler deployment.",
-		MarkdownDescription: "ThanosRuler defines a ThanosRuler deployment.",
+		Description:         "The 'ThanosRuler' custom resource definition (CRD) defines a desired [Thanos Ruler](https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md) setup to run in a Kubernetes cluster.A 'ThanosRuler' instance requires at least one compatible Prometheus API endpoint (either Thanos Querier or Prometheus services).The resource defines via label and namespace selectors which 'PrometheusRule' objects should be associated to the deployed Thanos Ruler instances.",
+		MarkdownDescription: "The 'ThanosRuler' custom resource definition (CRD) defines a desired [Thanos Ruler](https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md) setup to run in a Kubernetes cluster.A 'ThanosRuler' instance requires at least one compatible Prometheus API endpoint (either Thanos Querier or Prometheus services).The resource defines via label and namespace selectors which 'PrometheusRule' objects should be associated to the deployed Thanos Ruler instances.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

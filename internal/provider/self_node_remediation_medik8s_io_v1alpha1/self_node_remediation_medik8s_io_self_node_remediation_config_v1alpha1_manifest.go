@@ -145,24 +145,24 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 				MarkdownDescription: "SelfNodeRemediationConfigSpec defines the desired state of SelfNodeRemediationConfig",
 				Attributes: map[string]schema.Attribute{
 					"api_check_interval": schema.StringAttribute{
-						Description:         "the frequency for api-server connectivity checkValid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
-						MarkdownDescription: "the frequency for api-server connectivity checkValid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
+						Description:         "The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
+						MarkdownDescription: "The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
 					"api_server_timeout": schema.StringAttribute{
-						Description:         "Valid time units are 'ms', 's', 'm', 'h'.timeout for each api-connectivity check",
-						MarkdownDescription: "Valid time units are 'ms', 's', 'm', 'h'.timeout for each api-connectivity check",
+						Description:         "Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
@@ -237,16 +237,16 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"is_software_reboot_enabled": schema.BoolAttribute{
-						Description:         "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot",
-						MarkdownDescription: "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot",
+						Description:         "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.",
+						MarkdownDescription: "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"max_api_error_threshold": schema.Int64Attribute{
-						Description:         "after this threshold, the node will start contacting its peers",
-						MarkdownDescription: "after this threshold, the node will start contacting its peers",
+						Description:         "After this threshold, the node will start contacting its peers.",
+						MarkdownDescription: "After this threshold, the node will start contacting its peers.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -256,63 +256,60 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"peer_api_server_timeout": schema.StringAttribute{
-						Description:         "Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
 					"peer_dial_timeout": schema.StringAttribute{
-						Description:         "Valid time units are 'ms', 's', 'm', 'h'.timeout for establishing connection to peer",
-						MarkdownDescription: "Valid time units are 'ms', 's', 'm', 'h'.timeout for establishing connection to peer",
+						Description:         "Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
 					"peer_request_timeout": schema.StringAttribute{
-						Description:         "Valid time units are 'ms', 's', 'm', 'h'.timeout for each peer request",
-						MarkdownDescription: "Valid time units are 'ms', 's', 'm', 'h'.timeout for each peer request",
+						Description:         "Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
 					"peer_update_interval": schema.StringAttribute{
-						Description:         "Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|([0-9]+(\.[0-9]+)?(ms|s|m|h)))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
 					},
 
 					"safe_time_to_assume_node_rebooted_seconds": schema.Int64Attribute{
-						Description:         "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields.",
-						MarkdownDescription: "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields.",
+						Description:         "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.",
+						MarkdownDescription: "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.Int64{
-							int64validator.AtLeast(0),
-						},
 					},
 
 					"watchdog_file_path": schema.StringAttribute{
-						Description:         "WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog",
-						MarkdownDescription: "WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog",
+						Description:         "WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog.",
+						MarkdownDescription: "WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

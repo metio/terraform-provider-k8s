@@ -68,6 +68,7 @@ Optional:
 Optional:
 
 - `connector_id` (String) ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'
+- `saml_single_logout_url` (String) SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.
 - `username` (String) Username is username supplied by external identity provider
 
 
@@ -77,6 +78,7 @@ Optional:
 Optional:
 
 - `connector_id` (String) ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'
+- `saml_single_logout_url` (String) SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.
 - `username` (String) Username is username supplied by external identity provider
 
 
@@ -86,4 +88,5 @@ Optional:
 Optional:
 
 - `connector_id` (String) ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'
+- `saml_single_logout_url` (String) SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.
 - `username` (String) Username is username supplied by external identity provider

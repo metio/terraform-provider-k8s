@@ -73,7 +73,7 @@ Optional:
 Optional:
 
 - `hostname` (String) Optional. FQDN of the git server if automatic parsing from TargetRepo is broken
-- `in_cluster_git_server` (Boolean) Enable in-cluster git server (avoids the need of forking the upstream repository)
+- `in_cluster_git_server` (Boolean) (EXPERIMENTAL) Enable in-cluster git server (avoids the need of forking the upstream repository)
 - `origin_repo` (String) Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo
 - `origin_revision` (String) (DEPRECATED) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD
 - `poll_interval` (Number) Interval in seconds to poll for drifts between origin and target repositories. Default: 180 seconds

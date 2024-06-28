@@ -59,22 +59,22 @@ Required:
 
 Optional:
 
-- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/Default: all.
-- `tls` (Attributes) TLS defines the TLS configuration on a layer 4 / TCP Route.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#tls_1 (see [below for nested schema](#nestedatt--spec--tls))
+- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/Default: all.
+- `tls` (Attributes) TLS defines the TLS configuration on a layer 4 / TCP Route.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#tls_1 (see [below for nested schema](#nestedatt--spec--tls))
 
 <a id="nestedatt--spec--routes"></a>
 ### Nested Schema for `spec.routes`
 
 Required:
 
-- `match` (String) Match defines the router's rule.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rule_1
+- `match` (String) Match defines the router's rule.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rule_1
 
 Optional:
 
 - `middlewares` (Attributes List) Middlewares defines the list of references to MiddlewareTCP resources. (see [below for nested schema](#nestedatt--spec--routes--middlewares))
-- `priority` (Number) Priority defines the router's priority.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#priority_1
+- `priority` (Number) Priority defines the router's priority.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#priority_1
 - `services` (Attributes List) Services defines the list of TCP services. (see [below for nested schema](#nestedatt--spec--routes--services))
-- `syntax` (String) Syntax defines the router's rule syntax.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rulesyntax_1
+- `syntax` (String) Syntax defines the router's rule syntax.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rulesyntax_1
 
 <a id="nestedatt--spec--routes--middlewares"></a>
 ### Nested Schema for `spec.routes.middlewares`
@@ -101,7 +101,7 @@ Optional:
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service.
 - `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
 - `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
-- `proxy_protocol` (Attributes) ProxyProtocol defines the PROXY protocol configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#proxy-protocol (see [below for nested schema](#nestedatt--spec--routes--services--proxy_protocol))
+- `proxy_protocol` (Attributes) ProxyProtocol defines the PROXY protocol configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#proxy-protocol (see [below for nested schema](#nestedatt--spec--routes--services--proxy_protocol))
 - `servers_transport` (String) ServersTransport defines the name of ServersTransportTCP resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
 - `termination_delay` (Number) TerminationDelay defines the deadline that the proxy sets, after one of its connected peers indicatesit has closed the writing capability of its connection, to close the reading capability as well,hence fully terminating the connection.It is a duration in milliseconds, defaulting to 100.A negative value means an infinite deadline (i.e. the reading capability is never closed).Deprecated: TerminationDelay is not supported APIVersion traefik.io/v1, please use ServersTransport to configure the TerminationDelay instead.
 - `tls` (Boolean) TLS determines whether to use TLS when dialing with the backend.
@@ -122,9 +122,9 @@ Optional:
 
 Optional:
 
-- `cert_resolver` (String) CertResolver defines the name of the certificate resolver to use.Cert resolvers have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.0/https/acme/#certificate-resolvers
-- `domains` (Attributes List) Domains defines the list of domains that will be used to issue certificates.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#domains (see [below for nested schema](#nestedatt--spec--tls--domains))
-- `options` (Attributes) Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.If not defined, the 'default' TLSOption is used.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options (see [below for nested schema](#nestedatt--spec--tls--options))
+- `cert_resolver` (String) CertResolver defines the name of the certificate resolver to use.Cert resolvers have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/https/acme/#certificate-resolvers
+- `domains` (Attributes List) Domains defines the list of domains that will be used to issue certificates.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#domains (see [below for nested schema](#nestedatt--spec--tls--domains))
+- `options` (Attributes) Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.If not defined, the 'default' TLSOption is used.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options (see [below for nested schema](#nestedatt--spec--tls--options))
 - `passthrough` (Boolean) Passthrough defines whether a TLS router will terminate the TLS connection.
 - `secret_name` (String) SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.
 - `store` (Attributes) Store defines the reference to the TLSStore, that will be used to store certificates.Please note that only 'default' TLSStore can be used. (see [below for nested schema](#nestedatt--spec--tls--store))

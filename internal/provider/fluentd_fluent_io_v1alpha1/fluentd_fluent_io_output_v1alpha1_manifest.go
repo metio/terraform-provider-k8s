@@ -217,12 +217,19 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"cloud_id" json:"cloudId,omitempty"`
-				Host           *string `tfsdk:"host" json:"host,omitempty"`
-				Hosts          *string `tfsdk:"hosts" json:"hosts,omitempty"`
-				IndexName      *string `tfsdk:"index_name" json:"indexName,omitempty"`
-				LogstashFormat *bool   `tfsdk:"logstash_format" json:"logstashFormat,omitempty"`
-				LogstashPrefix *string `tfsdk:"logstash_prefix" json:"logstashPrefix,omitempty"`
-				Password       *struct {
+				EnableIlm                          *bool   `tfsdk:"enable_ilm" json:"enableIlm,omitempty"`
+				FailOnPuttingTemplateRetryExceeded *bool   `tfsdk:"fail_on_putting_template_retry_exceeded" json:"failOnPuttingTemplateRetryExceeded,omitempty"`
+				Host                               *string `tfsdk:"host" json:"host,omitempty"`
+				Hosts                              *string `tfsdk:"hosts" json:"hosts,omitempty"`
+				IlmPolicy                          *string `tfsdk:"ilm_policy" json:"ilmPolicy,omitempty"`
+				IlmPolicyId                        *string `tfsdk:"ilm_policy_id" json:"ilmPolicyId,omitempty"`
+				IlmPolicyOverride                  *bool   `tfsdk:"ilm_policy_override" json:"ilmPolicyOverride,omitempty"`
+				IndexName                          *string `tfsdk:"index_name" json:"indexName,omitempty"`
+				LogEs400Reason                     *bool   `tfsdk:"log_es400_reason" json:"logEs400Reason,omitempty"`
+				LogstashFormat                     *bool   `tfsdk:"logstash_format" json:"logstashFormat,omitempty"`
+				LogstashPrefix                     *string `tfsdk:"logstash_prefix" json:"logstashPrefix,omitempty"`
+				MaxRetryPuttingTemplate            *int64  `tfsdk:"max_retry_putting_template" json:"maxRetryPuttingTemplate,omitempty"`
+				Password                           *struct {
 					ValueFrom *struct {
 						SecretKeyRef *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -231,11 +238,17 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"password" json:"password,omitempty"`
-				Path      *string `tfsdk:"path" json:"path,omitempty"`
-				Port      *int64  `tfsdk:"port" json:"port,omitempty"`
-				Scheme    *string `tfsdk:"scheme" json:"scheme,omitempty"`
-				SslVerify *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
-				User      *struct {
+				Path              *string `tfsdk:"path" json:"path,omitempty"`
+				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
+				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
+				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
+				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
+				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
+				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
+				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
+				User              *struct {
 					ValueFrom *struct {
 						SecretKeyRef *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -276,10 +289,22 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"cloud_id" json:"cloudId,omitempty"`
-				DataStreamName *string `tfsdk:"data_stream_name" json:"dataStreamName,omitempty"`
-				Host           *string `tfsdk:"host" json:"host,omitempty"`
-				Hosts          *string `tfsdk:"hosts" json:"hosts,omitempty"`
-				Password       *struct {
+				DataStreamIlmName                          *string `tfsdk:"data_stream_ilm_name" json:"dataStreamIlmName,omitempty"`
+				DataStreamIlmPolicy                        *string `tfsdk:"data_stream_ilm_policy" json:"dataStreamIlmPolicy,omitempty"`
+				DataStreamIlmPolicyOverwrite               *bool   `tfsdk:"data_stream_ilm_policy_overwrite" json:"dataStreamIlmPolicyOverwrite,omitempty"`
+				DataStreamName                             *string `tfsdk:"data_stream_name" json:"dataStreamName,omitempty"`
+				DataStreamTemplateName                     *string `tfsdk:"data_stream_template_name" json:"dataStreamTemplateName,omitempty"`
+				DataStreamTemplateUseIndexPatternsWildcard *bool   `tfsdk:"data_stream_template_use_index_patterns_wildcard" json:"dataStreamTemplateUseIndexPatternsWildcard,omitempty"`
+				EnableIlm                                  *bool   `tfsdk:"enable_ilm" json:"enableIlm,omitempty"`
+				FailOnPuttingTemplateRetryExceeded         *bool   `tfsdk:"fail_on_putting_template_retry_exceeded" json:"failOnPuttingTemplateRetryExceeded,omitempty"`
+				Host                                       *string `tfsdk:"host" json:"host,omitempty"`
+				Hosts                                      *string `tfsdk:"hosts" json:"hosts,omitempty"`
+				IlmPolicy                                  *string `tfsdk:"ilm_policy" json:"ilmPolicy,omitempty"`
+				IlmPolicyId                                *string `tfsdk:"ilm_policy_id" json:"ilmPolicyId,omitempty"`
+				IlmPolicyOverride                          *bool   `tfsdk:"ilm_policy_override" json:"ilmPolicyOverride,omitempty"`
+				LogEs400Reason                             *bool   `tfsdk:"log_es400_reason" json:"logEs400Reason,omitempty"`
+				MaxRetryPuttingTemplate                    *int64  `tfsdk:"max_retry_putting_template" json:"maxRetryPuttingTemplate,omitempty"`
+				Password                                   *struct {
 					ValueFrom *struct {
 						SecretKeyRef *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -288,11 +313,17 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"password" json:"password,omitempty"`
-				Path      *string `tfsdk:"path" json:"path,omitempty"`
-				Port      *int64  `tfsdk:"port" json:"port,omitempty"`
-				Scheme    *string `tfsdk:"scheme" json:"scheme,omitempty"`
-				SslVerify *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
-				User      *struct {
+				Path              *string `tfsdk:"path" json:"path,omitempty"`
+				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
+				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
+				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
+				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
+				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
+				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
+				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
+				User              *struct {
 					ValueFrom *struct {
 						SecretKeyRef *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -721,8 +752,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"chunk_limit_size": schema.StringAttribute{
-											Description:         "Buffer parameters The max size of each chunks: events will be written into chunks until the size of chunks become this size Default: 8MB (memory) / 256MB (file)",
-											MarkdownDescription: "Buffer parameters The max size of each chunks: events will be written into chunks until the size of chunks become this size Default: 8MB (memory) / 256MB (file)",
+											Description:         "Buffer parametersThe max size of each chunks: events will be written into chunks until the size of chunks become this sizeDefault: 8MB (memory) / 256MB (file)",
+											MarkdownDescription: "Buffer parametersThe max size of each chunks: events will be written into chunks until the size of chunks become this sizeDefault: 8MB (memory) / 256MB (file)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -732,8 +763,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"compress": schema.StringAttribute{
-											Description:         "Fluentd will decompress these compressed chunks automatically before passing them to the output plugin If gzip is set, Fluentd compresses data records before writing to buffer chunks. Default:text.",
-											MarkdownDescription: "Fluentd will decompress these compressed chunks automatically before passing them to the output plugin If gzip is set, Fluentd compresses data records before writing to buffer chunks. Default:text.",
+											Description:         "Fluentd will decompress these compressed chunks automatically before passing them to the output pluginIf gzip is set, Fluentd compresses data records before writing to buffer chunks.Default:text.",
+											MarkdownDescription: "Fluentd will decompress these compressed chunks automatically before passing them to the output pluginIf gzip is set, Fluentd compresses data records before writing to buffer chunks.Default:text.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -762,8 +793,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"flush_at_shutdown": schema.BoolAttribute{
-											Description:         "Flush parameters This specifies whether to flush/write all buffer chunks on shutdown or not.",
-											MarkdownDescription: "Flush parameters This specifies whether to flush/write all buffer chunks on shutdown or not.",
+											Description:         "Flush parametersThis specifies whether to flush/write all buffer chunks on shutdown or not.",
+											MarkdownDescription: "Flush parametersThis specifies whether to flush/write all buffer chunks on shutdown or not.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -781,8 +812,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"flush_mode": schema.StringAttribute{
-											Description:         "FlushMode defines the flush mode: lazy: flushes/writes chunks once per timekey interval: flushes/writes chunks per specified time via flush_interval immediate: flushes/writes chunks immediately after events are appended into chunks default: equals to lazy if time is specified as chunk key, interval otherwise",
-											MarkdownDescription: "FlushMode defines the flush mode: lazy: flushes/writes chunks once per timekey interval: flushes/writes chunks per specified time via flush_interval immediate: flushes/writes chunks immediately after events are appended into chunks default: equals to lazy if time is specified as chunk key, interval otherwise",
+											Description:         "FlushMode defines the flush mode:lazy: flushes/writes chunks once per timekeyinterval: flushes/writes chunks per specified time via flush_intervalimmediate: flushes/writes chunks immediately after events are appended into chunksdefault: equals to lazy if time is specified as chunk key, interval otherwise",
+											MarkdownDescription: "FlushMode defines the flush mode:lazy: flushes/writes chunks once per timekeyinterval: flushes/writes chunks per specified time via flush_intervalimmediate: flushes/writes chunks immediately after events are appended into chunksdefault: equals to lazy if time is specified as chunk key, interval otherwise",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -827,8 +858,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"overflow_action": schema.StringAttribute{
-											Description:         "OverflowAtction defines the output plugin behave when its buffer queue is full. Default: throw_exception",
-											MarkdownDescription: "OverflowAtction defines the output plugin behave when its buffer queue is full. Default: throw_exception",
+											Description:         "OverflowAtction defines the output plugin behave when its buffer queue is full.Default: throw_exception",
+											MarkdownDescription: "OverflowAtction defines the output plugin behave when its buffer queue is full.Default: throw_exception",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -862,8 +893,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"queued_chunks_limit_size": schema.Int64Attribute{
-											Description:         "Limit the number of queued chunks. Default: 1 If a smaller flush_interval is set, e.g. 1s, there are lots of small queued chunks in the buffer. With file buffer, it may consume a lot of fd resources when output destination has a problem. This parameter mitigates such situations.",
-											MarkdownDescription: "Limit the number of queued chunks. Default: 1 If a smaller flush_interval is set, e.g. 1s, there are lots of small queued chunks in the buffer. With file buffer, it may consume a lot of fd resources when output destination has a problem. This parameter mitigates such situations.",
+											Description:         "Limit the number of queued chunks. Default: 1If a smaller flush_interval is set, e.g. 1s,there are lots of small queued chunks in the buffer.With file buffer, it may consume a lot of fd resources when output destination has a problem.This parameter mitigates such situations.",
+											MarkdownDescription: "Limit the number of queued chunks. Default: 1If a smaller flush_interval is set, e.g. 1s,there are lots of small queued chunks in the buffer.With file buffer, it may consume a lot of fd resources when output destination has a problem.This parameter mitigates such situations.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -930,8 +961,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"retry_timeout": schema.StringAttribute{
-											Description:         "Retry parameters The maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
-											MarkdownDescription: "Retry parameters The maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
+											Description:         "Retry parametersThe maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
+											MarkdownDescription: "Retry parametersThe maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -960,8 +991,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"tag": schema.StringAttribute{
-											Description:         "The output plugins group events into chunks. Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks. If tag is empty, which means blank Chunk Keys. Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc. See https://docs.fluentd.org/configuration/buffer-section.",
-											MarkdownDescription: "The output plugins group events into chunks. Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks. If tag is empty, which means blank Chunk Keys. Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc. See https://docs.fluentd.org/configuration/buffer-section.",
+											Description:         "The output plugins group events into chunks.Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks.If tag is empty, which means blank Chunk Keys.Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc.See https://docs.fluentd.org/configuration/buffer-section.",
+											MarkdownDescription: "The output plugins group events into chunks.Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks.If tag is empty, which means blank Chunk Keys.Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc.See https://docs.fluentd.org/configuration/buffer-section.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1019,8 +1050,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"total_limit_size": schema.StringAttribute{
-											Description:         "The size limitation of this buffer plugin instance Default: 512MB (memory) / 64GB (file)",
-											MarkdownDescription: "The size limitation of this buffer plugin instance Default: 512MB (memory) / 64GB (file)",
+											Description:         "The size limitation of this buffer plugin instanceDefault: 512MB (memory) / 64GB (file)",
+											MarkdownDescription: "The size limitation of this buffer plugin instanceDefault: 512MB (memory) / 64GB (file)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1094,8 +1125,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1145,8 +1176,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1570,8 +1601,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1822,8 +1853,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1873,8 +1904,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1904,8 +1935,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cloud_id": schema.SingleNestedAttribute{
-											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
-											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -1924,8 +1955,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1954,6 +1985,22 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed: false,
 										},
 
+										"enable_ilm": schema.BoolAttribute{
+											Description:         "Optional, Enable Index Lifecycle Management (ILM)",
+											MarkdownDescription: "Optional, Enable Index Lifecycle Management (ILM)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"fail_on_putting_template_retry_exceeded": schema.BoolAttribute{
+											Description:         "Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)",
+											MarkdownDescription: "Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"host": schema.StringAttribute{
 											Description:         "The hostname of your Elasticsearch node (default: localhost).",
 											MarkdownDescription: "The hostname of your Elasticsearch node (default: localhost).",
@@ -1970,9 +2017,41 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"ilm_policy": schema.StringAttribute{
+											Description:         "Optional, Specify ILM policy contents as Hash",
+											MarkdownDescription: "Optional, Specify ILM policy contents as Hash",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ilm_policy_id": schema.StringAttribute{
+											Description:         "Optional, Specify ILM policy id",
+											MarkdownDescription: "Optional, Specify ILM policy id",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ilm_policy_override": schema.BoolAttribute{
+											Description:         "Optional, Specify whether overwriting ilm policy or not",
+											MarkdownDescription: "Optional, Specify whether overwriting ilm policy or not",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"index_name": schema.StringAttribute{
 											Description:         "IndexName defines the placeholder syntax of Fluentd plugin API. See https://docs.fluentd.org/configuration/buffer-section.",
 											MarkdownDescription: "IndexName defines the placeholder syntax of Fluentd plugin API. See https://docs.fluentd.org/configuration/buffer-section.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_es400_reason": schema.BoolAttribute{
+											Description:         "Optional, Enable logging of 400 reason without enabling debug log level",
+											MarkdownDescription: "Optional, Enable logging of 400 reason without enabling debug log level",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1989,6 +2068,14 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"logstash_prefix": schema.StringAttribute{
 											Description:         "LogstashPrefix defines the logstash prefix index name to write events when logstash_format is true (default: logstash).",
 											MarkdownDescription: "LogstashPrefix defines the logstash prefix index name to write events when logstash_format is true (default: logstash).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"max_retry_putting_template": schema.Int64Attribute{
+											Description:         "Optional, You can specify times of retry putting template (default: 10)",
+											MarkdownDescription: "Optional, You can specify times of retry putting template (default: 10)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2015,8 +2102,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2065,6 +2152,41 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 										},
 
+										"reconnect_on_error": schema.BoolAttribute{
+											Description:         "Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)",
+											MarkdownDescription: "Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reload_connections": schema.BoolAttribute{
+											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
+											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reload_on_failure": schema.BoolAttribute{
+											Description:         "Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)",
+											MarkdownDescription: "Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"request_timeout": schema.StringAttribute{
+											Description:         "Optional, HTTP Timeout (default: 5)",
+											MarkdownDescription: "Optional, HTTP Timeout (default: 5)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(s|m|h|d)$`), ""),
+											},
+										},
+
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
@@ -2076,6 +2198,22 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"ssl_verify": schema.BoolAttribute{
 											Description:         "Optional, Force certificate validation",
 											MarkdownDescription: "Optional, Force certificate validation",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"suppress_type_name": schema.BoolAttribute{
+											Description:         "Optional, Suppress '[types removal]' warnings on elasticsearch 7.x",
+											MarkdownDescription: "Optional, Suppress '[types removal]' warnings on elasticsearch 7.x",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"template_overwrite": schema.BoolAttribute{
+											Description:         "Optional, Always update the template, even if it already exists (default: false)",
+											MarkdownDescription: "Optional, Always update the template, even if it already exists (default: false)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2102,8 +2240,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2186,8 +2324,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2237,8 +2375,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2268,8 +2406,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cloud_id": schema.SingleNestedAttribute{
-											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
-											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -2288,8 +2426,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2318,11 +2456,67 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed: false,
 										},
 
+										"data_stream_ilm_name": schema.StringAttribute{
+											Description:         "Optional, You can specify the name of an existing ILM policy, which will be applied to the data stream. If not present, it creates a new ILM default policy (unless data_stream_template_name is defined, in that case the ILM will be set to the one specified in the matching index template)",
+											MarkdownDescription: "Optional, You can specify the name of an existing ILM policy, which will be applied to the data stream. If not present, it creates a new ILM default policy (unless data_stream_template_name is defined, in that case the ILM will be set to the one specified in the matching index template)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"data_stream_ilm_policy": schema.StringAttribute{
+											Description:         "Optional, You can specify the ILM policy contents as hash. If not present, it will apply the ILM default policy",
+											MarkdownDescription: "Optional, You can specify the ILM policy contents as hash. If not present, it will apply the ILM default policy",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"data_stream_ilm_policy_overwrite": schema.BoolAttribute{
+											Description:         "Optional, Specify whether the data stream ILM policy should be overwritten",
+											MarkdownDescription: "Optional, Specify whether the data stream ILM policy should be overwritten",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"data_stream_name": schema.StringAttribute{
 											Description:         "You can specify Elasticsearch data stream name by this parameter. This parameter is mandatory for elasticsearch_data_stream",
 											MarkdownDescription: "You can specify Elasticsearch data stream name by this parameter. This parameter is mandatory for elasticsearch_data_stream",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"data_stream_template_name": schema.StringAttribute{
+											Description:         "Optional, You can specify an existing matching index template for the data stream. If not present, it creates a new matching index template",
+											MarkdownDescription: "Optional, You can specify an existing matching index template for the data stream. If not present, it creates a new matching index template",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"data_stream_template_use_index_patterns_wildcard": schema.BoolAttribute{
+											Description:         "Optional, Specify whether index patterns should include a wildcard (*) when creating an index template. This is particularly useful to prevent errors in scenarios where index templates are generated automatically, and multiple services with distinct suffixes are in use",
+											MarkdownDescription: "Optional, Specify whether index patterns should include a wildcard (*) when creating an index template. This is particularly useful to prevent errors in scenarios where index templates are generated automatically, and multiple services with distinct suffixes are in use",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"enable_ilm": schema.BoolAttribute{
+											Description:         "Optional, Enable Index Lifecycle Management (ILM)",
+											MarkdownDescription: "Optional, Enable Index Lifecycle Management (ILM)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"fail_on_putting_template_retry_exceeded": schema.BoolAttribute{
+											Description:         "Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)",
+											MarkdownDescription: "Optional, Indicates whether to fail when max_retry_putting_template is exceeded. If you have multiple output plugin, you could use this property to do not fail on fluentd statup (default: false)",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -2337,6 +2531,46 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"hosts": schema.StringAttribute{
 											Description:         "Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes",
 											MarkdownDescription: "Hosts defines a list of hosts if you want to connect to more than one Elasticsearch nodes",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ilm_policy": schema.StringAttribute{
+											Description:         "Optional, Specify ILM policy contents as Hash",
+											MarkdownDescription: "Optional, Specify ILM policy contents as Hash",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ilm_policy_id": schema.StringAttribute{
+											Description:         "Optional, Specify ILM policy id",
+											MarkdownDescription: "Optional, Specify ILM policy id",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ilm_policy_override": schema.BoolAttribute{
+											Description:         "Optional, Specify whether overwriting ilm policy or not",
+											MarkdownDescription: "Optional, Specify whether overwriting ilm policy or not",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_es400_reason": schema.BoolAttribute{
+											Description:         "Optional, Enable logging of 400 reason without enabling debug log level",
+											MarkdownDescription: "Optional, Enable logging of 400 reason without enabling debug log level",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"max_retry_putting_template": schema.Int64Attribute{
+											Description:         "Optional, You can specify times of retry putting template (default: 10)",
+											MarkdownDescription: "Optional, You can specify times of retry putting template (default: 10)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2363,8 +2597,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2413,6 +2647,41 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 										},
 
+										"reconnect_on_error": schema.BoolAttribute{
+											Description:         "Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)",
+											MarkdownDescription: "Optional, Indicates that the plugin should reset connection on any error (reconnect on next send) (default: false)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reload_connections": schema.BoolAttribute{
+											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
+											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reload_on_failure": schema.BoolAttribute{
+											Description:         "Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)",
+											MarkdownDescription: "Optional, Indicates that the elasticsearch-transport will try to reload the nodes addresses if there is a failure while making the request, this can be useful to quickly remove a dead node from the list of addresses (default: false)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"request_timeout": schema.StringAttribute{
+											Description:         "Optional, HTTP Timeout (default: 5)",
+											MarkdownDescription: "Optional, HTTP Timeout (default: 5)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(s|m|h|d)$`), ""),
+											},
+										},
+
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
@@ -2424,6 +2693,22 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"ssl_verify": schema.BoolAttribute{
 											Description:         "Optional, Force certificate validation",
 											MarkdownDescription: "Optional, Force certificate validation",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"suppress_type_name": schema.BoolAttribute{
+											Description:         "Optional, Suppress '[types removal]' warnings on elasticsearch 7.x",
+											MarkdownDescription: "Optional, Suppress '[types removal]' warnings on elasticsearch 7.x",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"template_overwrite": schema.BoolAttribute{
+											Description:         "Optional, Always update the template, even if it already exists (default: false)",
+											MarkdownDescription: "Optional, Always update the template, even if it already exists (default: false)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2450,8 +2735,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2634,8 +2919,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"dns_round_robin": schema.BoolAttribute{
-											Description:         "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses. heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
-											MarkdownDescription: "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses. heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
+											Description:         "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses.heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
+											MarkdownDescription: "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses.heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2800,8 +3085,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -2851,8 +3136,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -2968,8 +3253,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3051,8 +3336,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3228,8 +3513,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3311,8 +3596,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3527,8 +3812,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3578,8 +3863,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3977,8 +4262,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"http_password": schema.SingleNestedAttribute{
-											Description:         "Password for user defined in HTTP_User Set HTTP basic authentication password",
-											MarkdownDescription: "Password for user defined in HTTP_User Set HTTP basic authentication password",
+											Description:         "Password for user defined in HTTP_UserSet HTTP basic authentication password",
+											MarkdownDescription: "Password for user defined in HTTP_UserSet HTTP basic authentication password",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -3997,8 +4282,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4048,8 +4333,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4095,8 +4380,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"label_keys": schema.ListAttribute{
-											Description:         "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
-											MarkdownDescription: "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
+											Description:         "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
+											MarkdownDescription: "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4104,8 +4389,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"labels": schema.ListAttribute{
-											Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
-											MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+											Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+											MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4113,8 +4398,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"line_format": schema.StringAttribute{
-											Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
-											MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+											Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+											MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4124,8 +4409,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"remove_keys": schema.ListAttribute{
-											Description:         "Optional list of record keys that will be removed from stream labels. This configuration property is for records key only.",
-											MarkdownDescription: "Optional list of record keys that will be removed from stream labels. This configuration property is for records key only.",
+											Description:         "Optional list of record keys that will be removed from stream labels.This configuration property is for records key only.",
+											MarkdownDescription: "Optional list of record keys that will be removed from stream labels.This configuration property is for records key only.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4133,8 +4418,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"tenant_id": schema.SingleNestedAttribute{
-											Description:         "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
-											MarkdownDescription: "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+											Description:         "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+											MarkdownDescription: "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -4153,8 +4438,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4285,8 +4570,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4364,8 +4649,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,

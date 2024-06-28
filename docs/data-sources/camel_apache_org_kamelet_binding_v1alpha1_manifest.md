@@ -2937,13 +2937,13 @@ Optional:
 - `expose` (Boolean) Can be used to enable/disable exposure via kubernetes Service.
 - `image` (String) The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.
 - `image_pull_policy` (String) The pull policy: Always|Never|IfNotPresent
-- `limit_cpu` (String) The maximum amount of CPU required.
-- `limit_memory` (String) The maximum amount of memory required.
+- `limit_cpu` (String) The maximum amount of CPU to be provided (default 500 millicores).
+- `limit_memory` (String) The maximum amount of memory to be provided (default 512 Mi).
 - `name` (String) The main container name. It's named 'integration' by default.
 - `port` (Number) To configure a different port exposed by the container (default '8080').
 - `port_name` (String) To configure a different port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.
-- `request_cpu` (String) The minimum amount of CPU required.
-- `request_memory` (String) The minimum amount of memory required.
+- `request_cpu` (String) The minimum amount of CPU required (default 125 millicores).
+- `request_memory` (String) The minimum amount of memory required (default 128 Mi).
 - `run_as_non_root` (Boolean) Security Context RunAsNonRoot configuration (default false).
 - `run_as_user` (Number) Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.
 - `seccomp_profile_type` (String) Security Context SeccompProfileType configuration (default RuntimeDefault).
@@ -2966,6 +2966,7 @@ Optional:
 - `fallback` (Boolean) Use the default Camel implementation of the 'cron' endpoint ('quartz') instead of trying to materialize the integration as Kubernetes CronJob.
 - `schedule` (String) The CronJob schedule for the whole integration. If multiple routes are declared, they must have the same schedule for this mechanism to work correctly.
 - `starting_deadline_seconds` (Number) Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
+- `time_zone` (String) The timezone that the CronJob will run on
 
 
 <a id="nestedatt--spec--integration--traits--dependencies"></a>
