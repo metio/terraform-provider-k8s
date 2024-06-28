@@ -70,6 +70,7 @@ Optional:
 - `image_pull_policy` (String)
 - `node_selector` (Map of String)
 - `pod_annotations` (Map of String)
+- `pod_dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_dns_config))
 - `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ports))
 - `priority_class_name` (String)
@@ -568,11 +569,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_dns_config"></a>
+### Nested Schema for `spec.pod_dns_config`
+
+Optional:
+
+- `nameservers` (List of String)
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_dns_config--options))
+- `searches` (List of String)
+
+<a id="nestedatt--spec--pod_dns_config--options"></a>
+### Nested Schema for `spec.pod_dns_config.options`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
+
+
 <a id="nestedatt--spec--pod_security_context"></a>
 ### Nested Schema for `spec.pod_security_context`
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -583,6 +604,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.pod_security_context.se_linux_options`
@@ -668,6 +701,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -678,6 +712,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--security_context--capabilities"></a>
 ### Nested Schema for `spec.security_context.capabilities`
@@ -787,6 +833,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 

@@ -165,17 +165,17 @@ Optional:
 
 Required:
 
-- `key_name` (String) Specifies the field name in the record to parse. Required parameter. i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}
+- `key_name` (String) Specifies the field name in the record to parse. Required parameter.i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}
 - `parse` (Attributes) Parse defines various parameters for the parse plugin (see [below for nested schema](#nestedatt--spec--filters--parser--parse))
 
 Optional:
 
-- `emit_invalid_record_to_error` (Boolean) Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error. If you want to ignore these errors, set false.
+- `emit_invalid_record_to_error` (Boolean) Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error.If you want to ignore these errors, set false.
 - `hash_value_field` (String) Stores the parsed values as a hash value in a field.
 - `inject_key_prefix` (String) Stores the parsed values with the specified key name prefix.
 - `remove_key_name_field` (Boolean) Removes key_name field when parsing is succeeded.
 - `replace_invalid_sequence` (Boolean) If true, invalid string is replaced with safe characters and re-parse it.
-- `reserve_data` (Boolean) Keeps the original key-value pair in the parsed result. Default is false. i.e: If set keyName to log, reverseData to true, {'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}
+- `reserve_data` (Boolean) Keeps the original key-value pair in the parsed result. Default is false.i.e: If set keyName to log, reverseData to true,{'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}
 - `reserve_time` (Boolean) Keeps the original event time in the parsed result. Default is false.
 
 <a id="nestedatt--spec--filters--parser--parse"></a>
@@ -228,8 +228,8 @@ Optional:
 
 Optional:
 
-- `auto_typecast` (Boolean) Automatically casts the field types. Default is false. This option is effective only for field values comprised of a single placeholder.
-- `enable_ruby` (Boolean) When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false. i.e: jsonized_record ${record.to_json}
+- `auto_typecast` (Boolean) Automatically casts the field types. Default is false.This option is effective only for field values comprised of a single placeholder.
+- `enable_ruby` (Boolean) When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false.i.e: jsonized_record ${record.to_json}
 - `keep_keys` (String) A list of keys to keep. Only relevant if renew_record is set to true.
 - `records` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--record_transformer--records))
 - `remove_keys` (String) A list of keys to delete. Supports nested field via record_accessor syntax since v1.1.0.
@@ -242,7 +242,7 @@ Optional:
 Required:
 
 - `key` (String) New field can be defined as key
-- `value` (String) The value must from Record properties. See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive
+- `value` (String) The value must from Record properties.See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive
 
 
 

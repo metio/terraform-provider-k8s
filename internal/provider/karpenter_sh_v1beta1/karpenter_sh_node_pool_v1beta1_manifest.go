@@ -46,9 +46,10 @@ type KarpenterShNodePoolV1Beta1ManifestData struct {
 	Spec *struct {
 		Disruption *struct {
 			Budgets *[]struct {
-				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
-				Nodes    *string `tfsdk:"nodes" json:"nodes,omitempty"`
-				Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
+				Duration *string   `tfsdk:"duration" json:"duration,omitempty"`
+				Nodes    *string   `tfsdk:"nodes" json:"nodes,omitempty"`
+				Reasons  *[]string `tfsdk:"reasons" json:"reasons,omitempty"`
+				Schedule *string   `tfsdk:"schedule" json:"schedule,omitempty"`
 			} `tfsdk:"budgets" json:"budgets,omitempty"`
 			ConsolidateAfter    *string `tfsdk:"consolidate_after" json:"consolidateAfter,omitempty"`
 			ConsolidationPolicy *string `tfsdk:"consolidation_policy" json:"consolidationPolicy,omitempty"`
@@ -201,6 +202,15 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											Validators: []validator.String{
 												stringvalidator.RegexMatches(regexp.MustCompile(`^((100|[0-9]{1,2})%|[0-9]+)$`), ""),
 											},
+										},
+
+										"reasons": schema.ListAttribute{
+											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are underutilized, expired, empty, and drifted.",
+											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are underutilized, expired, empty, and drifted.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"schedule": schema.StringAttribute{

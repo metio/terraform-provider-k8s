@@ -170,6 +170,7 @@ Optional:
 
 - `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `name` (String) The name of the resource. Only supported for certain types
 
 
 <a id="nestedatt--spec--service_template--spec"></a>
@@ -247,6 +248,7 @@ Optional:
 
 - `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `name` (String) The name of the resource. Only supported for certain types
 
 
 <a id="nestedatt--spec--template--spec"></a>

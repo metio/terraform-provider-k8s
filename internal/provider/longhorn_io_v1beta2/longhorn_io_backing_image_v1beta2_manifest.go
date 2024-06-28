@@ -45,6 +45,8 @@ type LonghornIoBackingImageV1Beta2ManifestData struct {
 	Spec *struct {
 		Checksum         *string            `tfsdk:"checksum" json:"checksum,omitempty"`
 		Disks            *map[string]string `tfsdk:"disks" json:"disks,omitempty"`
+		Secret           *string            `tfsdk:"secret" json:"secret,omitempty"`
+		SecretNamespace  *string            `tfsdk:"secret_namespace" json:"secretNamespace,omitempty"`
 		SourceParameters *map[string]string `tfsdk:"source_parameters" json:"sourceParameters,omitempty"`
 		SourceType       *string            `tfsdk:"source_type" json:"sourceType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -144,6 +146,22 @@ func (r *LonghornIoBackingImageV1Beta2Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"secret": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"secret_namespace": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"source_parameters": schema.MapAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -160,7 +178,7 @@ func (r *LonghornIoBackingImageV1Beta2Manifest) Schema(_ context.Context, _ data
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("download", "upload", "export-from-volume", "restore"),
+							stringvalidator.OneOf("download", "upload", "export-from-volume", "restore", "clone"),
 						},
 					},
 				},

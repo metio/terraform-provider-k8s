@@ -58,7 +58,8 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 				VpcID           *bool   `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 			} `tfsdk:"aws" json:"aws,omitempty"`
 			CustomPlugin *struct {
-				Config *string `tfsdk:"config" json:"config,omitempty"`
+				Config     *string            `tfsdk:"config" json:"config,omitempty"`
+				YamlConfig *map[string]string `tfsdk:"yaml_config" json:"yamlConfig,omitempty"`
 			} `tfsdk:"custom_plugin" json:"customPlugin,omitempty"`
 			Grep *struct {
 				Alias      *string `tfsdk:"alias" json:"alias,omitempty"`
@@ -381,8 +382,17 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 									MarkdownDescription: "CustomPlugin defines a Custom plugin configuration.",
 									Attributes: map[string]schema.Attribute{
 										"config": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
+											MarkdownDescription: "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"yaml_config": schema.MapAttribute{
+											Description:         "YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml",
+											MarkdownDescription: "YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -406,16 +416,16 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"exclude": schema.StringAttribute{
-											Description:         "Exclude records which field matches the regular expression. Value Format: FIELD REGEX",
-											MarkdownDescription: "Exclude records which field matches the regular expression. Value Format: FIELD REGEX",
+											Description:         "Exclude records which field matches the regular expression.Value Format: FIELD REGEX",
+											MarkdownDescription: "Exclude records which field matches the regular expression.Value Format: FIELD REGEX",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"regex": schema.StringAttribute{
-											Description:         "Keep records which field matches the regular expression. Value Format: FIELD REGEX",
-											MarkdownDescription: "Keep records which field matches the regular expression. Value Format: FIELD REGEX",
+											Description:         "Keep records which field matches the regular expression.Value Format: FIELD REGEX",
+											MarkdownDescription: "Keep records which field matches the regular expression.Value Format: FIELD REGEX",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -501,24 +511,24 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"k8s_logging_exclude": schema.BoolAttribute{
-											Description:         "Allow Kubernetes Pods to exclude their logs from the log processor (read more about it in Kubernetes Annotations section).",
-											MarkdownDescription: "Allow Kubernetes Pods to exclude their logs from the log processor (read more about it in Kubernetes Annotations section).",
+											Description:         "Allow Kubernetes Pods to exclude their logs from the log processor(read more about it in Kubernetes Annotations section).",
+											MarkdownDescription: "Allow Kubernetes Pods to exclude their logs from the log processor(read more about it in Kubernetes Annotations section).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"k8s_logging_parser": schema.BoolAttribute{
-											Description:         "Allow Kubernetes Pods to suggest a pre-defined Parser (read more about it in Kubernetes Annotations section)",
-											MarkdownDescription: "Allow Kubernetes Pods to suggest a pre-defined Parser (read more about it in Kubernetes Annotations section)",
+											Description:         "Allow Kubernetes Pods to suggest a pre-defined Parser(read more about it in Kubernetes Annotations section)",
+											MarkdownDescription: "Allow Kubernetes Pods to suggest a pre-defined Parser(read more about it in Kubernetes Annotations section)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"keep_log": schema.BoolAttribute{
-											Description:         "When Keep_Log is disabled, the log field is removed from the incoming message once it has been successfully merged (Merge_Log must be enabled as well).",
-											MarkdownDescription: "When Keep_Log is disabled, the log field is removed from the incoming message once it has been successfully merged (Merge_Log must be enabled as well).",
+											Description:         "When Keep_Log is disabled, the log field is removedfrom the incoming message once it has been successfully merged(Merge_Log must be enabled as well).",
+											MarkdownDescription: "When Keep_Log is disabled, the log field is removedfrom the incoming message once it has been successfully merged(Merge_Log must be enabled as well).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -541,24 +551,24 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"kube_meta_cache_ttl": schema.StringAttribute{
-											Description:         "configurable TTL for K8s cached metadata. By default, it is set to 0 which means TTL for cache entries is disabled and cache entries are evicted at random when capacity is reached. In order to enable this option, you should set the number to a time interval. For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.",
-											MarkdownDescription: "configurable TTL for K8s cached metadata. By default, it is set to 0 which means TTL for cache entries is disabled and cache entries are evicted at random when capacity is reached. In order to enable this option, you should set the number to a time interval. For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.",
+											Description:         "configurable TTL for K8s cached metadata. By default, it is set to 0which means TTL for cache entries is disabled and cache entries are evicted at randomwhen capacity is reached. In order to enable this option, you should set the number to a time interval.For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.",
+											MarkdownDescription: "configurable TTL for K8s cached metadata. By default, it is set to 0which means TTL for cache entries is disabled and cache entries are evicted at randomwhen capacity is reached. In order to enable this option, you should set the number to a time interval.For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"kube_meta_preload_cache_dir": schema.StringAttribute{
-											Description:         "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory, named as namespace-pod.meta",
-											MarkdownDescription: "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory, named as namespace-pod.meta",
+											Description:         "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta",
+											MarkdownDescription: "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"kube_tag_prefix": schema.StringAttribute{
-											Description:         "When the source records comes from Tail input plugin, this option allows to specify what's the prefix used in Tail configuration.",
-											MarkdownDescription: "When the source records comes from Tail input plugin, this option allows to specify what's the prefix used in Tail configuration.",
+											Description:         "When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.",
+											MarkdownDescription: "When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -573,8 +583,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"kube_token_ttl": schema.StringAttribute{
-											Description:         "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
-											MarkdownDescription: "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+											Description:         "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+											MarkdownDescription: "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -613,16 +623,16 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"merge_log": schema.BoolAttribute{
-											Description:         "When enabled, it checks if the log field content is a JSON string map, if so, it append the map fields as part of the log structure.",
-											MarkdownDescription: "When enabled, it checks if the log field content is a JSON string map, if so, it append the map fields as part of the log structure.",
+											Description:         "When enabled, it checks if the log field content is a JSON string map,if so, it append the map fields as part of the log structure.",
+											MarkdownDescription: "When enabled, it checks if the log field content is a JSON string map,if so, it append the map fields as part of the log structure.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"merge_log_key": schema.StringAttribute{
-											Description:         "When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string message and make a structured representation of it at the same level of the log field in the map. Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.",
-											MarkdownDescription: "When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string message and make a structured representation of it at the same level of the log field in the map. Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.",
+											Description:         "When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string messageand make a structured representation of it at the same level of the log field in the map.Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.",
+											MarkdownDescription: "When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string messageand make a structured representation of it at the same level of the log field in the map.Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -645,8 +655,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"regex_parser": schema.StringAttribute{
-											Description:         "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id. The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
-											MarkdownDescription: "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id. The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
+											Description:         "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id.The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
+											MarkdownDescription: "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id.The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -688,8 +698,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"use_kubelet": schema.BoolAttribute{
-											Description:         "This is an optional feature flag to get metadata information from kubelet instead of calling Kube Server API to enhance the log. This could mitigate the Kube API heavy traffic issue for large cluster.",
-											MarkdownDescription: "This is an optional feature flag to get metadata information from kubelet instead of calling Kube Server API to enhance the log. This could mitigate the Kube API heavy traffic issue for large cluster.",
+											Description:         "This is an optional feature flag to get metadata information from kubeletinstead of calling Kube Server API to enhance the log.This could mitigate the Kube API heavy traffic issue for large cluster.",
+											MarkdownDescription: "This is an optional feature flag to get metadata information from kubeletinstead of calling Kube Server API to enhance the log.This could mitigate the Kube API heavy traffic issue for large cluster.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -713,8 +723,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"call": schema.StringAttribute{
-											Description:         "Lua function name that will be triggered to do filtering. It's assumed that the function is declared inside the Script defined above.",
-											MarkdownDescription: "Lua function name that will be triggered to do filtering. It's assumed that the function is declared inside the Script defined above.",
+											Description:         "Lua function name that will be triggered to do filtering.It's assumed that the function is declared inside the Script defined above.",
+											MarkdownDescription: "Lua function name that will be triggered to do filtering.It's assumed that the function is declared inside the Script defined above.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -729,8 +739,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"protected_mode": schema.BoolAttribute{
-											Description:         "If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.",
-											MarkdownDescription: "If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.",
+											Description:         "If enabled, Lua script will be executed in protected mode.It prevents to crash when invalid Lua script is executed. Default is true.",
+											MarkdownDescription: "If enabled, Lua script will be executed in protected mode.It prevents to crash when invalid Lua script is executed. Default is true.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -760,8 +770,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -781,16 +791,16 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"time_as_table": schema.BoolAttribute{
-											Description:         "By default when the Lua script is invoked, the record timestamp is passed as a Floating number which might lead to loss precision when the data is converted back. If you desire timestamp precision enabling this option will pass the timestamp as a Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
-											MarkdownDescription: "By default when the Lua script is invoked, the record timestamp is passed as a Floating number which might lead to loss precision when the data is converted back. If you desire timestamp precision enabling this option will pass the timestamp as a Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
+											Description:         "By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
+											MarkdownDescription: "By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type_int_key": schema.ListAttribute{
-											Description:         "If these keys are matched, the fields are converted to integer. If more than one key, delimit by space. Note that starting from Fluent Bit v1.6 integer data types are preserved and not converted to double as in previous versions.",
-											MarkdownDescription: "If these keys are matched, the fields are converted to integer. If more than one key, delimit by space. Note that starting from Fluent Bit v1.6 integer data types are preserved and not converted to double as in previous versions.",
+											Description:         "If these keys are matched, the fields are converted to integer.If more than one key, delimit by space.Note that starting from Fluent Bit v1.6 integer data types are preservedand not converted to double as in previous versions.",
+											MarkdownDescription: "If these keys are matched, the fields are converted to integer.If more than one key, delimit by space.Note that starting from Fluent Bit v1.6 integer data types are preservedand not converted to double as in previous versions.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -924,8 +934,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"rules": schema.ListNestedAttribute{
-											Description:         "Rules are applied in the order they appear, with each rule operating on the result of the previous rule.",
-											MarkdownDescription: "Rules are applied in the order they appear, with each rule operating on the result of the previous rule.",
+											Description:         "Rules are applied in the order they appear,with each rule operating on the result of the previous rule.",
+											MarkdownDescription: "Rules are applied in the order they appear,with each rule operating on the result of the previous rule.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"add": schema.MapAttribute{
@@ -947,8 +957,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"hard_copy": schema.MapAttribute{
-														Description:         "Copy a key/value pair with key KEY to COPIED_KEY if KEY exists. If COPIED_KEY already exists, this field is overwritten",
-														MarkdownDescription: "Copy a key/value pair with key KEY to COPIED_KEY if KEY exists. If COPIED_KEY already exists, this field is overwritten",
+														Description:         "Copy a key/value pair with key KEY to COPIED_KEY if KEY exists.If COPIED_KEY already exists, this field is overwritten",
+														MarkdownDescription: "Copy a key/value pair with key KEY to COPIED_KEY if KEY exists.If COPIED_KEY already exists, this field is overwritten",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -956,8 +966,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 													},
 
 													"hard_rename": schema.MapAttribute{
-														Description:         "Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists. If RENAMED_KEY already exists, this field is overwritten",
-														MarkdownDescription: "Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists. If RENAMED_KEY already exists, this field is overwritten",
+														Description:         "Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists.If RENAMED_KEY already exists, this field is overwritten",
+														MarkdownDescription: "Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists.If RENAMED_KEY already exists, this field is overwritten",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1073,8 +1083,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"key_content": schema.StringAttribute{
-											Description:         "Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
-											MarkdownDescription: "Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
+											Description:         "Key name that holds the content to process.Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
+											MarkdownDescription: "Key name that holds the content to process.Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1092,8 +1102,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"parser": schema.StringAttribute{
-											Description:         "Specify one or multiple Multiline Parsing definitions to apply to the content. You can specify multiple multiline parsers to detect different formats by separating them with a comma.",
-											MarkdownDescription: "Specify one or multiple Multiline Parsing definitions to apply to the content. You can specify multiple multiline parsers to detect different formats by separating them with a comma.",
+											Description:         "Specify one or multiple Multiline Parsing definitions to apply to the content.You can specify multiple multiline parsers to detect different formats by separating them with a comma.",
+											MarkdownDescription: "Specify one or multiple Multiline Parsing definitions to apply to the content.You can specify multiple multiline parsers to detect different formats by separating them with a comma.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1216,24 +1226,24 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"parser": schema.StringAttribute{
-											Description:         "Specify the parser name to interpret the field. Multiple Parser entries are allowed (split by comma).",
-											MarkdownDescription: "Specify the parser name to interpret the field. Multiple Parser entries are allowed (split by comma).",
+											Description:         "Specify the parser name to interpret the field.Multiple Parser entries are allowed (split by comma).",
+											MarkdownDescription: "Specify the parser name to interpret the field.Multiple Parser entries are allowed (split by comma).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"preserve_key": schema.BoolAttribute{
-											Description:         "Keep original Key_Name field in the parsed result. If false, the field will be removed.",
-											MarkdownDescription: "Keep original Key_Name field in the parsed result. If false, the field will be removed.",
+											Description:         "Keep original Key_Name field in the parsed result.If false, the field will be removed.",
+											MarkdownDescription: "Keep original Key_Name field in the parsed result.If false, the field will be removed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"reserve_data": schema.BoolAttribute{
-											Description:         "Keep all other original fields in the parsed result. If false, all other original fields will be removed.",
-											MarkdownDescription: "Keep all other original fields in the parsed result. If false, all other original fields will be removed.",
+											Description:         "Keep all other original fields in the parsed result.If false, all other original fields will be removed.",
+											MarkdownDescription: "Keep all other original fields in the parsed result.If false, all other original fields will be removed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1357,8 +1367,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"emitter_name": schema.StringAttribute{
-											Description:         "When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.",
-											MarkdownDescription: "When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.",
+											Description:         "When the filter emits a record under the new Tag, there is an internal emitterplugin that takes care of the job. Since this emitter expose metrics as any othercomponent of the pipeline, you can use this property to configure an optional name for it.",
+											MarkdownDescription: "When the filter emits a record under the new Tag, there is an internal emitterplugin that takes care of the job. Since this emitter expose metrics as any othercomponent of the pipeline, you can use this property to configure an optional name for it.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1384,8 +1394,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										},
 
 										"rules": schema.ListAttribute{
-											Description:         "Defines the matching criteria and the format of the Tag for the matching record. The Rule format have four components: KEY REGEX NEW_TAG KEEP.",
-											MarkdownDescription: "Defines the matching criteria and the format of the Tag for the matching record. The Rule format have four components: KEY REGEX NEW_TAG KEEP.",
+											Description:         "Defines the matching criteria and the format of the Tag for the matching record.The Rule format have four components: KEY REGEX NEW_TAG KEEP.",
+											MarkdownDescription: "Defines the matching criteria and the format of the Tag for the matching record.The Rule format have four components: KEY REGEX NEW_TAG KEEP.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1478,16 +1488,16 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 					},
 
 					"match": schema.StringAttribute{
-						Description:         "A pattern to match against the tags of incoming records. It's case-sensitive and support the star (*) character as a wildcard.",
-						MarkdownDescription: "A pattern to match against the tags of incoming records. It's case-sensitive and support the star (*) character as a wildcard.",
+						Description:         "A pattern to match against the tags of incoming records.It's case-sensitive and support the star (*) character as a wildcard.",
+						MarkdownDescription: "A pattern to match against the tags of incoming records.It's case-sensitive and support the star (*) character as a wildcard.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"match_regex": schema.StringAttribute{
-						Description:         "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
-						MarkdownDescription: "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
+						Description:         "A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.",
+						MarkdownDescription: "A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

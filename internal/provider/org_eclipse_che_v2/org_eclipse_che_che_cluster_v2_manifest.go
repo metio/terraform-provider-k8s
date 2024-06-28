@@ -744,6 +744,7 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			User *struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
 			} `tfsdk:"user" json:"user,omitempty"`
+			WorkspacesPodAnnotations *map[string]string `tfsdk:"workspaces_pod_annotations" json:"workspacesPodAnnotations,omitempty"`
 		} `tfsdk:"dev_environments" json:"devEnvironments,omitempty"`
 		GitServices *struct {
 			Azure *[]struct {
@@ -5742,6 +5743,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"workspaces_pod_annotations": schema.MapAttribute{
+								Description:         "WorkspacesPodAnnotations defines additional annotations for workspace pods.",
+								MarkdownDescription: "WorkspacesPodAnnotations defines additional annotations for workspace pods.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

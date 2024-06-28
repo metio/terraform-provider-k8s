@@ -55,6 +55,7 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) Scheduling constraints. (see [below for nested schema](#nestedatt--spec--affinity))
+- `annotations` (Map of String) Custom annotations to add to dataplane pods. Note that this does not affect theannotations added to the Deployment (this come from the correspnding Gateway), just thepods. Note also that mandatory pod annotations override whatever you set here onconflict, and the annotations set here override annotations manually added to the pods.
 - `args` (List of String) Arguments to the entrypoint.
 - `command` (List of String) Entrypoint array. Defaults: 'stunnerd'.
 - `container_security_context` (Attributes) ContainerSecurityContext holds container-level security attributes specifically for thestunnerd container. (see [below for nested schema](#nestedatt--spec--container_security_context))
@@ -66,6 +67,7 @@ Optional:
 - `image` (String) Container image name.
 - `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets is an optional list of references to secrets to use for pulling thestunnerd image. Note that the referenced secrets are not watched by the operator, somodifications will in effect only for newly created pods. Also note that the Secret isalways searched in the same namespace as the Gateway, which allows to use separate pullsecrets per each namespace. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `labels` (Map of String) Custom labels to add to dataplane pods. Note that this does not affect the labels addedto the Deployment (those come from the Gateway), just the pods. Note also that mandatorypod labels override whatever you set here on conflict. The only way to set pod labels ishere: whatever you set manually on the dataplane pod will be reset by the opetator.
 - `replicas` (Number) Number of desired pods. If empty or set to 1, use whatever is in the target Deployment.Otherwise, enforce this setting, overwiting whatever is set in the Deployment (this mayblock autoscaling the dataplane though). Defaults to 1.
 - `resources` (Attributes) Resources required by stunnerd. (see [below for nested schema](#nestedatt--spec--resources))
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--security_context))

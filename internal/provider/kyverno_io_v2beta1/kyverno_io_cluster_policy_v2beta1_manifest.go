@@ -587,6 +587,19 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 					Level   *string `tfsdk:"level" json:"level,omitempty"`
 					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"pod_security" json:"podSecurity,omitempty"`
+				ValidationFailureAction          *string `tfsdk:"validation_failure_action" json:"validationFailureAction,omitempty"`
+				ValidationFailureActionOverrides *[]struct {
+					Action            *string `tfsdk:"action" json:"action,omitempty"`
+					NamespaceSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+					Namespaces *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+				} `tfsdk:"validation_failure_action_overrides" json:"validationFailureActionOverrides,omitempty"`
 			} `tfsdk:"validate" json:"validate,omitempty"`
 			VerifyImages *[]struct {
 				Attestations *[]struct {
@@ -4615,6 +4628,102 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											Optional: true,
 											Computed: false,
 										},
+
+										"validation_failure_action": schema.StringAttribute{
+											Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.",
+											MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+											},
+										},
+
+										"validation_failure_action_overrides": schema.ListNestedAttribute{
+											Description:         "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
+											MarkdownDescription: "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"action": schema.StringAttribute{
+														Description:         "ValidationFailureAction defines the policy validation failure action",
+														MarkdownDescription: "ValidationFailureAction defines the policy validation failure action",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+														},
+													},
+
+													"namespace_selector": schema.SingleNestedAttribute{
+														Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+														MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -5657,8 +5766,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"validation_failure_action": schema.StringAttribute{
-						Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.",
-						MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.",
+						Description:         "Deprecated, use validationFailureAction under the validate rule instead.",
+						MarkdownDescription: "Deprecated, use validationFailureAction under the validate rule instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5668,8 +5777,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"validation_failure_action_overrides": schema.ListNestedAttribute{
-						Description:         "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
-						MarkdownDescription: "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
+						Description:         "Deprecated, use validationFailureActionOverrides under the validate rule instead.",
+						MarkdownDescription: "Deprecated, use validationFailureActionOverrides under the validate rule instead.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{

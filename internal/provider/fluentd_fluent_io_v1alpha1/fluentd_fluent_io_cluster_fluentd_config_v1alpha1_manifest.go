@@ -158,16 +158,16 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -181,8 +181,8 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -212,16 +212,16 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -235,8 +235,8 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -266,16 +266,16 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -289,8 +289,8 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -303,8 +303,8 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"emit_mode": schema.StringAttribute{
-						Description:         "Emit mode. If batch, the plugin will emit events per labels matched. Enum: record, batch. will make no effect if EnableFilterKubernetes is set false.",
-						MarkdownDescription: "Emit mode. If batch, the plugin will emit events per labels matched. Enum: record, batch. will make no effect if EnableFilterKubernetes is set false.",
+						Description:         "Emit mode. If batch, the plugin will emit events per labels matched. Enum: record, batch.will make no effect if EnableFilterKubernetes is set false.",
+						MarkdownDescription: "Emit mode. If batch, the plugin will emit events per labels matched. Enum: record, batch.will make no effect if EnableFilterKubernetes is set false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -314,8 +314,8 @@ func (r *FluentdFluentIoClusterFluentdConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"sticky_tags": schema.StringAttribute{
-						Description:         "Sticky tags will match only one record from an event stream. The same tag will be treated the same way. will make no effect if EnableFilterKubernetes is set false.",
-						MarkdownDescription: "Sticky tags will match only one record from an event stream. The same tag will be treated the same way. will make no effect if EnableFilterKubernetes is set false.",
+						Description:         "Sticky tags will match only one record from an event stream. The same tag will be treated the same way.will make no effect if EnableFilterKubernetes is set false.",
+						MarkdownDescription: "Sticky tags will match only one record from an event stream. The same tag will be treated the same way.will make no effect if EnableFilterKubernetes is set false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

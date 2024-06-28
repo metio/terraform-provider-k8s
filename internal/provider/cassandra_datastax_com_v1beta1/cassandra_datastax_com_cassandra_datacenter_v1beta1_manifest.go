@@ -125,7 +125,8 @@ type CassandraDatastaxComCassandraDatacenterV1Beta1ManifestData struct {
 				SkipSecretValidation *bool   `tfsdk:"skip_secret_validation" json:"skipSecretValidation,omitempty"`
 			} `tfsdk:"manual" json:"manual,omitempty"`
 		} `tfsdk:"management_api_auth" json:"managementApiAuth,omitempty"`
-		Networking *struct {
+		MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		Networking      *struct {
 			HostNetwork *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
 			NodePort    *struct {
 				Internode    *int64 `tfsdk:"internode" json:"internode,omitempty"`
@@ -2629,6 +2630,14 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Schema(_ contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"min_ready_seconds": schema.Int64Attribute{
+						Description:         "MinReadySeconds sets the minimum number of seconds for which a newly created pod should be ready without any of its containers crashing, for it to be considered available. Defaults to 5 seconds and is set in the StatefulSet spec.Setting to 0 might cause multiple Cassandra pods to restart at the same time despite PodDisruptionBudget settings.",
+						MarkdownDescription: "MinReadySeconds sets the minimum number of seconds for which a newly created pod should be ready without any of its containers crashing, for it to be considered available. Defaults to 5 seconds and is set in the StatefulSet spec.Setting to 0 might cause multiple Cassandra pods to restart at the same time despite PodDisruptionBudget settings.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"networking": schema.SingleNestedAttribute{

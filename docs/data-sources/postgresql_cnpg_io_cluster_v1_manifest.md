@@ -677,6 +677,7 @@ Required:
 
 Optional:
 
+- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
 - `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
 - `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
 - `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
@@ -1324,6 +1325,7 @@ Required:
 
 Optional:
 
+- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
 - `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
 - `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
 - `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
@@ -1420,6 +1422,7 @@ Optional:
 Optional:
 
 - `roles` (Attributes List) Database roles managed by the 'Cluster' (see [below for nested schema](#nestedatt--spec--managed--roles))
+- `services` (Attributes) Services roles managed by the 'Cluster' (see [below for nested schema](#nestedatt--spec--managed--services))
 
 <a id="nestedatt--spec--managed--roles"></a>
 ### Nested Schema for `spec.managed.roles`
@@ -1451,6 +1454,102 @@ Optional:
 Required:
 
 - `name` (String) Name of the referent.
+
+
+
+<a id="nestedatt--spec--managed--services"></a>
+### Nested Schema for `spec.managed.services`
+
+Optional:
+
+- `additional` (Attributes List) Additional is a list of additional managed services specified by the user. (see [below for nested schema](#nestedatt--spec--managed--services--additional))
+- `disabled_default_services` (List of String) DisabledDefaultServices is a list of service types that are disabled by default.Valid values are 'r', and 'ro', representing read, and read-only services.
+
+<a id="nestedatt--spec--managed--services--additional"></a>
+### Nested Schema for `spec.managed.services.additional`
+
+Required:
+
+- `selector_type` (String) SelectorType specifies the type of selectors that the service will have.Valid values are 'rw', 'r', and 'ro', representing read-write, read, and read-only services.
+- `service_template` (Attributes) ServiceTemplate is the template specification for the service. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template))
+
+<a id="nestedatt--spec--managed--services--additional--service_template"></a>
+### Nested Schema for `spec.managed.services.additional.service_template`
+
+Optional:
+
+- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the service.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec))
+
+<a id="nestedatt--spec--managed--services--additional--service_template--metadata"></a>
+### Nested Schema for `spec.managed.services.additional.service_template.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `name` (String) The name of the resource. Only supported for certain types
+
+
+<a id="nestedatt--spec--managed--services--additional--service_template--spec"></a>
+### Nested Schema for `spec.managed.services.additional.service_template.spec`
+
+Optional:
+
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.
+- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.
+- `external_name` (String) externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
+- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.
+- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.
+- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.
+- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
+- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.
+- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+- `ports` (Attributes List) The list of ports that are exposed by this service.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--ports))
+- `publish_not_ready_addresses` (Boolean) publishNotReadyAddresses indicates that any agent which deals with endpoints for thisService should disregard any indications of ready/not-ready.The primary use case for setting this field is for a StatefulSet's Headless Service topropagate SRV DNS records for its Pods for the purpose of peer discovery.The Kubernetes controllers that generate Endpoints and EndpointSlice resources forServices interpret this to mean that all endpoints are considered 'ready' even if thePods themselves are not. Agents which consume only Kubernetes generated endpointsthrough the Endpoints or EndpointSlice resources can safely assume this behavior.
+- `selector` (Map of String) Route service traffic to pods with label keys and values matching thisselector. If empty or not present, the service is assumed to have anexternal process managing its endpoints, which Kubernetes will notmodify. Only applies to types ClusterIP, NodePort, and LoadBalancer.Ignored if type is ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `session_affinity_config` (Attributes) sessionAffinityConfig contains the configurations of session affinity. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config))
+- `traffic_distribution` (String) TrafficDistribution offers a way to express preferences for how traffic isdistributed to Service endpoints. Implementations can use this field as ahint, but are not required to guarantee strict adherence. If the field isnot set, the implementation will apply its default routing strategy. If setto 'PreferClose', implementations should prioritize endpoints that aretopologically close (e.g., same zone).This is an alpha field and requires enabling ServiceTrafficDistribution feature.
+- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+
+<a id="nestedatt--spec--managed--services--additional--service_template--spec--ports"></a>
+### Nested Schema for `spec.managed.services.additional.service_template.spec.ports`
+
+Required:
+
+- `port` (Number) The port that will be exposed by this service.
+
+Optional:
+
+- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.
+- `name` (String) The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.
+- `node_port` (Number) The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.
+- `target_port` (String) Number or name of the port to access on the pods targeted by the service.Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.If this is a string, it will be looked up as a named port in thetarget Pod's container ports. If this is not specified, the valueof the 'port' field is used (an identity map).This field is ignored for services with clusterIP=None, and should beomitted or set equal to the 'port' field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+
+
+<a id="nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config"></a>
+### Nested Schema for `spec.managed.services.additional.service_template.spec.session_affinity_config`
+
+Optional:
+
+- `client_ip` (Attributes) clientIP contains the configurations of Client IP based session affinity. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config--client_ip))
+
+<a id="nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config--client_ip"></a>
+### Nested Schema for `spec.managed.services.additional.service_template.spec.session_affinity_config.client_ip`
+
+Optional:
+
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).
+
+
+
+
 
 
 
@@ -1778,12 +1877,14 @@ Optional:
 
 Required:
 
-- `enabled` (Boolean) If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.
 - `source` (String) The name of the external cluster which is the replication origin
 
 Optional:
 
+- `enabled` (Boolean) If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.
+- `primary` (String) Primary defines which Cluster is defined to be the primary in the distributed PostgreSQL cluster, based on thetopology specified in externalClusters
 - `promotion_token` (String) A demotion token generated by an external cluster used tocheck if the promotion requirements are met.
+- `self` (String) Self defines the name of this cluster. It is used to determine if this is a primaryor a replica cluster, comparing it with 'primary'
 
 
 <a id="nestedatt--spec--replication_slots"></a>
@@ -1861,6 +1962,7 @@ Optional:
 
 - `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `name` (String) The name of the resource. Only supported for certain types
 
 
 

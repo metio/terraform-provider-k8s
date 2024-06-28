@@ -242,8 +242,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"in_cluster_git_server": schema.BoolAttribute{
-								Description:         "Enable in-cluster git server (avoids the need of forking the upstream repository)",
-								MarkdownDescription: "Enable in-cluster git server (avoids the need of forking the upstream repository)",
+								Description:         "(EXPERIMENTAL) Enable in-cluster git server (avoids the need of forking the upstream repository)",
+								MarkdownDescription: "(EXPERIMENTAL) Enable in-cluster git server (avoids the need of forking the upstream repository)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

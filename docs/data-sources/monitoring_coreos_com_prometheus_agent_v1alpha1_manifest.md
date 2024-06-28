@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_prometheus_agent_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  PrometheusAgent defines a Prometheus agent deployment.
+  The 'PrometheusAgent' custom resource definition (CRD) defines a desired Prometheus Agent https://prometheus.io/blog/2021/11/16/agent/ setup to run in a Kubernetes cluster.The CRD is very similar to the 'Prometheus' CRD except for features which aren't available in agent mode like rule evaluation, persistent storage and Thanos sidecar.
 ---
 
 # k8s_monitoring_coreos_com_prometheus_agent_v1alpha1_manifest (Data Source)
 
-PrometheusAgent defines a Prometheus agent deployment.
+The 'PrometheusAgent' custom resource definition (CRD) defines a desired [Prometheus Agent](https://prometheus.io/blog/2021/11/16/agent/) setup to run in a Kubernetes cluster.The CRD is very similar to the 'Prometheus' CRD except for features which aren't available in agent mode like rule evaluation, persistent storage and Thanos sidecar.
 
 ## Example Usage
 

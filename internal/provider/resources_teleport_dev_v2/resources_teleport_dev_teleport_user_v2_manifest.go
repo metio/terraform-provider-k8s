@@ -44,17 +44,20 @@ type ResourcesTeleportDevTeleportUserV2ManifestData struct {
 
 	Spec *struct {
 		Github_identities *[]struct {
-			Connector_id *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
-			Username     *string `tfsdk:"username" json:"username,omitempty"`
+			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
+			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"github_identities" json:"github_identities,omitempty"`
 		Oidc_identities *[]struct {
-			Connector_id *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
-			Username     *string `tfsdk:"username" json:"username,omitempty"`
+			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
+			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"oidc_identities" json:"oidc_identities,omitempty"`
 		Roles           *[]string `tfsdk:"roles" json:"roles,omitempty"`
 		Saml_identities *[]struct {
-			Connector_id *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
-			Username     *string `tfsdk:"username" json:"username,omitempty"`
+			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
+			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"saml_identities" json:"saml_identities,omitempty"`
 		Traits             *map[string][]string `tfsdk:"traits" json:"traits,omitempty"`
 		Trusted_device_ids *[]string            `tfsdk:"trusted_device_ids" json:"trusted_device_ids,omitempty"`
@@ -151,6 +154,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 									Computed:            false,
 								},
 
+								"saml_single_logout_url": schema.StringAttribute{
+									Description:         "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									MarkdownDescription: "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"username": schema.StringAttribute{
 									Description:         "Username is username supplied by external identity provider",
 									MarkdownDescription: "Username is username supplied by external identity provider",
@@ -173,6 +184,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 								"connector_id": schema.StringAttribute{
 									Description:         "ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'",
 									MarkdownDescription: "ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"saml_single_logout_url": schema.StringAttribute{
+									Description:         "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									MarkdownDescription: "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -209,6 +228,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 								"connector_id": schema.StringAttribute{
 									Description:         "ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'",
 									MarkdownDescription: "ConnectorID is id of registered OIDC connector, e.g. 'google-example.com'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"saml_single_logout_url": schema.StringAttribute{
+									Description:         "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									MarkdownDescription: "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

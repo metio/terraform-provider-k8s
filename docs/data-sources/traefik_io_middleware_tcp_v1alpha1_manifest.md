@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_middleware_tcp_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
+  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/overview/
 ---
 
 # k8s_traefik_io_middleware_tcp_v1alpha1_manifest (Data Source)
 
-MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
+MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/overview/
 
 ## Example Usage
 
@@ -56,8 +56,8 @@ Optional:
 Optional:
 
 - `in_flight_conn` (Attributes) InFlightConn defines the InFlightConn middleware configuration. (see [below for nested schema](#nestedatt--spec--in_flight_conn))
-- `ip_allow_list` (Attributes) IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
-- `ip_white_list` (Attributes) IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipwhitelist/ (see [below for nested schema](#nestedatt--spec--ip_white_list))
+- `ip_allow_list` (Attributes) IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
+- `ip_white_list` (Attributes) IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.1/middlewares/tcp/ipwhitelist/ (see [below for nested schema](#nestedatt--spec--ip_white_list))
 
 <a id="nestedatt--spec--in_flight_conn"></a>
 ### Nested Schema for `spec.in_flight_conn`

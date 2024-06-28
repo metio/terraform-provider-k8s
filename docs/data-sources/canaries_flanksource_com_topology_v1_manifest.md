@@ -57,7 +57,7 @@ Optional:
 
 - `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--components))
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--configs))
-- `group_by_tag` (String)
+- `group_by` (Attributes) Specify the catalog tag (& optionally the tag selector) to groupthe topology. (see [below for nested schema](#nestedatt--spec--group_by))
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--id))
 - `label` (String)
@@ -244,6 +244,35 @@ Optional:
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
 - `type` (String) Deprecated. Use 'types'
 - `types` (List of String)
+
+
+<a id="nestedatt--spec--group_by"></a>
+### Nested Schema for `spec.group_by`
+
+Required:
+
+- `tag` (String)
+
+Optional:
+
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--group_by--selector))
+
+<a id="nestedatt--spec--group_by--selector"></a>
+### Nested Schema for `spec.group_by.selector`
+
+Optional:
+
+- `agent` (String) Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.
+- `cache` (String) Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)
+- `field_selector` (String)
+- `id` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `statuses` (List of String)
+- `tag_selector` (String)
+- `types` (List of String)
+
 
 
 <a id="nestedatt--spec--id"></a>

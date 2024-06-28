@@ -162,9 +162,11 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 					Items                                *map[string]string `tfsdk:"items" json:"items,omitempty"`
 					MaxItems                             *int64             `tfsdk:"max_items" json:"maxItems,omitempty"`
 					MaxLength                            *int64             `tfsdk:"max_length" json:"maxLength,omitempty"`
+					MaxProperties                        *int64             `tfsdk:"max_properties" json:"maxProperties,omitempty"`
 					Maximum                              *int64             `tfsdk:"maximum" json:"maximum,omitempty"`
 					MinItems                             *int64             `tfsdk:"min_items" json:"minItems,omitempty"`
 					MinLength                            *int64             `tfsdk:"min_length" json:"minLength,omitempty"`
+					MinProperties                        *int64             `tfsdk:"min_properties" json:"minProperties,omitempty"`
 					Minimum                              *int64             `tfsdk:"minimum" json:"minimum,omitempty"`
 					Pattern                              *string            `tfsdk:"pattern" json:"pattern,omitempty"`
 					Properties                           *map[string]string `tfsdk:"properties" json:"properties,omitempty"`
@@ -172,6 +174,13 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 					Type                                 *string            `tfsdk:"type" json:"type,omitempty"`
 					UniqueItems                          *bool              `tfsdk:"unique_items" json:"uniqueItems,omitempty"`
 					X_kubernetes_preserve_unknown_fields *bool              `tfsdk:"x_kubernetes_preserve_unknown_fields" json:"x-kubernetes-preserve-unknown-fields,omitempty"`
+					X_kubernetes_validations             *[]struct {
+						FieldPath         *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+						Message           *string `tfsdk:"message" json:"message,omitempty"`
+						MessageExpression *string `tfsdk:"message_expression" json:"messageExpression,omitempty"`
+						Reason            *string `tfsdk:"reason" json:"reason,omitempty"`
+						Rule              *string `tfsdk:"rule" json:"rule,omitempty"`
+					} `tfsdk:"x_kubernetes_validations" json:"x-kubernetes-validations,omitempty"`
 				} `tfsdk:"open_apiv3_schema" json:"openAPIV3Schema,omitempty"`
 			} `tfsdk:"schema" json:"schema,omitempty"`
 		} `tfsdk:"variables" json:"variables,omitempty"`
@@ -1181,6 +1190,14 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
+												"max_properties": schema.Int64Attribute{
+													Description:         "MaxProperties is the maximum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.",
+													MarkdownDescription: "MaxProperties is the maximum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"maximum": schema.Int64Attribute{
 													Description:         "Maximum is the maximum of an integer or number variable.If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum.If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum.NOTE: Can only be set if type is integer or number.",
 													MarkdownDescription: "Maximum is the maximum of an integer or number variable.If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum.If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum.NOTE: Can only be set if type is integer or number.",
@@ -1200,6 +1217,14 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												"min_length": schema.Int64Attribute{
 													Description:         "MinLength is the min length of a string variable.NOTE: Can only be set if type is string.",
 													MarkdownDescription: "MinLength is the min length of a string variable.NOTE: Can only be set if type is string.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"min_properties": schema.Int64Attribute{
+													Description:         "MinProperties is the minimum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.",
+													MarkdownDescription: "MinProperties is the minimum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1261,6 +1286,60 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"x_kubernetes_validations": schema.ListNestedAttribute{
+													Description:         "XValidations describes a list of validation rules written in the CEL expression language.",
+													MarkdownDescription: "XValidations describes a list of validation rules written in the CEL expression language.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"field_path": schema.StringAttribute{
+																Description:         "FieldPath represents the field path returned when the validation fails.It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field.e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo'If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList'It does not support list numeric index.It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info.Numeric index of array is not supported.For field name which contains special characters, use '['specialName']' to refer the field name.e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
+																MarkdownDescription: "FieldPath represents the field path returned when the validation fails.It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field.e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo'If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList'It does not support list numeric index.It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info.Numeric index of array is not supported.For field name which contains special characters, use '['specialName']' to refer the field name.e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"message": schema.StringAttribute{
+																Description:         "Message represents the message displayed when validation fails. The message is required if the Rule containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'",
+																MarkdownDescription: "Message represents the message displayed when validation fails. The message is required if the Rule containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"message_expression": schema.StringAttribute{
+																Description:         "MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a rule, then messageExpression will be used if validationfails. If messageExpression results in a runtime error, the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset.messageExpression has access to all the same variables as the rule; the only difference is the return type.Example:'x must be less than max ('+string(self.max)+')'",
+																MarkdownDescription: "MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a rule, then messageExpression will be used if validationfails. If messageExpression results in a runtime error, the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset.messageExpression has access to all the same variables as the rule; the only difference is the return type.Example:'x must be less than max ('+string(self.max)+')'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"reason": schema.StringAttribute{
+																Description:         "Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule.The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'.If not set, default to use 'FieldValueInvalid'.All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
+																MarkdownDescription: "Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule.The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'.If not set, default to use 'FieldValueInvalid'.All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("FieldValueInvalid", "FieldValueForbidden", "FieldValueRequired", "FieldValueDuplicate"),
+																},
+															},
+
+															"rule": schema.StringAttribute{
+																Description:         "Rule represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specThe Rule is scoped to the location of the x-kubernetes-validations extension in the schema.The 'self' variable in the CEL expression is bound to the scoped value.If the Rule is scoped to an object with properties, the accessible properties of the object are field selectablevia 'self.field' and field presence can be checked via 'has(self.field)'.If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the mapare accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the mapare accessible via CEL macros and functions such as 'self.all(...)'.If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros andfunctions.If the Rule is scoped to a scalar, 'self' is bound to the scalar value.Examples:- Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'}- Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'}- Rule scoped to a string value: {'rule': 'self.startsWith('kube')'}Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CELexpressions. This includes:- Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields.- Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as:  - A schema with no type and x-kubernetes-preserve-unknown-fields set to true  - An array where the items schema is of an 'unknown type'  - An object where the additionalProperties schema is of an 'unknown type'Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'}  - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'}  - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'}If 'rule' makes use of the 'oldSelf' variable it is implicitly a'transition rule'.By default, the 'oldSelf' variable is the same type as 'self'.Transition rules by default are applied only on UPDATE requests and areskipped if an old value could not be found.",
+																MarkdownDescription: "Rule represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specThe Rule is scoped to the location of the x-kubernetes-validations extension in the schema.The 'self' variable in the CEL expression is bound to the scoped value.If the Rule is scoped to an object with properties, the accessible properties of the object are field selectablevia 'self.field' and field presence can be checked via 'has(self.field)'.If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the mapare accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the mapare accessible via CEL macros and functions such as 'self.all(...)'.If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros andfunctions.If the Rule is scoped to a scalar, 'self' is bound to the scalar value.Examples:- Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'}- Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'}- Rule scoped to a string value: {'rule': 'self.startsWith('kube')'}Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CELexpressions. This includes:- Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields.- Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as:  - A schema with no type and x-kubernetes-preserve-unknown-fields set to true  - An array where the items schema is of an 'unknown type'  - An object where the additionalProperties schema is of an 'unknown type'Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'}  - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'}  - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'}If 'rule' makes use of the 'oldSelf' variable it is implicitly a'transition rule'.By default, the 'oldSelf' variable is the same type as 'self'.Transition rules by default are applied only on UPDATE requests and areskipped if an old value could not be found.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 											Required: true,

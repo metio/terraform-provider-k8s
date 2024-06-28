@@ -321,6 +321,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--exec"></a>
@@ -355,6 +356,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.tcp_socket`
 
@@ -375,6 +384,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -407,6 +417,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -617,6 +635,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -627,6 +646,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.capabilities`
@@ -766,6 +797,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -902,6 +934,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -961,6 +995,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1036,6 +1072,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1095,6 +1133,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1316,6 +1356,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
@@ -1350,6 +1391,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
@@ -1370,6 +1419,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -1402,6 +1452,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1612,6 +1670,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1622,6 +1681,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.capabilities`
@@ -1761,6 +1832,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1769,10 +1841,13 @@ Optional:
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--host_aliases"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--image_pull_secrets"></a>
@@ -1934,6 +2009,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--exec"></a>
@@ -1968,6 +2044,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
@@ -1988,6 +2072,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -2020,6 +2105,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2230,6 +2323,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -2240,6 +2334,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.capabilities`
@@ -2379,6 +2485,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -2434,6 +2541,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2444,6 +2552,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.se_linux_options`
@@ -2802,6 +2922,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -2837,17 +2958,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -3075,10 +3187,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.config_map`
@@ -3365,6 +3515,7 @@ Optional:
 - `selector` (Map of String)
 - `session_affinity` (String)
 - `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--session_affinity_config))
+- `traffic_distribution` (String)
 - `type` (String)
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--ports"></a>
@@ -3438,6 +3589,7 @@ Optional:
 
 - `hostname` (String)
 - `ip` (String)
+- `ip_mode` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress--ports))
 
 <a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress--ports"></a>
@@ -3600,6 +3752,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3610,6 +3763,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.capabilities`
@@ -3667,6 +3832,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -3907,6 +4073,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--exec"></a>
@@ -3941,6 +4108,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.tcp_socket`
 
@@ -3961,6 +4136,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -3993,6 +4169,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -4203,6 +4387,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4213,6 +4398,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.capabilities`
@@ -4352,6 +4549,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -4488,6 +4686,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4547,6 +4747,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4622,6 +4824,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4681,6 +4885,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4902,6 +5108,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
@@ -4936,6 +5143,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
@@ -4956,6 +5171,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -4988,6 +5204,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -5198,6 +5422,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5208,6 +5433,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.capabilities`
@@ -5347,6 +5584,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -5355,10 +5593,13 @@ Optional:
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--host_aliases"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--image_pull_secrets"></a>
@@ -5520,6 +5761,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--exec"></a>
@@ -5554,6 +5796,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
@@ -5574,6 +5824,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -5606,6 +5857,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -5816,6 +6075,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5826,6 +6086,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.capabilities`
@@ -5965,6 +6237,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -6020,6 +6293,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -6030,6 +6304,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.se_linux_options`
@@ -6388,6 +6674,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -6423,17 +6710,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -6661,10 +6939,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.config_map`
@@ -7134,6 +7450,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--exec"></a>
@@ -7168,6 +7485,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.tcp_socket`
 
@@ -7188,6 +7513,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -7220,6 +7546,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -7430,6 +7764,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -7440,6 +7775,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.capabilities`
@@ -7579,6 +7926,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -7715,6 +8063,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -7774,6 +8124,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -7849,6 +8201,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -7908,6 +8262,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -8129,6 +8485,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
@@ -8163,6 +8520,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
@@ -8183,6 +8548,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -8215,6 +8581,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -8425,6 +8799,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -8435,6 +8810,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.capabilities`
@@ -8574,6 +8961,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -8582,10 +8970,13 @@ Optional:
 <a id="nestedatt--spec--submitter_pod_template--spec--host_aliases"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--submitter_pod_template--spec--image_pull_secrets"></a>
@@ -8747,6 +9138,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--exec"></a>
@@ -8781,6 +9173,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
@@ -8801,6 +9201,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -8833,6 +9234,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -9043,6 +9452,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -9053,6 +9463,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.capabilities`
@@ -9192,6 +9614,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -9247,6 +9670,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -9257,6 +9681,18 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--submitter_pod_template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.security_context.se_linux_options`
@@ -9615,6 +10051,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -9650,17 +10087,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -9888,10 +10316,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.config_map`

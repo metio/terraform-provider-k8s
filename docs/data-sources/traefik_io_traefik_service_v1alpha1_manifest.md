@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_traefik_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
+  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-traefikservice
 ---
 
 # k8s_traefik_io_traefik_service_v1alpha1_manifest (Data Source)
 
-TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
+TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-traefikservice
 
 ## Example Usage
 
@@ -79,7 +79,7 @@ Optional:
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--sticky))
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--sticky))
 - `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
@@ -121,7 +121,7 @@ Optional:
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--sticky))
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--sticky))
 - `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
@@ -207,7 +207,7 @@ Optional:
 Optional:
 
 - `services` (Attributes List) Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight. (see [below for nested schema](#nestedatt--spec--weighted--services))
-- `sticky` (Attributes) Sticky defines whether sticky sessions are enabled.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing (see [below for nested schema](#nestedatt--spec--weighted--sticky))
+- `sticky` (Attributes) Sticky defines whether sticky sessions are enabled.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#stickiness-and-load-balancing (see [below for nested schema](#nestedatt--spec--weighted--sticky))
 
 <a id="nestedatt--spec--weighted--services"></a>
 ### Nested Schema for `spec.weighted.services`
@@ -228,7 +228,7 @@ Optional:
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--weighted--services--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--weighted--services--sticky))
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--weighted--services--sticky))
 - `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 

@@ -55,19 +55,19 @@ Optional:
 
 Optional:
 
-- `api_check_interval` (String) the frequency for api-server connectivity checkValid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check
-- `api_server_timeout` (String) Valid time units are 'ms', 's', 'm', 'h'.timeout for each api-connectivity check
+- `api_check_interval` (String) The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check
+- `api_server_timeout` (String) Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.
 - `custom_ds_tolerations` (Attributes List) CustomDsTolerations allows to add custom tolerations snr agents that are running on the ds in order to support remediation for different types of nodes. (see [below for nested schema](#nestedatt--spec--custom_ds_tolerations))
 - `endpoint_health_check_url` (String) EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers.This is a part of self diagnostics which will decide whether the node should be remediated or not.It will be ignored when empty (which is the default).
 - `host_port` (Number) HostPort is used for internal communication between SNR agents.
-- `is_software_reboot_enabled` (Boolean) IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot
-- `max_api_error_threshold` (Number) after this threshold, the node will start contacting its peers
-- `peer_api_server_timeout` (String) Valid time units are 'ms', 's', 'm', 'h'.
-- `peer_dial_timeout` (String) Valid time units are 'ms', 's', 'm', 'h'.timeout for establishing connection to peer
-- `peer_request_timeout` (String) Valid time units are 'ms', 's', 'm', 'h'.timeout for each peer request
-- `peer_update_interval` (String) Valid time units are 'ms', 's', 'm', 'h'.
-- `safe_time_to_assume_node_rebooted_seconds` (Number) SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields.
-- `watchdog_file_path` (String) WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog
+- `is_software_reboot_enabled` (Boolean) IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.
+- `max_api_error_threshold` (Number) After this threshold, the node will start contacting its peers.
+- `peer_api_server_timeout` (String) The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_dial_timeout` (String) Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_request_timeout` (String) Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_update_interval` (String) The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.
+- `safe_time_to_assume_node_rebooted_seconds` (Number) SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.
+- `watchdog_file_path` (String) WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog.
 
 <a id="nestedatt--spec--custom_ds_tolerations"></a>
 ### Nested Schema for `spec.custom_ds_tolerations`

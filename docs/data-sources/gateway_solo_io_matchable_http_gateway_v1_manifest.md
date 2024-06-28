@@ -88,6 +88,7 @@ Optional:
 - `grpc_json_transcoder` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder))
 - `grpc_web` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_web))
 - `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--gzip))
+- `header_validation_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--header_validation_settings))
 - `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--health_check))
 - `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings))
 - `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_local_ratelimit))
@@ -912,6 +913,14 @@ Optional:
 - `memory_level` (Number)
 - `remove_accept_encoding_header` (Boolean)
 - `window_bits` (Number)
+
+
+<a id="nestedatt--spec--http_gateway--options--header_validation_settings"></a>
+### Nested Schema for `spec.http_gateway.options.header_validation_settings`
+
+Optional:
+
+- `disable_http1_method_validation` (Map of String)
 
 
 <a id="nestedatt--spec--http_gateway--options--health_check"></a>

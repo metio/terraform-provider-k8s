@@ -57,5 +57,7 @@ Optional:
 
 - `checksum` (String)
 - `disks` (Map of String)
+- `secret` (String)
+- `secret_namespace` (String)
 - `source_parameters` (Map of String)
 - `source_type` (String)

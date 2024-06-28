@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `decoders` (Attributes List) Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders. There are two type of decoders type: Decode_Field and Decode_Field_As. (see [below for nested schema](#nestedatt--spec--decoders))
+- `decoders` (Attributes List) Decoders are a built-in feature available through the Parsers file, each Parser definition can optionally set one or multiple decoders.There are two type of decoders type: Decode_Field and Decode_Field_As. (see [below for nested schema](#nestedatt--spec--decoders))
 - `json` (Attributes) JSON defines json parser configuration. (see [below for nested schema](#nestedatt--spec--json))
 - `logfmt` (Map of String) Logfmt defines logfmt parser configuration.
 - `ltsv` (Attributes) LTSV defines ltsv parser configuration. (see [below for nested schema](#nestedatt--spec--ltsv))
@@ -66,8 +66,8 @@ Optional:
 
 Optional:
 
-- `decode_field` (String) If the content can be decoded in a structured message, append that structure message (keys and values) to the original log message.
-- `decode_field_as` (String) Any content decoded (unstructured or structured) will be replaced in the same key/value, no extra keys are added.
+- `decode_field` (String) If the content can be decoded in a structured message,append that structure message (keys and values) to the original log message.
+- `decode_field_as` (String) Any content decoded (unstructured or structured) will be replaced in the same key/value,no extra keys are added.
 
 
 <a id="nestedatt--spec--json"></a>

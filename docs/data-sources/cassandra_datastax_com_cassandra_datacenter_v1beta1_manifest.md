@@ -81,6 +81,7 @@ Optional:
 - `dse_workloads` (Attributes) (see [below for nested schema](#nestedatt--spec--dse_workloads))
 - `force_upgrade_racks` (List of String) Rack names in this list are set to the latest StatefulSet configurationeven if Cassandra nodes are down. Use this to recover from an upgrade that couldn'troll out.
 - `management_api_auth` (Attributes) Config for the Management API certificates (see [below for nested schema](#nestedatt--spec--management_api_auth))
+- `min_ready_seconds` (Number) MinReadySeconds sets the minimum number of seconds for which a newly created pod should be ready without any of its containers crashing, for it to be considered available. Defaults to 5 seconds and is set in the StatefulSet spec.Setting to 0 might cause multiple Cassandra pods to restart at the same time despite PodDisruptionBudget settings.
 - `networking` (Attributes) (see [below for nested schema](#nestedatt--spec--networking))
 - `node_affinity_labels` (Map of String) NodeAffinityLabels to pin the Datacenter, using node affinity
 - `node_selector` (Map of String) A map of label keys and values to restrict Cassandra node scheduling to k8s workerswith matchiing labels.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector

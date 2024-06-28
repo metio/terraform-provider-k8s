@@ -44,7 +44,8 @@ type FluentbitFluentIoClusterFluentBitConfigV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		FilterSelector *struct {
+		ConfigFileFormat *string `tfsdk:"config_file_format" json:"configFileFormat,omitempty"`
+		FilterSelector   *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -181,6 +182,17 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 				Description:         "FluentBitConfigSpec defines the desired state of ClusterFluentBitConfig",
 				MarkdownDescription: "FluentBitConfigSpec defines the desired state of ClusterFluentBitConfig",
 				Attributes: map[string]schema.Attribute{
+					"config_file_format": schema.StringAttribute{
+						Description:         "ConfigFileFormat defines the format of the config file, default is 'classic',available options are 'classic' and 'yaml'",
+						MarkdownDescription: "ConfigFileFormat defines the format of the config file, default is 'classic',available options are 'classic' and 'yaml'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("classic", "yaml"),
+						},
+					},
+
 					"filter_selector": schema.SingleNestedAttribute{
 						Description:         "Select filter plugins",
 						MarkdownDescription: "Select filter plugins",
@@ -199,16 +211,16 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -222,8 +234,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -253,16 +265,16 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -276,8 +288,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -307,16 +319,16 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -330,8 +342,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -344,8 +356,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace. If it is not defined, it is in the namespace of the fluentd-operator",
-						MarkdownDescription: "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace. If it is not defined, it is in the namespace of the fluentd-operator",
+						Description:         "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace.If it is not defined, it is in the namespace of the fluentd-operator",
+						MarkdownDescription: "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace.If it is not defined, it is in the namespace of the fluentd-operator",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -369,16 +381,16 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -392,8 +404,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -423,16 +435,16 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -446,8 +458,8 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

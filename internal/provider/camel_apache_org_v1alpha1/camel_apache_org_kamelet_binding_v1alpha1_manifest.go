@@ -1213,6 +1213,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					Fallback                *bool              `tfsdk:"fallback" json:"fallback,omitempty"`
 					Schedule                *string            `tfsdk:"schedule" json:"schedule,omitempty"`
 					StartingDeadlineSeconds *int64             `tfsdk:"starting_deadline_seconds" json:"startingDeadlineSeconds,omitempty"`
+					TimeZone                *string            `tfsdk:"time_zone" json:"timeZone,omitempty"`
 				} `tfsdk:"cron" json:"cron,omitempty"`
 				Dependencies *struct {
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -9502,16 +9503,16 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"limit_cpu": schema.StringAttribute{
-												Description:         "The maximum amount of CPU required.",
-												MarkdownDescription: "The maximum amount of CPU required.",
+												Description:         "The maximum amount of CPU to be provided (default 500 millicores).",
+												MarkdownDescription: "The maximum amount of CPU to be provided (default 500 millicores).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"limit_memory": schema.StringAttribute{
-												Description:         "The maximum amount of memory required.",
-												MarkdownDescription: "The maximum amount of memory required.",
+												Description:         "The maximum amount of memory to be provided (default 512 Mi).",
+												MarkdownDescription: "The maximum amount of memory to be provided (default 512 Mi).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9542,16 +9543,16 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"request_cpu": schema.StringAttribute{
-												Description:         "The minimum amount of CPU required.",
-												MarkdownDescription: "The minimum amount of CPU required.",
+												Description:         "The minimum amount of CPU required (default 125 millicores).",
+												MarkdownDescription: "The minimum amount of CPU required (default 125 millicores).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"request_memory": schema.StringAttribute{
-												Description:         "The minimum amount of memory required.",
-												MarkdownDescription: "The minimum amount of memory required.",
+												Description:         "The minimum amount of memory required (default 128 Mi).",
+												MarkdownDescription: "The minimum amount of memory required (default 128 Mi).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9688,6 +9689,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											"starting_deadline_seconds": schema.Int64Attribute{
 												Description:         "Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.",
 												MarkdownDescription: "Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"time_zone": schema.StringAttribute{
+												Description:         "The timezone that the CronJob will run on",
+												MarkdownDescription: "The timezone that the CronJob will run on",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

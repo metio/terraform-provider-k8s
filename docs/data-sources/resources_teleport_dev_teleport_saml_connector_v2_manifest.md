@@ -69,6 +69,7 @@ Optional:
 - `provider` (String) Provider is the external identity provider.
 - `service_provider_issuer` (String) ServiceProviderIssuer is the issuer of the service provider (Teleport).
 - `signing_key_pair` (Attributes) SigningKeyPair is an x509 key pair used to sign AuthnRequest. (see [below for nested schema](#nestedatt--spec--signing_key_pair))
+- `single_logout_url` (String) SingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out). If this is not provided, SLO is disabled.
 - `sso` (String) SSO is the URL of the identity provider's SSO service.
 
 <a id="nestedatt--spec--assertion_key_pair"></a>

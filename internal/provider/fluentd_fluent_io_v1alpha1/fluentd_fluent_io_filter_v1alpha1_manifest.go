@@ -465,8 +465,8 @@ func (r *FluentdFluentIoFilterV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "The filter_parser filter plugin",
 									Attributes: map[string]schema.Attribute{
 										"emit_invalid_record_to_error": schema.BoolAttribute{
-											Description:         "Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error. If you want to ignore these errors, set false.",
-											MarkdownDescription: "Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error. If you want to ignore these errors, set false.",
+											Description:         "Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error.If you want to ignore these errors, set false.",
+											MarkdownDescription: "Emits invalid record to @ERROR label. Invalid cases are: key does not exist;the format is not matched;an unexpected error.If you want to ignore these errors, set false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -489,8 +489,8 @@ func (r *FluentdFluentIoFilterV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"key_name": schema.StringAttribute{
-											Description:         "Specifies the field name in the record to parse. Required parameter. i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}",
-											MarkdownDescription: "Specifies the field name in the record to parse. Required parameter. i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}",
+											Description:         "Specifies the field name in the record to parse. Required parameter.i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}",
+											MarkdownDescription: "Specifies the field name in the record to parse. Required parameter.i.e: If set keyName to log, {'key':'value','log':'{'time':1622473200,'user':1}'} => {'user':1}",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -750,8 +750,8 @@ func (r *FluentdFluentIoFilterV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"reserve_data": schema.BoolAttribute{
-											Description:         "Keeps the original key-value pair in the parsed result. Default is false. i.e: If set keyName to log, reverseData to true, {'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}",
-											MarkdownDescription: "Keeps the original key-value pair in the parsed result. Default is false. i.e: If set keyName to log, reverseData to true, {'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}",
+											Description:         "Keeps the original key-value pair in the parsed result. Default is false.i.e: If set keyName to log, reverseData to true,{'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}",
+											MarkdownDescription: "Keeps the original key-value pair in the parsed result. Default is false.i.e: If set keyName to log, reverseData to true,{'key':'value','log':'{'user':1,'num':2}'} => {'key':'value','log':'{'user':1,'num':2}','user':1,'num':2}",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -775,16 +775,16 @@ func (r *FluentdFluentIoFilterV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "The filter_record_transformer filter plugin",
 									Attributes: map[string]schema.Attribute{
 										"auto_typecast": schema.BoolAttribute{
-											Description:         "Automatically casts the field types. Default is false. This option is effective only for field values comprised of a single placeholder.",
-											MarkdownDescription: "Automatically casts the field types. Default is false. This option is effective only for field values comprised of a single placeholder.",
+											Description:         "Automatically casts the field types. Default is false.This option is effective only for field values comprised of a single placeholder.",
+											MarkdownDescription: "Automatically casts the field types. Default is false.This option is effective only for field values comprised of a single placeholder.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"enable_ruby": schema.BoolAttribute{
-											Description:         "When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false. i.e: jsonized_record ${record.to_json}",
-											MarkdownDescription: "When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false. i.e: jsonized_record ${record.to_json}",
+											Description:         "When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false.i.e: jsonized_record ${record.to_json}",
+											MarkdownDescription: "When set to true, the full Ruby syntax is enabled in the ${...} expression. The default value is false.i.e: jsonized_record ${record.to_json}",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -812,8 +812,8 @@ func (r *FluentdFluentIoFilterV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"value": schema.StringAttribute{
-														Description:         "The value must from Record properties. See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive",
-														MarkdownDescription: "The value must from Record properties. See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive",
+														Description:         "The value must from Record properties.See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive",
+														MarkdownDescription: "The value must from Record properties.See https://docs.fluentd.org/filter/record_transformer#less-than-record-greater-than-directive",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,

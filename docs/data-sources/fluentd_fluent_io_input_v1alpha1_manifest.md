@@ -99,7 +99,7 @@ Optional:
 - `skip_invalid_event` (Boolean) Skips the invalid incoming event.
 - `source_address_key` (String) The field name of the client's source address. If set, the client's address will be set to its key.
 - `source_hostname_key` (String) The field name of the client's hostname. If set, the client's hostname will be set to its key.
-- `tag` (String) in_forward uses incoming event's tag by default (See Protocol Section). If the tag parameter is set, its value is used instead.
+- `tag` (String) in_forward uses incoming event's tag by default (See Protocol Section).If the tag parameter is set, its value is used instead.
 - `transport` (Attributes) The transport section of forward plugin (see [below for nested schema](#nestedatt--spec--inputs--forward--transport))
 - `user` (Attributes) The security section of user plugin (see [below for nested schema](#nestedatt--spec--inputs--forward--user))
 
@@ -156,7 +156,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -185,7 +185,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -244,7 +244,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -273,7 +273,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -287,7 +287,7 @@ Optional:
 Optional:
 
 - `add_http_headers` (Boolean) Adds HTTP_ prefix headers to the record.
-- `add_remote_addr` (String) Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address. i.e: X-Forwarded-For: host1, host2
+- `add_remote_addr` (String) Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address.i.e: X-Forwarded-For: host1, host2
 - `bind` (String) The port to listen to, default is '0.0.0.0'
 - `body_size_limit` (String) The size limit of the POSTed element.
 - `cors_all_origins` (String) Whitelist domains for CORS.
@@ -400,13 +400,13 @@ Required:
 Optional:
 
 - `emit_unmatched_lines` (Boolean) Emits unmatched lines when <parse> format is not matched for incoming logs.
-- `enable_stat_watcher` (Boolean) Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing. This option is mainly for avoiding the stuck issue with inotify.
-- `enable_watch_timer` (Boolean) Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support. The default is true which results in an additional 1 second timer being used.
-- `encoding` (String) Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.
+- `enable_stat_watcher` (Boolean) Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing.This option is mainly for avoiding the stuck issue with inotify.
+- `enable_watch_timer` (Boolean) Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support.The default is true which results in an additional 1 second timer being used.
+- `encoding` (String) Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.
 - `exclude_path` (List of String) The paths excluded from the watcher list.
 - `follow_inodes` (Boolean) Avoid to read rotated files duplicately. You should set true when you use * or strftime format in path.
-- `from_encoding` (String) Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.
-- `group` (Attributes) The in_tail plugin can assign each log file to a group, based on user defined rules. The limit parameter controls the total number of lines collected for a group within a rate_period time interval. (see [below for nested schema](#nestedatt--spec--inputs--tail--group))
+- `from_encoding` (String) Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.
+- `group` (Attributes) The in_tail plugin can assign each log file to a group, based on user defined rules.The limit parameter controls the total number of lines collected for a group within a rate_period time interval. (see [below for nested schema](#nestedatt--spec--inputs--tail--group))
 - `ignore_repeated_permission_error` (Boolean) If you have to exclude the non-permission files from the watch list, set this parameter to true. It suppresses the repeated permission error logs.
 - `limit_recently_modified` (Number) Limits the watching files that the modification time is within the specified time range when using * in path.
 - `max_line_size` (Number) The maximum length of a line. Longer lines than it will be just skipped.
@@ -414,13 +414,13 @@ Optional:
 - `open_on_every_update` (Boolean) Opens and closes the file on every update instead of leaving it open until it gets rotated.
 - `path_key` (String) Adds the watching file path to the path_key field.
 - `path_timezone` (String) This parameter is for strftime formatted path like /path/to/%Y/%m/%d/.
-- `pos_file` (String) (recommended) Fluentd will record the position it last read from this file. pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source. Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.
+- `pos_file` (String) (recommended) Fluentd will record the position it last read from this file.pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source.Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.
 - `pos_file_compaction_interval` (Number) The interval of doing compaction of pos file.
 - `read_bytes_limit_per_second` (Number) The number of reading bytes per second to read with I/O operation. This value should be equal or greater than 8192.
 - `read_from_head` (Boolean) Starts to read the logs from the head of the file or the last read position recorded in pos_file, not tail.
 - `read_lines_limit` (Number) The number of lines to read with each I/O operation.
 - `refresh_interval` (Number) The interval to refresh the list of watch files. This is used when the path includes *.
-- `rotate_wait` (Number) in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one. in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file. This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds. The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.
+- `rotate_wait` (Number) in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one.in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file.This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds.The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.
 - `skip_refresh_on_startup` (Boolean) Skips the refresh of the watch list on startup. This reduces the startup time when * is used in path.
 
 <a id="nestedatt--spec--inputs--tail--parse"></a>
@@ -476,7 +476,7 @@ Required:
 
 Optional:
 
-- `pattern` (String) Specifies the regular expression for extracting metadata (namespace, podname) from log file path. Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).
+- `pattern` (String) Specifies the regular expression for extracting metadata (namespace, podname) from log file path.Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).
 - `rate_period` (Number) Time period in which the group line limit is applied. in_tail resets the counter after every rate_period interval.
 
 <a id="nestedatt--spec--inputs--tail--group--rule"></a>

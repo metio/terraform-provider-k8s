@@ -149,8 +149,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Schema(_ context.
 						MarkdownDescription: "Monitor is the path and port to monitor the LoadBalancer members",
 						Attributes: map[string]schema.Attribute{
 							"monitortype": schema.StringAttribute{
-								Description:         "MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https', 'icmp'.",
-								MarkdownDescription: "MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https', 'icmp'.",
+								Description:         "MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https','icmp'.",
+								MarkdownDescription: "MonitorType is the monitor parent type. <monitorType> must be one of 'http', 'https','icmp'.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -218,8 +218,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Schema(_ context.
 						MarkdownDescription: "Provider is the LoadBalancer backend provider",
 						Attributes: map[string]schema.Attribute{
 							"creds": schema.StringAttribute{
-								Description:         "Creds is the credentials secret holding the 'username' and 'password' keys. Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'",
-								MarkdownDescription: "Creds is the credentials secret holding the 'username' and 'password' keys. Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'",
+								Description:         "Creds is the credentials secret holding the 'username' and 'password' keys.Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'",
+								MarkdownDescription: "Creds is the credentials secret holding the 'username' and 'password' keys.Generate with: 'kubectl create secret generic <secret-name> --from-literal=username=<username> --from-literal=password=<password>'",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -246,8 +246,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Schema(_ context.
 							},
 
 							"lbmethod": schema.StringAttribute{
-								Description:         "Type is the Load-Balancing method. Defaults to 'round-robin'. Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME",
-								MarkdownDescription: "Type is the Load-Balancing method. Defaults to 'round-robin'. Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME",
+								Description:         "Type is the Load-Balancing method. Defaults to 'round-robin'.Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME",
+								MarkdownDescription: "Type is the Load-Balancing method. Defaults to 'round-robin'.Options are: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
