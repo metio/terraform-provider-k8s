@@ -1008,11 +1008,9 @@ type AppsDeploymentV1ManifestData struct {
 					ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 				} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 				ResourceClaims *[]struct {
-					Name   *string `tfsdk:"name" json:"name,omitempty"`
-					Source *struct {
-						ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
-						ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
-					} `tfsdk:"source" json:"source,omitempty"`
+					Name                      *string `tfsdk:"name" json:"name,omitempty"`
+					ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+					ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 				} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
 				RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
@@ -8045,29 +8043,20 @@ func (r *AppsDeploymentV1Manifest) Schema(_ context.Context, _ datasource.Schema
 													Computed:            false,
 												},
 
-												"source": schema.SingleNestedAttribute{
-													Description:         "ClaimSource describes a reference to a ResourceClaim.Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.",
-													MarkdownDescription: "ClaimSource describes a reference to a ResourceClaim.Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.",
-													Attributes: map[string]schema.Attribute{
-														"resource_claim_name": schema.StringAttribute{
-															Description:         "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
-															MarkdownDescription: "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
+												"resource_claim_name": schema.StringAttribute{
+													Description:         "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set.",
+													MarkdownDescription: "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 
-														"resource_claim_template_name": schema.StringAttribute{
-															Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
-															MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
+												"resource_claim_template_name": schema.StringAttribute{
+													Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set.",
+													MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 										},
