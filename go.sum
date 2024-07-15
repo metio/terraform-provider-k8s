@@ -446,8 +446,8 @@ github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/ad
 github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 h1:+ngKgrYPPJrOjhax5N+uePQ0Fh1Z7PheYoUI/0nzkPA=
 github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79/go.mod h1:FecbI9+v66THATjSRHfNgh1IVFe/9kFxbXtjV0ctIMA=
 github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFbcEtjT1g+wF4CSlocrBnw=
-github.com/gruntwork-io/terratest v0.46.16 h1:l+HHuU7lNLwoAl2sP8zkYJy0uoE2Mwha2nw+rim+OhQ=
-github.com/gruntwork-io/terratest v0.46.16/go.mod h1:oywHw1cFKXSYvKPm27U7quZVzDUlA22H2xUrKCe26xM=
+github.com/gruntwork-io/terratest v0.47.0 h1:xIy1pT7NbGVlMLDZEHl3+3iSnvffh8tN2pL6idn448c=
+github.com/gruntwork-io/terratest v0.47.0/go.mod h1:oywHw1cFKXSYvKPm27U7quZVzDUlA22H2xUrKCe26xM=
 github.com/hashicorp/cli v1.1.6 h1:CMOV+/LJfL1tXCOKrgAX0uRKnzjj/mpmqNXloRSy2K8=
 github.com/hashicorp/cli v1.1.6/go.mod h1:MPon5QYlgjjo0BSoAiN0ESeT5fRzDjVRp+uioJ0piz4=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
