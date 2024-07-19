@@ -1209,6 +1209,10 @@ type PodV1ManifestData struct {
 				Path *string `tfsdk:"path" json:"path,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
+			Image *struct {
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			Iscsi *struct {
 				ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 				ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -3484,8 +3488,8 @@ func (r *PodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, re
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5196,8 +5200,8 @@ func (r *PodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, re
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -6933,8 +6937,8 @@ func (r *PodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, re
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9284,6 +9288,31 @@ func (r *PodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, re
 									Computed: false,
 								},
 
+								"image": schema.SingleNestedAttribute{
+									Description:         "ImageVolumeSource represents a image volume resource.",
+									MarkdownDescription: "ImageVolumeSource represents a image volume resource.",
+									Attributes: map[string]schema.Attribute{
+										"pull_policy": schema.StringAttribute{
+											Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reference": schema.StringAttribute{
+											Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+											MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"iscsi": schema.SingleNestedAttribute{
 									Description:         "Represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.",
 									MarkdownDescription: "Represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.",
@@ -9528,8 +9557,8 @@ func (r *PodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, re
 										},
 
 										"sources": schema.ListNestedAttribute{
-											Description:         "sources is the list of volume projections",
-											MarkdownDescription: "sources is the list of volume projections",
+											Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+											MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"cluster_trust_bundle": schema.SingleNestedAttribute{
