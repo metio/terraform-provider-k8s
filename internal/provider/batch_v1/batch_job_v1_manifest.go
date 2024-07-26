@@ -408,7 +408,8 @@ type BatchJobV1ManifestData struct {
 					} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 					Resources *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -665,7 +666,8 @@ type BatchJobV1ManifestData struct {
 					} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 					Resources *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -925,7 +927,8 @@ type BatchJobV1ManifestData struct {
 					} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 					Resources *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -3980,6 +3983,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																		Optional:            false,
 																		Computed:            false,
 																	},
+
+																	"request": schema.StringAttribute{
+																		Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
 																},
 															},
 															Required: false,
@@ -5690,6 +5701,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																		MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																		Required:            true,
 																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"request": schema.StringAttribute{
+																		Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		Required:            false,
+																		Optional:            true,
 																		Computed:            false,
 																	},
 																},
@@ -7427,6 +7446,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																		MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																		Required:            true,
 																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"request": schema.StringAttribute{
+																		Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																		Required:            false,
+																		Optional:            true,
 																		Computed:            false,
 																	},
 																},
@@ -9586,8 +9613,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																		},
 
 																		"volume_attributes_class_name": schema.StringAttribute{
-																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
