@@ -162,8 +162,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"max_unhealthy": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
-						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
+						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -338,8 +338,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"unhealthy_range": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
-						MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
+						Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machinesDeprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machinesDeprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

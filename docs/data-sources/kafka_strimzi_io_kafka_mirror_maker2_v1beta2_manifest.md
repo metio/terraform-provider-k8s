@@ -172,8 +172,12 @@ Required:
 
 Required:
 
-- `certificate` (String) The name of the file certificate in the Secret.
 - `secret_name` (String) The name of the Secret containing the certificate.
+
+Optional:
+
+- `certificate` (String) The name of the file certificate in the secret.
+- `pattern` (String) Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.
 
 
 
@@ -189,8 +193,12 @@ Optional:
 
 Required:
 
-- `certificate` (String) The name of the file certificate in the Secret.
 - `secret_name` (String) The name of the Secret containing the certificate.
+
+Optional:
+
+- `certificate` (String) The name of the file certificate in the secret.
+- `pattern` (String) Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.
 
 
 
@@ -430,7 +438,7 @@ Optional:
 Optional:
 
 - `auto_restart` (Attributes) Automatic restart of connector and tasks configuration. (see [below for nested schema](#nestedatt--spec--mirrors--checkpoint_connector--auto_restart))
-- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
+- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.
 - `pause` (Boolean) Whether the connector should be paused. Defaults to false.
 - `state` (String) The state the connector should be in. Defaults to running.
 - `tasks_max` (Number) The maximum number of tasks for the Kafka Connector.
@@ -451,7 +459,7 @@ Optional:
 Optional:
 
 - `auto_restart` (Attributes) Automatic restart of connector and tasks configuration. (see [below for nested schema](#nestedatt--spec--mirrors--heartbeat_connector--auto_restart))
-- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
+- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.
 - `pause` (Boolean) Whether the connector should be paused. Defaults to false.
 - `state` (String) The state the connector should be in. Defaults to running.
 - `tasks_max` (Number) The maximum number of tasks for the Kafka Connector.
@@ -472,7 +480,7 @@ Optional:
 Optional:
 
 - `auto_restart` (Attributes) Automatic restart of connector and tasks configuration. (see [below for nested schema](#nestedatt--spec--mirrors--source_connector--auto_restart))
-- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
+- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.
 - `pause` (Boolean) Whether the connector should be paused. Defaults to false.
 - `state` (String) The state the connector should be in. Defaults to running.
 - `tasks_max` (Number) The maximum number of tasks for the Kafka Connector.
@@ -607,6 +615,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -617,6 +626,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_container--security_context--windows_options))
+
+<a id="nestedatt--spec--template--build_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.build_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--template--build_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.template.build_container.security_context.capabilities`
@@ -1043,6 +1061,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1053,6 +1072,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context--windows_options))
+
+<a id="nestedatt--spec--template--build_pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.build_pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--template--build_pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.template.build_pod.security_context.se_linux_options`
@@ -1199,6 +1227,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1209,6 +1238,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context--windows_options))
+
+<a id="nestedatt--spec--template--connect_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.connect_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--template--connect_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.template.connect_container.security_context.capabilities`
@@ -1312,6 +1350,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1322,6 +1361,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--windows_options))
+
+<a id="nestedatt--spec--template--init_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.init_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--template--init_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.template.init_container.security_context.capabilities`
@@ -1765,6 +1813,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1775,6 +1824,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.template.pod.security_context.se_linux_options`

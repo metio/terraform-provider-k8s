@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_probe_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  Probe defines monitoring for a set of static targets or ingresses.
+  The 'Probe' custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the blackbox exporter https://github.com/prometheus/blackbox_exporter.The 'Probe' resource needs 2 pieces of information:* The list of probed addresses which can be defined statically or by discovering Kubernetes Ingress objects.* The prober which exposes the availability of probed endpoints (over various protocols such HTTP, TCP, ICMP, ...) as Prometheus metrics.'Prometheus' and 'PrometheusAgent' objects select 'Probe' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_probe_v1_manifest (Data Source)
 
-Probe defines monitoring for a set of static targets or ingresses.
+The 'Probe' custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the [blackbox exporter](https://github.com/prometheus/blackbox_exporter).The 'Probe' resource needs 2 pieces of information:* The list of probed addresses which can be defined statically or by discovering Kubernetes Ingress objects.* The prober which exposes the availability of probed endpoints (over various protocols such HTTP, TCP, ICMP, ...) as Prometheus metrics.'Prometheus' and 'PrometheusAgent' objects select 'Probe' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -332,6 +332,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--tls_config--ca"></a>

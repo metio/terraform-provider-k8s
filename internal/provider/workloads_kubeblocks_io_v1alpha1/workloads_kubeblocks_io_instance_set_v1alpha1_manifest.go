@@ -95,6 +95,13 @@ type WorkloadsKubeblocksIoInstanceSetV1Alpha1ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"credential" json:"credential,omitempty"`
+		DefaultTemplateOrdinals *struct {
+			Discrete *[]string `tfsdk:"discrete" json:"discrete,omitempty"`
+			Ranges   *[]struct {
+				End   *int64 `tfsdk:"end" json:"end,omitempty"`
+				Start *int64 `tfsdk:"start" json:"start,omitempty"`
+			} `tfsdk:"ranges" json:"ranges,omitempty"`
+		} `tfsdk:"default_template_ordinals" json:"defaultTemplateOrdinals,omitempty"`
 		Instances *[]struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Env         *[]struct {
@@ -122,10 +129,17 @@ type WorkloadsKubeblocksIoInstanceSetV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
-			Image     *string            `tfsdk:"image" json:"image,omitempty"`
-			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Name      *string            `tfsdk:"name" json:"name,omitempty"`
-			Replicas  *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+			Image    *string            `tfsdk:"image" json:"image,omitempty"`
+			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Name     *string            `tfsdk:"name" json:"name,omitempty"`
+			Ordinals *struct {
+				Discrete *[]string `tfsdk:"discrete" json:"discrete,omitempty"`
+				Ranges   *[]struct {
+					End   *int64 `tfsdk:"end" json:"end,omitempty"`
+					Start *int64 `tfsdk:"start" json:"start,omitempty"`
+				} `tfsdk:"ranges" json:"ranges,omitempty"`
+			} `tfsdk:"ordinals" json:"ordinals,omitempty"`
+			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -677,12 +691,14 @@ type WorkloadsKubeblocksIoInstanceSetV1Alpha1ManifestData struct {
 				Image   *string   `tfsdk:"image" json:"image,omitempty"`
 			} `tfsdk:"switchover_action" json:"switchoverAction,omitempty"`
 		} `tfsdk:"membership_reconfiguration" json:"membershipReconfiguration,omitempty"`
-		MinReadySeconds     *int64    `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		OfflineInstances    *[]string `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
-		Paused              *bool     `tfsdk:"paused" json:"paused,omitempty"`
-		PodManagementPolicy *string   `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
-		Replicas            *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
-		RoleProbe           *struct {
+		MinReadySeconds                  *int64    `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		OfflineInstances                 *[]string `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
+		ParallelPodManagementConcurrency *string   `tfsdk:"parallel_pod_management_concurrency" json:"parallelPodManagementConcurrency,omitempty"`
+		Paused                           *bool     `tfsdk:"paused" json:"paused,omitempty"`
+		PodManagementPolicy              *string   `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
+		PodUpdatePolicy                  *string   `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
+		Replicas                         *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
+		RoleProbe                        *struct {
 			BuiltinHandlerName *string `tfsdk:"builtin_handler_name" json:"builtinHandlerName,omitempty"`
 			CustomHandler      *[]struct {
 				Args    *[]string `tfsdk:"args" json:"args,omitempty"`
@@ -2475,6 +2491,51 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 						Computed: false,
 					},
 
+					"default_template_ordinals": schema.SingleNestedAttribute{
+						Description:         "Specifies the desired Ordinals of the default template.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under the default template.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under the default template would be$(cluster.name)-$(component.name)-0、$(cluster.name)-$(component.name)-1 and $(cluster.name)-$(component.name)-7",
+						MarkdownDescription: "Specifies the desired Ordinals of the default template.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under the default template.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under the default template would be$(cluster.name)-$(component.name)-0、$(cluster.name)-$(component.name)-1 and $(cluster.name)-$(component.name)-7",
+						Attributes: map[string]schema.Attribute{
+							"discrete": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ranges": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"end": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"start": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"instances": schema.ListNestedAttribute{
 						Description:         "Overrides values in default Template.Instance is the fundamental unit managed by KubeBlocks.It represents a Pod with additional objects such as PVCs, Services, ConfigMaps, etc.An InstanceSet manages instances with a total count of Replicas,and by default, all these instances are generated from the same template.The InstanceTemplate provides a way to override values in the default template,allowing the InstanceSet to manage instances from different templates.The naming convention for instances (pods) based on the InstanceSet Name, InstanceTemplate Name, and ordinal.The constructed instance name follows the pattern: $(instance_set.name)-$(template.name)-$(ordinal).By default, the ordinal starts from 0 for each InstanceTemplate.It is important to ensure that the Name of each InstanceTemplate is unique.The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the InstanceSet.Any remaining replicas will be generated using the default template and will follow the default naming rules.",
 						MarkdownDescription: "Overrides values in default Template.Instance is the fundamental unit managed by KubeBlocks.It represents a Pod with additional objects such as PVCs, Services, ConfigMaps, etc.An InstanceSet manages instances with a total count of Replicas,and by default, all these instances are generated from the same template.The InstanceTemplate provides a way to override values in the default template,allowing the InstanceSet to manage instances from different templates.The naming convention for instances (pods) based on the InstanceSet Name, InstanceTemplate Name, and ordinal.The constructed instance name follows the pattern: $(instance_set.name)-$(template.name)-$(ordinal).By default, the ordinal starts from 0 for each InstanceTemplate.It is important to ensure that the Name of each InstanceTemplate is unique.The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the InstanceSet.Any remaining replicas will be generated using the default template and will follow the default naming rules.",
@@ -2676,6 +2737,51 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 										stringvalidator.LengthAtMost(54),
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 									},
+								},
+
+								"ordinals": schema.SingleNestedAttribute{
+									Description:         "Specifies the desired Ordinals of this InstanceTemplate.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under this InstanceTemplate.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under this InstanceTemplate would be$(cluster.name)-$(component.name)-$(template.name)-0、$(cluster.name)-$(component.name)-$(template.name)-1 and$(cluster.name)-$(component.name)-$(template.name)-7",
+									MarkdownDescription: "Specifies the desired Ordinals of this InstanceTemplate.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under this InstanceTemplate.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under this InstanceTemplate would be$(cluster.name)-$(component.name)-$(template.name)-0、$(cluster.name)-$(component.name)-$(template.name)-1 and$(cluster.name)-$(component.name)-$(template.name)-7",
+									Attributes: map[string]schema.Attribute{
+										"discrete": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ranges": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"end": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"start": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"replicas": schema.Int64Attribute{
@@ -6418,6 +6524,14 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"parallel_pod_management_concurrency": schema.StringAttribute{
+						Description:         "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+						MarkdownDescription: "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"paused": schema.BoolAttribute{
 						Description:         "Indicates that the InstanceSet is paused, meaning the reconciliation of this InstanceSet object will be paused.",
 						MarkdownDescription: "Indicates that the InstanceSet is paused, meaning the reconciliation of this InstanceSet object will be paused.",
@@ -6429,6 +6543,14 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 					"pod_management_policy": schema.StringAttribute{
 						Description:         "Controls how pods are created during initial scale up,when replacing pods on nodes, or when scaling down.The default policy is 'OrderedReady', where pods are created in increasing order and the controller waits until each pod is ready beforecontinuing. When scaling down, the pods are removed in the opposite order.The alternative policy is 'Parallel' which will create pods in parallelto match the desired scale without waiting, and on scale down will deleteall pods at once.Note: This field will be removed in future version.",
 						MarkdownDescription: "Controls how pods are created during initial scale up,when replacing pods on nodes, or when scaling down.The default policy is 'OrderedReady', where pods are created in increasing order and the controller waits until each pod is ready beforecontinuing. When scaling down, the pods are removed in the opposite order.The alternative policy is 'Parallel' which will create pods in parallelto match the desired scale without waiting, and on scale down will deleteall pods at once.Note: This field will be removed in future version.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pod_update_policy": schema.StringAttribute{
+						Description:         "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+						MarkdownDescription: "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

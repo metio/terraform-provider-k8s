@@ -81,6 +81,9 @@ type SecretsHashicorpComVaultStaticSecretV1Beta1ManifestData struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"rollout_restart_targets" json:"rolloutRestartTargets,omitempty"`
+		SyncConfig *struct {
+			InstantUpdates *bool `tfsdk:"instant_updates" json:"instantUpdates,omitempty"`
+		} `tfsdk:"sync_config" json:"syncConfig,omitempty"`
 		Type         *string `tfsdk:"type" json:"type,omitempty"`
 		VaultAuthRef *string `tfsdk:"vault_auth_ref" json:"vaultAuthRef,omitempty"`
 		Version      *int64  `tfsdk:"version" json:"version,omitempty"`
@@ -419,6 +422,23 @@ func (r *SecretsHashicorpComVaultStaticSecretV1Beta1Manifest) Schema(_ context.C
 									Optional:            false,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sync_config": schema.SingleNestedAttribute{
+						Description:         "SyncConfig configures sync behavior from Vault to VSO",
+						MarkdownDescription: "SyncConfig configures sync behavior from Vault to VSO",
+						Attributes: map[string]schema.Attribute{
+							"instant_updates": schema.BoolAttribute{
+								Description:         "InstantUpdates is a flag to indicate that event-driven updates areenabled for this VaultStaticSecret",
+								MarkdownDescription: "InstantUpdates is a flag to indicate that event-driven updates areenabled for this VaultStaticSecret",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

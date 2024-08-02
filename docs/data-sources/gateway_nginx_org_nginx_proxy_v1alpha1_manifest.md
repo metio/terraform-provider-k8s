@@ -52,6 +52,7 @@ Optional:
 Optional:
 
 - `disable_http2` (Boolean) DisableHTTP2 defines if http2 should be disabled for all servers.Default is false, meaning http2 will be enabled for all servers.
+- `ip_family` (String) IPFamily specifies the IP family to be used by the NGINX.Default is 'dual', meaning the server will use both IPv4 and IPv6.
 - `telemetry` (Attributes) Telemetry specifies the OpenTelemetry configuration. (see [below for nested schema](#nestedatt--spec--telemetry))
 
 <a id="nestedatt--spec--telemetry"></a>

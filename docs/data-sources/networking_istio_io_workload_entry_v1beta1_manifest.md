@@ -27,9 +27,6 @@ data "k8s_networking_istio_io_workload_entry_v1beta1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-
-### Optional
-
 - `spec` (Attributes) Configuration affecting VMs onboarded into the mesh. See more details at: https://istio.io/docs/reference/config/networking/workload-entry.html (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only

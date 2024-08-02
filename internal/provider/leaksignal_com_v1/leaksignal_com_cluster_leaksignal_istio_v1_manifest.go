@@ -42,24 +42,25 @@ type LeaksignalComClusterLeaksignalIstioV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ApiKey                 *string `tfsdk:"api_key" json:"apiKey,omitempty"`
-		CaBundle               *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-		EnableStreaming        *bool   `tfsdk:"enable_streaming" json:"enableStreaming,omitempty"`
-		FailOpen               *bool   `tfsdk:"fail_open" json:"failOpen,omitempty"`
-		GrpcMode               *string `tfsdk:"grpc_mode" json:"grpcMode,omitempty"`
-		Native                 *bool   `tfsdk:"native" json:"native,omitempty"`
-		NativeProxyMemoryLimit *string `tfsdk:"native_proxy_memory_limit" json:"nativeProxyMemoryLimit,omitempty"`
-		NativeRepo             *string `tfsdk:"native_repo" json:"nativeRepo,omitempty"`
-		ProxyHash              *string `tfsdk:"proxy_hash" json:"proxyHash,omitempty"`
-		ProxyPrefix            *string `tfsdk:"proxy_prefix" json:"proxyPrefix,omitempty"`
-		ProxyPullLocation      *string `tfsdk:"proxy_pull_location" json:"proxyPullLocation,omitempty"`
-		ProxyVersion           *string `tfsdk:"proxy_version" json:"proxyVersion,omitempty"`
-		RefreshPodsOnStale     *bool   `tfsdk:"refresh_pods_on_stale" json:"refreshPodsOnStale,omitempty"`
-		RefreshPodsOnUpdate    *bool   `tfsdk:"refresh_pods_on_update" json:"refreshPodsOnUpdate,omitempty"`
-		Tls                    *bool   `tfsdk:"tls" json:"tls,omitempty"`
-		UpstreamLocation       *string `tfsdk:"upstream_location" json:"upstreamLocation,omitempty"`
-		UpstreamPort           *int64  `tfsdk:"upstream_port" json:"upstreamPort,omitempty"`
-		WorkloadSelector       *struct {
+		ApiKey                   *string `tfsdk:"api_key" json:"apiKey,omitempty"`
+		CaBundle                 *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
+		EnableClientInterception *bool   `tfsdk:"enable_client_interception" json:"enableClientInterception,omitempty"`
+		EnableStreaming          *bool   `tfsdk:"enable_streaming" json:"enableStreaming,omitempty"`
+		FailOpen                 *bool   `tfsdk:"fail_open" json:"failOpen,omitempty"`
+		GrpcMode                 *string `tfsdk:"grpc_mode" json:"grpcMode,omitempty"`
+		Native                   *bool   `tfsdk:"native" json:"native,omitempty"`
+		NativeProxyMemoryLimit   *string `tfsdk:"native_proxy_memory_limit" json:"nativeProxyMemoryLimit,omitempty"`
+		NativeRepo               *string `tfsdk:"native_repo" json:"nativeRepo,omitempty"`
+		ProxyHash                *string `tfsdk:"proxy_hash" json:"proxyHash,omitempty"`
+		ProxyPrefix              *string `tfsdk:"proxy_prefix" json:"proxyPrefix,omitempty"`
+		ProxyPullLocation        *string `tfsdk:"proxy_pull_location" json:"proxyPullLocation,omitempty"`
+		ProxyVersion             *string `tfsdk:"proxy_version" json:"proxyVersion,omitempty"`
+		RefreshPodsOnStale       *bool   `tfsdk:"refresh_pods_on_stale" json:"refreshPodsOnStale,omitempty"`
+		RefreshPodsOnUpdate      *bool   `tfsdk:"refresh_pods_on_update" json:"refreshPodsOnUpdate,omitempty"`
+		Tls                      *bool   `tfsdk:"tls" json:"tls,omitempty"`
+		UpstreamLocation         *string `tfsdk:"upstream_location" json:"upstreamLocation,omitempty"`
+		UpstreamPort             *int64  `tfsdk:"upstream_port" json:"upstreamPort,omitempty"`
+		WorkloadSelector         *struct {
 			Labels *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"workload_selector" json:"workloadSelector,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -141,6 +142,14 @@ func (r *LeaksignalComClusterLeaksignalIstioV1Manifest) Schema(_ context.Context
 					"ca_bundle": schema.StringAttribute{
 						Description:         "Location of CA bundle in istio-proxy. Default is '/etc/ssl/certs/ca-certificates.crt' which is suitable for Istio. OpenShift Service Mesh requires '/etc/ssl/certs/ca-bundle.crt'.",
 						MarkdownDescription: "Location of CA bundle in istio-proxy. Default is '/etc/ssl/certs/ca-certificates.crt' which is suitable for Istio. OpenShift Service Mesh requires '/etc/ssl/certs/ca-bundle.crt'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enable_client_interception": schema.BoolAttribute{
+						Description:         "If true (default), then certificates are installed in pods for outbound TLS interception.",
+						MarkdownDescription: "If true (default), then certificates are installed in pods for outbound TLS interception.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

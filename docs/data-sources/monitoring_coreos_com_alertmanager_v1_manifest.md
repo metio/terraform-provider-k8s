@@ -55,7 +55,7 @@ Optional:
 
 - `additional_peers` (List of String) AdditionalPeers allows injecting a set of additional Alertmanagers to peer with to form a highly available cluster.
 - `affinity` (Attributes) If specified, the pod's scheduling constraints. (see [below for nested schema](#nestedatt--spec--affinity))
-- `alertmanager_config_matcher_strategy` (Attributes) The AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objects match the alerts.In the future more options may be added. (see [below for nested schema](#nestedatt--spec--alertmanager_config_matcher_strategy))
+- `alertmanager_config_matcher_strategy` (Attributes) AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objectsprocess incoming alerts. (see [below for nested schema](#nestedatt--spec--alertmanager_config_matcher_strategy))
 - `alertmanager_config_namespace_selector` (Attributes) Namespaces to be selected for AlertmanagerConfig discovery. If nil, onlycheck own namespace. (see [below for nested schema](#nestedatt--spec--alertmanager_config_namespace_selector))
 - `alertmanager_config_selector` (Attributes) AlertmanagerConfigs to be selected for to merge and configure Alertmanager with. (see [below for nested schema](#nestedatt--spec--alertmanager_config_selector))
 - `alertmanager_configuration` (Attributes) alertmanagerConfiguration specifies the configuration of Alertmanager.If defined, it takes precedence over the 'configSecret' field.This is an *experimental feature*, it may change in any upcoming releasein a breaking way. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration))
@@ -490,7 +490,7 @@ Optional:
 
 Optional:
 
-- `type` (String) If set to 'OnNamespace', the operator injects a label matcher matching the namespace of the AlertmanagerConfig object for all its routes and inhibition rules.'None' will not add any additional matchers other than the ones specified in the AlertmanagerConfig.Default is 'OnNamespace'.
+- `type` (String) AlertmanagerConfigMatcherStrategyType defines the strategy used byAlertmanagerConfig objects to match alerts in the routes and inhibitionrules.The default value is 'OnNamespace'.
 
 
 <a id="nestedatt--spec--alertmanager_config_namespace_selector"></a>
@@ -714,6 +714,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--alertmanager_configuration--global--http_config--tls_config--ca"></a>

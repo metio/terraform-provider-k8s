@@ -472,7 +472,7 @@ func (r *GatewayNetworkingK8SIoGatewayV1Beta1Manifest) Schema(_ context.Context,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
 										stringvalidator.LengthAtMost(255),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9]([-a-zSA-Z0-9]*[a-zA-Z0-9])?$|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9]+$`), ""),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9]+$`), ""),
 									},
 								},
 

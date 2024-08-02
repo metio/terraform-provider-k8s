@@ -121,10 +121,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret))
+
+<a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--config_map"></a>
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--config_map--items"></a>
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--empty_dir"></a>
 ### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.empty_dir`
@@ -4015,10 +4040,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--secret))
+
+<a id="nestedatt--spec--node_agent_fluentbit--positiondb--config_map"></a>
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--node_agent_fluentbit--positiondb--config_map--items"></a>
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--empty_dir"></a>
 ### Nested Schema for `spec.node_agent_fluentbit.positiondb.empty_dir`

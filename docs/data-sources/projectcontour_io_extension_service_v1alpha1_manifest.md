@@ -59,6 +59,7 @@ Required:
 
 Optional:
 
+- `circuit_breaker_policy` (Attributes) CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget. (see [below for nested schema](#nestedatt--spec--circuit_breaker_policy))
 - `load_balancer_policy` (Attributes) The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere. (see [below for nested schema](#nestedatt--spec--load_balancer_policy))
 - `protocol` (String) Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.
 - `protocol_version` (String) This field sets the version of the GRPC protocol that Envoy uses tosend requests to the extension service. Since Contour always uses thev3 Envoy API, this is currently fixed at 'v3'. However, otherprotocol options will be available in future.
@@ -76,6 +77,18 @@ Required:
 Optional:
 
 - `weight` (Number) Weight defines proportion of traffic to balance to the Kubernetes Service.
+
+
+<a id="nestedatt--spec--circuit_breaker_policy"></a>
+### Nested Schema for `spec.circuit_breaker_policy`
+
+Optional:
+
+- `max_connections` (Number) The maximum number of connections that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.
+- `max_pending_requests` (Number) The maximum number of pending requests that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.
+- `max_requests` (Number) The maximum parallel requests a single Envoy instance allows to the Kubernetes Service; defaults to 1024
+- `max_retries` (Number) The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.
+- `per_host_max_connections` (Number) PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.
 
 
 <a id="nestedatt--spec--load_balancer_policy"></a>

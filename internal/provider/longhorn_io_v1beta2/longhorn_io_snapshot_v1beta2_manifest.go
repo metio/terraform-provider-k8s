@@ -144,8 +144,8 @@ func (r *LonghornIoSnapshotV1Beta2Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"volume": schema.StringAttribute{
-						Description:         "the volume that this snapshot belongs to. This field is immutable after creation. Required",
-						MarkdownDescription: "the volume that this snapshot belongs to. This field is immutable after creation. Required",
+						Description:         "the volume that this snapshot belongs to.This field is immutable after creation.Required",
+						MarkdownDescription: "the volume that this snapshot belongs to.This field is immutable after creation.Required",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

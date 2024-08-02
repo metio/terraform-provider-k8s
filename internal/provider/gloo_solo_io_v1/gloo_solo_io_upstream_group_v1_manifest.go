@@ -113,8 +113,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 							IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 							MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-							ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-							Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							MergeJsonKeys         *struct {
+								JsonKeys *struct {
+									OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+									Tmpl          *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+								} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 						} `tfsdk:"response_transformation" json:"responseTransformation,omitempty"`
 					} `tfsdk:"rest" json:"rest,omitempty"`
 				} `tfsdk:"destination_spec" json:"destinationSpec,omitempty"`
@@ -266,8 +274,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -314,8 +330,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -371,8 +395,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -446,8 +478,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -494,8 +534,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -551,8 +599,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -623,8 +679,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -671,8 +735,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -728,8 +800,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 									IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 									MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-									ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-									Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									MergeJsonKeys         *struct {
+										JsonKeys *struct {
+											OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+											Tmpl          *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+										} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -781,8 +861,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 							IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 							MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-							ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-							Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							MergeJsonKeys         *struct {
+								JsonKeys *struct {
+									OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+									Tmpl          *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+								} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -829,8 +917,16 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 							IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 							MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-							ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-							Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							MergeJsonKeys         *struct {
+								JsonKeys *struct {
+									OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+									Tmpl          *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+								} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1380,6 +1476,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"merge_json_keys": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"json_keys": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"override_empty": schema.BoolAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"tmpl": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"parse_body_behavior": schema.StringAttribute{
@@ -2375,6 +2514,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Computed:            false,
 																					},
 
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"parse_body_behavior": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -2692,6 +2874,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 
 																					"parse_body_behavior": schema.StringAttribute{
@@ -3073,6 +3298,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 
 																					"parse_body_behavior": schema.StringAttribute{
@@ -3583,6 +3851,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Computed:            false,
 																					},
 
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"parse_body_behavior": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -3900,6 +4211,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 
 																					"parse_body_behavior": schema.StringAttribute{
@@ -4281,6 +4635,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 
 																					"parse_body_behavior": schema.StringAttribute{
@@ -4767,6 +5164,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Computed:            false,
 																					},
 
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"parse_body_behavior": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -5084,6 +5524,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 
 																					"parse_body_behavior": schema.StringAttribute{
@@ -5467,6 +5950,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Computed:            false,
 																					},
 
+																					"merge_json_keys": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"json_keys": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"override_empty": schema.BoolAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"tmpl": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"parse_body_behavior": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -5814,6 +6340,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Computed:            false,
 																},
 
+																"merge_json_keys": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"json_keys": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"override_empty": schema.BoolAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"tmpl": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"parse_body_behavior": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -6131,6 +6700,49 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"merge_json_keys": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"json_keys": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"override_empty": schema.BoolAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"tmpl": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"parse_body_behavior": schema.StringAttribute{

@@ -60,6 +60,8 @@ Required:
 
 Optional:
 
+- `image` (String)
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `node_selector` (Map of String)
 - `service_account_name` (String)
 
@@ -76,5 +78,14 @@ Optional:
 ### Nested Schema for `spec.resources.claims`
 
 Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.image_pull_secrets`
+
+Optional:
 
 - `name` (String)

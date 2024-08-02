@@ -506,10 +506,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--secret))
+
+<a id="nestedatt--spec--buffer_storage_volume--config_map"></a>
+### Nested Schema for `spec.buffer_storage_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--buffer_storage_volume--config_map--items"></a>
+### Nested Schema for `spec.buffer_storage_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--buffer_storage_volume--empty_dir"></a>
 ### Nested Schema for `spec.buffer_storage_volume.empty_dir`
@@ -1586,10 +1611,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--secret))
+
+<a id="nestedatt--spec--positiondb--config_map"></a>
+### Nested Schema for `spec.positiondb.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--positiondb--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--positiondb--config_map--items"></a>
+### Nested Schema for `spec.positiondb.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--positiondb--empty_dir"></a>
 ### Nested Schema for `spec.positiondb.empty_dir`
@@ -2031,6 +2081,7 @@ Optional:
 
 - `json_date_format` (String)
 - `json_date_key` (String)
+- `retry__limit` (String)
 - `workers` (Number)
 
 

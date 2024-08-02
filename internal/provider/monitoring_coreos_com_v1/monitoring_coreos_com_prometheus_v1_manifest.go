@@ -293,6 +293,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			} `tfsdk:"alertmanagers" json:"alertmanagers,omitempty"`
@@ -357,6 +359,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"apiserver_config" json:"apiserverConfig,omitempty"`
@@ -1057,6 +1061,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
@@ -1201,6 +1207,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url                 *string `tfsdk:"url" json:"url,omitempty"`
@@ -1251,6 +1259,9 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 		} `tfsdk:"rules" json:"rules,omitempty"`
 		SampleLimit   *int64 `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
 		ScrapeClasses *[]struct {
+			AttachMetadata *struct {
+				Node *bool `tfsdk:"node" json:"node,omitempty"`
+			} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
 			Default           *bool `tfsdk:"default" json:"default,omitempty"`
 			MetricRelabelings *[]struct {
 				Action       *string   `tfsdk:"action" json:"action,omitempty"`
@@ -1305,6 +1316,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"scrape_classes" json:"scrapeClasses,omitempty"`
@@ -1361,6 +1374,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		ServiceAccountName              *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		ServiceDiscoveryRole            *string `tfsdk:"service_discovery_role" json:"serviceDiscoveryRole,omitempty"`
 		ServiceMonitorNamespaceSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1526,6 +1540,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"grpc_server_tls_config" json:"grpcServerTlsConfig,omitempty"`
 			HttpListenLocal     *bool   `tfsdk:"http_listen_local" json:"httpListenLocal,omitempty"`
@@ -1634,6 +1650,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"tracing_config" json:"tracingConfig,omitempty"`
@@ -3327,14 +3345,20 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the Endpoints object.",
-											MarkdownDescription: "Namespace of the Endpoints object.",
-											Required:            true,
-											Optional:            false,
+											Description:         "Namespace of the Endpoints object.If not set, the object will be discovered in the namespace of thePrometheus object.",
+											MarkdownDescription: "Namespace of the Endpoints object.If not set, the object will be discovered in the namespace of thePrometheus object.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"path_prefix": schema.StringAttribute{
@@ -3761,6 +3785,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 													Computed: false,
 												},
 
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
 												"server_name": schema.StringAttribute{
 													Description:         "Used to verify the hostname for the targets.",
 													MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -4171,6 +4217,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"max_version": schema.StringAttribute{
+										Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
 									},
 
 									"server_name": schema.StringAttribute{
@@ -8939,6 +9007,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -9931,6 +10021,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -10284,6 +10396,23 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "List of scrape classes to expose to scraping objects such asPodMonitors, ServiceMonitors, Probes and ScrapeConfigs.This is an *experimental feature*, it may change in any upcoming releasein a breaking way.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"attach_metadata": schema.SingleNestedAttribute{
+									Description:         "AttachMetadata configures additional metadata to the discovered targets.When the scrape object defines its own configuration, it takesprecedence over the scrape class configuration.",
+									MarkdownDescription: "AttachMetadata configures additional metadata to the discovered targets.When the scrape object defines its own configuration, it takesprecedence over the scrape class configuration.",
+									Attributes: map[string]schema.Attribute{
+										"node": schema.BoolAttribute{
+											Description:         "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
+											MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"default": schema.BoolAttribute{
 									Description:         "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
 									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
@@ -10662,6 +10791,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -11054,6 +11205,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"service_discovery_role": schema.StringAttribute{
+						Description:         "Defines the service discovery role used to discover targets from 'ServiceMonitor' objects.If set, the value should be either 'Endpoints' or 'EndpointSlice'.If unset, the operator assumes the 'Endpoints' role.",
+						MarkdownDescription: "Defines the service discovery role used to discover targets from 'ServiceMonitor' objects.If set, the value should be either 'Endpoints' or 'EndpointSlice'.If unset, the operator assumes the 'Endpoints' role.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Endpoints", "EndpointSlice"),
+						},
 					},
 
 					"service_monitor_namespace_selector": schema.SingleNestedAttribute{
@@ -12188,6 +12350,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										Computed: false,
 									},
 
+									"max_version": schema.StringAttribute{
+										Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
 									"server_name": schema.StringAttribute{
 										Description:         "Used to verify the hostname for the targets.",
 										MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -12964,6 +13148,28 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"max_version": schema.StringAttribute{
+										Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
 									},
 
 									"server_name": schema.StringAttribute{

@@ -1400,8 +1400,9 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			LocalFile   *string `tfsdk:"local_file" json:"localFile,omitempty"`
 			VolumeClaim *struct {
-				File *string `tfsdk:"file" json:"file,omitempty"`
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				File     *string `tfsdk:"file" json:"file,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 			} `tfsdk:"volume_claim" json:"volumeClaim,omitempty"`
 		} `tfsdk:"script" json:"script,omitempty"`
 		Scuttle *struct {
@@ -11238,6 +11239,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"read_only": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},

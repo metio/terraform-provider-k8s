@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `active` (Boolean)
-- `backend_store_driver` (String) Deprecated: Replaced by field 'dataEngine'.
+- `backend_store_driver` (String) Deprecated:Replaced by field 'dataEngine'.
 - `backup_volume` (String)
 - `data_engine` (String)
 - `desire_state` (String)

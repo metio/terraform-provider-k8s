@@ -49,6 +49,12 @@ type KubeGreenComSleepInfoV1Alpha1ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"exclude_ref" json:"excludeRef,omitempty"`
+		IncludeRef *[]struct {
+			ApiVersion  *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"include_ref" json:"includeRef,omitempty"`
 		Patches *[]struct {
 			Patch  *string `tfsdk:"patch" json:"patch,omitempty"`
 			Target *struct {
@@ -146,6 +152,50 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 					"exclude_ref": schema.ListNestedAttribute{
 						Description:         "ExcludeRef define the resource to exclude from the sleep.",
 						MarkdownDescription: "ExcludeRef define the resource to exclude from the sleep.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"api_version": schema.StringAttribute{
+									Description:         "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
+									MarkdownDescription: "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
+									MarkdownDescription: "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"match_labels": schema.MapAttribute{
+									Description:         "MatchLabels which identify the kubernetes resource by labels",
+									MarkdownDescription: "MatchLabels which identify the kubernetes resource by labels",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name which identify the kubernetes resource.",
+									MarkdownDescription: "Name which identify the kubernetes resource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"include_ref": schema.ListNestedAttribute{
+						Description:         "IncludeRef define the resource to include from the sleep.",
+						MarkdownDescription: "IncludeRef define the resource to include from the sleep.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{

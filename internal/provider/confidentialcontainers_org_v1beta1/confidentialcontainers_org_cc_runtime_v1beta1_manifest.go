@@ -1047,6 +1047,7 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 			} `tfsdk:"pre_install" json:"preInstall,omitempty"`
 			RuntimeClasses *[]struct {
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				Pulltype    *string `tfsdk:"pulltype" json:"pulltype,omitempty"`
 				Snapshotter *string `tfsdk:"snapshotter" json:"snapshotter,omitempty"`
 			} `tfsdk:"runtime_classes" json:"runtimeClasses,omitempty"`
 			RuntimeImage       *string            `tfsdk:"runtime_image" json:"runtimeImage,omitempty"`
@@ -7810,6 +7811,14 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										"name": schema.StringAttribute{
 											Description:         "Name of the runtime class",
 											MarkdownDescription: "Name of the runtime class",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"pulltype": schema.StringAttribute{
+											Description:         "The pulling image method to be used by the runtime class",
+											MarkdownDescription: "The pulling image method to be used by the runtime class",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

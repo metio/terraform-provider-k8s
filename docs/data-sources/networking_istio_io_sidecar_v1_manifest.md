@@ -58,7 +58,7 @@ Optional:
 - `egress` (Attributes List) Egress specifies the configuration of the sidecar for processing outbound traffic from the attached workload instance to other services in the mesh. (see [below for nested schema](#nestedatt--spec--egress))
 - `inbound_connection_pool` (Attributes) Settings controlling the volume of connections Envoy will accept from the network. (see [below for nested schema](#nestedatt--spec--inbound_connection_pool))
 - `ingress` (Attributes List) Ingress specifies the configuration of the sidecar for processing inbound traffic to the attached workload instance. (see [below for nested schema](#nestedatt--spec--ingress))
-- `outbound_traffic_policy` (Attributes) Configuration for the outbound traffic policy. (see [below for nested schema](#nestedatt--spec--outbound_traffic_policy))
+- `outbound_traffic_policy` (Attributes) Set the default behavior of the sidecar for handling outbound traffic from the application. (see [below for nested schema](#nestedatt--spec--outbound_traffic_policy))
 - `workload_selector` (Attributes) Criteria used to select the specific set of pods/VMs on which this 'Sidecar' configuration should be applied. (see [below for nested schema](#nestedatt--spec--workload_selector))
 
 <a id="nestedatt--spec--egress"></a>

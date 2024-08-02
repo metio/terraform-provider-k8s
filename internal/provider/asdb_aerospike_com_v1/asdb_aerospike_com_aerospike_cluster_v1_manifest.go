@@ -81,7 +81,12 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 		Image                     *string   `tfsdk:"image" json:"image,omitempty"`
 		K8sNodeBlockList          *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
 		MaxUnavailable            *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
-		OperatorClientCert        *struct {
+		Operations                *[]struct {
+			Id      *string   `tfsdk:"id" json:"id,omitempty"`
+			Kind    *string   `tfsdk:"kind" json:"kind,omitempty"`
+			PodList *[]string `tfsdk:"pod_list" json:"podList,omitempty"`
+		} `tfsdk:"operations" json:"operations,omitempty"`
+		OperatorClientCert *struct {
 			CertPathInOperator *struct {
 				CaCertsPath    *string `tfsdk:"ca_certs_path" json:"caCertsPath,omitempty"`
 				ClientCertPath *string `tfsdk:"client_cert_path" json:"clientCertPath,omitempty"`
@@ -1840,6 +1845,49 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"operations": schema.ListNestedAttribute{
+						Description:         "Operations is a list of on-demand operations to be performed on the Aerospike cluster.",
+						MarkdownDescription: "Operations is a list of on-demand operations to be performed on the Aerospike cluster.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(20),
+									},
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "Kind is the type of operation to be performed on the Aerospike cluster.",
+									MarkdownDescription: "Kind is the type of operation to be performed on the Aerospike cluster.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("WarmRestart", "PodRestart"),
+									},
+								},
+
+								"pod_list": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"operator_client_cert": schema.SingleNestedAttribute{

@@ -68,37 +68,42 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 				RetryLimit *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 			} `tfsdk:"grep" json:"grep,omitempty"`
 			Kubernetes *struct {
-				Alias                   *string `tfsdk:"alias" json:"alias,omitempty"`
-				Annotations             *bool   `tfsdk:"annotations" json:"annotations,omitempty"`
-				BufferSize              *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
-				CacheUseDockerId        *bool   `tfsdk:"cache_use_docker_id" json:"cacheUseDockerId,omitempty"`
-				DnsRetries              *int64  `tfsdk:"dns_retries" json:"dnsRetries,omitempty"`
-				DnsWaitTime             *int64  `tfsdk:"dns_wait_time" json:"dnsWaitTime,omitempty"`
-				DummyMeta               *bool   `tfsdk:"dummy_meta" json:"dummyMeta,omitempty"`
-				K8sLoggingExclude       *bool   `tfsdk:"k8s_logging_exclude" json:"k8sLoggingExclude,omitempty"`
-				K8sLoggingParser        *bool   `tfsdk:"k8s_logging_parser" json:"k8sLoggingParser,omitempty"`
-				KeepLog                 *bool   `tfsdk:"keep_log" json:"keepLog,omitempty"`
-				KubeCAFile              *string `tfsdk:"kube_ca_file" json:"kubeCAFile,omitempty"`
-				KubeCAPath              *string `tfsdk:"kube_ca_path" json:"kubeCAPath,omitempty"`
-				KubeMetaCacheTTL        *string `tfsdk:"kube_meta_cache_ttl" json:"kubeMetaCacheTTL,omitempty"`
-				KubeMetaPreloadCacheDir *string `tfsdk:"kube_meta_preload_cache_dir" json:"kubeMetaPreloadCacheDir,omitempty"`
-				KubeTagPrefix           *string `tfsdk:"kube_tag_prefix" json:"kubeTagPrefix,omitempty"`
-				KubeTokenFile           *string `tfsdk:"kube_token_file" json:"kubeTokenFile,omitempty"`
-				KubeTokenTTL            *string `tfsdk:"kube_token_ttl" json:"kubeTokenTTL,omitempty"`
-				KubeURL                 *string `tfsdk:"kube_url" json:"kubeURL,omitempty"`
-				KubeletHost             *string `tfsdk:"kubelet_host" json:"kubeletHost,omitempty"`
-				KubeletPort             *int64  `tfsdk:"kubelet_port" json:"kubeletPort,omitempty"`
-				Labels                  *bool   `tfsdk:"labels" json:"labels,omitempty"`
-				MergeLog                *bool   `tfsdk:"merge_log" json:"mergeLog,omitempty"`
-				MergeLogKey             *string `tfsdk:"merge_log_key" json:"mergeLogKey,omitempty"`
-				MergeLogTrim            *bool   `tfsdk:"merge_log_trim" json:"mergeLogTrim,omitempty"`
-				MergeParser             *string `tfsdk:"merge_parser" json:"mergeParser,omitempty"`
-				RegexParser             *string `tfsdk:"regex_parser" json:"regexParser,omitempty"`
-				RetryLimit              *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
-				TlsDebug                *int64  `tfsdk:"tls_debug" json:"tlsDebug,omitempty"`
-				TlsVerify               *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
-				UseJournal              *bool   `tfsdk:"use_journal" json:"useJournal,omitempty"`
-				UseKubelet              *bool   `tfsdk:"use_kubelet" json:"useKubelet,omitempty"`
+				Alias                     *string `tfsdk:"alias" json:"alias,omitempty"`
+				Annotations               *bool   `tfsdk:"annotations" json:"annotations,omitempty"`
+				BufferSize                *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
+				CacheUseDockerId          *bool   `tfsdk:"cache_use_docker_id" json:"cacheUseDockerId,omitempty"`
+				DnsRetries                *int64  `tfsdk:"dns_retries" json:"dnsRetries,omitempty"`
+				DnsWaitTime               *int64  `tfsdk:"dns_wait_time" json:"dnsWaitTime,omitempty"`
+				DummyMeta                 *bool   `tfsdk:"dummy_meta" json:"dummyMeta,omitempty"`
+				K8sLoggingExclude         *bool   `tfsdk:"k8s_logging_exclude" json:"k8sLoggingExclude,omitempty"`
+				K8sLoggingParser          *bool   `tfsdk:"k8s_logging_parser" json:"k8sLoggingParser,omitempty"`
+				KeepLog                   *bool   `tfsdk:"keep_log" json:"keepLog,omitempty"`
+				KubeCAFile                *string `tfsdk:"kube_ca_file" json:"kubeCAFile,omitempty"`
+				KubeCAPath                *string `tfsdk:"kube_ca_path" json:"kubeCAPath,omitempty"`
+				KubeMetaCacheTTL          *string `tfsdk:"kube_meta_cache_ttl" json:"kubeMetaCacheTTL,omitempty"`
+				KubeMetaNamespaceCacheTTL *int64  `tfsdk:"kube_meta_namespace_cache_ttl" json:"kubeMetaNamespaceCacheTTL,omitempty"`
+				KubeMetaPreloadCacheDir   *string `tfsdk:"kube_meta_preload_cache_dir" json:"kubeMetaPreloadCacheDir,omitempty"`
+				KubeTagPrefix             *string `tfsdk:"kube_tag_prefix" json:"kubeTagPrefix,omitempty"`
+				KubeTokenCommand          *string `tfsdk:"kube_token_command" json:"kubeTokenCommand,omitempty"`
+				KubeTokenFile             *string `tfsdk:"kube_token_file" json:"kubeTokenFile,omitempty"`
+				KubeTokenTTL              *string `tfsdk:"kube_token_ttl" json:"kubeTokenTTL,omitempty"`
+				KubeURL                   *string `tfsdk:"kube_url" json:"kubeURL,omitempty"`
+				KubeletHost               *string `tfsdk:"kubelet_host" json:"kubeletHost,omitempty"`
+				KubeletPort               *int64  `tfsdk:"kubelet_port" json:"kubeletPort,omitempty"`
+				Labels                    *bool   `tfsdk:"labels" json:"labels,omitempty"`
+				MergeLog                  *bool   `tfsdk:"merge_log" json:"mergeLog,omitempty"`
+				MergeLogKey               *string `tfsdk:"merge_log_key" json:"mergeLogKey,omitempty"`
+				MergeLogTrim              *bool   `tfsdk:"merge_log_trim" json:"mergeLogTrim,omitempty"`
+				MergeParser               *string `tfsdk:"merge_parser" json:"mergeParser,omitempty"`
+				NamespaceAnnotations      *bool   `tfsdk:"namespace_annotations" json:"namespaceAnnotations,omitempty"`
+				NamespaceLabels           *bool   `tfsdk:"namespace_labels" json:"namespaceLabels,omitempty"`
+				NamespaceMetadataOnly     *bool   `tfsdk:"namespace_metadata_only" json:"namespaceMetadataOnly,omitempty"`
+				RegexParser               *string `tfsdk:"regex_parser" json:"regexParser,omitempty"`
+				RetryLimit                *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
+				TlsDebug                  *int64  `tfsdk:"tls_debug" json:"tlsDebug,omitempty"`
+				TlsVerify                 *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
+				UseJournal                *bool   `tfsdk:"use_journal" json:"useJournal,omitempty"`
+				UseKubelet                *bool   `tfsdk:"use_kubelet" json:"useKubelet,omitempty"`
 			} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
 			Lua *struct {
 				Alias         *string `tfsdk:"alias" json:"alias,omitempty"`
@@ -558,6 +563,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"kube_meta_namespace_cache_ttl": schema.Int64Attribute{
+											Description:         "Configurable TTL for K8s cached namespace metadata.By default, it is set to 900 which means a 15min TTL for namespace cache entries.Setting this to 0 will mean entries are evicted at random once the cache is full.",
+											MarkdownDescription: "Configurable TTL for K8s cached namespace metadata.By default, it is set to 900 which means a 15min TTL for namespace cache entries.Setting this to 0 will mean entries are evicted at random once the cache is full.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"kube_meta_preload_cache_dir": schema.StringAttribute{
 											Description:         "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta",
 											MarkdownDescription: "If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta",
@@ -569,6 +582,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										"kube_tag_prefix": schema.StringAttribute{
 											Description:         "When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.",
 											MarkdownDescription: "When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kube_token_command": schema.StringAttribute{
+											Description:         "Command to get Kubernetes authorization token.By default, it will be NULL and we will use token file to get token.",
+											MarkdownDescription: "Command to get Kubernetes authorization token.By default, it will be NULL and we will use token file to get token.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -649,6 +670,30 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										"merge_parser": schema.StringAttribute{
 											Description:         "Optional parser name to specify how to parse the data contained in the log key. Recommended use is for developers or testing only.",
 											MarkdownDescription: "Optional parser name to specify how to parse the data contained in the log key. Recommended use is for developers or testing only.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_annotations": schema.BoolAttribute{
+											Description:         "Include Kubernetes namespace resource annotations in the extra metadata.",
+											MarkdownDescription: "Include Kubernetes namespace resource annotations in the extra metadata.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_labels": schema.BoolAttribute{
+											Description:         "Include Kubernetes namespace resource labels in the extra metadata.",
+											MarkdownDescription: "Include Kubernetes namespace resource labels in the extra metadata.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_metadata_only": schema.BoolAttribute{
+											Description:         "Include Kubernetes namespace metadata only and no pod metadata.If this is set, the values of Labels and Annotations are ignored.",
+											MarkdownDescription: "Include Kubernetes namespace metadata only and no pod metadata.If this is set, the values of Labels and Annotations are ignored.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -770,8 +815,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

@@ -60,6 +60,7 @@ Required:
 Optional:
 
 - `active_deadline_seconds` (Number)
+- `backoff_limit` (Number)
 - `cluster_selector` (Map of String)
 - `entrypoint_num_cpus` (Number)
 - `entrypoint_num_gpus` (Number)

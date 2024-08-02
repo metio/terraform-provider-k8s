@@ -290,6 +290,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--exec"></a>
@@ -324,6 +325,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
+
+
 <a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.tcp_socket`
 
@@ -344,6 +353,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -376,6 +386,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -892,6 +910,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
@@ -926,6 +945,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
+
+
 <a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
@@ -946,6 +973,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -978,6 +1006,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1493,6 +1529,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--exec"></a>
@@ -1527,6 +1564,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
+
+
 <a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
@@ -1547,6 +1592,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -1579,6 +1625,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2304,6 +2358,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2339,17 +2394,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -2565,10 +2611,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 
 <a id="nestedatt--spec--template--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.template.spec.volumes.projected.sources.config_map`
@@ -2884,7 +2968,7 @@ Optional:
 - `limit_memory` (String) When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
 - `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
-- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
+- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)
 - `platforms` (List of String) The list of manifest platforms to use to build a container image (default 'linux/amd64').
 - `properties` (List of String) A list of properties to be provided to the build task
 - `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
@@ -3207,6 +3291,7 @@ Optional:
 
 - `configs` (List of String) A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
+- `empty_dirs` (List of String) A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path

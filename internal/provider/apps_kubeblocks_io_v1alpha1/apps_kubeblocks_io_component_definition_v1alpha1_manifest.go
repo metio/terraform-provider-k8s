@@ -80,557 +80,449 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			AccountProvision *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"account_provision" json:"accountProvision,omitempty"`
 			DataDump *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"data_dump" json:"dataDump,omitempty"`
 			DataLoad *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"data_load" json:"dataLoad,omitempty"`
 			MemberJoin *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"member_join" json:"memberJoin,omitempty"`
 			MemberLeave *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"member_leave" json:"memberLeave,omitempty"`
 			PostProvision *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"post_provision" json:"postProvision,omitempty"`
 			PreTerminate *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"pre_terminate" json:"preTerminate,omitempty"`
 			Readonly *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"readonly" json:"readonly,omitempty"`
 			Readwrite *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"readwrite" json:"readwrite,omitempty"`
 			Reconfigure *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
 				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"reconfigure" json:"reconfigure,omitempty"`
 			RoleProbe *struct {
 				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
-				CustomHandler  *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
+				Exec           *struct {
+					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+					Container *string   `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -656,142 +548,106 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
-					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
-					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-					RetryPolicy  *struct {
-						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
+					Image             *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
-				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
-				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
-				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
-				TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold    *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				InitialDelaySeconds *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				PreCondition        *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+				RetryPolicy         *struct {
+					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
+				SuccessThreshold *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TimeoutSeconds   *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"role_probe" json:"roleProbe,omitempty"`
 			Switchover *struct {
 				ScriptSpecSelectors *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"script_spec_selectors" json:"scriptSpecSelectors,omitempty"`
 				WithCandidate *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"with_candidate" json:"withCandidate,omitempty"`
 				WithoutCandidate *struct {
-					Container *string `tfsdk:"container" json:"container,omitempty"`
-					Env       *[]struct {
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							ConfigMapKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
-								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"env" json:"env,omitempty"`
 					Exec *struct {
-						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
-						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+						Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+						Container *string   `tfsdk:"container" json:"container,omitempty"`
+						Env       *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"env" json:"env,omitempty"`
+						Image             *string `tfsdk:"image" json:"image,omitempty"`
+						MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+						TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 					} `tfsdk:"exec" json:"exec,omitempty"`
-					Http *struct {
-						Host        *string `tfsdk:"host" json:"host,omitempty"`
-						HttpHeaders *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
-						Method *string `tfsdk:"method" json:"method,omitempty"`
-						Path   *string `tfsdk:"path" json:"path,omitempty"`
-						Port   *string `tfsdk:"port" json:"port,omitempty"`
-						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
-					} `tfsdk:"http" json:"http,omitempty"`
-					Image        *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 					RetryPolicy  *struct {
 						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"without_candidate" json:"withoutCandidate,omitempty"`
 			} `tfsdk:"switchover" json:"switchover,omitempty"`
 		} `tfsdk:"lifecycle_actions" json:"lifecycleActions,omitempty"`
@@ -799,14 +655,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			FilePathPattern *string `tfsdk:"file_path_pattern" json:"filePathPattern,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
-		MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		Monitor         *struct {
-			BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
-			ExporterConfig *struct {
-				ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
-				ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
-			} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
-		} `tfsdk:"monitor" json:"monitor,omitempty"`
+		MinReadySeconds     *int64  `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
 		PodManagementPolicy *string `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
 		PolicyRules         *[]struct {
 			ApiGroups       *[]string `tfsdk:"api_groups" json:"apiGroups,omitempty"`
@@ -2404,7 +2253,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
 												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
 											},
 										},
@@ -2427,7 +2275,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
 												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 											},
 										},
@@ -2556,8 +2403,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"host_network": schema.SingleNestedAttribute{
-						Description:         "Specifies the host network configuration for the Component.When 'hostNetwork' option is enabled, the Pods share the host's network namespace and can directly accessthe host's network interfaces.This means that if multiple Pods need to use the same port, they cannot run on the same host simultaneouslydue to port conflicts.The DNSPolicy field in the Pod spec determines how containers within the Pod perform DNS resolution.When using hostNetwork, the operator will set the DNSPolicy to 'ClusterFirstWithHostNet'.With this policy, DNS queries will first go through the K8s cluster's DNS service.If the query fails, it will fall back to the host's DNS settings.If set, the DNS policy will be automatically set to 'ClusterFirstWithHostNet'.",
-						MarkdownDescription: "Specifies the host network configuration for the Component.When 'hostNetwork' option is enabled, the Pods share the host's network namespace and can directly accessthe host's network interfaces.This means that if multiple Pods need to use the same port, they cannot run on the same host simultaneouslydue to port conflicts.The DNSPolicy field in the Pod spec determines how containers within the Pod perform DNS resolution.When using hostNetwork, the operator will set the DNSPolicy to 'ClusterFirstWithHostNet'.With this policy, DNS queries will first go through the K8s cluster's DNS service.If the query fails, it will fall back to the host's DNS settings.If set, the DNS policy will be automatically set to 'ClusterFirstWithHostNet'.",
+						Description:         "Specifies the host network configuration for the Component.When 'hostNetwork' option is enabled, the Pods share the host's network namespace and can directly accessthe host's network interfaces.This means that if multiple Pods need to use the same port, they cannot run on the same host simultaneouslydue to port conflicts.The DNSPolicy field in the Pod spec determines how containers within the Pod perform DNS resolution.When using hostNetwork, the operator will set the DNSPolicy to 'ClusterFirstWithHostNet'.With this policy, DNS queries will first go through the K8s cluster's DNS service.If the query fails, it will fall back to the host's DNS settings.If set, the DNS policy will be automatically set to 'ClusterFirstWithHostNet'.This field is immutable.",
+						MarkdownDescription: "Specifies the host network configuration for the Component.When 'hostNetwork' option is enabled, the Pods share the host's network namespace and can directly accessthe host's network interfaces.This means that if multiple Pods need to use the same port, they cannot run on the same host simultaneouslydue to port conflicts.The DNSPolicy field in the Pod spec determines how containers within the Pod perform DNS resolution.When using hostNetwork, the operator will set the DNSPolicy to 'ClusterFirstWithHostNet'.With this policy, DNS queries will first go through the K8s cluster's DNS service.If the query fails, it will fall back to the host's DNS settings.If set, the DNS policy will be automatically set to 'ClusterFirstWithHostNet'.This field is immutable.",
 						Attributes: map[string]schema.Attribute{
 							"container_ports": schema.ListNestedAttribute{
 								Description:         "The list of container ports that are required by the component.",
@@ -2621,174 +2468,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -2810,43 +2489,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -2855,57 +2658,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -2939,17 +2721,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -2986,174 +2757,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -3175,43 +2778,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -3220,57 +2947,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -3304,17 +3010,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -3351,174 +3046,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -3540,43 +3067,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -3585,57 +3236,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -3669,17 +3299,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -3716,174 +3335,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -3905,43 +3356,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -3950,57 +3525,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -4034,17 +3588,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -4081,174 +3624,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -4270,43 +3645,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -4315,57 +3814,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -4399,17 +3877,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -4446,174 +3913,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -4635,43 +3934,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -4680,57 +4103,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -4764,17 +4166,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -4811,174 +4202,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -5000,43 +4223,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -5045,57 +4392,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -5129,17 +4455,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -5176,174 +4491,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -5365,43 +4512,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -5410,57 +4681,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -5494,17 +4744,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -5541,174 +4780,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -5730,43 +4801,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -5775,57 +4970,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -5859,17 +5033,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -5906,174 +5069,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -6095,43 +5090,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -6140,57 +5259,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -6224,17 +5322,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -6260,17 +5347,35 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the role of replicas.This action is periodically triggered by Lorry at the specified interval to determine the role of each replica.Upon successful execution, the action's output designates the role of the replica,which should match one of the predefined role names within 'componentDefinition.spec.roles'.The output is then compared with the previous successful execution result.If a role change is detected, an event is generated to inform the controller,which initiates an update of the replica's role.Defining a RoleProbe Action for a Component is required if roles are defined for the Component.It ensures replicas are correctly labeled with their respective roles.Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas.The container executing this action has access to following environment variables:- KB_POD_FQDN: The FQDN of the Pod whose role is being assessed.- KB_SERVICE_PORT: The port used by the database service.- KB_SERVICE_USER: The username with the necessary permissions to interact with the database service.- KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service.Expected output of this action:- On Success: The determined role of the replica, which must align with one of the roles specified  in the component definition.- On Failure: An error message, if applicable, indicating why the action failed.Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"builtin_handler": schema.StringAttribute{
-										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions.Lorry, as a sidecar agent co-located with the database container in the same Pod,includes a suite of built-in action implementations that are tailored to different database engines.These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd','postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'.If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handlerto execute the specified lifecycle actions.The 'builtinHandler' field is of type 'BuiltinActionHandlerType',which represents the name of the built-in handler.The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across allactions.This means that if you specify a built-in handler for one action, you should use the same handlerfor all other actions throughout the entire 'ComponentLifecycleActions' collection.If you need to define lifecycle actions for database engines not covered by the existing built-in support,or when the pre-existing built-in handlers do not meet your specific needs,you can use the 'customHandler' field to define your own action implementation.Deprecation Notice:- In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field  for configuring all lifecycle actions.- Instead of using a name to indicate the built-in action implementations in Lorry,  the recommended approach will be to explicitly invoke the desired action implementation through  a gRPC interface exposed by the sidecar agent.- Developers will have the flexibility to either use the built-in action implementations provided by Lorry  or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces.- This change will allow for greater customization and extensibility of lifecycle actions,  as developers can create their own 'builtin' implementations tailored to their specific requirements.",
-										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions.Lorry, as a sidecar agent co-located with the database container in the same Pod,includes a suite of built-in action implementations that are tailored to different database engines.These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd','postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'.If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handlerto execute the specified lifecycle actions.The 'builtinHandler' field is of type 'BuiltinActionHandlerType',which represents the name of the built-in handler.The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across allactions.This means that if you specify a built-in handler for one action, you should use the same handlerfor all other actions throughout the entire 'ComponentLifecycleActions' collection.If you need to define lifecycle actions for database engines not covered by the existing built-in support,or when the pre-existing built-in handlers do not meet your specific needs,you can use the 'customHandler' field to define your own action implementation.Deprecation Notice:- In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field  for configuring all lifecycle actions.- Instead of using a name to indicate the built-in action implementations in Lorry,  the recommended approach will be to explicitly invoke the desired action implementation through  a gRPC interface exposed by the sidecar agent.- Developers will have the flexibility to either use the built-in action implementations provided by Lorry  or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces.- This change will allow for greater customization and extensibility of lifecycle actions,  as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Description:         "TODO: remove this later.",
+										MarkdownDescription: "TODO: remove this later.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
-									"custom_handler": schema.SingleNestedAttribute{
-										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
-										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action.It offers a flexible and expandable approach for customizing the behavior of a Component by leveragingtailored actions.An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planningto support GRPCAction,thereby accommodating unique logic for different database systems within the Action's framework.In future iterations, all built-in handlers are expected to transition to GRPCAction.This change means that Lorry or other sidecar agents will expose the implementation of actionsthrough a GRPC interface for external invocation.Then the controller will interact with these actions via GRPCAction calls.",
+									"exec": schema.SingleNestedAttribute{
+										Description:         "Defines the command to run.This field cannot be updated.",
+										MarkdownDescription: "Defines the command to run.This field cannot be updated.",
 										Attributes: map[string]schema.Attribute{
+											"args": schema.ListAttribute{
+												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"command": schema.ListAttribute{
+												Description:         "Specifies the command to be executed inside the container.The working directory for this command is the container's root directory('/').Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported.If the shell is required, it must be explicitly invoked in the command.A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+												MarkdownDescription: "Specifies the command to be executed inside the container.The working directory for this command is the container's root directory('/').Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported.If the shell is required, it must be explicitly invoked in the command.A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"container": schema.StringAttribute{
 												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
@@ -6439,109 +5544,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
-											"exec": schema.SingleNestedAttribute{
-												Description:         "Defines the command to run.This field cannot be updated.",
-												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
-												Attributes: map[string]schema.Attribute{
-													"args": schema.ListAttribute{
-														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"command": schema.ListAttribute{
-														Description:         "Specifies the command to be executed inside the container.The working directory for this command is the container's root directory('/').Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported.If the shell is required, it must be explicitly invoked in the command.A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-														MarkdownDescription: "Specifies the command to be executed inside the container.The working directory for this command is the container's root directory('/').Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported.If the shell is required, it must be explicitly invoked in the command.A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														NestedObject: schema.NestedAttributeObject{
-															Attributes: map[string]schema.Attribute{
-																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"image": schema.StringAttribute{
 												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
@@ -6558,39 +5560,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed:            false,
 											},
 
-											"pre_condition": schema.StringAttribute{
-												Description:         "Specifies the state that the cluster must reach before the Action is executed.Currently, this is only applicable to the 'postProvision' action.The conditions are as follows:- 'Immediately': Executed right after the Component object is created.  The readiness of the Component and its resources is not guaranteed at this stage.- 'RuntimeReady': The Action is triggered after the Component object has been created and all associated  runtime resources (e.g. Pods) are in a ready state.- 'ComponentReady': The Action is triggered after the Component itself is in a ready state.  This process does not affect the readiness state of the Component or the Cluster.- 'ClusterReady': The Action is executed after the Cluster is in a ready state.  This execution does not alter the Component or the Cluster's state of readiness.This field cannot be updated.",
-												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed.Currently, this is only applicable to the 'postProvision' action.The conditions are as follows:- 'Immediately': Executed right after the Component object is created.  The readiness of the Component and its resources is not guaranteed at this stage.- 'RuntimeReady': The Action is triggered after the Component object has been created and all associated  runtime resources (e.g. Pods) are in a ready state.- 'ComponentReady': The Action is triggered after the Component itself is in a ready state.  This process does not affect the readiness state of the Component or the Cluster.- 'ClusterReady': The Action is executed after the Cluster is in a ready state.  This execution does not alter the Component or the Cluster's state of readiness.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_policy": schema.SingleNestedAttribute{
-												Description:         "Defines the strategy to be taken when retrying the Action after a failure.It specifies the conditions under which the Action should be retried and the limits to apply,such as the maximum number of retries and backoff strategy.This field cannot be updated.",
-												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure.It specifies the conditions under which the Action should be retried and the limits to apply,such as the maximum number of retries and backoff strategy.This field cannot be updated.",
-												Attributes: map[string]schema.Attribute{
-													"max_retries": schema.Int64Attribute{
-														Description:         "Defines the maximum number of retry attempts that should be made for a given Action.This value is set to 0 by default, indicating that no retries will be made.",
-														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action.This value is set to 0 by default, indicating that no retries will be made.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"retry_interval": schema.Int64Attribute{
-														Description:         "Indicates the duration of time to wait between each retry attempt.This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt.This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"target_pod_selector": schema.StringAttribute{
 												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
@@ -6601,18 +5570,18 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-
-											"timeout_seconds": schema.Int64Attribute{
-												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run.If the Action does not complete within this time frame, it will be terminated.This field cannot be updated.",
-												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run.If the Action does not complete within this time frame, it will be terminated.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"initial_delay_seconds": schema.Int64Attribute{
@@ -6631,9 +5600,50 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Computed:            false,
 									},
 
+									"pre_condition": schema.StringAttribute{
+										Description:         "Specifies the state that the cluster must reach before the Action is executed.Currently, this is only applicable to the 'postProvision' action.The conditions are as follows:- 'Immediately': Executed right after the Component object is created.  The readiness of the Component and its resources is not guaranteed at this stage.- 'RuntimeReady': The Action is triggered after the Component object has been created and all associated  runtime resources (e.g. Pods) are in a ready state.- 'ComponentReady': The Action is triggered after the Component itself is in a ready state.  This process does not affect the readiness state of the Component or the Cluster.- 'ClusterReady': The Action is executed after the Cluster is in a ready state.  This execution does not alter the Component or the Cluster's state of readiness.This field cannot be updated.",
+										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed.Currently, this is only applicable to the 'postProvision' action.The conditions are as follows:- 'Immediately': Executed right after the Component object is created.  The readiness of the Component and its resources is not guaranteed at this stage.- 'RuntimeReady': The Action is triggered after the Component object has been created and all associated  runtime resources (e.g. Pods) are in a ready state.- 'ComponentReady': The Action is triggered after the Component itself is in a ready state.  This process does not affect the readiness state of the Component or the Cluster.- 'ClusterReady': The Action is executed after the Cluster is in a ready state.  This execution does not alter the Component or the Cluster's state of readiness.This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_policy": schema.SingleNestedAttribute{
+										Description:         "Defines the strategy to be taken when retrying the Action after a failure.It specifies the conditions under which the Action should be retried and the limits to apply,such as the maximum number of retries and backoff strategy.This field cannot be updated.",
+										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure.It specifies the conditions under which the Action should be retried and the limits to apply,such as the maximum number of retries and backoff strategy.This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"max_retries": schema.Int64Attribute{
+												Description:         "Defines the maximum number of retry attempts that should be made for a given Action.This value is set to 0 by default, indicating that no retries will be made.",
+												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action.This value is set to 0 by default, indicating that no retries will be made.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_interval": schema.Int64Attribute{
+												Description:         "Indicates the duration of time to wait between each retry attempt.This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt.This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.",
-										MarkdownDescription: "Specifies the number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.",
+										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run.If the Action does not complete within this time frame, it will be terminated.This field cannot be updated.",
+										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run.If the Action does not complete within this time frame, it will be terminated.This field cannot be updated.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6675,174 +5685,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Represents the switchover process for a specified candidate primary or leader instance.Note that only Action.Exec is currently supported, while Action.HTTP is not.",
 										MarkdownDescription: "Represents the switchover process for a specified candidate primary or leader instance.Note that only Action.Exec is currently supported, while Action.HTTP is not.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -6864,43 +5706,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -6909,57 +5875,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -6993,17 +5938,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -7023,174 +5957,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Description:         "Represents a switchover process that does not involve a specific candidate primary or leader instance.As with the previous field, only Action.Exec is currently supported, not Action.HTTP.",
 										MarkdownDescription: "Represents a switchover process that does not involve a specific candidate primary or leader instance.As with the previous field, only Action.Exec is currently supported, not Action.HTTP.",
 										Attributes: map[string]schema.Attribute{
-											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"env": schema.ListNestedAttribute{
-												Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"name": schema.StringAttribute{
-															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-															Attributes: map[string]schema.Attribute{
-																"config_map_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a ConfigMap.",
-																	MarkdownDescription: "Selects a key of a ConfigMap.",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key to select.",
-																			MarkdownDescription: "The key to select.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the ConfigMap or its key must be defined",
-																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"field_path": schema.StringAttribute{
-																			Description:         "Path of the field to select in the specified API version.",
-																			MarkdownDescription: "Path of the field to select in the specified API version.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"resource_field_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																	Attributes: map[string]schema.Attribute{
-																		"container_name": schema.StringAttribute{
-																			Description:         "Container name: required for volumes, optional for env vars",
-																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"divisor": schema.StringAttribute{
-																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"resource": schema.StringAttribute{
-																			Description:         "Required: resource to select",
-																			MarkdownDescription: "Required: resource to select",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "Selects a key of a secret in the pod's namespace",
-																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "Specify whether the Secret or its key must be defined",
-																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Defines the command to run.This field cannot be updated.",
 												MarkdownDescription: "Defines the command to run.This field cannot be updated.",
@@ -7212,43 +5978,167 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Optional:            true,
 														Computed:            false,
 													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
-											"http": schema.SingleNestedAttribute{
-												Description:         "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												MarkdownDescription: "Specifies the HTTP request to perform.This field cannot be updated.Note: HTTPAction is to be implemented in future version.",
-												Attributes: map[string]schema.Attribute{
-													"host": schema.StringAttribute{
-														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
-														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP.Prefer setting the 'Host' header in httpHeaders when needed.",
+													"container": schema.StringAttribute{
+														Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"http_headers": schema.ListNestedAttribute{
-														Description:         "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
-														MarkdownDescription: "Allows for the inclusion of custom headers in the request.HTTP permits the use of repeated headers.",
+													"env": schema.ListNestedAttribute{
+														Description:         "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
+														MarkdownDescription: "Represents a list of environment variables that will be injected into the container.These variables enable the container to adapt its behavior based on the environment it's running in.This field cannot be updated.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "The header field value",
-																	MarkdownDescription: "The header field value",
-																	Required:            true,
-																	Optional:            false,
+																	Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 														},
@@ -7257,57 +6147,36 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 														Computed: false,
 													},
 
-													"method": schema.StringAttribute{
-														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
-														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc.If not specified, 'GET' is the default method.",
+													"image": schema.StringAttribute{
+														Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+														MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"path": schema.StringAttribute{
-														Description:         "Specifies the endpoint to be requested on the HTTP server.",
-														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+													"matching_key": schema.StringAttribute{
+														Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
-													"port": schema.StringAttribute{
-														Description:         "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														MarkdownDescription: "Specifies the target port for the HTTP request.It can be specified either as a numeric value in the range of 1 to 65535,or as a named port that meets the IANA_SVC_NAME specification.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"scheme": schema.StringAttribute{
-														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
-														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS.If not specified, HTTP is used by default.",
+													"target_pod_selector": schema.StringAttribute{
+														Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+														MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+														},
 													},
 												},
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
 											},
 
 											"pre_condition": schema.StringAttribute{
@@ -7341,17 +6210,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-
-											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
-												},
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -7419,51 +6277,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Validators: []validator.Int64{
 							int64validator.AtLeast(0),
 						},
-					},
-
-					"monitor": schema.SingleNestedAttribute{
-						Description:         "Deprecated since v0.9monitor is monitoring config which provided by provider.",
-						MarkdownDescription: "Deprecated since v0.9monitor is monitoring config which provided by provider.",
-						Attributes: map[string]schema.Attribute{
-							"built_in": schema.BoolAttribute{
-								Description:         "builtIn is a switch to enable KubeBlocks builtIn monitoring.If BuiltIn is set to true, monitor metrics will be scraped automatically.If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
-								MarkdownDescription: "builtIn is a switch to enable KubeBlocks builtIn monitoring.If BuiltIn is set to true, monitor metrics will be scraped automatically.If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"exporter_config": schema.SingleNestedAttribute{
-								Description:         "exporterConfig provided by provider, which specify necessary information to Time Series Database.exporterConfig is valid when builtIn is false.",
-								MarkdownDescription: "exporterConfig provided by provider, which specify necessary information to Time Series Database.exporterConfig is valid when builtIn is false.",
-								Attributes: map[string]schema.Attribute{
-									"scrape_path": schema.StringAttribute{
-										Description:         "scrapePath is exporter url path for Time Series Database to scrape metrics.",
-										MarkdownDescription: "scrapePath is exporter url path for Time Series Database to scrape metrics.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtMost(128),
-										},
-									},
-
-									"scrape_port": schema.StringAttribute{
-										Description:         "scrapePort is exporter port for Time Series Database to scrape metrics.",
-										MarkdownDescription: "scrapePort is exporter port for Time Series Database to scrape metrics.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
 					},
 
 					"pod_management_policy": schema.StringAttribute{

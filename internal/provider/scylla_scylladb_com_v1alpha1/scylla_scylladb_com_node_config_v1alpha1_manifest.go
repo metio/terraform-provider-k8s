@@ -375,8 +375,8 @@ func (r *ScyllaScylladbComNodeConfigV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"mount_point": schema.StringAttribute{
-											Description:         "mountPoint is a path where the device should be mounted at.",
-											MarkdownDescription: "mountPoint is a path where the device should be mounted at.",
+											Description:         "mountPoint is a path where the device should be mounted at. If the mountPoint is a symlink, the mount will be set up for the target.",
+											MarkdownDescription: "mountPoint is a path where the device should be mounted at. If the mountPoint is a symlink, the mount will be set up for the target.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

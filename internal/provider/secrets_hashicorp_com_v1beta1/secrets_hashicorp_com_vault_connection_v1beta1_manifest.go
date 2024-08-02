@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -47,6 +48,7 @@ type SecretsHashicorpComVaultConnectionV1Beta1ManifestData struct {
 		CaCertSecretRef *string            `tfsdk:"ca_cert_secret_ref" json:"caCertSecretRef,omitempty"`
 		Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
 		SkipTLSVerify   *bool              `tfsdk:"skip_tls_verify" json:"skipTLSVerify,omitempty"`
+		Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
 		TlsServerName   *string            `tfsdk:"tls_server_name" json:"tlsServerName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -159,6 +161,17 @@ func (r *SecretsHashicorpComVaultConnectionV1Beta1Manifest) Schema(_ context.Con
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"timeout": schema.StringAttribute{
+						Description:         "Timeout applied to all Vault requests for this connection. If not set, thedefault timeout from the Vault API client config is used.",
+						MarkdownDescription: "Timeout applied to all Vault requests for this connection. If not set, thedefault timeout from the Vault API client config is used.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(s|m|h))$`), ""),
+						},
 					},
 
 					"tls_server_name": schema.StringAttribute{

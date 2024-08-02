@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `coordinator` (Attributes) Coordinator can be used to assign a specific pod as the coordinator forthe JobSet. If defined, an annotation will be added to all Jobs and pods withcoordinator pod, which contains the stable network endpoint where thecoordinator pod can be reached.jobset.sigs.k8s.io/coordinator=<pod hostname>.<headless service> (see [below for nested schema](#nestedatt--spec--coordinator))
 - `failure_policy` (Attributes) FailurePolicy, if set, configures when to declare the JobSet asfailed.The JobSet is always declared failed if any job in the setfinished with status failed. (see [below for nested schema](#nestedatt--spec--failure_policy))
 - `managed_by` (String) ManagedBy is used to indicate the controller or entity that manages a JobSet.The built-in JobSet controller reconciles JobSets which don't have thisfield at all or the field value is the reserved string'jobset.sigs.k8s.io/jobset-controller', but skips reconciling JobSetswith a custom value for this field.The value must be a valid domain-prefixed path (e.g. acme.io/foo) -all characters before the first '/' must be a valid subdomain as definedby RFC 1123. All characters trailing the first '/' must be valid HTTP Pathcharacters as defined by RFC 3986. The value cannot exceed 63 characters.The field is immutable.
 - `network` (Attributes) Network defines the networking options for the jobset. (see [below for nested schema](#nestedatt--spec--network))
@@ -63,6 +64,19 @@ Optional:
 - `success_policy` (Attributes) SuccessPolicy configures when to declare the JobSet assucceeded.The JobSet is always declared succeeded if all jobs in the setfinished with status complete. (see [below for nested schema](#nestedatt--spec--success_policy))
 - `suspend` (Boolean) Suspend suspends all running child Jobs when set to true.
 - `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished limits the lifetime of a JobSet that has finishedexecution (either Complete or Failed). If this field is set,TTLSecondsAfterFinished after the JobSet finishes, it is eligible to beautomatically deleted. When the JobSet is being deleted, its lifecycleguarantees (e.g. finalizers) will be honored. If this field is unset,the JobSet won't be automatically deleted. If this field is set to zero,the JobSet becomes eligible to be deleted immediately after it finishes.
+
+<a id="nestedatt--spec--coordinator"></a>
+### Nested Schema for `spec.coordinator`
+
+Required:
+
+- `replicated_job` (String) ReplicatedJob is the name of the ReplicatedJob which containsthe coordinator pod.
+
+Optional:
+
+- `job_index` (Number) JobIndex is the index of Job which contains the coordinator pod(i.e., for a ReplicatedJob with N replicas, there are Job indexes 0 to N-1).
+- `pod_index` (Number) PodIndex is the Job completion index of the coordinator pod.
+
 
 <a id="nestedatt--spec--failure_policy"></a>
 ### Nested Schema for `spec.failure_policy`

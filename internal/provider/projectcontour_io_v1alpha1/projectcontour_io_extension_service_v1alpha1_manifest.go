@@ -45,6 +45,13 @@ type ProjectcontourIoExtensionServiceV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		CircuitBreakerPolicy *struct {
+			MaxConnections        *int64 `tfsdk:"max_connections" json:"maxConnections,omitempty"`
+			MaxPendingRequests    *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
+			MaxRequests           *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
+			MaxRetries            *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+			PerHostMaxConnections *int64 `tfsdk:"per_host_max_connections" json:"perHostMaxConnections,omitempty"`
+		} `tfsdk:"circuit_breaker_policy" json:"circuitBreakerPolicy,omitempty"`
 		LoadBalancerPolicy *struct {
 			RequestHashPolicies *[]struct {
 				HashSourceIP      *bool `tfsdk:"hash_source_ip" json:"hashSourceIP,omitempty"`
@@ -155,6 +162,55 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 				Description:         "ExtensionServiceSpec defines the desired state of an ExtensionService resource.",
 				MarkdownDescription: "ExtensionServiceSpec defines the desired state of an ExtensionService resource.",
 				Attributes: map[string]schema.Attribute{
+					"circuit_breaker_policy": schema.SingleNestedAttribute{
+						Description:         "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget.",
+						MarkdownDescription: "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget.",
+						Attributes: map[string]schema.Attribute{
+							"max_connections": schema.Int64Attribute{
+								Description:         "The maximum number of connections that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
+								MarkdownDescription: "The maximum number of connections that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_pending_requests": schema.Int64Attribute{
+								Description:         "The maximum number of pending requests that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
+								MarkdownDescription: "The maximum number of pending requests that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_requests": schema.Int64Attribute{
+								Description:         "The maximum parallel requests a single Envoy instance allows to the Kubernetes Service; defaults to 1024",
+								MarkdownDescription: "The maximum parallel requests a single Envoy instance allows to the Kubernetes Service; defaults to 1024",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_retries": schema.Int64Attribute{
+								Description:         "The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.",
+								MarkdownDescription: "The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"per_host_max_connections": schema.Int64Attribute{
+								Description:         "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
+								MarkdownDescription: "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"load_balancer_policy": schema.SingleNestedAttribute{
 						Description:         "The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",
 						MarkdownDescription: "The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",

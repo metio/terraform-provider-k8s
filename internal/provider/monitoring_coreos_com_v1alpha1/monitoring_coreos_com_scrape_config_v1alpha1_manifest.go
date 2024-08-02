@@ -131,6 +131,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"nomad_sd_configs" json:"NomadSDConfigs,omitempty"`
@@ -260,6 +262,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			TokenRef *struct {
@@ -338,6 +342,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"digital_ocean_sd_configs" json:"digitalOceanSDConfigs,omitempty"`
@@ -435,6 +441,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"docker_sd_configs" json:"dockerSDConfigs,omitempty"`
@@ -526,6 +534,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"docker_swarm_sd_configs" json:"dockerSwarmSDConfigs,omitempty"`
@@ -632,6 +642,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"eureka_sd_configs" json:"eurekaSDConfigs,omitempty"`
@@ -730,6 +742,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"hetzner_sd_configs" json:"hetznerSDConfigs,omitempty"`
@@ -792,6 +806,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
@@ -892,6 +908,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"kubernetes_sd_configs" json:"kubernetesSDConfigs,omitempty"`
@@ -979,6 +997,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"kuma_sd_configs" json:"kumaSDConfigs,omitempty"`
@@ -1080,6 +1100,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"light_sail_sd_configs" json:"lightSailSDConfigs,omitempty"`
@@ -1155,6 +1177,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"linode_sd_configs" json:"linodeSDConfigs,omitempty"`
@@ -1224,6 +1248,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Userid   *string `tfsdk:"userid" json:"userid,omitempty"`
@@ -1333,6 +1359,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
@@ -1346,7 +1374,64 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 			TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 		} `tfsdk:"relabelings" json:"relabelings,omitempty"`
-		SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		SampleLimit       *int64 `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		ScalewaySDConfigs *[]struct {
+			AccessKey            *string            `tfsdk:"access_key" json:"accessKey,omitempty"`
+			ApiURL               *string            `tfsdk:"api_url" json:"apiURL,omitempty"`
+			EnableHTTP2          *bool              `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FollowRedirects      *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			NameFilter           *string            `tfsdk:"name_filter" json:"nameFilter,omitempty"`
+			NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
+			ProjectID            *string            `tfsdk:"project_id" json:"projectID,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Role                 *string            `tfsdk:"role" json:"role,omitempty"`
+			SecretKey            *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_key" json:"secretKey,omitempty"`
+			TagsFilter *[]string `tfsdk:"tags_filter" json:"tagsFilter,omitempty"`
+			TlsConfig  *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			Zone *string `tfsdk:"zone" json:"zone,omitempty"`
+		} `tfsdk:"scaleway_sd_configs" json:"scalewaySDConfigs,omitempty"`
 		Scheme          *string   `tfsdk:"scheme" json:"scheme,omitempty"`
 		ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
 		ScrapeInterval  *string   `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
@@ -1388,6 +1473,8 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+			MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+			MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 		} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
@@ -2046,6 +2133,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -2932,6 +3041,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -3449,6 +3580,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -4109,6 +4262,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -4722,6 +4897,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -5436,6 +5633,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -6107,6 +6326,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -6512,6 +6753,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -7187,6 +7450,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -7768,6 +8053,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -8455,6 +8762,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -8967,6 +9296,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -9453,6 +9804,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
 										},
 
 										"server_name": schema.StringAttribute{
@@ -10210,6 +10583,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -10318,6 +10713,430 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"scaleway_sd_configs": schema.ListNestedAttribute{
+						Description:         "ScalewaySDConfigs defines a list of Scaleway instances and baremetal service discovery configurations.",
+						MarkdownDescription: "ScalewaySDConfigs defines a list of Scaleway instances and baremetal service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"access_key": schema.StringAttribute{
+									Description:         "Access key to use. https://console.scaleway.com/project/credentials",
+									MarkdownDescription: "Access key to use. https://console.scaleway.com/project/credentials",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"api_url": schema.StringAttribute{
+									Description:         "API URL to use when doing the server listing requests.",
+									MarkdownDescription: "API URL to use when doing the server listing requests.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name_filter": schema.StringAttribute{
+									Description:         "NameFilter specify a name filter (works as a LIKE) to apply on the server listing request.",
+									MarkdownDescription: "NameFilter specify a name filter (works as a LIKE) to apply on the server listing request.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "The port to scrape metrics from.",
+									MarkdownDescription: "The port to scrape metrics from.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(0),
+										int64validator.AtMost(65535),
+									},
+								},
+
+								"project_id": schema.StringAttribute{
+									Description:         "Project ID of the targets.",
+									MarkdownDescription: "Project ID of the targets.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"proxy_connect_header": schema.MapAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "Refresh interval to re-read the list of instances.",
+									MarkdownDescription: "Refresh interval to re-read the list of instances.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"role": schema.StringAttribute{
+									Description:         "Service of the targets to retrieve. Must be 'Instance' or 'Baremetal'.",
+									MarkdownDescription: "Service of the targets to retrieve. Must be 'Instance' or 'Baremetal'.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("Instance", "Baremetal"),
+									},
+								},
+
+								"secret_key": schema.SingleNestedAttribute{
+									Description:         "Secret key to use when listing targets.",
+									MarkdownDescription: "Secret key to use when listing targets.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"tags_filter": schema.ListAttribute{
+									Description:         "TagsFilter specify a tag filter (a server needs to have all defined tags to be listed) to apply on the server listing request.",
+									MarkdownDescription: "TagsFilter specify a tag filter (a server needs to have all defined tags to be listed) to apply on the server listing request.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration to use on every scrape request",
+									MarkdownDescription: "TLS configuration to use on every scrape request",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"zone": schema.StringAttribute{
+									Description:         "Zone is the availability zone of your targets (e.g. fr-par-1).",
+									MarkdownDescription: "Zone is the availability zone of your targets (e.g. fr-par-1).",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"scheme": schema.StringAttribute{
@@ -10603,6 +11422,28 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"max_version": schema.StringAttribute{
+								Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
+							},
+
+							"min_version": schema.StringAttribute{
+								Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
 							},
 
 							"server_name": schema.StringAttribute{

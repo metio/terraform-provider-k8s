@@ -243,6 +243,39 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 		Pause    *bool   `tfsdk:"pause" json:"pause,omitempty"`
 		Platform *string `tfsdk:"platform" json:"platform,omitempty"`
 		Pmm      *struct {
+			ContainerSecurityContext *struct {
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
+					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+				Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+				ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+				ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+				RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+				RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxOptions         *struct {
+					Level *string `tfsdk:"level" json:"level,omitempty"`
+					Role  *string `tfsdk:"role" json:"role,omitempty"`
+					Type  *string `tfsdk:"type" json:"type,omitempty"`
+					User  *string `tfsdk:"user" json:"user,omitempty"`
+				} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+				SeccompProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+				WindowsOptions *struct {
+					GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+					HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 			Enabled      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Image        *string `tfsdk:"image" json:"image,omitempty"`
 			MongodParams *string `tfsdk:"mongod_params" json:"mongodParams,omitempty"`
@@ -6695,6 +6728,19 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 			SetFCV                 *bool   `tfsdk:"set_fcv" json:"setFCV,omitempty"`
 			VersionServiceEndpoint *string `tfsdk:"version_service_endpoint" json:"versionServiceEndpoint,omitempty"`
 		} `tfsdk:"upgrade_options" json:"upgradeOptions,omitempty"`
+		Users *[]struct {
+			Db                *string `tfsdk:"db" json:"db,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			PasswordSecretRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"password_secret_ref" json:"passwordSecretRef,omitempty"`
+			Roles *[]struct {
+				Db   *string `tfsdk:"db" json:"db,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"roles" json:"roles,omitempty"`
+		} `tfsdk:"users" json:"users,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -8157,6 +8203,230 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"container_security_context": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allow_privilege_escalation": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"capabilities": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"drop": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"privileged": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"proc_mount": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_only_root_filesystem": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_group": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"level": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"role": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"user": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"seccomp_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"gmsa_credential_spec": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"gmsa_credential_spec_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"host_process": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -14792,8 +15062,8 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											"ip": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 										},
@@ -33270,8 +33540,8 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												"ip": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},
@@ -46335,8 +46605,8 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												"ip": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},
@@ -51519,6 +51789,93 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"users": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"db": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"password_secret_ref": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"roles": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"db": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
 							},
 						},
 						Required: false,

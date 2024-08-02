@@ -167,6 +167,8 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
@@ -193,8 +195,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Metadata(_ context.Context, re
 
 func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "PodMonitor defines monitoring for a set of pods.",
-		MarkdownDescription: "PodMonitor defines monitoring for a set of pods.",
+		Description:         "The 'PodMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of pods.Among other things, it allows to specify:* The pods to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'PodMonitor' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'PodMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of pods.Among other things, it allows to specify:* The pods to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'PodMonitor' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -265,12 +267,12 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "Specification of desired Pod selection for target discovery by Prometheus.",
 				Attributes: map[string]schema.Attribute{
 					"attach_metadata": schema.SingleNestedAttribute{
-						Description:         "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
-						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
+						Description:         "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.35.0.",
+						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.35.0.",
 						Attributes: map[string]schema.Attribute{
 							"node": schema.BoolAttribute{
-								Description:         "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
-								MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
+								Description:         "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
+								MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -333,8 +335,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "Selector to select which namespaces the Kubernetes 'Pods' objectsare discovered from.",
-						MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Pods' objectsare discovered from.",
+						Description:         "'namespaceSelector' defines in which namespace(s) Prometheus should discover the pods.By default, the pods are discovered in the same namespace as the 'PodMonitor' object but it is possible to select pods across different/all namespaces.",
+						MarkdownDescription: "'namespaceSelector' defines in which namespace(s) Prometheus should discover the pods.By default, the pods are discovered in the same namespace as the 'PodMonitor' object but it is possible to select pods across different/all namespaces.",
 						Attributes: map[string]schema.Attribute{
 							"any": schema.BoolAttribute{
 								Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
@@ -359,8 +361,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"pod_metrics_endpoints": schema.ListNestedAttribute{
-						Description:         "List of endpoints part of this PodMonitor.",
-						MarkdownDescription: "List of endpoints part of this PodMonitor.",
+						Description:         "Defines how to scrape metrics from the selected pods.",
+						MarkdownDescription: "Defines how to scrape metrics from the selected pods.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
@@ -1118,6 +1120,28 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -1183,8 +1207,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Label selector to select the Kubernetes 'Pod' objects.",
-						MarkdownDescription: "Label selector to select the Kubernetes 'Pod' objects.",
+						Description:         "Label selector to select the Kubernetes 'Pod' objects to scrape metrics from.",
+						MarkdownDescription: "Label selector to select the Kubernetes 'Pod' objects to scrape metrics from.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

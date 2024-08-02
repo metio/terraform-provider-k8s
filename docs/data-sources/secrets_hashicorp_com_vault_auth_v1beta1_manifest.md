@@ -141,13 +141,11 @@ Required:
 <a id="nestedatt--spec--vault_auth_global_ref"></a>
 ### Nested Schema for `spec.vault_auth_global_ref`
 
-Required:
-
-- `name` (String) Name of the VaultAuthGlobal resource.
-
 Optional:
 
+- `allow_default` (Boolean) AllowDefault when set to true will use the default VaultAuthGlobal resourceas the default if Name is not set. The 'allow-default-globals' option must beset on the operator's '-global-vault-auth-options' flagThe default VaultAuthGlobal search is conditional.When a ref Namespace is set, the search for the defaultVaultAuthGlobal resource is constrained to that namespace.Otherwise, the search order is:1. The default VaultAuthGlobal resource in the referring VaultAuth resource'snamespace.2. The default VaultAuthGlobal resource in the Operator's namespace.
 - `merge_strategy` (Attributes) MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests. (see [below for nested schema](#nestedatt--spec--vault_auth_global_ref--merge_strategy))
+- `name` (String) Name of the VaultAuthGlobal resource.
 - `namespace` (String) Namespace of the VaultAuthGlobal resource. If not provided, the namespace ofthe referring VaultAuth resource is used.
 
 <a id="nestedatt--spec--vault_auth_global_ref--merge_strategy"></a>

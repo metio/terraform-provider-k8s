@@ -57,7 +57,7 @@ Optional:
 
 - `auto_restart` (Attributes) Automatic restart of connector and tasks configuration. (see [below for nested schema](#nestedatt--spec--auto_restart))
 - `class` (String) The Class for the Kafka Connector.
-- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
+- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.
 - `pause` (Boolean) Whether the connector should be paused. Defaults to false.
 - `state` (String) The state the connector should be in. Defaults to running.
 - `tasks_max` (Number) The maximum number of tasks for the Kafka Connector.

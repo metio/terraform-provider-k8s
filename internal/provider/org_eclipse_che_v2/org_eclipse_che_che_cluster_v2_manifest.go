@@ -602,6 +602,7 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					} `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"gateway_container" json:"gatewayContainer,omitempty"`
+			IgnoredUnrecoverableEvents          *[]string          `tfsdk:"ignored_unrecoverable_events" json:"ignoredUnrecoverableEvents,omitempty"`
 			ImagePullPolicy                     *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			MaxNumberOfRunningWorkspacesPerUser *int64             `tfsdk:"max_number_of_running_workspaces_per_user" json:"maxNumberOfRunningWorkspacesPerUser,omitempty"`
 			MaxNumberOfWorkspacesPerUser        *int64             `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
@@ -4772,6 +4773,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"ignored_unrecoverable_events": schema.ListAttribute{
+								Description:         "IgnoredUnrecoverableEvents defines a list of Kubernetes event names that shouldbe ignored when deciding to fail a workspace that is starting. This option should be usedif a transient cluster issue is triggering false-positives (for example, ifthe cluster occasionally encounters FailedScheduling events). Events listedhere will not trigger workspace failures.",
+								MarkdownDescription: "IgnoredUnrecoverableEvents defines a list of Kubernetes event names that shouldbe ignored when deciding to fail a workspace that is starting. This option should be usedif a transient cluster issue is triggering false-positives (for example, ifthe cluster occasionally encounters FailedScheduling events). Events listedhere will not trigger workspace failures.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"image_pull_policy": schema.StringAttribute{

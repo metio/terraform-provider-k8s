@@ -87,6 +87,16 @@ type K8GbAbsaOssGslbV1Beta1ManifestData struct {
 				SecretName *string   `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
+		ResourceRef *struct {
+			Ingress *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"ingress" json:"ingress,omitempty"`
+		} `tfsdk:"resource_ref" json:"resourceRef,omitempty"`
 		Strategy *struct {
 			DnsTtlSeconds              *int64             `tfsdk:"dns_ttl_seconds" json:"dnsTtlSeconds,omitempty"`
 			PrimaryGeoTag              *string            `tfsdk:"primary_geo_tag" json:"primaryGeoTag,omitempty"`
@@ -183,8 +193,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 								MarkdownDescription: "A default backend capable of servicing requests that don't match anyrule. At least one of 'backend' or 'rules' must be specified. This fieldis optional to allow the loadbalancer controller or defaulting logic tospecify a global default.",
 								Attributes: map[string]schema.Attribute{
 									"resource": schema.SingleNestedAttribute{
-										Description:         "Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
-										MarkdownDescription: "Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+										Description:         "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+										MarkdownDescription: "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
 										Attributes: map[string]schema.Attribute{
 											"api_group": schema.StringAttribute{
 												Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
@@ -216,32 +226,32 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 									},
 
 									"service": schema.SingleNestedAttribute{
-										Description:         "Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'.",
-										MarkdownDescription: "Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'.",
+										Description:         "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
+										MarkdownDescription: "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
-												MarkdownDescription: "Name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+												Description:         "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+												MarkdownDescription: "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"port": schema.SingleNestedAttribute{
-												Description:         "Port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
-												MarkdownDescription: "Port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+												Description:         "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+												MarkdownDescription: "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
-														MarkdownDescription: "Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+														Description:         "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+														MarkdownDescription: "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"number": schema.Int64Attribute{
-														Description:         "Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
-														MarkdownDescription: "Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+														Description:         "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+														MarkdownDescription: "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -288,17 +298,17 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 											MarkdownDescription: "HTTPIngressRuleValue is a list of http selectorspointing to backends. In the example: http://<host>/<path>?<searchpart>-> backend where where parts of the url correspond toRFC 3986, this resource will be used to match againsteverything after the last '/' and before the first '?'or '#'.",
 											Attributes: map[string]schema.Attribute{
 												"paths": schema.ListNestedAttribute{
-													Description:         "A collection of paths that map requests to backends.",
-													MarkdownDescription: "A collection of paths that map requests to backends.",
+													Description:         "paths is a collection of paths that map requests to backends.",
+													MarkdownDescription: "paths is a collection of paths that map requests to backends.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"backend": schema.SingleNestedAttribute{
-																Description:         "Backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
-																MarkdownDescription: "Backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
+																Description:         "backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
+																MarkdownDescription: "backend defines the referenced service endpoint to which the trafficwill be forwarded to.",
 																Attributes: map[string]schema.Attribute{
 																	"resource": schema.SingleNestedAttribute{
-																		Description:         "Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
-																		MarkdownDescription: "Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+																		Description:         "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
+																		MarkdownDescription: "resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'.",
 																		Attributes: map[string]schema.Attribute{
 																			"api_group": schema.StringAttribute{
 																				Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
@@ -330,32 +340,32 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 																	},
 
 																	"service": schema.SingleNestedAttribute{
-																		Description:         "Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'.",
-																		MarkdownDescription: "Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'.",
+																		Description:         "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
+																		MarkdownDescription: "service references a service as a backend.This is a mutually exclusive setting with 'Resource'.",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
-																				MarkdownDescription: "Name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+																				Description:         "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
+																				MarkdownDescription: "name is the referenced service. The service must exist inthe same namespace as the Ingress object.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"port": schema.SingleNestedAttribute{
-																				Description:         "Port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
-																				MarkdownDescription: "Port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+																				Description:         "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
+																				MarkdownDescription: "port of the referenced service. A port name or port numberis required for a IngressServiceBackend.",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
-																						MarkdownDescription: "Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+																						Description:         "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
+																						MarkdownDescription: "name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"number": schema.Int64Attribute{
-																						Description:         "Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
-																						MarkdownDescription: "Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+																						Description:         "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
+																						MarkdownDescription: "number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -377,16 +387,16 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 															},
 
 															"path": schema.StringAttribute{
-																Description:         "Path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
-																MarkdownDescription: "Path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
+																Description:         "path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
+																MarkdownDescription: "path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"path_type": schema.StringAttribute{
-																Description:         "PathType determines the interpretation of the Path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
-																MarkdownDescription: "PathType determines the interpretation of the Path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
+																Description:         "pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
+																MarkdownDescription: "pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -415,8 +425,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hosts": schema.ListAttribute{
-											Description:         "Hosts are a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
-											MarkdownDescription: "Hosts are a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
+											Description:         "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
+											MarkdownDescription: "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -424,8 +434,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "SecretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the Host header is used for routing.",
-											MarkdownDescription: "SecretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the Host header is used for routing.",
+											Description:         "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
+											MarkdownDescription: "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -437,8 +447,71 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"resource_ref": schema.SingleNestedAttribute{
+						Description:         "ResourceRef spec",
+						MarkdownDescription: "ResourceRef spec",
+						Attributes: map[string]schema.Attribute{
+							"ingress": schema.SingleNestedAttribute{
+								Description:         "Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource",
+								MarkdownDescription: "Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource",
+								Attributes: map[string]schema.Attribute{
+									"match_expressions": schema.ListNestedAttribute{
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the label key that the selector applies to.",
+													MarkdownDescription: "key is the label key that the selector applies to.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"operator": schema.StringAttribute{
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"values": schema.ListAttribute{
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": schema.MapAttribute{
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

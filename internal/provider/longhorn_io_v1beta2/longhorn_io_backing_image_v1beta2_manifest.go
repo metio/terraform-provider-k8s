@@ -43,12 +43,18 @@ type LonghornIoBackingImageV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Checksum         *string            `tfsdk:"checksum" json:"checksum,omitempty"`
-		Disks            *map[string]string `tfsdk:"disks" json:"disks,omitempty"`
-		Secret           *string            `tfsdk:"secret" json:"secret,omitempty"`
-		SecretNamespace  *string            `tfsdk:"secret_namespace" json:"secretNamespace,omitempty"`
-		SourceParameters *map[string]string `tfsdk:"source_parameters" json:"sourceParameters,omitempty"`
-		SourceType       *string            `tfsdk:"source_type" json:"sourceType,omitempty"`
+		Checksum        *string `tfsdk:"checksum" json:"checksum,omitempty"`
+		DiskFileSpecMap *struct {
+			EvictionRequested *bool `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
+		} `tfsdk:"disk_file_spec_map" json:"diskFileSpecMap,omitempty"`
+		DiskSelector      *[]string          `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
+		Disks             *map[string]string `tfsdk:"disks" json:"disks,omitempty"`
+		MinNumberOfCopies *int64             `tfsdk:"min_number_of_copies" json:"minNumberOfCopies,omitempty"`
+		NodeSelector      *[]string          `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Secret            *string            `tfsdk:"secret" json:"secret,omitempty"`
+		SecretNamespace   *string            `tfsdk:"secret_namespace" json:"secretNamespace,omitempty"`
+		SourceParameters  *map[string]string `tfsdk:"source_parameters" json:"sourceParameters,omitempty"`
+		SourceType        *string            `tfsdk:"source_type" json:"sourceType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -137,7 +143,50 @@ func (r *LonghornIoBackingImageV1Beta2Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"disk_file_spec_map": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"eviction_requested": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"disk_selector": schema.ListAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"disks": schema.MapAttribute{
+						Description:         "Deprecated. We are now using DiskFileSpecMap to assign different spec to the file on different disks.",
+						MarkdownDescription: "Deprecated. We are now using DiskFileSpecMap to assign different spec to the file on different disks.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"min_number_of_copies": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"node_selector": schema.ListAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						ElementType:         types.StringType,

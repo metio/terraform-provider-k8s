@@ -46,6 +46,7 @@ type RayIoRayJobV1ManifestData struct {
 
 	Spec *struct {
 		ActiveDeadlineSeconds *int64             `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
+		BackoffLimit          *int64             `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 		ClusterSelector       *map[string]string `tfsdk:"cluster_selector" json:"clusterSelector,omitempty"`
 		Entrypoint            *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 		EntrypointNumCpus     *float64           `tfsdk:"entrypoint_num_cpus" json:"entrypointNumCpus,omitempty"`
@@ -4233,6 +4234,14 @@ func (r *RayIoRayJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReq
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"active_deadline_seconds": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"backoff_limit": schema.Int64Attribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

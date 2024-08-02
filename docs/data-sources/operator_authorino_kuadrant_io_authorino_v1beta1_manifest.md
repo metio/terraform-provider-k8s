@@ -85,7 +85,7 @@ Required:
 Optional:
 
 - `max_http_request_body_size` (Number) Maximum payload (request body) size for the auth service (HTTP interface), in bytes.
-- `port` (Number) Port number of the GRPC interface. DEPRECATED: use 'ports.grpc' instead.
+- `port` (Number) Port number of the GRPC interface.DEPRECATED: use 'ports.grpc' instead.
 - `ports` (Attributes) Port numbers of the GRPC and HTTP auth interfaces. (see [below for nested schema](#nestedatt--spec--listener--ports))
 - `timeout` (Number) Timeout of the auth service (GRPC and HTTP interfaces), in milliseconds.
 
@@ -94,7 +94,7 @@ Optional:
 
 Optional:
 
-- `cert_secret_ref` (Attributes) LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--listener--tls--cert_secret_ref))
+- `cert_secret_ref` (Attributes) LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--listener--tls--cert_secret_ref))
 - `enabled` (Boolean)
 
 <a id="nestedatt--spec--listener--tls--cert_secret_ref"></a>
@@ -102,7 +102,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 
@@ -132,7 +132,7 @@ Optional:
 
 Optional:
 
-- `cert_secret_ref` (Attributes) LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--oidc_server--tls--cert_secret_ref))
+- `cert_secret_ref` (Attributes) LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--oidc_server--tls--cert_secret_ref))
 - `enabled` (Boolean)
 
 <a id="nestedatt--spec--oidc_server--tls--cert_secret_ref"></a>
@@ -140,7 +140,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 
@@ -203,8 +203,8 @@ Optional:
 Required:
 
 - `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.

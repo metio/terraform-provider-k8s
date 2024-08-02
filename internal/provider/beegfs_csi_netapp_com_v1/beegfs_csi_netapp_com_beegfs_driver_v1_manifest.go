@@ -57,6 +57,10 @@ type BeegfsCsiNetappComBeegfsDriverV1ManifestData struct {
 				Image *string `tfsdk:"image" json:"image,omitempty"`
 				Tag   *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"csi_provisioner" json:"csiProvisioner,omitempty"`
+			CsiResizer *struct {
+				Image *string `tfsdk:"image" json:"image,omitempty"`
+				Tag   *string `tfsdk:"tag" json:"tag,omitempty"`
+			} `tfsdk:"csi_resizer" json:"csiResizer,omitempty"`
 			LivenessProbe *struct {
 				Image *string `tfsdk:"image" json:"image,omitempty"`
 				Tag   *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -338,6 +342,31 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							"csi_provisioner": schema.SingleNestedAttribute{
 								Description:         "Defaults to registry.k8s.io/sig-storage/csi-provisioner:<the most current version at operator release>.",
 								MarkdownDescription: "Defaults to registry.k8s.io/sig-storage/csi-provisioner:<the most current version at operator release>.",
+								Attributes: map[string]schema.Attribute{
+									"image": schema.StringAttribute{
+										Description:         "A combination of registry and image (e.g. registry.k8s.io/csi-provisioner or ghcr.io/thinkparq/beegfs-csi-driver).",
+										MarkdownDescription: "A combination of registry and image (e.g. registry.k8s.io/csi-provisioner or ghcr.io/thinkparq/beegfs-csi-driver).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tag": schema.StringAttribute{
+										Description:         "A tag (e.g. v2.2.2 or latest).",
+										MarkdownDescription: "A tag (e.g. v2.2.2 or latest).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"csi_resizer": schema.SingleNestedAttribute{
+								Description:         "Defaults to registry.k8s.io/sig-storage/csi-resizer:<the most current version at operator release>.",
+								MarkdownDescription: "Defaults to registry.k8s.io/sig-storage/csi-resizer:<the most current version at operator release>.",
 								Attributes: map[string]schema.Attribute{
 									"image": schema.StringAttribute{
 										Description:         "A combination of registry and image (e.g. registry.k8s.io/csi-provisioner or ghcr.io/thinkparq/beegfs-csi-driver).",

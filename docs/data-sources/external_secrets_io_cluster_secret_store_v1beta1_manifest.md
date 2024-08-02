@@ -109,6 +109,7 @@ Optional:
 - `passworddepot` (Attributes) Configures a store to sync secrets with a Password Depot instance. (see [below for nested schema](#nestedatt--spec--provider--passworddepot))
 - `pulumi` (Attributes) Pulumi configures this store to sync secrets using the Pulumi provider (see [below for nested schema](#nestedatt--spec--provider--pulumi))
 - `scaleway` (Attributes) Scaleway (see [below for nested schema](#nestedatt--spec--provider--scaleway))
+- `secretserver` (Attributes) SecretServer configures this store to sync secrets using SecretServer providerhttps://docs.delinea.com/online-help/secret-server/start.htm (see [below for nested schema](#nestedatt--spec--provider--secretserver))
 - `senhasegura` (Attributes) Senhasegura configures this store to sync secrets using senhasegura provider (see [below for nested schema](#nestedatt--spec--provider--senhasegura))
 - `vault` (Attributes) Vault configures this store to sync secrets using Hashi provider (see [below for nested schema](#nestedatt--spec--provider--vault))
 - `webhook` (Attributes) Webhook configures this store to sync secrets using a generic templated webhook (see [below for nested schema](#nestedatt--spec--provider--webhook))
@@ -300,6 +301,7 @@ Optional:
 - `additional_roles` (List of String) AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role
 - `auth` (Attributes) Auth defines the information necessary to authenticate against AWSif not set aws sdk will infer credentials from your environmentsee: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--provider--aws--auth))
 - `external_id` (String) AWS External ID set on assumed IAM roles
+- `prefix` (String) Prefix adds a prefix to all retrieved values.
 - `role` (String) Role is a Role ARN which the provider will assume
 - `secrets_manager` (Attributes) SecretsManager defines how the provider behaves when interacting with AWS SecretsManager (see [below for nested schema](#nestedatt--spec--provider--aws--secrets_manager))
 - `session_tags` (Attributes List) AWS STS assume role session tags (see [below for nested schema](#nestedatt--spec--provider--aws--session_tags))
@@ -1080,12 +1082,10 @@ Optional:
 <a id="nestedatt--spec--provider--kubernetes"></a>
 ### Nested Schema for `spec.provider.kubernetes`
 
-Required:
-
-- `auth` (Attributes) Auth configures how secret-manager authenticates with a Kubernetes instance. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth))
-
 Optional:
 
+- `auth` (Attributes) Auth configures how secret-manager authenticates with a Kubernetes instance. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth))
+- `auth_ref` (Attributes) A reference to a secret that contains the auth information. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth_ref))
 - `remote_namespace` (String) Remote namespace to fetch the secrets from
 - `server` (Attributes) configures the Kubernetes server Address. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server))
 
@@ -1157,6 +1157,16 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
+
+
+<a id="nestedatt--spec--provider--kubernetes--auth_ref"></a>
+### Nested Schema for `spec.provider.kubernetes.auth_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--kubernetes--server"></a>
@@ -1488,6 +1498,54 @@ Optional:
 
 
 
+<a id="nestedatt--spec--provider--secretserver"></a>
+### Nested Schema for `spec.provider.secretserver`
+
+Required:
+
+- `password` (Attributes) Password is the secret server account password. (see [below for nested schema](#nestedatt--spec--provider--secretserver--password))
+- `server_url` (String) ServerURLURL to your secret server installation
+- `username` (Attributes) Username is the secret server account username. (see [below for nested schema](#nestedatt--spec--provider--secretserver--username))
+
+<a id="nestedatt--spec--provider--secretserver--password"></a>
+### Nested Schema for `spec.provider.secretserver.password`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--secretserver--password--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--secretserver--password--secret_ref"></a>
+### Nested Schema for `spec.provider.secretserver.password.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--secretserver--username"></a>
+### Nested Schema for `spec.provider.secretserver.username`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--secretserver--username--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--secretserver--username--secret_ref"></a>
+### Nested Schema for `spec.provider.secretserver.username.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+
 <a id="nestedatt--spec--provider--senhasegura"></a>
 ### Nested Schema for `spec.provider.senhasegura`
 
@@ -1534,6 +1592,7 @@ Optional:
 - `ca_bundle` (String) PEM encoded CA bundle used to validate Vault server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Vault server certificate. (see [below for nested schema](#nestedatt--spec--provider--vault--ca_provider))
 - `forward_inconsistent` (Boolean) ForwardInconsistent tells Vault to forward read-after-write requests to the Vaultleader instead of simply retrying within a loop. This can increase performance ifthe option is enabled serverside.https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+- `headers` (Map of String) Headers to be added in Vault request
 - `namespace` (String) Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 - `path` (String) Path is the mount path of the Vault KV backend endpoint, e.g:'secret'. The v2 KV secret engine version specific '/data' path suffixfor fetching secrets from Vault is optional and will be appendedif not present in specified path.
 - `read_your_writes` (Boolean) ReadYourWrites ensures isolated read-after-write semantics byproviding discovered cluster replication states in each request.More information about eventual consistency in Vault can be found herehttps://www.vaultproject.io/docs/enterprise/consistency

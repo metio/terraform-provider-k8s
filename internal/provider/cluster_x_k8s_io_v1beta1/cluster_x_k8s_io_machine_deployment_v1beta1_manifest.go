@@ -229,8 +229,8 @@ func (r *ClusterXK8SIoMachineDeploymentV1Beta1Manifest) Schema(_ context.Context
 					},
 
 					"revision_history_limit": schema.Int64Attribute{
-						Description:         "The number of old MachineSets to retain to allow rollback.This is a pointer to distinguish between explicit zero and not specified.Defaults to 1.",
-						MarkdownDescription: "The number of old MachineSets to retain to allow rollback.This is a pointer to distinguish between explicit zero and not specified.Defaults to 1.",
+						Description:         "The number of old MachineSets to retain to allow rollback.This is a pointer to distinguish between explicit zero and not specified.Defaults to 1.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10479 for more details.",
+						MarkdownDescription: "The number of old MachineSets to retain to allow rollback.This is a pointer to distinguish between explicit zero and not specified.Defaults to 1.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10479 for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

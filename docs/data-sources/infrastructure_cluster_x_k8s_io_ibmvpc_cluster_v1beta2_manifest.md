@@ -62,6 +62,7 @@ Optional:
 
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
 - `control_plane_load_balancer` (Attributes) ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior. (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer))
+- `network` (Attributes) network represents the VPC network to use for the cluster. (see [below for nested schema](#nestedatt--spec--network))
 - `vpc` (String) The Name of VPC.
 - `zone` (String) The Name of availability zone.
 
@@ -90,3 +91,45 @@ Optional:
 Required:
 
 - `port` (Number) Port sets the port for the additional listener.
+
+
+
+<a id="nestedatt--spec--network"></a>
+### Nested Schema for `spec.network`
+
+Optional:
+
+- `control_plane_subnets` (Attributes List) controlPlaneSubnets is a set of Subnet's which define the Control Plane subnets. (see [below for nested schema](#nestedatt--spec--network--control_plane_subnets))
+- `resource_group` (String) resourceGroup is the name of the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.
+- `vpc` (Attributes) vpc defines the IBM Cloud VPC for extended VPC Infrastructure support. (see [below for nested schema](#nestedatt--spec--network--vpc))
+- `worker_subnets` (Attributes List) workerSubnets is a set of Subnet's which define the Worker subnets. (see [below for nested schema](#nestedatt--spec--network--worker_subnets))
+
+<a id="nestedatt--spec--network--control_plane_subnets"></a>
+### Nested Schema for `spec.network.control_plane_subnets`
+
+Optional:
+
+- `cidr` (String)
+- `id` (String)
+- `name` (String)
+- `zone` (String)
+
+
+<a id="nestedatt--spec--network--vpc"></a>
+### Nested Schema for `spec.network.vpc`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+<a id="nestedatt--spec--network--worker_subnets"></a>
+### Nested Schema for `spec.network.worker_subnets`
+
+Optional:
+
+- `cidr` (String)
+- `id` (String)
+- `name` (String)
+- `zone` (String)

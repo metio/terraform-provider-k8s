@@ -62,6 +62,7 @@ Optional:
 - `control_plane_replicas` (Number) ControlPlaneReplicas defines how many replicas of the control plane core components will be deployedin the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR
 - `dashboards_job` (Attributes) DashboardsJob configures the Dashboards job (see [below for nested schema](#nestedatt--spec--dashboards_job))
 - `elastic` (Attributes) Elastic configures per-tenant ElasticSearch and Kibana parameters.This field is required for clusters using external ES. (see [below for nested schema](#nestedatt--spec--elastic))
+- `es_kube_controller_deployment` (Attributes) ESKubeControllerDeployment configures the ESKubeController Deployment. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment))
 - `id` (String) ID is the unique identifier for this tenant.
 - `linseed_deployment` (Attributes) LinseedDeployment configures the linseed Deployment. (see [below for nested schema](#nestedatt--spec--linseed_deployment))
 - `name` (String) Name is a human readable name for this tenant.
@@ -148,6 +149,478 @@ Required:
 Optional:
 
 - `kibana_url` (String)
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment"></a>
+### Nested Schema for `spec.es_kube_controller_deployment`
+
+Optional:
+
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the Deployment. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--metadata))
+- `spec` (Attributes) Spec is the specification of the calico-kube-controllers Deployment. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--metadata"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec`
+
+Optional:
+
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for minReadySeconds.
+- `template` (Attributes) Template describes the calico-kube-controllers Deployment pod that will be created. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template`
+
+Optional:
+
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--metadata))
+- `spec` (Attributes) Spec is the calico-kube-controllers Deployment's PodSpec. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--metadata"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec`
+
+Optional:
+
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-kube-controllers pods.If specified, this overrides any affinity that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for affinity.WARNING: Please note that this field will override the default calico-kube-controllers Deployment affinity. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of calico-kube-controllers containers.If specified, this overrides the specified calico-kube-controllers Deployment containers.If omitted, the calico-kube-controllers Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers))
+- `node_selector` (Map of String) NodeSelector is the calico-kube-controllers pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-kube-controllers Deployment nodeSelector providedthe key does not already exist in the object's nodeSelector.If used in conjunction with ControlPlaneNodeSelector, that nodeSelector is set on the calico-kube-controllers Deploymentand each of this field's key/value pairs are added to the calico-kube-controllers Deployment nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-kube-controllers Deployment will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-kube-controllers Deployment nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the calico-kube-controllers pod's tolerations.If specified, this overrides any tolerations that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for tolerations.WARNING: Please note that this field will override the default calico-kube-controllers Deployment tolerations. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--tolerations))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.containers`
+
+Required:
+
+- `name` (String) Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers, es-calico-kube-controllers
+
+Optional:
+
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-kube-controllers Deployment container's resources.If omitted, the calico-kube-controllers Deployment will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers--resources))
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers--resources"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.containers.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--containers--resources--claims"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.containers.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
+
+
+
+<a id="nestedatt--spec--es_kube_controller_deployment--spec--template--spec--tolerations"></a>
+### Nested Schema for `spec.es_kube_controller_deployment.spec.template.spec.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+
+
 
 
 <a id="nestedatt--spec--linseed_deployment"></a>

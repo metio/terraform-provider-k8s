@@ -218,6 +218,8 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 		HostNetwork     *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
 		Image           *string            `tfsdk:"image" json:"image,omitempty"`
 		ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+		IpFamilies      *[]string          `tfsdk:"ip_families" json:"ipFamilies,omitempty"`
+		IpFamilyPolicy  *string            `tfsdk:"ip_family_policy" json:"ipFamilyPolicy,omitempty"`
 		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		PodAnnotations  *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodDnsConfig    *struct {
@@ -1893,6 +1895,23 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"image_pull_policy": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ip_families": schema.ListAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ip_family_policy": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

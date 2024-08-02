@@ -212,8 +212,9 @@ Required:
 Optional:
 
 - `custom_label` (String) CustomLabel is the hardware label of a virtual machine's PCI device.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
-- `device_id` (Number) DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
-- `vendor_id` (Number) VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.
+- `device_id` (Number) DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.
+- `v_gpu_profile` (String) VGPUProfile is the profile name of a virtual machine's vGPU, in string.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with DeviceID and VendorID as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.
+- `vendor_id` (Number) VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.
 
 
 

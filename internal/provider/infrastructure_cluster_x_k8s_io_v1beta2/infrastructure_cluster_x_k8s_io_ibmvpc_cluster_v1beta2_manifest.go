@@ -57,6 +57,25 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 			Name   *string `tfsdk:"name" json:"name,omitempty"`
 			Public *bool   `tfsdk:"public" json:"public,omitempty"`
 		} `tfsdk:"control_plane_load_balancer" json:"controlPlaneLoadBalancer,omitempty"`
+		Network *struct {
+			ControlPlaneSubnets *[]struct {
+				Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Zone *string `tfsdk:"zone" json:"zone,omitempty"`
+			} `tfsdk:"control_plane_subnets" json:"controlPlaneSubnets,omitempty"`
+			ResourceGroup *string `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
+			Vpc           *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"vpc" json:"vpc,omitempty"`
+			WorkerSubnets *[]struct {
+				Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Zone *string `tfsdk:"zone" json:"zone,omitempty"`
+			} `tfsdk:"worker_subnets" json:"workerSubnets,omitempty"`
+		} `tfsdk:"network" json:"network,omitempty"`
 		Region        *string `tfsdk:"region" json:"region,omitempty"`
 		ResourceGroup *string `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
 		Vpc           *string `tfsdk:"vpc" json:"vpc,omitempty"`
@@ -225,6 +244,160 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"network": schema.SingleNestedAttribute{
+						Description:         "network represents the VPC network to use for the cluster.",
+						MarkdownDescription: "network represents the VPC network to use for the cluster.",
+						Attributes: map[string]schema.Attribute{
+							"control_plane_subnets": schema.ListNestedAttribute{
+								Description:         "controlPlaneSubnets is a set of Subnet's which define the Control Plane subnets.",
+								MarkdownDescription: "controlPlaneSubnets is a set of Subnet's which define the Control Plane subnets.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"cidr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(64),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+											},
+										},
+
+										"zone": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"resource_group": schema.StringAttribute{
+								Description:         "resourceGroup is the name of the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
+								MarkdownDescription: "resourceGroup is the name of the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"vpc": schema.SingleNestedAttribute{
+								Description:         "vpc defines the IBM Cloud VPC for extended VPC Infrastructure support.",
+								MarkdownDescription: "vpc defines the IBM Cloud VPC for extended VPC Infrastructure support.",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id of the resource.",
+										MarkdownDescription: "id of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name of the resource.",
+										MarkdownDescription: "name of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"worker_subnets": schema.ListNestedAttribute{
+								Description:         "workerSubnets is a set of Subnet's which define the Worker subnets.",
+								MarkdownDescription: "workerSubnets is a set of Subnet's which define the Worker subnets.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"cidr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(64),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+											},
+										},
+
+										"zone": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

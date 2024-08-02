@@ -74,6 +74,7 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					MaxChunksPerQuery       *int64  `tfsdk:"max_chunks_per_query" json:"maxChunksPerQuery,omitempty"`
 					MaxEntriesLimitPerQuery *int64  `tfsdk:"max_entries_limit_per_query" json:"maxEntriesLimitPerQuery,omitempty"`
 					MaxQuerySeries          *int64  `tfsdk:"max_query_series" json:"maxQuerySeries,omitempty"`
+					MaxVolumeSeries         *int64  `tfsdk:"max_volume_series" json:"maxVolumeSeries,omitempty"`
 					QueryTimeout            *string `tfsdk:"query_timeout" json:"queryTimeout,omitempty"`
 				} `tfsdk:"queries" json:"queries,omitempty"`
 				Retention *struct {
@@ -109,6 +110,7 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					MaxChunksPerQuery       *int64  `tfsdk:"max_chunks_per_query" json:"maxChunksPerQuery,omitempty"`
 					MaxEntriesLimitPerQuery *int64  `tfsdk:"max_entries_limit_per_query" json:"maxEntriesLimitPerQuery,omitempty"`
 					MaxQuerySeries          *int64  `tfsdk:"max_query_series" json:"maxQuerySeries,omitempty"`
+					MaxVolumeSeries         *int64  `tfsdk:"max_volume_series" json:"maxVolumeSeries,omitempty"`
 					QueryTimeout            *string `tfsdk:"query_timeout" json:"queryTimeout,omitempty"`
 				} `tfsdk:"queries" json:"queries,omitempty"`
 				Retention *struct {
@@ -930,6 +932,14 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 												Computed:            false,
 											},
 
+											"max_volume_series": schema.Int64Attribute{
+												Description:         "MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response",
+												MarkdownDescription: "MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"query_timeout": schema.StringAttribute{
 												Description:         "Timeout when querying ingesters or storage during the execution of a query request.",
 												MarkdownDescription: "Timeout when querying ingesters or storage during the execution of a query request.",
@@ -1186,6 +1196,14 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											"max_query_series": schema.Int64Attribute{
 												Description:         "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
 												MarkdownDescription: "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_volume_series": schema.Int64Attribute{
+												Description:         "MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response",
+												MarkdownDescription: "MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

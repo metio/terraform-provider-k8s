@@ -633,12 +633,14 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 			} `tfsdk:"issuer" json:"issuer,omitempty"`
-			Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Monitor          *bool              `tfsdk:"monitor" json:"monitor,omitempty"`
-			Name             *string            `tfsdk:"name" json:"name,omitempty"`
-			OfflineInstances *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
-			Replicas         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-			Resources        *struct {
+			Labels                           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Monitor                          *bool              `tfsdk:"monitor" json:"monitor,omitempty"`
+			Name                             *string            `tfsdk:"name" json:"name,omitempty"`
+			OfflineInstances                 *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
+			ParallelPodManagementConcurrency *string            `tfsdk:"parallel_pod_management_concurrency" json:"parallelPodManagementConcurrency,omitempty"`
+			PodUpdatePolicy                  *string            `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
+			Replicas                         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+			Resources                        *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
@@ -823,6 +825,7 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				PodService  *bool              `tfsdk:"pod_service" json:"podService,omitempty"`
 				ServiceType *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 			} `tfsdk:"services" json:"services,omitempty"`
+			Stop         *bool `tfsdk:"stop" json:"stop,omitempty"`
 			SwitchPolicy *struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"switch_policy" json:"switchPolicy,omitempty"`
@@ -1926,12 +1929,14 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"issuer" json:"issuer,omitempty"`
-				Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				Monitor          *bool              `tfsdk:"monitor" json:"monitor,omitempty"`
-				Name             *string            `tfsdk:"name" json:"name,omitempty"`
-				OfflineInstances *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
-				Replicas         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				Resources        *struct {
+				Labels                           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Monitor                          *bool              `tfsdk:"monitor" json:"monitor,omitempty"`
+				Name                             *string            `tfsdk:"name" json:"name,omitempty"`
+				OfflineInstances                 *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
+				ParallelPodManagementConcurrency *string            `tfsdk:"parallel_pod_management_concurrency" json:"parallelPodManagementConcurrency,omitempty"`
+				PodUpdatePolicy                  *string            `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
+				Replicas                         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+				Resources                        *struct {
 					Claims *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
@@ -2116,6 +2121,7 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					PodService  *bool              `tfsdk:"pod_service" json:"podService,omitempty"`
 					ServiceType *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 				} `tfsdk:"services" json:"services,omitempty"`
+				Stop         *bool `tfsdk:"stop" json:"stop,omitempty"`
 				SwitchPolicy *struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"switch_policy" json:"switchPolicy,omitempty"`
@@ -6585,6 +6591,22 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Computed:            false,
 								},
 
+								"parallel_pod_management_concurrency": schema.StringAttribute{
+									Description:         "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+									MarkdownDescription: "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"pod_update_policy": schema.StringAttribute{
+									Description:         "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+									MarkdownDescription: "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"replicas": schema.Int64Attribute{
 									Description:         "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
 									MarkdownDescription: "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
@@ -7656,8 +7678,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"service_account_name": schema.StringAttribute{
-									Description:         "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}',bound to a default role installed together with KubeBlocks.Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
-									MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}',bound to a default role installed together with KubeBlocks.Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
+									Description:         "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:To perform certain operational tasks, agent sidecars running in Pods require specific RBAC permissions.The service account will be bound to a default role named 'kubeblocks-cluster-pod-role' which is installed together with KubeBlocks.If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}'Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
+									MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:To perform certain operational tasks, agent sidecars running in Pods require specific RBAC permissions.The service account will be bound to a default role named 'kubeblocks-cluster-pod-role' which is installed together with KubeBlocks.If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}'Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -7840,6 +7862,14 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"stop": schema.BoolAttribute{
+									Description:         "Stop the Component.If set, all the computing resources will be released.",
+									MarkdownDescription: "Stop the Component.If set, all the computing resources will be released.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"switch_policy": schema.SingleNestedAttribute{
@@ -15306,6 +15336,22 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Computed:            false,
 										},
 
+										"parallel_pod_management_concurrency": schema.StringAttribute{
+											Description:         "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+											MarkdownDescription: "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"pod_update_policy": schema.StringAttribute{
+											Description:         "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+											MarkdownDescription: "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"replicas": schema.Int64Attribute{
 											Description:         "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
 											MarkdownDescription: "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
@@ -16377,8 +16423,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"service_account_name": schema.StringAttribute{
-											Description:         "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}',bound to a default role installed together with KubeBlocks.Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
-											MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}',bound to a default role installed together with KubeBlocks.Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
+											Description:         "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:To perform certain operational tasks, agent sidecars running in Pods require specific RBAC permissions.The service account will be bound to a default role named 'kubeblocks-cluster-pod-role' which is installed together with KubeBlocks.If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}'Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
+											MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component.This ServiceAccount is used to grant necessary permissions for the Component's Pods to interactwith other Kubernetes resources, such as modifying Pod labels or sending events.Defaults:To perform certain operational tasks, agent sidecars running in Pods require specific RBAC permissions.The service account will be bound to a default role named 'kubeblocks-cluster-pod-role' which is installed together with KubeBlocks.If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}'Future Changes:Future versions might change the default ServiceAccount creation strategy to one per Component,potentially revising the naming to 'kb-{cluster.name}-{component.name}'.Users can override the automatic ServiceAccount assignment by explicitly setting the name ofan existed ServiceAccount in this field.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -16561,6 +16607,14 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"stop": schema.BoolAttribute{
+											Description:         "Stop the Component.If set, all the computing resources will be released.",
+											MarkdownDescription: "Stop the Component.If set, all the computing resources will be released.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"switch_policy": schema.SingleNestedAttribute{

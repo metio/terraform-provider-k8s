@@ -358,7 +358,7 @@ Optional:
 - `limit_memory` (String) When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
 - `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
-- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
+- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)
 - `platforms` (List of String) The list of manifest platforms to use to build a container image (default 'linux/amd64').
 - `properties` (List of String) A list of properties to be provided to the build task
 - `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
@@ -681,6 +681,7 @@ Optional:
 
 - `configs` (List of String) A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
+- `empty_dirs` (List of String) A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path

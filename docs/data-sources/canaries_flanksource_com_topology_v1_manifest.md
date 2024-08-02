@@ -63,7 +63,9 @@ Optional:
 - `label` (String)
 - `owner` (String)
 - `properties` (Attributes List) Properties are created once the full component tree is created, property lookup functionscan return a map of coomponent name => properties to allow for bulk property lookupsbeing applied to multiple components in the tree (see [below for nested schema](#nestedatt--spec--properties))
+- `push` (Attributes) Agent will push topology to specified path (see [below for nested schema](#nestedatt--spec--push))
 - `schedule` (String)
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config
 - `text` (String)
 - `tooltip` (String)
 - `type` (String)
@@ -93,7 +95,8 @@ Optional:
 - `properties` (Map of String)
 - `relationships` (Attributes List) (see [below for nested schema](#nestedatt--spec--components--relationships))
 - `selectors` (Attributes List) Lookup and associcate other components with this component (see [below for nested schema](#nestedatt--spec--components--selectors))
-- `summary` (Attributes) (see [below for nested schema](#nestedatt--spec--components--summary))
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config
+- `summary` (Attributes) Summary is the health, incidents, insights & check summary (see [below for nested schema](#nestedatt--spec--components--summary))
 - `tooltip` (String)
 - `type` (String) The type of component, e.g. service, API, website, library, database, etc.
 
@@ -117,6 +120,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)
@@ -137,6 +141,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
@@ -197,6 +202,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)
@@ -239,6 +245,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
@@ -269,6 +276,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)
@@ -335,6 +343,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
@@ -376,3 +385,495 @@ Optional:
 - `javascript` (String)
 - `json_path` (String)
 - `template` (String)
+
+
+
+<a id="nestedatt--spec--push"></a>
+### Nested Schema for `spec.push`
+
+Optional:
+
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--push--bearer))
+- `connection` (String)
+- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth))
+- `password` (Attributes) (see [below for nested schema](#nestedatt--spec--push--password))
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls))
+- `url` (String)
+- `username` (Attributes) (see [below for nested schema](#nestedatt--spec--push--username))
+
+<a id="nestedatt--spec--push--bearer"></a>
+### Nested Schema for `spec.push.bearer`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--bearer--value_from))
+
+<a id="nestedatt--spec--push--bearer--value_from"></a>
+### Nested Schema for `spec.push.bearer.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--bearer--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--bearer--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--bearer--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--bearer--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.bearer.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--bearer--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.bearer.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--bearer--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.bearer.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--push--oauth"></a>
+### Nested Schema for `spec.push.oauth`
+
+Optional:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_secret))
+- `params` (Map of String)
+- `scope` (List of String)
+- `token_url` (String)
+
+<a id="nestedatt--spec--push--oauth--client_id"></a>
+### Nested Schema for `spec.push.oauth.client_id`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_id--value_from))
+
+<a id="nestedatt--spec--push--oauth--client_id--value_from"></a>
+### Nested Schema for `spec.push.oauth.client_id.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_id--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_id--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_id--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--oauth--client_id--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.oauth.client_id.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--oauth--client_id--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.oauth.client_id.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--oauth--client_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.oauth.client_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--push--oauth--client_secret"></a>
+### Nested Schema for `spec.push.oauth.client_secret`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_secret--value_from))
+
+<a id="nestedatt--spec--push--oauth--client_secret--value_from"></a>
+### Nested Schema for `spec.push.oauth.client_secret.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_secret--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_secret--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--oauth--client_secret--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--oauth--client_secret--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.oauth.client_secret.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--oauth--client_secret--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.oauth.client_secret.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--oauth--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.oauth.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+
+<a id="nestedatt--spec--push--password"></a>
+### Nested Schema for `spec.push.password`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--password--value_from))
+
+<a id="nestedatt--spec--push--password--value_from"></a>
+### Nested Schema for `spec.push.password.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--password--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--password--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--password--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--password--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.password.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--password--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.password.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--push--tls"></a>
+### Nested Schema for `spec.push.tls`
+
+Optional:
+
+- `ca` (Attributes) PEM encoded certificate of the CA to verify the server certificate (see [below for nested schema](#nestedatt--spec--push--tls--ca))
+- `cert` (Attributes) PEM encoded client certificate (see [below for nested schema](#nestedatt--spec--push--tls--cert))
+- `handshake_timeout` (Number) HandshakeTimeout defaults to 10 seconds
+- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name
+- `key` (Attributes) PEM encoded client private key (see [below for nested schema](#nestedatt--spec--push--tls--key))
+
+<a id="nestedatt--spec--push--tls--ca"></a>
+### Nested Schema for `spec.push.tls.ca`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--ca--value_from))
+
+<a id="nestedatt--spec--push--tls--ca--value_from"></a>
+### Nested Schema for `spec.push.tls.ca.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--ca--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--ca--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--ca--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--tls--ca--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.tls.ca.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--ca--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.tls.ca.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--ca--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.tls.ca.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--push--tls--cert"></a>
+### Nested Schema for `spec.push.tls.cert`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--cert--value_from))
+
+<a id="nestedatt--spec--push--tls--cert--value_from"></a>
+### Nested Schema for `spec.push.tls.cert.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--cert--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--cert--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--cert--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--tls--cert--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.tls.cert.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--cert--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.tls.cert.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--cert--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.tls.cert.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--push--tls--key"></a>
+### Nested Schema for `spec.push.tls.key`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--key--value_from))
+
+<a id="nestedatt--spec--push--tls--key--value_from"></a>
+### Nested Schema for `spec.push.tls.key.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--key--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--key--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--tls--key--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--tls--key--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.tls.key.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--key--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.tls.key.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--tls--key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.tls.key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+
+<a id="nestedatt--spec--push--username"></a>
+### Nested Schema for `spec.push.username`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--push--username--value_from))
+
+<a id="nestedatt--spec--push--username--value_from"></a>
+### Nested Schema for `spec.push.username.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--username--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--username--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--push--username--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--push--username--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.push.username.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--username--value_from--helm_ref"></a>
+### Nested Schema for `spec.push.username.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--push--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.push.username.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)

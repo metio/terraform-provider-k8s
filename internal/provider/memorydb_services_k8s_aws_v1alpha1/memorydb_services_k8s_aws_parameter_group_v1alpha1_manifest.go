@@ -131,8 +131,8 @@ func (r *MemorydbServicesK8SAwsParameterGroupV1Alpha1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ParameterGroupSpec defines the desired state of ParameterGroup.  Represents the output of a CreateParameterGroup operation. A parameter group represents a combination of specific values for the parameters that are passed to the engine software during startup.",
-				MarkdownDescription: "ParameterGroupSpec defines the desired state of ParameterGroup.  Represents the output of a CreateParameterGroup operation. A parameter group represents a combination of specific values for the parameters that are passed to the engine software during startup.",
+				Description:         "ParameterGroupSpec defines the desired state of ParameterGroup.Represents the output of a CreateParameterGroup operation. A parameter grouprepresents a combination of specific values for the parameters that are passedto the engine software during startup.",
+				MarkdownDescription: "ParameterGroupSpec defines the desired state of ParameterGroup.Represents the output of a CreateParameterGroup operation. A parameter grouprepresents a combination of specific values for the parameters that are passedto the engine software during startup.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "An optional description of the parameter group.",
@@ -143,8 +143,8 @@ func (r *MemorydbServicesK8SAwsParameterGroupV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"family": schema.StringAttribute{
-						Description:         "The name of the parameter group family that the parameter group can be used with.",
-						MarkdownDescription: "The name of the parameter group family that the parameter group can be used with.",
+						Description:         "The name of the parameter group family that the parameter group can be usedwith.",
+						MarkdownDescription: "The name of the parameter group family that the parameter group can be usedwith.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -159,8 +159,8 @@ func (r *MemorydbServicesK8SAwsParameterGroupV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"parameter_name_values": schema.ListNestedAttribute{
-						Description:         "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be updated per request.",
-						MarkdownDescription: "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be updated per request.",
+						Description:         "An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be updated per request.",
+						MarkdownDescription: "An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be updated per request.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"parameter_name": schema.StringAttribute{
@@ -186,8 +186,8 @@ func (r *MemorydbServicesK8SAwsParameterGroupV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

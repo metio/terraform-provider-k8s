@@ -54,6 +54,7 @@ Optional:
 Optional:
 
 - `elasticsearch` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch))
+- `elasticsearch_datastream` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream))
 - `enabled_namespaces` (List of String)
 - `file` (Attributes) (see [below for nested schema](#nestedatt--spec--file))
 - `http` (Attributes) (see [below for nested schema](#nestedatt--spec--http))
@@ -384,6 +385,328 @@ Optional:
 
 <a id="nestedatt--spec--elasticsearch--tls--key_file--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.elasticsearch.tls.key_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream"></a>
+### Nested Schema for `spec.elasticsearch_datastream`
+
+Optional:
+
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `body` (String)
+- `body_prefix` (String)
+- `body_suffix` (String)
+- `delimiter` (String)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--disk_buffer))
+- `headers` (List of String)
+- `log_fifo_size` (Number)
+- `method` (String)
+- `password` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--password))
+- `persist_name` (String)
+- `record` (String)
+- `response_action` (Map of String)
+- `retries` (Number)
+- `time_reopen` (Number)
+- `timeout` (Number)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls))
+- `url` (String)
+- `user` (String)
+- `user_agent` (String)
+- `workers` (Number)
+
+<a id="nestedatt--spec--elasticsearch_datastream--disk_buffer"></a>
+### Nested Schema for `spec.elasticsearch_datastream.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--password"></a>
+### Nested Schema for `spec.elasticsearch_datastream.password`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--password--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--password--value_from))
+
+<a id="nestedatt--spec--elasticsearch_datastream--password--mount_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.password.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--password--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.password.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--password--value_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls`
+
+Optional:
+
+- `ca_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_dir))
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_file))
+- `cert_file` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--cert_file))
+- `cipher_suite` (String)
+- `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--key_file))
+- `peer_verify` (Boolean)
+- `ssl_version` (String)
+- `use_system_cert_store` (Boolean)
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_dir"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_dir`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_dir--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_dir--value_from))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_dir--mount_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_dir.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_dir--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_dir--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_dir.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_dir--value_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_dir.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_dir--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_dir--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_dir.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_file"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_file--value_from))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_file--mount_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_file--value_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--cert_file"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.cert_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--cert_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--cert_file--value_from))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--cert_file--mount_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.cert_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--cert_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--cert_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.cert_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--cert_file--value_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.cert_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--cert_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--cert_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.cert_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--key_file"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.key_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--key_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--key_file--value_from))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--key_file--mount_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.key_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--key_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--key_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.key_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--key_file--value_from"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.key_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch_datastream--tls--key_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--elasticsearch_datastream--tls--key_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch_datastream.tls.key_file.value_from.secret_key_ref`
 
 Required:
 

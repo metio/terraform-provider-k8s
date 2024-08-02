@@ -588,6 +588,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+				OnlyReaders              *bool              `tfsdk:"only_readers" json:"onlyReaders,omitempty"`
 				TrafficPolicy            *string            `tfsdk:"traffic_policy" json:"trafficPolicy,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose_replicas" json:"exposeReplicas,omitempty"`
@@ -3658,12 +3659,19 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 		SslSecretName         *string `tfsdk:"ssl_secret_name" json:"sslSecretName,omitempty"`
 		Tls                   *struct {
 			SANs       *[]string `tfsdk:"sa_ns" json:"SANs,omitempty"`
+			Enabled    *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 			IssuerConf *struct {
 				Group *string `tfsdk:"group" json:"group,omitempty"`
 				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"issuer_conf" json:"issuerConf,omitempty"`
 		} `tfsdk:"tls" json:"tls,omitempty"`
+		UnsafeFlags *struct {
+			BackupIfUnhealthy *bool `tfsdk:"backup_if_unhealthy" json:"backupIfUnhealthy,omitempty"`
+			ProxySize         *bool `tfsdk:"proxy_size" json:"proxySize,omitempty"`
+			PxcSize           *bool `tfsdk:"pxc_size" json:"pxcSize,omitempty"`
+			Tls               *bool `tfsdk:"tls" json:"tls,omitempty"`
+		} `tfsdk:"unsafe_flags" json:"unsafeFlags,omitempty"`
 		UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		UpgradeOptions *struct {
 			Apply                  *string `tfsdk:"apply" json:"apply,omitempty"`
@@ -7445,6 +7453,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"only_readers": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -28132,6 +28148,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"issuer_conf": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -28163,6 +28187,47 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"unsafe_flags": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"backup_if_unhealthy": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pxc_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

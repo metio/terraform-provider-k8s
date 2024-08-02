@@ -483,6 +483,8 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+			MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+			MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 		} `tfsdk:"grpc_server_tls_config" json:"grpcServerTlsConfig,omitempty"`
 		HostAliases *[]struct {
@@ -4349,6 +4351,28 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"max_version": schema.StringAttribute{
+								Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
+							},
+
+							"min_version": schema.StringAttribute{
+								Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
 							},
 
 							"server_name": schema.StringAttribute{

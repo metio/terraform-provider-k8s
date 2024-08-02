@@ -57,7 +57,8 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 		Audience                 *string `tfsdk:"audience" json:"audience,omitempty"`
 		Cert                     *string `tfsdk:"cert" json:"cert,omitempty"`
 		Client_redirect_settings *struct {
-			Allowed_https_hostnames *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+			Allowed_https_hostnames      *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+			Insecure_allowed_cidr_ranges *[]string `tfsdk:"insecure_allowed_cidr_ranges" json:"insecure_allowed_cidr_ranges,omitempty"`
 		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
 		Display                 *string `tfsdk:"display" json:"display,omitempty"`
 		Entity_descriptor       *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
@@ -237,8 +238,8 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 					},
 
 					"cert": schema.StringAttribute{
-						Description:         "Cert is the identity provider certificate PEM. IDP signs <Response> responses using this certificate.",
-						MarkdownDescription: "Cert is the identity provider certificate PEM. IDP signs <Response> responses using this certificate.",
+						Description:         "Cert is the identity provider certificate PEM. IDP signs '<Response>' responses using this certificate.",
+						MarkdownDescription: "Cert is the identity provider certificate PEM. IDP signs '<Response>' responses using this certificate.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -251,6 +252,15 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 							"allowed_https_hostnames": schema.ListAttribute{
 								Description:         "a list of hostnames allowed for https client redirect URLs",
 								MarkdownDescription: "a list of hostnames allowed for https client redirect URLs",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"insecure_allowed_cidr_ranges": schema.ListAttribute{
+								Description:         "a list of CIDRs allowed for HTTP or HTTPS client redirect URLs",
+								MarkdownDescription: "a list of CIDRs allowed for HTTP or HTTPS client redirect URLs",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

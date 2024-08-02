@@ -493,8 +493,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																			},
 
 																			"names": schema.ListAttribute{
-																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
-																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				Description:         "Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				MarkdownDescription: "Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
 																				ElementType:         types.StringType,
 																				Required:            true,
 																				Optional:            false,
@@ -521,8 +521,8 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 																			},
 
 																			"names": schema.ListAttribute{
-																				Description:         "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
-																				MarkdownDescription: "Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				Description:         "Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
+																				MarkdownDescription: "Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.",
 																				ElementType:         types.StringType,
 																				Required:            true,
 																				Optional:            false,

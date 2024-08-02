@@ -46,13 +46,13 @@ type KarpenterShNodePoolV1ManifestData struct {
 	Spec *struct {
 		Disruption *struct {
 			Budgets *[]struct {
-				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
-				Nodes    *string `tfsdk:"nodes" json:"nodes,omitempty"`
-				Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
+				Duration *string   `tfsdk:"duration" json:"duration,omitempty"`
+				Nodes    *string   `tfsdk:"nodes" json:"nodes,omitempty"`
+				Reasons  *[]string `tfsdk:"reasons" json:"reasons,omitempty"`
+				Schedule *string   `tfsdk:"schedule" json:"schedule,omitempty"`
 			} `tfsdk:"budgets" json:"budgets,omitempty"`
 			ConsolidateAfter    *string `tfsdk:"consolidate_after" json:"consolidateAfter,omitempty"`
 			ConsolidationPolicy *string `tfsdk:"consolidation_policy" json:"consolidationPolicy,omitempty"`
-			ExpireAfter         *string `tfsdk:"expire_after" json:"expireAfter,omitempty"`
 		} `tfsdk:"disruption" json:"disruption,omitempty"`
 		Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 		Template *struct {
@@ -61,24 +61,11 @@ type KarpenterShNodePoolV1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
-				Kubelet *struct {
-					ClusterDNS                  *[]string          `tfsdk:"cluster_dns" json:"clusterDNS,omitempty"`
-					CpuCFSQuota                 *bool              `tfsdk:"cpu_cfs_quota" json:"cpuCFSQuota,omitempty"`
-					EvictionHard                *map[string]string `tfsdk:"eviction_hard" json:"evictionHard,omitempty"`
-					EvictionMaxPodGracePeriod   *int64             `tfsdk:"eviction_max_pod_grace_period" json:"evictionMaxPodGracePeriod,omitempty"`
-					EvictionSoft                *map[string]string `tfsdk:"eviction_soft" json:"evictionSoft,omitempty"`
-					EvictionSoftGracePeriod     *map[string]string `tfsdk:"eviction_soft_grace_period" json:"evictionSoftGracePeriod,omitempty"`
-					ImageGCHighThresholdPercent *int64             `tfsdk:"image_gc_high_threshold_percent" json:"imageGCHighThresholdPercent,omitempty"`
-					ImageGCLowThresholdPercent  *int64             `tfsdk:"image_gc_low_threshold_percent" json:"imageGCLowThresholdPercent,omitempty"`
-					KubeReserved                *map[string]string `tfsdk:"kube_reserved" json:"kubeReserved,omitempty"`
-					MaxPods                     *int64             `tfsdk:"max_pods" json:"maxPods,omitempty"`
-					PodsPerCore                 *int64             `tfsdk:"pods_per_core" json:"podsPerCore,omitempty"`
-					SystemReserved              *map[string]string `tfsdk:"system_reserved" json:"systemReserved,omitempty"`
-				} `tfsdk:"kubelet" json:"kubelet,omitempty"`
+				ExpireAfter  *string `tfsdk:"expire_after" json:"expireAfter,omitempty"`
 				NodeClassRef *struct {
-					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					Group *string `tfsdk:"group" json:"group,omitempty"`
+					Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"node_class_ref" json:"nodeClassRef,omitempty"`
 				Requirements *[]struct {
 					Key       *string   `tfsdk:"key" json:"key,omitempty"`
@@ -86,9 +73,6 @@ type KarpenterShNodePoolV1ManifestData struct {
 					Operator  *string   `tfsdk:"operator" json:"operator,omitempty"`
 					Values    *[]string `tfsdk:"values" json:"values,omitempty"`
 				} `tfsdk:"requirements" json:"requirements,omitempty"`
-				Resources *struct {
-					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
-				} `tfsdk:"resources" json:"resources,omitempty"`
 				StartupTaints *[]struct {
 					Effect    *string `tfsdk:"effect" json:"effect,omitempty"`
 					Key       *string `tfsdk:"key" json:"key,omitempty"`
@@ -101,6 +85,7 @@ type KarpenterShNodePoolV1ManifestData struct {
 					TimeAdded *string `tfsdk:"time_added" json:"timeAdded,omitempty"`
 					Value     *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"taints" json:"taints,omitempty"`
+				TerminationGracePeriod *string `tfsdk:"termination_grace_period" json:"terminationGracePeriod,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"template" json:"template,omitempty"`
 		Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
@@ -203,6 +188,15 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 											},
 										},
 
+										"reasons": schema.ListAttribute{
+											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted.",
+											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"schedule": schema.StringAttribute{
 											Description:         "Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.",
 											MarkdownDescription: "Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.",
@@ -223,8 +217,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 							"consolidate_after": schema.StringAttribute{
 								Description:         "ConsolidateAfter is the duration the controller will waitbefore attempting to terminate nodes that are underutilized.Refer to ConsolidationPolicy for how underutilization is considered.",
 								MarkdownDescription: "ConsolidateAfter is the duration the controller will waitbefore attempting to terminate nodes that are underutilized.Refer to ConsolidationPolicy for how underutilization is considered.",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
@@ -232,24 +226,13 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 							},
 
 							"consolidation_policy": schema.StringAttribute{
-								Description:         "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenUnderutilized' if not specified",
-								MarkdownDescription: "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenUnderutilized' if not specified",
+								Description:         "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenEmptyOrUnderutilized' if not specified",
+								MarkdownDescription: "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenEmptyOrUnderutilized' if not specified",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("WhenEmpty", "WhenUnderutilized"),
-								},
-							},
-
-							"expire_after": schema.StringAttribute{
-								Description:         "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
-								MarkdownDescription: "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
+									stringvalidator.OneOf("WhenEmpty", "WhenEmptyOrUnderutilized"),
 								},
 							},
 						},
@@ -302,148 +285,34 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 								Description:         "NodeClaimSpec describes the desired state of the NodeClaim",
 								MarkdownDescription: "NodeClaimSpec describes the desired state of the NodeClaim",
 								Attributes: map[string]schema.Attribute{
-									"kubelet": schema.SingleNestedAttribute{
-										Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
-										MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
-										Attributes: map[string]schema.Attribute{
-											"cluster_dns": schema.ListAttribute{
-												Description:         "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
-												MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"cpu_cfs_quota": schema.BoolAttribute{
-												Description:         "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.",
-												MarkdownDescription: "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"eviction_hard": schema.MapAttribute{
-												Description:         "EvictionHard is the map of signal names to quantities that define hard eviction thresholds",
-												MarkdownDescription: "EvictionHard is the map of signal names to quantities that define hard eviction thresholds",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"eviction_max_pod_grace_period": schema.Int64Attribute{
-												Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
-												MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"eviction_soft": schema.MapAttribute{
-												Description:         "EvictionSoft is the map of signal names to quantities that define soft eviction thresholds",
-												MarkdownDescription: "EvictionSoft is the map of signal names to quantities that define soft eviction thresholds",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"eviction_soft_grace_period": schema.MapAttribute{
-												Description:         "EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal",
-												MarkdownDescription: "EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"image_gc_high_threshold_percent": schema.Int64Attribute{
-												Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
-												MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-													int64validator.AtMost(100),
-												},
-											},
-
-											"image_gc_low_threshold_percent": schema.Int64Attribute{
-												Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
-												MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-													int64validator.AtMost(100),
-												},
-											},
-
-											"kube_reserved": schema.MapAttribute{
-												Description:         "KubeReserved contains resources reserved for Kubernetes system components.",
-												MarkdownDescription: "KubeReserved contains resources reserved for Kubernetes system components.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"max_pods": schema.Int64Attribute{
-												Description:         "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
-												MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-												},
-											},
-
-											"pods_per_core": schema.Int64Attribute{
-												Description:         "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
-												MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-												},
-											},
-
-											"system_reserved": schema.MapAttribute{
-												Description:         "SystemReserved contains resources reserved for OS system daemons and kernel memory.",
-												MarkdownDescription: "SystemReserved contains resources reserved for OS system daemons and kernel memory.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
+									"expire_after": schema.StringAttribute{
+										Description:         "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
+										MarkdownDescription: "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
 										},
-										Required: false,
-										Optional: true,
-										Computed: false,
 									},
 
 									"node_class_ref": schema.SingleNestedAttribute{
 										Description:         "NodeClassRef is a reference to an object that defines provider specific configuration",
 										MarkdownDescription: "NodeClassRef is a reference to an object that defines provider specific configuration",
 										Attributes: map[string]schema.Attribute{
-											"api_version": schema.StringAttribute{
+											"group": schema.StringAttribute{
 												Description:         "API version of the referent",
 												MarkdownDescription: "API version of the referent",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
 												Description:         "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'",
 												MarkdownDescription: "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -512,24 +381,6 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 										},
 										Required: true,
 										Optional: false,
-										Computed: false,
-									},
-
-									"resources": schema.SingleNestedAttribute{
-										Description:         "Resources models the resource requirements for the NodeClaim to launch",
-										MarkdownDescription: "Resources models the resource requirements for the NodeClaim to launch",
-										Attributes: map[string]schema.Attribute{
-											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum required resources for the NodeClaim to launch",
-												MarkdownDescription: "Requests describes the minimum required resources for the NodeClaim to launch",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
 										Computed: false,
 									},
 
@@ -643,6 +494,17 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"termination_grace_period": schema.StringAttribute{
+										Description:         "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.",
+										MarkdownDescription: "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(s|m|h))+$`), ""),
+										},
 									},
 								},
 								Required: true,

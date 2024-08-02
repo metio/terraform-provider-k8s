@@ -345,6 +345,11 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 		Hosting *struct {
+			AdvertiseEndpoint *struct {
+				DnsName *string `tfsdk:"dns_name" json:"dnsName,omitempty"`
+				Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+				UseTls  *bool   `tfsdk:"use_tls" json:"useTls,omitempty"`
+			} `tfsdk:"advertise_endpoint" json:"advertiseEndpoint,omitempty"`
 			DnsNames *[]string `tfsdk:"dns_names" json:"dnsNames,omitempty"`
 		} `tfsdk:"hosting" json:"hosting,omitempty"`
 		MetadataPool *struct {
@@ -2542,12 +2547,52 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"hosting": schema.SingleNestedAttribute{
-						Description:         "Hosting settings for the object store",
-						MarkdownDescription: "Hosting settings for the object store",
+						Description:         "Hosting settings for the object store.A common use case for hosting configuration is to inform Rook of endpoints that support DNSwildcards, which in turn allows virtual host-style bucket addressing.",
+						MarkdownDescription: "Hosting settings for the object store.A common use case for hosting configuration is to inform Rook of endpoints that support DNSwildcards, which in turn allows virtual host-style bucket addressing.",
 						Attributes: map[string]schema.Attribute{
+							"advertise_endpoint": schema.SingleNestedAttribute{
+								Description:         "AdvertiseEndpoint is the default endpoint Rook will return for resources dependent on thisobject store. This endpoint will be returned to CephObjectStoreUsers, Object Bucket Claims,and COSI Buckets/Accesses.By default, Rook returns the endpoint for the object store's Kubernetes service using HTTPSwith 'gateway.securePort' if it is defined (otherwise, HTTP with 'gateway.port').",
+								MarkdownDescription: "AdvertiseEndpoint is the default endpoint Rook will return for resources dependent on thisobject store. This endpoint will be returned to CephObjectStoreUsers, Object Bucket Claims,and COSI Buckets/Accesses.By default, Rook returns the endpoint for the object store's Kubernetes service using HTTPSwith 'gateway.securePort' if it is defined (otherwise, HTTP with 'gateway.port').",
+								Attributes: map[string]schema.Attribute{
+									"dns_name": schema.StringAttribute{
+										Description:         "DnsName is the DNS name (in RFC-1123 format) of the endpoint.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.",
+										MarkdownDescription: "DnsName is the DNS name (in RFC-1123 format) of the endpoint.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"port": schema.Int64Attribute{
+										Description:         "Port is the port on which S3 connections can be made for this endpoint.",
+										MarkdownDescription: "Port is the port on which S3 connections can be made for this endpoint.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(1),
+											int64validator.AtMost(65535),
+										},
+									},
+
+									"use_tls": schema.BoolAttribute{
+										Description:         "UseTls defines whether the endpoint uses TLS (HTTPS) or not (HTTP).",
+										MarkdownDescription: "UseTls defines whether the endpoint uses TLS (HTTPS) or not (HTTP).",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"dns_names": schema.ListAttribute{
-								Description:         "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123.Each domain requires wildcard support like ingress loadbalancer.Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com').Add all hostnames including user-created Kubernetes Service endpoints to the list.CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list.The feature is supported only for Ceph v18 and later versions.",
-								MarkdownDescription: "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123.Each domain requires wildcard support like ingress loadbalancer.Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com').Add all hostnames including user-created Kubernetes Service endpoints to the list.CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list.The feature is supported only for Ceph v18 and later versions.",
+								Description:         "A list of DNS host names on which object store gateways will accept client S3 connections.When specified, object store gateways will reject client S3 connections to hostnames that arenot present in this list, so include all endpoints.The object store's advertiseEndpoint and Kubernetes service endpoint, plus CephObjectZone'customEndpoints' are automatically added to the list but may be set here again if desired.Each DNS name must be valid according RFC-1123.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.The feature is supported only for Ceph v18 and later versions.",
+								MarkdownDescription: "A list of DNS host names on which object store gateways will accept client S3 connections.When specified, object store gateways will reject client S3 connections to hostnames that arenot present in this list, so include all endpoints.The object store's advertiseEndpoint and Kubernetes service endpoint, plus CephObjectZone'customEndpoints' are automatically added to the list but may be set here again if desired.Each DNS name must be valid according RFC-1123.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.The feature is supported only for Ceph v18 and later versions.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

@@ -215,6 +215,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 		DelayBeforeCleanup          *string            `tfsdk:"delay_before_cleanup" json:"delayBeforeCleanup,omitempty"`
 		DeletionPropagationPolicy   *string            `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
 		Description                 *string            `tfsdk:"description" json:"description,omitempty"`
+		FailFast                    *bool              `tfsdk:"fail_fast" json:"failFast,omitempty"`
 		ForceTerminationGracePeriod *string            `tfsdk:"force_termination_grace_period" json:"forceTerminationGracePeriod,omitempty"`
 		Namespace                   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 		NamespaceTemplate           *map[string]string `tfsdk:"namespace_template" json:"namespaceTemplate,omitempty"`
@@ -1035,6 +1036,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"wait" json:"wait,omitempty"`
 			} `tfsdk:"try" json:"try,omitempty"`
+			Use *struct {
+				Template *string `tfsdk:"template" json:"template,omitempty"`
+			} `tfsdk:"use" json:"use,omitempty"`
 		} `tfsdk:"steps" json:"steps,omitempty"`
 		Template *bool `tfsdk:"template" json:"template,omitempty"`
 		Timeouts *struct {
@@ -1203,8 +1207,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1371,8 +1375,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1535,8 +1539,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1633,8 +1637,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "Events determines the events collector to execute.",
 									Attributes: map[string]schema.Attribute{
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1726,8 +1730,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1819,8 +1823,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 									Attributes: map[string]schema.Attribute{
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1949,8 +1953,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2111,8 +2115,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+											Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+											MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2274,8 +2278,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"cluster": schema.StringAttribute{
-						Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-						MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+						Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+						MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2336,6 +2340,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 					"description": schema.StringAttribute{
 						Description:         "Description contains a description of the test.",
 						MarkdownDescription: "Description contains a description of the test.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"fail_fast": schema.BoolAttribute{
+						Description:         "FailFast determines whether the test should stop upon encountering the first failure.",
+						MarkdownDescription: "FailFast determines whether the test should stop upon encountering the first failure.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2519,8 +2531,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2687,8 +2699,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2851,8 +2863,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2949,8 +2961,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Events determines the events collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3042,8 +3054,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3135,8 +3147,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3265,8 +3277,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3427,8 +3439,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3648,8 +3660,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3816,8 +3828,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3980,8 +3992,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4078,8 +4090,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Events determines the events collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4171,8 +4183,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4264,8 +4276,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4394,8 +4406,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4556,8 +4568,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4719,8 +4731,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"cluster": schema.StringAttribute{
-									Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-									MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+									Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+									MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4829,8 +4841,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4997,8 +5009,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5161,8 +5173,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5259,8 +5271,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Events determines the events collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5352,8 +5364,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5445,8 +5457,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5575,8 +5587,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5737,8 +5749,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6021,8 +6033,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6204,8 +6216,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6328,8 +6340,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6504,8 +6516,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6687,8 +6699,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6851,8 +6863,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6980,8 +6992,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7055,8 +7067,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Events determines the events collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7148,8 +7160,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7272,8 +7284,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7424,8 +7436,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7522,8 +7534,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7692,8 +7704,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7877,8 +7889,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8037,8 +8049,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"cluster": schema.StringAttribute{
-														Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-														MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
+														Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+														MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8194,8 +8206,25 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 										},
 									},
-									Required: true,
-									Optional: false,
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"use": schema.SingleNestedAttribute{
+									Description:         "Use defines a reference to a step template.",
+									MarkdownDescription: "Use defines a reference to a step template.",
+									Attributes: map[string]schema.Attribute{
+										"template": schema.StringAttribute{
+											Description:         "Template references a step template.",
+											MarkdownDescription: "Template references a step template.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 							},

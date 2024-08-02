@@ -356,6 +356,7 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 			Mount *struct {
 				Configs                          *[]string          `tfsdk:"configs" json:"configs,omitempty"`
 				Configuration                    *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				EmptyDirs                        *[]string          `tfsdk:"empty_dirs" json:"emptyDirs,omitempty"`
 				Enabled                          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				HotReload                        *bool              `tfsdk:"hot_reload" json:"hotReload,omitempty"`
 				Resources                        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
@@ -1189,8 +1190,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"order_strategy": schema.StringAttribute{
-										Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
-										MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
+										Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)",
+										MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2861,6 +2862,15 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									"configuration": schema.MapAttribute{
 										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"empty_dirs": schema.ListAttribute{
+										Description:         "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
+										MarkdownDescription: "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

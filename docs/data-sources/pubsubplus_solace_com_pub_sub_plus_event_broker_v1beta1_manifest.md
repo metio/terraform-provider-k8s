@@ -56,7 +56,9 @@ Optional:
 Optional:
 
 - `admin_credentials_secret` (String) Defines the password for PubSubPlusEventBroker if provided. Random one will be generated if not provided.When provided, ensure the secret key name is 'username_admin_password'. For valid values refer to the Solace documentation https://docs.solace.com/Admin/Configuring-Internal-CLI-User-Accounts.htm.
+- `broker_container_security` (Attributes) ContainerSecurityContext defines the container security context for the PubSubPlusEventBroker. (see [below for nested schema](#nestedatt--spec--broker_container_security))
 - `developer` (Boolean) Developer true specifies a minimum footprint scaled-down deployment, not for production use.If set to true it overrides SystemScaling parameters.
+- `enable_service_links` (Boolean) EnableServiceLinks indicates whether information about services should be injected into pod's environmentvariables, matching the syntax of Docker links. Optional: Defaults to false.
 - `extra_env_vars` (Attributes List) List of extra environment variables to be added to the PubSubPlusEventBroker container. Note: Do not configure Timezone or SystemScaling parameters here as it could cause unintended consequences.A primary use case is to specify configuration keys, although the variables defined here will not override the ones defined in ConfigMap (see [below for nested schema](#nestedatt--spec--extra_env_vars))
 - `extra_env_vars_cm` (String) List of extra environment variables to be added to the PubSubPlusEventBroker container from an existing ConfigMap. Note: Do not configure Timezone or SystemScaling parameters here as it could cause unintended consequences.
 - `extra_env_vars_secret` (String) List of extra environment variables to be added to the PubSubPlusEventBroker container from an existing Secret
@@ -73,10 +75,19 @@ Optional:
 - `service` (Attributes) Service defines broker service details. (see [below for nested schema](#nestedatt--spec--service))
 - `service_account` (Attributes) ServiceAccount defines a ServiceAccount dedicated to the PubSubPlusEventBroker (see [below for nested schema](#nestedatt--spec--service_account))
 - `storage` (Attributes) Storage defines storage details for the broker. (see [below for nested schema](#nestedatt--spec--storage))
-- `system_scaling` (Attributes) SystemScaling provides exact fine-grained specification of the event broker scaling parametersand the assigned CPU / memory resources to the Pod. (see [below for nested schema](#nestedatt--spec--system_scaling))
+- `system_scaling` (Map of String) SystemScaling provides exact fine-grained specification of the event broker scaling parametersand the assigned CPU / memory resources to the Pod.
 - `timezone` (String) Defines the timezone for the event broker container, if undefined default is UTC. Valid values are tz database time zone names.
 - `tls` (Attributes) TLS provides TLS configuration for the event broker. (see [below for nested schema](#nestedatt--spec--tls))
 - `update_strategy` (String) UpdateStrategy specifies how to update an existing deployment. manualPodRestart waits for user intervention.
+
+<a id="nestedatt--spec--broker_container_security"></a>
+### Nested Schema for `spec.broker_container_security`
+
+Optional:
+
+- `run_as_group` (Number) Specifies runAsGroup in container security context. 0 or unset defaults either to 1000002, or if OpenShift detected to unspecified (see documentation)
+- `run_as_user` (Number) Specifies runAsUser in container security context. 0 or unset defaults either to 1000001, or if OpenShift detected to unspecified (see documentation)
+
 
 <a id="nestedatt--spec--extra_env_vars"></a>
 ### Nested Schema for `spec.extra_env_vars`
@@ -112,11 +123,21 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Enabled true enables the setup of the Prometheus Exporter.
+- `extra_env_vars` (Attributes List) List of extra environment variables to be added to the Prometheus Exporter container. (see [below for nested schema](#nestedatt--spec--monitoring--extra_env_vars))
 - `image` (Attributes) Image defines container image parameters for the Prometheus Exporter. (see [below for nested schema](#nestedatt--spec--monitoring--image))
 - `include_rates` (Boolean) Defines if Prometheus Exporter should include rates
 - `metrics_endpoint` (Attributes) MetricsEndpoint defines parameters to configure monitoring for the Prometheus Exporter. (see [below for nested schema](#nestedatt--spec--monitoring--metrics_endpoint))
 - `ssl_verify` (Boolean) Defines if Prometheus Exporter verifies SSL
 - `time_out` (Number) Timeout configuration for Prometheus Exporter scrapper
+
+<a id="nestedatt--spec--monitoring--extra_env_vars"></a>
+### Nested Schema for `spec.monitoring.extra_env_vars`
+
+Required:
+
+- `name` (String) Specifies the Name of an environment variable to be added to the Prometheus Exporter container for Monitoring
+- `value` (String) Specifies the Value of an environment variable to be added to the Prometheus Exporter container for Monitoring
+
 
 <a id="nestedatt--spec--monitoring--image"></a>
 ### Nested Schema for `spec.monitoring.image`
@@ -632,18 +653,6 @@ Required:
 - `claim_name` (String) Defines the claimName of a custom PersistentVolumeClaim to be used instead
 
 
-
-
-<a id="nestedatt--spec--system_scaling"></a>
-### Nested Schema for `spec.system_scaling`
-
-Optional:
-
-- `max_connections` (Number)
-- `max_queue_messages` (Number)
-- `max_spool_usage` (Number)
-- `messaging_node_cpu` (String)
-- `messaging_node_memory` (String)
 
 
 <a id="nestedatt--spec--tls"></a>

@@ -56,7 +56,7 @@ Optional:
 Required:
 
 - `managed_zone` (Attributes) managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints. (see [below for nested schema](#nestedatt--spec--managed_zone))
-- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHost
+- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'
 
 Optional:
 
@@ -100,7 +100,7 @@ Optional:
 
 Optional:
 
-- `endpoint` (String)
-- `failure_threshold` (Number)
-- `port` (Number)
-- `protocol` (String)
+- `endpoint` (String) Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common
+- `failure_threshold` (Number) FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy
+- `port` (Number) Port to connect to the host on. Must be either 80, 443 or 1024-49151
+- `protocol` (String) Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'

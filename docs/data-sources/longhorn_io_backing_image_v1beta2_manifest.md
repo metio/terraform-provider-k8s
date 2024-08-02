@@ -56,8 +56,19 @@ Optional:
 Optional:
 
 - `checksum` (String)
-- `disks` (Map of String)
+- `disk_file_spec_map` (Attributes) (see [below for nested schema](#nestedatt--spec--disk_file_spec_map))
+- `disk_selector` (List of String)
+- `disks` (Map of String) Deprecated. We are now using DiskFileSpecMap to assign different spec to the file on different disks.
+- `min_number_of_copies` (Number)
+- `node_selector` (List of String)
 - `secret` (String)
 - `secret_namespace` (String)
 - `source_parameters` (Map of String)
 - `source_type` (String)
+
+<a id="nestedatt--spec--disk_file_spec_map"></a>
+### Nested Schema for `spec.disk_file_spec_map`
+
+Optional:
+
+- `eviction_requested` (Boolean)

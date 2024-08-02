@@ -141,8 +141,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 				MarkdownDescription: "Spec defines the desired state of the ObservabilityPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"target_refs": schema.ListNestedAttribute{
-						Description:         "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute",
-						MarkdownDescription: "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute",
+						Description:         "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute.",
+						MarkdownDescription: "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{

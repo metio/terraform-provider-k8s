@@ -1324,6 +1324,10 @@ type AppTerraformIoAgentPoolV1Alpha2ManifestData struct {
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"agent_tokens" json:"agentTokens,omitempty"`
 		Autoscaling *struct {
+			CooldownPeriod *struct {
+				ScaleDownSeconds *int64 `tfsdk:"scale_down_seconds" json:"scaleDownSeconds,omitempty"`
+				ScaleUpSeconds   *int64 `tfsdk:"scale_up_seconds" json:"scaleUpSeconds,omitempty"`
+			} `tfsdk:"cooldown_period" json:"cooldownPeriod,omitempty"`
 			CooldownPeriodSeconds *int64 `tfsdk:"cooldown_period_seconds" json:"cooldownPeriodSeconds,omitempty"`
 			MaxReplicas           *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
 			MinReplicas           *int64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
@@ -1419,8 +1423,8 @@ func (r *AppTerraformIoAgentPoolV1Alpha2Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "AgentPoolSpec defines the desired stak get ste of AgentPool.",
-				MarkdownDescription: "AgentPoolSpec defines the desired stak get ste of AgentPool.",
+				Description:         "AgentPoolSpec defines the desired state of AgentPool.",
+				MarkdownDescription: "AgentPoolSpec defines the desired state of AgentPool.",
 				Attributes: map[string]schema.Attribute{
 					"agent_deployment": schema.SingleNestedAttribute{
 						Description:         "Agent deployment settings",
@@ -9991,6 +9995,31 @@ func (r *AppTerraformIoAgentPoolV1Alpha2Manifest) Schema(_ context.Context, _ da
 						Description:         "Agent deployment settings",
 						MarkdownDescription: "Agent deployment settings",
 						Attributes: map[string]schema.Attribute{
+							"cooldown_period": schema.SingleNestedAttribute{
+								Description:         "CoolDownPeriod configures the period to wait between scaling up and scaling down",
+								MarkdownDescription: "CoolDownPeriod configures the period to wait between scaling up and scaling down",
+								Attributes: map[string]schema.Attribute{
+									"scale_down_seconds": schema.Int64Attribute{
+										Description:         "ScaleDownSeconds is the time to wait before scaling down.",
+										MarkdownDescription: "ScaleDownSeconds is the time to wait before scaling down.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"scale_up_seconds": schema.Int64Attribute{
+										Description:         "ScaleUpSeconds is the time to wait before scaling up.",
+										MarkdownDescription: "ScaleUpSeconds is the time to wait before scaling up.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"cooldown_period_seconds": schema.Int64Attribute{
 								Description:         "CooldownPeriodSeconds is the time to wait between scaling events. Defaults to 300.",
 								MarkdownDescription: "CooldownPeriodSeconds is the time to wait between scaling events. Defaults to 300.",

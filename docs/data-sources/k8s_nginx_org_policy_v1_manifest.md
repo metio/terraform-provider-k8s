@@ -57,7 +57,7 @@ Optional:
 
 - `access_control` (Attributes) AccessControl defines an access policy based on the source IP of a request. (see [below for nested schema](#nestedatt--spec--access_control))
 - `api_key` (Attributes) APIKey defines an API Key policy. (see [below for nested schema](#nestedatt--spec--api_key))
-- `basic_auth` (Attributes) BasicAuth holds HTTP Basic authentication configurationpolicy status: preview (see [below for nested schema](#nestedatt--spec--basic_auth))
+- `basic_auth` (Attributes) BasicAuth holds HTTP Basic authentication configuration (see [below for nested schema](#nestedatt--spec--basic_auth))
 - `egress_mtls` (Attributes) EgressMTLS defines an Egress MTLS policy. (see [below for nested schema](#nestedatt--spec--egress_mtls))
 - `ingress_class_name` (String)
 - `ingress_mtls` (Attributes) IngressMTLS defines an Ingress MTLS policy. (see [below for nested schema](#nestedatt--spec--ingress_mtls))

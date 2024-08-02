@@ -104,6 +104,7 @@ Required:
 Optional:
 
 - `file` (String)
+- `read_only` (Boolean)
 
 
 

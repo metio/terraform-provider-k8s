@@ -30,7 +30,7 @@ data "k8s_memorydb_services_k8s_aws_snapshot_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SnapshotSpec defines the desired state of Snapshot.  Represents a copy of an entire cluster as of the time when the snapshot was taken. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SnapshotSpec defines the desired state of Snapshot.Represents a copy of an entire cluster as of the time when the snapshot wastaken. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -60,18 +60,18 @@ Required:
 Optional:
 
 - `cluster_name` (String) The snapshot is created from this cluster.
-- `cluster_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--cluster_ref))
+- `cluster_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--cluster_ref))
 - `kms_key_id` (String) The ID of the KMS key used to encrypt the snapshot.
-- `kms_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--kms_key_ref))
+- `kms_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--kms_key_ref))
 - `source_snapshot_name` (String) The name of an existing snapshot from which to make a copy.
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--cluster_ref"></a>
 ### Nested Schema for `spec.cluster_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--cluster_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--cluster_ref--from))
 
 <a id="nestedatt--spec--cluster_ref--from"></a>
 ### Nested Schema for `spec.cluster_ref.from`
@@ -87,7 +87,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_key_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_key_ref--from))
 
 <a id="nestedatt--spec--kms_key_ref--from"></a>
 ### Nested Schema for `spec.kms_key_ref.from`

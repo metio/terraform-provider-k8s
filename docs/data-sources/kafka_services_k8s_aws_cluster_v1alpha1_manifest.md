@@ -62,6 +62,8 @@ Required:
 
 Optional:
 
+- `associated_scram_secret_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--associated_scram_secret_refs))
+- `associated_scram_secrets` (List of String)
 - `client_authentication` (Attributes) Includes all client authentication related information. (see [below for nested schema](#nestedatt--spec--client_authentication))
 - `configuration_info` (Attributes) Represents the configuration that you want MSK to use for the cluster. (see [below for nested schema](#nestedatt--spec--configuration_info))
 - `encryption_info` (Attributes) Includes all encryption-related information. (see [below for nested schema](#nestedatt--spec--encryption_info))
@@ -123,6 +125,22 @@ Optional:
 - `volume_throughput` (Number)
 
 
+
+
+
+<a id="nestedatt--spec--associated_scram_secret_refs"></a>
+### Nested Schema for `spec.associated_scram_secret_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--associated_scram_secret_refs--from))
+
+<a id="nestedatt--spec--associated_scram_secret_refs--from"></a>
+### Nested Schema for `spec.associated_scram_secret_refs.from`
+
+Optional:
+
+- `name` (String)
 
 
 

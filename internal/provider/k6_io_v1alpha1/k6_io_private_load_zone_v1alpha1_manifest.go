@@ -43,6 +43,10 @@ type K6IoPrivateLoadZoneV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Image            *string `tfsdk:"image" json:"image,omitempty"`
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Resources    *struct {
 			Claims *[]struct {
@@ -133,6 +137,33 @@ func (r *K6IoPrivateLoadZoneV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
+					"image": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"image_pull_secrets": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"node_selector": schema.MapAttribute{
 						Description:         "",
 						MarkdownDescription: "",

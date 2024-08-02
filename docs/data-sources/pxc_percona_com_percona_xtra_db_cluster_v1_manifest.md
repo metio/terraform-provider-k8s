@@ -75,6 +75,7 @@ Optional:
 - `ssl_internal_secret_name` (String)
 - `ssl_secret_name` (String)
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--tls))
+- `unsafe_flags` (Attributes) (see [below for nested schema](#nestedatt--spec--unsafe_flags))
 - `update_strategy` (String)
 - `upgrade_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade_options))
 - `vault_secret_name` (String)
@@ -1544,6 +1545,7 @@ Optional:
 - `labels` (Map of String)
 - `load_balancer_ip` (String)
 - `load_balancer_source_ranges` (List of String)
+- `only_readers` (Boolean)
 - `traffic_policy` (String)
 - `type` (String)
 
@@ -9264,6 +9266,7 @@ Optional:
 
 Optional:
 
+- `enabled` (Boolean)
 - `issuer_conf` (Attributes) (see [below for nested schema](#nestedatt--spec--tls--issuer_conf))
 - `sa_ns` (List of String)
 
@@ -9279,6 +9282,17 @@ Optional:
 - `group` (String)
 - `kind` (String)
 
+
+
+<a id="nestedatt--spec--unsafe_flags"></a>
+### Nested Schema for `spec.unsafe_flags`
+
+Optional:
+
+- `backup_if_unhealthy` (Boolean)
+- `proxy_size` (Boolean)
+- `pxc_size` (Boolean)
+- `tls` (Boolean)
 
 
 <a id="nestedatt--spec--upgrade_options"></a>

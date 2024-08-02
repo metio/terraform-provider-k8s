@@ -213,8 +213,12 @@ Optional:
 
 Required:
 
-- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains the GCP account access credentials. (see [below for nested schema](#nestedatt--spec--platform--gcp--credentials_secret_ref))
 - `region` (String) Region specifies the GCP region where the cluster will be created.
+
+Optional:
+
+- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains the GCP account access credentials. (see [below for nested schema](#nestedatt--spec--platform--gcp--credentials_secret_ref))
+- `private_service_connect` (Attributes) PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect))
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
 ### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
@@ -222,6 +226,34 @@ Required:
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect`
+
+Required:
+
+- `enabled` (Boolean) Enabled specifies if Private Service Connect is to be enabled on the cluster.
+
+Optional:
+
+- `service_attachment` (Attributes) ServiceAttachment configures the service attachment to be used by the cluster. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect--service_attachment))
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect--service_attachment"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect.service_attachment`
+
+Optional:
+
+- `subnet` (Attributes) Subnet configures the subnetwork that contains the service attachment. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet))
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect.service_attachment.subnet`
+
+Optional:
+
+- `cidr` (String) Cidr configures the network cidr of the subnetwork that contains the service attachment.
+
+
 
 
 

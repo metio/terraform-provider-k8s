@@ -342,8 +342,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"to": schema.ListNestedAttribute{
-									Description:         "To is the list of destinations whose traffic this rule applies to.If any AdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
-									MarkdownDescription: "To is the list of destinations whose traffic this rule applies to.If any AdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
+									Description:         "To is the list of destinations whose traffic this rule applies to.If any BaselineAdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
+									MarkdownDescription: "To is the list of destinations whose traffic this rule applies to.If any BaselineAdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"namespaces": schema.SingleNestedAttribute{

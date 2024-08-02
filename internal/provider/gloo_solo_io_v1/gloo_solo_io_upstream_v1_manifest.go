@@ -44,6 +44,48 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Ai *struct {
+			Anthropic *struct {
+				AuthToken *struct {
+					Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
+					SecretRef *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				} `tfsdk:"auth_token" json:"authToken,omitempty"`
+				CustomHost *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"custom_host" json:"customHost,omitempty"`
+				Version *string `tfsdk:"version" json:"version,omitempty"`
+			} `tfsdk:"anthropic" json:"anthropic,omitempty"`
+			Mistral *struct {
+				AuthToken *struct {
+					Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
+					SecretRef *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				} `tfsdk:"auth_token" json:"authToken,omitempty"`
+				CustomHost *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"custom_host" json:"customHost,omitempty"`
+			} `tfsdk:"mistral" json:"mistral,omitempty"`
+			Openai *struct {
+				AuthToken *struct {
+					Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
+					SecretRef *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				} `tfsdk:"auth_token" json:"authToken,omitempty"`
+				CustomHost *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"custom_host" json:"customHost,omitempty"`
+			} `tfsdk:"openai" json:"openai,omitempty"`
+		} `tfsdk:"ai" json:"ai,omitempty"`
 		Aws *struct {
 			AwsAccountId         *string `tfsdk:"aws_account_id" json:"awsAccountId,omitempty"`
 			DestinationOverrides *struct {
@@ -210,8 +252,16 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 						HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 						IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 						MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-						ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-						Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						MergeJsonKeys         *struct {
+							JsonKeys *struct {
+								OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+								Tmpl          *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+							} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 					} `tfsdk:"transformations" json:"transformations,omitempty"`
 				} `tfsdk:"rest" json:"rest,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
@@ -495,8 +545,16 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 						HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 						IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 						MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-						ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-						Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						MergeJsonKeys         *struct {
+							JsonKeys *struct {
+								OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+								Tmpl          *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+							} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 					} `tfsdk:"transformations" json:"transformations,omitempty"`
 				} `tfsdk:"rest" json:"rest,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
@@ -640,8 +698,16 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 						HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 						IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 						MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-						ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-						Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						MergeJsonKeys         *struct {
+							JsonKeys *struct {
+								OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+								Tmpl          *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+							} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 					} `tfsdk:"transformations" json:"transformations,omitempty"`
 				} `tfsdk:"rest" json:"rest,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
@@ -776,8 +842,16 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 						HeadersToRemove       *[]string          `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
 						IgnoreErrorOnParse    *bool              `tfsdk:"ignore_error_on_parse" json:"ignoreErrorOnParse,omitempty"`
 						MergeExtractorsToBody *map[string]string `tfsdk:"merge_extractors_to_body" json:"mergeExtractorsToBody,omitempty"`
-						ParseBodyBehavior     *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
-						Passthrough           *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						MergeJsonKeys         *struct {
+							JsonKeys *struct {
+								OverrideEmpty *bool `tfsdk:"override_empty" json:"overrideEmpty,omitempty"`
+								Tmpl          *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"tmpl" json:"tmpl,omitempty"`
+							} `tfsdk:"json_keys" json:"jsonKeys,omitempty"`
+						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
+						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
+						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
 					} `tfsdk:"transformations" json:"transformations,omitempty"`
 				} `tfsdk:"rest" json:"rest,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
@@ -864,6 +938,263 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
+					"ai": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"anthropic": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"auth_token": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"inline": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"secret_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"custom_host": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mistral": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"auth_token": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"inline": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"secret_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"custom_host": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"openai": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"auth_token": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"inline": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"secret_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"custom_host": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"aws": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -2010,6 +2341,49 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"merge_json_keys": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"json_keys": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"override_empty": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"tmpl": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"text": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"parse_body_behavior": schema.StringAttribute{
@@ -3957,6 +4331,49 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														Computed:            false,
 													},
 
+													"merge_json_keys": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"json_keys": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"override_empty": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"tmpl": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"text": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"parse_body_behavior": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -4980,6 +5397,49 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														Computed:            false,
 													},
 
+													"merge_json_keys": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"json_keys": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"override_empty": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"tmpl": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"text": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"parse_body_behavior": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -5894,6 +6354,49 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"merge_json_keys": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"json_keys": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"override_empty": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"tmpl": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"text": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"parse_body_behavior": schema.StringAttribute{

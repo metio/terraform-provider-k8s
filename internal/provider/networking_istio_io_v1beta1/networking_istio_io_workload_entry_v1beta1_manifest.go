@@ -137,6 +137,9 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(256),
+						},
 					},
 
 					"labels": schema.MapAttribute{
@@ -154,6 +157,9 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(2048),
+						},
 					},
 
 					"network": schema.StringAttribute{
@@ -162,6 +168,9 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(2048),
+						},
 					},
 
 					"ports": schema.MapAttribute{
@@ -179,6 +188,9 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+						},
 					},
 
 					"weight": schema.Int64Attribute{
@@ -193,8 +205,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Manifest) Schema(_ context.Context
 						},
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

@@ -65,7 +65,6 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		NodeID                      *string   `tfsdk:"node_id" json:"nodeID,omitempty"`
 		NodeSelector                *[]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		NumberOfReplicas            *int64    `tfsdk:"number_of_replicas" json:"numberOfReplicas,omitempty"`
-		OfflineReplicaRebuilding    *string   `tfsdk:"offline_replica_rebuilding" json:"offlineReplicaRebuilding,omitempty"`
 		ReplicaAutoBalance          *string   `tfsdk:"replica_auto_balance" json:"replicaAutoBalance,omitempty"`
 		ReplicaDiskSoftAntiAffinity *string   `tfsdk:"replica_disk_soft_anti_affinity" json:"replicaDiskSoftAntiAffinity,omitempty"`
 		ReplicaSoftAntiAffinity     *string   `tfsdk:"replica_soft_anti_affinity" json:"replicaSoftAntiAffinity,omitempty"`
@@ -178,8 +177,8 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'dataEngine'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
+						Description:         "Deprecated:Replaced by field 'dataEngine'.'",
+						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -352,17 +351,6 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"offline_replica_rebuilding": schema.StringAttribute{
-						Description:         "OfflineReplicaRebuilding is used to determine if the offline replica rebuilding feature is enabled or not",
-						MarkdownDescription: "OfflineReplicaRebuilding is used to determine if the offline replica rebuilding feature is enabled or not",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("ignored", "disabled", "enabled"),
-						},
 					},
 
 					"replica_auto_balance": schema.StringAttribute{

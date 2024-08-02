@@ -102,10 +102,11 @@ type CertManagerIoCertificateV1ManifestData struct {
 			RotationPolicy *string `tfsdk:"rotation_policy" json:"rotationPolicy,omitempty"`
 			Size           *int64  `tfsdk:"size" json:"size,omitempty"`
 		} `tfsdk:"private_key" json:"privateKey,omitempty"`
-		RenewBefore          *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
-		RevisionHistoryLimit *int64  `tfsdk:"revision_history_limit" json:"revisionHistoryLimit,omitempty"`
-		SecretName           *string `tfsdk:"secret_name" json:"secretName,omitempty"`
-		SecretTemplate       *struct {
+		RenewBefore           *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
+		RenewBeforePercentage *int64  `tfsdk:"renew_before_percentage" json:"renewBeforePercentage,omitempty"`
+		RevisionHistoryLimit  *int64  `tfsdk:"revision_history_limit" json:"revisionHistoryLimit,omitempty"`
+		SecretName            *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+		SecretTemplate        *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"secret_template" json:"secretTemplate,omitempty"`
@@ -620,8 +621,16 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"renew_before": schema.StringAttribute{
-						Description:         "How long before the currently issued certificate's expiry cert-manager shouldrenew the certificate. For example, if a certificate is valid for 60 minutes,and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate50 minutes after it was issued (i.e. when there are 10 minutes remaining untilthe certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.If unset, this defaults to 1/3 of the issued certificate's lifetime.Minimum accepted value is 5 minutes.Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
-						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager shouldrenew the certificate. For example, if a certificate is valid for 60 minutes,and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate50 minutes after it was issued (i.e. when there are 10 minutes remaining untilthe certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.If unset, this defaults to 1/3 of the issued certificate's lifetime.Minimum accepted value is 5 minutes.Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
+						Description:         "How long before the currently issued certificate's expiry cert-manager shouldrenew the certificate. For example, if a certificate is valid for 60 minutes,and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate50 minutes after it was issued (i.e. when there are 10 minutes remaining untilthe certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.If unset, this defaults to 1/3 of the issued certificate's lifetime.Minimum accepted value is 5 minutes.Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.Cannot be set if the 'renewBeforePercentage' field is set.",
+						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager shouldrenew the certificate. For example, if a certificate is valid for 60 minutes,and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate50 minutes after it was issued (i.e. when there are 10 minutes remaining untilthe certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.If unset, this defaults to 1/3 of the issued certificate's lifetime.Minimum accepted value is 5 minutes.Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.Cannot be set if the 'renewBeforePercentage' field is set.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"renew_before_percentage": schema.Int64Attribute{
+						Description:         "'renewBeforePercentage' is like 'renewBefore', except it is a relative percentagerather than an absolute duration. For example, if a certificate is valid for 60minutes, and  'renewBeforePercentage=25', cert-manager will begin to attempt torenew the certificate 45 minutes after it was issued (i.e. when there are 15minutes (25%) remaining until the certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.Value must be an integer in the range (0,100). The minimum effective'renewBefore' derived from the 'renewBeforePercentage' and 'duration' fields is 5minutes.Cannot be set if the 'renewBefore' field is set.",
+						MarkdownDescription: "'renewBeforePercentage' is like 'renewBefore', except it is a relative percentagerather than an absolute duration. For example, if a certificate is valid for 60minutes, and  'renewBeforePercentage=25', cert-manager will begin to attempt torenew the certificate 45 minutes after it was issued (i.e. when there are 15minutes (25%) remaining until the certificate is no longer valid).NOTE: The actual lifetime of the issued certificate is used to determine therenewal time. If an issuer returns a certificate with a different lifetime thanthe one requested, cert-manager will use the lifetime of the issued certificate.Value must be an integer in the range (0,100). The minimum effective'renewBefore' derived from the 'renewBeforePercentage' and 'duration' fields is 5minutes.Cannot be set if the 'renewBefore' field is set.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

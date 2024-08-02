@@ -61,13 +61,16 @@ Required:
 Optional:
 
 - `credential` (Attributes) Credential used to connect to DB engine (see [below for nested schema](#nestedatt--spec--credential))
+- `default_template_ordinals` (Attributes) Specifies the desired Ordinals of the default template.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under the default template.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under the default template would be$(cluster.name)-$(component.name)-0、$(cluster.name)-$(component.name)-1 and $(cluster.name)-$(component.name)-7 (see [below for nested schema](#nestedatt--spec--default_template_ordinals))
 - `instances` (Attributes List) Overrides values in default Template.Instance is the fundamental unit managed by KubeBlocks.It represents a Pod with additional objects such as PVCs, Services, ConfigMaps, etc.An InstanceSet manages instances with a total count of Replicas,and by default, all these instances are generated from the same template.The InstanceTemplate provides a way to override values in the default template,allowing the InstanceSet to manage instances from different templates.The naming convention for instances (pods) based on the InstanceSet Name, InstanceTemplate Name, and ordinal.The constructed instance name follows the pattern: $(instance_set.name)-$(template.name)-$(ordinal).By default, the ordinal starts from 0 for each InstanceTemplate.It is important to ensure that the Name of each InstanceTemplate is unique.The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the InstanceSet.Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--instances))
 - `member_update_strategy` (String) Members(Pods) update strategy.- serial: update Members one by one that guarantee minimum component unavailable time.- bestEffortParallel: update Members in parallel that guarantee minimum component un-writable time.- parallel: force parallel
 - `membership_reconfiguration` (Attributes) Provides actions to do membership dynamic reconfiguration. (see [below for nested schema](#nestedatt--spec--membership_reconfiguration))
 - `min_ready_seconds` (Number) Defines the minimum number of seconds a newly created pod should be readywithout any of its container crashing to be considered available.Defaults to 0, meaning the pod will be considered available as soon as it is ready.
 - `offline_instances` (List of String) Specifies the names of instances to be transitioned to offline status.Marking an instance as offline results in the following:1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential   future reuse or data recovery, but it is no longer actively used.2. The ordinal number assigned to this instance is preserved, ensuring it remains unique   and avoiding conflicts with new instances.Setting instances to offline allows for a controlled scale-in process, preserving their data and maintainingordinal consistency within the cluster.Note that offline instances and their associated resources, such as PVCs, are not automatically deleted.The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.
+- `parallel_pod_management_concurrency` (String) Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.
 - `paused` (Boolean) Indicates that the InstanceSet is paused, meaning the reconciliation of this InstanceSet object will be paused.
 - `pod_management_policy` (String) Controls how pods are created during initial scale up,when replacing pods on nodes, or when scaling down.The default policy is 'OrderedReady', where pods are created in increasing order and the controller waits until each pod is ready beforecontinuing. When scaling down, the pods are removed in the opposite order.The alternative policy is 'Parallel' which will create pods in parallelto match the desired scale without waiting, and on scale down will deleteall pods at once.Note: This field will be removed in future version.
+- `pod_update_policy` (String) PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'
 - `replicas` (Number) Specifies the desired number of replicas of the given Template.These replicas are instantiations of the same Template, with each having a consistent identity.Defaults to 1 if unspecified.
 - `role_probe` (Attributes) Provides method to probe role. (see [below for nested schema](#nestedatt--spec--role_probe))
 - `roles` (Attributes List) A list of roles defined in the system. (see [below for nested schema](#nestedatt--spec--roles))
@@ -3465,6 +3468,24 @@ Optional:
 
 
 
+<a id="nestedatt--spec--default_template_ordinals"></a>
+### Nested Schema for `spec.default_template_ordinals`
+
+Optional:
+
+- `discrete` (List of String)
+- `ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--default_template_ordinals--ranges))
+
+<a id="nestedatt--spec--default_template_ordinals--ranges"></a>
+### Nested Schema for `spec.default_template_ordinals.ranges`
+
+Required:
+
+- `end` (Number)
+- `start` (Number)
+
+
+
 <a id="nestedatt--spec--instances"></a>
 ### Nested Schema for `spec.instances`
 
@@ -3478,6 +3499,7 @@ Optional:
 - `env` (Attributes List) Defines Env to override.Add new or override existing envs. (see [below for nested schema](#nestedatt--spec--instances--env))
 - `image` (String) Specifies an override for the first container's image in the pod.
 - `labels` (Map of String) Specifies a map of key-value pairs that will be merged into the Pod's existing labels.Values for existing keys will be overwritten, and new keys will be added.
+- `ordinals` (Attributes) Specifies the desired Ordinals of this InstanceTemplate.The Ordinals used to specify the ordinal of the instance (pod) names to be generated under this InstanceTemplate.For example, if Ordinals is {ranges: [{start: 0, end: 1}], discrete: [7]},then the instance names generated under this InstanceTemplate would be$(cluster.name)-$(component.name)-$(template.name)-0、$(cluster.name)-$(component.name)-$(template.name)-1 and$(cluster.name)-$(component.name)-$(template.name)-7 (see [below for nested schema](#nestedatt--spec--instances--ordinals))
 - `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate.This field allows setting how many replicated instances of the component,with the specific overrides in the InstanceTemplate, are created.The default value is 1. A value of 0 disables instance creation.
 - `resources` (Attributes) Specifies an override for the resource requirements of the first container in the Pod.This field allows for customizing resource allocation (CPU, memory, etc.) for the container. (see [below for nested schema](#nestedatt--spec--instances--resources))
 - `scheduling_policy` (Attributes) Specifies the scheduling policy for the Component. (see [below for nested schema](#nestedatt--spec--instances--scheduling_policy))
@@ -3557,6 +3579,24 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
+
+
+
+<a id="nestedatt--spec--instances--ordinals"></a>
+### Nested Schema for `spec.instances.ordinals`
+
+Optional:
+
+- `discrete` (List of String)
+- `ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--instances--ordinals--ranges))
+
+<a id="nestedatt--spec--instances--ordinals--ranges"></a>
+### Nested Schema for `spec.instances.ordinals.ranges`
+
+Required:
+
+- `end` (Number)
+- `start` (Number)
 
 
 

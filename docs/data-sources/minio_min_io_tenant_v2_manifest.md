@@ -67,8 +67,8 @@ Optional:
 - `additional_volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes))
 - `buckets` (Attributes List) (see [below for nested schema](#nestedatt--spec--buckets))
 - `cert_config` (Attributes) (see [below for nested schema](#nestedatt--spec--cert_config))
+- `cert_expiry_alert_threshold` (Number)
 - `configuration` (Attributes) (see [below for nested schema](#nestedatt--spec--configuration))
-- `creds_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--creds_secret))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--env))
 - `expose_services` (Attributes) (see [below for nested schema](#nestedatt--spec--expose_services))
 - `external_ca_cert_secret` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_ca_cert_secret))
@@ -114,7 +114,6 @@ Optional:
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--container_security_context))
 - `labels` (Map of String)
 - `node_selector` (Map of String)
-- `reclaim_storage` (Boolean)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--resources))
 - `runtime_class_name` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--security_context))
@@ -1707,14 +1706,6 @@ Optional:
 
 <a id="nestedatt--spec--configuration"></a>
 ### Nested Schema for `spec.configuration`
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--creds_secret"></a>
-### Nested Schema for `spec.creds_secret`
 
 Optional:
 

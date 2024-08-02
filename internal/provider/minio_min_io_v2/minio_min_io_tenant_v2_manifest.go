@@ -374,12 +374,10 @@ type MinioMinIoTenantV2ManifestData struct {
 			DnsNames         *[]string `tfsdk:"dns_names" json:"dnsNames,omitempty"`
 			OrganizationName *[]string `tfsdk:"organization_name" json:"organizationName,omitempty"`
 		} `tfsdk:"cert_config" json:"certConfig,omitempty"`
-		Configuration *struct {
+		CertExpiryAlertThreshold *int64 `tfsdk:"cert_expiry_alert_threshold" json:"certExpiryAlertThreshold,omitempty"`
+		Configuration            *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"configuration" json:"configuration,omitempty"`
-		CredsSecret *struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
-		} `tfsdk:"creds_secret" json:"credsSecret,omitempty"`
 		Env *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -1208,11 +1206,10 @@ type MinioMinIoTenantV2ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-			Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Name           *string            `tfsdk:"name" json:"name,omitempty"`
-			NodeSelector   *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			ReclaimStorage *bool              `tfsdk:"reclaim_storage" json:"reclaimStorage,omitempty"`
-			Resources      *struct {
+			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Name         *string            `tfsdk:"name" json:"name,omitempty"`
+			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			Resources    *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
@@ -4333,24 +4330,15 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 						Computed: false,
 					},
 
-					"configuration": schema.SingleNestedAttribute{
+					"cert_expiry_alert_threshold": schema.Int64Attribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
-					"creds_secret": schema.SingleNestedAttribute{
+					"configuration": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
@@ -9906,14 +9894,6 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 									Description:         "",
 									MarkdownDescription: "",
 									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"reclaim_storage": schema.BoolAttribute{
-									Description:         "",
-									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

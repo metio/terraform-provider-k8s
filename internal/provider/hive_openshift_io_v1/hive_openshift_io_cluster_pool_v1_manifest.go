@@ -62,6 +62,31 @@ type HiveOpenshiftIoClusterPoolV1ManifestData struct {
 		InstallConfigSecretTemplateRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"install_config_secret_template_ref" json:"installConfigSecretTemplateRef,omitempty"`
+		InstallerEnv *[]struct {
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Value     *string `tfsdk:"value" json:"value,omitempty"`
+			ValueFrom *struct {
+				ConfigMapKeyRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+				FieldRef *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+				} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+				ResourceFieldRef *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+					Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+				} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+				SecretKeyRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+		} `tfsdk:"installer_env" json:"installerEnv,omitempty"`
 		Inventory *[]struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -112,6 +137,14 @@ type HiveOpenshiftIoClusterPoolV1ManifestData struct {
 				CredentialsSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
+				PrivateServiceConnect *struct {
+					Enabled           *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					ServiceAttachment *struct {
+						Subnet *struct {
+							Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						} `tfsdk:"subnet" json:"subnet,omitempty"`
+					} `tfsdk:"service_attachment" json:"serviceAttachment,omitempty"`
+				} `tfsdk:"private_service_connect" json:"privateServiceConnect,omitempty"`
 				Region *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
 			Ibmcloud *struct {
@@ -359,6 +392,166 @@ func (r *HiveOpenshiftIoClusterPoolV1Manifest) Schema(_ context.Context, _ datas
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"installer_env": schema.ListNestedAttribute{
+						Description:         "InstallerEnv are extra environment variables to pass through to the installer. This may be used to enable additional features of the installer.",
+						MarkdownDescription: "InstallerEnv are extra environment variables to pass through to the installer. This may be used to enable additional features of the installer.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+									MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+									MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"value_from": schema.SingleNestedAttribute{
+									Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+									MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+									Attributes: map[string]schema.Attribute{
+										"config_map_key_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a ConfigMap.",
+											MarkdownDescription: "Selects a key of a ConfigMap.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key to select.",
+													MarkdownDescription: "The key to select.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap or its key must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"field_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+											MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+											Attributes: map[string]schema.Attribute{
+												"api_version": schema.StringAttribute{
+													Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+													MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"field_path": schema.StringAttribute{
+													Description:         "Path of the field to select in the specified API version.",
+													MarkdownDescription: "Path of the field to select in the specified API version.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"resource_field_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+											MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+											Attributes: map[string]schema.Attribute{
+												"container_name": schema.StringAttribute{
+													Description:         "Container name: required for volumes, optional for env vars",
+													MarkdownDescription: "Container name: required for volumes, optional for env vars",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"divisor": schema.StringAttribute{
+													Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+													MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"resource": schema.StringAttribute{
+													Description:         "Required: resource to select",
+													MarkdownDescription: "Required: resource to select",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"secret_key_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a secret in the pod's namespace",
+											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
 							},
 						},
 						Required: false,
@@ -677,8 +870,51 @@ func (r *HiveOpenshiftIoClusterPoolV1Manifest) Schema(_ context.Context, _ datas
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"private_service_connect": schema.SingleNestedAttribute{
+										Description:         "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
+										MarkdownDescription: "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled specifies if Private Service Connect is to be enabled on the cluster.",
+												MarkdownDescription: "Enabled specifies if Private Service Connect is to be enabled on the cluster.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service_attachment": schema.SingleNestedAttribute{
+												Description:         "ServiceAttachment configures the service attachment to be used by the cluster.",
+												MarkdownDescription: "ServiceAttachment configures the service attachment to be used by the cluster.",
+												Attributes: map[string]schema.Attribute{
+													"subnet": schema.SingleNestedAttribute{
+														Description:         "Subnet configures the subnetwork that contains the service attachment.",
+														MarkdownDescription: "Subnet configures the subnetwork that contains the service attachment.",
+														Attributes: map[string]schema.Attribute{
+															"cidr": schema.StringAttribute{
+																Description:         "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
+																MarkdownDescription: "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 

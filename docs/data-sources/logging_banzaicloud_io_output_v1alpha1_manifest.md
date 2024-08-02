@@ -3223,6 +3223,7 @@ Optional:
 - `ssl_verify_hostname` (Boolean)
 - `topic_key` (String)
 - `use_default_for_unknown_topic` (Boolean)
+- `use_rdkafka` (Boolean)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--username))
 
 <a id="nestedatt--spec--kafka--format"></a>

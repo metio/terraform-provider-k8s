@@ -55,8 +55,27 @@ Optional:
 
 Required:
 
-- `ingress` (Attributes) Gslb-enabled Ingress Spec (see [below for nested schema](#nestedatt--spec--ingress))
 - `strategy` (Attributes) Gslb Strategy spec (see [below for nested schema](#nestedatt--spec--strategy))
+
+Optional:
+
+- `ingress` (Attributes) Gslb-enabled Ingress Spec (see [below for nested schema](#nestedatt--spec--ingress))
+- `resource_ref` (Attributes) ResourceRef spec (see [below for nested schema](#nestedatt--spec--resource_ref))
+
+<a id="nestedatt--spec--strategy"></a>
+### Nested Schema for `spec.strategy`
+
+Required:
+
+- `type` (String) Load balancing strategy type:(roundRobin|failover)
+
+Optional:
+
+- `dns_ttl_seconds` (Number) Defines DNS record TTL in seconds
+- `primary_geo_tag` (String) Primary Geo Tag. Valid for failover strategy only
+- `split_brain_threshold_seconds` (Number) Split brain TXT record expiration in seconds
+- `weight` (Map of String) Weight is defined by map region:weight
+
 
 <a id="nestedatt--spec--ingress"></a>
 ### Nested Schema for `spec.ingress`
@@ -73,8 +92,8 @@ Optional:
 
 Optional:
 
-- `resource` (Attributes) Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--backend--resource))
-- `service` (Attributes) Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--backend--service))
+- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--backend--resource))
+- `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--backend--service))
 
 <a id="nestedatt--spec--ingress--backend--resource"></a>
 ### Nested Schema for `spec.ingress.backend.resource`
@@ -94,19 +113,19 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the referenced service. The service must exist inthe same namespace as the Ingress object.
+- `name` (String) name is the referenced service. The service must exist inthe same namespace as the Ingress object.
 
 Optional:
 
-- `port` (Attributes) Port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--backend--service--port))
+- `port` (Attributes) port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--backend--service--port))
 
 <a id="nestedatt--spec--ingress--backend--service--port"></a>
 ### Nested Schema for `spec.ingress.backend.service.port`
 
 Optional:
 
-- `name` (String) Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.
-- `number` (Number) Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.
+- `name` (String) name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.
+- `number` (Number) number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.
 
 
 
@@ -127,27 +146,27 @@ Optional:
 
 Required:
 
-- `paths` (Attributes List) A collection of paths that map requests to backends. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths))
+- `paths` (Attributes List) paths is a collection of paths that map requests to backends. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths))
 
 <a id="nestedatt--spec--ingress--rules--http--paths"></a>
 ### Nested Schema for `spec.ingress.rules.http.paths`
 
 Required:
 
-- `backend` (Attributes) Backend defines the referenced service endpoint to which the trafficwill be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend))
-- `path_type` (String) PathType determines the interpretation of the Path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.
+- `backend` (Attributes) backend defines the referenced service endpoint to which the trafficwill be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend))
+- `path_type` (String) pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.
 
 Optional:
 
-- `path` (String) Path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.
+- `path` (String) path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--ingress--rules--http--paths--backend"></a>
 ### Nested Schema for `spec.ingress.rules.http.paths.backend`
 
 Optional:
 
-- `resource` (Attributes) Resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--resource))
-- `service` (Attributes) Service references a Service as a Backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service))
+- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--resource))
+- `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service))
 
 <a id="nestedatt--spec--ingress--rules--http--paths--backend--resource"></a>
 ### Nested Schema for `spec.ingress.rules.http.paths.backend.resource`
@@ -167,19 +186,19 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the referenced service. The service must exist inthe same namespace as the Ingress object.
+- `name` (String) name is the referenced service. The service must exist inthe same namespace as the Ingress object.
 
 Optional:
 
-- `port` (Attributes) Port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service--port))
+- `port` (Attributes) port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--rules--http--paths--backend--service--port))
 
 <a id="nestedatt--spec--ingress--rules--http--paths--backend--service--port"></a>
 ### Nested Schema for `spec.ingress.rules.http.paths.backend.service.port`
 
 Optional:
 
-- `name` (String) Name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.
-- `number` (Number) Number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.
+- `name` (String) name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.
+- `number` (Number) number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.
 
 
 
@@ -192,21 +211,34 @@ Optional:
 
 Optional:
 
-- `hosts` (List of String) Hosts are a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.
-- `secret_name` (String) SecretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the Host header is used for routing.
+- `hosts` (List of String) hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.
+- `secret_name` (String) secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.
 
 
 
-<a id="nestedatt--spec--strategy"></a>
-### Nested Schema for `spec.strategy`
-
-Required:
-
-- `type` (String) Load balancing strategy type:(roundRobin|failover)
+<a id="nestedatt--spec--resource_ref"></a>
+### Nested Schema for `spec.resource_ref`
 
 Optional:
 
-- `dns_ttl_seconds` (Number) Defines DNS record TTL in seconds
-- `primary_geo_tag` (String) Primary Geo Tag. Valid for failover strategy only
-- `split_brain_threshold_seconds` (Number) Split brain TXT record expiration in seconds
-- `weight` (Map of String) Weight is defined by map region:weight
+- `ingress` (Attributes) Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource (see [below for nested schema](#nestedatt--spec--resource_ref--ingress))
+
+<a id="nestedatt--spec--resource_ref--ingress"></a>
+### Nested Schema for `spec.resource_ref.ingress`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resource_ref--ingress--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--resource_ref--ingress--match_expressions"></a>
+### Nested Schema for `spec.resource_ref.ingress.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

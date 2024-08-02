@@ -57,6 +57,7 @@ Optional:
 
 - `active_active` (Attributes) Specification for ActiveActive setup. At most one of ingressOrRouteSpec or activeActive fields can be set at the same time. (see [below for nested schema](#nestedatt--spec--active_active))
 - `anti_affinity_additional_topology_keys` (List of String) Additional antiAffinity terms in order to support installation on different zones/vcenters
+- `backup` (Attributes) Cluster-wide backup configurations (see [below for nested schema](#nestedatt--spec--backup))
 - `bootstrapper_image_spec` (Attributes) Specification for Bootstrapper container image (see [below for nested schema](#nestedatt--spec--bootstrapper_image_spec))
 - `bootstrapper_resources` (Attributes) Compute resource requirements for bootstrapper containers (see [below for nested schema](#nestedatt--spec--bootstrapper_resources))
 - `certificates` (Attributes) RS Cluster Certificates. Used to modify the certificates used by the cluster. See the 'RSClusterCertificates' struct described above to see the supported certificates. (see [below for nested schema](#nestedatt--spec--certificates))
@@ -125,6 +126,23 @@ Required:
 Optional:
 
 - `ingress_annotations` (Map of String) Used for ingress controllers such as ha-proxy or nginx in GKE
+
+
+<a id="nestedatt--spec--backup"></a>
+### Nested Schema for `spec.backup`
+
+Optional:
+
+- `s3` (Attributes) Configurations for backups to s3 and s3-compatible storage (see [below for nested schema](#nestedatt--spec--backup--s3))
+
+<a id="nestedatt--spec--backup--s3"></a>
+### Nested Schema for `spec.backup.s3`
+
+Optional:
+
+- `ca_certificate_secret_name` (String) Secret name that holds the S3 CA certificate, which contains the TLS certificate mapped to the key in the secret 'cert'
+- `url` (String) Specifies the URL for S3 export and import
+
 
 
 <a id="nestedatt--spec--bootstrapper_image_spec"></a>

@@ -30,7 +30,7 @@ data "k8s_memorydb_services_k8s_aws_subnet_group_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SubnetGroupSpec defines the desired state of SubnetGroup.  Represents the output of one of the following operations:  * CreateSubnetGroup  * UpdateSubnetGroup  A subnet group is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SubnetGroupSpec defines the desired state of SubnetGroup.Represents the output of one of the following operations:   * CreateSubnetGroup   * UpdateSubnetGroupA subnet group is a collection of subnets (typically private) that you candesignate for your clusters running in an Amazon Virtual Private Cloud (VPC)environment. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -62,14 +62,14 @@ Optional:
 - `description` (String) A description for the subnet group.
 - `subnet_i_ds` (List of String) A list of VPC subnet IDs for the subnet group.
 - `subnet_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--subnet_refs))
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--subnet_refs"></a>
 ### Nested Schema for `spec.subnet_refs`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
 
 <a id="nestedatt--spec--subnet_refs--from"></a>
 ### Nested Schema for `spec.subnet_refs.from`

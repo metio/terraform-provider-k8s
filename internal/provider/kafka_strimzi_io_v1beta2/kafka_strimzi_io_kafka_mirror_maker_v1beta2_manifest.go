@@ -82,6 +82,7 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 				Scope                  *string `tfsdk:"scope" json:"scope,omitempty"`
 				TlsTrustedCertificates *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"tls_trusted_certificates" json:"tlsTrustedCertificates,omitempty"`
 				TokenEndpointUri *string `tfsdk:"token_endpoint_uri" json:"tokenEndpointUri,omitempty"`
@@ -96,6 +97,7 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 			Tls                  *struct {
 				TrustedCertificates *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"trusted_certificates" json:"trustedCertificates,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -178,6 +180,7 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 				Scope                  *string `tfsdk:"scope" json:"scope,omitempty"`
 				TlsTrustedCertificates *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"tls_trusted_certificates" json:"tlsTrustedCertificates,omitempty"`
 				TokenEndpointUri *string `tfsdk:"token_endpoint_uri" json:"tokenEndpointUri,omitempty"`
@@ -189,6 +192,7 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 			Tls              *struct {
 				TrustedCertificates *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"trusted_certificates" json:"trustedCertificates,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -223,7 +227,11 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -398,6 +406,10 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 				PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 				SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 				SecurityContext   *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -794,10 +806,18 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"certificate": schema.StringAttribute{
-													Description:         "The name of the file certificate in the Secret.",
-													MarkdownDescription: "The name of the file certificate in the Secret.",
-													Required:            true,
-													Optional:            false,
+													Description:         "The name of the file certificate in the secret.",
+													MarkdownDescription: "The name of the file certificate in the secret.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pattern": schema.StringAttribute{
+													Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -901,10 +921,18 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"certificate": schema.StringAttribute{
-													Description:         "The name of the file certificate in the Secret.",
-													MarkdownDescription: "The name of the file certificate in the Secret.",
-													Required:            true,
-													Optional:            false,
+													Description:         "The name of the file certificate in the secret.",
+													MarkdownDescription: "The name of the file certificate in the secret.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pattern": schema.StringAttribute{
+													Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -1471,10 +1499,18 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"certificate": schema.StringAttribute{
-													Description:         "The name of the file certificate in the Secret.",
-													MarkdownDescription: "The name of the file certificate in the Secret.",
-													Required:            true,
-													Optional:            false,
+													Description:         "The name of the file certificate in the secret.",
+													MarkdownDescription: "The name of the file certificate in the secret.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pattern": schema.StringAttribute{
+													Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -1551,10 +1587,18 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"certificate": schema.StringAttribute{
-													Description:         "The name of the file certificate in the Secret.",
-													MarkdownDescription: "The name of the file certificate in the Secret.",
-													Required:            true,
-													Optional:            false,
+													Description:         "The name of the file certificate in the secret.",
+													MarkdownDescription: "The name of the file certificate in the secret.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pattern": schema.StringAttribute{
+													Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -1795,6 +1839,31 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"capabilities": schema.SingleNestedAttribute{
@@ -2973,6 +3042,31 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 										Description:         "Configures pod-level security attributes and common container settings.",
 										MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",

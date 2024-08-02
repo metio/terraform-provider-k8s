@@ -185,6 +185,16 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Storage_sync                        *string `tfsdk:"storage_sync" json:"storage.sync,omitempty"`
 		} `tfsdk:"buffer_storage" json:"bufferStorage,omitempty"`
 		BufferStorageVolume *struct {
+			ConfigMap *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Items       *[]struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"items" json:"items,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			EmptyDir *struct {
 				Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 				SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
@@ -680,6 +690,16 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 		Parser               *string            `tfsdk:"parser" json:"parser,omitempty"`
 		PodPriorityClassName *string            `tfsdk:"pod_priority_class_name" json:"podPriorityClassName,omitempty"`
 		Positiondb           *struct {
+			ConfigMap *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Items       *[]struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"items" json:"items,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			EmptyDir *struct {
 				Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 				SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
@@ -861,6 +881,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 		} `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 		Syslogng_output *struct {
+			Retry_Limit      *string `tfsdk:"retry__limit" json:"Retry_Limit,omitempty"`
 			Workers          *int64  `tfsdk:"workers" json:"Workers,omitempty"`
 			Json_date_format *string `tfsdk:"json_date_format" json:"json_date_format,omitempty"`
 			Json_date_key    *string `tfsdk:"json_date_key" json:"json_date_key,omitempty"`
@@ -1910,6 +1931,74 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"config_map": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"default_mode": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"items": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"mode": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"empty_dir": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -5311,6 +5400,74 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"config_map": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"default_mode": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"items": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"mode": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"empty_dir": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -6520,6 +6677,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"retry__limit": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"workers": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",

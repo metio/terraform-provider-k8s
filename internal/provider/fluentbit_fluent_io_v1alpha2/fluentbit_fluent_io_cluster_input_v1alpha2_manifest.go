@@ -147,6 +147,8 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Port                   *int64  `tfsdk:"port" json:"port,omitempty"`
 			RawTraces              *bool   `tfsdk:"raw_traces" json:"rawTraces,omitempty"`
 			SuccessfulResponseCode *int64  `tfsdk:"successful_response_code" json:"successfulResponseCode,omitempty"`
+			Tag                    *string `tfsdk:"tag" json:"tag,omitempty"`
+			TagFromURI             *bool   `tfsdk:"tag_from_uri" json:"tagFromURI,omitempty"`
 			TagKey                 *string `tfsdk:"tag_key" json:"tagKey,omitempty"`
 		} `tfsdk:"open_telemetry" json:"openTelemetry,omitempty"`
 		Processors              *map[string]string `tfsdk:"processors" json:"processors,omitempty"`
@@ -225,6 +227,16 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Port       *int64  `tfsdk:"port" json:"port,omitempty"`
 			Separator  *string `tfsdk:"separator" json:"separator,omitempty"`
 		} `tfsdk:"tcp" json:"tcp,omitempty"`
+		Udp *struct {
+			BufferSize       *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
+			ChunkSize        *string `tfsdk:"chunk_size" json:"chunkSize,omitempty"`
+			Format           *string `tfsdk:"format" json:"format,omitempty"`
+			Listen           *string `tfsdk:"listen" json:"listen,omitempty"`
+			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
+			Separator        *string `tfsdk:"separator" json:"separator,omitempty"`
+			SourceAddressKey *string `tfsdk:"source_address_key" json:"sourceAddressKey,omitempty"`
+			Threaded         *string `tfsdk:"threaded" json:"threaded,omitempty"`
+		} `tfsdk:"udp" json:"udp,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -667,8 +679,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1052,6 +1064,22 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"successful_response_code": schema.Int64Attribute{
 								Description:         "It allows to set successful response code. 200, 201 and 204 are supported(default 201).",
 								MarkdownDescription: "It allows to set successful response code. 200, 201 and 204 are supported(default 201).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tag": schema.StringAttribute{
+								Description:         "opentelemetry uses the tag value for incoming metrics.",
+								MarkdownDescription: "opentelemetry uses the tag value for incoming metrics.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tag_from_uri": schema.BoolAttribute{
+								Description:         "If true, tag will be created from uri. e.g. v1_metrics from /v1/metrics",
+								MarkdownDescription: "If true, tag will be created from uri. e.g. v1_metrics from /v1/metrics",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1699,6 +1727,89 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"separator": schema.StringAttribute{
 								Description:         "When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).",
 								MarkdownDescription: "When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"udp": schema.SingleNestedAttribute{
+						Description:         "UDP defines the UDP input plugin configuration",
+						MarkdownDescription: "UDP defines the UDP input plugin configuration",
+						Attributes: map[string]schema.Attribute{
+							"buffer_size": schema.StringAttribute{
+								Description:         "BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.",
+								MarkdownDescription: "BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+								},
+							},
+
+							"chunk_size": schema.StringAttribute{
+								Description:         "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								MarkdownDescription: "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+								},
+							},
+
+							"format": schema.StringAttribute{
+								Description:         "Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).",
+								MarkdownDescription: "Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"listen": schema.StringAttribute{
+								Description:         "Listen Listener network interface, default: 0.0.0.0",
+								MarkdownDescription: "Listen Listener network interface, default: 0.0.0.0",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"port": schema.Int64Attribute{
+								Description:         "Port Specify the UDP port where listening for connections, default: 5170",
+								MarkdownDescription: "Port Specify the UDP port where listening for connections, default: 5170",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+									int64validator.AtMost(65535),
+								},
+							},
+
+							"separator": schema.StringAttribute{
+								Description:         "Separator When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).",
+								MarkdownDescription: "Separator When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"source_address_key": schema.StringAttribute{
+								Description:         "SourceAddressKey Specify the key where the source address will be injected.",
+								MarkdownDescription: "SourceAddressKey Specify the key where the source address will be injected.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"threaded": schema.StringAttribute{
+								Description:         "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
+								MarkdownDescription: "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

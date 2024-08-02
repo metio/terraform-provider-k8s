@@ -56,6 +56,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			LabelSelector *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 			Name          *string            `tfsdk:"name" json:"name,omitempty"`
 			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Scope         *string            `tfsdk:"scope" json:"scope,omitempty"`
 			Statuses      *[]string          `tfsdk:"statuses" json:"statuses,omitempty"`
 			TagSelector   *string            `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
 			Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
@@ -103,11 +104,13 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			LabelSelector *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 			Name          *string   `tfsdk:"name" json:"name,omitempty"`
 			Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+			Scope         *string   `tfsdk:"scope" json:"scope,omitempty"`
 			Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
 			TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
 			Types         *[]string `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"selectors" json:"selectors,omitempty"`
-		Summary *struct {
+		StatusExpr *string `tfsdk:"status_expr" json:"statusExpr,omitempty"`
+		Summary    *struct {
 			Checks    *map[string]string `tfsdk:"checks" json:"checks,omitempty"`
 			Healthy   *int64             `tfsdk:"healthy" json:"healthy,omitempty"`
 			Incidents *struct {
@@ -197,8 +200,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "ComponentSpec defines the specification for a component.",
+				MarkdownDescription: "ComponentSpec defines the specification for a component.",
 				Attributes: map[string]schema.Attribute{
 					"checks": schema.ListNestedAttribute{
 						Description:         "",
@@ -290,6 +293,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"namespace": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"scope": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,
@@ -652,6 +663,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"scope": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"statuses": schema.ListAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -684,9 +703,17 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						Computed: false,
 					},
 
+					"status_expr": schema.StringAttribute{
+						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config",
+						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"summary": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Summary is the health, incidents, insights & check summary",
+						MarkdownDescription: "Summary is the health, incidents, insights & check summary",
 						Attributes: map[string]schema.Attribute{
 							"checks": schema.MapAttribute{
 								Description:         "",

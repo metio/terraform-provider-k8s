@@ -1477,10 +1477,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--secret))
+
+<a id="nestedatt--spec--fluentbit--buffer_storage_volume--config_map"></a>
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--fluentbit--buffer_storage_volume--config_map--items"></a>
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--empty_dir"></a>
 ### Nested Schema for `spec.fluentbit.buffer_storage_volume.empty_dir`
@@ -2557,10 +2582,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--secret))
+
+<a id="nestedatt--spec--fluentbit--positiondb--config_map"></a>
+### Nested Schema for `spec.fluentbit.positiondb.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--fluentbit--positiondb--config_map--items"></a>
+### Nested Schema for `spec.fluentbit.positiondb.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--fluentbit--positiondb--empty_dir"></a>
 ### Nested Schema for `spec.fluentbit.positiondb.empty_dir`
@@ -3002,6 +3052,7 @@ Optional:
 
 - `json_date_format` (String)
 - `json_date_key` (String)
+- `retry__limit` (String)
 - `workers` (Number)
 
 
@@ -3494,10 +3545,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--secret))
+
+<a id="nestedatt--spec--fluentd--buffer_storage_volume--config_map"></a>
+### Nested Schema for `spec.fluentd.buffer_storage_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--fluentd--buffer_storage_volume--config_map--items"></a>
+### Nested Schema for `spec.fluentd.buffer_storage_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--empty_dir"></a>
 ### Nested Schema for `spec.fluentd.buffer_storage_volume.empty_dir`
@@ -4005,10 +4081,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--secret))
+
+<a id="nestedatt--spec--fluentd--extra_volumes--volume--config_map"></a>
+### Nested Schema for `spec.fluentd.extra_volumes.volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--fluentd--extra_volumes--volume--config_map--items"></a>
+### Nested Schema for `spec.fluentd.extra_volumes.volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume--empty_dir"></a>
 ### Nested Schema for `spec.fluentd.extra_volumes.volume.empty_dir`
@@ -4171,10 +4272,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--secret))
+
+<a id="nestedatt--spec--fluentd--fluentd_pvc_spec--config_map"></a>
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--fluentd--fluentd_pvc_spec--config_map--items"></a>
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--empty_dir"></a>
 ### Nested Schema for `spec.fluentd.fluentd_pvc_spec.empty_dir`
@@ -6803,10 +6929,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--secret))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--config_map"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.buffer_storage_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--config_map--items"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.buffer_storage_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume--empty_dir"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.buffer_storage_volume.empty_dir`
@@ -10697,10 +10848,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--secret))
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--config_map"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.positiondb.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--config_map--items"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.positiondb.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--positiondb--empty_dir"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.positiondb.empty_dir`

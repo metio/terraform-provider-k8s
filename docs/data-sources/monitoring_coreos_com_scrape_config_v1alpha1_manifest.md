@@ -92,6 +92,7 @@ Optional:
 - `puppet_dbsd_configs` (Attributes List) PuppetDBSDConfigs defines a list of PuppetDB service discovery configurations. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs))
 - `relabelings` (Attributes List) RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--relabelings))
 - `sample_limit` (Number) SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
+- `scaleway_sd_configs` (Attributes List) ScalewaySDConfigs defines a list of Scaleway instances and baremetal service discovery configurations. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs))
 - `scheme` (String) Configures the protocol scheme used for requests.If empty, Prometheus uses HTTP by default.
 - `scrape_class` (String) The scrape class to apply.
 - `scrape_interval` (String) ScrapeInterval is the interval between consecutive scrapes.
@@ -351,6 +352,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--consul_sd_configs--tls_config--ca"></a>
@@ -562,6 +565,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--digital_ocean_sd_configs--tls_config--ca"></a>
@@ -825,6 +830,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--docker_sd_configs--tls_config--ca"></a>
@@ -1074,6 +1081,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--docker_swarm_sd_configs--tls_config--ca"></a>
@@ -1360,6 +1369,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--eureka_sd_configs--tls_config--ca"></a>
@@ -1626,6 +1637,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--hetzner_sd_configs--tls_config--ca"></a>
@@ -1797,6 +1810,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--http_sd_configs--tls_config--ca"></a>
@@ -2067,6 +2082,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--kubernetes_sd_configs--tls_config--ca"></a>
@@ -2306,6 +2323,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--kuma_sd_configs--tls_config--ca"></a>
@@ -2571,6 +2590,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--light_sail_sd_configs--tls_config--ca"></a>
@@ -2771,6 +2792,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--linode_sd_configs--tls_config--ca"></a>
@@ -3026,6 +3049,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--nomad_sd_configs--tls_config--ca"></a>
@@ -3175,6 +3200,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--openstack_sd_configs--tls_config--ca"></a>
@@ -3457,6 +3484,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--puppet_dbsd_configs--tls_config--ca"></a>
@@ -3558,6 +3587,143 @@ Optional:
 - `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
 
 
+<a id="nestedatt--spec--scaleway_sd_configs"></a>
+### Nested Schema for `spec.scaleway_sd_configs`
+
+Required:
+
+- `access_key` (String) Access key to use. https://console.scaleway.com/project/credentials
+- `project_id` (String) Project ID of the targets.
+- `role` (String) Service of the targets to retrieve. Must be 'Instance' or 'Baremetal'.
+- `secret_key` (Attributes) Secret key to use when listing targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--secret_key))
+
+Optional:
+
+- `api_url` (String) API URL to use when doing the server listing requests.
+- `enable_http2` (Boolean) Whether to enable HTTP2.
+- `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
+- `name_filter` (String) NameFilter specify a name filter (works as a LIKE) to apply on the server listing request.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `port` (Number) The port to scrape metrics from.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `refresh_interval` (String) Refresh interval to re-read the list of instances.
+- `tags_filter` (List of String) TagsFilter specify a tag filter (a server needs to have all defined tags to be listed) to apply on the server listing request.
+- `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config))
+- `zone` (String) Zone is the availability zone of your targets (e.g. fr-par-1).
+
+<a id="nestedatt--spec--scaleway_sd_configs--secret_key"></a>
+### Nested Schema for `spec.scaleway_sd_configs.secret_key`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--ca"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--ca--secret))
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--cert"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config--cert--secret))
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--scaleway_sd_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.scaleway_sd_configs.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
 <a id="nestedatt--spec--static_configs"></a>
 ### Nested Schema for `spec.static_configs`
 
@@ -3576,6 +3742,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--tls_config--ca"></a>

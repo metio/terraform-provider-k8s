@@ -212,7 +212,7 @@ Optional:
 - `pod_annotations` (Map of String) Custom annotations to be created on the Kiali pod.
 - `pod_labels` (Map of String) Custom labels to be created on the Kiali pod.An example use for this setting is to inject an Istio sidecar such as,'''sidecar.istio.io/inject: 'true''''
 - `priority_class_name` (String) The priorityClassName used to assign the priority of the Kiali pod.
-- `replicas` (Number) The replica count for the Kiail deployment.
+- `replicas` (Number) The replica count for the Kiail deployment. If 'deployment.hpa' is specified, this setting is ignored.
 - `resources` (Map of String) Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container).If you set this to an empty dict ('{}') then no resources will be defined in the Deployment.If you do not set this at all, the default is,'''requests:  cpu: '10m'  memory: '64Mi'limits:  memory: '1Gi''''
 - `secret_name` (String) The name of a secret used by the Kiali. This secret is optionally used when configuring the OpenID authentication strategy. Consult the OpenID docs for more information at https://kiali.io/docs/configuration/authentication/openid/
 - `security_context` (Map of String) Custom security context to be placed on the server container. The entire security context on the container will be the value of this setting if the operator is configured to allow it. Note that, as a security measure, a cluster admin may have configured the Kiali operator to not allow portions of this override setting - in this case you can specify additional security context settings but you cannot replace existing, default ones.
@@ -433,8 +433,10 @@ Optional:
 
 - `component_status` (Attributes) Istio components whose status will be monitored by Kiali. (see [below for nested schema](#nestedatt--spec--external_services--istio--component_status))
 - `config_map_name` (String) The name of the istio control plane config map.
+- `egress_gateway_namespace` (String) The namespace where Istio EgressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.
 - `envoy_admin_local_port` (Number) The port which kiali will open to fetch envoy config data information.
 - `gateway_api_classes` (Attributes List) A list declaring all the Gateways used in Istio. If left empty or undefined, the default is a single list item whose name is 'Istio' and class_name is 'istio'. (see [below for nested schema](#nestedatt--spec--external_services--istio--gateway_api_classes))
+- `ingress_gateway_namespace` (String) The namespace where Istio IngressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.
 - `istio_api_enabled` (Boolean) Indicates if Kiali has access to istiod. true by default.
 - `istio_canary_revision` (Attributes) These values are used in Canary upgrade/downgrade functionality when 'istio_upgrade_action' is true. (see [below for nested schema](#nestedatt--spec--external_services--istio--istio_canary_revision))
 - `istio_identity_domain` (String) The annotation used by Istio to identify domains.
@@ -618,6 +620,8 @@ Optional:
 Optional:
 
 - `app_label_name` (String) The name of the label used to define what application a workload belongs to. This is typically something like 'app' or 'app.kubernetes.io/name'.
+- `egress_gateway_label` (String) The selector label for Egress Gateway workload. This is typically 'istio=egressgateway'.
+- `ingress_gateway_label` (String) The selector label for Ingress Gateway workload. This is typically 'istio=ingressgateway'.
 - `injection_label_name` (String) The name of the label used to instruct Istio to automatically inject sidecar proxies when applications are deployed.
 - `injection_label_rev` (String) The label used to identify the Istio revision.
 - `version_label_name` (String) The name of the label used to define what version of the application a workload belongs to. This is typically something like 'version' or 'app.kubernetes.io/version'.
@@ -804,7 +808,7 @@ Optional:
 - `web_port` (String) Defines the ingress port where the connections come from. This is usually necessary when the application responds through a proxy/ingress, and it does not forward the correct headers (when this happens, Kiali cannot guess the port). When empty, Kiali will try to guess this value from HTTP headers.
 - `web_root` (String) Defines the context root path for the Kiali console and API endpoints and readiness probes. When providing a context root path that is not '/', do not add a trailing slash (i.e. use '/kiali' not '/kiali/'). When empty, this will default to '/' on OpenShift and '/kiali' on other Kubernetes environments.
 - `web_schema` (String) Defines the public HTTP schema used to serve Kiali. Value must be one of: 'http' or 'https'. When empty, Kiali will try to guess this value from HTTP headers. On non-OpenShift clusters, you must populate this value if you want to enable cross-linking between Kiali instances in a multi-cluster setup.
-- `write_timeout` (Number) The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.
+- `write_timeout` (Number) The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.In OpenShift clusters, the route request time out should be also increased as the default is 30 seconds. This can be done by annotating the specific route with 'haproxy.router.openshift.io/timeout'. See https://docs.openshift.com/container-platform/4.16/networking/routes/route-configuration.html#nw-configuring-route-timeouts_route-configuration for further details.
 
 <a id="nestedatt--spec--server--observability"></a>
 ### Nested Schema for `spec.server.observability`

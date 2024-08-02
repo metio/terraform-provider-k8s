@@ -161,6 +161,7 @@ Optional:
 - `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
 - `empty_dir` (Boolean)
 - `empty_dir_medium` (String) Add an empty directory custom type
+- `empty_dir_size_limit` (String) Add an empty directory sizeLimit
 - `host_path` (String) An existing hostPath to bind to path
 - `items` (Map of String) Items (key and paths) for the config map
 - `path` (String) Path and claim name are always required if a secret isn't defined
@@ -292,9 +293,12 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations for each pod
+- `automount_service_account_token` (Boolean) Automatically mount the service account name
 - `labels` (Map of String) Labels for each pod
 - `node_selector` (Map of String) NodeSelectors for a pod
 - `resources` (Map of String) Resources include limits and requests
+- `restart_policy` (String) Restart Policy
+- `runtime_class_name` (String) RuntimeClassName for the pod
 - `scheduler_name` (String) Scheduler name for the pod
 - `service_account_name` (String) Service account name for the pod
 
@@ -385,6 +389,7 @@ Optional:
 - `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
 - `empty_dir` (Boolean)
 - `empty_dir_medium` (String) Add an empty directory custom type
+- `empty_dir_size_limit` (String) Add an empty directory sizeLimit
 - `host_path` (String) An existing hostPath to bind to path
 - `items` (Map of String) Items (key and paths) for the config map
 - `path` (String) Path and claim name are always required if a secret isn't defined

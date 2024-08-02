@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_alertmanager_config_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  AlertmanagerConfig configures the Prometheus Alertmanager,specifying how alerts should be grouped, inhibited and notified to external systems.
+  The 'AlertmanagerConfig' custom resource definition (CRD) defines how 'Alertmanager' objects process Prometheus alerts. It allows to specify alert grouping and routing, notification receivers and inhibition rules.'Alertmanager' objects select 'AlertmanagerConfig' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_alertmanager_config_v1beta1_manifest (Data Source)
 
-AlertmanagerConfig configures the Prometheus Alertmanager,specifying how alerts should be grouped, inhibited and notified to external systems.
+The 'AlertmanagerConfig' custom resource definition (CRD) defines how 'Alertmanager' objects process Prometheus alerts. It allows to specify alert grouping and routing, notification receivers and inhibition rules.'Alertmanager' objects select 'AlertmanagerConfig' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -292,6 +292,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca"></a>
@@ -436,6 +438,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--email_configs--tls_config--ca"></a>
@@ -702,6 +706,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca"></a>
@@ -979,6 +985,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--http_config--tls_config--ca"></a>
@@ -1263,6 +1271,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--http_config--tls_config--ca"></a>
@@ -1562,6 +1572,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--pushover_configs--http_config--tls_config--ca"></a>
@@ -1900,6 +1912,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--slack_configs--http_config--tls_config--ca"></a>
@@ -2155,6 +2169,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca"></a>
@@ -2456,6 +2472,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--telegram_configs--http_config--tls_config--ca"></a>
@@ -2729,6 +2747,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca"></a>
@@ -2982,6 +3002,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca"></a>
@@ -3232,6 +3254,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--webhook_configs--http_config--tls_config--ca"></a>
@@ -3506,6 +3530,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca"></a>

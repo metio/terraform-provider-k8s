@@ -390,6 +390,7 @@ type KyvernoIoPolicyV2Beta1ManifestData struct {
 			SkipBackgroundRequests *bool `tfsdk:"skip_background_requests" json:"skipBackgroundRequests,omitempty"`
 			Validate               *struct {
 				AnyPattern *map[string]string `tfsdk:"any_pattern" json:"anyPattern,omitempty"`
+				Assert     *map[string]string `tfsdk:"assert" json:"assert,omitempty"`
 				Cel        *struct {
 					AuditAnnotations *[]struct {
 						Key             *string `tfsdk:"key" json:"key,omitempty"`
@@ -3275,6 +3276,15 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 										"any_pattern": schema.MapAttribute{
 											Description:         "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
 											MarkdownDescription: "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"assert": schema.MapAttribute{
+											Description:         "Assert defines a kyverno-json assertion tree.",
+											MarkdownDescription: "Assert defines a kyverno-json assertion tree.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

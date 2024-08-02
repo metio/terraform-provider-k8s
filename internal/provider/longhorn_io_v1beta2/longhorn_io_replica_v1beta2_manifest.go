@@ -159,8 +159,8 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'dataEngine'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
+						Description:         "Deprecated:Replaced by field 'dataEngine'.",
+						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -242,8 +242,8 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"failed_at": schema.StringAttribute{
-						Description:         "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason. FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful (though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it can be used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
-						MarkdownDescription: "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason. FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful (though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it can be used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Description:         "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason.FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful(though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it canbe used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt maybe later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volumecontroller acknowledges the change.",
+						MarkdownDescription: "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason.FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful(though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it canbe used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt maybe later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volumecontroller acknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -258,8 +258,8 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"healthy_at": schema.StringAttribute{
-						Description:         "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAt indicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to have useful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
-						MarkdownDescription: "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAt indicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to have useful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Description:         "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAtindicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to haveuseful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than thecorresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controlleracknowledges the change.",
+						MarkdownDescription: "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAtindicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to haveuseful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than thecorresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controlleracknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -274,16 +274,16 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"last_failed_at": schema.StringAttribute{
-						Description:         "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared. LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared to LastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
-						MarkdownDescription: "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared. LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared to LastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Description:         "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared.LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica withLastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared toLastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than thecorresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controlleracknowledges the change.",
+						MarkdownDescription: "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared.LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica withLastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared toLastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than thecorresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controlleracknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"last_healthy_at": schema.StringAttribute{
-						Description:         "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt is never cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can be compared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
-						MarkdownDescription: "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt is never cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can be compared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Description:         "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt isnever cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, areplica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can becompared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may belater than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volumecontroller acknowledges the change.",
+						MarkdownDescription: "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt isnever cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, areplica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can becompared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may belater than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volumecontroller acknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

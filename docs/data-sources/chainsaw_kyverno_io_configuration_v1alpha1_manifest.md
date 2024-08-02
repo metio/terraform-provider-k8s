@@ -100,7 +100,7 @@ Optional:
 - `args` (List of String) Args is the command arguments.
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--catch--command--env))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--catch--command--outputs))
@@ -157,7 +157,7 @@ Optional:
 Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--delete--bindings))
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--delete--clusters))
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--catch--delete--expect))
@@ -225,7 +225,7 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--describe--clusters))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -251,7 +251,7 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -282,7 +282,7 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -308,7 +308,7 @@ Optional:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -337,7 +337,7 @@ Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--catch--script--env))
@@ -408,7 +408,7 @@ Required:
 
 Optional:
 
-- `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names

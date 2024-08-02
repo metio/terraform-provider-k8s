@@ -43,6 +43,7 @@ type LonghornIoBackupV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		BackupMode      *string            `tfsdk:"backup_mode" json:"backupMode,omitempty"`
 		Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		SnapshotName    *string            `tfsdk:"snapshot_name" json:"snapshotName,omitempty"`
 		SyncRequestedAt *string            `tfsdk:"sync_requested_at" json:"syncRequestedAt,omitempty"`
@@ -126,6 +127,17 @@ func (r *LonghornIoBackupV1Beta2Manifest) Schema(_ context.Context, _ datasource
 				Description:         "BackupSpec defines the desired state of the Longhorn backup",
 				MarkdownDescription: "BackupSpec defines the desired state of the Longhorn backup",
 				Attributes: map[string]schema.Attribute{
+					"backup_mode": schema.StringAttribute{
+						Description:         "The backup mode of this backup.Can be 'full' or 'incremental'",
+						MarkdownDescription: "The backup mode of this backup.Can be 'full' or 'incremental'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("full", "incremental", ""),
+						},
+					},
+
 					"labels": schema.MapAttribute{
 						Description:         "The labels of snapshot backup.",
 						MarkdownDescription: "The labels of snapshot backup.",

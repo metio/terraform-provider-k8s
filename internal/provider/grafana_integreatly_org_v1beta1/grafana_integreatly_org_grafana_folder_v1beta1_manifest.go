@@ -53,9 +53,11 @@ type GrafanaIntegreatlyOrgGrafanaFolderV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"instance_selector" json:"instanceSelector,omitempty"`
-		Permissions  *string `tfsdk:"permissions" json:"permissions,omitempty"`
-		ResyncPeriod *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
-		Title        *string `tfsdk:"title" json:"title,omitempty"`
+		ParentFolderRef *string `tfsdk:"parent_folder_ref" json:"parentFolderRef,omitempty"`
+		ParentFolderUID *string `tfsdk:"parent_folder_uid" json:"parentFolderUID,omitempty"`
+		Permissions     *string `tfsdk:"permissions" json:"permissions,omitempty"`
+		ResyncPeriod    *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
+		Title           *string `tfsdk:"title" json:"title,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -196,6 +198,22 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"parent_folder_ref": schema.StringAttribute{
+						Description:         "Reference to an existing GrafanaFolder CR in the same namespace",
+						MarkdownDescription: "Reference to an existing GrafanaFolder CR in the same namespace",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"parent_folder_uid": schema.StringAttribute{
+						Description:         "UID of the folder in which the current folder should be created",
+						MarkdownDescription: "UID of the folder in which the current folder should be created",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"permissions": schema.StringAttribute{

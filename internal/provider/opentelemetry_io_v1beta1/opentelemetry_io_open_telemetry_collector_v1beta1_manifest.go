@@ -802,7 +802,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-		Lifecycle *struct {
+		IpFamilies     *[]string `tfsdk:"ip_families" json:"ipFamilies,omitempty"`
+		IpFamilyPolicy *string   `tfsdk:"ip_family_policy" json:"ipFamilyPolicy,omitempty"`
+		Lifecycle      *struct {
 			PostStart *struct {
 				Exec *struct {
 					Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -6795,6 +6797,23 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"ip_families": schema.ListAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ip_family_policy": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"lifecycle": schema.SingleNestedAttribute{

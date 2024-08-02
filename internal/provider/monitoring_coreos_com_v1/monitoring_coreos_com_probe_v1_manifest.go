@@ -187,6 +187,8 @@ type MonitoringCoreosComProbeV1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+			MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+			MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 		} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -198,8 +200,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Metadata(_ context.Context, request
 
 func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Probe defines monitoring for a set of static targets or ingresses.",
-		MarkdownDescription: "Probe defines monitoring for a set of static targets or ingresses.",
+		Description:         "The 'Probe' custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the [blackbox exporter](https://github.com/prometheus/blackbox_exporter).The 'Probe' resource needs 2 pieces of information:* The list of probed addresses which can be defined statically or by discovering Kubernetes Ingress objects.* The prober which exposes the availability of probed endpoints (over various protocols such HTTP, TCP, ICMP, ...) as Prometheus metrics.'Prometheus' and 'PrometheusAgent' objects select 'Probe' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'Probe' custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the [blackbox exporter](https://github.com/prometheus/blackbox_exporter).The 'Probe' resource needs 2 pieces of information:* The list of probed addresses which can be defined statically or by discovering Kubernetes Ingress objects.* The prober which exposes the availability of probed endpoints (over various protocols such HTTP, TCP, ICMP, ...) as Prometheus metrics.'Prometheus' and 'PrometheusAgent' objects select 'Probe' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1254,6 +1256,28 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"max_version": schema.StringAttribute{
+								Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
+							},
+
+							"min_version": schema.StringAttribute{
+								Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+								},
 							},
 
 							"server_name": schema.StringAttribute{

@@ -103,21 +103,6 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				} `tfsdk:"ll_update_strategy" json:"llUpdateStrategy,omitempty"`
 				UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 			} `tfsdk:"consensus_spec" json:"consensusSpec,omitempty"`
-			CustomLabelSpecs *[]struct {
-				Key       *string `tfsdk:"key" json:"key,omitempty"`
-				Resources *[]struct {
-					Gvk      *string            `tfsdk:"gvk" json:"gvk,omitempty"`
-					Selector *map[string]string `tfsdk:"selector" json:"selector,omitempty"`
-				} `tfsdk:"resources" json:"resources,omitempty"`
-				Value *string `tfsdk:"value" json:"value,omitempty"`
-			} `tfsdk:"custom_label_specs" json:"customLabelSpecs,omitempty"`
-			Description *string `tfsdk:"description" json:"description,omitempty"`
-			Exporter    *struct {
-				ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-				ScrapePath    *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
-				ScrapePort    *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
-				ScrapeScheme  *string `tfsdk:"scrape_scheme" json:"scrapeScheme,omitempty"`
-			} `tfsdk:"exporter" json:"exporter,omitempty"`
 			HorizontalScalePolicy *struct {
 				BackupPolicyTemplateName *string `tfsdk:"backup_policy_template_name" json:"backupPolicyTemplateName,omitempty"`
 				Type                     *string `tfsdk:"type" json:"type,omitempty"`
@@ -127,13 +112,6 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				FilePathPattern *string `tfsdk:"file_path_pattern" json:"filePathPattern,omitempty"`
 				Name            *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
-			Monitor *struct {
-				BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
-				ExporterConfig *struct {
-					ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
-					ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
-				} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
-			} `tfsdk:"monitor" json:"monitor,omitempty"`
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			PodSpec *struct {
 				ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1601,7 +1579,6 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				Update    *[]string `tfsdk:"update" json:"update,omitempty"`
 			} `tfsdk:"orders" json:"orders,omitempty"`
 		} `tfsdk:"topologies" json:"topologies,omitempty"`
-		Type *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1844,7 +1821,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.LengthAtMost(63),
 															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
 														},
 													},
@@ -1867,7 +1843,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 														Optional:            false,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.LengthAtMost(63),
 															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 														},
 													},
@@ -2129,113 +2104,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									Computed: false,
 								},
 
-								"custom_label_specs": schema.ListNestedAttribute{
-									Description:         "Used for custom label tags which you want to add to the component resources.",
-									MarkdownDescription: "Used for custom label tags which you want to add to the component resources.",
-									NestedObject: schema.NestedAttributeObject{
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the label.",
-												MarkdownDescription: "The key of the label.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"resources": schema.ListNestedAttribute{
-												Description:         "The resources that will be patched with the label.",
-												MarkdownDescription: "The resources that will be patched with the label.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"gvk": schema.StringAttribute{
-															Description:         "Represents the GVK of a resource, such as 'v1/Pod', 'apps/v1/StatefulSet', etc.When a resource matching this is found by the selector, a custom label will be added if it doesn't already exist,or updated if it does.",
-															MarkdownDescription: "Represents the GVK of a resource, such as 'v1/Pod', 'apps/v1/StatefulSet', etc.When a resource matching this is found by the selector, a custom label will be added if it doesn't already exist,or updated if it does.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"selector": schema.MapAttribute{
-															Description:         "A label query used to filter a set of resources.",
-															MarkdownDescription: "A label query used to filter a set of resources.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": schema.StringAttribute{
-												Description:         "The value of the label.",
-												MarkdownDescription: "The value of the label.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"description": schema.StringAttribute{
-									Description:         "Description of the component definition.",
-									MarkdownDescription: "Description of the component definition.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"exporter": schema.SingleNestedAttribute{
-									Description:         "Defines the metrics exporter.",
-									MarkdownDescription: "Defines the metrics exporter.",
-									Attributes: map[string]schema.Attribute{
-										"container_name": schema.StringAttribute{
-											Description:         "Specifies the name of the built-in metrics exporter container.",
-											MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"scrape_path": schema.StringAttribute{
-											Description:         "Specifies the http/https url path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
-											MarkdownDescription: "Specifies the http/https url path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"scrape_port": schema.StringAttribute{
-											Description:         "Specifies the port name to scrape for metrics.",
-											MarkdownDescription: "Specifies the port name to scrape for metrics.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"scrape_scheme": schema.StringAttribute{
-											Description:         "Specifies the schema to use for scraping.'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
-											MarkdownDescription: "Specifies the schema to use for scraping.'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("http", "https"),
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
 								"horizontal_scale_policy": schema.SingleNestedAttribute{
 									Description:         "Defines the behavior of horizontal scale.",
 									MarkdownDescription: "Defines the behavior of horizontal scale.",
@@ -2298,51 +2166,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 													stringvalidator.LengthAtMost(128),
 												},
 											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"monitor": schema.SingleNestedAttribute{
-									Description:         "Deprecated since v0.9monitor is monitoring config which provided by provider.",
-									MarkdownDescription: "Deprecated since v0.9monitor is monitoring config which provided by provider.",
-									Attributes: map[string]schema.Attribute{
-										"built_in": schema.BoolAttribute{
-											Description:         "builtIn is a switch to enable KubeBlocks builtIn monitoring.If BuiltIn is set to true, monitor metrics will be scraped automatically.If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
-											MarkdownDescription: "builtIn is a switch to enable KubeBlocks builtIn monitoring.If BuiltIn is set to true, monitor metrics will be scraped automatically.If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exporter_config": schema.SingleNestedAttribute{
-											Description:         "exporterConfig provided by provider, which specify necessary information to Time Series Database.exporterConfig is valid when builtIn is false.",
-											MarkdownDescription: "exporterConfig provided by provider, which specify necessary information to Time Series Database.exporterConfig is valid when builtIn is false.",
-											Attributes: map[string]schema.Attribute{
-												"scrape_path": schema.StringAttribute{
-													Description:         "scrapePath is exporter url path for Time Series Database to scrape metrics.",
-													MarkdownDescription: "scrapePath is exporter url path for Time Series Database to scrape metrics.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.LengthAtMost(128),
-													},
-												},
-
-												"scrape_port": schema.StringAttribute{
-													Description:         "scrapePort is exporter port for Time Series Database to scrape metrics.",
-													MarkdownDescription: "scrapePort is exporter port for Time Series Database to scrape metrics.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
 										},
 									},
 									Required: false,
@@ -12289,18 +12112,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"type": schema.StringAttribute{
-						Description:         "Specifies the well-known database type, such as mysql, redis, or mongodb.Deprecated since v0.9.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-						MarkdownDescription: "Specifies the well-known database type, such as mysql, redis, or mongodb.Deprecated since v0.9.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.LengthAtMost(24),
-							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
-						},
 					},
 				},
 				Required: false,

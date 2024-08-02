@@ -110,8 +110,9 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 				} `tfsdk:"hook" json:"hook,omitempty"`
 				Step *string `tfsdk:"step" json:"step,omitempty"`
 			} `tfsdk:"hooks" json:"hooks,omitempty"`
-			Id   *string `tfsdk:"id" json:"id,omitempty"`
-			Luks *struct {
+			Id           *string `tfsdk:"id" json:"id,omitempty"`
+			InstanceType *string `tfsdk:"instance_type" json:"instanceType,omitempty"`
+			Luks         *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 				Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -681,6 +682,14 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 								"id": schema.StringAttribute{
 									Description:         "The object ID.vsphere:  The managed object ID.",
 									MarkdownDescription: "The object ID.vsphere:  The managed object ID.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"instance_type": schema.StringAttribute{
+									Description:         "Selected InstanceType that will override the VM properties.",
+									MarkdownDescription: "Selected InstanceType that will override the VM properties.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

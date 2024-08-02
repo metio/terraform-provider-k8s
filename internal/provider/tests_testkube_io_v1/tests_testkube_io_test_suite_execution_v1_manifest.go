@@ -54,6 +54,7 @@ type TestsTestkubeIoTestSuiteExecutionV1ManifestData struct {
 				} `tfsdk:"repository" json:"repository,omitempty"`
 			} `tfsdk:"content_request" json:"contentRequest,omitempty"`
 			CronJobTemplate *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+			DisableWebhooks *bool              `tfsdk:"disable_webhooks" json:"disableWebhooks,omitempty"`
 			ExecutionLabels *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
 			HttpProxy       *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 			HttpsProxy      *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
@@ -245,6 +246,14 @@ func (r *TestsTestkubeIoTestSuiteExecutionV1Manifest) Schema(_ context.Context, 
 							"cron_job_template": schema.StringAttribute{
 								Description:         "cron job template extensions",
 								MarkdownDescription: "cron job template extensions",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_webhooks": schema.BoolAttribute{
+								Description:         "whether webhooks should be disabled for this execution",
+								MarkdownDescription: "whether webhooks should be disabled for this execution",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

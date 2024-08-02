@@ -61,6 +61,7 @@ Optional:
 - `kafka` (Attributes) Kafka configuration, allowing to use Kafka as a broker as part of the flow collection pipeline. Available when the 'spec.deploymentModel' is 'Kafka'. (see [below for nested schema](#nestedatt--spec--kafka))
 - `loki` (Attributes) 'loki', the flow store, client settings. (see [below for nested schema](#nestedatt--spec--loki))
 - `namespace` (String) Namespace where NetObserv pods are deployed.
+- `network_policy` (Attributes) 'networkPolicy' defines ingress network policy settings for NetObserv components isolation. (see [below for nested schema](#nestedatt--spec--network_policy))
 - `processor` (Attributes) 'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter. (see [below for nested schema](#nestedatt--spec--processor))
 - `prometheus` (Attributes) 'prometheus' defines Prometheus settings, such as querier configuration used to fetch metrics from the Console plugin. (see [below for nested schema](#nestedatt--spec--prometheus))
 
@@ -1372,6 +1373,7 @@ Optional:
 
 - `ipfix` (Attributes) IPFIX configuration, such as the IP address and port to send enriched IPFIX flows to. (see [below for nested schema](#nestedatt--spec--exporters--ipfix))
 - `kafka` (Attributes) Kafka configuration, such as the address and topic, to send enriched flows to. (see [below for nested schema](#nestedatt--spec--exporters--kafka))
+- `open_telemetry` (Attributes) Open telemetry configuration, such as the IP address and port to send enriched logs, metrics and or traces to. (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry))
 
 <a id="nestedatt--spec--exporters--ipfix"></a>
 ### Nested Schema for `spec.exporters.ipfix`
@@ -1455,6 +1457,86 @@ Optional:
 
 <a id="nestedatt--spec--exporters--kafka--tls--user_cert"></a>
 ### Nested Schema for `spec.exporters.kafka.tls.user_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
+
+
+
+
+<a id="nestedatt--spec--exporters--open_telemetry"></a>
+### Nested Schema for `spec.exporters.open_telemetry`
+
+Required:
+
+- `target_host` (String) Address of the Open Telemetry receiver
+- `target_port` (Number) Port for the Open Telemetry receiver
+
+Optional:
+
+- `fields_mapping` (Attributes List) Custom fields mapping to an OpenTelemetry conformant format.By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal .As there is currently no accepted otlp standard for L3/4 network logs, you can freely override it with your own. (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--fields_mapping))
+- `headers` (Map of String) Headers to add to messages (optional)
+- `logs` (Attributes) Open telemetry configuration for logs. (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--logs))
+- `metrics` (Attributes) Open telemetry configuration for metrics. (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--metrics))
+- `protocol` (String) Protocol of Open Telemetry connection. The available options are 'http' and 'grpc'.
+- `tls` (Attributes) TLS client configuration. (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--tls))
+
+<a id="nestedatt--spec--exporters--open_telemetry--fields_mapping"></a>
+### Nested Schema for `spec.exporters.open_telemetry.fields_mapping`
+
+Optional:
+
+- `input` (String)
+- `multiplier` (Number)
+- `output` (String)
+
+
+<a id="nestedatt--spec--exporters--open_telemetry--logs"></a>
+### Nested Schema for `spec.exporters.open_telemetry.logs`
+
+Optional:
+
+- `enable` (Boolean) Set 'enable' to 'true' to send logs to Open Telemetry receiver.
+
+
+<a id="nestedatt--spec--exporters--open_telemetry--metrics"></a>
+### Nested Schema for `spec.exporters.open_telemetry.metrics`
+
+Optional:
+
+- `enable` (Boolean) Set 'enable' to 'true' to send metrics to Open Telemetry receiver.
+- `push_time_interval` (String) How often should metrics be sent to collector
+
+
+<a id="nestedatt--spec--exporters--open_telemetry--tls"></a>
+### Nested Schema for `spec.exporters.open_telemetry.tls`
+
+Optional:
+
+- `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--tls--ca_cert))
+- `enable` (Boolean) Enable TLS
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
+- `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--exporters--open_telemetry--tls--user_cert))
+
+<a id="nestedatt--spec--exporters--open_telemetry--tls--ca_cert"></a>
+### Nested Schema for `spec.exporters.open_telemetry.tls.ca_cert`
+
+Optional:
+
+- `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret.
+- `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
+- `name` (String) Name of the config map or secret containing certificates.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `type` (String) Type for the certificate reference: 'configmap' or 'secret'.
+
+
+<a id="nestedatt--spec--exporters--open_telemetry--tls--user_cert"></a>
+### Nested Schema for `spec.exporters.open_telemetry.tls.user_cert`
 
 Optional:
 
@@ -1760,6 +1842,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--network_policy"></a>
+### Nested Schema for `spec.network_policy`
+
+Optional:
+
+- `additional_namespaces` (List of String) 'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace.It gives some flexibility in the network policy configuration, however should you need a more specificconfiguration, you can disable it and install your own instead.
+- `enable` (Boolean) Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default.These network policies better isolate the NetObserv components to prevent undesired connections to them.We recommend you either enable it, or create your own network policy for NetObserv.
 
 
 <a id="nestedatt--spec--processor"></a>

@@ -84,6 +84,8 @@ type GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1ManifestData struct {
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"envs" json:"envs,omitempty"`
 		Folder     *string `tfsdk:"folder" json:"folder,omitempty"`
+		FolderRef  *string `tfsdk:"folder_ref" json:"folderRef,omitempty"`
+		FolderUID  *string `tfsdk:"folder_uid" json:"folderUID,omitempty"`
 		GrafanaCom *struct {
 			Id       *int64 `tfsdk:"id" json:"id,omitempty"`
 			Revision *int64 `tfsdk:"revision" json:"revision,omitempty"`
@@ -448,6 +450,22 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					"folder": schema.StringAttribute{
 						Description:         "folder assignment for dashboard",
 						MarkdownDescription: "folder assignment for dashboard",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"folder_ref": schema.StringAttribute{
+						Description:         "Name of a 'GrafanaFolder' resource in the same namespace",
+						MarkdownDescription: "Name of a 'GrafanaFolder' resource in the same namespace",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"folder_uid": schema.StringAttribute{
+						Description:         "UID of the target folder for this dashboard",
+						MarkdownDescription: "UID of the target folder for this dashboard",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

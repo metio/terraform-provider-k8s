@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_prometheus_rule_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  PrometheusRule defines recording and alerting rules for a Prometheus instance
+  The 'PrometheusRule' custom resource definition (CRD) defines alerting https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/ and recording https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/ rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_prometheus_rule_v1_manifest (Data Source)
 
-PrometheusRule defines recording and alerting rules for a Prometheus instance
+The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
 
 ## Example Usage
 

@@ -43,6 +43,9 @@ type AppprotectdosF5ComDosProtectedResourceV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AllowList *[]struct {
+			IpWithMask *string `tfsdk:"ip_with_mask" json:"ipWithMask,omitempty"`
+		} `tfsdk:"allow_list" json:"allowList,omitempty"`
 		ApDosMonitor *struct {
 			Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 			Timeout  *int64  `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -137,6 +140,25 @@ func (r *AppprotectdosF5ComDosProtectedResourceV1Beta1Manifest) Schema(_ context
 				Description:         "DosProtectedResourceSpec defines the properties and values a DosProtectedResource can have.",
 				MarkdownDescription: "DosProtectedResourceSpec defines the properties and values a DosProtectedResource can have.",
 				Attributes: map[string]schema.Attribute{
+					"allow_list": schema.ListNestedAttribute{
+						Description:         "AllowList is a list of allowed IPs and subnet masks",
+						MarkdownDescription: "AllowList is a list of allowed IPs and subnet masks",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"ip_with_mask": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ap_dos_monitor": schema.SingleNestedAttribute{
 						Description:         "ApDosMonitor is how NGINX App Protect DoS monitors the stress level of the protected object. The monitor requests are sent from localhost (127.0.0.1). Default value: URI - None, protocol - http1, timeout - NGINX App Protect DoS default.",
 						MarkdownDescription: "ApDosMonitor is how NGINX App Protect DoS monitors the stress level of the protected object. The monitor requests are sent from localhost (127.0.0.1). Default value: URI - None, protocol - http1, timeout - NGINX App Protect DoS default.",

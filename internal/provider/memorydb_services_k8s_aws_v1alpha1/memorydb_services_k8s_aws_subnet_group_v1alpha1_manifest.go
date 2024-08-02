@@ -132,8 +132,8 @@ func (r *MemorydbServicesK8SAwsSubnetGroupV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SubnetGroupSpec defines the desired state of SubnetGroup.  Represents the output of one of the following operations:  * CreateSubnetGroup  * UpdateSubnetGroup  A subnet group is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment.",
-				MarkdownDescription: "SubnetGroupSpec defines the desired state of SubnetGroup.  Represents the output of one of the following operations:  * CreateSubnetGroup  * UpdateSubnetGroup  A subnet group is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment.",
+				Description:         "SubnetGroupSpec defines the desired state of SubnetGroup.Represents the output of one of the following operations:   * CreateSubnetGroup   * UpdateSubnetGroupA subnet group is a collection of subnets (typically private) that you candesignate for your clusters running in an Amazon Virtual Private Cloud (VPC)environment.",
+				MarkdownDescription: "SubnetGroupSpec defines the desired state of SubnetGroup.Represents the output of one of the following operations:   * CreateSubnetGroup   * UpdateSubnetGroupA subnet group is a collection of subnets (typically private) that you candesignate for your clusters running in an Amazon Virtual Private Cloud (VPC)environment.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "A description for the subnet group.",
@@ -166,8 +166,8 @@ func (r *MemorydbServicesK8SAwsSubnetGroupV1Alpha1Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -189,8 +189,8 @@ func (r *MemorydbServicesK8SAwsSubnetGroupV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
