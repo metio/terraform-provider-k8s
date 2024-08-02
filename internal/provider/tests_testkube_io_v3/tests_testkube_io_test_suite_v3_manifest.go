@@ -458,8 +458,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"disable_webhooks": schema.BoolAttribute{
-														Description:         "whether webhooks should be called on execution",
-														MarkdownDescription: "whether webhooks should be called on execution",
+														Description:         "whether webhooks should be called on executionDeprecated: field is not used",
+														MarkdownDescription: "whether webhooks should be called on executionDeprecated: field is not used",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -881,8 +881,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"disable_webhooks": schema.BoolAttribute{
-														Description:         "whether webhooks should be called on execution",
-														MarkdownDescription: "whether webhooks should be called on execution",
+														Description:         "whether webhooks should be called on executionDeprecated: field is not used",
+														MarkdownDescription: "whether webhooks should be called on executionDeprecated: field is not used",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1230,8 +1230,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"disable_webhooks": schema.BoolAttribute{
-								Description:         "whether webhooks should be called on execution",
-								MarkdownDescription: "whether webhooks should be called on execution",
+								Description:         "whether webhooks should be called on executionDeprecated: field is not used",
+								MarkdownDescription: "whether webhooks should be called on executionDeprecated: field is not used",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1649,8 +1649,8 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"disable_webhooks": schema.BoolAttribute{
-														Description:         "whether webhooks should be called on execution",
-														MarkdownDescription: "whether webhooks should be called on execution",
+														Description:         "whether webhooks should be called on executionDeprecated: field is not used",
+														MarkdownDescription: "whether webhooks should be called on executionDeprecated: field is not used",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

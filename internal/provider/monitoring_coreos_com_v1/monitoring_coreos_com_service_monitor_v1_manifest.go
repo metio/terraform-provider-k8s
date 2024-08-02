@@ -162,6 +162,8 @@ type MonitoringCoreosComServiceMonitorV1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
@@ -198,8 +200,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Metadata(_ context.Context
 
 func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServiceMonitor defines monitoring for a set of services.",
-		MarkdownDescription: "ServiceMonitor defines monitoring for a set of services.",
+		Description:         "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -274,8 +276,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
 						Attributes: map[string]schema.Attribute{
 							"node": schema.BoolAttribute{
-								Description:         "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
-								MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
+								Description:         "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
+								MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -298,8 +300,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"endpoints": schema.ListNestedAttribute{
-						Description:         "List of endpoints part of this ServiceMonitor.",
-						MarkdownDescription: "List of endpoints part of this ServiceMonitor.",
+						Description:         "List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
+						MarkdownDescription: "List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
@@ -1089,6 +1091,28 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											Computed: false,
 										},
 
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
 										"server_name": schema.StringAttribute{
 											Description:         "Used to verify the hostname for the targets.",
 											MarkdownDescription: "Used to verify the hostname for the targets.",
@@ -1111,8 +1135,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -1157,8 +1181,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from.",
-						MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from.",
+						Description:         "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
+						MarkdownDescription: "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
 						Attributes: map[string]schema.Attribute{
 							"any": schema.BoolAttribute{
 								Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
@@ -1220,8 +1244,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Label selector to select the Kubernetes 'Endpoints' objects.",
-						MarkdownDescription: "Label selector to select the Kubernetes 'Endpoints' objects.",
+						Description:         "Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from.",
+						MarkdownDescription: "Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

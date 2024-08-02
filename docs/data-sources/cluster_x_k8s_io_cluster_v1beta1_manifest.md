@@ -217,7 +217,7 @@ Required:
 
 Optional:
 
-- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'
+- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.
 
 
 
@@ -232,7 +232,7 @@ Required:
 
 Optional:
 
-- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'
+- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.
 
 
 <a id="nestedatt--spec--topology--workers"></a>
@@ -355,7 +355,7 @@ Required:
 
 Optional:
 
-- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'
+- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.
 
 
 
@@ -405,4 +405,4 @@ Required:
 
 Optional:
 
-- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'
+- `definition_from` (String) DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.

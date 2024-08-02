@@ -278,6 +278,8 @@ type MonitoringCoreosComAlertmanagerV1ManifestData struct {
 							Name     *string `tfsdk:"name" json:"name,omitempty"`
 							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+						MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
@@ -2365,12 +2367,12 @@ func (r *MonitoringCoreosComAlertmanagerV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"alertmanager_config_matcher_strategy": schema.SingleNestedAttribute{
-						Description:         "The AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objects match the alerts.In the future more options may be added.",
-						MarkdownDescription: "The AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objects match the alerts.In the future more options may be added.",
+						Description:         "AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objectsprocess incoming alerts.",
+						MarkdownDescription: "AlertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objectsprocess incoming alerts.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
-								Description:         "If set to 'OnNamespace', the operator injects a label matcher matching the namespace of the AlertmanagerConfig object for all its routes and inhibition rules.'None' will not add any additional matchers other than the ones specified in the AlertmanagerConfig.Default is 'OnNamespace'.",
-								MarkdownDescription: "If set to 'OnNamespace', the operator injects a label matcher matching the namespace of the AlertmanagerConfig object for all its routes and inhibition rules.'None' will not add any additional matchers other than the ones specified in the AlertmanagerConfig.Default is 'OnNamespace'.",
+								Description:         "AlertmanagerConfigMatcherStrategyType defines the strategy used byAlertmanagerConfig objects to match alerts in the routes and inhibitionrules.The default value is 'OnNamespace'.",
+								MarkdownDescription: "AlertmanagerConfigMatcherStrategyType defines the strategy used byAlertmanagerConfig objects to match alerts in the routes and inhibitionrules.The default value is 'OnNamespace'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3017,6 +3019,28 @@ func (r *MonitoringCoreosComAlertmanagerV1Manifest) Schema(_ context.Context, _ 
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+
+													"max_version": schema.StringAttribute{
+														Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+														MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+														},
+													},
+
+													"min_version": schema.StringAttribute{
+														Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+														MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+														},
 													},
 
 													"server_name": schema.StringAttribute{

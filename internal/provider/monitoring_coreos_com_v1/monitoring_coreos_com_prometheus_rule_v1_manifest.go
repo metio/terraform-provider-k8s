@@ -68,8 +68,8 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Metadata(_ context.Context
 
 func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "PrometheusRule defines recording and alerting rules for a Prometheus instance",
-		MarkdownDescription: "PrometheusRule defines recording and alerting rules for a Prometheus instance",
+		Description:         "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

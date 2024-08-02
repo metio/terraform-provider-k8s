@@ -60,6 +60,8 @@ Required:
 Optional:
 
 - `allow_cross_namespace_import` (Boolean) allow to import this resources from an operator in a different namespace
+- `parent_folder_ref` (String) Reference to an existing GrafanaFolder CR in the same namespace
+- `parent_folder_uid` (String) UID of the folder in which the current folder should be created
 - `permissions` (String) raw json with folder permissions
 - `resync_period` (String) how often the folder is synced, defaults to 5m if not set
 - `title` (String)

@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `user_created` (Boolean) Is this CR created by user through API or UI. Required
+- `user_created` (Boolean) Is this CR created by user through API or UI.Required
 
 Optional:
 

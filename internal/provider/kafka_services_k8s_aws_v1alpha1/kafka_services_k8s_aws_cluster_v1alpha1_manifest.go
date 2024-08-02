@@ -43,7 +43,13 @@ type KafkaServicesK8SAwsClusterV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		BrokerNodeGroupInfo *struct {
+		AssociatedSCRAMSecretRefs *[]struct {
+			From *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"associated_scram_secret_refs" json:"associatedSCRAMSecretRefs,omitempty"`
+		AssociatedSCRAMSecrets *[]string `tfsdk:"associated_scram_secrets" json:"associatedSCRAMSecrets,omitempty"`
+		BrokerNodeGroupInfo    *struct {
 			BrokerAZDistribution *string   `tfsdk:"broker_az_distribution" json:"brokerAZDistribution,omitempty"`
 			ClientSubnets        *[]string `tfsdk:"client_subnets" json:"clientSubnets,omitempty"`
 			ConnectivityInfo     *struct {
@@ -206,6 +212,43 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 				Description:         "ClusterSpec defines the desired state of Cluster.Returns information about a cluster of either the provisioned or the serverlesstype.",
 				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.Returns information about a cluster of either the provisioned or the serverlesstype.",
 				Attributes: map[string]schema.Attribute{
+					"associated_scram_secret_refs": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"from": schema.SingleNestedAttribute{
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"associated_scram_secrets": schema.ListAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"broker_node_group_info": schema.SingleNestedAttribute{
 						Description:         "Information about the brokers.",
 						MarkdownDescription: "Information about the brokers.",

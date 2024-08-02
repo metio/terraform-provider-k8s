@@ -83,6 +83,7 @@ Optional:
 - `unsafe_flags` (Attributes) (see [below for nested schema](#nestedatt--spec--unsafe_flags))
 - `update_strategy` (String)
 - `upgrade_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade_options))
+- `users` (Attributes List) (see [below for nested schema](#nestedatt--spec--users))
 
 <a id="nestedatt--spec--backup"></a>
 ### Nested Schema for `spec.backup`
@@ -520,11 +521,86 @@ Required:
 
 Optional:
 
+- `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context))
 - `enabled` (Boolean)
 - `mongod_params` (String)
 - `mongos_params` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--resources))
 - `server_host` (String)
+
+<a id="nestedatt--spec--pmm--container_security_context"></a>
+### Nested Schema for `spec.pmm.container_security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--app_armor_profile))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--capabilities))
+- `privileged` (Boolean)
+- `proc_mount` (String)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm--container_security_context--windows_options))
+
+<a id="nestedatt--spec--pmm--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pmm.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--pmm--container_security_context--capabilities"></a>
+### Nested Schema for `spec.pmm.container_security_context.capabilities`
+
+Optional:
+
+- `add` (List of String)
+- `drop` (List of String)
+
+
+<a id="nestedatt--spec--pmm--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.pmm.container_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--pmm--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.pmm.container_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--pmm--container_security_context--windows_options"></a>
+### Nested Schema for `spec.pmm.container_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
+
 
 <a id="nestedatt--spec--pmm--resources"></a>
 ### Nested Schema for `spec.pmm.resources`
@@ -3136,10 +3212,13 @@ Optional:
 <a id="nestedatt--spec--replsets--host_aliases"></a>
 ### Nested Schema for `spec.replsets.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--replsets--liveness_probe"></a>
@@ -10265,10 +10344,13 @@ Optional:
 <a id="nestedatt--spec--sharding--configsvr_repl_set--host_aliases"></a>
 ### Nested Schema for `spec.sharding.configsvr_repl_set.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--liveness_probe"></a>
@@ -15281,10 +15363,13 @@ Optional:
 <a id="nestedatt--spec--sharding--mongos--host_aliases"></a>
 ### Nested Schema for `spec.sharding.mongos.host_aliases`
 
+Required:
+
+- `ip` (String)
+
 Optional:
 
 - `hostnames` (List of String)
-- `ip` (String)
 
 
 <a id="nestedatt--spec--sharding--mongos--liveness_probe"></a>
@@ -17197,3 +17282,35 @@ Optional:
 - `schedule` (String)
 - `set_fcv` (Boolean)
 - `version_service_endpoint` (String)
+
+
+<a id="nestedatt--spec--users"></a>
+### Nested Schema for `spec.users`
+
+Required:
+
+- `db` (String)
+- `name` (String)
+- `password_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--users--password_secret_ref))
+- `roles` (Attributes List) (see [below for nested schema](#nestedatt--spec--users--roles))
+
+<a id="nestedatt--spec--users--password_secret_ref"></a>
+### Nested Schema for `spec.users.password_secret_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+<a id="nestedatt--spec--users--roles"></a>
+### Nested Schema for `spec.users.roles`
+
+Required:
+
+- `db` (String)
+- `name` (String)

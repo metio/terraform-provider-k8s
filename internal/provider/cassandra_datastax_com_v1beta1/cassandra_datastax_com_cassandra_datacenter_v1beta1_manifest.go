@@ -1558,8 +1558,9 @@ type CassandraDatastaxComCassandraDatacenterV1Beta1ManifestData struct {
 			NodeAffinityLabels *map[string]string `tfsdk:"node_affinity_labels" json:"nodeAffinityLabels,omitempty"`
 			Zone               *string            `tfsdk:"zone" json:"zone,omitempty"`
 		} `tfsdk:"racks" json:"racks,omitempty"`
-		ReplaceNodes *[]string `tfsdk:"replace_nodes" json:"replaceNodes,omitempty"`
-		Resources    *struct {
+		ReadOnlyRootFilesystem *bool     `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+		ReplaceNodes           *[]string `tfsdk:"replace_nodes" json:"replaceNodes,omitempty"`
+		Resources              *struct {
 			Claims *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
@@ -12234,6 +12235,14 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Schema(_ contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"read_only_root_filesystem": schema.BoolAttribute{
+						Description:         "ReadOnlyRootFilesystem makes the cassandra container to be run with a read-only root filesystem. Currently only functional when used with thenew k8ssandra-client config builder (Cassandra 4.1 and newer and HCD)",
+						MarkdownDescription: "ReadOnlyRootFilesystem makes the cassandra container to be run with a read-only root filesystem. Currently only functional when used with thenew k8ssandra-client config builder (Cassandra 4.1 and newer and HCD)",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"replace_nodes": schema.ListAttribute{

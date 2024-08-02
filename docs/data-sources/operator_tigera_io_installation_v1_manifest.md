@@ -516,7 +516,7 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers
+- `name` (String) Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers, es-calico-kube-controllers
 
 Optional:
 

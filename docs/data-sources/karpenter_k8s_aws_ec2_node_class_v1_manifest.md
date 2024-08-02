@@ -54,23 +54,36 @@ Optional:
 
 Required:
 
-- `ami_family` (String) AMIFamily is the AMI family that instances use.
+- `ami_selector_terms` (Attributes List) AMISelectorTerms is a list of or ami selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--ami_selector_terms))
 - `security_group_selector_terms` (Attributes List) SecurityGroupSelectorTerms is a list of or security group selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--security_group_selector_terms))
 - `subnet_selector_terms` (Attributes List) SubnetSelectorTerms is a list of or subnet selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--subnet_selector_terms))
 
 Optional:
 
-- `ami_selector_terms` (Attributes List) AMISelectorTerms is a list of or ami selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--ami_selector_terms))
+- `ami_family` (String) AMIFamily dictates the UserData format and default BlockDeviceMappings used when generating launch templates.This field is optional when using an alias amiSelectorTerm, and the value will be inferred from the alias'family. When an alias is specified, this field may only be set to its corresponding family or 'Custom'. If noalias is specified, this field is required.NOTE: We ignore the AMIFamily for hashing here because we hash the AMIFamily dynamically by using the alias usingthe AMIFamily() helper function
 - `associate_public_ip_address` (Boolean) AssociatePublicIPAddress controls if public IP addresses are assigned to instances that are launched with the nodeclass.
 - `block_device_mappings` (Attributes List) BlockDeviceMappings to be applied to provisioned nodes. (see [below for nested schema](#nestedatt--spec--block_device_mappings))
 - `context` (String) Context is a Reserved field in EC2 APIshttps://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet.html
 - `detailed_monitoring` (Boolean) DetailedMonitoring controls if detailed monitoring is enabled for instances that are launched
 - `instance_profile` (String) InstanceProfile is the AWS entity that instances use.This field is mutually exclusive from role.The instance profile should already have a role assigned to it that Karpenter has PassRole permission on for instance launch using this instanceProfile to succeed.
 - `instance_store_policy` (String) InstanceStorePolicy specifies how to handle instance-store disks.
+- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--kubelet))
 - `metadata_options` (Attributes) MetadataOptions for the generated launch template of provisioned nodes.This specifies the exposure of the Instance Metadata Service toprovisioned EC2 nodes. For more information,see Instance Metadata and User Data(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)in the Amazon Elastic Compute Cloud User Guide.Refer to recommended, security best practices(https://aws.github.io/aws-eks-best-practices/security/docs/iam/#restrict-access-to-the-instance-profile-assigned-to-the-worker-node)for limiting exposure of Instance Metadata and User Data to pods.If omitted, defaults to httpEndpoint enabled, with httpProtocolIPv6disabled, with httpPutResponseLimit of 1, and with httpTokensrequired. (see [below for nested schema](#nestedatt--spec--metadata_options))
 - `role` (String) Role is the AWS identity that nodes use. This field is immutable.This field is mutually exclusive from instanceProfile.Marking this field as immutable avoids concerns around terminating managed instance profiles from running instances.This field may be made mutable in the future, assuming the correct garbage collection and drift handling is implementedfor the old instance profiles on an update.
 - `tags` (Map of String) Tags to be applied on ec2 resources like instances and launch templates.
 - `user_data` (String) UserData to be applied to the provisioned nodes.It must be in the appropriate format based on the AMIFamily in use. Karpenter will merge certain fields intothis UserData to ensure nodes are being provisioned with the correct configuration.
+
+<a id="nestedatt--spec--ami_selector_terms"></a>
+### Nested Schema for `spec.ami_selector_terms`
+
+Optional:
+
+- `alias` (String) Alias specifies which EKS optimized AMI to select.Each alias consists of a family and an AMI version, specified as 'family@version'.Valid families include: al2, al2023, bottlerocket, windows2019, and windows2022.The version can either be pinned to a specific AMI release, with that AMIs version format (ex: 'al2023@v20240625' or 'bottlerocket@v1.10.0').The version can also be set to 'latest' for any family. Setting the version to latest will result in drift when a new AMI is released. This is **not** recommended for production environments.Note: The Windows families do **not** support version pinning, and only latest may be used.
+- `id` (String) ID is the ami id in EC2
+- `name` (String) Name is the ami name in EC2.This value is the name field, which is different from the name tag.
+- `owner` (String) Owner is the owner for the ami.You can specify a combination of AWS account IDs, 'self', 'amazon', and 'aws-marketplace'
+- `tags` (Map of String) Tags is a map of key/value tags used to select subnetsSpecifying '*' for a value selects all values for a given tag key.
+
 
 <a id="nestedatt--spec--security_group_selector_terms"></a>
 ### Nested Schema for `spec.security_group_selector_terms`
@@ -88,17 +101,6 @@ Optional:
 Optional:
 
 - `id` (String) ID is the subnet id in EC2
-- `tags` (Map of String) Tags is a map of key/value tags used to select subnetsSpecifying '*' for a value selects all values for a given tag key.
-
-
-<a id="nestedatt--spec--ami_selector_terms"></a>
-### Nested Schema for `spec.ami_selector_terms`
-
-Optional:
-
-- `id` (String) ID is the ami id in EC2
-- `name` (String) Name is the ami name in EC2.This value is the name field, which is different from the name tag.
-- `owner` (String) Owner is the owner for the ami.You can specify a combination of AWS account IDs, 'self', 'amazon', and 'aws-marketplace'
 - `tags` (Map of String) Tags is a map of key/value tags used to select subnetsSpecifying '*' for a value selects all values for a given tag key.
 
 
@@ -125,6 +127,25 @@ Optional:
 - `volume_size` (String) VolumeSize in 'Gi', 'G', 'Ti', or 'T'. You must specify either a snapshot ID ora volume size. The following are the supported volumes sizes for each volumetype:   * gp2 and gp3: 1-16,384   * io1 and io2: 4-16,384   * st1 and sc1: 125-16,384   * standard: 1-1,024
 - `volume_type` (String) VolumeType of the block device.For more information, see Amazon EBS volume types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)in the Amazon Elastic Compute Cloud User Guide.
 
+
+
+<a id="nestedatt--spec--kubelet"></a>
+### Nested Schema for `spec.kubelet`
+
+Optional:
+
+- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.
+- `cpu_cfs_quota` (Boolean) CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.
+- `eviction_hard` (Map of String) EvictionHard is the map of signal names to quantities that define hard eviction thresholds
+- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.
+- `eviction_soft` (Map of String) EvictionSoft is the map of signal names to quantities that define soft eviction thresholds
+- `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal
+- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.
+- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent
+- `kube_reserved` (Map of String) KubeReserved contains resources reserved for Kubernetes system components.
+- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run ona worker node instance.
+- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.
+- `system_reserved` (Map of String) SystemReserved contains resources reserved for OS system daemons and kernel memory.
 
 
 <a id="nestedatt--spec--metadata_options"></a>

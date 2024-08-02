@@ -136,8 +136,8 @@ func (r *LonghornIoVolumeAttachmentV1Beta2Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"generation": schema.Int64Attribute{
-								Description:         "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
-								MarkdownDescription: "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+								Description:         "A sequence number representing a specific generation of the desired state.Populated by the system. Read-only.",
+								MarkdownDescription: "A sequence number representing a specific generation of the desired state.Populated by the system. Read-only.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

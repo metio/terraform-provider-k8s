@@ -3014,8 +3014,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"credentials_ref": schema.SingleNestedAttribute{
-										Description:         "CredentialsRef is a reference to a Secret containing the username andpassword for the TPP server.The secret must contain two keys, 'username' and 'password'.",
-										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the username andpassword for the TPP server.The secret must contain two keys, 'username' and 'password'.",
+										Description:         "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.The secret must contain the key 'access-token' for the Access Token Authentication,or two keys, 'username' and 'password' for the API Keys Authentication.",
+										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.The secret must contain the key 'access-token' for the Access Token Authentication,or two keys, 'username' and 'password' for the API Keys Authentication.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
 												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",

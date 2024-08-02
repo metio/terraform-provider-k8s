@@ -81,6 +81,7 @@ Optional:
 - `concurrency_level` (Number) number of tests run in parallel
 - `content_request` (Attributes) test content request body (see [below for nested schema](#nestedatt--spec--execution_request--content_request))
 - `cron_job_template` (String) cron job template extensions
+- `disable_webhooks` (Boolean) whether webhooks should be disabled for this execution
 - `execution_labels` (Map of String) execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers

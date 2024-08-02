@@ -266,7 +266,6 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.LengthAtMost(63),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
 													},
 												},
@@ -289,7 +288,6 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.LengthAtMost(63),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 													},
 												},
@@ -372,7 +370,6 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
 												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
 											},
 										},
@@ -395,7 +392,6 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
 												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 											},
 										},

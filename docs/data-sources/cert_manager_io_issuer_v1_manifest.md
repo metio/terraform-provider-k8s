@@ -1155,7 +1155,7 @@ Optional:
 
 Required:
 
-- `credentials_ref` (Attributes) CredentialsRef is a reference to a Secret containing the username andpassword for the TPP server.The secret must contain two keys, 'username' and 'password'. (see [below for nested schema](#nestedatt--spec--venafi--tpp--credentials_ref))
+- `credentials_ref` (Attributes) CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.The secret must contain the key 'access-token' for the Access Token Authentication,or two keys, 'username' and 'password' for the API Keys Authentication. (see [below for nested schema](#nestedatt--spec--venafi--tpp--credentials_ref))
 - `url` (String) URL is the base URL for the vedsdk endpoint of the Venafi TPP instance,for example: 'https://tpp.example.com/vedsdk'.
 
 Optional:

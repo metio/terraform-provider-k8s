@@ -53,12 +53,15 @@ type SourceToolkitFluxcdIoBucketV1Beta2ManifestData struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
-		Endpoint  *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-		Ignore    *string `tfsdk:"ignore" json:"ignore,omitempty"`
-		Insecure  *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
-		Interval  *string `tfsdk:"interval" json:"interval,omitempty"`
-		Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
-		Provider  *string `tfsdk:"provider" json:"provider,omitempty"`
+		Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		Ignore         *string `tfsdk:"ignore" json:"ignore,omitempty"`
+		Insecure       *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+		Interval       *string `tfsdk:"interval" json:"interval,omitempty"`
+		Prefix         *string `tfsdk:"prefix" json:"prefix,omitempty"`
+		Provider       *string `tfsdk:"provider" json:"provider,omitempty"`
+		ProxySecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
 		Region    *string `tfsdk:"region" json:"region,omitempty"`
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -251,6 +254,23 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 						Validators: []validator.String{
 							stringvalidator.OneOf("generic", "aws", "gcp", "azure"),
 						},
+					},
+
+					"proxy_secret_ref": schema.SingleNestedAttribute{
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"region": schema.StringAttribute{

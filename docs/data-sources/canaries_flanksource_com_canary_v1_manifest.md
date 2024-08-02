@@ -113,7 +113,6 @@ Required:
 Optional:
 
 - `alerts` (List of String)
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--display))
@@ -122,9 +121,8 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `ignore` (List of String)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--alertmanager--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--alertmanager--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--password))
 - `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--test))
@@ -132,63 +130,6 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--username))
-
-<a id="nestedatt--spec--alertmanager--bearer"></a>
-### Nested Schema for `spec.alertmanager.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from))
-
-<a id="nestedatt--spec--alertmanager--bearer--value_from"></a>
-### Nested Schema for `spec.alertmanager.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--alertmanager--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.alertmanager.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.alertmanager.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.alertmanager.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--alertmanager--display"></a>
 ### Nested Schema for `spec.alertmanager.display`
@@ -203,152 +144,6 @@ Optional:
 
 <a id="nestedatt--spec--alertmanager--metrics"></a>
 ### Nested Schema for `spec.alertmanager.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--alertmanager--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--alertmanager--metrics--labels"></a>
-### Nested Schema for `spec.alertmanager.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--alertmanager--oauth"></a>
-### Nested Schema for `spec.alertmanager.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--alertmanager--oauth--client_id"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--alertmanager--oauth--client_secret"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--alertmanager--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.alertmanager.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--alertmanager--password"></a>
@@ -421,18 +216,53 @@ Optional:
 
 Optional:
 
-- `name` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--name))
-- `namespace` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--namespace))
-- `type` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--type))
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--components--type))
+
+<a id="nestedatt--spec--alertmanager--relationships--components--agent"></a>
+### Nested Schema for `spec.alertmanager.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--components--external_id"></a>
+### Nested Schema for `spec.alertmanager.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--components--id"></a>
+### Nested Schema for `spec.alertmanager.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 <a id="nestedatt--spec--alertmanager--relationships--components--name"></a>
 ### Nested Schema for `spec.alertmanager.relationships.components.name`
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 <a id="nestedatt--spec--alertmanager--relationships--components--namespace"></a>
@@ -440,9 +270,19 @@ Optional:
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--components--scope"></a>
+### Nested Schema for `spec.alertmanager.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 <a id="nestedatt--spec--alertmanager--relationships--components--type"></a>
@@ -450,9 +290,9 @@ Optional:
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -461,18 +301,53 @@ Optional:
 
 Optional:
 
-- `name` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--name))
-- `namespace` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--namespace))
-- `type` (Attributes) Lookup specifies the type of lookup to perform. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--type))
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs--type))
+
+<a id="nestedatt--spec--alertmanager--relationships--configs--agent"></a>
+### Nested Schema for `spec.alertmanager.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--configs--external_id"></a>
+### Nested Schema for `spec.alertmanager.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--configs--id"></a>
+### Nested Schema for `spec.alertmanager.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 <a id="nestedatt--spec--alertmanager--relationships--configs--name"></a>
 ### Nested Schema for `spec.alertmanager.relationships.configs.name`
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 <a id="nestedatt--spec--alertmanager--relationships--configs--namespace"></a>
@@ -480,9 +355,19 @@ Optional:
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--alertmanager--relationships--configs--scope"></a>
+### Nested Schema for `spec.alertmanager.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 <a id="nestedatt--spec--alertmanager--relationships--configs--type"></a>
@@ -490,9 +375,9 @@ Optional:
 
 Optional:
 
-- `expr` (String) Expr is a cel-expression.
-- `label` (String) Label specifies the key to lookup on the label.
-- `value` (String) Value is the static value to use.
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -595,9 +480,10 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--aws_config--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -676,24 +562,183 @@ Optional:
 <a id="nestedatt--spec--aws_config--metrics"></a>
 ### Nested Schema for `spec.aws_config.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--aws_config--metrics--labels"></a>
-### Nested Schema for `spec.aws_config.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--aws_config--relationships"></a>
+### Nested Schema for `spec.aws_config.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs))
+
+<a id="nestedatt--spec--aws_config--relationships--components"></a>
+### Nested Schema for `spec.aws_config.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--components--type))
+
+<a id="nestedatt--spec--aws_config--relationships--components--agent"></a>
+### Nested Schema for `spec.aws_config.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--external_id"></a>
+### Nested Schema for `spec.aws_config.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--id"></a>
+### Nested Schema for `spec.aws_config.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--name"></a>
+### Nested Schema for `spec.aws_config.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--namespace"></a>
+### Nested Schema for `spec.aws_config.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--scope"></a>
+### Nested Schema for `spec.aws_config.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--components--type"></a>
+### Nested Schema for `spec.aws_config.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs"></a>
+### Nested Schema for `spec.aws_config.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config--relationships--configs--type))
+
+<a id="nestedatt--spec--aws_config--relationships--configs--agent"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--external_id"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--id"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--name"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--namespace"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--scope"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config--relationships--configs--type"></a>
+### Nested Schema for `spec.aws_config.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -852,9 +897,10 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `ignore_rules` (List of String) List of rules which would be omitted from the fetch result
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--aws_config_rule--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config_rule--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships))
 - `rules` (List of String) Specify one or more Config rule names to filter the results by rule.
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--session_token))
@@ -934,24 +980,183 @@ Optional:
 <a id="nestedatt--spec--aws_config_rule--metrics"></a>
 ### Nested Schema for `spec.aws_config_rule.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config_rule--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--aws_config_rule--metrics--labels"></a>
-### Nested Schema for `spec.aws_config_rule.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--aws_config_rule--relationships"></a>
+### Nested Schema for `spec.aws_config_rule.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs))
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--components--type))
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--agent"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--external_id"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--id"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--name"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--namespace"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--scope"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--components--type"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships--configs--type))
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--agent"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--external_id"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--id"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--name"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--namespace"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--scope"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--aws_config_rule--relationships--configs--type"></a>
+### Nested Schema for `spec.aws_config_rule.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1113,8 +1318,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--azure_devops--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--azure_devops--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--azure_devops--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -1190,24 +1396,183 @@ Optional:
 <a id="nestedatt--spec--azure_devops--metrics"></a>
 ### Nested Schema for `spec.azure_devops.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--azure_devops--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--azure_devops--metrics--labels"></a>
-### Nested Schema for `spec.azure_devops.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--azure_devops--relationships"></a>
+### Nested Schema for `spec.azure_devops.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs))
+
+<a id="nestedatt--spec--azure_devops--relationships--components"></a>
+### Nested Schema for `spec.azure_devops.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--components--type))
+
+<a id="nestedatt--spec--azure_devops--relationships--components--agent"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--external_id"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--id"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--name"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--namespace"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--scope"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--components--type"></a>
+### Nested Schema for `spec.azure_devops.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--azure_devops--relationships--configs--type))
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--agent"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--external_id"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--id"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--name"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--namespace"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--scope"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--azure_devops--relationships--configs--type"></a>
+### Nested Schema for `spec.azure_devops.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1248,8 +1613,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--catalog--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--catalog--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--catalog--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -1266,6 +1632,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)
@@ -1285,24 +1652,183 @@ Optional:
 <a id="nestedatt--spec--catalog--metrics"></a>
 ### Nested Schema for `spec.catalog.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--catalog--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--catalog--metrics--labels"></a>
-### Nested Schema for `spec.catalog.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--catalog--relationships"></a>
+### Nested Schema for `spec.catalog.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--catalog--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs))
+
+<a id="nestedatt--spec--catalog--relationships--components"></a>
+### Nested Schema for `spec.catalog.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--components--type))
+
+<a id="nestedatt--spec--catalog--relationships--components--agent"></a>
+### Nested Schema for `spec.catalog.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--external_id"></a>
+### Nested Schema for `spec.catalog.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--id"></a>
+### Nested Schema for `spec.catalog.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--name"></a>
+### Nested Schema for `spec.catalog.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--namespace"></a>
+### Nested Schema for `spec.catalog.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--scope"></a>
+### Nested Schema for `spec.catalog.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--components--type"></a>
+### Nested Schema for `spec.catalog.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--catalog--relationships--configs"></a>
+### Nested Schema for `spec.catalog.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--catalog--relationships--configs--type))
+
+<a id="nestedatt--spec--catalog--relationships--configs--agent"></a>
+### Nested Schema for `spec.catalog.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--external_id"></a>
+### Nested Schema for `spec.catalog.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--id"></a>
+### Nested Schema for `spec.catalog.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--name"></a>
+### Nested Schema for `spec.catalog.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--namespace"></a>
+### Nested Schema for `spec.catalog.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--scope"></a>
+### Nested Schema for `spec.catalog.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--catalog--relationships--configs--type"></a>
+### Nested Schema for `spec.catalog.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1348,9 +1874,10 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--cloudwatch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--cloudwatch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -1430,24 +1957,183 @@ Optional:
 <a id="nestedatt--spec--cloudwatch--metrics"></a>
 ### Nested Schema for `spec.cloudwatch.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--cloudwatch--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--cloudwatch--metrics--labels"></a>
-### Nested Schema for `spec.cloudwatch.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--cloudwatch--relationships"></a>
+### Nested Schema for `spec.cloudwatch.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs))
+
+<a id="nestedatt--spec--cloudwatch--relationships--components"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--components--type))
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--agent"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--external_id"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--id"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--name"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--namespace"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--scope"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--components--type"></a>
+### Nested Schema for `spec.cloudwatch.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships--configs--type))
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--agent"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--external_id"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--id"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--name"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--namespace"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--scope"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--cloudwatch--relationships--configs--type"></a>
+### Nested Schema for `spec.cloudwatch.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1604,8 +2290,9 @@ Optional:
 - `expected_size` (Number)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--containerd--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--containerd--auth"></a>
@@ -1734,24 +2421,183 @@ Optional:
 <a id="nestedatt--spec--containerd--metrics"></a>
 ### Nested Schema for `spec.containerd.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--containerd--metrics--labels"></a>
-### Nested Schema for `spec.containerd.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--containerd--relationships"></a>
+### Nested Schema for `spec.containerd.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs))
+
+<a id="nestedatt--spec--containerd--relationships--components"></a>
+### Nested Schema for `spec.containerd.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--components--type))
+
+<a id="nestedatt--spec--containerd--relationships--components--agent"></a>
+### Nested Schema for `spec.containerd.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--external_id"></a>
+### Nested Schema for `spec.containerd.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--id"></a>
+### Nested Schema for `spec.containerd.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--name"></a>
+### Nested Schema for `spec.containerd.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--namespace"></a>
+### Nested Schema for `spec.containerd.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--scope"></a>
+### Nested Schema for `spec.containerd.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--components--type"></a>
+### Nested Schema for `spec.containerd.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--containerd--relationships--configs"></a>
+### Nested Schema for `spec.containerd.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd--relationships--configs--type))
+
+<a id="nestedatt--spec--containerd--relationships--configs--agent"></a>
+### Nested Schema for `spec.containerd.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--external_id"></a>
+### Nested Schema for `spec.containerd.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--id"></a>
+### Nested Schema for `spec.containerd.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--name"></a>
+### Nested Schema for `spec.containerd.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--namespace"></a>
+### Nested Schema for `spec.containerd.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--scope"></a>
+### Nested Schema for `spec.containerd.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd--relationships--configs--type"></a>
+### Nested Schema for `spec.containerd.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1769,33 +2615,193 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--containerd_push--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd_push--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd_push--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `username` (String)
 
 <a id="nestedatt--spec--containerd_push--metrics"></a>
 ### Nested Schema for `spec.containerd_push.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd_push--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--containerd_push--metrics--labels"></a>
-### Nested Schema for `spec.containerd_push.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--containerd_push--relationships"></a>
+### Nested Schema for `spec.containerd_push.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs))
+
+<a id="nestedatt--spec--containerd_push--relationships--components"></a>
+### Nested Schema for `spec.containerd_push.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--components--type))
+
+<a id="nestedatt--spec--containerd_push--relationships--components--agent"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--external_id"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--id"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--name"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--namespace"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--scope"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--components--type"></a>
+### Nested Schema for `spec.containerd_push.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--containerd_push--relationships--configs--type))
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--agent"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--external_id"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--id"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--name"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--namespace"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--scope"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--containerd_push--relationships--configs--type"></a>
+### Nested Schema for `spec.containerd_push.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1815,8 +2821,9 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
 - `max_age` (String)
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--database_backup--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--database_backup--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--database_backup--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -1915,24 +2922,183 @@ Optional:
 <a id="nestedatt--spec--database_backup--metrics"></a>
 ### Nested Schema for `spec.database_backup.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--database_backup--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--database_backup--metrics--labels"></a>
-### Nested Schema for `spec.database_backup.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--database_backup--relationships"></a>
+### Nested Schema for `spec.database_backup.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs))
+
+<a id="nestedatt--spec--database_backup--relationships--components"></a>
+### Nested Schema for `spec.database_backup.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--components--type))
+
+<a id="nestedatt--spec--database_backup--relationships--components--agent"></a>
+### Nested Schema for `spec.database_backup.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--external_id"></a>
+### Nested Schema for `spec.database_backup.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--id"></a>
+### Nested Schema for `spec.database_backup.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--name"></a>
+### Nested Schema for `spec.database_backup.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--namespace"></a>
+### Nested Schema for `spec.database_backup.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--scope"></a>
+### Nested Schema for `spec.database_backup.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--components--type"></a>
+### Nested Schema for `spec.database_backup.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs"></a>
+### Nested Schema for `spec.database_backup.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--database_backup--relationships--configs--type))
+
+<a id="nestedatt--spec--database_backup--relationships--configs--agent"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--external_id"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--id"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--name"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--namespace"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--scope"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--database_backup--relationships--configs--type"></a>
+### Nested Schema for `spec.database_backup.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -1972,12 +3138,13 @@ Optional:
 - `exactreply` (List of String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--dns--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dns--metrics))
 - `minrecords` (Number)
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `port` (Number)
 - `query` (String)
 - `querytype` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--dns--relationships))
 - `server` (String)
 - `threshold_millis` (Number)
 - `timeout` (Number)
@@ -1986,24 +3153,183 @@ Optional:
 <a id="nestedatt--spec--dns--metrics"></a>
 ### Nested Schema for `spec.dns.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--dns--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--dns--metrics--labels"></a>
-### Nested Schema for `spec.dns.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--dns--relationships"></a>
+### Nested Schema for `spec.dns.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--dns--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--dns--relationships--configs))
+
+<a id="nestedatt--spec--dns--relationships--components"></a>
+### Nested Schema for `spec.dns.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--dns--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--dns--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--components--type))
+
+<a id="nestedatt--spec--dns--relationships--components--agent"></a>
+### Nested Schema for `spec.dns.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--external_id"></a>
+### Nested Schema for `spec.dns.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--id"></a>
+### Nested Schema for `spec.dns.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--name"></a>
+### Nested Schema for `spec.dns.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--namespace"></a>
+### Nested Schema for `spec.dns.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--scope"></a>
+### Nested Schema for `spec.dns.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--components--type"></a>
+### Nested Schema for `spec.dns.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--dns--relationships--configs"></a>
+### Nested Schema for `spec.dns.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dns--relationships--configs--type))
+
+<a id="nestedatt--spec--dns--relationships--configs--agent"></a>
+### Nested Schema for `spec.dns.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--external_id"></a>
+### Nested Schema for `spec.dns.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--id"></a>
+### Nested Schema for `spec.dns.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--name"></a>
+### Nested Schema for `spec.dns.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--namespace"></a>
+### Nested Schema for `spec.dns.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--scope"></a>
+### Nested Schema for `spec.dns.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dns--relationships--configs--type"></a>
+### Nested Schema for `spec.dns.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -2024,8 +3350,9 @@ Optional:
 - `expected_size` (Number)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--docker--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--docker--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--docker--auth"></a>
@@ -2154,24 +3481,183 @@ Optional:
 <a id="nestedatt--spec--docker--metrics"></a>
 ### Nested Schema for `spec.docker.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--docker--metrics--labels"></a>
-### Nested Schema for `spec.docker.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--docker--relationships"></a>
+### Nested Schema for `spec.docker.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker--relationships--configs))
+
+<a id="nestedatt--spec--docker--relationships--components"></a>
+### Nested Schema for `spec.docker.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--docker--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--docker--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--components--type))
+
+<a id="nestedatt--spec--docker--relationships--components--agent"></a>
+### Nested Schema for `spec.docker.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--external_id"></a>
+### Nested Schema for `spec.docker.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--id"></a>
+### Nested Schema for `spec.docker.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--name"></a>
+### Nested Schema for `spec.docker.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--namespace"></a>
+### Nested Schema for `spec.docker.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--scope"></a>
+### Nested Schema for `spec.docker.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--components--type"></a>
+### Nested Schema for `spec.docker.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--docker--relationships--configs"></a>
+### Nested Schema for `spec.docker.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker--relationships--configs--type))
+
+<a id="nestedatt--spec--docker--relationships--configs--agent"></a>
+### Nested Schema for `spec.docker.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--external_id"></a>
+### Nested Schema for `spec.docker.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--id"></a>
+### Nested Schema for `spec.docker.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--name"></a>
+### Nested Schema for `spec.docker.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--namespace"></a>
+### Nested Schema for `spec.docker.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--scope"></a>
+### Nested Schema for `spec.docker.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker--relationships--configs--type"></a>
+### Nested Schema for `spec.docker.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -2190,8 +3676,9 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--docker_push--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker_push--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--docker_push--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--docker_push--auth"></a>
@@ -2320,24 +3807,183 @@ Optional:
 <a id="nestedatt--spec--docker_push--metrics"></a>
 ### Nested Schema for `spec.docker_push.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker_push--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--docker_push--metrics--labels"></a>
-### Nested Schema for `spec.docker_push.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--docker_push--relationships"></a>
+### Nested Schema for `spec.docker_push.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs))
+
+<a id="nestedatt--spec--docker_push--relationships--components"></a>
+### Nested Schema for `spec.docker_push.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--components--type))
+
+<a id="nestedatt--spec--docker_push--relationships--components--agent"></a>
+### Nested Schema for `spec.docker_push.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--external_id"></a>
+### Nested Schema for `spec.docker_push.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--id"></a>
+### Nested Schema for `spec.docker_push.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--name"></a>
+### Nested Schema for `spec.docker_push.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--namespace"></a>
+### Nested Schema for `spec.docker_push.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--scope"></a>
+### Nested Schema for `spec.docker_push.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--components--type"></a>
+### Nested Schema for `spec.docker_push.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs"></a>
+### Nested Schema for `spec.docker_push.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--docker_push--relationships--configs--type))
+
+<a id="nestedatt--spec--docker_push--relationships--configs--agent"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--external_id"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--id"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--name"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--namespace"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--scope"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--docker_push--relationships--configs--type"></a>
+### Nested Schema for `spec.docker_push.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -2358,8 +4004,9 @@ Optional:
 - `host` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--dynatrace--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dynatrace--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--dynatrace--relationships))
 - `scheme` (String)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--transform))
@@ -2436,24 +4083,183 @@ Optional:
 <a id="nestedatt--spec--dynatrace--metrics"></a>
 ### Nested Schema for `spec.dynatrace.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--dynatrace--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--dynatrace--metrics--labels"></a>
-### Nested Schema for `spec.dynatrace.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--dynatrace--relationships"></a>
+### Nested Schema for `spec.dynatrace.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs))
+
+<a id="nestedatt--spec--dynatrace--relationships--components"></a>
+### Nested Schema for `spec.dynatrace.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--components--type))
+
+<a id="nestedatt--spec--dynatrace--relationships--components--agent"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--external_id"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--id"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--name"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--namespace"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--scope"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--components--type"></a>
+### Nested Schema for `spec.dynatrace.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--dynatrace--relationships--configs--type))
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--agent"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--external_id"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--id"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--name"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--namespace"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--scope"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--dynatrace--relationships--configs--type"></a>
+### Nested Schema for `spec.dynatrace.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -2489,81 +4295,23 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `index` (String)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password))
 - `query` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships))
 - `results` (Number)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--username))
-
-<a id="nestedatt--spec--elasticsearch--bearer"></a>
-### Nested Schema for `spec.elasticsearch.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from))
-
-<a id="nestedatt--spec--elasticsearch--bearer--value_from"></a>
-### Nested Schema for `spec.elasticsearch.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--elasticsearch--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.elasticsearch.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--elasticsearch--display"></a>
 ### Nested Schema for `spec.elasticsearch.display`
@@ -2578,152 +4326,6 @@ Optional:
 
 <a id="nestedatt--spec--elasticsearch--metrics"></a>
 ### Nested Schema for `spec.elasticsearch.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--elasticsearch--metrics--labels"></a>
-### Nested Schema for `spec.elasticsearch.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--elasticsearch--oauth"></a>
-### Nested Schema for `spec.elasticsearch.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_id"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_secret"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--elasticsearch--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--elasticsearch--password"></a>
@@ -2779,6 +4381,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--elasticsearch--relationships"></a>
+### Nested Schema for `spec.elasticsearch.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs))
+
+<a id="nestedatt--spec--elasticsearch--relationships--components"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--components--type))
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--agent"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--external_id"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--id"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--name"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--namespace"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--scope"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--components--type"></a>
+### Nested Schema for `spec.elasticsearch.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships--configs--type))
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--agent"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--external_id"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--id"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--name"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--namespace"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--scope"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--elasticsearch--relationships--configs--type"></a>
+### Nested Schema for `spec.elasticsearch.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -2930,8 +4711,9 @@ Optional:
 - `env` (Attributes List) EnvVars are the environment variables that are accessible to exec processes (see [below for nested schema](#nestedatt--spec--exec--env))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--exec--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--exec--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--exec--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -3586,24 +5368,183 @@ Optional:
 <a id="nestedatt--spec--exec--metrics"></a>
 ### Nested Schema for `spec.exec.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--exec--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--exec--metrics--labels"></a>
-### Nested Schema for `spec.exec.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--exec--relationships"></a>
+### Nested Schema for `spec.exec.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--exec--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--exec--relationships--configs))
+
+<a id="nestedatt--spec--exec--relationships--components"></a>
+### Nested Schema for `spec.exec.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--exec--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--components--type))
+
+<a id="nestedatt--spec--exec--relationships--components--agent"></a>
+### Nested Schema for `spec.exec.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--external_id"></a>
+### Nested Schema for `spec.exec.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--id"></a>
+### Nested Schema for `spec.exec.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--name"></a>
+### Nested Schema for `spec.exec.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--namespace"></a>
+### Nested Schema for `spec.exec.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--scope"></a>
+### Nested Schema for `spec.exec.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--components--type"></a>
+### Nested Schema for `spec.exec.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--exec--relationships--configs"></a>
+### Nested Schema for `spec.exec.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--exec--relationships--configs--type))
+
+<a id="nestedatt--spec--exec--relationships--configs--agent"></a>
+### Nested Schema for `spec.exec.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--external_id"></a>
+### Nested Schema for `spec.exec.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--id"></a>
+### Nested Schema for `spec.exec.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--name"></a>
+### Nested Schema for `spec.exec.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--namespace"></a>
+### Nested Schema for `spec.exec.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--scope"></a>
+### Nested Schema for `spec.exec.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--exec--relationships--configs--type"></a>
+### Nested Schema for `spec.exec.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -3651,12 +5592,13 @@ Optional:
 - `max_age` (String) MaxAge the latest object should be younger than defined age
 - `max_count` (Number) MinCount the minimum number of files inside the searchPath
 - `max_size` (String) MaxSize of the files inside the searchPath
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--folder--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--folder--metrics))
 - `min_age` (String) MinAge the latest object should be older than defined age
 - `min_count` (Number) MinCount the minimum number of files inside the searchPath
 - `min_size` (String) MinSize of the files inside the searchPath
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `recursive` (Boolean) Recursive when set to true will recursively scan the folder to list the files in it.However, symlinks are simply listed but not traversed.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--folder--relationships))
 - `sftp_connection` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection))
 - `smb_connection` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--test))
@@ -3947,24 +5889,183 @@ Optional:
 <a id="nestedatt--spec--folder--metrics"></a>
 ### Nested Schema for `spec.folder.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--folder--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--folder--metrics--labels"></a>
-### Nested Schema for `spec.folder.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--folder--relationships"></a>
+### Nested Schema for `spec.folder.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--folder--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--folder--relationships--configs))
+
+<a id="nestedatt--spec--folder--relationships--components"></a>
+### Nested Schema for `spec.folder.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--folder--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--components--type))
+
+<a id="nestedatt--spec--folder--relationships--components--agent"></a>
+### Nested Schema for `spec.folder.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--external_id"></a>
+### Nested Schema for `spec.folder.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--id"></a>
+### Nested Schema for `spec.folder.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--name"></a>
+### Nested Schema for `spec.folder.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--namespace"></a>
+### Nested Schema for `spec.folder.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--scope"></a>
+### Nested Schema for `spec.folder.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--components--type"></a>
+### Nested Schema for `spec.folder.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--folder--relationships--configs"></a>
+### Nested Schema for `spec.folder.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--folder--relationships--configs--type))
+
+<a id="nestedatt--spec--folder--relationships--configs--agent"></a>
+### Nested Schema for `spec.folder.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--external_id"></a>
+### Nested Schema for `spec.folder.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--id"></a>
+### Nested Schema for `spec.folder.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--name"></a>
+### Nested Schema for `spec.folder.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--namespace"></a>
+### Nested Schema for `spec.folder.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--scope"></a>
+### Nested Schema for `spec.folder.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--folder--relationships--configs--type"></a>
+### Nested Schema for `spec.folder.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -3977,195 +6078,10 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer))
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--password))
 - `port` (Number) Port for the SSH server. Defaults to 22
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--username))
-
-<a id="nestedatt--spec--folder--sftp_connection--bearer"></a>
-### Nested Schema for `spec.folder.sftp_connection.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from))
-
-<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from"></a>
-### Nested Schema for `spec.folder.sftp_connection.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--sftp_connection--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 
 <a id="nestedatt--spec--folder--sftp_connection--password"></a>
 ### Nested Schema for `spec.folder.sftp_connection.password`
@@ -4287,196 +6203,11 @@ Optional:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer))
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
 - `domain` (String) Domain...
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--password))
 - `port` (Number) Port on which smb server is running. Defaults to 445
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--username))
-
-<a id="nestedatt--spec--folder--smb_connection--bearer"></a>
-### Nested Schema for `spec.folder.smb_connection.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from))
-
-<a id="nestedatt--spec--folder--smb_connection--bearer--value_from"></a>
-### Nested Schema for `spec.folder.smb_connection.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_id"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--folder--smb_connection--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 
 <a id="nestedatt--spec--folder--smb_connection--password"></a>
 ### Nested Schema for `spec.folder.smb_connection.password`
@@ -4633,8 +6364,9 @@ Optional:
 - `filename` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--git_protocol--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--git_protocol--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--git_protocol--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -4767,24 +6499,183 @@ Optional:
 <a id="nestedatt--spec--git_protocol--metrics"></a>
 ### Nested Schema for `spec.git_protocol.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--git_protocol--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--git_protocol--metrics--labels"></a>
-### Nested Schema for `spec.git_protocol.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--git_protocol--relationships"></a>
+### Nested Schema for `spec.git_protocol.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs))
+
+<a id="nestedatt--spec--git_protocol--relationships--components"></a>
+### Nested Schema for `spec.git_protocol.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--components--type))
+
+<a id="nestedatt--spec--git_protocol--relationships--components--agent"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--external_id"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--id"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--name"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--namespace"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--scope"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--components--type"></a>
+### Nested Schema for `spec.git_protocol.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--git_protocol--relationships--configs--type))
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--agent"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--external_id"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--id"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--name"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--namespace"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--scope"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--git_protocol--relationships--configs--type"></a>
+### Nested Schema for `spec.git_protocol.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -4827,8 +6718,9 @@ Optional:
 - `github_token` (Attributes) (see [below for nested schema](#nestedatt--spec--github--github_token))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--github--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--github--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--github--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--github--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--github--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -4904,24 +6796,183 @@ Optional:
 <a id="nestedatt--spec--github--metrics"></a>
 ### Nested Schema for `spec.github.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--github--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--github--metrics--labels"></a>
-### Nested Schema for `spec.github.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--github--relationships"></a>
+### Nested Schema for `spec.github.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--github--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--github--relationships--configs))
+
+<a id="nestedatt--spec--github--relationships--components"></a>
+### Nested Schema for `spec.github.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--github--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--github--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--components--type))
+
+<a id="nestedatt--spec--github--relationships--components--agent"></a>
+### Nested Schema for `spec.github.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--external_id"></a>
+### Nested Schema for `spec.github.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--id"></a>
+### Nested Schema for `spec.github.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--name"></a>
+### Nested Schema for `spec.github.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--namespace"></a>
+### Nested Schema for `spec.github.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--scope"></a>
+### Nested Schema for `spec.github.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--components--type"></a>
+### Nested Schema for `spec.github.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--github--relationships--configs"></a>
+### Nested Schema for `spec.github.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--github--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--github--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--github--relationships--configs--type))
+
+<a id="nestedatt--spec--github--relationships--configs--agent"></a>
+### Nested Schema for `spec.github.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--external_id"></a>
+### Nested Schema for `spec.github.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--id"></a>
+### Nested Schema for `spec.github.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--name"></a>
+### Nested Schema for `spec.github.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--namespace"></a>
+### Nested Schema for `spec.github.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--scope"></a>
+### Nested Schema for `spec.github.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--github--relationships--configs--type"></a>
+### Nested Schema for `spec.github.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -4963,9 +7014,10 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--helm--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--helm--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `project` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--helm--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--helm--auth"></a>
@@ -5094,24 +7146,183 @@ Optional:
 <a id="nestedatt--spec--helm--metrics"></a>
 ### Nested Schema for `spec.helm.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--helm--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--helm--metrics--labels"></a>
-### Nested Schema for `spec.helm.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--helm--relationships"></a>
+### Nested Schema for `spec.helm.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--helm--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--helm--relationships--configs))
+
+<a id="nestedatt--spec--helm--relationships--components"></a>
+### Nested Schema for `spec.helm.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--helm--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--helm--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--components--type))
+
+<a id="nestedatt--spec--helm--relationships--components--agent"></a>
+### Nested Schema for `spec.helm.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--external_id"></a>
+### Nested Schema for `spec.helm.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--id"></a>
+### Nested Schema for `spec.helm.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--name"></a>
+### Nested Schema for `spec.helm.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--namespace"></a>
+### Nested Schema for `spec.helm.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--scope"></a>
+### Nested Schema for `spec.helm.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--components--type"></a>
+### Nested Schema for `spec.helm.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--helm--relationships--configs"></a>
+### Nested Schema for `spec.helm.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--helm--relationships--configs--type))
+
+<a id="nestedatt--spec--helm--relationships--configs--agent"></a>
+### Nested Schema for `spec.helm.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--external_id"></a>
+### Nested Schema for `spec.helm.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--id"></a>
+### Nested Schema for `spec.helm.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--name"></a>
+### Nested Schema for `spec.helm.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--namespace"></a>
+### Nested Schema for `spec.helm.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--scope"></a>
+### Nested Schema for `spec.helm.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--helm--relationships--configs--type"></a>
+### Nested Schema for `spec.helm.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -5125,7 +7336,6 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer))
 - `body` (String) Request Body Contents
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
@@ -5137,13 +7347,13 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `max_ssl_expiry` (Number) Maximum number of days until the SSL Certificate expires.
 - `method` (String) Method to use - defaults to GET
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--http--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--http--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `ntlm` (Boolean) NTLM when set to true will do authentication using NTLM v1 protocol
 - `ntlmv2` (Boolean) NTLM when set to true will do authentication using NTLM v2 protocol
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth))
 - `oauth2` (Attributes) Oauth2 Configuration. The client ID & Client secret should go to username & password respectively. (see [below for nested schema](#nestedatt--spec--http--oauth2))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--http--password))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--http--relationships))
 - `response_codes` (List of String) Expected response codes for the HTTP Request.
 - `response_content` (String) Exact response content expected to be returned by the endpoint.
 - `response_json_content` (Attributes) Deprecated, use expr and jsonpath function (see [below for nested schema](#nestedatt--spec--http--response_json_content))
@@ -5155,63 +7365,6 @@ Optional:
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--http--username))
-
-<a id="nestedatt--spec--http--bearer"></a>
-### Nested Schema for `spec.http.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from))
-
-<a id="nestedatt--spec--http--bearer--value_from"></a>
-### Nested Schema for `spec.http.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--http--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.http.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.http.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--http--display"></a>
 ### Nested Schema for `spec.http.display`
@@ -5341,152 +7494,6 @@ Optional:
 <a id="nestedatt--spec--http--metrics"></a>
 ### Nested Schema for `spec.http.metrics`
 
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--http--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--http--metrics--labels"></a>
-### Nested Schema for `spec.http.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--http--oauth"></a>
-### Nested Schema for `spec.http.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--http--oauth--client_id"></a>
-### Nested Schema for `spec.http.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--http--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.http.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--http--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.http.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.http.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--http--oauth--client_secret"></a>
-### Nested Schema for `spec.http.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--http--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.http.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--http--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.http.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.http.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--http--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 
 <a id="nestedatt--spec--http--oauth2"></a>
 ### Nested Schema for `spec.http.oauth2`
@@ -5551,6 +7558,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--http--relationships"></a>
+### Nested Schema for `spec.http.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--http--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--http--relationships--configs))
+
+<a id="nestedatt--spec--http--relationships--components"></a>
+### Nested Schema for `spec.http.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--http--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--http--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--components--type))
+
+<a id="nestedatt--spec--http--relationships--components--agent"></a>
+### Nested Schema for `spec.http.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--external_id"></a>
+### Nested Schema for `spec.http.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--id"></a>
+### Nested Schema for `spec.http.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--name"></a>
+### Nested Schema for `spec.http.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--namespace"></a>
+### Nested Schema for `spec.http.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--scope"></a>
+### Nested Schema for `spec.http.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--components--type"></a>
+### Nested Schema for `spec.http.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--http--relationships--configs"></a>
+### Nested Schema for `spec.http.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--http--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--http--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--http--relationships--configs--type))
+
+<a id="nestedatt--spec--http--relationships--configs--agent"></a>
+### Nested Schema for `spec.http.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--external_id"></a>
+### Nested Schema for `spec.http.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--id"></a>
+### Nested Schema for `spec.http.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--name"></a>
+### Nested Schema for `spec.http.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--namespace"></a>
+### Nested Schema for `spec.http.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--scope"></a>
+### Nested Schema for `spec.http.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--http--relationships--configs--type"></a>
+### Nested Schema for `spec.http.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -5840,34 +8026,194 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--icmp--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--icmp--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `packet_count` (Number)
 - `packet_loss_threshold` (Number)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--icmp--relationships))
 - `threshold_millis` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--icmp--metrics"></a>
 ### Nested Schema for `spec.icmp.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--icmp--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--icmp--metrics--labels"></a>
-### Nested Schema for `spec.icmp.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--icmp--relationships"></a>
+### Nested Schema for `spec.icmp.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--icmp--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs))
+
+<a id="nestedatt--spec--icmp--relationships--components"></a>
+### Nested Schema for `spec.icmp.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--components--type))
+
+<a id="nestedatt--spec--icmp--relationships--components--agent"></a>
+### Nested Schema for `spec.icmp.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--external_id"></a>
+### Nested Schema for `spec.icmp.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--id"></a>
+### Nested Schema for `spec.icmp.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--name"></a>
+### Nested Schema for `spec.icmp.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--namespace"></a>
+### Nested Schema for `spec.icmp.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--scope"></a>
+### Nested Schema for `spec.icmp.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--components--type"></a>
+### Nested Schema for `spec.icmp.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--icmp--relationships--configs"></a>
+### Nested Schema for `spec.icmp.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--icmp--relationships--configs--type))
+
+<a id="nestedatt--spec--icmp--relationships--configs--agent"></a>
+### Nested Schema for `spec.icmp.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--external_id"></a>
+### Nested Schema for `spec.icmp.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--id"></a>
+### Nested Schema for `spec.icmp.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--name"></a>
+### Nested Schema for `spec.icmp.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--namespace"></a>
+### Nested Schema for `spec.icmp.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--scope"></a>
+### Nested Schema for `spec.icmp.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--icmp--relationships--configs--type"></a>
+### Nested Schema for `spec.icmp.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -5886,10 +8232,11 @@ Optional:
 - `host` (String) Host is the server against which test plan needs to be executed
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--jmeter--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--jmeter--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `port` (Number) Port on which the server is running
 - `properties` (List of String) Properties defines the local Jmeter properties
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--jmeter--relationships))
 - `response_duration` (String) ResponseDuration under which the all the test should pass
 - `system_properties` (List of String) SystemProperties defines the java system property
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -5954,24 +8301,183 @@ Optional:
 <a id="nestedatt--spec--jmeter--metrics"></a>
 ### Nested Schema for `spec.jmeter.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmeter--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--jmeter--metrics--labels"></a>
-### Nested Schema for `spec.jmeter.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--jmeter--relationships"></a>
+### Nested Schema for `spec.jmeter.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs))
+
+<a id="nestedatt--spec--jmeter--relationships--components"></a>
+### Nested Schema for `spec.jmeter.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--components--type))
+
+<a id="nestedatt--spec--jmeter--relationships--components--agent"></a>
+### Nested Schema for `spec.jmeter.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--external_id"></a>
+### Nested Schema for `spec.jmeter.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--id"></a>
+### Nested Schema for `spec.jmeter.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--name"></a>
+### Nested Schema for `spec.jmeter.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--namespace"></a>
+### Nested Schema for `spec.jmeter.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--scope"></a>
+### Nested Schema for `spec.jmeter.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--components--type"></a>
+### Nested Schema for `spec.jmeter.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs"></a>
+### Nested Schema for `spec.jmeter.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--jmeter--relationships--configs--type))
+
+<a id="nestedatt--spec--jmeter--relationships--configs--agent"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--external_id"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--id"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--name"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--namespace"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--scope"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--jmeter--relationships--configs--type"></a>
+### Nested Schema for `spec.jmeter.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -5992,8 +8498,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--junit--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--junit--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--junit--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--test))
 - `timeout` (Number) Timeout in minutes to wait for specified container to finish its job. Defaults to 5 minutes
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--transform))
@@ -6021,24 +8528,183 @@ Optional:
 <a id="nestedatt--spec--junit--metrics"></a>
 ### Nested Schema for `spec.junit.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--junit--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--junit--metrics--labels"></a>
-### Nested Schema for `spec.junit.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--junit--relationships"></a>
+### Nested Schema for `spec.junit.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--junit--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--junit--relationships--configs))
+
+<a id="nestedatt--spec--junit--relationships--components"></a>
+### Nested Schema for `spec.junit.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--junit--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--components--type))
+
+<a id="nestedatt--spec--junit--relationships--components--agent"></a>
+### Nested Schema for `spec.junit.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--external_id"></a>
+### Nested Schema for `spec.junit.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--id"></a>
+### Nested Schema for `spec.junit.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--name"></a>
+### Nested Schema for `spec.junit.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--namespace"></a>
+### Nested Schema for `spec.junit.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--scope"></a>
+### Nested Schema for `spec.junit.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--components--type"></a>
+### Nested Schema for `spec.junit.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--junit--relationships--configs"></a>
+### Nested Schema for `spec.junit.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--junit--relationships--configs--type))
+
+<a id="nestedatt--spec--junit--relationships--configs--agent"></a>
+### Nested Schema for `spec.junit.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--external_id"></a>
+### Nested Schema for `spec.junit.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--id"></a>
+### Nested Schema for `spec.junit.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--name"></a>
+### Nested Schema for `spec.junit.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--namespace"></a>
+### Nested Schema for `spec.junit.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--scope"></a>
+### Nested Schema for `spec.junit.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--junit--relationships--configs--type"></a>
+### Nested Schema for `spec.junit.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -6082,10 +8748,11 @@ Optional:
 - `ignore` (List of String) Ignore the specified resources from the fetched resources. Can be a glob pattern.
 - `kubeconfig` (Attributes) KubeConfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes--kubeconfig))
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--kubernetes--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--namespace_selector))
 - `ready` (Boolean) Fail the check if any resources are not ready
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes--relationships))
 - `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--resource))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--transform))
@@ -6162,26 +8829,6 @@ Optional:
 <a id="nestedatt--spec--kubernetes--metrics"></a>
 ### Nested Schema for `spec.kubernetes.metrics`
 
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--kubernetes--metrics--labels"></a>
-### Nested Schema for `spec.kubernetes.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
 
 <a id="nestedatt--spec--kubernetes--namespace_selector"></a>
 ### Nested Schema for `spec.kubernetes.namespace_selector`
@@ -6191,6 +8838,185 @@ Optional:
 - `field_selector` (String)
 - `label_selector` (String)
 - `name` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships"></a>
+### Nested Schema for `spec.kubernetes.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs))
+
+<a id="nestedatt--spec--kubernetes--relationships--components"></a>
+### Nested Schema for `spec.kubernetes.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--components--type))
+
+<a id="nestedatt--spec--kubernetes--relationships--components--agent"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--external_id"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--id"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--name"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--namespace"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--scope"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--components--type"></a>
+### Nested Schema for `spec.kubernetes.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes--relationships--configs--type))
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--agent"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--external_id"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--id"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--name"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--namespace"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--scope"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes--relationships--configs--type"></a>
+### Nested Schema for `spec.kubernetes.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
 
 
 <a id="nestedatt--spec--kubernetes--resource"></a>
@@ -6244,8 +9070,9 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `kubeconfig` (Attributes) Kubeconfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig))
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships))
 - `static_resources` (Map of String) StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--transform))
@@ -6333,24 +9160,183 @@ Optional:
 <a id="nestedatt--spec--kubernetes_resource--metrics"></a>
 ### Nested Schema for `spec.kubernetes_resource.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--kubernetes_resource--metrics--labels"></a>
-### Nested Schema for `spec.kubernetes_resource.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--kubernetes_resource--relationships"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs))
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--components--type))
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--agent"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--external_id"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--id"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--name"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--namespace"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--scope"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--components--type"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships--configs--type))
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--agent"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--external_id"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--id"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--name"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--namespace"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--scope"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--relationships--configs--type"></a>
+### Nested Schema for `spec.kubernetes_resource.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -6399,226 +9385,22 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--ldap--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--ldap--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--password))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--ldap--relationships))
 - `skip_tls_verify` (Boolean)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `user_search` (String)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--username))
 
-<a id="nestedatt--spec--ldap--bearer"></a>
-### Nested Schema for `spec.ldap.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from))
-
-<a id="nestedatt--spec--ldap--bearer--value_from"></a>
-### Nested Schema for `spec.ldap.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--ldap--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ldap.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.ldap.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ldap.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 <a id="nestedatt--spec--ldap--metrics"></a>
 ### Nested Schema for `spec.ldap.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--ldap--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--ldap--metrics--labels"></a>
-### Nested Schema for `spec.ldap.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--ldap--oauth"></a>
-### Nested Schema for `spec.ldap.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--ldap--oauth--client_id"></a>
-### Nested Schema for `spec.ldap.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--ldap--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.ldap.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--ldap--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--ldap--oauth--client_secret"></a>
-### Nested Schema for `spec.ldap.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--ldap--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.ldap.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--ldap--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ldap.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--ldap--password"></a>
@@ -6674,6 +9456,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--ldap--relationships"></a>
+### Nested Schema for `spec.ldap.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--ldap--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs))
+
+<a id="nestedatt--spec--ldap--relationships--components"></a>
+### Nested Schema for `spec.ldap.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--components--type))
+
+<a id="nestedatt--spec--ldap--relationships--components--agent"></a>
+### Nested Schema for `spec.ldap.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--external_id"></a>
+### Nested Schema for `spec.ldap.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--id"></a>
+### Nested Schema for `spec.ldap.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--name"></a>
+### Nested Schema for `spec.ldap.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--namespace"></a>
+### Nested Schema for `spec.ldap.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--scope"></a>
+### Nested Schema for `spec.ldap.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--components--type"></a>
+### Nested Schema for `spec.ldap.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--ldap--relationships--configs"></a>
+### Nested Schema for `spec.ldap.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--ldap--relationships--configs--type))
+
+<a id="nestedatt--spec--ldap--relationships--configs--agent"></a>
+### Nested Schema for `spec.ldap.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--external_id"></a>
+### Nested Schema for `spec.ldap.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--id"></a>
+### Nested Schema for `spec.ldap.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--name"></a>
+### Nested Schema for `spec.ldap.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--namespace"></a>
+### Nested Schema for `spec.ldap.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--scope"></a>
+### Nested Schema for `spec.ldap.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--ldap--relationships--configs--type"></a>
+### Nested Schema for `spec.ldap.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -6745,224 +9706,19 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mongodb--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mongodb--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--password))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--username))
 
-<a id="nestedatt--spec--mongodb--bearer"></a>
-### Nested Schema for `spec.mongodb.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from))
-
-<a id="nestedatt--spec--mongodb--bearer--value_from"></a>
-### Nested Schema for `spec.mongodb.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mongodb--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mongodb.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.mongodb.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mongodb.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 <a id="nestedatt--spec--mongodb--metrics"></a>
 ### Nested Schema for `spec.mongodb.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--mongodb--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--mongodb--metrics--labels"></a>
-### Nested Schema for `spec.mongodb.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--mongodb--oauth"></a>
-### Nested Schema for `spec.mongodb.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--mongodb--oauth--client_id"></a>
-### Nested Schema for `spec.mongodb.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--mongodb--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.mongodb.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--mongodb--oauth--client_secret"></a>
-### Nested Schema for `spec.mongodb.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.mongodb.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mongodb--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mongodb.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--mongodb--password"></a>
@@ -7089,80 +9845,22 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mssql--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mssql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--password))
 - `query` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--mssql--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--username))
-
-<a id="nestedatt--spec--mssql--bearer"></a>
-### Nested Schema for `spec.mssql.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from))
-
-<a id="nestedatt--spec--mssql--bearer--value_from"></a>
-### Nested Schema for `spec.mssql.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mssql--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mssql.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.mssql.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mssql.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--mssql--display"></a>
 ### Nested Schema for `spec.mssql.display`
@@ -7177,152 +9875,6 @@ Optional:
 
 <a id="nestedatt--spec--mssql--metrics"></a>
 ### Nested Schema for `spec.mssql.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--mssql--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--mssql--metrics--labels"></a>
-### Nested Schema for `spec.mssql.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--mssql--oauth"></a>
-### Nested Schema for `spec.mssql.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--mssql--oauth--client_id"></a>
-### Nested Schema for `spec.mssql.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--mssql--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.mssql.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mssql--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--mssql--oauth--client_secret"></a>
-### Nested Schema for `spec.mssql.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--mssql--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.mssql.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mssql--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mssql.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--mssql--password"></a>
@@ -7378,6 +9930,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--mssql--relationships"></a>
+### Nested Schema for `spec.mssql.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--mssql--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs))
+
+<a id="nestedatt--spec--mssql--relationships--components"></a>
+### Nested Schema for `spec.mssql.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--components--type))
+
+<a id="nestedatt--spec--mssql--relationships--components--agent"></a>
+### Nested Schema for `spec.mssql.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--external_id"></a>
+### Nested Schema for `spec.mssql.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--id"></a>
+### Nested Schema for `spec.mssql.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--name"></a>
+### Nested Schema for `spec.mssql.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--namespace"></a>
+### Nested Schema for `spec.mssql.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--scope"></a>
+### Nested Schema for `spec.mssql.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--components--type"></a>
+### Nested Schema for `spec.mssql.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--mssql--relationships--configs"></a>
+### Nested Schema for `spec.mssql.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mssql--relationships--configs--type))
+
+<a id="nestedatt--spec--mssql--relationships--configs--agent"></a>
+### Nested Schema for `spec.mssql.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--external_id"></a>
+### Nested Schema for `spec.mssql.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--id"></a>
+### Nested Schema for `spec.mssql.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--name"></a>
+### Nested Schema for `spec.mssql.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--namespace"></a>
+### Nested Schema for `spec.mssql.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--scope"></a>
+### Nested Schema for `spec.mssql.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mssql--relationships--configs--type"></a>
+### Nested Schema for `spec.mssql.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -7471,80 +10202,22 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--mysql--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mysql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--password))
 - `query` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--mysql--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--username))
-
-<a id="nestedatt--spec--mysql--bearer"></a>
-### Nested Schema for `spec.mysql.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from))
-
-<a id="nestedatt--spec--mysql--bearer--value_from"></a>
-### Nested Schema for `spec.mysql.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mysql--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mysql.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.mysql.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mysql.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--mysql--display"></a>
 ### Nested Schema for `spec.mysql.display`
@@ -7559,152 +10232,6 @@ Optional:
 
 <a id="nestedatt--spec--mysql--metrics"></a>
 ### Nested Schema for `spec.mysql.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--mysql--metrics--labels"></a>
-### Nested Schema for `spec.mysql.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--mysql--oauth"></a>
-### Nested Schema for `spec.mysql.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--mysql--oauth--client_id"></a>
-### Nested Schema for `spec.mysql.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--mysql--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.mysql.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mysql--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--mysql--oauth--client_secret"></a>
-### Nested Schema for `spec.mysql.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--mysql--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.mysql.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--mysql--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mysql.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--mysql--password"></a>
@@ -7760,6 +10287,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--mysql--relationships"></a>
+### Nested Schema for `spec.mysql.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs))
+
+<a id="nestedatt--spec--mysql--relationships--components"></a>
+### Nested Schema for `spec.mysql.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--components--type))
+
+<a id="nestedatt--spec--mysql--relationships--components--agent"></a>
+### Nested Schema for `spec.mysql.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--external_id"></a>
+### Nested Schema for `spec.mysql.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--id"></a>
+### Nested Schema for `spec.mysql.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--name"></a>
+### Nested Schema for `spec.mysql.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--namespace"></a>
+### Nested Schema for `spec.mysql.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--scope"></a>
+### Nested Schema for `spec.mysql.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--components--type"></a>
+### Nested Schema for `spec.mysql.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--mysql--relationships--configs"></a>
+### Nested Schema for `spec.mysql.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--mysql--relationships--configs--type))
+
+<a id="nestedatt--spec--mysql--relationships--configs--agent"></a>
+### Nested Schema for `spec.mysql.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--external_id"></a>
+### Nested Schema for `spec.mysql.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--id"></a>
+### Nested Schema for `spec.mysql.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--name"></a>
+### Nested Schema for `spec.mysql.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--namespace"></a>
+### Nested Schema for `spec.mysql.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--scope"></a>
+### Nested Schema for `spec.mysql.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--mysql--relationships--configs--type"></a>
+### Nested Schema for `spec.mysql.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -7866,7 +10572,7 @@ Optional:
 - `ingress_name` (String)
 - `ingress_timeout` (Number)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--namespace--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--namespace--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `namespace_annotations` (Map of String)
 - `namespace_labels` (Map of String)
@@ -7875,30 +10581,190 @@ Optional:
 - `port` (Number)
 - `priority_class` (String)
 - `ready_timeout` (Number)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--namespace--relationships))
 - `schedule_timeout` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--namespace--metrics"></a>
 ### Nested Schema for `spec.namespace.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--namespace--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--namespace--metrics--labels"></a>
-### Nested Schema for `spec.namespace.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--namespace--relationships"></a>
+### Nested Schema for `spec.namespace.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--namespace--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs))
+
+<a id="nestedatt--spec--namespace--relationships--components"></a>
+### Nested Schema for `spec.namespace.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--components--type))
+
+<a id="nestedatt--spec--namespace--relationships--components--agent"></a>
+### Nested Schema for `spec.namespace.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--external_id"></a>
+### Nested Schema for `spec.namespace.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--id"></a>
+### Nested Schema for `spec.namespace.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--name"></a>
+### Nested Schema for `spec.namespace.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--namespace"></a>
+### Nested Schema for `spec.namespace.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--scope"></a>
+### Nested Schema for `spec.namespace.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--components--type"></a>
+### Nested Schema for `spec.namespace.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--namespace--relationships--configs"></a>
+### Nested Schema for `spec.namespace.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--namespace--relationships--configs--type))
+
+<a id="nestedatt--spec--namespace--relationships--configs--agent"></a>
+### Nested Schema for `spec.namespace.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--external_id"></a>
+### Nested Schema for `spec.namespace.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--id"></a>
+### Nested Schema for `spec.namespace.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--name"></a>
+### Nested Schema for `spec.namespace.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--namespace"></a>
+### Nested Schema for `spec.namespace.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--scope"></a>
+### Nested Schema for `spec.namespace.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--namespace--relationships--configs--type"></a>
+### Nested Schema for `spec.namespace.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -7914,79 +10780,21 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--opensearch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--opensearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--password))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--opensearch--relationships))
 - `results` (Number)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--username))
-
-<a id="nestedatt--spec--opensearch--bearer"></a>
-### Nested Schema for `spec.opensearch.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from))
-
-<a id="nestedatt--spec--opensearch--bearer--value_from"></a>
-### Nested Schema for `spec.opensearch.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--opensearch--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.opensearch.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.opensearch.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--opensearch--display"></a>
 ### Nested Schema for `spec.opensearch.display`
@@ -8001,152 +10809,6 @@ Optional:
 
 <a id="nestedatt--spec--opensearch--metrics"></a>
 ### Nested Schema for `spec.opensearch.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--opensearch--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--opensearch--metrics--labels"></a>
-### Nested Schema for `spec.opensearch.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--opensearch--oauth"></a>
-### Nested Schema for `spec.opensearch.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--opensearch--oauth--client_id"></a>
-### Nested Schema for `spec.opensearch.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--opensearch--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.opensearch.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--opensearch--oauth--client_secret"></a>
-### Nested Schema for `spec.opensearch.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.opensearch.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--opensearch--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--opensearch--password"></a>
@@ -8202,6 +10864,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--opensearch--relationships"></a>
+### Nested Schema for `spec.opensearch.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs))
+
+<a id="nestedatt--spec--opensearch--relationships--components"></a>
+### Nested Schema for `spec.opensearch.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--components--type))
+
+<a id="nestedatt--spec--opensearch--relationships--components--agent"></a>
+### Nested Schema for `spec.opensearch.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--external_id"></a>
+### Nested Schema for `spec.opensearch.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--id"></a>
+### Nested Schema for `spec.opensearch.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--name"></a>
+### Nested Schema for `spec.opensearch.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--namespace"></a>
+### Nested Schema for `spec.opensearch.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--scope"></a>
+### Nested Schema for `spec.opensearch.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--components--type"></a>
+### Nested Schema for `spec.opensearch.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs"></a>
+### Nested Schema for `spec.opensearch.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--opensearch--relationships--configs--type))
+
+<a id="nestedatt--spec--opensearch--relationships--configs--agent"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--external_id"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--id"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--name"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--namespace"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--scope"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--opensearch--relationships--configs--type"></a>
+### Nested Schema for `spec.opensearch.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -8308,12 +11149,13 @@ Optional:
 - `ingress_name` (String)
 - `ingress_timeout` (Number)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--pod--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--pod--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `path` (String)
 - `port` (Number)
 - `priority_class` (String)
 - `ready_timeout` (Number)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--pod--relationships))
 - `round_robin_nodes` (Boolean)
 - `schedule_timeout` (Number)
 - `spec` (String)
@@ -8322,24 +11164,183 @@ Optional:
 <a id="nestedatt--spec--pod--metrics"></a>
 ### Nested Schema for `spec.pod.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--pod--metrics--labels"></a>
-### Nested Schema for `spec.pod.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--pod--relationships"></a>
+### Nested Schema for `spec.pod.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod--relationships--configs))
+
+<a id="nestedatt--spec--pod--relationships--components"></a>
+### Nested Schema for `spec.pod.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--pod--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--pod--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--components--type))
+
+<a id="nestedatt--spec--pod--relationships--components--agent"></a>
+### Nested Schema for `spec.pod.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--external_id"></a>
+### Nested Schema for `spec.pod.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--id"></a>
+### Nested Schema for `spec.pod.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--name"></a>
+### Nested Schema for `spec.pod.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--namespace"></a>
+### Nested Schema for `spec.pod.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--scope"></a>
+### Nested Schema for `spec.pod.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--components--type"></a>
+### Nested Schema for `spec.pod.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--pod--relationships--configs"></a>
+### Nested Schema for `spec.pod.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--pod--relationships--configs--type))
+
+<a id="nestedatt--spec--pod--relationships--configs--agent"></a>
+### Nested Schema for `spec.pod.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--external_id"></a>
+### Nested Schema for `spec.pod.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--id"></a>
+### Nested Schema for `spec.pod.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--name"></a>
+### Nested Schema for `spec.pod.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--namespace"></a>
+### Nested Schema for `spec.pod.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--scope"></a>
+### Nested Schema for `spec.pod.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--pod--relationships--configs--type"></a>
+### Nested Schema for `spec.pod.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -8353,80 +11354,22 @@ Required:
 
 Optional:
 
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--postgres--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--postgres--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--password))
 - `query` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--postgres--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--username))
-
-<a id="nestedatt--spec--postgres--bearer"></a>
-### Nested Schema for `spec.postgres.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from))
-
-<a id="nestedatt--spec--postgres--bearer--value_from"></a>
-### Nested Schema for `spec.postgres.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--postgres--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.postgres.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.postgres.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.postgres.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 <a id="nestedatt--spec--postgres--display"></a>
 ### Nested Schema for `spec.postgres.display`
@@ -8441,152 +11384,6 @@ Optional:
 
 <a id="nestedatt--spec--postgres--metrics"></a>
 ### Nested Schema for `spec.postgres.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--postgres--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--postgres--metrics--labels"></a>
-### Nested Schema for `spec.postgres.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--postgres--oauth"></a>
-### Nested Schema for `spec.postgres.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--postgres--oauth--client_id"></a>
-### Nested Schema for `spec.postgres.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--postgres--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.postgres.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--postgres--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--postgres--oauth--client_secret"></a>
-### Nested Schema for `spec.postgres.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--postgres--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.postgres.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--postgres--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.postgres.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--postgres--password"></a>
@@ -8642,6 +11439,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--postgres--relationships"></a>
+### Nested Schema for `spec.postgres.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--postgres--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs))
+
+<a id="nestedatt--spec--postgres--relationships--components"></a>
+### Nested Schema for `spec.postgres.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--components--type))
+
+<a id="nestedatt--spec--postgres--relationships--components--agent"></a>
+### Nested Schema for `spec.postgres.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--external_id"></a>
+### Nested Schema for `spec.postgres.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--id"></a>
+### Nested Schema for `spec.postgres.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--name"></a>
+### Nested Schema for `spec.postgres.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--namespace"></a>
+### Nested Schema for `spec.postgres.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--scope"></a>
+### Nested Schema for `spec.postgres.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--components--type"></a>
+### Nested Schema for `spec.postgres.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--postgres--relationships--configs"></a>
+### Nested Schema for `spec.postgres.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--postgres--relationships--configs--type))
+
+<a id="nestedatt--spec--postgres--relationships--configs--agent"></a>
+### Nested Schema for `spec.postgres.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--external_id"></a>
+### Nested Schema for `spec.postgres.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--id"></a>
+### Nested Schema for `spec.postgres.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--name"></a>
+### Nested Schema for `spec.postgres.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--namespace"></a>
+### Nested Schema for `spec.postgres.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--scope"></a>
+### Nested Schema for `spec.postgres.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--postgres--relationships--configs--type"></a>
+### Nested Schema for `spec.postgres.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -8737,20 +11713,22 @@ Required:
 Optional:
 
 - `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer))
-- `connection` (String) Connection name e.g. connection://http/google
+- `connection` (String)
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--display))
 - `host` (String) Deprecated: use 'url' instead
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--password))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--prometheus--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--test))
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
-- `url` (String) Connection url, interpolated with username,password
+- `url` (String)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--username))
 
 <a id="nestedatt--spec--prometheus--bearer"></a>
@@ -8823,26 +11801,6 @@ Optional:
 
 <a id="nestedatt--spec--prometheus--metrics"></a>
 ### Nested Schema for `spec.prometheus.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--prometheus--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--prometheus--metrics--labels"></a>
-### Nested Schema for `spec.prometheus.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
 
 
 <a id="nestedatt--spec--prometheus--oauth"></a>
@@ -9028,6 +11986,185 @@ Optional:
 
 
 
+<a id="nestedatt--spec--prometheus--relationships"></a>
+### Nested Schema for `spec.prometheus.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs))
+
+<a id="nestedatt--spec--prometheus--relationships--components"></a>
+### Nested Schema for `spec.prometheus.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--components--type))
+
+<a id="nestedatt--spec--prometheus--relationships--components--agent"></a>
+### Nested Schema for `spec.prometheus.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--external_id"></a>
+### Nested Schema for `spec.prometheus.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--id"></a>
+### Nested Schema for `spec.prometheus.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--name"></a>
+### Nested Schema for `spec.prometheus.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--namespace"></a>
+### Nested Schema for `spec.prometheus.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--scope"></a>
+### Nested Schema for `spec.prometheus.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--components--type"></a>
+### Nested Schema for `spec.prometheus.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs"></a>
+### Nested Schema for `spec.prometheus.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--prometheus--relationships--configs--type))
+
+<a id="nestedatt--spec--prometheus--relationships--configs--agent"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--external_id"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--id"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--name"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--namespace"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--scope"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--prometheus--relationships--configs--type"></a>
+### Nested Schema for `spec.prometheus.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+
 <a id="nestedatt--spec--prometheus--test"></a>
 ### Nested Schema for `spec.prometheus.test`
 
@@ -9037,6 +12174,189 @@ Optional:
 - `javascript` (String)
 - `json_path` (String)
 - `template` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls"></a>
+### Nested Schema for `spec.prometheus.tls`
+
+Optional:
+
+- `ca` (Attributes) PEM encoded certificate of the CA to verify the server certificate (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca))
+- `cert` (Attributes) PEM encoded client certificate (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert))
+- `handshake_timeout` (Number) HandshakeTimeout defaults to 10 seconds
+- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name
+- `key` (Attributes) PEM encoded client private key (see [below for nested schema](#nestedatt--spec--prometheus--tls--key))
+
+<a id="nestedatt--spec--prometheus--tls--ca"></a>
+### Nested Schema for `spec.prometheus.tls.ca`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca--value_from))
+
+<a id="nestedatt--spec--prometheus--tls--ca--value_from"></a>
+### Nested Schema for `spec.prometheus.tls.ca.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--tls--ca--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.ca.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--ca--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.tls.ca.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--ca--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.ca.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--prometheus--tls--cert"></a>
+### Nested Schema for `spec.prometheus.tls.cert`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert--value_from))
+
+<a id="nestedatt--spec--prometheus--tls--cert--value_from"></a>
+### Nested Schema for `spec.prometheus.tls.cert.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--tls--cert--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.cert.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--cert--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.tls.cert.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--cert--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.cert.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--prometheus--tls--key"></a>
+### Nested Schema for `spec.prometheus.tls.key`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--key--value_from))
+
+<a id="nestedatt--spec--prometheus--tls--key--value_from"></a>
+### Nested Schema for `spec.prometheus.tls.key.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--key--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--key--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls--key--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--prometheus--tls--key--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.key.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--key--value_from--helm_ref"></a>
+### Nested Schema for `spec.prometheus.tls.key.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--prometheus--tls--key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus.tls.key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
 
 
 <a id="nestedatt--spec--prometheus--transform"></a>
@@ -9118,225 +12438,21 @@ Required:
 Optional:
 
 - `addr` (String) Deprecated: Use url instead
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer))
 - `connection` (String) Connection name e.g. connection://http/google
 - `db` (Number)
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--redis--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--redis--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--password))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--redis--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--username))
 
-<a id="nestedatt--spec--redis--bearer"></a>
-### Nested Schema for `spec.redis.bearer`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from))
-
-<a id="nestedatt--spec--redis--bearer--value_from"></a>
-### Nested Schema for `spec.redis.bearer.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--bearer--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--redis--bearer--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.bearer.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--bearer--value_from--helm_ref"></a>
-### Nested Schema for `spec.redis.bearer.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--bearer--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.redis.bearer.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
 <a id="nestedatt--spec--redis--metrics"></a>
 ### Nested Schema for `spec.redis.metrics`
-
-Optional:
-
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--redis--metrics--labels"></a>
-### Nested Schema for `spec.redis.metrics.labels`
-
-Required:
-
-- `name` (String)
-
-Optional:
-
-- `value` (String)
-- `value_expr` (String)
-
-
-
-<a id="nestedatt--spec--redis--oauth"></a>
-### Nested Schema for `spec.redis.oauth`
-
-Optional:
-
-- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id))
-- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret))
-- `params` (Map of String)
-- `scope` (List of String)
-- `token_url` (String)
-
-<a id="nestedatt--spec--redis--oauth--client_id"></a>
-### Nested Schema for `spec.redis.oauth.client_id`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from))
-
-<a id="nestedatt--spec--redis--oauth--client_id--value_from"></a>
-### Nested Schema for `spec.redis.oauth.client_id.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_id--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--redis--oauth--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_id.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--oauth--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_id.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--oauth--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_id.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
-
-<a id="nestedatt--spec--redis--oauth--client_secret"></a>
-### Nested Schema for `spec.redis.oauth.client_secret`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from))
-
-<a id="nestedatt--spec--redis--oauth--client_secret--value_from"></a>
-### Nested Schema for `spec.redis.oauth.client_secret.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--config_map_key_ref))
-- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--helm_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--oauth--client_secret--value_from--secret_key_ref))
-- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
-
-<a id="nestedatt--spec--redis--oauth--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_secret.value_from.config_map_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--oauth--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_secret.value_from.helm_ref`
-
-Required:
-
-- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--redis--oauth--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.redis.oauth.client_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-
-
-
 
 
 <a id="nestedatt--spec--redis--password"></a>
@@ -9392,6 +12508,185 @@ Required:
 Optional:
 
 - `name` (String)
+
+
+
+
+<a id="nestedatt--spec--redis--relationships"></a>
+### Nested Schema for `spec.redis.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis--relationships--configs))
+
+<a id="nestedatt--spec--redis--relationships--components"></a>
+### Nested Schema for `spec.redis.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--redis--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--components--type))
+
+<a id="nestedatt--spec--redis--relationships--components--agent"></a>
+### Nested Schema for `spec.redis.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--external_id"></a>
+### Nested Schema for `spec.redis.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--id"></a>
+### Nested Schema for `spec.redis.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--name"></a>
+### Nested Schema for `spec.redis.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--namespace"></a>
+### Nested Schema for `spec.redis.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--scope"></a>
+### Nested Schema for `spec.redis.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--components--type"></a>
+### Nested Schema for `spec.redis.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--redis--relationships--configs"></a>
+### Nested Schema for `spec.redis.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--redis--relationships--configs--type))
+
+<a id="nestedatt--spec--redis--relationships--configs--agent"></a>
+### Nested Schema for `spec.redis.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--external_id"></a>
+### Nested Schema for `spec.redis.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--id"></a>
+### Nested Schema for `spec.redis.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--name"></a>
+### Nested Schema for `spec.redis.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--namespace"></a>
+### Nested Schema for `spec.redis.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--scope"></a>
+### Nested Schema for `spec.redis.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--redis--relationships--configs--type"></a>
+### Nested Schema for `spec.redis.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
 
 
 
@@ -9474,8 +12769,9 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--restic--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--restic--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--restic--relationships))
 - `secret_key` (Attributes) SecretKey secret access key for connection with aws s3, minio, wasabi, alibaba oss (see [below for nested schema](#nestedatt--spec--restic--secret_key))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
@@ -9596,24 +12892,183 @@ Optional:
 <a id="nestedatt--spec--restic--metrics"></a>
 ### Nested Schema for `spec.restic.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--restic--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--restic--metrics--labels"></a>
-### Nested Schema for `spec.restic.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--restic--relationships"></a>
+### Nested Schema for `spec.restic.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--restic--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--restic--relationships--configs))
+
+<a id="nestedatt--spec--restic--relationships--components"></a>
+### Nested Schema for `spec.restic.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--restic--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--restic--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--components--type))
+
+<a id="nestedatt--spec--restic--relationships--components--agent"></a>
+### Nested Schema for `spec.restic.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--external_id"></a>
+### Nested Schema for `spec.restic.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--id"></a>
+### Nested Schema for `spec.restic.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--name"></a>
+### Nested Schema for `spec.restic.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--namespace"></a>
+### Nested Schema for `spec.restic.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--scope"></a>
+### Nested Schema for `spec.restic.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--components--type"></a>
+### Nested Schema for `spec.restic.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--restic--relationships--configs"></a>
+### Nested Schema for `spec.restic.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--restic--relationships--configs--type))
+
+<a id="nestedatt--spec--restic--relationships--configs--agent"></a>
+### Nested Schema for `spec.restic.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--external_id"></a>
+### Nested Schema for `spec.restic.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--id"></a>
+### Nested Schema for `spec.restic.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--name"></a>
+### Nested Schema for `spec.restic.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--namespace"></a>
+### Nested Schema for `spec.restic.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--scope"></a>
+### Nested Schema for `spec.restic.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--restic--relationships--configs--type"></a>
+### Nested Schema for `spec.restic.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -9692,10 +13147,11 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--s3--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--s3--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `object_path` (String) glob path to restrict matches to a subset
 - `region` (String)
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--s3--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -9762,24 +13218,183 @@ Optional:
 <a id="nestedatt--spec--s3--metrics"></a>
 ### Nested Schema for `spec.s3.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--s3--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--s3--metrics--labels"></a>
-### Nested Schema for `spec.s3.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--s3--relationships"></a>
+### Nested Schema for `spec.s3.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--s3--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--s3--relationships--configs))
+
+<a id="nestedatt--spec--s3--relationships--components"></a>
+### Nested Schema for `spec.s3.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--s3--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--components--type))
+
+<a id="nestedatt--spec--s3--relationships--components--agent"></a>
+### Nested Schema for `spec.s3.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--external_id"></a>
+### Nested Schema for `spec.s3.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--id"></a>
+### Nested Schema for `spec.s3.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--name"></a>
+### Nested Schema for `spec.s3.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--namespace"></a>
+### Nested Schema for `spec.s3.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--scope"></a>
+### Nested Schema for `spec.s3.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--components--type"></a>
+### Nested Schema for `spec.s3.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--s3--relationships--configs"></a>
+### Nested Schema for `spec.s3.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--s3--relationships--configs--type))
+
+<a id="nestedatt--spec--s3--relationships--configs--agent"></a>
+### Nested Schema for `spec.s3.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--external_id"></a>
+### Nested Schema for `spec.s3.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--id"></a>
+### Nested Schema for `spec.s3.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--name"></a>
+### Nested Schema for `spec.s3.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--namespace"></a>
+### Nested Schema for `spec.s3.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--scope"></a>
+### Nested Schema for `spec.s3.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--s3--relationships--configs--type"></a>
+### Nested Schema for `spec.s3.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -9911,32 +13526,192 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--tcp--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--tcp--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--tcp--relationships))
 - `threshold_millis` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--tcp--metrics"></a>
 ### Nested Schema for `spec.tcp.metrics`
 
-Optional:
 
-- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp--metrics--labels))
-- `name` (String)
-- `type` (String)
-- `value` (String)
-
-<a id="nestedatt--spec--tcp--metrics--labels"></a>
-### Nested Schema for `spec.tcp.metrics.labels`
-
-Required:
-
-- `name` (String)
+<a id="nestedatt--spec--tcp--relationships"></a>
+### Nested Schema for `spec.tcp.relationships`
 
 Optional:
 
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs))
+
+<a id="nestedatt--spec--tcp--relationships--components"></a>
+### Nested Schema for `spec.tcp.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--components--type))
+
+<a id="nestedatt--spec--tcp--relationships--components--agent"></a>
+### Nested Schema for `spec.tcp.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
 - `value` (String)
-- `value_expr` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--external_id"></a>
+### Nested Schema for `spec.tcp.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--id"></a>
+### Nested Schema for `spec.tcp.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--name"></a>
+### Nested Schema for `spec.tcp.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--namespace"></a>
+### Nested Schema for `spec.tcp.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--scope"></a>
+### Nested Schema for `spec.tcp.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--components--type"></a>
+### Nested Schema for `spec.tcp.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--tcp--relationships--configs"></a>
+### Nested Schema for `spec.tcp.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--tcp--relationships--configs--type))
+
+<a id="nestedatt--spec--tcp--relationships--configs--agent"></a>
+### Nested Schema for `spec.tcp.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--external_id"></a>
+### Nested Schema for `spec.tcp.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--id"></a>
+### Nested Schema for `spec.tcp.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--name"></a>
+### Nested Schema for `spec.tcp.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--namespace"></a>
+### Nested Schema for `spec.tcp.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--scope"></a>
+### Nested Schema for `spec.tcp.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--tcp--relationships--configs--type"></a>
+### Nested Schema for `spec.tcp.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 
@@ -9954,8 +13729,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--webhook--metrics))
+- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--webhook--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--webhook--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--test))
 - `token` (Attributes) Token is an optional authorization token to run this check (see [below for nested schema](#nestedatt--spec--webhook--token))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--transform))
@@ -9993,6 +13769,185 @@ Optional:
 
 - `value` (String)
 - `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--webhook--relationships"></a>
+### Nested Schema for `spec.webhook.relationships`
+
+Optional:
+
+- `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--webhook--relationships--components))
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs))
+
+<a id="nestedatt--spec--webhook--relationships--components"></a>
+### Nested Schema for `spec.webhook.relationships.components`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--components--type))
+
+<a id="nestedatt--spec--webhook--relationships--components--agent"></a>
+### Nested Schema for `spec.webhook.relationships.components.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--external_id"></a>
+### Nested Schema for `spec.webhook.relationships.components.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--id"></a>
+### Nested Schema for `spec.webhook.relationships.components.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--name"></a>
+### Nested Schema for `spec.webhook.relationships.components.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--namespace"></a>
+### Nested Schema for `spec.webhook.relationships.components.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--scope"></a>
+### Nested Schema for `spec.webhook.relationships.components.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--components--type"></a>
+### Nested Schema for `spec.webhook.relationships.components.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--webhook--relationships--configs"></a>
+### Nested Schema for `spec.webhook.relationships.configs`
+
+Optional:
+
+- `agent` (Attributes) Agent can be one of - agent id - agent name - 'self' (no agent) (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--agent))
+- `external_id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--external_id))
+- `id` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--id))
+- `labels` (Map of String)
+- `name` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--name))
+- `namespace` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--namespace))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--scope))
+- `type` (Attributes) Lookup offers different ways to specify a lookup value (see [below for nested schema](#nestedatt--spec--webhook--relationships--configs--type))
+
+<a id="nestedatt--spec--webhook--relationships--configs--agent"></a>
+### Nested Schema for `spec.webhook.relationships.configs.agent`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--external_id"></a>
+### Nested Schema for `spec.webhook.relationships.configs.external_id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--id"></a>
+### Nested Schema for `spec.webhook.relationships.configs.id`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--name"></a>
+### Nested Schema for `spec.webhook.relationships.configs.name`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--namespace"></a>
+### Nested Schema for `spec.webhook.relationships.configs.namespace`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--scope"></a>
+### Nested Schema for `spec.webhook.relationships.configs.scope`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--webhook--relationships--configs--type"></a>
+### Nested Schema for `spec.webhook.relationships.configs.type`
+
+Optional:
+
+- `expr` (String)
+- `label` (String)
+- `value` (String)
+
 
 
 

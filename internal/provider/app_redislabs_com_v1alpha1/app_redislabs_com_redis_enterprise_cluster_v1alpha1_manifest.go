@@ -50,7 +50,13 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 			Method             *string            `tfsdk:"method" json:"method,omitempty"`
 		} `tfsdk:"active_active" json:"activeActive,omitempty"`
 		AntiAffinityAdditionalTopologyKeys *[]string `tfsdk:"anti_affinity_additional_topology_keys" json:"antiAffinityAdditionalTopologyKeys,omitempty"`
-		BootstrapperImageSpec              *struct {
+		Backup                             *struct {
+			S3 *struct {
+				CaCertificateSecretName *string `tfsdk:"ca_certificate_secret_name" json:"caCertificateSecretName,omitempty"`
+				Url                     *string `tfsdk:"url" json:"url,omitempty"`
+			} `tfsdk:"s3" json:"s3,omitempty"`
+		} `tfsdk:"backup" json:"backup,omitempty"`
+		BootstrapperImageSpec *struct {
 			DigestHash      *string `tfsdk:"digest_hash" json:"digestHash,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			Repository      *string `tfsdk:"repository" json:"repository,omitempty"`
@@ -2932,6 +2938,40 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"backup": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"s3": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"ca_certificate_secret_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"bootstrapper_image_spec": schema.SingleNestedAttribute{

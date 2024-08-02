@@ -61,6 +61,7 @@ Required:
 Optional:
 
 - `exclude_ref` (Attributes List) ExcludeRef define the resource to exclude from the sleep. (see [below for nested schema](#nestedatt--spec--exclude_ref))
+- `include_ref` (Attributes List) IncludeRef define the resource to include from the sleep. (see [below for nested schema](#nestedatt--spec--include_ref))
 - `patches` (Attributes List) Patches is a list of json 6902 patches to apply to the target resources. (see [below for nested schema](#nestedatt--spec--patches))
 - `suspend_cron_jobs` (Boolean) If SuspendCronjobs is set to true, on sleep the cronjobs of the namespace will be suspended.
 - `suspend_deployments` (Boolean) If SuspendDeployments is set to false, on sleep the deployment of the namespace will not be suspended. By default Deployment will be suspended.
@@ -70,6 +71,17 @@ Optional:
 
 <a id="nestedatt--spec--exclude_ref"></a>
 ### Nested Schema for `spec.exclude_ref`
+
+Optional:
+
+- `api_version` (String) ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.
+- `kind` (String) Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.
+- `match_labels` (Map of String) MatchLabels which identify the kubernetes resource by labels
+- `name` (String) Name which identify the kubernetes resource.
+
+
+<a id="nestedatt--spec--include_ref"></a>
+### Nested Schema for `spec.include_ref`
 
 Optional:
 

@@ -56,9 +56,37 @@ type AnywhereEksAmazonawsComVsphereMachineConfigV1Alpha1ManifestData struct {
 					SysctlSettings *map[string]string `tfsdk:"sysctl_settings" json:"sysctlSettings,omitempty"`
 				} `tfsdk:"kernel" json:"kernel,omitempty"`
 				Kubernetes *struct {
-					AllowedUnsafeSysctls *[]string `tfsdk:"allowed_unsafe_sysctls" json:"allowedUnsafeSysctls,omitempty"`
-					ClusterDNSIPs        *[]string `tfsdk:"cluster_dnsi_ps" json:"clusterDNSIPs,omitempty"`
-					MaxPods              *int64    `tfsdk:"max_pods" json:"maxPods,omitempty"`
+					AllowedUnsafeSysctls            *[]string          `tfsdk:"allowed_unsafe_sysctls" json:"allowedUnsafeSysctls,omitempty"`
+					ClusterDNSIPs                   *[]string          `tfsdk:"cluster_dnsi_ps" json:"clusterDNSIPs,omitempty"`
+					ClusterDomain                   *string            `tfsdk:"cluster_domain" json:"clusterDomain,omitempty"`
+					ContainerLogMaxFiles            *int64             `tfsdk:"container_log_max_files" json:"containerLogMaxFiles,omitempty"`
+					ContainerLogMaxSize             *string            `tfsdk:"container_log_max_size" json:"containerLogMaxSize,omitempty"`
+					CpuCFSQuota                     *bool              `tfsdk:"cpu_cfs_quota" json:"cpuCFSQuota,omitempty"`
+					CpuManagerPolicy                *string            `tfsdk:"cpu_manager_policy" json:"cpuManagerPolicy,omitempty"`
+					CpuManagerPolicyOptions         *map[string]string `tfsdk:"cpu_manager_policy_options" json:"cpuManagerPolicyOptions,omitempty"`
+					CpuManagerReconcilePeriod       *string            `tfsdk:"cpu_manager_reconcile_period" json:"cpuManagerReconcilePeriod,omitempty"`
+					EventBurst                      *int64             `tfsdk:"event_burst" json:"eventBurst,omitempty"`
+					EventRecordQPS                  *int64             `tfsdk:"event_record_qps" json:"eventRecordQPS,omitempty"`
+					EvictionHard                    *map[string]string `tfsdk:"eviction_hard" json:"evictionHard,omitempty"`
+					EvictionMaxPodGracePeriod       *int64             `tfsdk:"eviction_max_pod_grace_period" json:"evictionMaxPodGracePeriod,omitempty"`
+					EvictionSoft                    *map[string]string `tfsdk:"eviction_soft" json:"evictionSoft,omitempty"`
+					EvictionSoftGracePeriod         *map[string]string `tfsdk:"eviction_soft_grace_period" json:"evictionSoftGracePeriod,omitempty"`
+					ImageGCHighThresholdPercent     *int64             `tfsdk:"image_gc_high_threshold_percent" json:"imageGCHighThresholdPercent,omitempty"`
+					ImageGCLowThresholdPercent      *int64             `tfsdk:"image_gc_low_threshold_percent" json:"imageGCLowThresholdPercent,omitempty"`
+					KubeAPIBurst                    *int64             `tfsdk:"kube_api_burst" json:"kubeAPIBurst,omitempty"`
+					KubeAPIQPS                      *int64             `tfsdk:"kube_apiqps" json:"kubeAPIQPS,omitempty"`
+					KubeReserved                    *map[string]string `tfsdk:"kube_reserved" json:"kubeReserved,omitempty"`
+					MaxPods                         *int64             `tfsdk:"max_pods" json:"maxPods,omitempty"`
+					MemoryManagerPolicy             *string            `tfsdk:"memory_manager_policy" json:"memoryManagerPolicy,omitempty"`
+					PodPidsLimit                    *int64             `tfsdk:"pod_pids_limit" json:"podPidsLimit,omitempty"`
+					ProviderID                      *string            `tfsdk:"provider_id" json:"providerID,omitempty"`
+					RegistryBurst                   *int64             `tfsdk:"registry_burst" json:"registryBurst,omitempty"`
+					RegistryPullQPS                 *int64             `tfsdk:"registry_pull_qps" json:"registryPullQPS,omitempty"`
+					ShutdownGracePeriod             *string            `tfsdk:"shutdown_grace_period" json:"shutdownGracePeriod,omitempty"`
+					ShutdownGracePeriodCriticalPods *string            `tfsdk:"shutdown_grace_period_critical_pods" json:"shutdownGracePeriodCriticalPods,omitempty"`
+					SystemReserved                  *map[string]string `tfsdk:"system_reserved" json:"systemReserved,omitempty"`
+					TopologyManagerPolicy           *string            `tfsdk:"topology_manager_policy" json:"topologyManagerPolicy,omitempty"`
+					TopologyManagerScope            *string            `tfsdk:"topology_manager_scope" json:"topologyManagerScope,omitempty"`
 				} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
 			} `tfsdk:"bottlerocket_configuration" json:"bottlerocketConfiguration,omitempty"`
 			CertBundles *[]struct {
@@ -261,9 +289,239 @@ func (r *AnywhereEksAmazonawsComVsphereMachineConfigV1Alpha1Manifest) Schema(_ c
 												Computed:            false,
 											},
 
+											"cluster_domain": schema.StringAttribute{
+												Description:         "ClusterDomain defines the DNS domain for the cluster, allowing all Kubernetes-run containers to search this domain before the host’s search domains",
+												MarkdownDescription: "ClusterDomain defines the DNS domain for the cluster, allowing all Kubernetes-run containers to search this domain before the host’s search domains",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"container_log_max_files": schema.Int64Attribute{
+												Description:         "ContainerLogMaxFiles specifies the maximum number of container log files that can be present for a container",
+												MarkdownDescription: "ContainerLogMaxFiles specifies the maximum number of container log files that can be present for a container",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"container_log_max_size": schema.StringAttribute{
+												Description:         "ContainerLogMaxSize is a quantity defining the maximum size of the container log file before it is rotated",
+												MarkdownDescription: "ContainerLogMaxSize is a quantity defining the maximum size of the container log file before it is rotated",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cpu_cfs_quota": schema.BoolAttribute{
+												Description:         "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits",
+												MarkdownDescription: "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cpu_manager_policy": schema.StringAttribute{
+												Description:         "CPUManagerPolicy is the name of the policy to use.",
+												MarkdownDescription: "CPUManagerPolicy is the name of the policy to use.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cpu_manager_policy_options": schema.MapAttribute{
+												Description:         "CPUManagerPolicyOptions is a set of key=value which allows to set extra options to fine tune the behaviour of the cpu manager policies",
+												MarkdownDescription: "CPUManagerPolicyOptions is a set of key=value which allows to set extra options to fine tune the behaviour of the cpu manager policies",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cpu_manager_reconcile_period": schema.StringAttribute{
+												Description:         "CPUManagerReconcilePeriod is the reconciliation period for the CPU Manager.",
+												MarkdownDescription: "CPUManagerReconcilePeriod is the reconciliation period for the CPU Manager.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"event_burst": schema.Int64Attribute{
+												Description:         "EventBurst is the maximum size of a burst of event creations.",
+												MarkdownDescription: "EventBurst is the maximum size of a burst of event creations.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"event_record_qps": schema.Int64Attribute{
+												Description:         "EventRecordQPS is the maximum event creations per second.",
+												MarkdownDescription: "EventRecordQPS is the maximum event creations per second.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"eviction_hard": schema.MapAttribute{
+												Description:         "EvictionHard is a map of signal names to quantities that defines hard eviction thresholds.",
+												MarkdownDescription: "EvictionHard is a map of signal names to quantities that defines hard eviction thresholds.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"eviction_max_pod_grace_period": schema.Int64Attribute{
+												Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met.",
+												MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"eviction_soft": schema.MapAttribute{
+												Description:         "EvictionSoft is a map of signal names to quantities that defines soft eviction thresholds.",
+												MarkdownDescription: "EvictionSoft is a map of signal names to quantities that defines soft eviction thresholds.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"eviction_soft_grace_period": schema.MapAttribute{
+												Description:         "EvictionSoftGracePeriod is a map of signal names to quantities that defines grace periods for each soft eviction signal.",
+												MarkdownDescription: "EvictionSoftGracePeriod is a map of signal names to quantities that defines grace periods for each soft eviction signal.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"image_gc_high_threshold_percent": schema.Int64Attribute{
+												Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run.",
+												MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"image_gc_low_threshold_percent": schema.Int64Attribute{
+												Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run.",
+												MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kube_api_burst": schema.Int64Attribute{
+												Description:         "KubeAPIBurst  is the burst to allow while talking with kubernetes API server.",
+												MarkdownDescription: "KubeAPIBurst  is the burst to allow while talking with kubernetes API server.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kube_apiqps": schema.Int64Attribute{
+												Description:         "KubeAPIQPS is the QPS to use while talking with kubernetes apiserver.",
+												MarkdownDescription: "KubeAPIQPS is the QPS to use while talking with kubernetes apiserver.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kube_reserved": schema.MapAttribute{
+												Description:         "KubeReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for kubernetes system components",
+												MarkdownDescription: "KubeReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for kubernetes system components",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"max_pods": schema.Int64Attribute{
 												Description:         "MaxPods defines the maximum number of pods that can run on a node.",
 												MarkdownDescription: "MaxPods defines the maximum number of pods that can run on a node.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"memory_manager_policy": schema.StringAttribute{
+												Description:         "MemoryManagerPolicy is the name of the policy to use by memory manager.",
+												MarkdownDescription: "MemoryManagerPolicy is the name of the policy to use by memory manager.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pod_pids_limit": schema.Int64Attribute{
+												Description:         "PodPidsLimit is the maximum number of PIDs in any pod.",
+												MarkdownDescription: "PodPidsLimit is the maximum number of PIDs in any pod.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"provider_id": schema.StringAttribute{
+												Description:         "ProviderID sets the unique ID of the instance that an external provider.",
+												MarkdownDescription: "ProviderID sets the unique ID of the instance that an external provider.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"registry_burst": schema.Int64Attribute{
+												Description:         "RegistryBurst is the maximum size of bursty pulls.",
+												MarkdownDescription: "RegistryBurst is the maximum size of bursty pulls.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"registry_pull_qps": schema.Int64Attribute{
+												Description:         "RegistryPullQPS is the limit of registry pulls per second.",
+												MarkdownDescription: "RegistryPullQPS is the limit of registry pulls per second.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"shutdown_grace_period": schema.StringAttribute{
+												Description:         "ShutdownGracePeriod specifies the total duration that the node should delay the shutdown and total grace period for pod termination during a node shutdown.",
+												MarkdownDescription: "ShutdownGracePeriod specifies the total duration that the node should delay the shutdown and total grace period for pod termination during a node shutdown.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"shutdown_grace_period_critical_pods": schema.StringAttribute{
+												Description:         "ShutdownGracePeriodCriticalPods specifies the duration used to terminate critical pods during a node shutdown.",
+												MarkdownDescription: "ShutdownGracePeriodCriticalPods specifies the duration used to terminate critical pods during a node shutdown.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"system_reserved": schema.MapAttribute{
+												Description:         "SystemReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for non-kubernetes components.",
+												MarkdownDescription: "SystemReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for non-kubernetes components.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"topology_manager_policy": schema.StringAttribute{
+												Description:         "TopologyManagerPolicy is the name of the topology manager policy to use.",
+												MarkdownDescription: "TopologyManagerPolicy is the name of the topology manager policy to use.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"topology_manager_scope": schema.StringAttribute{
+												Description:         "TopologyManagerScope represents the scope of topology hint generation that topology manager requests and hint providers generate.",
+												MarkdownDescription: "TopologyManagerScope represents the scope of topology hint generation that topology manager requests and hint providers generate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

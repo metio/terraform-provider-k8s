@@ -282,7 +282,7 @@ func (r *Capabilities3ScaleNetBackendV1Beta1Manifest) Schema(_ context.Context, 
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^https?:\/\/.*$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(https?|wss?):\/\/.*$`), ""),
 						},
 					},
 

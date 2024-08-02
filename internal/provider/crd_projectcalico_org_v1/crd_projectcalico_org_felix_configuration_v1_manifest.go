@@ -110,6 +110,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		FloatingIPs            *string `tfsdk:"floating_i_ps" json:"floatingIPs,omitempty"`
 		GenericXDPEnabled      *bool   `tfsdk:"generic_xdp_enabled" json:"genericXDPEnabled,omitempty"`
 		GoGCThreshold          *int64  `tfsdk:"go_gc_threshold" json:"goGCThreshold,omitempty"`
+		GoMaxProcs             *int64  `tfsdk:"go_max_procs" json:"goMaxProcs,omitempty"`
 		GoMemoryLimitMB        *int64  `tfsdk:"go_memory_limit_mb" json:"goMemoryLimitMB,omitempty"`
 		HealthEnabled          *bool   `tfsdk:"health_enabled" json:"healthEnabled,omitempty"`
 		HealthHost             *string `tfsdk:"health_host" json:"healthHost,omitempty"`
@@ -150,6 +151,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		NatOutgoingAddress                 *string   `tfsdk:"nat_outgoing_address" json:"natOutgoingAddress,omitempty"`
 		NatPortRange                       *string   `tfsdk:"nat_port_range" json:"natPortRange,omitempty"`
 		NetlinkTimeout                     *string   `tfsdk:"netlink_timeout" json:"netlinkTimeout,omitempty"`
+		NftablesMode                       *string   `tfsdk:"nftables_mode" json:"nftablesMode,omitempty"`
 		OpenstackRegion                    *string   `tfsdk:"openstack_region" json:"openstackRegion,omitempty"`
 		PolicySyncPathPrefix               *string   `tfsdk:"policy_sync_path_prefix" json:"policySyncPathPrefix,omitempty"`
 		PrometheusGoMetricsEnabled         *bool     `tfsdk:"prometheus_go_metrics_enabled" json:"prometheusGoMetricsEnabled,omitempty"`
@@ -845,6 +847,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"go_max_procs": schema.Int64Attribute{
+						Description:         "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently.  A value of -1 means 'use the system default'; typically the number of real CPUs on the system.  this setting is overridden by the GOMAXPROCS environment variable.  [Default: -1]",
+						MarkdownDescription: "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently.  A value of -1 means 'use the system default'; typically the number of real CPUs on the system.  this setting is overridden by the GOMAXPROCS environment variable.  [Default: -1]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"go_memory_limit_mb": schema.Int64Attribute{
 						Description:         "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
 						MarkdownDescription: "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
@@ -1201,6 +1211,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$`), ""),
 						},
+					},
+
+					"nftables_mode": schema.StringAttribute{
+						Description:         "NFTablesMode configures nftables support in Felix. [Default: Disabled]",
+						MarkdownDescription: "NFTablesMode configures nftables support in Felix. [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"openstack_region": schema.StringAttribute{

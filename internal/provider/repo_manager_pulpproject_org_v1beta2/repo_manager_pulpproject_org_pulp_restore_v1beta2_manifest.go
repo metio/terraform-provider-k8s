@@ -173,8 +173,8 @@ func (r *RepoManagerPulpprojectOrgPulpRestoreV1Beta2Manifest) Schema(_ context.C
 					},
 
 					"keep_replicas": schema.BoolAttribute{
-						Description:         "KeepBackupReplicasCount allows to define if the restore controller should restore the components with the same number of replicas from backup or restore only a single replica each.",
-						MarkdownDescription: "KeepBackupReplicasCount allows to define if the restore controller should restore the components with the same number of replicas from backup or restore only a single replica each.",
+						Description:         "KeepBackupReplicasCount allows to define if the restore controller should restore the components with thesame number of replicas from backup or restore only a single replica each.",
+						MarkdownDescription: "KeepBackupReplicasCount allows to define if the restore controller should restore the components with thesame number of replicas from backup or restore only a single replica each.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

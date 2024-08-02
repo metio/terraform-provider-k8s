@@ -179,6 +179,20 @@ type HiveOpenshiftIoHiveConfigV1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metrics_with_duration" json:"metricsWithDuration,omitempty"`
 		} `tfsdk:"metrics_config" json:"metricsConfig,omitempty"`
+		PrivateLink *struct {
+			Gcp *struct {
+				CredentialsSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
+				EndpointVPCInventory *[]struct {
+					Network *string `tfsdk:"network" json:"network,omitempty"`
+					Subnets *[]struct {
+						Region *string `tfsdk:"region" json:"region,omitempty"`
+						Subnet *string `tfsdk:"subnet" json:"subnet,omitempty"`
+					} `tfsdk:"subnets" json:"subnets,omitempty"`
+				} `tfsdk:"endpoint_vpc_inventory" json:"endpointVPCInventory,omitempty"`
+			} `tfsdk:"gcp" json:"gcp,omitempty"`
+		} `tfsdk:"private_link" json:"privateLink,omitempty"`
 		ReleaseImageVerificationConfigMapRef *struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -1141,6 +1155,87 @@ func (r *HiveOpenshiftIoHiveConfigV1Manifest) Schema(_ context.Context, _ dataso
 												stringvalidator.OneOf("currentStopping", "currentResuming", "currentWaitingForCO", "currentClusterSyncFailing", "cumulativeHibernated", "cumulativeResumed"),
 											},
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"private_link": schema.SingleNestedAttribute{
+						Description:         "PrivateLink is used to configure the privatelink controller.",
+						MarkdownDescription: "PrivateLink is used to configure the privatelink controller.",
+						Attributes: map[string]schema.Attribute{
+							"gcp": schema.SingleNestedAttribute{
+								Description:         "GCP is the configuration for GCP hub and link resources.",
+								MarkdownDescription: "GCP is the configuration for GCP hub and link resources.",
+								Attributes: map[string]schema.Attribute{
+									"credentials_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with GCP for creating the resources for GCP Private Service Connect",
+										MarkdownDescription: "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with GCP for creating the resources for GCP Private Service Connect",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"endpoint_vpc_inventory": schema.ListNestedAttribute{
+										Description:         "EndpointVPCInventory is a list of VPCs and the corresponding subnets in various GCP regions. The controller uses this list to choose a VPC for creating GCP Endpoints. Since the VPC Endpoints must be in the same region as the ClusterDeployment, we must have VPCs in that region to be able to setup Private Service Connect.",
+										MarkdownDescription: "EndpointVPCInventory is a list of VPCs and the corresponding subnets in various GCP regions. The controller uses this list to choose a VPC for creating GCP Endpoints. Since the VPC Endpoints must be in the same region as the ClusterDeployment, we must have VPCs in that region to be able to setup Private Service Connect.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"network": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"subnets": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"region": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"subnet": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

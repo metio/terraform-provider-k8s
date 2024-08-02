@@ -57,10 +57,10 @@ Optional:
 
 - `access_modes` (List of String) AccessModes contains all ways the volume backing the PVC can be mounted
 - `data_restore_location` (Attributes) DataRestoreLocation is the location to load data of dataset  been backuped (see [below for nested schema](#nestedatt--spec--data_restore_location))
-- `mounts` (Attributes List) Mount Points to be mounted on cache runtime. <br> This field can be empty because some runtimes don't need to mount external storage (e.g. <a href='https://v6d.io/'>Vineyard</a>). (see [below for nested schema](#nestedatt--spec--mounts))
-- `node_affinity` (Attributes) NodeAffinity defines constraints that limit what nodes this dataset can be cached to. This field influences the scheduling of pods that use the cached dataset. (see [below for nested schema](#nestedatt--spec--node_affinity))
+- `mounts` (Attributes List) Mount Points to be mounted on cache runtime. <br>This field can be empty because some runtimes don't need to mount external storage (e.g.<a href='https://v6d.io/'>Vineyard</a>). (see [below for nested schema](#nestedatt--spec--mounts))
+- `node_affinity` (Attributes) NodeAffinity defines constraints that limit what nodes this dataset can be cached to.This field influences the scheduling of pods that use the cached dataset. (see [below for nested schema](#nestedatt--spec--node_affinity))
 - `owner` (Attributes) The owner of the dataset (see [below for nested schema](#nestedatt--spec--owner))
-- `placement` (String) Manage switch for opening Multiple datasets single node deployment or not TODO(xieydd) In future, evaluate node resources and runtime resources to decide whether to turn them on
+- `placement` (String) Manage switch for opening Multiple datasets single node deployment or notTODO(xieydd) In future, evaluate node resources and runtime resources to decide whether to turn them on
 - `runtimes` (Attributes List) Runtimes for supporting dataset (e.g. AlluxioRuntime) (see [below for nested schema](#nestedatt--spec--runtimes))
 - `shared_encrypt_options` (Attributes List) SharedEncryptOptions is the encryptOption to all mount (see [below for nested schema](#nestedatt--spec--shared_encrypt_options))
 - `shared_options` (Map of String) SharedOptions is the options to all mount
@@ -86,7 +86,7 @@ Optional:
 
 - `encrypt_options` (Attributes List) The secret information (see [below for nested schema](#nestedatt--spec--mounts--encrypt_options))
 - `name` (String) The name of mount
-- `options` (Map of String) The Mount Options. <br> Refer to <a href='https://docs.alluxio.io/os/user/stable/en/reference/Properties-List.html'>Mount Options</a>.  <br> The option has Prefix 'fs.' And you can Learn more from <a href='https://docs.alluxio.io/os/user/stable/en/ufs/S3.html'>The Storage Integrations</a>
+- `options` (Map of String) The Mount Options. <br>Refer to <a href='https://docs.alluxio.io/os/user/stable/en/reference/Properties-List.html'>Mount Options</a>.  <br>The option has Prefix 'fs.' And you can Learn more from<a href='https://docs.alluxio.io/os/user/stable/en/ufs/S3.html'>The Storage Integrations</a>
 - `path` (String) The path of mount, if not set will be /{Name}
 - `read_only` (Boolean) Optional: Defaults to false (read-write).
 - `shared` (Boolean) Optional: Defaults to false (shared).
@@ -152,11 +152,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--node_affinity--required--node_selector_terms--match_fields"></a>
@@ -165,11 +165,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -235,8 +235,8 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.

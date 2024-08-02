@@ -122,6 +122,7 @@ Optional:
 - `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Prometheusobject, which shall be mounted into the Prometheus Pods.Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'.The Secrets are mounted into /etc/prometheus/secrets/<secret-name> in the 'prometheus' container.
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run thePrometheus Pods.
+- `service_discovery_role` (String) Defines the service discovery role used to discover targets from 'ServiceMonitor' objects.If set, the value should be either 'Endpoints' or 'EndpointSlice'.If unset, the operator assumes the 'Endpoints' role.
 - `service_monitor_namespace_selector` (Attributes) Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only. (see [below for nested schema](#nestedatt--spec--service_monitor_namespace_selector))
 - `service_monitor_selector` (Attributes) ServiceMonitors to be selected for target discovery. An empty labelselector matches all objects. A null label selector matches no objects.If 'spec.serviceMonitorSelector', 'spec.podMonitorSelector', 'spec.probeSelector'and 'spec.scrapeConfigSelector' are null, the Prometheus configuration is unmanaged.The Prometheus operator will ensure that the Prometheus configuration'sSecret exists, but it is the responsibility of the user to provide the rawgzipped Prometheus configuration under the 'prometheus.yaml.gz' key.This behavior is *deprecated* and will be removed in the next major versionof the custom resource definition. It is recommended to use'spec.additionalScrapeConfigs' instead. (see [below for nested schema](#nestedatt--spec--service_monitor_selector))
 - `shards` (Number) Number of shards to distribute targets onto. 'spec.replicas'multiplied by 'spec.shards' is the total number of Pods created.Note that scaling down shards will not reshard data onto remaininginstances, it must be manually moved. Increasing shards will not resharddata either but it will continue to be available from the sameinstances. To query globally, use Thanos sidecar and Thanos querier orremote write data to a central location.Sharding is performed on the content of the '__address__' target meta-labelfor PodMonitors and ServiceMonitors and '__param_target__' for Probes.Default: 1
@@ -628,6 +629,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--apiserver_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--apiserver_config--tls_config--ca"></a>
@@ -2406,6 +2409,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--remote_write--tls_config--ca"></a>
@@ -2534,10 +2539,19 @@ Required:
 
 Optional:
 
+- `attach_metadata` (Attributes) AttachMetadata configures additional metadata to the discovered targets.When the scrape object defines its own configuration, it takesprecedence over the scrape class configuration. (see [below for nested schema](#nestedatt--spec--scrape_classes--attach_metadata))
 - `default` (Boolean) Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.
 - `metric_relabelings` (Attributes List) MetricRelabelings configures the relabeling rules to apply to all samples before ingestion.The Operator adds the scrape class metric relabelings defined here.Then the Operator adds the target-specific metric relabelings defined in ServiceMonitors, PodMonitors, Probes and ScrapeConfigs.Then the Operator adds namespace enforcement relabeling rule, specified in '.spec.enforcedNamespaceLabel'.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs (see [below for nested schema](#nestedatt--spec--scrape_classes--metric_relabelings))
 - `relabelings` (Attributes List) Relabelings configures the relabeling rules to apply to all scrape targets.The Operator automatically adds relabelings for a few standard Kubernetes fieldslike '__meta_kubernetes_namespace' and '__meta_kubernetes_service_name'.Then the Operator adds the scrape class relabelings defined here.Then the Operator adds the target-specific relabelings defined in the scrape object.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--scrape_classes--relabelings))
 - `tls_config` (Attributes) TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config))
+
+<a id="nestedatt--spec--scrape_classes--attach_metadata"></a>
+### Nested Schema for `spec.scrape_classes.attach_metadata`
+
+Optional:
+
+- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.
+
 
 <a id="nestedatt--spec--scrape_classes--metric_relabelings"></a>
 ### Nested Schema for `spec.scrape_classes.metric_relabelings`
@@ -2579,6 +2593,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--scrape_classes--tls_config--ca"></a>
@@ -3162,6 +3178,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--tracing_config--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--tracing_config--tls_config--ca"></a>

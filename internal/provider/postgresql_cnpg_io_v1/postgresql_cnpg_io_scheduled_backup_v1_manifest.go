@@ -178,13 +178,13 @@ func (r *PostgresqlCnpgIoScheduledBackupV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"method": schema.StringAttribute{
-						Description:         "The backup method to be used, possible options are 'barmanObjectStore'and 'volumeSnapshot'. Defaults to: 'barmanObjectStore'.",
-						MarkdownDescription: "The backup method to be used, possible options are 'barmanObjectStore'and 'volumeSnapshot'. Defaults to: 'barmanObjectStore'.",
+						Description:         "The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
+						MarkdownDescription: "The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("barmanObjectStore", "volumeSnapshot"),
+							stringvalidator.OneOf("barmanObjectStore", "volumeSnapshot", "plugin"),
 						},
 					},
 

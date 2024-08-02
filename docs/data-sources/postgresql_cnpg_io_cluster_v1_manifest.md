@@ -677,10 +677,11 @@ Required:
 
 Optional:
 
-- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
+- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
 - `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
 - `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
 - `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
+- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.
 
 
 
@@ -731,10 +732,12 @@ Optional:
 - `locale_collate` (String) The value to be passed as option '--lc-collate' for initdb (default:'C')
 - `options` (List of String) The list of options that must be passed to initdb when creating the cluster.Deprecated: This could lead to inconsistent configurations,please use the explicit provided parameters instead.If defined, explicit values will be ignored.
 - `owner` (String) Name of the owner of the database in the instance to be usedby applications. Defaults to the value of the 'database' key.
-- `post_init_application_sql` (List of String) List of SQL queries to be executed as a superuser in the applicationdatabase right after is created - to be used with extreme care(by default empty)
-- `post_init_application_sql_refs` (Attributes) PostInitApplicationSQLRefs points references to ConfigMaps or Secrets whichcontain SQL files, the general implementation order to these references isfrom all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps,the implementation order is same as the order of each array(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs))
-- `post_init_sql` (List of String) List of SQL queries to be executed as a superuser immediatelyafter the cluster has been created - to be used with extreme care(by default empty)
-- `post_init_template_sql` (List of String) List of SQL queries to be executed as a superuser in the 'template1'after the cluster has been created - to be used with extreme care(by default empty)
+- `post_init_application_sql` (List of String) List of SQL queries to be executed as a superuser in the applicationdatabase right after the cluster has been created - to be used with extreme care(by default empty)
+- `post_init_application_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the application database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs))
+- `post_init_sql` (List of String) List of SQL queries to be executed as a superuser in the 'postgres'database right after the cluster has been created - to be used with extreme care(by default empty)
+- `post_init_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'postgres' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_sql_refs))
+- `post_init_template_sql` (List of String) List of SQL queries to be executed as a superuser in the 'template1'database right after the cluster has been created - to be used with extreme care(by default empty)
+- `post_init_template_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'template1' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs))
 - `secret` (Attributes) Name of the secret containing the initial credentials for theowner of the user database. If empty a new secret will becreated from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--secret))
 - `wal_segment_size` (Number) The value in megabytes (1 to 1024) to be passed to the '--wal-segsize'option for initdb (default: empty, resulting in PostgreSQL default: 16MB)
 
@@ -781,6 +784,60 @@ Required:
 
 <a id="nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs--secret_refs"></a>
 ### Nested Schema for `spec.bootstrap.initdb.post_init_application_sql_refs.secret_refs`
+
+Required:
+
+- `key` (String) The key to select
+- `name` (String) Name of the referent.
+
+
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_sql_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_sql_refs`
+
+Optional:
+
+- `config_map_refs` (Attributes List) ConfigMapRefs holds a list of references to ConfigMaps (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_sql_refs--config_map_refs))
+- `secret_refs` (Attributes List) SecretRefs holds a list of references to Secrets (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_sql_refs--secret_refs))
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_sql_refs--config_map_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_sql_refs.config_map_refs`
+
+Required:
+
+- `key` (String) The key to select
+- `name` (String) Name of the referent.
+
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_sql_refs--secret_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_sql_refs.secret_refs`
+
+Required:
+
+- `key` (String) The key to select
+- `name` (String) Name of the referent.
+
+
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_template_sql_refs`
+
+Optional:
+
+- `config_map_refs` (Attributes List) ConfigMapRefs holds a list of references to ConfigMaps (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs--config_map_refs))
+- `secret_refs` (Attributes List) SecretRefs holds a list of references to Secrets (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs--secret_refs))
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs--config_map_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_template_sql_refs.config_map_refs`
+
+Required:
+
+- `key` (String) The key to select
+- `name` (String) Name of the referent.
+
+
+<a id="nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs--secret_refs"></a>
+### Nested Schema for `spec.bootstrap.initdb.post_init_template_sql_refs.secret_refs`
 
 Required:
 
@@ -1325,10 +1382,11 @@ Required:
 
 Optional:
 
-- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
+- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
 - `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
 - `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
 - `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
+- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.
 
 
 
@@ -1473,6 +1531,10 @@ Required:
 - `selector_type` (String) SelectorType specifies the type of selectors that the service will have.Valid values are 'rw', 'r', and 'ro', representing read-write, read, and read-only services.
 - `service_template` (Attributes) ServiceTemplate is the template specification for the service. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template))
 
+Optional:
+
+- `update_strategy` (String) UpdateStrategy describes how the service differences should be reconciled
+
 <a id="nestedatt--spec--managed--services--additional--service_template"></a>
 ### Nested Schema for `spec.managed.services.additional.service_template`
 
@@ -1565,6 +1627,7 @@ Optional:
 - `enable_pod_monitor` (Boolean) Enable or disable the 'PodMonitor'
 - `pod_monitor_metric_relabelings` (Attributes List) The list of metric relabelings for the 'PodMonitor'. Applied to samples before ingestion. (see [below for nested schema](#nestedatt--spec--monitoring--pod_monitor_metric_relabelings))
 - `pod_monitor_relabelings` (Attributes List) The list of relabelings for the 'PodMonitor'. Applied to samples before scraping. (see [below for nested schema](#nestedatt--spec--monitoring--pod_monitor_relabelings))
+- `tls` (Attributes) Configure TLS communication for the metrics endpoint.Changing tls.enabled option will force a rollout of all instances. (see [below for nested schema](#nestedatt--spec--monitoring--tls))
 
 <a id="nestedatt--spec--monitoring--custom_queries_config_map"></a>
 ### Nested Schema for `spec.monitoring.custom_queries_config_map`
@@ -1612,6 +1675,14 @@ Optional:
 - `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
 
 
+<a id="nestedatt--spec--monitoring--tls"></a>
+### Nested Schema for `spec.monitoring.tls`
+
+Optional:
+
+- `enabled` (Boolean) Enable TLS for the monitoring endpoint.Changing this option will force a rollout of all instances.
+
+
 
 <a id="nestedatt--spec--node_maintenance_window"></a>
 ### Nested Schema for `spec.node_maintenance_window`
@@ -1647,6 +1718,7 @@ Optional:
 - `promotion_timeout` (Number) Specifies the maximum number of seconds to wait when promoting an instance to primary.Default value is 40000000, greater than one year in seconds,big enough to simulate an infinite timeout
 - `shared_preload_libraries` (List of String) Lists of shared preload libraries to add to the default ones
 - `sync_replica_election_constraint` (Attributes) Requirements to be met by sync replicas. This will affect how the 'synchronous_standby_names' parameter will beset up. (see [below for nested schema](#nestedatt--spec--postgresql--sync_replica_election_constraint))
+- `synchronous` (Attributes) Configuration of the PostgreSQL synchronous replication feature (see [below for nested schema](#nestedatt--spec--postgresql--synchronous))
 
 <a id="nestedatt--spec--postgresql--ldap"></a>
 ### Nested Schema for `spec.postgresql.ldap`
@@ -1705,6 +1777,21 @@ Required:
 Optional:
 
 - `node_labels_anti_affinity` (List of String) A list of node labels values to extract and compare to evaluate if the pods reside in the same topology or not
+
+
+<a id="nestedatt--spec--postgresql--synchronous"></a>
+### Nested Schema for `spec.postgresql.synchronous`
+
+Required:
+
+- `method` (String) Method to select synchronous replication standbys from the listedservers, accepting 'any' (quorum-based synchronous replication) or'first' (priority-based synchronous replication) as values.
+- `number` (Number) Specifies the number of synchronous standby servers thattransactions must wait for responses from.
+
+Optional:
+
+- `max_standby_names_from_cluster` (Number) Specifies the maximum number of local cluster pods that can beautomatically included in the 'synchronous_standby_names' option inPostgreSQL.
+- `standby_names_post` (List of String) A user-defined list of application names to be added to'synchronous_standby_names' after local cluster pods (the order isonly useful for priority-based synchronous replication).
+- `standby_names_pre` (List of String) A user-defined list of application names to be added to'synchronous_standby_names' before local cluster pods (the order isonly useful for priority-based synchronous replication).
 
 
 
@@ -1882,6 +1969,7 @@ Required:
 Optional:
 
 - `enabled` (Boolean) If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.
+- `min_apply_delay` (String) When replica mode is enabled, this parameter allows you to replaytransactions only when the system time is at least the configuredtime past the commit time. This provides an opportunity to correctdata loss errors. Note that when this parameter is set, a promotiontoken cannot be used.
 - `primary` (String) Primary defines which Cluster is defined to be the primary in the distributed PostgreSQL cluster, based on thetopology specified in externalClusters
 - `promotion_token` (String) A demotion token generated by an external cluster used tocheck if the promotion requirements are met.
 - `self` (String) Self defines the name of this cluster. It is used to determine if this is a primaryor a replica cluster, comparing it with 'primary'

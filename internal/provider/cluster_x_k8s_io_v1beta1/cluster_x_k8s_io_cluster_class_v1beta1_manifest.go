@@ -181,6 +181,10 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 						Reason            *string `tfsdk:"reason" json:"reason,omitempty"`
 						Rule              *string `tfsdk:"rule" json:"rule,omitempty"`
 					} `tfsdk:"x_kubernetes_validations" json:"x-kubernetes-validations,omitempty"`
+					X_metadata *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					} `tfsdk:"x_metadata" json:"x-metadata,omitempty"`
 				} `tfsdk:"open_apiv3_schema" json:"openAPIV3Schema,omitempty"`
 			} `tfsdk:"schema" json:"schema,omitempty"`
 		} `tfsdk:"variables" json:"variables,omitempty"`
@@ -1047,8 +1051,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"metadata": schema.SingleNestedAttribute{
-									Description:         "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.",
-									MarkdownDescription: "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.",
+									Description:         "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
+									MarkdownDescription: "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
 											Description:         "Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.",
@@ -1335,6 +1339,33 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 																Optional:            false,
 																Computed:            false,
 															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"x_metadata": schema.SingleNestedAttribute{
+													Description:         "XMetadata is the metadata of a variable or a nested field within a variable.It can be used to add additional data for higher level tools.",
+													MarkdownDescription: "XMetadata is the metadata of a variable or a nested field within a variable.It can be used to add additional data for higher level tools.",
+													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.",
+															MarkdownDescription: "Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) variables.",
+															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) variables.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 													},
 													Required: false,

@@ -174,8 +174,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec defines the desired state of Cluster.  Contains all of the attributes of a specific cluster.",
-				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.  Contains all of the attributes of a specific cluster.",
+				Description:         "ClusterSpec defines the desired state of Cluster.Contains all of the attributes of a specific cluster.",
+				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.Contains all of the attributes of a specific cluster.",
 				Attributes: map[string]schema.Attribute{
 					"acl_name": schema.StringAttribute{
 						Description:         "The name of the Access Control List to associate with the cluster.",
@@ -186,12 +186,12 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"acl_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -212,8 +212,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"auto_minor_version_upgrade": schema.BoolAttribute{
-						Description:         "When set to true, the cluster will automatically receive minor engine version upgrades after launch.",
-						MarkdownDescription: "When set to true, the cluster will automatically receive minor engine version upgrades after launch.",
+						Description:         "When set to true, the cluster will automatically receive minor engine versionupgrades after launch.",
+						MarkdownDescription: "When set to true, the cluster will automatically receive minor engine versionupgrades after launch.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -244,16 +244,16 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"maintenance_window": schema.StringAttribute{
-						Description:         "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
-						MarkdownDescription: "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
+						Description:         "Specifies the weekly time range during which maintenance on the cluster isperformed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi(24H Clock UTC). The minimum maintenance window is a 60 minute period.",
+						MarkdownDescription: "Specifies the weekly time range during which maintenance on the cluster isperformed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi(24H Clock UTC). The minimum maintenance window is a 60 minute period.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the cluster. This value must be unique as it also serves as the cluster identifier.",
-						MarkdownDescription: "The name of the cluster. This value must be unique as it also serves as the cluster identifier.",
+						Description:         "The name of the cluster. This value must be unique as it also serves as thecluster identifier.",
+						MarkdownDescription: "The name of the cluster. This value must be unique as it also serves as thecluster identifier.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -268,8 +268,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"num_replicas_per_shard": schema.Int64Attribute{
-						Description:         "The number of replicas to apply to each shard. The default value is 1. The maximum is 5.",
-						MarkdownDescription: "The number of replicas to apply to each shard. The default value is 1. The maximum is 5.",
+						Description:         "The number of replicas to apply to each shard. The default value is 1. Themaximum is 5.",
+						MarkdownDescription: "The number of replicas to apply to each shard. The default value is 1. Themaximum is 5.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -292,12 +292,12 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"parameter_group_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -340,8 +340,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -363,8 +363,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"snapshot_ar_ns": schema.ListAttribute{
-						Description:         "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas.",
-						MarkdownDescription: "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas.",
+						Description:         "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshotfiles stored in Amazon S3. The snapshot files are used to populate the newcluster. The Amazon S3 object name in the ARN cannot contain any commas.",
+						MarkdownDescription: "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshotfiles stored in Amazon S3. The snapshot files are used to populate the newcluster. The Amazon S3 object name in the ARN cannot contain any commas.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -372,20 +372,20 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"snapshot_name": schema.StringAttribute{
-						Description:         "The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.",
-						MarkdownDescription: "The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.",
+						Description:         "The name of a snapshot from which to restore data into the new cluster. Thesnapshot status changes to restoring while the new cluster is being created.",
+						MarkdownDescription: "The name of a snapshot from which to restore data into the new cluster. Thesnapshot status changes to restoring while the new cluster is being created.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"snapshot_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -406,36 +406,36 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"snapshot_retention_limit": schema.Int64Attribute{
-						Description:         "The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
-						MarkdownDescription: "The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
+						Description:         "The number of days for which MemoryDB retains automatic snapshots beforedeleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshotthat was taken today is retained for 5 days before being deleted.",
+						MarkdownDescription: "The number of days for which MemoryDB retains automatic snapshots beforedeleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshotthat was taken today is retained for 5 days before being deleted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"snapshot_window": schema.StringAttribute{
-						Description:         "The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your shard.  Example: 05:00-09:00  If you do not specify this parameter, MemoryDB automatically chooses an appropriate time range.",
-						MarkdownDescription: "The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your shard.  Example: 05:00-09:00  If you do not specify this parameter, MemoryDB automatically chooses an appropriate time range.",
+						Description:         "The daily time range (in UTC) during which MemoryDB begins taking a dailysnapshot of your shard.Example: 05:00-09:00If you do not specify this parameter, MemoryDB automatically chooses an appropriatetime range.",
+						MarkdownDescription: "The daily time range (in UTC) during which MemoryDB begins taking a dailysnapshot of your shard.Example: 05:00-09:00If you do not specify this parameter, MemoryDB automatically chooses an appropriatetime range.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sns_topic_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
+						Description:         "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service(SNS) topic to which notifications are sent.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service(SNS) topic to which notifications are sent.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sns_topic_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -464,12 +464,12 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"subnet_group_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -490,8 +490,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.",
-						MarkdownDescription: "A list of tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.",
+						Description:         "A list of tags to be added to this resource. Tags are comma-separated key,valuepairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags asshown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.",
+						MarkdownDescription: "A list of tags to be added to this resource. Tags are comma-separated key,valuepairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags asshown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

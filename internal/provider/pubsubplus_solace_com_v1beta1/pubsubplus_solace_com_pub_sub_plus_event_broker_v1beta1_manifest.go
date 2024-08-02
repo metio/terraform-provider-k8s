@@ -43,9 +43,14 @@ type PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AdminCredentialsSecret *string `tfsdk:"admin_credentials_secret" json:"adminCredentialsSecret,omitempty"`
-		Developer              *bool   `tfsdk:"developer" json:"developer,omitempty"`
-		ExtraEnvVars           *[]struct {
+		AdminCredentialsSecret  *string `tfsdk:"admin_credentials_secret" json:"adminCredentialsSecret,omitempty"`
+		BrokerContainerSecurity *struct {
+			RunAsGroup *float64 `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+			RunAsUser  *float64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+		} `tfsdk:"broker_container_security" json:"brokerContainerSecurity,omitempty"`
+		Developer          *bool `tfsdk:"developer" json:"developer,omitempty"`
+		EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
+		ExtraEnvVars       *[]struct {
 			Name  *string `tfsdk:"name" json:"name,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"extra_env_vars" json:"extraEnvVars,omitempty"`
@@ -60,8 +65,12 @@ type PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1ManifestData struct {
 			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 		} `tfsdk:"image" json:"image,omitempty"`
 		Monitoring *struct {
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-			Image   *struct {
+			Enabled      *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			ExtraEnvVars *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"extra_env_vars" json:"extraEnvVars,omitempty"`
+			Image *struct {
 				PullPolicy  *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 				PullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -263,15 +272,9 @@ type PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1ManifestData struct {
 			Slow                     *bool   `tfsdk:"slow" json:"slow,omitempty"`
 			UseStorageClass          *string `tfsdk:"use_storage_class" json:"useStorageClass,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
-		SystemScaling *struct {
-			MaxConnections      *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
-			MaxQueueMessages    *int64  `tfsdk:"max_queue_messages" json:"maxQueueMessages,omitempty"`
-			MaxSpoolUsage       *int64  `tfsdk:"max_spool_usage" json:"maxSpoolUsage,omitempty"`
-			MessagingNodeCpu    *string `tfsdk:"messaging_node_cpu" json:"messagingNodeCpu,omitempty"`
-			MessagingNodeMemory *string `tfsdk:"messaging_node_memory" json:"messagingNodeMemory,omitempty"`
-		} `tfsdk:"system_scaling" json:"systemScaling,omitempty"`
-		Timezone *string `tfsdk:"timezone" json:"timezone,omitempty"`
-		Tls      *struct {
+		SystemScaling *map[string]string `tfsdk:"system_scaling" json:"systemScaling,omitempty"`
+		Timezone      *string            `tfsdk:"timezone" json:"timezone,omitempty"`
+		Tls           *struct {
 			CertFilename          *string `tfsdk:"cert_filename" json:"certFilename,omitempty"`
 			CertKeyFilename       *string `tfsdk:"cert_key_filename" json:"certKeyFilename,omitempty"`
 			Enabled               *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -366,9 +369,42 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"broker_container_security": schema.SingleNestedAttribute{
+						Description:         "ContainerSecurityContext defines the container security context for the PubSubPlusEventBroker.",
+						MarkdownDescription: "ContainerSecurityContext defines the container security context for the PubSubPlusEventBroker.",
+						Attributes: map[string]schema.Attribute{
+							"run_as_group": schema.Float64Attribute{
+								Description:         "Specifies runAsGroup in container security context. 0 or unset defaults either to 1000002, or if OpenShift detected to unspecified (see documentation)",
+								MarkdownDescription: "Specifies runAsGroup in container security context. 0 or unset defaults either to 1000002, or if OpenShift detected to unspecified (see documentation)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_user": schema.Float64Attribute{
+								Description:         "Specifies runAsUser in container security context. 0 or unset defaults either to 1000001, or if OpenShift detected to unspecified (see documentation)",
+								MarkdownDescription: "Specifies runAsUser in container security context. 0 or unset defaults either to 1000001, or if OpenShift detected to unspecified (see documentation)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"developer": schema.BoolAttribute{
 						Description:         "Developer true specifies a minimum footprint scaled-down deployment, not for production use.If set to true it overrides SystemScaling parameters.",
 						MarkdownDescription: "Developer true specifies a minimum footprint scaled-down deployment, not for production use.If set to true it overrides SystemScaling parameters.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enable_service_links": schema.BoolAttribute{
+						Description:         "EnableServiceLinks indicates whether information about services should be injected into pod's environmentvariables, matching the syntax of Docker links. Optional: Defaults to false.",
+						MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod's environmentvariables, matching the syntax of Docker links. Optional: Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -479,6 +515,33 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"extra_env_vars": schema.ListNestedAttribute{
+								Description:         "List of extra environment variables to be added to the Prometheus Exporter container.",
+								MarkdownDescription: "List of extra environment variables to be added to the Prometheus Exporter container.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Specifies the Name of an environment variable to be added to the Prometheus Exporter container for Monitoring",
+											MarkdownDescription: "Specifies the Name of an environment variable to be added to the Prometheus Exporter container for Monitoring",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Specifies the Value of an environment variable to be added to the Prometheus Exporter container for Monitoring",
+											MarkdownDescription: "Specifies the Value of an environment variable to be added to the Prometheus Exporter container for Monitoring",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"image": schema.SingleNestedAttribute{
@@ -1859,53 +1922,13 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 						Computed: false,
 					},
 
-					"system_scaling": schema.SingleNestedAttribute{
+					"system_scaling": schema.MapAttribute{
 						Description:         "SystemScaling provides exact fine-grained specification of the event broker scaling parametersand the assigned CPU / memory resources to the Pod.",
 						MarkdownDescription: "SystemScaling provides exact fine-grained specification of the event broker scaling parametersand the assigned CPU / memory resources to the Pod.",
-						Attributes: map[string]schema.Attribute{
-							"max_connections": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"max_queue_messages": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"max_spool_usage": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"messaging_node_cpu": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"messaging_node_memory": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"timezone": schema.StringAttribute{

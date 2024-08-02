@@ -70,6 +70,7 @@ Optional:
 - `beegfs_csi_driver` (Attributes) Defaults to ghcr.io/thinkparq/beegfs-csi-driver:<the operator version>. (see [below for nested schema](#nestedatt--spec--container_image_overrides--beegfs_csi_driver))
 - `csi_node_driver_registrar` (Attributes) Defaults to registry.k8s.io/sig-storage/csi-node-driver-registrar:<the most current version at operator release>. (see [below for nested schema](#nestedatt--spec--container_image_overrides--csi_node_driver_registrar))
 - `csi_provisioner` (Attributes) Defaults to registry.k8s.io/sig-storage/csi-provisioner:<the most current version at operator release>. (see [below for nested schema](#nestedatt--spec--container_image_overrides--csi_provisioner))
+- `csi_resizer` (Attributes) Defaults to registry.k8s.io/sig-storage/csi-resizer:<the most current version at operator release>. (see [below for nested schema](#nestedatt--spec--container_image_overrides--csi_resizer))
 - `liveness_probe` (Attributes) Defaults to registry.k8s.io/sig-storage/livenessprobe:<the most current version at operator release>. (see [below for nested schema](#nestedatt--spec--container_image_overrides--liveness_probe))
 
 <a id="nestedatt--spec--container_image_overrides--beegfs_csi_driver"></a>
@@ -92,6 +93,15 @@ Optional:
 
 <a id="nestedatt--spec--container_image_overrides--csi_provisioner"></a>
 ### Nested Schema for `spec.container_image_overrides.csi_provisioner`
+
+Optional:
+
+- `image` (String) A combination of registry and image (e.g. registry.k8s.io/csi-provisioner or ghcr.io/thinkparq/beegfs-csi-driver).
+- `tag` (String) A tag (e.g. v2.2.2 or latest).
+
+
+<a id="nestedatt--spec--container_image_overrides--csi_resizer"></a>
+### Nested Schema for `spec.container_image_overrides.csi_resizer`
 
 Optional:
 

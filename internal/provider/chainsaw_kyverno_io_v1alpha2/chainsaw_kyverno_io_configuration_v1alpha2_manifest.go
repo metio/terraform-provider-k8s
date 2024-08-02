@@ -63,55 +63,41 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 		} `tfsdk:"discovery" json:"discovery,omitempty"`
 		Error *struct {
 			Catch *[]struct {
-				Apply *struct {
-					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect *[]struct {
-						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					} `tfsdk:"expect" json:"expect,omitempty"`
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"apply" json:"apply,omitempty"`
-				Assert *struct {
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"assert" json:"assert,omitempty"`
-				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Clusters *struct {
-					Context    *string `tfsdk:"context" json:"context,omitempty"`
-					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Command *struct {
-					Args       *[]string          `tfsdk:"args" json:"args,omitempty"`
-					Check      *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Entrypoint *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
+					Outputs *[]struct {
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
-				Create *struct {
-					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect *[]struct {
-						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					} `tfsdk:"expect" json:"expect,omitempty"`
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"create" json:"create,omitempty"`
 				Delete *struct {
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					DeletionPropagationPolicy *string `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
 					Expect                    *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
@@ -119,24 +105,22 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 					} `tfsdk:"expect" json:"expect,omitempty"`
 					File *string `tfsdk:"file" json:"file,omitempty"`
 					Ref  *struct {
-						ApiVersion    *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-						Kind          *string `tfsdk:"kind" json:"kind,omitempty"`
-						LabelSelector *struct {
-							MatchExpressions *[]struct {
-								Key      *string   `tfsdk:"key" json:"key,omitempty"`
-								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+						Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Name       *string            `tfsdk:"name" json:"name,omitempty"`
+						Namespace  *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"ref" json:"ref,omitempty"`
 					Template *bool   `tfsdk:"template" json:"template,omitempty"`
 					Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"delete" json:"delete,omitempty"`
 				Describe *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -145,13 +129,12 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 					Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"describe" json:"describe,omitempty"`
 				Description *string `tfsdk:"description" json:"description,omitempty"`
-				Error       *struct {
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"error" json:"error,omitempty"`
-				Events *struct {
+				Events      *struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Format    *string `tfsdk:"format" json:"format,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -160,30 +143,24 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 				} `tfsdk:"events" json:"events,omitempty"`
 				Get *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-					Format     *string `tfsdk:"format" json:"format,omitempty"`
-					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name       *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
-					Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"get" json:"get,omitempty"`
-				Outputs *[]struct {
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"outputs" json:"outputs,omitempty"`
-				Patch *struct {
-					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect *[]struct {
-						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					} `tfsdk:"expect" json:"expect,omitempty"`
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"patch" json:"patch,omitempty"`
 				PodLogs *struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -192,32 +169,40 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
 				Script *struct {
-					Check   *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Content *string            `tfsdk:"content" json:"content,omitempty"`
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
+					Outputs *[]struct {
+						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
 				} `tfsdk:"sleep" json:"sleep,omitempty"`
-				Update *struct {
-					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect *[]struct {
-						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					} `tfsdk:"expect" json:"expect,omitempty"`
-					File     *string            `tfsdk:"file" json:"file,omitempty"`
-					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
-					Template *bool              `tfsdk:"template" json:"template,omitempty"`
-					Timeout  *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				} `tfsdk:"update" json:"update,omitempty"`
 				Wait *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-					For        *struct {
+					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					For *struct {
 						Condition *struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -451,191 +436,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 								MarkdownDescription: "Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"apply": schema.SingleNestedAttribute{
-											Description:         "Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test.",
-											MarkdownDescription: "Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test.",
-											Attributes: map[string]schema.Attribute{
-												"dry_run": schema.BoolAttribute{
-													Description:         "DryRun determines whether the file should be applied in dry run mode.",
-													MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"expect": schema.ListNestedAttribute{
-													Description:         "Expect defines a list of matched checks to validate the operation outcome.",
-													MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"check": schema.MapAttribute{
-																Description:         "Check defines the verification statement.",
-																MarkdownDescription: "Check defines the verification statement.",
-																ElementType:         types.StringType,
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-
-															"match": schema.MapAttribute{
-																Description:         "Match defines the matching statement.",
-																MarkdownDescription: "Match defines the matching statement.",
-																ElementType:         types.StringType,
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"resource": schema.MapAttribute{
-													Description:         "Resource provides a resource to be applied.",
-													MarkdownDescription: "Resource provides a resource to be applied.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"assert": schema.SingleNestedAttribute{
-											Description:         "Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true.",
-											MarkdownDescription: "Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true.",
-											Attributes: map[string]schema.Attribute{
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"resource": schema.MapAttribute{
-													Description:         "Check provides a check used in assertions.",
-													MarkdownDescription: "Check provides a check used in assertions.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"bindings": schema.ListNestedAttribute{
-											Description:         "Bindings defines additional binding key/values.",
-											MarkdownDescription: "Bindings defines additional binding key/values.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"cluster": schema.StringAttribute{
-											Description:         "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											MarkdownDescription: "Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"clusters": schema.SingleNestedAttribute{
-											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
-											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
-											Attributes: map[string]schema.Attribute{
-												"context": schema.StringAttribute{
-													Description:         "Context is the name of the context to use.",
-													MarkdownDescription: "Context is the name of the context to use.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubeconfig": schema.StringAttribute{
-													Description:         "Kubeconfig is the path to the referenced file.",
-													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"command": schema.SingleNestedAttribute{
 											Description:         "Command defines a command to run.",
 											MarkdownDescription: "Command defines a command to run.",
@@ -649,6 +449,37 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Computed:            false,
 												},
 
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"check": schema.MapAttribute{
 													Description:         "Check is an assertion tree to validate the operation outcome.",
 													MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
@@ -656,6 +487,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"entrypoint": schema.StringAttribute{
@@ -671,6 +535,46 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													MarkdownDescription: "Env defines additional environment variables.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"outputs": schema.ListNestedAttribute{
+													Description:         "Outputs defines output bindings.",
+													MarkdownDescription: "Outputs defines output bindings.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"match": schema.MapAttribute{
+																Description:         "Match defines the matching statement.",
+																MarkdownDescription: "Match defines the matching statement.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"name": schema.StringAttribute{
 																Description:         "Name the name of the binding.",
 																MarkdownDescription: "Name the name of the binding.",
@@ -718,38 +622,32 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 											Computed: false,
 										},
 
-										"create": schema.SingleNestedAttribute{
-											Description:         "Create represents a creation operation.",
-											MarkdownDescription: "Create represents a creation operation.",
+										"delete": schema.SingleNestedAttribute{
+											Description:         "Delete represents a deletion operation.",
+											MarkdownDescription: "Delete represents a deletion operation.",
 											Attributes: map[string]schema.Attribute{
-												"dry_run": schema.BoolAttribute{
-													Description:         "DryRun determines whether the file should be applied in dry run mode.",
-													MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"expect": schema.ListNestedAttribute{
-													Description:         "Expect defines a list of matched checks to validate the operation outcome.",
-													MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
-															"check": schema.MapAttribute{
-																Description:         "Check defines the verification statement.",
-																MarkdownDescription: "Check defines the verification statement.",
-																ElementType:         types.StringType,
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
 															},
 
-															"match": schema.MapAttribute{
-																Description:         "Match defines the matching statement.",
-																MarkdownDescription: "Match defines the matching statement.",
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
 																ElementType:         types.StringType,
-																Required:            false,
-																Optional:            true,
+																Required:            true,
+																Optional:            false,
 																Computed:            false,
 															},
 														},
@@ -759,48 +657,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
-												"resource": schema.MapAttribute{
-													Description:         "Resource provides a resource to be applied.",
-													MarkdownDescription: "Resource provides a resource to be applied.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"delete": schema.SingleNestedAttribute{
-											Description:         "Delete represents a deletion operation.",
-											MarkdownDescription: "Delete represents a deletion operation.",
-											Attributes: map[string]schema.Attribute{
 												"deletion_propagation_policy": schema.StringAttribute{
 													Description:         "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
 													MarkdownDescription: "DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.",
@@ -869,58 +758,13 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 															Computed:            false,
 														},
 
-														"label_selector": schema.SingleNestedAttribute{
+														"labels": schema.MapAttribute{
 															Description:         "Label selector to match objects to delete",
 															MarkdownDescription: "Label selector to match objects to delete",
-															Attributes: map[string]schema.Attribute{
-																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	NestedObject: schema.NestedAttributeObject{
-																		Attributes: map[string]schema.Attribute{
-																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-
-																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-
-																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																				ElementType:         types.StringType,
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
@@ -975,6 +819,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"kind": schema.StringAttribute{
@@ -1038,52 +915,43 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
-										"error": schema.SingleNestedAttribute{
-											Description:         "Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures.",
-											MarkdownDescription: "Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures.",
-											Attributes: map[string]schema.Attribute{
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"resource": schema.MapAttribute{
-													Description:         "Check provides a check used in assertions.",
-													MarkdownDescription: "Check provides a check used in assertions.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"events": schema.SingleNestedAttribute{
 											Description:         "Events determines the events collector to execute.",
 											MarkdownDescription: "Events determines the events collector to execute.",
 											Attributes: map[string]schema.Attribute{
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"format": schema.StringAttribute{
 													Description:         "Format determines the output format (json or yaml).",
 													MarkdownDescription: "Format determines the output format (json or yaml).",
@@ -1144,6 +1012,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Computed:            false,
 												},
 
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"format": schema.StringAttribute{
 													Description:         "Format determines the output format (json or yaml).",
 													MarkdownDescription: "Format determines the output format (json or yaml).",
@@ -1200,80 +1101,36 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 											Computed: false,
 										},
 
-										"outputs": schema.ListNestedAttribute{
-											Description:         "Outputs defines output bindings.",
-											MarkdownDescription: "Outputs defines output bindings.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"match": schema.MapAttribute{
-														Description:         "Match defines the matching statement.",
-														MarkdownDescription: "Match defines the matching statement.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name the name of the binding.",
-														MarkdownDescription: "Name the name of the binding.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
-														},
-													},
-
-													"value": schema.MapAttribute{
-														Description:         "Value value of the binding.",
-														MarkdownDescription: "Value value of the binding.",
-														ElementType:         types.StringType,
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"patch": schema.SingleNestedAttribute{
-											Description:         "Patch represents a patch operation.",
-											MarkdownDescription: "Patch represents a patch operation.",
+										"pod_logs": schema.SingleNestedAttribute{
+											Description:         "PodLogs determines the pod logs collector to execute.",
+											MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
 											Attributes: map[string]schema.Attribute{
-												"dry_run": schema.BoolAttribute{
-													Description:         "DryRun determines whether the file should be applied in dry run mode.",
-													MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
-												"expect": schema.ListNestedAttribute{
-													Description:         "Expect defines a list of matched checks to validate the operation outcome.",
-													MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"check": schema.MapAttribute{
-																Description:         "Check defines the verification statement.",
-																MarkdownDescription: "Check defines the verification statement.",
-																ElementType:         types.StringType,
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 
-															"match": schema.MapAttribute{
-																Description:         "Match defines the matching statement.",
-																MarkdownDescription: "Match defines the matching statement.",
-																ElementType:         types.StringType,
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
 														},
 													},
 													Required: false,
@@ -1281,48 +1138,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"resource": schema.MapAttribute{
-													Description:         "Resource provides a resource to be applied.",
-													MarkdownDescription: "Resource provides a resource to be applied.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"pod_logs": schema.SingleNestedAttribute{
-											Description:         "PodLogs determines the pod logs collector to execute.",
-											MarkdownDescription: "PodLogs determines the pod logs collector to execute.",
-											Attributes: map[string]schema.Attribute{
 												"container": schema.StringAttribute{
 													Description:         "Container in pod to get logs from else --all-containers is used.",
 													MarkdownDescription: "Container in pod to get logs from else --all-containers is used.",
@@ -1380,6 +1195,37 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 											Description:         "Script defines a script to run.",
 											MarkdownDescription: "Script defines a script to run.",
 											Attributes: map[string]schema.Attribute{
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"check": schema.MapAttribute{
 													Description:         "Check is an assertion tree to validate the operation outcome.",
 													MarkdownDescription: "Check is an assertion tree to validate the operation outcome.",
@@ -1387,6 +1233,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"content": schema.StringAttribute{
@@ -1402,6 +1281,46 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													MarkdownDescription: "Env defines additional environment variables.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"outputs": schema.ListNestedAttribute{
+													Description:         "Outputs defines output bindings.",
+													MarkdownDescription: "Outputs defines output bindings.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"match": schema.MapAttribute{
+																Description:         "Match defines the matching statement.",
+																MarkdownDescription: "Match defines the matching statement.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"name": schema.StringAttribute{
 																Description:         "Name the name of the binding.",
 																MarkdownDescription: "Name the name of the binding.",
@@ -1466,85 +1385,6 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 											Computed: false,
 										},
 
-										"update": schema.SingleNestedAttribute{
-											Description:         "Update represents an update operation.",
-											MarkdownDescription: "Update represents an update operation.",
-											Attributes: map[string]schema.Attribute{
-												"dry_run": schema.BoolAttribute{
-													Description:         "DryRun determines whether the file should be applied in dry run mode.",
-													MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"expect": schema.ListNestedAttribute{
-													Description:         "Expect defines a list of matched checks to validate the operation outcome.",
-													MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"check": schema.MapAttribute{
-																Description:         "Check defines the verification statement.",
-																MarkdownDescription: "Check defines the verification statement.",
-																ElementType:         types.StringType,
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-
-															"match": schema.MapAttribute{
-																Description:         "Match defines the matching statement.",
-																MarkdownDescription: "Match defines the matching statement.",
-																ElementType:         types.StringType,
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"file": schema.StringAttribute{
-													Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"resource": schema.MapAttribute{
-													Description:         "Resource provides a resource to be applied.",
-													MarkdownDescription: "Resource provides a resource to be applied.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"template": schema.BoolAttribute{
-													Description:         "Template determines whether resources should be considered for templating.",
-													MarkdownDescription: "Template determines whether resources should be considered for templating.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"timeout": schema.StringAttribute{
-													Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"wait": schema.SingleNestedAttribute{
 											Description:         "Wait determines the resource wait collector to execute.",
 											MarkdownDescription: "Wait determines the resource wait collector to execute.",
@@ -1555,6 +1395,39 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
+												},
+
+												"cluster": schema.StringAttribute{
+													Description:         "Cluster defines the target cluster (will be inherited if not specified).",
+													MarkdownDescription: "Cluster defines the target cluster (will be inherited if not specified).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"clusters": schema.SingleNestedAttribute{
+													Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+													MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+													Attributes: map[string]schema.Attribute{
+														"context": schema.StringAttribute{
+															Description:         "Context is the name of the context to use.",
+															MarkdownDescription: "Context is the name of the context to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kubeconfig": schema.StringAttribute{
+															Description:         "Kubeconfig is the path to the referenced file.",
+															MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"for": schema.SingleNestedAttribute{

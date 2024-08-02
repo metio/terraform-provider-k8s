@@ -104,7 +104,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on execution
+- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -248,7 +248,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on execution
+- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -358,7 +358,7 @@ Optional:
 
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) name of the template resource
-- `disable_webhooks` (Boolean) whether webhooks should be called on execution
+- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
 - `execution_labels` (Map of String) execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -491,7 +491,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on execution
+- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers

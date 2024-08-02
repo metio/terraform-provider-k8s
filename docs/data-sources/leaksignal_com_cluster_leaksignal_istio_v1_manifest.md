@@ -61,6 +61,7 @@ Required:
 Optional:
 
 - `ca_bundle` (String) Location of CA bundle in istio-proxy. Default is '/etc/ssl/certs/ca-certificates.crt' which is suitable for Istio. OpenShift Service Mesh requires '/etc/ssl/certs/ca-bundle.crt'.
+- `enable_client_interception` (Boolean) If true (default), then certificates are installed in pods for outbound TLS interception.
 - `enable_streaming` (Boolean) If 'true' (default), then L4 streams are also scanned by LeakSignal Proxy.
 - `fail_open` (Boolean) If 'true' (default), if LeakSignal Proxy has a failure, then all traffic is routed around it.
 - `grpc_mode` (String) Whether to use Google GRPC or Envoy GRPC for WASM deployments.

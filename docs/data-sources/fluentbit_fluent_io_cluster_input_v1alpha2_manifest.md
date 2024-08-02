@@ -74,6 +74,7 @@ Optional:
 - `systemd` (Attributes) Systemd defines Systemd Input configuration. (see [below for nested schema](#nestedatt--spec--systemd))
 - `tail` (Attributes) Tail defines Tail Input configuration. (see [below for nested schema](#nestedatt--spec--tail))
 - `tcp` (Attributes) TCP defines the TCP input plugin configuration (see [below for nested schema](#nestedatt--spec--tcp))
+- `udp` (Attributes) UDP defines the UDP input plugin configuration (see [below for nested schema](#nestedatt--spec--udp))
 
 <a id="nestedatt--spec--collectd"></a>
 ### Nested Schema for `spec.collectd`
@@ -182,7 +183,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -263,6 +264,8 @@ Optional:
 - `port` (Number) The port for Fluent Bit to listen on.default 4318.
 - `raw_traces` (Boolean) Route trace data as a log message(default false).
 - `successful_response_code` (Number) It allows to set successful response code. 200, 201 and 204 are supported(default 201).
+- `tag` (String) opentelemetry uses the tag value for incoming metrics.
+- `tag_from_uri` (Boolean) If true, tag will be created from uri. e.g. v1_metrics from /v1/metrics
 - `tag_key` (String) Specify the key name to overwrite a tag. If set, the tag will be overwritten by a value of the key.
 
 
@@ -369,3 +372,18 @@ Optional:
 - `listen` (String) Listener network interface,default 0.0.0.0
 - `port` (Number) TCP port where listening for connections,default 5170
 - `separator` (String) When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).
+
+
+<a id="nestedatt--spec--udp"></a>
+### Nested Schema for `spec.udp`
+
+Optional:
+
+- `buffer_size` (String) BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.
+- `chunk_size` (String) By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).
+- `format` (String) Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).
+- `listen` (String) Listen Listener network interface, default: 0.0.0.0
+- `port` (Number) Port Specify the UDP port where listening for connections, default: 5170
+- `separator` (String) Separator When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).
+- `source_address_key` (String) SourceAddressKey Specify the key where the source address will be injected.
+- `threaded` (String) Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.

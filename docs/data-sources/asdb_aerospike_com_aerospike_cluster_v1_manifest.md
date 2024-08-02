@@ -72,6 +72,7 @@ Optional:
 - `enable_dynamic_config_update` (Boolean) EnableDynamicConfigUpdate enables dynamic config update flow of the operator. If enabled, operator will try to update the Aerospike config dynamically. In case of inconsistent state during dynamic config update, operator falls back to rolling restart.
 - `k8s_node_block_list` (List of String) K8sNodeBlockList is a list of Kubernetes nodes which are not used for Aerospike pods. Pods are not scheduled on these nodes. Pods are migrated from these nodes if already present. This is useful for the maintenance of Kubernetes nodes.
 - `max_unavailable` (String) MaxUnavailable is the percentage/number of pods that can be allowed to go down or unavailable before application disruption. This value is used to create PodDisruptionBudget. Defaults to 1. Refer Aerospike documentation for more details.
+- `operations` (Attributes List) Operations is a list of on-demand operations to be performed on the Aerospike cluster. (see [below for nested schema](#nestedatt--spec--operations))
 - `operator_client_cert` (Attributes) Certificates to connect to Aerospike. (see [below for nested schema](#nestedatt--spec--operator_client_cert))
 - `pod_spec` (Attributes) Specify additional configuration for the Aerospike pods (see [below for nested schema](#nestedatt--spec--pod_spec))
 - `rack_config` (Attributes) RackConfig Configures the operator to deploy rack aware Aerospike cluster. Pods will be deployed in given racks based on given configuration (see [below for nested schema](#nestedatt--spec--rack_config))
@@ -143,6 +144,19 @@ Optional:
 - `tls_access` (String) TLSAccessType is the type of network address to use for Aerospike TLS access address. Defaults to hostInternal.
 - `tls_alternate_access` (String) TLSAlternateAccessType is the type of network address to use for Aerospike TLS alternate access address. Defaults to hostExternal.
 - `tls_fabric` (String) TLSFabricType is the type of network address to use for Aerospike TLS fabric address. Defaults is empty meaning all interfaces 'any'.
+
+
+<a id="nestedatt--spec--operations"></a>
+### Nested Schema for `spec.operations`
+
+Required:
+
+- `id` (String)
+- `kind` (String) Kind is the type of operation to be performed on the Aerospike cluster.
+
+Optional:
+
+- `pod_list` (List of String)
 
 
 <a id="nestedatt--spec--operator_client_cert"></a>

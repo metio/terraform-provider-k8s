@@ -72,6 +72,7 @@ Optional:
 - `maintenance_mode` (Boolean) MaintenanceMode can be set to true to disable the hive controllers in situations where we need to ensure nothing is running that will add or act upon finalizers on Hive types. This should rarely be needed. Sets replicas to 0 for the hive-controllers deployment to accomplish this.
 - `managed_domains` (Attributes List) ManagedDomains is the list of DNS domains that are managed by the Hive cluster When specifying 'manageDNS: true' in a ClusterDeployment, the ClusterDeployment's baseDomain should be a direct child of one of these domains, otherwise the ClusterDeployment creation will result in a validation error. (see [below for nested schema](#nestedatt--spec--managed_domains))
 - `metrics_config` (Attributes) MetricsConfig encapsulates metrics specific configurations, like opting in for certain metrics. (see [below for nested schema](#nestedatt--spec--metrics_config))
+- `private_link` (Attributes) PrivateLink is used to configure the privatelink controller. (see [below for nested schema](#nestedatt--spec--private_link))
 - `release_image_verification_config_map_ref` (Attributes) ReleaseImageVerificationConfigMapRef is a reference to the ConfigMap that will be used to verify release images.  The config map structure is exactly the same as the config map used for verification of release images for OpenShift 4 during upgrades. Therefore you can usually set this to the config map shipped as part of OpenShift (openshift-config-managed/release-verification).  See https://github.com/openshift/cluster-update-keys for more details. The keys within the config map in the data field define how verification is performed:  verifier-public-key-*: One or more GPG public keys in ASCII form that must have signed the release image by digest.  store-*: A URL (scheme file://, http://, or https://) location that contains signatures. These signatures are in the atomic container signature format. The URL will have the digest of the image appended to it as '<STORE>/<ALGO>=<DIGEST>/signature-<NUMBER>' as described in the container image signing format. The docker-image-manifest section of the signature must match the release image digest. Signatures are searched starting at NUMBER 1 and incrementing if the signature exists but is not valid. The signature is a GPG signed and encrypted JSON message. The file store is provided for testing only at the current time, although future versions of the CVO might allow host mounting of signatures.  See https://github.com/containers/image/blob/ab49b0a48428c623a8f03b41b9083d48966b34a9/docs/signature-protocols.md for a description of the signature store  The returned verifier will require that any new release image will only be considered verified if each provided public key has signed the release image digest. The signature may be in any store and the lookup order is internally defined.  If not set, no verification will be performed. (see [below for nested schema](#nestedatt--spec--release_image_verification_config_map_ref))
 - `service_provider_credentials_config` (Attributes) ServiceProviderCredentialsConfig is used to configure credentials related to being a service provider on various cloud platforms. (see [below for nested schema](#nestedatt--spec--service_provider_credentials_config))
 - `sync_set_reapply_interval` (String) SyncSetReapplyInterval is a string duration indicating how much time must pass before SyncSet resources will be reapplied. The default reapply interval is two hours.
@@ -432,6 +433,52 @@ Required:
 
 - `duration` (String) Duration is the minimum time taken - the relevant metric will be logged only if the value reported by that metric is more than the time mentioned here. For example, if a user opts-in for current clusters stopping and mentions 1 hour here, only the clusters stopping for more than an hour will be reported. This is a Duration value; see https://pkg.go.dev/time#ParseDuration for accepted formats.
 - `name` (String) Name of the metric. It will correspond to an optional relevant metric in hive
+
+
+
+<a id="nestedatt--spec--private_link"></a>
+### Nested Schema for `spec.private_link`
+
+Optional:
+
+- `gcp` (Attributes) GCP is the configuration for GCP hub and link resources. (see [below for nested schema](#nestedatt--spec--private_link--gcp))
+
+<a id="nestedatt--spec--private_link--gcp"></a>
+### Nested Schema for `spec.private_link.gcp`
+
+Required:
+
+- `credentials_secret_ref` (Attributes) CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with GCP for creating the resources for GCP Private Service Connect (see [below for nested schema](#nestedatt--spec--private_link--gcp--credentials_secret_ref))
+
+Optional:
+
+- `endpoint_vpc_inventory` (Attributes List) EndpointVPCInventory is a list of VPCs and the corresponding subnets in various GCP regions. The controller uses this list to choose a VPC for creating GCP Endpoints. Since the VPC Endpoints must be in the same region as the ClusterDeployment, we must have VPCs in that region to be able to setup Private Service Connect. (see [below for nested schema](#nestedatt--spec--private_link--gcp--endpoint_vpc_inventory))
+
+<a id="nestedatt--spec--private_link--gcp--credentials_secret_ref"></a>
+### Nested Schema for `spec.private_link.gcp.credentials_secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--private_link--gcp--endpoint_vpc_inventory"></a>
+### Nested Schema for `spec.private_link.gcp.endpoint_vpc_inventory`
+
+Required:
+
+- `network` (String)
+- `subnets` (Attributes List) (see [below for nested schema](#nestedatt--spec--private_link--gcp--endpoint_vpc_inventory--subnets))
+
+<a id="nestedatt--spec--private_link--gcp--endpoint_vpc_inventory--subnets"></a>
+### Nested Schema for `spec.private_link.gcp.endpoint_vpc_inventory.subnets`
+
+Required:
+
+- `region` (String)
+- `subnet` (String)
+
+
 
 
 

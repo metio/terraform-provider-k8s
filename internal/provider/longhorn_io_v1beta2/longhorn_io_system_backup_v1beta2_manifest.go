@@ -125,8 +125,8 @@ func (r *LonghornIoSystemBackupV1Beta2Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "SystemBackupSpec defines the desired state of the Longhorn SystemBackup",
 				Attributes: map[string]schema.Attribute{
 					"volume_backup_policy": schema.StringAttribute{
-						Description:         "The create volume backup policy Can be 'if-not-present', 'always' or 'disabled'",
-						MarkdownDescription: "The create volume backup policy Can be 'if-not-present', 'always' or 'disabled'",
+						Description:         "The create volume backup policyCan be 'if-not-present', 'always' or 'disabled'",
+						MarkdownDescription: "The create volume backup policyCan be 'if-not-present', 'always' or 'disabled'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -191,7 +191,7 @@ Optional:
 Required:
 
 - `mapping_value` (String) Specifies the appropriate version of the backup tool image.
-- `names` (List of String) Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
+- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--component_def"></a>
@@ -200,7 +200,7 @@ Required:
 Required:
 
 - `mapping_value` (String) Specifies the appropriate version of the backup tool image.
-- `names` (List of String) Represents an array of names of ClusterVersion or ComponentDefinition that can be mapped tothe appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
+- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
 
 
 

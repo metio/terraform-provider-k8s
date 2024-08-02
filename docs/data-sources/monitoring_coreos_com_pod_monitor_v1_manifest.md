@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_pod_monitor_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  PodMonitor defines monitoring for a set of pods.
+  The 'PodMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of pods.Among other things, it allows to specify:* The pods to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'PodMonitor' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_pod_monitor_v1_manifest (Data Source)
 
-PodMonitor defines monitoring for a set of pods.
+The 'PodMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of pods.Among other things, it allows to specify:* The pods to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'PodMonitor' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -65,19 +65,19 @@ Optional:
 
 Required:
 
-- `selector` (Attributes) Label selector to select the Kubernetes 'Pod' objects. (see [below for nested schema](#nestedatt--spec--selector))
+- `selector` (Attributes) Label selector to select the Kubernetes 'Pod' objects to scrape metrics from. (see [below for nested schema](#nestedatt--spec--selector))
 
 Optional:
 
-- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--attach_metadata))
+- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.35.0. (see [below for nested schema](#nestedatt--spec--attach_metadata))
 - `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.
 - `job_label` (String) The label to use to retrieve the job name from.'jobLabel' selects the label from the associated Kubernetes 'Pod'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Pod'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty, the 'job' label of the metricsdefaults to the namespace and name of the PodMonitor object (e.g. '<namespace>/<name>').
 - `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Pods' objectsare discovered from. (see [below for nested schema](#nestedatt--spec--namespace_selector))
-- `pod_metrics_endpoints` (Attributes List) List of endpoints part of this PodMonitor. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints))
+- `namespace_selector` (Attributes) 'namespaceSelector' defines in which namespace(s) Prometheus should discover the pods.By default, the pods are discovered in the same namespace as the 'PodMonitor' object but it is possible to select pods across different/all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `pod_metrics_endpoints` (Attributes List) Defines how to scrape metrics from the selected pods. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints))
 - `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.
 - `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.
 - `scrape_class` (String) The scrape class to apply.
@@ -111,7 +111,7 @@ Optional:
 
 Optional:
 
-- `node` (Boolean) When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.
+- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.
 
 
 <a id="nestedatt--spec--namespace_selector"></a>
@@ -320,6 +320,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--pod_metrics_endpoints--tls_config--ca"></a>

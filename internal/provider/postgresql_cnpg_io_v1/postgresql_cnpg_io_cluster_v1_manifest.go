@@ -251,10 +251,11 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				ServerName *string            `tfsdk:"server_name" json:"serverName,omitempty"`
 				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 				Wal        *struct {
-					AdditionalCommandArgs *[]string `tfsdk:"additional_command_args" json:"additionalCommandArgs,omitempty"`
-					Compression           *string   `tfsdk:"compression" json:"compression,omitempty"`
-					Encryption            *string   `tfsdk:"encryption" json:"encryption,omitempty"`
-					MaxParallel           *int64    `tfsdk:"max_parallel" json:"maxParallel,omitempty"`
+					ArchiveAdditionalCommandArgs *[]string `tfsdk:"archive_additional_command_args" json:"archiveAdditionalCommandArgs,omitempty"`
+					Compression                  *string   `tfsdk:"compression" json:"compression,omitempty"`
+					Encryption                   *string   `tfsdk:"encryption" json:"encryption,omitempty"`
+					MaxParallel                  *int64    `tfsdk:"max_parallel" json:"maxParallel,omitempty"`
+					RestoreAdditionalCommandArgs *[]string `tfsdk:"restore_additional_command_args" json:"restoreAdditionalCommandArgs,omitempty"`
 				} `tfsdk:"wal" json:"wal,omitempty"`
 			} `tfsdk:"barman_object_store" json:"barmanObjectStore,omitempty"`
 			RetentionPolicy *string `tfsdk:"retention_policy" json:"retentionPolicy,omitempty"`
@@ -303,9 +304,29 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"secret_refs" json:"secretRefs,omitempty"`
 				} `tfsdk:"post_init_application_sql_refs" json:"postInitApplicationSQLRefs,omitempty"`
-				PostInitSQL         *[]string `tfsdk:"post_init_sql" json:"postInitSQL,omitempty"`
-				PostInitTemplateSQL *[]string `tfsdk:"post_init_template_sql" json:"postInitTemplateSQL,omitempty"`
-				Secret              *struct {
+				PostInitSQL     *[]string `tfsdk:"post_init_sql" json:"postInitSQL,omitempty"`
+				PostInitSQLRefs *struct {
+					ConfigMapRefs *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_refs" json:"configMapRefs,omitempty"`
+					SecretRefs *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_refs" json:"secretRefs,omitempty"`
+				} `tfsdk:"post_init_sql_refs" json:"postInitSQLRefs,omitempty"`
+				PostInitTemplateSQL     *[]string `tfsdk:"post_init_template_sql" json:"postInitTemplateSQL,omitempty"`
+				PostInitTemplateSQLRefs *struct {
+					ConfigMapRefs *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_refs" json:"configMapRefs,omitempty"`
+					SecretRefs *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_refs" json:"secretRefs,omitempty"`
+				} `tfsdk:"post_init_template_sql_refs" json:"postInitTemplateSQLRefs,omitempty"`
+				Secret *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"secret" json:"secret,omitempty"`
 				WalSegmentSize *int64 `tfsdk:"wal_segment_size" json:"walSegmentSize,omitempty"`
@@ -510,10 +531,11 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				ServerName *string            `tfsdk:"server_name" json:"serverName,omitempty"`
 				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 				Wal        *struct {
-					AdditionalCommandArgs *[]string `tfsdk:"additional_command_args" json:"additionalCommandArgs,omitempty"`
-					Compression           *string   `tfsdk:"compression" json:"compression,omitempty"`
-					Encryption            *string   `tfsdk:"encryption" json:"encryption,omitempty"`
-					MaxParallel           *int64    `tfsdk:"max_parallel" json:"maxParallel,omitempty"`
+					ArchiveAdditionalCommandArgs *[]string `tfsdk:"archive_additional_command_args" json:"archiveAdditionalCommandArgs,omitempty"`
+					Compression                  *string   `tfsdk:"compression" json:"compression,omitempty"`
+					Encryption                   *string   `tfsdk:"encryption" json:"encryption,omitempty"`
+					MaxParallel                  *int64    `tfsdk:"max_parallel" json:"maxParallel,omitempty"`
+					RestoreAdditionalCommandArgs *[]string `tfsdk:"restore_additional_command_args" json:"restoreAdditionalCommandArgs,omitempty"`
 				} `tfsdk:"wal" json:"wal,omitempty"`
 			} `tfsdk:"barman_object_store" json:"barmanObjectStore,omitempty"`
 			ConnectionParameters *map[string]string `tfsdk:"connection_parameters" json:"connectionParameters,omitempty"`
@@ -621,6 +643,7 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 							Type                *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"spec" json:"spec,omitempty"`
 					} `tfsdk:"service_template" json:"serviceTemplate,omitempty"`
+					UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 				} `tfsdk:"additional" json:"additional,omitempty"`
 				DisabledDefaultServices *[]string `tfsdk:"disabled_default_services" json:"disabledDefaultServices,omitempty"`
 			} `tfsdk:"services" json:"services,omitempty"`
@@ -656,6 +679,9 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 			} `tfsdk:"pod_monitor_relabelings" json:"podMonitorRelabelings,omitempty"`
+			Tls *struct {
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
 		NodeMaintenanceWindow *struct {
 			InProgress *bool `tfsdk:"in_progress" json:"inProgress,omitempty"`
@@ -699,6 +725,13 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				Enabled                *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 				NodeLabelsAntiAffinity *[]string `tfsdk:"node_labels_anti_affinity" json:"nodeLabelsAntiAffinity,omitempty"`
 			} `tfsdk:"sync_replica_election_constraint" json:"syncReplicaElectionConstraint,omitempty"`
+			Synchronous *struct {
+				MaxStandbyNamesFromCluster *int64    `tfsdk:"max_standby_names_from_cluster" json:"maxStandbyNamesFromCluster,omitempty"`
+				Method                     *string   `tfsdk:"method" json:"method,omitempty"`
+				Number                     *int64    `tfsdk:"number" json:"number,omitempty"`
+				StandbyNamesPost           *[]string `tfsdk:"standby_names_post" json:"standbyNamesPost,omitempty"`
+				StandbyNamesPre            *[]string `tfsdk:"standby_names_pre" json:"standbyNamesPre,omitempty"`
+			} `tfsdk:"synchronous" json:"synchronous,omitempty"`
 		} `tfsdk:"postgresql" json:"postgresql,omitempty"`
 		PrimaryUpdateMethod     *string `tfsdk:"primary_update_method" json:"primaryUpdateMethod,omitempty"`
 		PrimaryUpdateStrategy   *string `tfsdk:"primary_update_strategy" json:"primaryUpdateStrategy,omitempty"`
@@ -762,6 +795,7 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 		} `tfsdk:"projected_volume_template" json:"projectedVolumeTemplate,omitempty"`
 		Replica *struct {
 			Enabled        *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			MinApplyDelay  *string `tfsdk:"min_apply_delay" json:"minApplyDelay,omitempty"`
 			Primary        *string `tfsdk:"primary" json:"primary,omitempty"`
 			PromotionToken *string `tfsdk:"promotion_token" json:"promotionToken,omitempty"`
 			Self           *string `tfsdk:"self" json:"self,omitempty"`
@@ -2392,9 +2426,9 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										Description:         "The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy.",
 										MarkdownDescription: "The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy.",
 										Attributes: map[string]schema.Attribute{
-											"additional_command_args": schema.ListAttribute{
-												Description:         "AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
-												MarkdownDescription: "AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
+											"archive_additional_command_args": schema.ListAttribute{
+												Description:         "Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
+												MarkdownDescription: "Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2432,6 +2466,15 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												Validators: []validator.Int64{
 													int64validator.AtLeast(1),
 												},
+											},
+
+											"restore_additional_command_args": schema.ListAttribute{
+												Description:         "Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.",
+												MarkdownDescription: "Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -2705,8 +2748,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"post_init_application_sql": schema.ListAttribute{
-										Description:         "List of SQL queries to be executed as a superuser in the applicationdatabase right after is created - to be used with extreme care(by default empty)",
-										MarkdownDescription: "List of SQL queries to be executed as a superuser in the applicationdatabase right after is created - to be used with extreme care(by default empty)",
+										Description:         "List of SQL queries to be executed as a superuser in the applicationdatabase right after the cluster has been created - to be used with extreme care(by default empty)",
+										MarkdownDescription: "List of SQL queries to be executed as a superuser in the applicationdatabase right after the cluster has been created - to be used with extreme care(by default empty)",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2714,8 +2757,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"post_init_application_sql_refs": schema.SingleNestedAttribute{
-										Description:         "PostInitApplicationSQLRefs points references to ConfigMaps or Secrets whichcontain SQL files, the general implementation order to these references isfrom all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps,the implementation order is same as the order of each array(by default empty)",
-										MarkdownDescription: "PostInitApplicationSQLRefs points references to ConfigMaps or Secrets whichcontain SQL files, the general implementation order to these references isfrom all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps,the implementation order is same as the order of each array(by default empty)",
+										Description:         "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the application database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
+										MarkdownDescription: "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the application database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
 										Attributes: map[string]schema.Attribute{
 											"config_map_refs": schema.ListNestedAttribute{
 												Description:         "ConfigMapRefs holds a list of references to ConfigMaps",
@@ -2777,21 +2820,147 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"post_init_sql": schema.ListAttribute{
-										Description:         "List of SQL queries to be executed as a superuser immediatelyafter the cluster has been created - to be used with extreme care(by default empty)",
-										MarkdownDescription: "List of SQL queries to be executed as a superuser immediatelyafter the cluster has been created - to be used with extreme care(by default empty)",
+										Description:         "List of SQL queries to be executed as a superuser in the 'postgres'database right after the cluster has been created - to be used with extreme care(by default empty)",
+										MarkdownDescription: "List of SQL queries to be executed as a superuser in the 'postgres'database right after the cluster has been created - to be used with extreme care(by default empty)",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
+									"post_init_sql_refs": schema.SingleNestedAttribute{
+										Description:         "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'postgres' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
+										MarkdownDescription: "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'postgres' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
+										Attributes: map[string]schema.Attribute{
+											"config_map_refs": schema.ListNestedAttribute{
+												Description:         "ConfigMapRefs holds a list of references to ConfigMaps",
+												MarkdownDescription: "ConfigMapRefs holds a list of references to ConfigMaps",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select",
+															MarkdownDescription: "The key to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.",
+															MarkdownDescription: "Name of the referent.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_refs": schema.ListNestedAttribute{
+												Description:         "SecretRefs holds a list of references to Secrets",
+												MarkdownDescription: "SecretRefs holds a list of references to Secrets",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select",
+															MarkdownDescription: "The key to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.",
+															MarkdownDescription: "Name of the referent.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"post_init_template_sql": schema.ListAttribute{
-										Description:         "List of SQL queries to be executed as a superuser in the 'template1'after the cluster has been created - to be used with extreme care(by default empty)",
-										MarkdownDescription: "List of SQL queries to be executed as a superuser in the 'template1'after the cluster has been created - to be used with extreme care(by default empty)",
+										Description:         "List of SQL queries to be executed as a superuser in the 'template1'database right after the cluster has been created - to be used with extreme care(by default empty)",
+										MarkdownDescription: "List of SQL queries to be executed as a superuser in the 'template1'database right after the cluster has been created - to be used with extreme care(by default empty)",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"post_init_template_sql_refs": schema.SingleNestedAttribute{
+										Description:         "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'template1' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
+										MarkdownDescription: "List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'template1' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty)",
+										Attributes: map[string]schema.Attribute{
+											"config_map_refs": schema.ListNestedAttribute{
+												Description:         "ConfigMapRefs holds a list of references to ConfigMaps",
+												MarkdownDescription: "ConfigMapRefs holds a list of references to ConfigMaps",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select",
+															MarkdownDescription: "The key to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.",
+															MarkdownDescription: "Name of the referent.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_refs": schema.ListNestedAttribute{
+												Description:         "SecretRefs holds a list of references to Secrets",
+												MarkdownDescription: "SecretRefs holds a list of references to Secrets",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select",
+															MarkdownDescription: "The key to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.",
+															MarkdownDescription: "Name of the referent.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"secret": schema.SingleNestedAttribute{
@@ -4137,9 +4306,9 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 											Description:         "The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy.",
 											MarkdownDescription: "The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy.",
 											Attributes: map[string]schema.Attribute{
-												"additional_command_args": schema.ListAttribute{
-													Description:         "AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
-													MarkdownDescription: "AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-wal-archive' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
+												"archive_additional_command_args": schema.ListAttribute{
+													Description:         "Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
+													MarkdownDescription: "Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4177,6 +4346,15 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 													Validators: []validator.Int64{
 														int64validator.AtLeast(1),
 													},
+												},
+
+												"restore_additional_command_args": schema.ListAttribute{
+													Description:         "Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.",
+													MarkdownDescription: "Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,
@@ -4939,6 +5117,17 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 													Optional: false,
 													Computed: false,
 												},
+
+												"update_strategy": schema.StringAttribute{
+													Description:         "UpdateStrategy describes how the service differences should be reconciled",
+													MarkdownDescription: "UpdateStrategy describes how the service differences should be reconciled",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("patch", "replace"),
+													},
+												},
 											},
 										},
 										Required: false,
@@ -5196,6 +5385,23 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls": schema.SingleNestedAttribute{
+								Description:         "Configure TLS communication for the metrics endpoint.Changing tls.enabled option will force a rollout of all instances.",
+								MarkdownDescription: "Configure TLS communication for the metrics endpoint.Changing tls.enabled option will force a rollout of all instances.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Enable TLS for the monitoring endpoint.Changing this option will force a rollout of all instances.",
+										MarkdownDescription: "Enable TLS for the monitoring endpoint.Changing this option will force a rollout of all instances.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -5491,6 +5697,60 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									"node_labels_anti_affinity": schema.ListAttribute{
 										Description:         "A list of node labels values to extract and compare to evaluate if the pods reside in the same topology or not",
 										MarkdownDescription: "A list of node labels values to extract and compare to evaluate if the pods reside in the same topology or not",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"synchronous": schema.SingleNestedAttribute{
+								Description:         "Configuration of the PostgreSQL synchronous replication feature",
+								MarkdownDescription: "Configuration of the PostgreSQL synchronous replication feature",
+								Attributes: map[string]schema.Attribute{
+									"max_standby_names_from_cluster": schema.Int64Attribute{
+										Description:         "Specifies the maximum number of local cluster pods that can beautomatically included in the 'synchronous_standby_names' option inPostgreSQL.",
+										MarkdownDescription: "Specifies the maximum number of local cluster pods that can beautomatically included in the 'synchronous_standby_names' option inPostgreSQL.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"method": schema.StringAttribute{
+										Description:         "Method to select synchronous replication standbys from the listedservers, accepting 'any' (quorum-based synchronous replication) or'first' (priority-based synchronous replication) as values.",
+										MarkdownDescription: "Method to select synchronous replication standbys from the listedservers, accepting 'any' (quorum-based synchronous replication) or'first' (priority-based synchronous replication) as values.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("any", "first"),
+										},
+									},
+
+									"number": schema.Int64Attribute{
+										Description:         "Specifies the number of synchronous standby servers thattransactions must wait for responses from.",
+										MarkdownDescription: "Specifies the number of synchronous standby servers thattransactions must wait for responses from.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"standby_names_post": schema.ListAttribute{
+										Description:         "A user-defined list of application names to be added to'synchronous_standby_names' after local cluster pods (the order isonly useful for priority-based synchronous replication).",
+										MarkdownDescription: "A user-defined list of application names to be added to'synchronous_standby_names' after local cluster pods (the order isonly useful for priority-based synchronous replication).",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"standby_names_pre": schema.ListAttribute{
+										Description:         "A user-defined list of application names to be added to'synchronous_standby_names' before local cluster pods (the order isonly useful for priority-based synchronous replication).",
+										MarkdownDescription: "A user-defined list of application names to be added to'synchronous_standby_names' before local cluster pods (the order isonly useful for priority-based synchronous replication).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -5914,6 +6174,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 							"enabled": schema.BoolAttribute{
 								Description:         "If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.",
 								MarkdownDescription: "If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"min_apply_delay": schema.StringAttribute{
+								Description:         "When replica mode is enabled, this parameter allows you to replaytransactions only when the system time is at least the configuredtime past the commit time. This provides an opportunity to correctdata loss errors. Note that when this parameter is set, a promotiontoken cannot be used.",
+								MarkdownDescription: "When replica mode is enabled, this parameter allows you to replaytransactions only when the system time is at least the configuredtime past the commit time. This provides an opportunity to correctdata loss errors. Note that when this parameter is set, a promotiontoken cannot be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

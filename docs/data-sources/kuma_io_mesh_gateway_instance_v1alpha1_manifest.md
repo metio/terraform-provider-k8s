@@ -60,7 +60,7 @@ Optional:
 - `resources` (Attributes) Resources specifies the compute resources for the proxy container.The default can be set in the control plane config. (see [below for nested schema](#nestedatt--spec--resources))
 - `service_template` (Attributes) ServiceTemplate configures the Service owned by this config. (see [below for nested schema](#nestedatt--spec--service_template))
 - `service_type` (String) ServiceType specifies the type of managed Service that will becreated to expose the dataplane proxies to traffic from outsidethe cluster. The ports to expose will be taken from the matching Gatewayresource. If there is no matching Gateway, the managed Service willbe deleted.
-- `tags` (Map of String) Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should include exactly one'kuma.io/service' tag, and should match exactly one Gatewayresource.
+- `tags` (Map of String) Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should not include 'kuma.io/service' tagsince is auto-generated, and should match exactly one Gatewayresource.
 
 <a id="nestedatt--spec--pod_template"></a>
 ### Nested Schema for `spec.pod_template`

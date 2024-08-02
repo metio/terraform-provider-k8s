@@ -46,6 +46,7 @@ type KarpenterK8SAwsEc2NodeClassV1ManifestData struct {
 	Spec *struct {
 		AmiFamily        *string `tfsdk:"ami_family" json:"amiFamily,omitempty"`
 		AmiSelectorTerms *[]struct {
+			Alias *string            `tfsdk:"alias" json:"alias,omitempty"`
 			Id    *string            `tfsdk:"id" json:"id,omitempty"`
 			Name  *string            `tfsdk:"name" json:"name,omitempty"`
 			Owner *string            `tfsdk:"owner" json:"owner,omitempty"`
@@ -70,7 +71,21 @@ type KarpenterK8SAwsEc2NodeClassV1ManifestData struct {
 		DetailedMonitoring  *bool   `tfsdk:"detailed_monitoring" json:"detailedMonitoring,omitempty"`
 		InstanceProfile     *string `tfsdk:"instance_profile" json:"instanceProfile,omitempty"`
 		InstanceStorePolicy *string `tfsdk:"instance_store_policy" json:"instanceStorePolicy,omitempty"`
-		MetadataOptions     *struct {
+		Kubelet             *struct {
+			ClusterDNS                  *[]string          `tfsdk:"cluster_dns" json:"clusterDNS,omitempty"`
+			CpuCFSQuota                 *bool              `tfsdk:"cpu_cfs_quota" json:"cpuCFSQuota,omitempty"`
+			EvictionHard                *map[string]string `tfsdk:"eviction_hard" json:"evictionHard,omitempty"`
+			EvictionMaxPodGracePeriod   *int64             `tfsdk:"eviction_max_pod_grace_period" json:"evictionMaxPodGracePeriod,omitempty"`
+			EvictionSoft                *map[string]string `tfsdk:"eviction_soft" json:"evictionSoft,omitempty"`
+			EvictionSoftGracePeriod     *map[string]string `tfsdk:"eviction_soft_grace_period" json:"evictionSoftGracePeriod,omitempty"`
+			ImageGCHighThresholdPercent *int64             `tfsdk:"image_gc_high_threshold_percent" json:"imageGCHighThresholdPercent,omitempty"`
+			ImageGCLowThresholdPercent  *int64             `tfsdk:"image_gc_low_threshold_percent" json:"imageGCLowThresholdPercent,omitempty"`
+			KubeReserved                *map[string]string `tfsdk:"kube_reserved" json:"kubeReserved,omitempty"`
+			MaxPods                     *int64             `tfsdk:"max_pods" json:"maxPods,omitempty"`
+			PodsPerCore                 *int64             `tfsdk:"pods_per_core" json:"podsPerCore,omitempty"`
+			SystemReserved              *map[string]string `tfsdk:"system_reserved" json:"systemReserved,omitempty"`
+		} `tfsdk:"kubelet" json:"kubelet,omitempty"`
+		MetadataOptions *struct {
 			HttpEndpoint            *string `tfsdk:"http_endpoint" json:"httpEndpoint,omitempty"`
 			HttpProtocolIPv6        *string `tfsdk:"http_protocol_i_pv6" json:"httpProtocolIPv6,omitempty"`
 			HttpPutResponseHopLimit *int64  `tfsdk:"http_put_response_hop_limit" json:"httpPutResponseHopLimit,omitempty"`
@@ -157,13 +172,13 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "EC2NodeClassSpec is the top level specification for the AWS Karpenter Provider.This will contain configuration necessary to launch instances in AWS.",
 				Attributes: map[string]schema.Attribute{
 					"ami_family": schema.StringAttribute{
-						Description:         "AMIFamily is the AMI family that instances use.",
-						MarkdownDescription: "AMIFamily is the AMI family that instances use.",
-						Required:            true,
-						Optional:            false,
+						Description:         "AMIFamily dictates the UserData format and default BlockDeviceMappings used when generating launch templates.This field is optional when using an alias amiSelectorTerm, and the value will be inferred from the alias'family. When an alias is specified, this field may only be set to its corresponding family or 'Custom'. If noalias is specified, this field is required.NOTE: We ignore the AMIFamily for hashing here because we hash the AMIFamily dynamically by using the alias usingthe AMIFamily() helper function",
+						MarkdownDescription: "AMIFamily dictates the UserData format and default BlockDeviceMappings used when generating launch templates.This field is optional when using an alias amiSelectorTerm, and the value will be inferred from the alias'family. When an alias is specified, this field may only be set to its corresponding family or 'Custom'. If noalias is specified, this field is required.NOTE: We ignore the AMIFamily for hashing here because we hash the AMIFamily dynamically by using the alias usingthe AMIFamily() helper function",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("AL2", "AL2023", "Bottlerocket", "Ubuntu", "Custom", "Windows2019", "Windows2022"),
+							stringvalidator.OneOf("AL2", "AL2023", "Bottlerocket", "Custom", "Windows2019", "Windows2022"),
 						},
 					},
 
@@ -172,6 +187,17 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "AMISelectorTerms is a list of or ami selector terms. The terms are ORed.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"alias": schema.StringAttribute{
+									Description:         "Alias specifies which EKS optimized AMI to select.Each alias consists of a family and an AMI version, specified as 'family@version'.Valid families include: al2, al2023, bottlerocket, windows2019, and windows2022.The version can either be pinned to a specific AMI release, with that AMIs version format (ex: 'al2023@v20240625' or 'bottlerocket@v1.10.0').The version can also be set to 'latest' for any family. Setting the version to latest will result in drift when a new AMI is released. This is **not** recommended for production environments.Note: The Windows families do **not** support version pinning, and only latest may be used.",
+									MarkdownDescription: "Alias specifies which EKS optimized AMI to select.Each alias consists of a family and an AMI version, specified as 'family@version'.Valid families include: al2, al2023, bottlerocket, windows2019, and windows2022.The version can either be pinned to a specific AMI release, with that AMIs version format (ex: 'al2023@v20240625' or 'bottlerocket@v1.10.0').The version can also be set to 'latest' for any family. Setting the version to latest will result in drift when a new AMI is released. This is **not** recommended for production environments.Note: The Windows families do **not** support version pinning, and only latest may be used.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(30),
+									},
+								},
+
 								"id": schema.StringAttribute{
 									Description:         "ID is the ami id in EC2",
 									MarkdownDescription: "ID is the ami id in EC2",
@@ -209,8 +235,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 								},
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -361,6 +387,131 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 						Validators: []validator.String{
 							stringvalidator.OneOf("RAID0"),
 						},
+					},
+
+					"kubelet": schema.SingleNestedAttribute{
+						Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
+						MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
+						Attributes: map[string]schema.Attribute{
+							"cluster_dns": schema.ListAttribute{
+								Description:         "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
+								MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cpu_cfs_quota": schema.BoolAttribute{
+								Description:         "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.",
+								MarkdownDescription: "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"eviction_hard": schema.MapAttribute{
+								Description:         "EvictionHard is the map of signal names to quantities that define hard eviction thresholds",
+								MarkdownDescription: "EvictionHard is the map of signal names to quantities that define hard eviction thresholds",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"eviction_max_pod_grace_period": schema.Int64Attribute{
+								Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
+								MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"eviction_soft": schema.MapAttribute{
+								Description:         "EvictionSoft is the map of signal names to quantities that define soft eviction thresholds",
+								MarkdownDescription: "EvictionSoft is the map of signal names to quantities that define soft eviction thresholds",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"eviction_soft_grace_period": schema.MapAttribute{
+								Description:         "EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal",
+								MarkdownDescription: "EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"image_gc_high_threshold_percent": schema.Int64Attribute{
+								Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
+								MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(100),
+								},
+							},
+
+							"image_gc_low_threshold_percent": schema.Int64Attribute{
+								Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
+								MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(100),
+								},
+							},
+
+							"kube_reserved": schema.MapAttribute{
+								Description:         "KubeReserved contains resources reserved for Kubernetes system components.",
+								MarkdownDescription: "KubeReserved contains resources reserved for Kubernetes system components.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_pods": schema.Int64Attribute{
+								Description:         "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
+								MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"pods_per_core": schema.Int64Attribute{
+								Description:         "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
+								MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"system_reserved": schema.MapAttribute{
+								Description:         "SystemReserved contains resources reserved for OS system daemons and kernel memory.",
+								MarkdownDescription: "SystemReserved contains resources reserved for OS system daemons and kernel memory.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"metadata_options": schema.SingleNestedAttribute{

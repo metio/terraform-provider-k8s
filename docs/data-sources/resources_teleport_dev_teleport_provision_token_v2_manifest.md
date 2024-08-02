@@ -63,7 +63,7 @@ Optional:
 - `gcp` (Attributes) GCP allows the configuration of options specific to the 'gcp' join method. (see [below for nested schema](#nestedatt--spec--gcp))
 - `github` (Attributes) GitHub allows the configuration of options specific to the 'github' join method. (see [below for nested schema](#nestedatt--spec--github))
 - `gitlab` (Attributes) GitLab allows the configuration of options specific to the 'gitlab' join method. (see [below for nested schema](#nestedatt--spec--gitlab))
-- `join_method` (String) JoinMethod is the joining method required in order to use this token. Supported joining methods include 'token', 'ec2', and 'iam'.
+- `join_method` (String) JoinMethod is the joining method required in order to use this token. Supported joining methods include: azure, circleci, ec2, gcp, github, gitlab, iam, kubernetes, spacelift, token, tpm
 - `kubernetes` (Attributes) Kubernetes allows the configuration of options specific to the 'kubernetes' join method. (see [below for nested schema](#nestedatt--spec--kubernetes))
 - `roles` (List of String) Roles is a list of roles associated with the token, that will be converted to metadata in the SSH and X509 certificates issued to the user of the token
 - `spacelift` (Attributes) Spacelift allows the configuration of options specific to the 'spacelift' join method. (see [below for nested schema](#nestedatt--spec--spacelift))

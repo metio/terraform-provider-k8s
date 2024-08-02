@@ -154,8 +154,8 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'dataEngine'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
+						Description:         "Deprecated:Replaced by field 'dataEngine'.",
+						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

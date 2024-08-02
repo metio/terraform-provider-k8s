@@ -48,6 +48,7 @@ type LonghornIoRecurringJobV1Beta2ManifestData struct {
 		Groups      *[]string          `tfsdk:"groups" json:"groups,omitempty"`
 		Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		Name        *string            `tfsdk:"name" json:"name,omitempty"`
+		Parameters  *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
 		Retain      *int64             `tfsdk:"retain" json:"retain,omitempty"`
 		Task        *string            `tfsdk:"task" json:"task,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -172,6 +173,15 @@ func (r *LonghornIoRecurringJobV1Beta2Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"parameters": schema.MapAttribute{
+						Description:         "The parameters of the snapshot/backup.Support parameters: 'full-backup-interval'.",
+						MarkdownDescription: "The parameters of the snapshot/backup.Support parameters: 'full-backup-interval'.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"retain": schema.Int64Attribute{
 						Description:         "The retain count of the snapshot/backup.",
 						MarkdownDescription: "The retain count of the snapshot/backup.",
@@ -181,8 +191,8 @@ func (r *LonghornIoRecurringJobV1Beta2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"task": schema.StringAttribute{
-						Description:         "The recurring job task. Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
-						MarkdownDescription: "The recurring job task. Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
+						Description:         "The recurring job task.Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
+						MarkdownDescription: "The recurring job task.Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

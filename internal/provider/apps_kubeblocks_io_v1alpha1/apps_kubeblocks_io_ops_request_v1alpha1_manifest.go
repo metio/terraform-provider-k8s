@@ -633,6 +633,7 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 		RebuildFrom                 *[]struct {
 			BackupName    *string `tfsdk:"backup_name" json:"backupName,omitempty"`
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
+			InPlace       *bool   `tfsdk:"in_place" json:"inPlace,omitempty"`
 			Instances     *[]struct {
 				Name           *string `tfsdk:"name" json:"name,omitempty"`
 				TargetNodeName *string `tfsdk:"target_node_name" json:"targetNodeName,omitempty"`
@@ -718,9 +719,11 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			InstanceName  *string `tfsdk:"instance_name" json:"instanceName,omitempty"`
 		} `tfsdk:"switchover" json:"switchover,omitempty"`
-		TtlSecondsAfterSucceed *int64  `tfsdk:"ttl_seconds_after_succeed" json:"ttlSecondsAfterSucceed,omitempty"`
-		Type                   *string `tfsdk:"type" json:"type,omitempty"`
-		Upgrade                *struct {
+		TimeoutSeconds                        *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		TtlSecondsAfterSucceed                *int64  `tfsdk:"ttl_seconds_after_succeed" json:"ttlSecondsAfterSucceed,omitempty"`
+		TtlSecondsAfterUnsuccessfulCompletion *int64  `tfsdk:"ttl_seconds_after_unsuccessful_completion" json:"ttlSecondsAfterUnsuccessfulCompletion,omitempty"`
+		Type                                  *string `tfsdk:"type" json:"type,omitempty"`
+		Upgrade                               *struct {
 			ClusterVersionRef *string `tfsdk:"cluster_version_ref" json:"clusterVersionRef,omitempty"`
 			Components        *[]struct {
 				ComponentDefinitionName *string `tfsdk:"component_definition_name" json:"componentDefinitionName,omitempty"`
@@ -1099,8 +1102,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"pod_selector": schema.MapAttribute{
-												Description:         "Routes service traffic to pods with matching label keys and values.If specified, the service will only be exposed to pods matching the selector.Note: At least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
-												MarkdownDescription: "Routes service traffic to pods with matching label keys and values.If specified, the service will only be exposed to pods matching the selector.Note: At least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
+												Description:         "Routes service traffic to pods with matching label keys and values.If specified, the service will only be exposed to pods matching the selector.Note: If the component has roles, at least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Routes service traffic to pods with matching label keys and values.If specified, the service will only be exposed to pods matching the selector.Note: If the component has roles, at least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1167,8 +1170,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"role_selector": schema.StringAttribute{
-												Description:         "Specifies a role to target with the service.If specified, the service will only be exposed to pods with the matching role.Note: At least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
-												MarkdownDescription: "Specifies a role to target with the service.If specified, the service will only be exposed to pods with the matching role.Note: At least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
+												Description:         "Specifies a role to target with the service.If specified, the service will only be exposed to pods with the matching role.Note: If the component has roles, at least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Specifies a role to target with the service.If specified, the service will only be exposed to pods with the matching role.Note: If the component has roles, at least one of 'roleSelector' or 'podSelector' must be specified.If both are specified, a pod must match both conditions to be selected.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4804,6 +4807,14 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 									Computed:            false,
 								},
 
+								"in_place": schema.BoolAttribute{
+									Description:         "When it is set to true, the instance will be rebuilt in-place.By default, a new pod will be created. Once the new pod is ready to serve,the instance that require rebuilding will be taken offline.",
+									MarkdownDescription: "When it is set to true, the instance will be rebuilt in-place.By default, a new pod will be created. Once the new pod is ready to serve,the instance that require rebuilding will be taken offline.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"instances": schema.ListNestedAttribute{
 									Description:         "Specifies the instances (Pods) that need to be rebuilt, typically operating as standbys.",
 									MarkdownDescription: "Specifies the instances (Pods) that need to be rebuilt, typically operating as standbys.",
@@ -5396,9 +5407,25 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
+					"timeout_seconds": schema.Int64Attribute{
+						Description:         "Specifies the maximum duration (in seconds) that an opsRequest is allowed to run.If the opsRequest runs longer than this duration, its phase will be marked as Aborted.If this value is not set or set to 0, the timeout will be ignored and the opsRequest will run indefinitely.",
+						MarkdownDescription: "Specifies the maximum duration (in seconds) that an opsRequest is allowed to run.If the opsRequest runs longer than this duration, its phase will be marked as Aborted.If this value is not set or set to 0, the timeout will be ignored and the opsRequest will run indefinitely.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"ttl_seconds_after_succeed": schema.Int64Attribute{
 						Description:         "Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing(when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.",
 						MarkdownDescription: "Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing(when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ttl_seconds_after_unsuccessful_completion": schema.Int64Attribute{
+						Description:         "Specifies the duration in seconds that an OpsRequest will remain in the system after completionfor any phase other than 'Succeed' (e.g., 'Failed', 'Cancelled', 'Aborted') before automatic deletion.",
+						MarkdownDescription: "Specifies the duration in seconds that an OpsRequest will remain in the system after completionfor any phase other than 'Succeed' (e.g., 'Failed', 'Cancelled', 'Aborted') before automatic deletion.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

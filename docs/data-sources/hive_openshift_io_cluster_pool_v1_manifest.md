@@ -73,6 +73,7 @@ Optional:
 - `hibernation_config` (Attributes) HibernationConfig configures the hibernation/resume behavior of ClusterDeployments owned by the ClusterPool. (see [below for nested schema](#nestedatt--spec--hibernation_config))
 - `install_attempts_limit` (Number) InstallAttemptsLimit is the maximum number of times Hive will attempt to install the cluster.
 - `install_config_secret_template_ref` (Attributes) InstallConfigSecretTemplateRef is a secret with the key install-config.yaml consisting of the content of the install-config.yaml to be used as a template for all clusters in this pool. Cluster specific settings (name, basedomain) will be injected dynamically when the ClusterDeployment install-config Secret is generated. (see [below for nested schema](#nestedatt--spec--install_config_secret_template_ref))
+- `installer_env` (Attributes List) InstallerEnv are extra environment variables to pass through to the installer. This may be used to enable additional features of the installer. (see [below for nested schema](#nestedatt--spec--installer_env))
 - `inventory` (Attributes List) Inventory maintains a list of entries consumed by the ClusterPool to customize the default ClusterDeployment. (see [below for nested schema](#nestedatt--spec--inventory))
 - `labels` (Map of String) Labels to be applied to new ClusterDeployments created for the pool. ClusterDeployments that have already been claimed will not be affected when this value is modified.
 - `max_concurrent` (Number) MaxConcurrent is the maximum number of clusters that will be provisioned or deprovisioned at an time. This includes the claimed clusters being deprovisioned. By default there is no limit.
@@ -225,8 +226,12 @@ Optional:
 
 Required:
 
-- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains the GCP account access credentials. (see [below for nested schema](#nestedatt--spec--platform--gcp--credentials_secret_ref))
 - `region` (String) Region specifies the GCP region where the cluster will be created.
+
+Optional:
+
+- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains the GCP account access credentials. (see [below for nested schema](#nestedatt--spec--platform--gcp--credentials_secret_ref))
+- `private_service_connect` (Attributes) PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect))
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
 ### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
@@ -234,6 +239,34 @@ Required:
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect`
+
+Required:
+
+- `enabled` (Boolean) Enabled specifies if Private Service Connect is to be enabled on the cluster.
+
+Optional:
+
+- `service_attachment` (Attributes) ServiceAttachment configures the service attachment to be used by the cluster. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect--service_attachment))
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect--service_attachment"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect.service_attachment`
+
+Optional:
+
+- `subnet` (Attributes) Subnet configures the subnetwork that contains the service attachment. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet))
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect.service_attachment.subnet`
+
+Optional:
+
+- `cidr` (String) Cidr configures the network cidr of the subnetwork that contains the service attachment.
+
+
 
 
 
@@ -378,6 +411,81 @@ Optional:
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--installer_env"></a>
+### Nested Schema for `spec.installer_env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--installer_env--value_from))
+
+<a id="nestedatt--spec--installer_env--value_from"></a>
+### Nested Schema for `spec.installer_env.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--installer_env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--installer_env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--installer_env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--installer_env--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--installer_env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.installer_env.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--installer_env--value_from--field_ref"></a>
+### Nested Schema for `spec.installer_env.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--installer_env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.installer_env.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--installer_env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.installer_env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 
 <a id="nestedatt--spec--inventory"></a>

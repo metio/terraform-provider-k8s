@@ -68,6 +68,8 @@ Optional:
 - `host_network` (Boolean)
 - `image` (String)
 - `image_pull_policy` (String)
+- `ip_families` (List of String)
+- `ip_family_policy` (String)
 - `node_selector` (Map of String)
 - `pod_annotations` (Map of String)
 - `pod_dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_dns_config))

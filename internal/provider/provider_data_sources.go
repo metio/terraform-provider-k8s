@@ -112,6 +112,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/charts_operatorhub_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/che_eclipse_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chisel_operator_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/chisel_operator_io_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/claudie_io_v1beta1"
@@ -1235,6 +1236,8 @@ func allDataSources() []func() datasource.DataSource {
 		chisel_operator_io_v1.NewChiselOperatorIoExitNodeProvisionerV1Manifest,
 		// chisel_operator_io_v1.NewChiselOperatorIoExitNodeV1DataSource,
 		chisel_operator_io_v1.NewChiselOperatorIoExitNodeV1Manifest,
+		// chisel_operator_io_v2.NewChiselOperatorIoExitNodeV2DataSource,
+		chisel_operator_io_v2.NewChiselOperatorIoExitNodeV2Manifest,
 		// cilium_io_v2.NewCiliumIoCiliumClusterwideEnvoyConfigV2DataSource,
 		cilium_io_v2.NewCiliumIoCiliumClusterwideEnvoyConfigV2Manifest,
 		// cilium_io_v2.NewCiliumIoCiliumClusterwideNetworkPolicyV2DataSource,
@@ -2905,6 +2908,14 @@ func allDataSources() []func() datasource.DataSource {
 		networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest,
 		// networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsRuleGroupV1Alpha1DataSource,
 		networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest,
+		// networking_gke_io_v1.NewNetworkingGkeIoGcpbackendPolicyV1DataSource,
+		networking_gke_io_v1.NewNetworkingGkeIoGcpbackendPolicyV1Manifest,
+		// networking_gke_io_v1.NewNetworkingGkeIoGcpgatewayPolicyV1DataSource,
+		networking_gke_io_v1.NewNetworkingGkeIoGcpgatewayPolicyV1Manifest,
+		// networking_gke_io_v1.NewNetworkingGkeIoHealthCheckPolicyV1DataSource,
+		networking_gke_io_v1.NewNetworkingGkeIoHealthCheckPolicyV1Manifest,
+		// networking_gke_io_v1.NewNetworkingGkeIoLbpolicyV1DataSource,
+		networking_gke_io_v1.NewNetworkingGkeIoLbpolicyV1Manifest,
 		// networking_gke_io_v1.NewNetworkingGkeIoManagedCertificateV1DataSource,
 		networking_gke_io_v1.NewNetworkingGkeIoManagedCertificateV1Manifest,
 		// networking_istio_io_v1.NewNetworkingIstioIoDestinationRuleV1DataSource,

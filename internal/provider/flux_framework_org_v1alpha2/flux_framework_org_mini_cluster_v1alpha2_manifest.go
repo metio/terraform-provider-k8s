@@ -88,15 +88,16 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				Privileged      *bool     `tfsdk:"privileged" json:"privileged,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
 			Volumes *struct {
-				ClaimName      *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
-				ConfigMapName  *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
-				EmptyDir       *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
-				EmptyDirMedium *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
-				HostPath       *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Items          *map[string]string `tfsdk:"items" json:"items,omitempty"`
-				Path           *string            `tfsdk:"path" json:"path,omitempty"`
-				ReadOnly       *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SecretName     *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
+				ClaimName         *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
+				ConfigMapName     *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+				EmptyDir          *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+				EmptyDirMedium    *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
+				EmptyDirSizeLimit *string            `tfsdk:"empty_dir_size_limit" json:"emptyDirSizeLimit,omitempty"`
+				HostPath          *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Items             *map[string]string `tfsdk:"items" json:"items,omitempty"`
+				Path              *string            `tfsdk:"path" json:"path,omitempty"`
+				ReadOnly          *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SecretName        *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
@@ -161,12 +162,15 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 			HeadlessName    *string `tfsdk:"headless_name" json:"headlessName,omitempty"`
 		} `tfsdk:"network" json:"network,omitempty"`
 		Pod *struct {
-			Annotations        *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Labels             *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			Resources          *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
-			SchedulerName      *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
-			ServiceAccountName *string            `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			Annotations                  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			AutomountServiceAccountToken *bool              `tfsdk:"automount_service_account_token" json:"automountServiceAccountToken,omitempty"`
+			Labels                       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			NodeSelector                 *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			Resources                    *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy                *string            `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			RuntimeClassName             *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
+			SchedulerName                *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+			ServiceAccountName           *string            `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		} `tfsdk:"pod" json:"pod,omitempty"`
 		Services *[]struct {
 			Batch    *bool   `tfsdk:"batch" json:"batch,omitempty"`
@@ -209,15 +213,16 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				Privileged      *bool     `tfsdk:"privileged" json:"privileged,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
 			Volumes *struct {
-				ClaimName      *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
-				ConfigMapName  *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
-				EmptyDir       *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
-				EmptyDirMedium *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
-				HostPath       *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Items          *map[string]string `tfsdk:"items" json:"items,omitempty"`
-				Path           *string            `tfsdk:"path" json:"path,omitempty"`
-				ReadOnly       *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SecretName     *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
+				ClaimName         *string            `tfsdk:"claim_name" json:"claimName,omitempty"`
+				ConfigMapName     *string            `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+				EmptyDir          *bool              `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+				EmptyDirMedium    *string            `tfsdk:"empty_dir_medium" json:"emptyDirMedium,omitempty"`
+				EmptyDirSizeLimit *string            `tfsdk:"empty_dir_size_limit" json:"emptyDirSizeLimit,omitempty"`
+				HostPath          *string            `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Items             *map[string]string `tfsdk:"items" json:"items,omitempty"`
+				Path              *string            `tfsdk:"path" json:"path,omitempty"`
+				ReadOnly          *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SecretName        *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
@@ -647,6 +652,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										"empty_dir_medium": schema.StringAttribute{
 											Description:         "Add an empty directory custom type",
 											MarkdownDescription: "Add an empty directory custom type",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir_size_limit": schema.StringAttribute{
+											Description:         "Add an empty directory sizeLimit",
+											MarkdownDescription: "Add an empty directory sizeLimit",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1147,6 +1160,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"automount_service_account_token": schema.BoolAttribute{
+								Description:         "Automatically mount the service account name",
+								MarkdownDescription: "Automatically mount the service account name",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"labels": schema.MapAttribute{
 								Description:         "Labels for each pod",
 								MarkdownDescription: "Labels for each pod",
@@ -1169,6 +1190,22 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Description:         "Resources include limits and requests",
 								MarkdownDescription: "Resources include limits and requests",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"restart_policy": schema.StringAttribute{
+								Description:         "Restart Policy",
+								MarkdownDescription: "Restart Policy",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"runtime_class_name": schema.StringAttribute{
+								Description:         "RuntimeClassName for the pod",
+								MarkdownDescription: "RuntimeClassName for the pod",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1513,6 +1550,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										"empty_dir_medium": schema.StringAttribute{
 											Description:         "Add an empty directory custom type",
 											MarkdownDescription: "Add an empty directory custom type",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"empty_dir_size_limit": schema.StringAttribute{
+											Description:         "Add an empty directory sizeLimit",
+											MarkdownDescription: "Add an empty directory sizeLimit",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

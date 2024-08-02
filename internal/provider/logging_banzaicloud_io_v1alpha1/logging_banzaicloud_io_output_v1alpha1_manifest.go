@@ -1634,6 +1634,7 @@ type LoggingBanzaicloudIoOutputV1Alpha1ManifestData struct {
 			Ssl_verify_hostname           *bool   `tfsdk:"ssl_verify_hostname" json:"ssl_verify_hostname,omitempty"`
 			Topic_key                     *string `tfsdk:"topic_key" json:"topic_key,omitempty"`
 			Use_default_for_unknown_topic *bool   `tfsdk:"use_default_for_unknown_topic" json:"use_default_for_unknown_topic,omitempty"`
+			Use_rdkafka                   *bool   `tfsdk:"use_rdkafka" json:"use_rdkafka,omitempty"`
 			Username                      *struct {
 				MountFrom *struct {
 					SecretKeyRef *struct {
@@ -14121,6 +14122,14 @@ func (r *LoggingBanzaicloudIoOutputV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"use_default_for_unknown_topic": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"use_rdkafka": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

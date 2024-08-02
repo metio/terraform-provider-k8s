@@ -79,7 +79,7 @@ Optional:
 
 - `authorization` (Attributes) Authorization configuration for Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--authorization))
 - `broker_rack_init_image` (String) The image of the init container used for initializing the 'broker.rack'.
-- `config` (Map of String) Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).
+- `config` (Map of String) Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable, client.quota.callback.static.kafka.admin., client.quota.callback.static.produce, client.quota.callback.static.fetch, client.quota.callback.static.storage.per.volume.limit.min.available., client.quota.callback.static.excluded.principal.name.list (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).
 - `image` (String) The container image used for Kafka pods. If the property is not set, the default Kafka image version is determined based on the 'version' configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration. Changing the Kafka image version does not automatically update the image versions for other components, such as Kafka Exporter.
 - `jmx_options` (Attributes) JMX Options for Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--jmx_options))
 - `jvm_options` (Attributes) JVM Options for pods. (see [below for nested schema](#nestedatt--spec--kafka--jvm_options))
@@ -87,6 +87,7 @@ Optional:
 - `logging` (Attributes) Logging configuration for Kafka. (see [below for nested schema](#nestedatt--spec--kafka--logging))
 - `metadata_version` (String) The KRaft metadata version used by the Kafka cluster. This property is ignored when running in ZooKeeper mode. If the property is not set, it defaults to the metadata version that corresponds to the 'version' property.
 - `metrics_config` (Attributes) Metrics configuration. (see [below for nested schema](#nestedatt--spec--kafka--metrics_config))
+- `quotas` (Attributes) Quotas plugin configuration for Kafka brokers allows setting quotas for disk usage, produce/fetch rates, and more. Supported plugin types include 'kafka' (default) and 'strimzi'. If not specified, the default 'kafka' quotas plugin is used. (see [below for nested schema](#nestedatt--spec--kafka--quotas))
 - `rack` (Attributes) Configuration of the 'broker.rack' broker config. (see [below for nested schema](#nestedatt--spec--kafka--rack))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--kafka--readiness_probe))
 - `replicas` (Number) The number of pods in the cluster. This property is required when node pools are not used.
@@ -185,8 +186,12 @@ Required:
 
 Required:
 
-- `certificate` (String) The name of the file certificate in the Secret.
 - `secret_name` (String) The name of the Secret containing the certificate.
+
+Optional:
+
+- `certificate` (String) The name of the file certificate in the secret.
+- `pattern` (String) Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.
 
 
 
@@ -208,6 +213,7 @@ Optional:
 - `max_connection_creation_rate` (Number) The maximum connection creation rate we allow in this listener at any time. New connections will be throttled if the limit is reached.
 - `max_connections` (Number) The maximum number of connections we allow for this listener in the broker at any time. New connections are blocked if the limit is reached.
 - `preferred_node_port_address_type` (String) Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses will be used in the following order (the first one found will be used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This field is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order. This field can only be used with 'nodeport' type listener.
+- `publish_not_ready_addresses` (Boolean) Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' type listeners.
 - `use_service_dns_domain` (Boolean) Configures whether the Kubernetes service DNS domain should be used or not. If set to 'true', the generated addresses will contain the service DNS domain suffix (by default '.cluster.local', can be configured using environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'). Defaults to 'false'.This field can be used only with 'internal' and 'cluster-ip' type listeners.
 
 <a id="nestedatt--spec--kafka--listeners--configuration--bootstrap"></a>
@@ -350,8 +356,12 @@ Optional:
 
 Required:
 
-- `certificate` (String) The name of the file certificate in the Secret.
 - `secret_name` (String) The name of the Secret containing the certificate.
+
+Optional:
+
+- `certificate` (String) The name of the file certificate in the secret.
+- `pattern` (String) Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.
 
 
 
@@ -460,6 +470,24 @@ Optional:
 - `optional` (Boolean)
 
 
+
+
+<a id="nestedatt--spec--kafka--quotas"></a>
+### Nested Schema for `spec.kafka.quotas`
+
+Required:
+
+- `type` (String) Quotas plugin type. Currently, the supported types are 'kafka' and 'strimzi'. 'kafka' quotas type uses Kafka's built-in quotas plugin. 'strimzi' quotas type uses Strimzi quotas plugin.
+
+Optional:
+
+- `consumer_byte_rate` (Number) A per-broker byte-rate quota for clients consuming from a broker, independent of their number. If clients consume at maximum speed, the quota is shared equally between all non-excluded consumers. Otherwise, the quota is divided based on each client's consumption rate.
+- `controller_mutation_rate` (Number) The default client quota on the rate at which mutations are accepted per second for create topic requests, create partition requests, and delete topic requests, defined for each broker. The mutations rate is measured by the number of partitions created or deleted. Applied on a per-broker basis.
+- `excluded_principals` (List of String) List of principals that are excluded from the quota. The principals have to be prefixed with 'User:', for example 'User:my-user;User:CN=my-other-user'.
+- `min_available_bytes_per_volume` (Number) Stop message production if the available size (in bytes) of the storage is lower than or equal to this specified value. This condition is mutually exclusive with 'minAvailableRatioPerVolume'.
+- `min_available_ratio_per_volume` (Number) Stop message production if the percentage of available storage space falls below or equals the specified ratio (set as a decimal representing a percentage). This condition is mutually exclusive with 'minAvailableBytesPerVolume'.
+- `producer_byte_rate` (Number) A per-broker byte-rate quota for clients producing to a broker, independent of their number. If clients produce at maximum speed, the quota is shared equally between all non-excluded producers. Otherwise, the quota is divided based on each client's production rate.
+- `request_percentage` (Number) The default client quota limits the maximum CPU utilization of each client as a percentage of the network and I/O threads of each broker. Applied on a per-broker basis.
 
 
 <a id="nestedatt--spec--kafka--rack"></a>
@@ -728,6 +756,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -738,6 +767,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--init_container--security_context--windows_options))
+
+<a id="nestedatt--spec--kafka--template--init_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.kafka.template.init_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--kafka--template--init_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.kafka.template.init_container.security_context.capabilities`
@@ -821,6 +859,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -831,6 +870,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--kafka_container--security_context--windows_options))
+
+<a id="nestedatt--spec--kafka--template--kafka_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.kafka.template.kafka_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--kafka--template--kafka_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.kafka.template.kafka_container.security_context.capabilities`
@@ -1325,6 +1373,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1335,6 +1384,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--kafka--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.kafka.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--kafka--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.kafka.template.pod.security_context.se_linux_options`
@@ -1762,6 +1820,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1772,6 +1831,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--cruise_control_container--security_context--windows_options))
+
+<a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--cruise_control--template--cruise_control_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.cruise_control.template.cruise_control_container.security_context.capabilities`
@@ -2216,6 +2284,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2226,6 +2295,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--cruise_control--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.cruise_control.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--cruise_control--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.cruise_control.template.pod.security_context.se_linux_options`
@@ -2373,6 +2451,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -2383,6 +2462,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--windows_options))
+
+<a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.cruise_control.template.tls_sidecar_container.security_context.capabilities`
@@ -2925,6 +3013,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2935,6 +3024,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--entity_operator--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.entity_operator.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--entity_operator--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.entity_operator.template.pod.security_context.se_linux_options`
@@ -3064,6 +3162,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3074,6 +3173,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--windows_options))
+
+<a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--entity_operator--template--tls_sidecar_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.entity_operator.template.tls_sidecar_container.security_context.capabilities`
@@ -3140,6 +3248,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3150,6 +3259,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--topic_operator_container--security_context--windows_options))
+
+<a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--entity_operator--template--topic_operator_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.entity_operator.template.topic_operator_container.security_context.capabilities`
@@ -3233,6 +3351,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3243,6 +3362,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--security_context--windows_options))
+
+<a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--entity_operator--template--user_operator_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.entity_operator.template.user_operator_container.security_context.capabilities`
@@ -3368,7 +3496,8 @@ Optional:
 - `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--liveness_probe))
 - `logging` (Attributes) Logging configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--logging))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--readiness_probe))
-- `reconciliation_interval_seconds` (Number) Interval between periodic reconciliations.
+- `reconciliation_interval_ms` (Number) Interval between periodic reconciliations in milliseconds.
+- `reconciliation_interval_seconds` (Number) Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--resources))
 - `startup_probe` (Attributes) Pod startup checking. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--startup_probe))
 - `topic_metadata_max_attempts` (Number) The number of attempts at getting topic metadata.
@@ -3492,7 +3621,8 @@ Optional:
 - `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--liveness_probe))
 - `logging` (Attributes) Logging configuration. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--logging))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--readiness_probe))
-- `reconciliation_interval_seconds` (Number) Interval between periodic reconciliations.
+- `reconciliation_interval_ms` (Number) Interval between periodic reconciliations in milliseconds.
+- `reconciliation_interval_seconds` (Number) Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--resources))
 - `secret_prefix` (String) The prefix that will be added to the KafkaUser name to be used as the Secret name.
 - `watched_namespace` (String) The namespace the User Operator should watch.
@@ -3686,6 +3816,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -3696,6 +3827,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--container--security_context--windows_options))
+
+<a id="nestedatt--spec--jmx_trans--template--container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.jmx_trans.template.container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--jmx_trans--template--container--security_context--capabilities"></a>
 ### Nested Schema for `spec.jmx_trans.template.container.security_context.capabilities`
@@ -4140,6 +4280,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -4150,6 +4291,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--jmx_trans--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.jmx_trans.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--jmx_trans--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.jmx_trans.template.pod.security_context.se_linux_options`
@@ -4352,6 +4502,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4362,6 +4513,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--container--security_context--windows_options))
+
+<a id="nestedatt--spec--kafka_exporter--template--container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.kafka_exporter.template.container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--kafka_exporter--template--container--security_context--capabilities"></a>
 ### Nested Schema for `spec.kafka_exporter.template.container.security_context.capabilities`
@@ -4806,6 +4966,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -4816,6 +4977,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--kafka_exporter--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.kafka_exporter.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--kafka_exporter--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.kafka_exporter.template.pod.security_context.se_linux_options`
@@ -5598,6 +5768,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -5608,6 +5779,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod--security_context--windows_options))
+
+<a id="nestedatt--spec--zookeeper--template--pod--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.zookeeper.template.pod.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--zookeeper--template--pod--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.zookeeper.template.pod.security_context.se_linux_options`
@@ -5790,6 +5970,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5800,6 +5981,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities"></a>
 ### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.capabilities`

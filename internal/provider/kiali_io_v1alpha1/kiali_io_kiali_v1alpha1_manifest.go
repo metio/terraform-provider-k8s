@@ -231,14 +231,16 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					} `tfsdk:"components" json:"components,omitempty"`
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				} `tfsdk:"component_status" json:"component_status,omitempty"`
-				Config_map_name        *string `tfsdk:"config_map_name" json:"config_map_name,omitempty"`
-				Envoy_admin_local_port *int64  `tfsdk:"envoy_admin_local_port" json:"envoy_admin_local_port,omitempty"`
-				Gateway_api_classes    *[]struct {
+				Config_map_name          *string `tfsdk:"config_map_name" json:"config_map_name,omitempty"`
+				Egress_gateway_namespace *string `tfsdk:"egress_gateway_namespace" json:"egress_gateway_namespace,omitempty"`
+				Envoy_admin_local_port   *int64  `tfsdk:"envoy_admin_local_port" json:"envoy_admin_local_port,omitempty"`
+				Gateway_api_classes      *[]struct {
 					Class_name *string `tfsdk:"class_name" json:"class_name,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"gateway_api_classes" json:"gateway_api_classes,omitempty"`
-				Istio_api_enabled     *bool `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
-				Istio_canary_revision *struct {
+				Ingress_gateway_namespace *string `tfsdk:"ingress_gateway_namespace" json:"ingress_gateway_namespace,omitempty"`
+				Istio_api_enabled         *bool   `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
+				Istio_canary_revision     *struct {
 					Current *string `tfsdk:"current" json:"current,omitempty"`
 					Upgrade *string `tfsdk:"upgrade" json:"upgrade,omitempty"`
 				} `tfsdk:"istio_canary_revision" json:"istio_canary_revision,omitempty"`
@@ -324,10 +326,12 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 		} `tfsdk:"identity" json:"identity,omitempty"`
 		Installation_tag *string `tfsdk:"installation_tag" json:"installation_tag,omitempty"`
 		Istio_labels     *struct {
-			App_label_name       *string `tfsdk:"app_label_name" json:"app_label_name,omitempty"`
-			Injection_label_name *string `tfsdk:"injection_label_name" json:"injection_label_name,omitempty"`
-			Injection_label_rev  *string `tfsdk:"injection_label_rev" json:"injection_label_rev,omitempty"`
-			Version_label_name   *string `tfsdk:"version_label_name" json:"version_label_name,omitempty"`
+			App_label_name        *string `tfsdk:"app_label_name" json:"app_label_name,omitempty"`
+			Egress_gateway_label  *string `tfsdk:"egress_gateway_label" json:"egress_gateway_label,omitempty"`
+			Ingress_gateway_label *string `tfsdk:"ingress_gateway_label" json:"ingress_gateway_label,omitempty"`
+			Injection_label_name  *string `tfsdk:"injection_label_name" json:"injection_label_name,omitempty"`
+			Injection_label_rev   *string `tfsdk:"injection_label_rev" json:"injection_label_rev,omitempty"`
+			Version_label_name    *string `tfsdk:"version_label_name" json:"version_label_name,omitempty"`
 		} `tfsdk:"istio_labels" json:"istio_labels,omitempty"`
 		Istio_namespace     *string `tfsdk:"istio_namespace" json:"istio_namespace,omitempty"`
 		Kiali_feature_flags *struct {
@@ -1304,8 +1308,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"replicas": schema.Int64Attribute{
-								Description:         "The replica count for the Kiail deployment.",
-								MarkdownDescription: "The replica count for the Kiail deployment.",
+								Description:         "The replica count for the Kiail deployment. If 'deployment.hpa' is specified, this setting is ignored.",
+								MarkdownDescription: "The replica count for the Kiail deployment. If 'deployment.hpa' is specified, this setting is ignored.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1856,6 +1860,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed:            false,
 									},
 
+									"egress_gateway_namespace": schema.StringAttribute{
+										Description:         "The namespace where Istio EgressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
+										MarkdownDescription: "The namespace where Istio EgressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"envoy_admin_local_port": schema.Int64Attribute{
 										Description:         "The port which kiali will open to fetch envoy config data information.",
 										MarkdownDescription: "The port which kiali will open to fetch envoy config data information.",
@@ -1889,6 +1901,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"ingress_gateway_namespace": schema.StringAttribute{
+										Description:         "The namespace where Istio IngressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
+										MarkdownDescription: "The namespace where Istio IngressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"istio_api_enabled": schema.BoolAttribute{
@@ -2512,6 +2532,22 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							"app_label_name": schema.StringAttribute{
 								Description:         "The name of the label used to define what application a workload belongs to. This is typically something like 'app' or 'app.kubernetes.io/name'.",
 								MarkdownDescription: "The name of the label used to define what application a workload belongs to. This is typically something like 'app' or 'app.kubernetes.io/name'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"egress_gateway_label": schema.StringAttribute{
+								Description:         "The selector label for Egress Gateway workload. This is typically 'istio=egressgateway'.",
+								MarkdownDescription: "The selector label for Egress Gateway workload. This is typically 'istio=egressgateway'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ingress_gateway_label": schema.StringAttribute{
+								Description:         "The selector label for Ingress Gateway workload. This is typically 'istio=ingressgateway'.",
+								MarkdownDescription: "The selector label for Ingress Gateway workload. This is typically 'istio=ingressgateway'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3251,8 +3287,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"write_timeout": schema.Int64Attribute{
-								Description:         "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.",
-								MarkdownDescription: "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.",
+								Description:         "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.In OpenShift clusters, the route request time out should be also increased as the default is 30 seconds. This can be done by annotating the specific route with 'haproxy.router.openshift.io/timeout'. See https://docs.openshift.com/container-platform/4.16/networking/routes/route-configuration.html#nw-configuring-route-timeouts_route-configuration for further details.",
+								MarkdownDescription: "The maximum duration, in seconds, before timing out writes of the HTTP response back to the client. Default is 30.In OpenShift clusters, the route request time out should be also increased as the default is 30 seconds. This can be done by annotating the specific route with 'haproxy.router.openshift.io/timeout'. See https://docs.openshift.com/container-platform/4.16/networking/routes/route-configuration.html#nw-configuring-route-timeouts_route-configuration for further details.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

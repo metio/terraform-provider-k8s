@@ -70,6 +70,7 @@ Optional:
 Optional:
 
 - `allowed_https_hostnames` (List of String) a list of hostnames allowed for https client redirect URLs
+- `insecure_allowed_cidr_ranges` (List of String) a list of CIDRs allowed for HTTP or HTTPS client redirect URLs
 
 
 <a id="nestedatt--spec--teams_to_roles"></a>

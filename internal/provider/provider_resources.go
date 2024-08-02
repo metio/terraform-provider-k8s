@@ -112,6 +112,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/charts_operatorhub_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/che_eclipse_org_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/chisel_operator_io_v1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/chisel_operator_io_v2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/claudie_io_v1beta1"
@@ -883,6 +884,7 @@ func allResources() []func() resource.Resource {
 		//che_eclipse_org_v1alpha1.NewCheEclipseOrgKubernetesImagePullerV1Alpha1Resource,
 		//chisel_operator_io_v1.NewChiselOperatorIoExitNodeProvisionerV1Resource,
 		//chisel_operator_io_v1.NewChiselOperatorIoExitNodeV1Resource,
+		//chisel_operator_io_v2.NewChiselOperatorIoExitNodeV2Resource,
 		//cilium_io_v2.NewCiliumIoCiliumClusterwideEnvoyConfigV2Resource,
 		//cilium_io_v2.NewCiliumIoCiliumClusterwideNetworkPolicyV2Resource,
 		//cilium_io_v2.NewCiliumIoCiliumEgressGatewayPolicyV2Resource,
@@ -1718,6 +1720,10 @@ func allResources() []func() resource.Resource {
 		//networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Resource,
 		//networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallV1Alpha1Resource,
 		//networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Resource,
+		//networking_gke_io_v1.NewNetworkingGkeIoGcpbackendPolicyV1Resource,
+		//networking_gke_io_v1.NewNetworkingGkeIoGcpgatewayPolicyV1Resource,
+		//networking_gke_io_v1.NewNetworkingGkeIoHealthCheckPolicyV1Resource,
+		//networking_gke_io_v1.NewNetworkingGkeIoLbpolicyV1Resource,
 		//networking_gke_io_v1.NewNetworkingGkeIoManagedCertificateV1Resource,
 		//networking_istio_io_v1.NewNetworkingIstioIoDestinationRuleV1Resource,
 		//networking_istio_io_v1.NewNetworkingIstioIoGatewayV1Resource,

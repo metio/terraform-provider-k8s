@@ -7,6 +7,7 @@ package kafka_strimzi_io_v1beta2
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -143,7 +144,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -325,6 +330,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -399,7 +408,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -616,6 +629,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -683,7 +700,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -718,7 +739,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -759,7 +784,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -856,6 +885,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
 					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+				ReconciliationIntervalMs      *int64 `tfsdk:"reconciliation_interval_ms" json:"reconciliationIntervalMs,omitempty"`
 				ReconciliationIntervalSeconds *int64 `tfsdk:"reconciliation_interval_seconds" json:"reconciliationIntervalSeconds,omitempty"`
 				Resources                     *struct {
 					Claims *[]struct {
@@ -912,6 +942,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
 					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+				ReconciliationIntervalMs      *int64 `tfsdk:"reconciliation_interval_ms" json:"reconciliationIntervalMs,omitempty"`
 				ReconciliationIntervalSeconds *int64 `tfsdk:"reconciliation_interval_seconds" json:"reconciliationIntervalSeconds,omitempty"`
 				Resources                     *struct {
 					Claims *[]struct {
@@ -956,7 +987,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1138,6 +1173,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1224,6 +1263,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				SupportsAdminApi               *bool     `tfsdk:"supports_admin_api" json:"supportsAdminApi,omitempty"`
 				TlsTrustedCertificates         *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"tls_trusted_certificates" json:"tlsTrustedCertificates,omitempty"`
 				TokenEndpointUri *string `tfsdk:"token_endpoint_uri" json:"tokenEndpointUri,omitempty"`
@@ -1292,6 +1332,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"secrets" json:"secrets,omitempty"`
 					TlsTrustedCertificates *[]struct {
 						Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
+						Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 						SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 					} `tfsdk:"tls_trusted_certificates" json:"tlsTrustedCertificates,omitempty"`
 					TokenEndpointUri    *string `tfsdk:"token_endpoint_uri" json:"tokenEndpointUri,omitempty"`
@@ -1337,6 +1378,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					MaxConnectionCreationRate    *int64    `tfsdk:"max_connection_creation_rate" json:"maxConnectionCreationRate,omitempty"`
 					MaxConnections               *int64    `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 					PreferredNodePortAddressType *string   `tfsdk:"preferred_node_port_address_type" json:"preferredNodePortAddressType,omitempty"`
+					PublishNotReadyAddresses     *bool     `tfsdk:"publish_not_ready_addresses" json:"publishNotReadyAddresses,omitempty"`
 					UseServiceDnsDomain          *bool     `tfsdk:"use_service_dns_domain" json:"useServiceDnsDomain,omitempty"`
 				} `tfsdk:"configuration" json:"configuration,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
@@ -1395,6 +1437,16 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"metrics_config" json:"metricsConfig,omitempty"`
+			Quotas *struct {
+				ConsumerByteRate           *int64    `tfsdk:"consumer_byte_rate" json:"consumerByteRate,omitempty"`
+				ControllerMutationRate     *float64  `tfsdk:"controller_mutation_rate" json:"controllerMutationRate,omitempty"`
+				ExcludedPrincipals         *[]string `tfsdk:"excluded_principals" json:"excludedPrincipals,omitempty"`
+				MinAvailableBytesPerVolume *int64    `tfsdk:"min_available_bytes_per_volume" json:"minAvailableBytesPerVolume,omitempty"`
+				MinAvailableRatioPerVolume *float64  `tfsdk:"min_available_ratio_per_volume" json:"minAvailableRatioPerVolume,omitempty"`
+				ProducerByteRate           *int64    `tfsdk:"producer_byte_rate" json:"producerByteRate,omitempty"`
+				RequestPercentage          *int64    `tfsdk:"request_percentage" json:"requestPercentage,omitempty"`
+				Type                       *string   `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"quotas" json:"quotas,omitempty"`
 			Rack *struct {
 				TopologyKey *string `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 			} `tfsdk:"rack" json:"rack,omitempty"`
@@ -1495,7 +1547,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1536,7 +1592,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1735,6 +1795,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1862,7 +1926,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2044,6 +2112,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -2366,6 +2438,10 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 					SecurityContext   *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -2453,7 +2529,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"env" json:"env,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -3301,6 +3381,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -4526,6 +4631,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -5038,6 +5168,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -6519,6 +6674,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -6986,6 +7166,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Computed:            false,
 													},
 
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"capabilities": schema.SingleNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -7219,6 +7424,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -7490,6 +7720,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -8213,9 +8468,20 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										Computed: false,
 									},
 
+									"reconciliation_interval_ms": schema.Int64Attribute{
+										Description:         "Interval between periodic reconciliations in milliseconds.",
+										MarkdownDescription: "Interval between periodic reconciliations in milliseconds.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
 									"reconciliation_interval_seconds": schema.Int64Attribute{
-										Description:         "Interval between periodic reconciliations.",
-										MarkdownDescription: "Interval between periodic reconciliations.",
+										Description:         "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.",
+										MarkdownDescription: "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -8655,9 +8921,20 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										Computed: false,
 									},
 
+									"reconciliation_interval_ms": schema.Int64Attribute{
+										Description:         "Interval between periodic reconciliations in milliseconds.",
+										MarkdownDescription: "Interval between periodic reconciliations in milliseconds.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
 									"reconciliation_interval_seconds": schema.Int64Attribute{
-										Description:         "Interval between periodic reconciliations.",
-										MarkdownDescription: "Interval between periodic reconciliations.",
+										Description:         "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.",
+										MarkdownDescription: "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -8957,6 +9234,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -10182,6 +10484,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -10812,10 +11139,18 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"certificate": schema.StringAttribute{
-													Description:         "The name of the file certificate in the Secret.",
-													MarkdownDescription: "The name of the file certificate in the Secret.",
-													Required:            true,
-													Optional:            false,
+													Description:         "The name of the file certificate in the secret.",
+													MarkdownDescription: "The name of the file certificate in the secret.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pattern": schema.StringAttribute{
+													Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -10874,8 +11209,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"config": schema.MapAttribute{
-								Description:         "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
-								MarkdownDescription: "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
+								Description:         "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable, client.quota.callback.static.kafka.admin., client.quota.callback.static.produce, client.quota.callback.static.fetch, client.quota.callback.static.storage.per.volume.limit.min.available., client.quota.callback.static.excluded.principal.name.list (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
+								MarkdownDescription: "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable, client.quota.callback.static.kafka.admin., client.quota.callback.static.produce, client.quota.callback.static.fetch, client.quota.callback.static.storage.per.volume.limit.min.available., client.quota.callback.static.excluded.principal.name.list (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -11327,10 +11662,18 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"certificate": schema.StringAttribute{
-																Description:         "The name of the file certificate in the Secret.",
-																MarkdownDescription: "The name of the file certificate in the Secret.",
-																Required:            true,
-																Optional:            false,
+																Description:         "The name of the file certificate in the secret.",
+																MarkdownDescription: "The name of the file certificate in the secret.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"pattern": schema.StringAttribute{
+																Description:         "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+																MarkdownDescription: "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used.",
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 
@@ -11686,6 +12029,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 													Validators: []validator.String{
 														stringvalidator.OneOf("ExternalIP", "ExternalDNS", "InternalIP", "InternalDNS", "Hostname"),
 													},
+												},
+
+												"publish_not_ready_addresses": schema.BoolAttribute{
+													Description:         "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' type listeners.",
+													MarkdownDescription: "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' type listeners.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"use_service_dns_domain": schema.BoolAttribute{
@@ -12091,6 +12442,102 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										Required: true,
 										Optional: false,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"quotas": schema.SingleNestedAttribute{
+								Description:         "Quotas plugin configuration for Kafka brokers allows setting quotas for disk usage, produce/fetch rates, and more. Supported plugin types include 'kafka' (default) and 'strimzi'. If not specified, the default 'kafka' quotas plugin is used.",
+								MarkdownDescription: "Quotas plugin configuration for Kafka brokers allows setting quotas for disk usage, produce/fetch rates, and more. Supported plugin types include 'kafka' (default) and 'strimzi'. If not specified, the default 'kafka' quotas plugin is used.",
+								Attributes: map[string]schema.Attribute{
+									"consumer_byte_rate": schema.Int64Attribute{
+										Description:         "A per-broker byte-rate quota for clients consuming from a broker, independent of their number. If clients consume at maximum speed, the quota is shared equally between all non-excluded consumers. Otherwise, the quota is divided based on each client's consumption rate.",
+										MarkdownDescription: "A per-broker byte-rate quota for clients consuming from a broker, independent of their number. If clients consume at maximum speed, the quota is shared equally between all non-excluded consumers. Otherwise, the quota is divided based on each client's consumption rate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"controller_mutation_rate": schema.Float64Attribute{
+										Description:         "The default client quota on the rate at which mutations are accepted per second for create topic requests, create partition requests, and delete topic requests, defined for each broker. The mutations rate is measured by the number of partitions created or deleted. Applied on a per-broker basis.",
+										MarkdownDescription: "The default client quota on the rate at which mutations are accepted per second for create topic requests, create partition requests, and delete topic requests, defined for each broker. The mutations rate is measured by the number of partitions created or deleted. Applied on a per-broker basis.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Float64{
+											float64validator.AtLeast(0),
+										},
+									},
+
+									"excluded_principals": schema.ListAttribute{
+										Description:         "List of principals that are excluded from the quota. The principals have to be prefixed with 'User:', for example 'User:my-user;User:CN=my-other-user'.",
+										MarkdownDescription: "List of principals that are excluded from the quota. The principals have to be prefixed with 'User:', for example 'User:my-user;User:CN=my-other-user'.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available_bytes_per_volume": schema.Int64Attribute{
+										Description:         "Stop message production if the available size (in bytes) of the storage is lower than or equal to this specified value. This condition is mutually exclusive with 'minAvailableRatioPerVolume'.",
+										MarkdownDescription: "Stop message production if the available size (in bytes) of the storage is lower than or equal to this specified value. This condition is mutually exclusive with 'minAvailableRatioPerVolume'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"min_available_ratio_per_volume": schema.Float64Attribute{
+										Description:         "Stop message production if the percentage of available storage space falls below or equals the specified ratio (set as a decimal representing a percentage). This condition is mutually exclusive with 'minAvailableBytesPerVolume'.",
+										MarkdownDescription: "Stop message production if the percentage of available storage space falls below or equals the specified ratio (set as a decimal representing a percentage). This condition is mutually exclusive with 'minAvailableBytesPerVolume'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Float64{
+											float64validator.AtLeast(0),
+											float64validator.AtMost(1),
+										},
+									},
+
+									"producer_byte_rate": schema.Int64Attribute{
+										Description:         "A per-broker byte-rate quota for clients producing to a broker, independent of their number. If clients produce at maximum speed, the quota is shared equally between all non-excluded producers. Otherwise, the quota is divided based on each client's production rate.",
+										MarkdownDescription: "A per-broker byte-rate quota for clients producing to a broker, independent of their number. If clients produce at maximum speed, the quota is shared equally between all non-excluded producers. Otherwise, the quota is divided based on each client's production rate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"request_percentage": schema.Int64Attribute{
+										Description:         "The default client quota limits the maximum CPU utilization of each client as a percentage of the network and I/O threads of each broker. Applied on a per-broker basis.",
+										MarkdownDescription: "The default client quota limits the maximum CPU utilization of each client as a percentage of the network and I/O threads of each broker. Applied on a per-broker basis.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Quotas plugin type. Currently, the supported types are 'kafka' and 'strimzi'. 'kafka' quotas type uses Kafka's built-in quotas plugin. 'strimzi' quotas type uses Strimzi quotas plugin.",
+										MarkdownDescription: "Quotas plugin type. Currently, the supported types are 'kafka' and 'strimzi'. 'kafka' quotas type uses Kafka's built-in quotas plugin. 'strimzi' quotas type uses Strimzi quotas plugin.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("kafka", "strimzi"),
+										},
 									},
 								},
 								Required: false,
@@ -12803,6 +13250,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Computed:            false,
 													},
 
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"capabilities": schema.SingleNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -13072,6 +13544,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -14394,6 +14891,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -15291,6 +15813,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{
@@ -16516,6 +17063,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -18739,6 +19311,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Description:         "Configures pod-level security attributes and common container settings.",
 												MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -19334,6 +19931,31 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"capabilities": schema.SingleNestedAttribute{

@@ -57,10 +57,11 @@ type ProjectcontourIoContourConfigurationV1Alpha1ManifestData struct {
 			} `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 			Cluster *struct {
 				CircuitBreakers *struct {
-					MaxConnections     *int64 `tfsdk:"max_connections" json:"maxConnections,omitempty"`
-					MaxPendingRequests *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
-					MaxRequests        *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
-					MaxRetries         *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+					MaxConnections        *int64 `tfsdk:"max_connections" json:"maxConnections,omitempty"`
+					MaxPendingRequests    *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
+					MaxRequests           *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
+					MaxRetries            *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+					PerHostMaxConnections *int64 `tfsdk:"per_host_max_connections" json:"perHostMaxConnections,omitempty"`
 				} `tfsdk:"circuit_breakers" json:"circuitBreakers,omitempty"`
 				DnsLookupFamily                   *string `tfsdk:"dns_lookup_family" json:"dnsLookupFamily,omitempty"`
 				MaxRequestsPerConnection          *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
@@ -446,6 +447,14 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 											"max_retries": schema.Int64Attribute{
 												Description:         "The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.",
 												MarkdownDescription: "The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"per_host_max_connections": schema.Int64Attribute{
+												Description:         "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
+												MarkdownDescription: "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1900,8 +1909,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.",
-								MarkdownDescription: "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.",
+								Description:         "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.Deprecated: this field will be removed in a future release whenthe 'contour' xDS server implementation is removed.",
+								MarkdownDescription: "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.Deprecated: this field will be removed in a future release whenthe 'contour' xDS server implementation is removed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

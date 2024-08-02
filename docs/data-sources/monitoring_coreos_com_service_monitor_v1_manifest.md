@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_service_monitor_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  ServiceMonitor defines monitoring for a set of services.
+  The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_service_monitor_v1_manifest (Data Source)
 
-ServiceMonitor defines monitoring for a set of services.
+The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -65,55 +65,25 @@ Optional:
 
 Required:
 
-- `selector` (Attributes) Label selector to select the Kubernetes 'Endpoints' objects. (see [below for nested schema](#nestedatt--spec--selector))
+- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels. (see [below for nested schema](#nestedatt--spec--endpoints))
+- `selector` (Attributes) Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from. (see [below for nested schema](#nestedatt--spec--selector))
 
 Optional:
 
 - `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--attach_metadata))
 - `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.
-- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. (see [below for nested schema](#nestedatt--spec--endpoints))
 - `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.
 - `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selector` (Attributes) 'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.
 - `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.
 - `scrape_class` (String) The scrape class to apply.
 - `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.
 - `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.
 - `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that willbe accepted.
-
-<a id="nestedatt--spec--selector"></a>
-### Nested Schema for `spec.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-<a id="nestedatt--spec--attach_metadata"></a>
-### Nested Schema for `spec.attach_metadata`
-
-Optional:
-
-- `node` (Boolean) When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.
-
 
 <a id="nestedatt--spec--endpoints"></a>
 ### Nested Schema for `spec.endpoints`
@@ -316,6 +286,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--endpoints--tls_config--ca"></a>
@@ -401,6 +373,36 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+<a id="nestedatt--spec--selector"></a>
+### Nested Schema for `spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--attach_metadata"></a>
+### Nested Schema for `spec.attach_metadata`
+
+Optional:
+
+- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.
 
 
 <a id="nestedatt--spec--namespace_selector"></a>

@@ -378,8 +378,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should include exactly one'kuma.io/service' tag, and should match exactly one Gatewayresource.",
-						MarkdownDescription: "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should include exactly one'kuma.io/service' tag, and should match exactly one Gatewayresource.",
+						Description:         "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should not include 'kuma.io/service' tagsince is auto-generated, and should match exactly one Gatewayresource.",
+						MarkdownDescription: "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should not include 'kuma.io/service' tagsince is auto-generated, and should match exactly one Gatewayresource.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

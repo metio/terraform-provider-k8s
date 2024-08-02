@@ -123,6 +123,7 @@ type InfrastructureClusterXK8SIoVsphereVmV1Beta1ManifestData struct {
 		PciDevices        *[]struct {
 			CustomLabel *string `tfsdk:"custom_label" json:"customLabel,omitempty"`
 			DeviceId    *int64  `tfsdk:"device_id" json:"deviceId,omitempty"`
+			VGPUProfile *string `tfsdk:"v_gpu_profile" json:"vGPUProfile,omitempty"`
 			VendorId    *int64  `tfsdk:"vendor_id" json:"vendorId,omitempty"`
 		} `tfsdk:"pci_devices" json:"pciDevices,omitempty"`
 		PowerOffMode      *string   `tfsdk:"power_off_mode" json:"powerOffMode,omitempty"`
@@ -800,16 +801,24 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 								},
 
 								"device_id": schema.Int64Attribute{
-									Description:         "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
-									MarkdownDescription: "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+									Description:         "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
+									MarkdownDescription: "DeviceID is the device ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"v_gpu_profile": schema.StringAttribute{
+									Description:         "VGPUProfile is the profile name of a virtual machine's vGPU, in string.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with DeviceID and VendorID as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
+									MarkdownDescription: "VGPUProfile is the profile name of a virtual machine's vGPU, in string.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with DeviceID and VendorID as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"vendor_id": schema.Int64Attribute{
-									Description:         "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
-									MarkdownDescription: "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.",
+									Description:         "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
+									MarkdownDescription: "VendorId is the vendor ID of a virtual machine's PCI, in integer.Defaults to the eponymous property value in the template from which thevirtual machine is cloned.Mutually exclusive with VGPUProfile as VGPUProfile and DeviceID + VendorIDare two independent ways to define PCI devices.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -113,7 +113,35 @@ Optional:
 
 - `allowed_unsafe_sysctls` (List of String) AllowedUnsafeSysctls defines the list of unsafe sysctls that can be set on a node.
 - `cluster_dnsi_ps` (List of String) ClusterDNSIPs defines IP addresses of the DNS servers.
+- `cluster_domain` (String) ClusterDomain defines the DNS domain for the cluster, allowing all Kubernetes-run containers to search this domain before the host’s search domains
+- `container_log_max_files` (Number) ContainerLogMaxFiles specifies the maximum number of container log files that can be present for a container
+- `container_log_max_size` (String) ContainerLogMaxSize is a quantity defining the maximum size of the container log file before it is rotated
+- `cpu_cfs_quota` (Boolean) CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits
+- `cpu_manager_policy` (String) CPUManagerPolicy is the name of the policy to use.
+- `cpu_manager_policy_options` (Map of String) CPUManagerPolicyOptions is a set of key=value which allows to set extra options to fine tune the behaviour of the cpu manager policies
+- `cpu_manager_reconcile_period` (String) CPUManagerReconcilePeriod is the reconciliation period for the CPU Manager.
+- `event_burst` (Number) EventBurst is the maximum size of a burst of event creations.
+- `event_record_qps` (Number) EventRecordQPS is the maximum event creations per second.
+- `eviction_hard` (Map of String) EvictionHard is a map of signal names to quantities that defines hard eviction thresholds.
+- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met.
+- `eviction_soft` (Map of String) EvictionSoft is a map of signal names to quantities that defines soft eviction thresholds.
+- `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is a map of signal names to quantities that defines grace periods for each soft eviction signal.
+- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run.
+- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run.
+- `kube_api_burst` (Number) KubeAPIBurst  is the burst to allow while talking with kubernetes API server.
+- `kube_apiqps` (Number) KubeAPIQPS is the QPS to use while talking with kubernetes apiserver.
+- `kube_reserved` (Map of String) KubeReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for kubernetes system components
 - `max_pods` (Number) MaxPods defines the maximum number of pods that can run on a node.
+- `memory_manager_policy` (String) MemoryManagerPolicy is the name of the policy to use by memory manager.
+- `pod_pids_limit` (Number) PodPidsLimit is the maximum number of PIDs in any pod.
+- `provider_id` (String) ProviderID sets the unique ID of the instance that an external provider.
+- `registry_burst` (Number) RegistryBurst is the maximum size of bursty pulls.
+- `registry_pull_qps` (Number) RegistryPullQPS is the limit of registry pulls per second.
+- `shutdown_grace_period` (String) ShutdownGracePeriod specifies the total duration that the node should delay the shutdown and total grace period for pod termination during a node shutdown.
+- `shutdown_grace_period_critical_pods` (String) ShutdownGracePeriodCriticalPods specifies the duration used to terminate critical pods during a node shutdown.
+- `system_reserved` (Map of String) SystemReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for non-kubernetes components.
+- `topology_manager_policy` (String) TopologyManagerPolicy is the name of the topology manager policy to use.
+- `topology_manager_scope` (String) TopologyManagerScope represents the scope of topology hint generation that topology manager requests and hint providers generate.
 
 
 

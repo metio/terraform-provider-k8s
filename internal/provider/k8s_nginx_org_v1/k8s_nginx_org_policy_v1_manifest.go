@@ -276,8 +276,8 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 					},
 
 					"basic_auth": schema.SingleNestedAttribute{
-						Description:         "BasicAuth holds HTTP Basic authentication configurationpolicy status: preview",
-						MarkdownDescription: "BasicAuth holds HTTP Basic authentication configurationpolicy status: preview",
+						Description:         "BasicAuth holds HTTP Basic authentication configuration",
+						MarkdownDescription: "BasicAuth holds HTTP Basic authentication configuration",
 						Attributes: map[string]schema.Attribute{
 							"realm": schema.StringAttribute{
 								Description:         "",

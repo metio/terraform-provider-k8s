@@ -56,5 +56,5 @@ Optional:
 Optional:
 
 - `node_id` (String) The node ID on which the controller is responsible to reconcile this orphan CR.
-- `orphan_type` (String) The type of the orphaned data. Can be 'replica'.
+- `orphan_type` (String) The type of the orphaned data.Can be 'replica'.
 - `parameters` (Map of String) The parameters of the orphaned data

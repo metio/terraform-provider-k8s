@@ -60,5 +60,6 @@ Optional:
 - `groups` (List of String) The recurring job group.
 - `labels` (Map of String) The label of the snapshot/backup.
 - `name` (String) The recurring job name.
+- `parameters` (Map of String) The parameters of the snapshot/backup.Support parameters: 'full-backup-interval'.
 - `retain` (Number) The retain count of the snapshot/backup.
-- `task` (String) The recurring job task. Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'
+- `task` (String) The recurring job task.Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'

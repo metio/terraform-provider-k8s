@@ -44,7 +44,8 @@ type GatewayNginxOrgNginxProxyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		DisableHTTP2 *bool `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
+		DisableHTTP2 *bool   `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
+		IpFamily     *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
 		Telemetry    *struct {
 			Exporter *struct {
 				BatchCount *int64  `tfsdk:"batch_count" json:"batchCount,omitempty"`
@@ -132,6 +133,17 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"ip_family": schema.StringAttribute{
+						Description:         "IPFamily specifies the IP family to be used by the NGINX.Default is 'dual', meaning the server will use both IPv4 and IPv6.",
+						MarkdownDescription: "IPFamily specifies the IP family to be used by the NGINX.Default is 'dual', meaning the server will use both IPv4 and IPv6.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("dual", "ipv4", "ipv6"),
+						},
 					},
 
 					"telemetry": schema.SingleNestedAttribute{

@@ -738,8 +738,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"definition_from": schema.StringAttribute{
-															Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-															MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+															Description:         "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
+															MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -795,8 +795,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"definition_from": schema.StringAttribute{
-											Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-											MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+											Description:         "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
+											MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1166,8 +1166,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"definition_from": schema.StringAttribute{
-																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		Description:         "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
+																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1314,8 +1314,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"definition_from": schema.StringAttribute{
-																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		Description:         "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
+																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from.Deprecated: This field is deprecated, must not be set anymore and is going to be removed in the next apiVersion.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,

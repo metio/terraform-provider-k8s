@@ -59,7 +59,7 @@ Optional:
 
 Required:
 
-- `target_refs` (Attributes List) TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute (see [below for nested schema](#nestedatt--spec--target_refs))
+- `target_refs` (Attributes List) TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute. (see [below for nested schema](#nestedatt--spec--target_refs))
 
 Optional:
 

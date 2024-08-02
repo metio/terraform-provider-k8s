@@ -174,6 +174,14 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 				CredentialsSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
+				PrivateServiceConnect *struct {
+					Enabled           *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					ServiceAttachment *struct {
+						Subnet *struct {
+							Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						} `tfsdk:"subnet" json:"subnet,omitempty"`
+					} `tfsdk:"service_attachment" json:"serviceAttachment,omitempty"`
+				} `tfsdk:"private_service_connect" json:"privateServiceConnect,omitempty"`
 				Region *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
 			Ibmcloud *struct {
@@ -1169,8 +1177,51 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"private_service_connect": schema.SingleNestedAttribute{
+										Description:         "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
+										MarkdownDescription: "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled specifies if Private Service Connect is to be enabled on the cluster.",
+												MarkdownDescription: "Enabled specifies if Private Service Connect is to be enabled on the cluster.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service_attachment": schema.SingleNestedAttribute{
+												Description:         "ServiceAttachment configures the service attachment to be used by the cluster.",
+												MarkdownDescription: "ServiceAttachment configures the service attachment to be used by the cluster.",
+												Attributes: map[string]schema.Attribute{
+													"subnet": schema.SingleNestedAttribute{
+														Description:         "Subnet configures the subnetwork that contains the service attachment.",
+														MarkdownDescription: "Subnet configures the subnetwork that contains the service attachment.",
+														Attributes: map[string]schema.Attribute{
+															"cidr": schema.StringAttribute{
+																Description:         "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
+																MarkdownDescription: "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 

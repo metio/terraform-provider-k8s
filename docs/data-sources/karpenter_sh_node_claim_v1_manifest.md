@@ -56,22 +56,20 @@ Required:
 
 Optional:
 
-- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--kubelet))
+- `expire_after` (String) ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.
 - `resources` (Attributes) Resources models the resource requirements for the NodeClaim to launch (see [below for nested schema](#nestedatt--spec--resources))
 - `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--startup_taints))
 - `taints` (Attributes List) Taints will be applied to the NodeClaim's node. (see [below for nested schema](#nestedatt--spec--taints))
+- `termination_grace_period` (String) TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.
 
 <a id="nestedatt--spec--node_class_ref"></a>
 ### Nested Schema for `spec.node_class_ref`
 
 Required:
 
-- `name` (String) Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
-
-Optional:
-
-- `api_version` (String) API version of the referent
+- `group` (String) API version of the referent
 - `kind` (String) Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+- `name` (String) Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
 
 
 <a id="nestedatt--spec--requirements"></a>
@@ -86,25 +84,6 @@ Optional:
 
 - `min_values` (Number) This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
 - `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
-
-
-<a id="nestedatt--spec--kubelet"></a>
-### Nested Schema for `spec.kubelet`
-
-Optional:
-
-- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.
-- `cpu_cfs_quota` (Boolean) CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.
-- `eviction_hard` (Map of String) EvictionHard is the map of signal names to quantities that define hard eviction thresholds
-- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.
-- `eviction_soft` (Map of String) EvictionSoft is the map of signal names to quantities that define soft eviction thresholds
-- `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal
-- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.
-- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent
-- `kube_reserved` (Map of String) KubeReserved contains resources reserved for Kubernetes system components.
-- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run ona worker node instance.
-- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.
-- `system_reserved` (Map of String) SystemReserved contains resources reserved for OS system daemons and kernel memory.
 
 
 <a id="nestedatt--spec--resources"></a>

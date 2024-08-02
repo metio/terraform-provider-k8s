@@ -30,7 +30,7 @@ data "k8s_memorydb_services_k8s_aws_acl_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ACLSpec defines the desired state of ACL.  An Access Control List. You can authenticate users with Access Contol Lists. ACLs enable you to control cluster access by grouping users. These Access control lists are designed as a way to organize access to clusters. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ACLSpec defines the desired state of ACL.An Access Control List. You can authenticate users with Access Contol Lists.ACLs enable you to control cluster access by grouping users. These Accesscontrol lists are designed as a way to organize access to clusters. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,7 +59,7 @@ Required:
 
 Optional:
 
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 - `user_names` (List of String) The list of users that belong to the Access Control List.
 - `user_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--user_refs))
 
@@ -77,7 +77,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--user_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--user_refs--from))
 
 <a id="nestedatt--spec--user_refs--from"></a>
 ### Nested Schema for `spec.user_refs.from`

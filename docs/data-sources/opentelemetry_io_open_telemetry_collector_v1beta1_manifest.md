@@ -74,6 +74,8 @@ Optional:
 - `image_pull_policy` (String)
 - `ingress` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress))
 - `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--init_containers))
+- `ip_families` (List of String)
+- `ip_family_policy` (String)
 - `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle))
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--liveness_probe))
 - `management_state` (String)

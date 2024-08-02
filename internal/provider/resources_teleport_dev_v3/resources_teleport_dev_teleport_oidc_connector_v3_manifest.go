@@ -52,7 +52,8 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 		} `tfsdk:"claims_to_roles" json:"claims_to_roles,omitempty"`
 		Client_id                *string `tfsdk:"client_id" json:"client_id,omitempty"`
 		Client_redirect_settings *struct {
-			Allowed_https_hostnames *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+			Allowed_https_hostnames      *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
+			Insecure_allowed_cidr_ranges *[]string `tfsdk:"insecure_allowed_cidr_ranges" json:"insecure_allowed_cidr_ranges,omitempty"`
 		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
 		Client_secret              *string   `tfsdk:"client_secret" json:"client_secret,omitempty"`
 		Display                    *string   `tfsdk:"display" json:"display,omitempty"`
@@ -213,6 +214,15 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 							"allowed_https_hostnames": schema.ListAttribute{
 								Description:         "a list of hostnames allowed for https client redirect URLs",
 								MarkdownDescription: "a list of hostnames allowed for https client redirect URLs",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"insecure_allowed_cidr_ranges": schema.ListAttribute{
+								Description:         "a list of CIDRs allowed for HTTP or HTTPS client redirect URLs",
+								MarkdownDescription: "a list of CIDRs allowed for HTTP or HTTPS client redirect URLs",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

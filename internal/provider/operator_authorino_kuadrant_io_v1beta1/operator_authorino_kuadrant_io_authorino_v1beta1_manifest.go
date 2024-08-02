@@ -253,8 +253,8 @@ func (r *OperatorAuthorinoKuadrantIoAuthorinoV1Beta1Manifest) Schema(_ context.C
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "Port number of the GRPC interface. DEPRECATED: use 'ports.grpc' instead.",
-								MarkdownDescription: "Port number of the GRPC interface. DEPRECATED: use 'ports.grpc' instead.",
+								Description:         "Port number of the GRPC interface.DEPRECATED: use 'ports.grpc' instead.",
+								MarkdownDescription: "Port number of the GRPC interface.DEPRECATED: use 'ports.grpc' instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -298,12 +298,12 @@ func (r *OperatorAuthorinoKuadrantIoAuthorinoV1Beta1Manifest) Schema(_ context.C
 								MarkdownDescription: "TLS configuration of the auth service (GRPC and HTTP interfaces).",
 								Attributes: map[string]schema.Attribute{
 									"cert_secret_ref": schema.SingleNestedAttribute{
-										Description:         "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-										MarkdownDescription: "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+										Description:         "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
+										MarkdownDescription: "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -390,12 +390,12 @@ func (r *OperatorAuthorinoKuadrantIoAuthorinoV1Beta1Manifest) Schema(_ context.C
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"cert_secret_ref": schema.SingleNestedAttribute{
-										Description:         "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-										MarkdownDescription: "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+										Description:         "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
+										MarkdownDescription: "LocalObjectReference contains enough information to let you locate thereferenced object inside the same namespace.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -522,16 +522,16 @@ func (r *OperatorAuthorinoKuadrantIoAuthorinoV1Beta1Manifest) Schema(_ context.C
 													},
 
 													"mode": schema.Int64Attribute{
-														Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+														Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-														MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+														Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+														MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,

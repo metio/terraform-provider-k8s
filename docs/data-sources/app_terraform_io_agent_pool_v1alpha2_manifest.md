@@ -36,7 +36,7 @@ data "k8s_app_terraform_io_agent_pool_v1alpha2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) AgentPoolSpec defines the desired stak get ste of AgentPool. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) AgentPoolSpec defines the desired state of AgentPool. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -3401,8 +3401,18 @@ Required:
 
 Optional:
 
+- `cooldown_period` (Attributes) CoolDownPeriod configures the period to wait between scaling up and scaling down (see [below for nested schema](#nestedatt--spec--autoscaling--cooldown_period))
 - `cooldown_period_seconds` (Number) CooldownPeriodSeconds is the time to wait between scaling events. Defaults to 300.
 - `target_workspaces` (Attributes List) TargetWorkspaces is a list of HCP Terraform Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool. (see [below for nested schema](#nestedatt--spec--autoscaling--target_workspaces))
+
+<a id="nestedatt--spec--autoscaling--cooldown_period"></a>
+### Nested Schema for `spec.autoscaling.cooldown_period`
+
+Optional:
+
+- `scale_down_seconds` (Number) ScaleDownSeconds is the time to wait before scaling down.
+- `scale_up_seconds` (Number) ScaleUpSeconds is the time to wait before scaling up.
+
 
 <a id="nestedatt--spec--autoscaling--target_workspaces"></a>
 ### Nested Schema for `spec.autoscaling.target_workspaces`

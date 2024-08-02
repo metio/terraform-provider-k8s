@@ -66,6 +66,7 @@ Optional:
 - `namespace` (String) Namespace to get the secret from in Vault
 - `refresh_after` (String) RefreshAfter a period of time, in duration notation e.g. 30s, 1m, 24h
 - `rollout_restart_targets` (Attributes List) RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.All configured targets wil be ignored if HMACSecretData is set to false.See RolloutRestartTarget for more details. (see [below for nested schema](#nestedatt--spec--rollout_restart_targets))
+- `sync_config` (Attributes) SyncConfig configures sync behavior from Vault to VSO (see [below for nested schema](#nestedatt--spec--sync_config))
 - `vault_auth_ref` (String) VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.
 - `version` (Number) Version of the secret to fetch. Only valid for type kv-v2. Corresponds to version query parameter:https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2#version
 
@@ -144,3 +145,11 @@ Required:
 
 - `kind` (String) Kind of the resource
 - `name` (String) Name of the resource
+
+
+<a id="nestedatt--spec--sync_config"></a>
+### Nested Schema for `spec.sync_config`
+
+Optional:
+
+- `instant_updates` (Boolean) InstantUpdates is a flag to indicate that event-driven updates areenabled for this VaultStaticSecret

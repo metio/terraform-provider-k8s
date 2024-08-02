@@ -160,7 +160,7 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("SeccompProfile", "SelinuxProfile"),
+							stringvalidator.OneOf("SeccompProfile", "SelinuxProfile", "ApparmorProfile"),
 						},
 					},
 

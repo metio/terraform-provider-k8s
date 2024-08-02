@@ -90,6 +90,7 @@ type SecretsHashicorpComVaultAuthV1Beta1ManifestData struct {
 			Mount   *string `tfsdk:"mount" json:"mount,omitempty"`
 		} `tfsdk:"storage_encryption" json:"storageEncryption,omitempty"`
 		VaultAuthGlobalRef *struct {
+			AllowDefault  *bool `tfsdk:"allow_default" json:"allowDefault,omitempty"`
 			MergeStrategy *struct {
 				Headers *string `tfsdk:"headers" json:"headers,omitempty"`
 				Params  *string `tfsdk:"params" json:"params,omitempty"`
@@ -506,6 +507,14 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 						Description:         "VaultAuthGlobalRef.",
 						MarkdownDescription: "VaultAuthGlobalRef.",
 						Attributes: map[string]schema.Attribute{
+							"allow_default": schema.BoolAttribute{
+								Description:         "AllowDefault when set to true will use the default VaultAuthGlobal resourceas the default if Name is not set. The 'allow-default-globals' option must beset on the operator's '-global-vault-auth-options' flagThe default VaultAuthGlobal search is conditional.When a ref Namespace is set, the search for the defaultVaultAuthGlobal resource is constrained to that namespace.Otherwise, the search order is:1. The default VaultAuthGlobal resource in the referring VaultAuth resource'snamespace.2. The default VaultAuthGlobal resource in the Operator's namespace.",
+								MarkdownDescription: "AllowDefault when set to true will use the default VaultAuthGlobal resourceas the default if Name is not set. The 'allow-default-globals' option must beset on the operator's '-global-vault-auth-options' flagThe default VaultAuthGlobal search is conditional.When a ref Namespace is set, the search for the defaultVaultAuthGlobal resource is constrained to that namespace.Otherwise, the search order is:1. The default VaultAuthGlobal resource in the referring VaultAuth resource'snamespace.2. The default VaultAuthGlobal resource in the Operator's namespace.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"merge_strategy": schema.SingleNestedAttribute{
 								Description:         "MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests.",
 								MarkdownDescription: "MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests.",
@@ -540,8 +549,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 							"name": schema.StringAttribute{
 								Description:         "Name of the VaultAuthGlobal resource.",
 								MarkdownDescription: "Name of the VaultAuthGlobal resource.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9.-]{1,253})$`), ""),

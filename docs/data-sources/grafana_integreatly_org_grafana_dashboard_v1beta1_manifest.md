@@ -66,6 +66,8 @@ Optional:
 - `env_from` (Attributes List) environments variables from secrets or config maps (see [below for nested schema](#nestedatt--spec--env_from))
 - `envs` (Attributes List) environments variables as a map (see [below for nested schema](#nestedatt--spec--envs))
 - `folder` (String) folder assignment for dashboard
+- `folder_ref` (String) Name of a 'GrafanaFolder' resource in the same namespace
+- `folder_uid` (String) UID of the target folder for this dashboard
 - `grafana_com` (Attributes) grafana.com/dashboards (see [below for nested schema](#nestedatt--spec--grafana_com))
 - `gzip_json` (String) GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.
 - `json` (String) dashboard json

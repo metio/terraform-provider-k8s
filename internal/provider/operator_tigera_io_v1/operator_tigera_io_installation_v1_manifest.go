@@ -2149,13 +2149,13 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers",
-																	MarkdownDescription: "Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers",
+																	Description:         "Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers, es-calico-kube-controllers",
+																	MarkdownDescription: "Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers, es-calico-kube-controllers",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("calico-kube-controllers"),
+																		stringvalidator.OneOf("calico-kube-controllers", "es-calico-kube-controllers"),
 																	},
 																},
 
@@ -2417,7 +2417,7 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Iptables", "BPF", "VPP"),
+									stringvalidator.OneOf("Iptables", "BPF", "VPP", "Nftables"),
 								},
 							},
 

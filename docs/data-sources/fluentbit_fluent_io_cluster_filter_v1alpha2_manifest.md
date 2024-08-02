@@ -133,8 +133,10 @@ Optional:
 - `kube_ca_file` (String) CA certificate file
 - `kube_ca_path` (String) Absolute path to scan for certificate files
 - `kube_meta_cache_ttl` (String) configurable TTL for K8s cached metadata. By default, it is set to 0which means TTL for cache entries is disabled and cache entries are evicted at randomwhen capacity is reached. In order to enable this option, you should set the number to a time interval.For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.
+- `kube_meta_namespace_cache_ttl` (Number) Configurable TTL for K8s cached namespace metadata.By default, it is set to 900 which means a 15min TTL for namespace cache entries.Setting this to 0 will mean entries are evicted at random once the cache is full.
 - `kube_meta_preload_cache_dir` (String) If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta
 - `kube_tag_prefix` (String) When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.
+- `kube_token_command` (String) Command to get Kubernetes authorization token.By default, it will be NULL and we will use token file to get token.
 - `kube_token_file` (String) Token file
 - `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
 - `kube_url` (String) API Server end-point
@@ -145,6 +147,9 @@ Optional:
 - `merge_log_key` (String) When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string messageand make a structured representation of it at the same level of the log field in the map.Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.
 - `merge_log_trim` (Boolean) When Merge_Log is enabled, trim (remove possible n or r) field values.
 - `merge_parser` (String) Optional parser name to specify how to parse the data contained in the log key. Recommended use is for developers or testing only.
+- `namespace_annotations` (Boolean) Include Kubernetes namespace resource annotations in the extra metadata.
+- `namespace_labels` (Boolean) Include Kubernetes namespace resource labels in the extra metadata.
+- `namespace_metadata_only` (Boolean) Include Kubernetes namespace metadata only and no pod metadata.If this is set, the values of Labels and Annotations are ignored.
 - `regex_parser` (String) Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id.The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `tls_debug` (Number) Debug level between 0 (nothing) and 4 (every detail).
@@ -179,7 +184,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 

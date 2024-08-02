@@ -59,7 +59,7 @@ Optional:
 
 - `backup_owner_reference` (String) Indicates which ownerReference should be put inside the created backup resources.<br />- none: no owner reference for created backup objects (same behavior as before the field was introduced)<br />- self: sets the Scheduled backup object as owner of the backup<br />- cluster: set the cluster as owner of the backup<br />
 - `immediate` (Boolean) If the first backup has to be immediately start after creation or not
-- `method` (String) The backup method to be used, possible options are 'barmanObjectStore'and 'volumeSnapshot'. Defaults to: 'barmanObjectStore'.
+- `method` (String) The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.
 - `online` (Boolean) Whether the default type of backup with volume snapshots isonline/hot ('true', default) or offline/cold ('false')Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'
 - `online_configuration` (Attributes) Configuration parameters to control the online/hot backup with volume snapshotsOverrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza (see [below for nested schema](#nestedatt--spec--online_configuration))
 - `plugin_configuration` (Attributes) Configuration parameters passed to the plugin managing this backup (see [below for nested schema](#nestedatt--spec--plugin_configuration))

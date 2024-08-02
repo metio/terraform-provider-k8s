@@ -44,6 +44,11 @@ type JobsetXK8SIoJobSetV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Coordinator *struct {
+			JobIndex      *int64  `tfsdk:"job_index" json:"jobIndex,omitempty"`
+			PodIndex      *int64  `tfsdk:"pod_index" json:"podIndex,omitempty"`
+			ReplicatedJob *string `tfsdk:"replicated_job" json:"replicatedJob,omitempty"`
+		} `tfsdk:"coordinator" json:"coordinator,omitempty"`
 		FailurePolicy *struct {
 			MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 			Rules       *[]struct {
@@ -1481,6 +1486,39 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 				Description:         "JobSetSpec defines the desired state of JobSet",
 				MarkdownDescription: "JobSetSpec defines the desired state of JobSet",
 				Attributes: map[string]schema.Attribute{
+					"coordinator": schema.SingleNestedAttribute{
+						Description:         "Coordinator can be used to assign a specific pod as the coordinator forthe JobSet. If defined, an annotation will be added to all Jobs and pods withcoordinator pod, which contains the stable network endpoint where thecoordinator pod can be reached.jobset.sigs.k8s.io/coordinator=<pod hostname>.<headless service>",
+						MarkdownDescription: "Coordinator can be used to assign a specific pod as the coordinator forthe JobSet. If defined, an annotation will be added to all Jobs and pods withcoordinator pod, which contains the stable network endpoint where thecoordinator pod can be reached.jobset.sigs.k8s.io/coordinator=<pod hostname>.<headless service>",
+						Attributes: map[string]schema.Attribute{
+							"job_index": schema.Int64Attribute{
+								Description:         "JobIndex is the index of Job which contains the coordinator pod(i.e., for a ReplicatedJob with N replicas, there are Job indexes 0 to N-1).",
+								MarkdownDescription: "JobIndex is the index of Job which contains the coordinator pod(i.e., for a ReplicatedJob with N replicas, there are Job indexes 0 to N-1).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pod_index": schema.Int64Attribute{
+								Description:         "PodIndex is the Job completion index of the coordinator pod.",
+								MarkdownDescription: "PodIndex is the Job completion index of the coordinator pod.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"replicated_job": schema.StringAttribute{
+								Description:         "ReplicatedJob is the name of the ReplicatedJob which containsthe coordinator pod.",
+								MarkdownDescription: "ReplicatedJob is the name of the ReplicatedJob which containsthe coordinator pod.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"failure_policy": schema.SingleNestedAttribute{
 						Description:         "FailurePolicy, if set, configures when to declare the JobSet asfailed.The JobSet is always declared failed if any job in the setfinished with status failed.",
 						MarkdownDescription: "FailurePolicy, if set, configures when to declare the JobSet asfailed.The JobSet is always declared failed if any job in the setfinished with status failed.",

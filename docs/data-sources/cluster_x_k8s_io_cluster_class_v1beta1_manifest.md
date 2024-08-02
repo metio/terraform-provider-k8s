@@ -296,7 +296,7 @@ Required:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable. (see [below for nested schema](#nestedatt--spec--variables--metadata))
+- `metadata` (Attributes) Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead. (see [below for nested schema](#nestedatt--spec--variables--metadata))
 
 <a id="nestedatt--spec--variables--schema"></a>
 ### Nested Schema for `spec.variables.schema`
@@ -337,6 +337,7 @@ Optional:
 - `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique.NOTE: Can only be set if type is array.
 - `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable objectwhich are not defined in the variable schema. This affects fields recursively,except if nested properties or additionalProperties are specified in the schema.
 - `x_kubernetes_validations` (Attributes List) XValidations describes a list of validation rules written in the CEL expression language. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_kubernetes_validations))
+- `x_metadata` (Attributes) XMetadata is the metadata of a variable or a nested field within a variable.It can be used to add additional data for higher level tools. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata))
 
 <a id="nestedatt--spec--variables--schema--open_apiv3_schema--x_kubernetes_validations"></a>
 ### Nested Schema for `spec.variables.schema.open_apiv3_schema.x_kubernetes_validations`
@@ -351,6 +352,15 @@ Optional:
 - `message` (String) Message represents the message displayed when validation fails. The message is required if the Rule containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'
 - `message_expression` (String) MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a rule, then messageExpression will be used if validationfails. If messageExpression results in a runtime error, the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset.messageExpression has access to all the same variables as the rule; the only difference is the return type.Example:'x must be less than max ('+string(self.max)+')'
 - `reason` (String) Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule.The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'.If not set, default to use 'FieldValueInvalid'.All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.
+
+
+<a id="nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata"></a>
+### Nested Schema for `spec.variables.schema.open_apiv3_schema.x_metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) variables.
 
 
 

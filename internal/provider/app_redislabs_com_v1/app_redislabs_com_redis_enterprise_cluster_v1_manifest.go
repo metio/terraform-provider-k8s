@@ -50,7 +50,13 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 			Method             *string            `tfsdk:"method" json:"method,omitempty"`
 		} `tfsdk:"active_active" json:"activeActive,omitempty"`
 		AntiAffinityAdditionalTopologyKeys *[]string `tfsdk:"anti_affinity_additional_topology_keys" json:"antiAffinityAdditionalTopologyKeys,omitempty"`
-		BootstrapperImageSpec              *struct {
+		Backup                             *struct {
+			S3 *struct {
+				CaCertificateSecretName *string `tfsdk:"ca_certificate_secret_name" json:"caCertificateSecretName,omitempty"`
+				Url                     *string `tfsdk:"url" json:"url,omitempty"`
+			} `tfsdk:"s3" json:"s3,omitempty"`
+		} `tfsdk:"backup" json:"backup,omitempty"`
+		BootstrapperImageSpec *struct {
 			DigestHash      *string `tfsdk:"digest_hash" json:"digestHash,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			Repository      *string `tfsdk:"repository" json:"repository,omitempty"`
@@ -2932,6 +2938,40 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"backup": schema.SingleNestedAttribute{
+						Description:         "Cluster-wide backup configurations",
+						MarkdownDescription: "Cluster-wide backup configurations",
+						Attributes: map[string]schema.Attribute{
+							"s3": schema.SingleNestedAttribute{
+								Description:         "Configurations for backups to s3 and s3-compatible storage",
+								MarkdownDescription: "Configurations for backups to s3 and s3-compatible storage",
+								Attributes: map[string]schema.Attribute{
+									"ca_certificate_secret_name": schema.StringAttribute{
+										Description:         "Secret name that holds the S3 CA certificate, which contains the TLS certificate mapped to the key in the secret 'cert'",
+										MarkdownDescription: "Secret name that holds the S3 CA certificate, which contains the TLS certificate mapped to the key in the secret 'cert'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"url": schema.StringAttribute{
+										Description:         "Specifies the URL for S3 export and import",
+										MarkdownDescription: "Specifies the URL for S3 export and import",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"bootstrapper_image_spec": schema.SingleNestedAttribute{

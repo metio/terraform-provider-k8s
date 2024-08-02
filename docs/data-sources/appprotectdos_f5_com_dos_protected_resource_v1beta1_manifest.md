@@ -55,12 +55,21 @@ Optional:
 
 Optional:
 
+- `allow_list` (Attributes List) AllowList is a list of allowed IPs and subnet masks (see [below for nested schema](#nestedatt--spec--allow_list))
 - `ap_dos_monitor` (Attributes) ApDosMonitor is how NGINX App Protect DoS monitors the stress level of the protected object. The monitor requests are sent from localhost (127.0.0.1). Default value: URI - None, protocol - http1, timeout - NGINX App Protect DoS default. (see [below for nested schema](#nestedatt--spec--ap_dos_monitor))
 - `ap_dos_policy` (String) ApDosPolicy is the namespace/name of a ApDosPolicy resource
 - `dos_access_log_dest` (String) DosAccessLogDest is the network address for the access logs
 - `dos_security_log` (Attributes) DosSecurityLog defines the security log of the DosProtectedResource. (see [below for nested schema](#nestedatt--spec--dos_security_log))
 - `enable` (Boolean) Enable enables the DOS feature if set to true
 - `name` (String) Name is the name of protected object, max of 63 characters.
+
+<a id="nestedatt--spec--allow_list"></a>
+### Nested Schema for `spec.allow_list`
+
+Optional:
+
+- `ip_with_mask` (String)
+
 
 <a id="nestedatt--spec--ap_dos_monitor"></a>
 ### Nested Schema for `spec.ap_dos_monitor`

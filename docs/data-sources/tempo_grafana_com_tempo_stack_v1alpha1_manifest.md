@@ -55,19 +55,19 @@ Optional:
 
 Required:
 
-- `storage` (Attributes) Storage defines the spec for the object storage endpoint to store traces. User is required to create secret and supply it. (see [below for nested schema](#nestedatt--spec--storage))
+- `storage` (Attributes) Storage defines the spec for the object storage endpoint to store traces.User is required to create secret and supply it. (see [below for nested schema](#nestedatt--spec--storage))
 
 Optional:
 
-- `extra_config` (Attributes) ExtraConfigSpec defines extra configurations for tempo that will be merged with the operator generated, configurations defined here has precedence and could override generated config. (see [below for nested schema](#nestedatt--spec--extra_config))
+- `extra_config` (Attributes) ExtraConfigSpec defines extra configurations for tempo that will be merged with the operator generated, configurations defined herehas precedence and could override generated config. (see [below for nested schema](#nestedatt--spec--extra_config))
 - `hash_ring` (Attributes) HashRing defines the spec for the distributed hash ring configuration. (see [below for nested schema](#nestedatt--spec--hash_ring))
 - `images` (Attributes) Images defines the image for each container. (see [below for nested schema](#nestedatt--spec--images))
 - `limits` (Attributes) LimitSpec is used to limit ingestion and querying rates. (see [below for nested schema](#nestedatt--spec--limits))
-- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not. Default is managed.
+- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not.Default is managed.
 - `observability` (Attributes) ObservabilitySpec defines how telemetry data gets handled. (see [below for nested schema](#nestedatt--spec--observability))
 - `replication_factor` (Number) ReplicationFactor is used to define how many component replicas should exist.
 - `resources` (Attributes) Resources defines resources configuration. (see [below for nested schema](#nestedatt--spec--resources))
-- `retention` (Attributes) NOTE: currently this field is not considered. Retention period defined by dataset. User can specify how long data should be stored. (see [below for nested schema](#nestedatt--spec--retention))
+- `retention` (Attributes) Retention period defined by dataset.User can specify how long data should be stored. (see [below for nested schema](#nestedatt--spec--retention))
 - `search` (Attributes) SearchSpec control the configuration for the search capabilities. (see [below for nested schema](#nestedatt--spec--search))
 - `service_account` (String) ServiceAccount defines the service account to use for all tempo components.
 - `storage_class_name` (String) StorageClassName for PVCs used by ingester. Defaults to nil (default storage class in the cluster).
@@ -80,7 +80,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret for object storage authentication. Name of a secret in the same namespace as the TempoStack custom resource. (see [below for nested schema](#nestedatt--spec--storage--secret))
+- `secret` (Attributes) Secret for object storage authentication.Name of a secret in the same namespace as the TempoStack custom resource. (see [below for nested schema](#nestedatt--spec--storage--secret))
 
 Optional:
 
@@ -100,8 +100,8 @@ Required:
 
 Optional:
 
-- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate (service-ca.crt). It needs to be in the same namespace as the Tempo custom resource.
-- `cert_name` (String) Cert is the name of a Secret containing a certificate (tls.crt) and private key (tls.key). It needs to be in the same namespace as the Tempo custom resource.
+- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate (service-ca.crt).It needs to be in the same namespace as the Tempo custom resource.
+- `cert_name` (String) Cert is the name of a Secret containing a certificate (tls.crt) and private key (tls.key).It needs to be in the same namespace as the Tempo custom resource.
 - `enabled` (Boolean) Enabled defines if TLS is enabled.
 - `min_version` (String) MinVersion defines the minimum acceptable TLS version.
 
@@ -176,8 +176,8 @@ Optional:
 Optional:
 
 - `max_bytes_per_tag_values` (Number) MaxBytesPerTagValues defines the maximum size in bytes of a tag-values query.
-- `max_search_bytes_per_trace` (Number) DEPRECATED. MaxSearchBytesPerTrace defines the maximum size of search data for a single trace in bytes. default: '0' to disable.
-- `max_search_duration` (String) MaxSearchDuration defines the maximum allowed time range for a search. If this value is not set, then spec.search.maxDuration is used.
+- `max_search_bytes_per_trace` (Number) DEPRECATED. MaxSearchBytesPerTrace defines the maximum size of search data for a singletrace in bytes.default: '0' to disable.
+- `max_search_duration` (String) MaxSearchDuration defines the maximum allowed time range for a search.If this value is not set, then spec.search.maxDuration is used.
 
 
 
@@ -206,8 +206,8 @@ Optional:
 Optional:
 
 - `max_bytes_per_tag_values` (Number) MaxBytesPerTagValues defines the maximum size in bytes of a tag-values query.
-- `max_search_bytes_per_trace` (Number) DEPRECATED. MaxSearchBytesPerTrace defines the maximum size of search data for a single trace in bytes. default: '0' to disable.
-- `max_search_duration` (String) MaxSearchDuration defines the maximum allowed time range for a search. If this value is not set, then spec.search.maxDuration is used.
+- `max_search_bytes_per_trace` (Number) DEPRECATED. MaxSearchBytesPerTrace defines the maximum size of search data for a singletrace in bytes.default: '0' to disable.
+- `max_search_duration` (String) MaxSearchDuration defines the maximum allowed time range for a search.If this value is not set, then spec.search.maxDuration is used.
 
 
 
@@ -235,7 +235,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--observability--grafana--instance_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--observability--grafana--instance_selector--match_expressions"></a>
 ### Nested Schema for `spec.observability.grafana.instance_selector.match_expressions`
@@ -243,11 +243,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -276,23 +276,23 @@ Optional:
 
 Optional:
 
-- `total` (Attributes) The total amount of resources for Tempo instance. The operator autonomously splits resources between deployed Tempo components. Only limits are supported, the operator calculates requests automatically. See http://github.com/grafana/tempo/issues/1540. (see [below for nested schema](#nestedatt--spec--resources--total))
+- `total` (Attributes) The total amount of resources for Tempo instance.The operator autonomously splits resources between deployed Tempo components.Only limits are supported, the operator calculates requests automatically.See http://github.com/grafana/tempo/issues/1540. (see [below for nested schema](#nestedatt--spec--resources--total))
 
 <a id="nestedatt--spec--resources--total"></a>
 ### Nested Schema for `spec.resources.total`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--total--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--total--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--total--claims"></a>
 ### Nested Schema for `spec.resources.total.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -310,7 +310,7 @@ Optional:
 
 Optional:
 
-- `traces` (String) Traces defines retention period. Supported parameter suffixes are 's', 'm' and 'h'. example: 336h default: value is 48h.
+- `traces` (String) Traces defines retention period. Supported parameter suffixes are 's', 'm' and 'h'.example: 336hdefault: value is 48h.
 
 
 <a id="nestedatt--spec--retention--per_tenant"></a>
@@ -318,7 +318,7 @@ Optional:
 
 Optional:
 
-- `traces` (String) Traces defines retention period. Supported parameter suffixes are 's', 'm' and 'h'. example: 336h default: value is 48h.
+- `traces` (String) Traces defines retention period. Supported parameter suffixes are 's', 'm' and 'h'.example: 336hdefault: value is 48h.
 
 
 
@@ -329,7 +329,7 @@ Optional:
 
 - `default_result_limit` (Number) Limit used for search requests if none is set by the caller (default: 20)
 - `max_duration` (String) The maximum allowed time range for a search, default: 0s which means unlimited.
-- `max_result_limit` (Number) The maximum allowed value of the limit parameter on search requests. If the search request limit parameter exceeds the value configured here it will be set to the value configured here. The default value of 0 disables this limit.
+- `max_result_limit` (Number) The maximum allowed value of the limit parameter on search requests. If the search request limit parameterexceeds the value configured here it will be set to the value configured here.The default value of 0 disables this limit.
 
 
 <a id="nestedatt--spec--template"></a>
@@ -359,16 +359,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--compactor--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--compactor--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--compactor--resources--claims"></a>
 ### Nested Schema for `spec.template.compactor.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -377,11 +377,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -390,8 +390,8 @@ Optional:
 
 Optional:
 
-- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.  Currently, there is no way to inline this field. See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--distributor--component))
-- `tls` (Attributes) TLS defines TLS configuration for distributor receivers (see [below for nested schema](#nestedatt--spec--template--distributor--tls))
+- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.Currently, there is no way to inline this field.See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--distributor--component))
+- `tls` (Attributes) TLS defines TLS configuration for distributor receiversIf openshift feature flag 'servingCertsService' is enabled and TLS is enabled but nocertName or caName is specified, OpenShift service serving certificates will  be used. (see [below for nested schema](#nestedatt--spec--template--distributor--tls))
 
 <a id="nestedatt--spec--template--distributor--component"></a>
 ### Nested Schema for `spec.template.distributor.component`
@@ -408,16 +408,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--distributor--component--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--distributor--component--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--distributor--component--resources--claims"></a>
 ### Nested Schema for `spec.template.distributor.component.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -426,11 +426,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -439,8 +439,8 @@ Optional:
 
 Optional:
 
-- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate (service-ca.crt). It needs to be in the same namespace as the Tempo custom resource.
-- `cert_name` (String) Cert is the name of a Secret containing a certificate (tls.crt) and private key (tls.key). It needs to be in the same namespace as the Tempo custom resource.
+- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate (service-ca.crt).It needs to be in the same namespace as the Tempo custom resource.
+- `cert_name` (String) Cert is the name of a Secret containing a certificate (tls.crt) and private key (tls.key).It needs to be in the same namespace as the Tempo custom resource.
 - `enabled` (Boolean) Enabled defines if TLS is enabled.
 - `min_version` (String) MinVersion defines the minimum acceptable TLS version.
 
@@ -455,7 +455,7 @@ Required:
 
 Optional:
 
-- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.  Currently there is no way to inline this field. See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--gateway--component))
+- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.Currently there is no way to inline this field.See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--gateway--component))
 - `ingress` (Attributes) Ingress defines gateway Ingress options. (see [below for nested schema](#nestedatt--spec--template--gateway--ingress))
 
 <a id="nestedatt--spec--template--gateway--component"></a>
@@ -473,16 +473,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--gateway--component--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--gateway--component--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--gateway--component--resources--claims"></a>
 ### Nested Schema for `spec.template.gateway.component.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -491,11 +491,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -506,16 +506,16 @@ Optional:
 
 - `annotations` (Map of String) Annotations defines the annotations of the Ingress object.
 - `host` (String) Host defines the hostname of the Ingress object.
-- `ingress_class_name` (String) IngressClassName defines the name of an IngressClass cluster resource. Defines which ingress controller serves this ingress resource.
+- `ingress_class_name` (String) IngressClassName defines the name of an IngressClass cluster resource.Defines which ingress controller serves this ingress resource.
 - `route` (Attributes) Route defines the options for the OpenShift route. (see [below for nested schema](#nestedatt--spec--template--gateway--ingress--route))
-- `type` (String) Type defines the type of Ingress for the Jaeger Query UI. Currently ingress, route and none are supported.
+- `type` (String) Type defines the type of Ingress for the Jaeger Query UI.Currently ingress, route and none are supported.
 
 <a id="nestedatt--spec--template--gateway--ingress--route"></a>
 ### Nested Schema for `spec.template.gateway.ingress.route`
 
 Optional:
 
-- `termination` (String) Termination defines the termination type. The default is 'edge'.
+- `termination` (String) Termination defines the termination type.The default is 'edge'.
 
 
 
@@ -535,16 +535,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--ingester--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--ingester--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--ingester--resources--claims"></a>
 ### Nested Schema for `spec.template.ingester.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -553,11 +553,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -576,16 +576,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--querier--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--querier--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--querier--resources--claims"></a>
 ### Nested Schema for `spec.template.querier.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -594,11 +594,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -607,7 +607,7 @@ Optional:
 
 Optional:
 
-- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.  Currently there is no way to inline this field. See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--query_frontend--component))
+- `component` (Attributes) TempoComponentSpec is embedded to extend this definition with further options.Currently there is no way to inline this field.See: https://github.com/golang/go/issues/6213 (see [below for nested schema](#nestedatt--spec--template--query_frontend--component))
 - `jaeger_query` (Attributes) JaegerQuery defines options specific to the Jaeger Query component. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query))
 
 <a id="nestedatt--spec--template--query_frontend--component"></a>
@@ -625,16 +625,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--component--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--component--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--query_frontend--component--resources--claims"></a>
 ### Nested Schema for `spec.template.query_frontend.component.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -643,11 +643,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -669,24 +669,24 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Defines if the authentication will be enabled for jaeger UI.
-- `resources` (Attributes) Resources defines the compute resource requirements of the OAuth Proxy container. The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources))
-- `sar` (String) SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}
+- `resources` (Attributes) Resources defines the compute resource requirements of the OAuth Proxy container.The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources))
+- `sar` (String) SAR defines the SAR to be used in the oauth-proxydefault is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources--claims"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -698,16 +698,16 @@ Optional:
 
 - `annotations` (Map of String) Annotations defines the annotations of the Ingress object.
 - `host` (String) Host defines the hostname of the Ingress object.
-- `ingress_class_name` (String) IngressClassName defines the name of an IngressClass cluster resource. Defines which ingress controller serves this ingress resource.
+- `ingress_class_name` (String) IngressClassName defines the name of an IngressClass cluster resource.Defines which ingress controller serves this ingress resource.
 - `route` (Attributes) Route defines the options for the OpenShift route. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--ingress--route))
-- `type` (String) Type defines the type of Ingress for the Jaeger Query UI. Currently ingress, route and none are supported.
+- `type` (String) Type defines the type of Ingress for the Jaeger Query UI.Currently ingress, route and none are supported.
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--ingress--route"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.ingress.route`
 
 Optional:
 
-- `termination` (String) Termination defines the termination type. The default is 'edge'.
+- `termination` (String) Termination defines the termination type.The default is 'edge'.
 
 
 
@@ -716,8 +716,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled enables the monitor tab in the Jaeger console. The PrometheusEndpoint must be configured to enable this feature.
-- `prometheus_endpoint` (String) PrometheusEndpoint defines the endpoint to the Prometheus instance that contains the span rate, error, and duration (RED) metrics. For instance on OpenShift this is set to https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+- `enabled` (Boolean) Enabled enables the monitor tab in the Jaeger console.The PrometheusEndpoint must be configured to enable this feature.
+- `prometheus_endpoint` (String) PrometheusEndpoint defines the endpoint to the Prometheus instance that contains the span rate, error, and duration (RED) metrics.For instance on OpenShift this is set to https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
 
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--resources"></a>
@@ -725,16 +725,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--resources--claims"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -758,8 +758,8 @@ Optional:
 
 Required:
 
-- `tenant_id` (String) TenantID defines a universally unique identifier of the tenant. Unlike the tenantName, which must be unique at a given time, the tenantId must be unique over the entire lifetime of the Tempo deployment. Tempo uses this ID to prefix objects in the object storage.
-- `tenant_name` (String) TenantName defines a human readable, unique name of the tenant. The value of this field must be specified in the X-Scope-OrgID header and in the resources field of a ClusterRole to identify the tenant.
+- `tenant_id` (String) TenantID defines a universally unique identifier of the tenant.Unlike the tenantName, which must be unique at a given time, the tenantId must be unique over the entire lifetime of the Tempo deployment.Tempo uses this ID to prefix objects in the object storage.
+- `tenant_name` (String) TenantName defines a human readable, unique name of the tenant.The value of this field must be specified in the X-Scope-OrgID header and in the resources field of a ClusterRole to identify the tenant.
 
 Optional:
 

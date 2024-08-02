@@ -2694,6 +2694,7 @@ Optional:
 Required:
 
 - `name` (String) Name of the runtime class
+- `pulltype` (String) The pulling image method to be used by the runtime class
 - `snapshotter` (String) The snapshotter to be used by the runtime class
 
 

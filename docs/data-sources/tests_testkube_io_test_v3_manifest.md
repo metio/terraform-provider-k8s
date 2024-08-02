@@ -122,7 +122,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) name of the template resource
-- `disable_webhooks` (Boolean) whether webhooks should be called on execution
+- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
 - `env_config_maps` (Attributes List) config map references (see [below for nested schema](#nestedatt--spec--execution_request--env_config_maps))
 - `env_secrets` (Attributes List) secret references (see [below for nested schema](#nestedatt--spec--execution_request--env_secrets))
 - `envs` (Map of String) Environment variables passed to executor.Deprecated: use Basic Variables instead

@@ -147,8 +147,8 @@ func (r *LonghornIoBackupBackingImageV1Beta2Manifest) Schema(_ context.Context, 
 					},
 
 					"user_created": schema.BoolAttribute{
-						Description:         "Is this CR created by user through API or UI. Required",
-						MarkdownDescription: "Is this CR created by user through API or UI. Required",
+						Description:         "Is this CR created by user through API or UI.Required",
+						MarkdownDescription: "Is this CR created by user through API or UI.Required",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

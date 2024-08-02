@@ -62,4 +62,5 @@ Optional:
 
 - `ca_cert_secret_ref` (String) CACertSecretRef is the name of a Kubernetes secret containing the trusted PEM encoded CA certificate chain as 'ca.crt'.
 - `headers` (Map of String) Headers to be included in all Vault requests.
+- `timeout` (String) Timeout applied to all Vault requests for this connection. If not set, thedefault timeout from the Vault API client config is used.
 - `tls_server_name` (String) TLSServerName to use as the SNI host for TLS connections.

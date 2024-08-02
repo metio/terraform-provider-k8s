@@ -565,6 +565,42 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 				} `tfsdk:"tls" json:"tls,omitempty"`
 				Topic *string `tfsdk:"topic" json:"topic,omitempty"`
 			} `tfsdk:"kafka" json:"kafka,omitempty"`
+			OpenTelemetry *struct {
+				FieldsMapping *[]struct {
+					Input      *string `tfsdk:"input" json:"input,omitempty"`
+					Multiplier *int64  `tfsdk:"multiplier" json:"multiplier,omitempty"`
+					Output     *string `tfsdk:"output" json:"output,omitempty"`
+				} `tfsdk:"fields_mapping" json:"fieldsMapping,omitempty"`
+				Headers *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+				Logs    *struct {
+					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
+				} `tfsdk:"logs" json:"logs,omitempty"`
+				Metrics *struct {
+					Enable           *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					PushTimeInterval *string `tfsdk:"push_time_interval" json:"pushTimeInterval,omitempty"`
+				} `tfsdk:"metrics" json:"metrics,omitempty"`
+				Protocol   *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				TargetHost *string `tfsdk:"target_host" json:"targetHost,omitempty"`
+				TargetPort *int64  `tfsdk:"target_port" json:"targetPort,omitempty"`
+				Tls        *struct {
+					CaCert *struct {
+						CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+						CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						Type      *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+					Enable             *bool `tfsdk:"enable" json:"enable,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					UserCert           *struct {
+						CertFile  *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+						CertKey   *string `tfsdk:"cert_key" json:"certKey,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						Type      *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"user_cert" json:"userCert,omitempty"`
+				} `tfsdk:"tls" json:"tls,omitempty"`
+			} `tfsdk:"open_telemetry" json:"openTelemetry,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"exporters" json:"exporters,omitempty"`
 		Kafka *struct {
@@ -710,7 +746,11 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 			WriteBatchWait *string `tfsdk:"write_batch_wait" json:"writeBatchWait,omitempty"`
 			WriteTimeout   *string `tfsdk:"write_timeout" json:"writeTimeout,omitempty"`
 		} `tfsdk:"loki" json:"loki,omitempty"`
-		Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		NetworkPolicy *struct {
+			AdditionalNamespaces *[]string `tfsdk:"additional_namespaces" json:"additionalNamespaces,omitempty"`
+			Enable               *bool     `tfsdk:"enable" json:"enable,omitempty"`
+		} `tfsdk:"network_policy" json:"networkPolicy,omitempty"`
 		Processor *struct {
 			AddZone  *bool `tfsdk:"add_zone" json:"addZone,omitempty"`
 			Advanced *struct {
@@ -4671,6 +4711,257 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									Computed: false,
 								},
 
+								"open_telemetry": schema.SingleNestedAttribute{
+									Description:         "Open telemetry configuration, such as the IP address and port to send enriched logs, metrics and or traces to.",
+									MarkdownDescription: "Open telemetry configuration, such as the IP address and port to send enriched logs, metrics and or traces to.",
+									Attributes: map[string]schema.Attribute{
+										"fields_mapping": schema.ListNestedAttribute{
+											Description:         "Custom fields mapping to an OpenTelemetry conformant format.By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal .As there is currently no accepted otlp standard for L3/4 network logs, you can freely override it with your own.",
+											MarkdownDescription: "Custom fields mapping to an OpenTelemetry conformant format.By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal .As there is currently no accepted otlp standard for L3/4 network logs, you can freely override it with your own.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"input": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"multiplier": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"output": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"headers": schema.MapAttribute{
+											Description:         "Headers to add to messages (optional)",
+											MarkdownDescription: "Headers to add to messages (optional)",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"logs": schema.SingleNestedAttribute{
+											Description:         "Open telemetry configuration for logs.",
+											MarkdownDescription: "Open telemetry configuration for logs.",
+											Attributes: map[string]schema.Attribute{
+												"enable": schema.BoolAttribute{
+													Description:         "Set 'enable' to 'true' to send logs to Open Telemetry receiver.",
+													MarkdownDescription: "Set 'enable' to 'true' to send logs to Open Telemetry receiver.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"metrics": schema.SingleNestedAttribute{
+											Description:         "Open telemetry configuration for metrics.",
+											MarkdownDescription: "Open telemetry configuration for metrics.",
+											Attributes: map[string]schema.Attribute{
+												"enable": schema.BoolAttribute{
+													Description:         "Set 'enable' to 'true' to send metrics to Open Telemetry receiver.",
+													MarkdownDescription: "Set 'enable' to 'true' to send metrics to Open Telemetry receiver.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"push_time_interval": schema.StringAttribute{
+													Description:         "How often should metrics be sent to collector",
+													MarkdownDescription: "How often should metrics be sent to collector",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"protocol": schema.StringAttribute{
+											Description:         "Protocol of Open Telemetry connection. The available options are 'http' and 'grpc'.",
+											MarkdownDescription: "Protocol of Open Telemetry connection. The available options are 'http' and 'grpc'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "grpc"),
+											},
+										},
+
+										"target_host": schema.StringAttribute{
+											Description:         "Address of the Open Telemetry receiver",
+											MarkdownDescription: "Address of the Open Telemetry receiver",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"target_port": schema.Int64Attribute{
+											Description:         "Port for the Open Telemetry receiver",
+											MarkdownDescription: "Port for the Open Telemetry receiver",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"tls": schema.SingleNestedAttribute{
+											Description:         "TLS client configuration.",
+											MarkdownDescription: "TLS client configuration.",
+											Attributes: map[string]schema.Attribute{
+												"ca_cert": schema.SingleNestedAttribute{
+													Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
+													MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+													Attributes: map[string]schema.Attribute{
+														"cert_file": schema.StringAttribute{
+															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
+															MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"cert_key": schema.StringAttribute{
+															Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+															MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the config map or secret containing certificates.",
+															MarkdownDescription: "Name of the config map or secret containing certificates.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "Type for the certificate reference: 'configmap' or 'secret'.",
+															MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("configmap", "secret"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"enable": schema.BoolAttribute{
+													Description:         "Enable TLS",
+													MarkdownDescription: "Enable TLS",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+													MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"user_cert": schema.SingleNestedAttribute{
+													Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+													MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+													Attributes: map[string]schema.Attribute{
+														"cert_file": schema.StringAttribute{
+															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
+															MarkdownDescription: "'certFile' defines the path to the certificate file name within the config map or secret.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"cert_key": schema.StringAttribute{
+															Description:         "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+															MarkdownDescription: "'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the config map or secret containing certificates.",
+															MarkdownDescription: "Name of the config map or secret containing certificates.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "Type for the certificate reference: 'configmap' or 'secret'.",
+															MarkdownDescription: "Type for the certificate reference: 'configmap' or 'secret'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("configmap", "secret"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"type": schema.StringAttribute{
 									Description:         "'type' selects the type of exporters. The available options are 'Kafka' and 'IPFIX'.",
 									MarkdownDescription: "'type' selects the type of exporters. The available options are 'Kafka' and 'IPFIX'.",
@@ -4678,7 +4969,7 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Kafka", "IPFIX"),
+										stringvalidator.OneOf("Kafka", "IPFIX", "OpenTelemetry"),
 									},
 								},
 							},
@@ -5715,6 +6006,32 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"network_policy": schema.SingleNestedAttribute{
+						Description:         "'networkPolicy' defines ingress network policy settings for NetObserv components isolation.",
+						MarkdownDescription: "'networkPolicy' defines ingress network policy settings for NetObserv components isolation.",
+						Attributes: map[string]schema.Attribute{
+							"additional_namespaces": schema.ListAttribute{
+								Description:         "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace.It gives some flexibility in the network policy configuration, however should you need a more specificconfiguration, you can disable it and install your own instead.",
+								MarkdownDescription: "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace.It gives some flexibility in the network policy configuration, however should you need a more specificconfiguration, you can disable it and install your own instead.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable": schema.BoolAttribute{
+								Description:         "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default.These network policies better isolate the NetObserv components to prevent undesired connections to them.We recommend you either enable it, or create your own network policy for NetObserv.",
+								MarkdownDescription: "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default.These network policies better isolate the NetObserv components to prevent undesired connections to them.We recommend you either enable it, or create your own network policy for NetObserv.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"processor": schema.SingleNestedAttribute{

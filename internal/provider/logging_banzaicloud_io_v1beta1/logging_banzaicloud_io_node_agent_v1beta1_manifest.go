@@ -58,6 +58,16 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 				Storage_sync                        *string `tfsdk:"storage_sync" json:"storage.sync,omitempty"`
 			} `tfsdk:"buffer_storage" json:"bufferStorage,omitempty"`
 			BufferStorageVolume *struct {
+				ConfigMap *struct {
+					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+					Items       *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"items" json:"items,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
 				EmptyDir *struct {
 					Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 					SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
@@ -1639,6 +1649,16 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 			} `tfsdk:"network" json:"network,omitempty"`
 			PodPriorityClassName *string `tfsdk:"pod_priority_class_name" json:"podPriorityClassName,omitempty"`
 			Positiondb           *struct {
+				ConfigMap *struct {
+					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+					Items       *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"items" json:"items,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
 				EmptyDir *struct {
 					Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 					SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
@@ -1961,6 +1981,74 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"default_mode": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"items": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"empty_dir": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -12671,6 +12759,74 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"default_mode": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"items": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"empty_dir": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",

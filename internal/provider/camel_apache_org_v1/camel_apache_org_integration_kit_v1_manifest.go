@@ -485,8 +485,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"order_strategy": schema.StringAttribute{
-										Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
-										MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
+										Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)",
+										MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default is the platform default)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

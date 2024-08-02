@@ -57,7 +57,6 @@ Optional:
 - `component_defs` (Attributes List) Provides the definitions for the cluster components.Deprecated since v0.9.Components should now be individually defined using ComponentDefinition andcollectively referenced via 'topology.components'.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--component_defs))
 - `connection_credential` (Map of String) Connection credential template used for creating a connection credential secret for cluster objects.Built-in objects are:- '$(RANDOM_PASSWD)' random 8 characters.- '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols.- '$(UUID)' generate a random UUID v4 string.- '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string.- '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded.- '$(UUID_HEX)' generate a random UUID v4 HEX representation.- '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc',   where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute;- '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc',   where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute;- '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct:   '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the   connection credential value is 3306.Deprecated since v0.9.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
 - `topologies` (Attributes List) Topologies defines all possible topologies within the cluster. (see [below for nested schema](#nestedatt--spec--topologies))
-- `type` (String) Specifies the well-known database type, such as mysql, redis, or mongodb.Deprecated since v0.9.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
 
 <a id="nestedatt--spec--component_defs"></a>
 ### Nested Schema for `spec.component_defs`
@@ -73,12 +72,8 @@ Optional:
 - `component_def_ref` (Attributes List) Used to inject values from other components into the current component. Values will be saved and updated in aconfigmap and mounted to the current component. (see [below for nested schema](#nestedatt--spec--component_defs--component_def_ref))
 - `config_specs` (Attributes List) Defines the template of configurations. (see [below for nested schema](#nestedatt--spec--component_defs--config_specs))
 - `consensus_spec` (Attributes) Defines spec for 'Consensus' workloads. It's required if the workload type is 'Consensus'. (see [below for nested schema](#nestedatt--spec--component_defs--consensus_spec))
-- `custom_label_specs` (Attributes List) Used for custom label tags which you want to add to the component resources. (see [below for nested schema](#nestedatt--spec--component_defs--custom_label_specs))
-- `description` (String) Description of the component definition.
-- `exporter` (Attributes) Defines the metrics exporter. (see [below for nested schema](#nestedatt--spec--component_defs--exporter))
 - `horizontal_scale_policy` (Attributes) Defines the behavior of horizontal scale. (see [below for nested schema](#nestedatt--spec--component_defs--horizontal_scale_policy))
 - `log_configs` (Attributes List) Specify the logging files which can be observed and configured by cluster users. (see [below for nested schema](#nestedatt--spec--component_defs--log_configs))
-- `monitor` (Attributes) Deprecated since v0.9monitor is monitoring config which provided by provider. (see [below for nested schema](#nestedatt--spec--component_defs--monitor))
 - `pod_spec` (Attributes) Defines the pod spec template of component. (see [below for nested schema](#nestedatt--spec--component_defs--pod_spec))
 - `post_start_spec` (Attributes) Defines the command to be executed when the component is ready, and the command will only be executed once afterthe component becomes ready. (see [below for nested schema](#nestedatt--spec--component_defs--post_start_spec))
 - `probes` (Attributes) Settings for health checks. (see [below for nested schema](#nestedatt--spec--component_defs--probes))
@@ -241,42 +236,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--component_defs--custom_label_specs"></a>
-### Nested Schema for `spec.component_defs.custom_label_specs`
-
-Required:
-
-- `key` (String) The key of the label.
-- `value` (String) The value of the label.
-
-Optional:
-
-- `resources` (Attributes List) The resources that will be patched with the label. (see [below for nested schema](#nestedatt--spec--component_defs--custom_label_specs--resources))
-
-<a id="nestedatt--spec--component_defs--custom_label_specs--resources"></a>
-### Nested Schema for `spec.component_defs.custom_label_specs.resources`
-
-Required:
-
-- `gvk` (String) Represents the GVK of a resource, such as 'v1/Pod', 'apps/v1/StatefulSet', etc.When a resource matching this is found by the selector, a custom label will be added if it doesn't already exist,or updated if it does.
-
-Optional:
-
-- `selector` (Map of String) A label query used to filter a set of resources.
-
-
-
-<a id="nestedatt--spec--component_defs--exporter"></a>
-### Nested Schema for `spec.component_defs.exporter`
-
-Optional:
-
-- `container_name` (String) Specifies the name of the built-in metrics exporter container.
-- `scrape_path` (String) Specifies the http/https url path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').
-- `scrape_port` (String) Specifies the port name to scrape for metrics.
-- `scrape_scheme` (String) Specifies the schema to use for scraping.'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.
-
-
 <a id="nestedatt--spec--component_defs--horizontal_scale_policy"></a>
 ### Nested Schema for `spec.component_defs.horizontal_scale_policy`
 
@@ -294,27 +253,6 @@ Required:
 
 - `file_path_pattern` (String) Specifies the paths or patterns identifying where the log files are stored.This field allows the system to locate and manage log files effectively.Examples:- /home/postgres/pgdata/pgroot/data/log/postgresql-*- /data/mysql/log/mysqld-error.log
 - `name` (String) Specifies a descriptive label for the log type, such as 'slow' for a MySQL slow log file.It provides a clear identification of the log's purpose and content.
-
-
-<a id="nestedatt--spec--component_defs--monitor"></a>
-### Nested Schema for `spec.component_defs.monitor`
-
-Optional:
-
-- `built_in` (Boolean) builtIn is a switch to enable KubeBlocks builtIn monitoring.If BuiltIn is set to true, monitor metrics will be scraped automatically.If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.
-- `exporter_config` (Attributes) exporterConfig provided by provider, which specify necessary information to Time Series Database.exporterConfig is valid when builtIn is false. (see [below for nested schema](#nestedatt--spec--component_defs--monitor--exporter_config))
-
-<a id="nestedatt--spec--component_defs--monitor--exporter_config"></a>
-### Nested Schema for `spec.component_defs.monitor.exporter_config`
-
-Required:
-
-- `scrape_port` (String) scrapePort is exporter port for Time Series Database to scrape metrics.
-
-Optional:
-
-- `scrape_path` (String) scrapePath is exporter url path for Time Series Database to scrape metrics.
-
 
 
 <a id="nestedatt--spec--component_defs--pod_spec"></a>

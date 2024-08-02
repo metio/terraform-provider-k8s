@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `allow_scheduling` (Boolean) Allow scheduling replicas on the node.
+- `allow_scheduling` (Boolean)
 - `disks` (Attributes) (see [below for nested schema](#nestedatt--spec--disks))
 - `eviction_requested` (Boolean)
 - `instance_manager_cpu_request` (Number)

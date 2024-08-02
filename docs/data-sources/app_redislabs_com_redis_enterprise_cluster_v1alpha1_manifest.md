@@ -57,6 +57,7 @@ Optional:
 
 - `active_active` (Attributes) (see [below for nested schema](#nestedatt--spec--active_active))
 - `anti_affinity_additional_topology_keys` (List of String)
+- `backup` (Attributes) (see [below for nested schema](#nestedatt--spec--backup))
 - `bootstrapper_image_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--bootstrapper_image_spec))
 - `bootstrapper_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--bootstrapper_resources))
 - `certificates` (Attributes) (see [below for nested schema](#nestedatt--spec--certificates))
@@ -125,6 +126,23 @@ Required:
 Optional:
 
 - `ingress_annotations` (Map of String)
+
+
+<a id="nestedatt--spec--backup"></a>
+### Nested Schema for `spec.backup`
+
+Optional:
+
+- `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--s3))
+
+<a id="nestedatt--spec--backup--s3"></a>
+### Nested Schema for `spec.backup.s3`
+
+Optional:
+
+- `ca_certificate_secret_name` (String)
+- `url` (String)
+
 
 
 <a id="nestedatt--spec--bootstrapper_image_spec"></a>

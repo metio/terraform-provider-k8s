@@ -182,6 +182,7 @@ Optional:
 - `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.
 - `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.
 - `max_query_series` (Number) MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.
+- `max_volume_series` (Number) MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response
 - `query_timeout` (String) Timeout when querying ingesters or storage during the execution of a query request.
 
 
@@ -247,6 +248,7 @@ Optional:
 - `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.
 - `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.
 - `max_query_series` (Number) MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.
+- `max_volume_series` (Number) MaxVolumeSeries defines the maximum number of aggregated series in a log-volume response
 - `query_timeout` (String) Timeout when querying ingesters or storage during the execution of a query request.
 
 <a id="nestedatt--spec--limits--tenants--queries--blocked"></a>

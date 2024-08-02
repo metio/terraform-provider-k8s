@@ -150,6 +150,7 @@ Optional:
 
 - `hooks` (Attributes List) Enable hooks. (see [below for nested schema](#nestedatt--spec--vms--hooks))
 - `id` (String) The object ID.vsphere:  The managed object ID.
+- `instance_type` (String) Selected InstanceType that will override the VM properties.
 - `luks` (Attributes) Disk decryption LUKS keys (see [below for nested schema](#nestedatt--spec--vms--luks))
 - `name` (String) An object Name.vsphere:  A qualified name.
 - `namespace` (String) The VM NamespaceOnly relevant for an openshift source.

@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `ai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai))
 - `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--aws))
 - `aws_ec2` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_ec2))
 - `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--azure))
@@ -87,6 +88,125 @@ Optional:
 - `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config))
 - `static` (Attributes) (see [below for nested schema](#nestedatt--spec--static))
 - `use_http2` (Boolean)
+
+<a id="nestedatt--spec--ai"></a>
+### Nested Schema for `spec.ai`
+
+Optional:
+
+- `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic))
+- `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral))
+- `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai))
+
+<a id="nestedatt--spec--ai--anthropic"></a>
+### Nested Schema for `spec.ai.anthropic`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic--custom_host))
+- `version` (String)
+
+<a id="nestedatt--spec--ai--anthropic--auth_token"></a>
+### Nested Schema for `spec.ai.anthropic.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--anthropic--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.anthropic.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--anthropic--custom_host"></a>
+### Nested Schema for `spec.ai.anthropic.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
+<a id="nestedatt--spec--ai--mistral"></a>
+### Nested Schema for `spec.ai.mistral`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral--custom_host))
+
+<a id="nestedatt--spec--ai--mistral--auth_token"></a>
+### Nested Schema for `spec.ai.mistral.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--mistral--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.mistral.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--mistral--custom_host"></a>
+### Nested Schema for `spec.ai.mistral.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
+<a id="nestedatt--spec--ai--openai"></a>
+### Nested Schema for `spec.ai.openai`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai--custom_host))
+
+<a id="nestedatt--spec--ai--openai--auth_token"></a>
+### Nested Schema for `spec.ai.openai.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--openai--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.openai.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--openai--custom_host"></a>
+### Nested Schema for `spec.ai.openai.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
 
 <a id="nestedatt--spec--aws"></a>
 ### Nested Schema for `spec.aws`
@@ -406,6 +526,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -471,6 +592,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys"></a>
+### Nested Schema for `spec.consul.service_spec.rest.transformations.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.consul.service_spec.rest.transformations.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--consul--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.consul.service_spec.rest.transformations.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -1055,6 +1201,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -1120,6 +1267,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys"></a>
+### Nested Schema for `spec.kube.service_spec.rest.transformations.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.kube.service_spec.rest.transformations.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--kube--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.kube.service_spec.rest.transformations.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -1385,6 +1557,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -1450,6 +1623,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys"></a>
+### Nested Schema for `spec.pipe.service_spec.rest.transformations.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.pipe.service_spec.rest.transformations.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--pipe--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.pipe.service_spec.rest.transformations.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -1696,6 +1894,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -1757,6 +1956,30 @@ Optional:
 
 <a id="nestedatt--spec--static--service_spec--rest--transformations--headers_to_append--value"></a>
 ### Nested Schema for `spec.static.service_spec.rest.transformations.headers_to_append.value`
+
+Optional:
+
+- `text` (String)
+
+
+
+<a id="nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys"></a>
+### Nested Schema for `spec.static.service_spec.rest.transformations.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.static.service_spec.rest.transformations.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--static--service_spec--rest--transformations--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.static.service_spec.rest.transformations.merge_json_keys.json_keys.tmpl`
 
 Optional:
 

@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `backup_mode` (String) The backup mode of this backup.Can be 'full' or 'incremental'
 - `labels` (Map of String) The labels of snapshot backup.
 - `snapshot_name` (String) The snapshot name.
 - `sync_requested_at` (String) The time to request run sync the remote backup.

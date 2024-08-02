@@ -148,7 +148,7 @@ Optional:
 Required:
 
 - `action` (String) Action specifies the effect this rule will have on matching traffic.Currently the following actions are supported:Allow: allows the selected trafficDeny: denies the selected trafficSupport: Core
-- `to` (Attributes List) To is the list of destinations whose traffic this rule applies to.If any AdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core (see [below for nested schema](#nestedatt--spec--egress--to))
+- `to` (Attributes List) To is the list of destinations whose traffic this rule applies to.If any BaselineAdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core (see [below for nested schema](#nestedatt--spec--egress--to))
 
 Optional:
 

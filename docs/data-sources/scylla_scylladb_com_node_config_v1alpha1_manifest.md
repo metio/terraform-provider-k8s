@@ -504,7 +504,7 @@ Optional:
 
 - `device` (String) device is path to a device that should be mounted.
 - `fs_type` (String) fsType specifies the filesystem on the device.
-- `mount_point` (String) mountPoint is a path where the device should be mounted at.
+- `mount_point` (String) mountPoint is a path where the device should be mounted at. If the mountPoint is a symlink, the mount will be set up for the target.
 - `unsupported_options` (List of String) unsupportedOptions is a list of mount options used during device mounting. unsupported in this field name means that we won't support all the available options passed down using this field.
 
 

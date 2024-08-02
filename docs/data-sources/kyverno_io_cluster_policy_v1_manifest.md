@@ -1040,6 +1040,7 @@ Optional:
 Optional:
 
 - `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.
+- `assert` (Map of String) Assert defines a kyverno-json assertion tree.
 - `cel` (Attributes) CEL allows validation checks using the Common Expression Language (https://kubernetes.io/docs/reference/using-api/cel/). (see [below for nested schema](#nestedatt--spec--rules--validate--cel))
 - `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--deny))
 - `foreach` (Attributes List) ForEach applies validate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach))

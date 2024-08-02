@@ -2010,8 +2010,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 							},
 
 							"device_trust_mode": schema.StringAttribute{
-								Description:         "DeviceTrustMode is the device authorization mode used for the resources associated with the role. See DeviceTrust.Mode. Reserved for future use, not yet used by Teleport.",
-								MarkdownDescription: "DeviceTrustMode is the device authorization mode used for the resources associated with the role. See DeviceTrust.Mode. Reserved for future use, not yet used by Teleport.",
+								Description:         "DeviceTrustMode is the device authorization mode used for the resources associated with the role. See DeviceTrust.Mode.",
+								MarkdownDescription: "DeviceTrustMode is the device authorization mode used for the resources associated with the role. See DeviceTrust.Mode.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2166,8 +2166,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 							},
 
 							"request_access": schema.StringAttribute{
-								Description:         "RequestAccess defines the access request strategy (optional|note|always) where optional is the default.",
-								MarkdownDescription: "RequestAccess defines the access request strategy (optional|note|always) where optional is the default.",
+								Description:         "RequestAccess defines the request strategy (optional|note|always) where optional is the default.",
+								MarkdownDescription: "RequestAccess defines the request strategy (optional|note|always) where optional is the default.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

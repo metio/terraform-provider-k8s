@@ -167,8 +167,8 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Manifest) Schema(_ context.Context, 
 					},
 
 					"config": schema.MapAttribute{
-						Description:         "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
-						MarkdownDescription: "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
+						Description:         "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.",
+						MarkdownDescription: "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

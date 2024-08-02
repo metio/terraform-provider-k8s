@@ -123,6 +123,7 @@ Optional:
 - `max_pending_requests` (Number) The maximum number of pending requests that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.
 - `max_requests` (Number) The maximum parallel requests a single Envoy instance allows to the Kubernetes Service; defaults to 1024
 - `max_retries` (Number) The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.
+- `per_host_max_connections` (Number) PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.
 
 
 <a id="nestedatt--spec--envoy--cluster--upstream_tls"></a>
@@ -557,7 +558,7 @@ Optional:
 - `address` (String) Defines the xDS gRPC API address which Contour will serve.Contour's default is '0.0.0.0'.
 - `port` (Number) Defines the xDS gRPC API port which Contour will serve.Contour's default is 8001.
 - `tls` (Attributes) TLS holds TLS file config details.Contour's default is { caFile: '/certs/ca.crt', certFile: '/certs/tls.cert', keyFile: '/certs/tls.key', insecure: false }. (see [below for nested schema](#nestedatt--spec--xds_server--tls))
-- `type` (String) Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.
+- `type` (String) Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.Deprecated: this field will be removed in a future release whenthe 'contour' xDS server implementation is removed.
 
 <a id="nestedatt--spec--xds_server--tls"></a>
 ### Nested Schema for `spec.xds_server.tls`

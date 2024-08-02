@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -239,32 +240,35 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+								MarkdownDescription: "Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\?|\/)[\w\-.~:\/?#\[\]@!$&'()*+,;=]+(?:[a-zA-Z0-9]|\/){1}$`), ""),
+								},
 							},
 
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy",
+								MarkdownDescription: "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Port to connect to the host on. Must be either 80, 443 or 1024-49151",
+								MarkdownDescription: "Port to connect to the host on. Must be either 80, 443 or 1024-49151",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"protocol": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'",
+								MarkdownDescription: "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -305,13 +309,15 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"root_host": schema.StringAttribute{
-						Description:         "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHost",
-						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHost",
+						Description:         "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'",
+						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(255),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?:[\w\-.~:\/?#[\]@!$&'()*+,;=]+)\.(?:[\w\-.~:\/?#[\]@!$&'()*+,;=]+)$`), ""),
 						},
 					},
 				},

@@ -133,6 +133,7 @@ Optional:
 - `node_selector` (String) nodeSelector for the pods
 - `nodeport_port` (Number) Port to use for the nodeport
 - `old_postgres_configuration_secret` (String) Secret where the old database configuration can be found for data migration
+- `postgres_annotations` (String) Annotations to add to the Postgres deployment.
 - `postgres_configuration_secret` (String) Secret where the database configuration can be found
 - `postgres_data_volume_init` (Boolean) Sets permissions on the /var/lib/pgdata/data for postgres container using an init container (not Openshift)
 - `postgres_extra_args` (List of String)

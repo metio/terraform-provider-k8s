@@ -359,10 +359,35 @@ Optional:
 
 Optional:
 
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--config_map))
 - `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--empty_dir))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--host_path))
 - `pvc` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--pvc))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--secret))
+
+<a id="nestedatt--spec--position_volume--config_map"></a>
+### Nested Schema for `spec.position_volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--position_volume--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--position_volume--config_map--items"></a>
+### Nested Schema for `spec.position_volume.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
 
 <a id="nestedatt--spec--position_volume--empty_dir"></a>
 ### Nested Schema for `spec.position_volume.empty_dir`

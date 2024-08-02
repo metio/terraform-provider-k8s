@@ -57,7 +57,7 @@ Optional:
 - `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
 - `gateway` (Attributes) The rgw pod info (see [below for nested schema](#nestedatt--spec--gateway))
 - `health_check` (Attributes) The RGW health probes (see [below for nested schema](#nestedatt--spec--health_check))
-- `hosting` (Attributes) Hosting settings for the object store (see [below for nested schema](#nestedatt--spec--hosting))
+- `hosting` (Attributes) Hosting settings for the object store.A common use case for hosting configuration is to inform Rook of endpoints that support DNSwildcards, which in turn allows virtual host-style bucket addressing. (see [below for nested schema](#nestedatt--spec--hosting))
 - `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object store deletion
 - `security` (Attributes) Security represents security settings (see [below for nested schema](#nestedatt--spec--security))
@@ -850,7 +850,18 @@ Optional:
 
 Optional:
 
-- `dns_names` (List of String) A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123.Each domain requires wildcard support like ingress loadbalancer.Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com').Add all hostnames including user-created Kubernetes Service endpoints to the list.CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list.The feature is supported only for Ceph v18 and later versions.
+- `advertise_endpoint` (Attributes) AdvertiseEndpoint is the default endpoint Rook will return for resources dependent on thisobject store. This endpoint will be returned to CephObjectStoreUsers, Object Bucket Claims,and COSI Buckets/Accesses.By default, Rook returns the endpoint for the object store's Kubernetes service using HTTPSwith 'gateway.securePort' if it is defined (otherwise, HTTP with 'gateway.port'). (see [below for nested schema](#nestedatt--spec--hosting--advertise_endpoint))
+- `dns_names` (List of String) A list of DNS host names on which object store gateways will accept client S3 connections.When specified, object store gateways will reject client S3 connections to hostnames that arenot present in this list, so include all endpoints.The object store's advertiseEndpoint and Kubernetes service endpoint, plus CephObjectZone'customEndpoints' are automatically added to the list but may be set here again if desired.Each DNS name must be valid according RFC-1123.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.The feature is supported only for Ceph v18 and later versions.
+
+<a id="nestedatt--spec--hosting--advertise_endpoint"></a>
+### Nested Schema for `spec.hosting.advertise_endpoint`
+
+Required:
+
+- `dns_name` (String) DnsName is the DNS name (in RFC-1123 format) of the endpoint.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.
+- `port` (Number) Port is the port on which S3 connections can be made for this endpoint.
+- `use_tls` (Boolean) UseTls defines whether the endpoint uses TLS (HTTPS) or not (HTTP).
+
 
 
 <a id="nestedatt--spec--metadata_pool"></a>

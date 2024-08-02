@@ -848,8 +848,8 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 					},
 
 					"outbound_traffic_policy": schema.SingleNestedAttribute{
-						Description:         "Configuration for the outbound traffic policy.",
-						MarkdownDescription: "Configuration for the outbound traffic policy.",
+						Description:         "Set the default behavior of the sidecar for handling outbound traffic from the application.",
+						MarkdownDescription: "Set the default behavior of the sidecar for handling outbound traffic from the application.",
 						Attributes: map[string]schema.Attribute{
 							"egress_proxy": schema.SingleNestedAttribute{
 								Description:         "",

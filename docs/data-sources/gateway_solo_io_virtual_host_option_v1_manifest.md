@@ -1743,6 +1743,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -1811,6 +1812,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
+
+
+
 
 <a id="nestedatt--spec--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation"></a>
 ### Nested Schema for `spec.options.staged_transformations.early.request_transforms.request_transformation.xslt_transformation`
@@ -1856,6 +1882,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -1921,6 +1948,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -1990,6 +2042,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2055,6 +2108,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -2159,6 +2237,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2227,6 +2306,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
+
+
+
 
 <a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--request_transformation--xslt_transformation"></a>
 ### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.request_transformation.xslt_transformation`
@@ -2272,6 +2376,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2337,6 +2442,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -2406,6 +2536,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2471,6 +2602,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--post_routing--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.post_routing.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -2575,6 +2731,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2643,6 +2800,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
+
+
+
 
 <a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation"></a>
 ### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.request_transformation.xslt_transformation`
@@ -2688,6 +2870,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2753,6 +2936,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -2822,6 +3030,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -2887,6 +3096,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 
@@ -2965,6 +3199,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -3033,6 +3268,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--transformations--request_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.transformations.request_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
+
+
+
 
 <a id="nestedatt--spec--options--transformations--request_transformation--xslt_transformation"></a>
 ### Nested Schema for `spec.options.transformations.request_transformation.xslt_transformation`
@@ -3078,6 +3338,7 @@ Optional:
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
+- `merge_json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys))
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
@@ -3143,6 +3404,31 @@ Optional:
 Optional:
 
 - `text` (String)
+
+
+
+<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys"></a>
+### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.merge_json_keys`
+
+Optional:
+
+- `json_keys` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys--json_keys))
+
+<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys--json_keys"></a>
+### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.merge_json_keys.json_keys`
+
+Optional:
+
+- `override_empty` (Boolean)
+- `tmpl` (Attributes) (see [below for nested schema](#nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl))
+
+<a id="nestedatt--spec--options--transformations--response_transformation--transformation_template--merge_json_keys--json_keys--tmpl"></a>
+### Nested Schema for `spec.options.transformations.response_transformation.transformation_template.merge_json_keys.json_keys.tmpl`
+
+Optional:
+
+- `text` (String)
+
 
 
 

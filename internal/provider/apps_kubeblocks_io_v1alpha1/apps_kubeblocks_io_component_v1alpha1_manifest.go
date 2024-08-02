@@ -604,10 +604,12 @@ type AppsKubeblocksIoComponentV1Alpha1ManifestData struct {
 				} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 		} `tfsdk:"instances" json:"instances,omitempty"`
-		Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		OfflineInstances *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
-		Replicas         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-		Resources        *struct {
+		Labels                           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		OfflineInstances                 *[]string          `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
+		ParallelPodManagementConcurrency *string            `tfsdk:"parallel_pod_management_concurrency" json:"parallelPodManagementConcurrency,omitempty"`
+		PodUpdatePolicy                  *string            `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
+		Replicas                         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+		Resources                        *struct {
 			Claims *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
@@ -827,6 +829,7 @@ type AppsKubeblocksIoComponentV1Alpha1ManifestData struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
+		Stop           *bool `tfsdk:"stop" json:"stop,omitempty"`
 		SystemAccounts *[]struct {
 			Name           *string `tfsdk:"name" json:"name,omitempty"`
 			PasswordConfig *struct {
@@ -5017,6 +5020,22 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Computed:            false,
 					},
 
+					"parallel_pod_management_concurrency": schema.StringAttribute{
+						Description:         "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+						MarkdownDescription: "Controls the concurrency of pods during initial scale up, when replacing pods on nodes,or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'.The default Concurrency is 100%.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pod_update_policy": schema.StringAttribute{
+						Description:         "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+						MarkdownDescription: "PodUpdatePolicy indicates how pods should be updated- 'StrictInPlace' indicates that only allows in-place upgrades.Any attempt to modify other fields will be rejected.- 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod.If that fails, it will fall back to the ReCreate, where pod will be recreated.Default value is 'PreferInPlace'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"replicas": schema.Int64Attribute{
 						Description:         "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
 						MarkdownDescription: "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
@@ -6532,6 +6551,14 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"stop": schema.BoolAttribute{
+						Description:         "Stop the Component.If set, all the computing resources will be released.",
+						MarkdownDescription: "Stop the Component.If set, all the computing resources will be released.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"system_accounts": schema.ListNestedAttribute{

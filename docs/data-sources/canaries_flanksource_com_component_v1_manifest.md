@@ -30,7 +30,7 @@ data "k8s_canaries_flanksource_com_component_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ComponentSpec defines the specification for a component. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -75,7 +75,8 @@ Optional:
 - `properties` (Map of String)
 - `relationships` (Attributes List) (see [below for nested schema](#nestedatt--spec--relationships))
 - `selectors` (Attributes List) Lookup and associcate other components with this component (see [below for nested schema](#nestedatt--spec--selectors))
-- `summary` (Attributes) (see [below for nested schema](#nestedatt--spec--summary))
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config
+- `summary` (Attributes) Summary is the health, incidents, insights & check summary (see [below for nested schema](#nestedatt--spec--summary))
 - `tooltip` (String)
 - `type` (String) The type of component, e.g. service, API, website, library, database, etc.
 
@@ -97,6 +98,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
@@ -157,6 +159,7 @@ Optional:
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
+- `scope` (String)
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)

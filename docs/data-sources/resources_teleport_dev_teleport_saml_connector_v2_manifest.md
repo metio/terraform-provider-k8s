@@ -60,7 +60,7 @@ Optional:
 - `assertion_key_pair` (Attributes) EncryptionKeyPair is a key pair used for decrypting SAML assertions. (see [below for nested schema](#nestedatt--spec--assertion_key_pair))
 - `attributes_to_roles` (Attributes List) AttributesToRoles is a list of mappings of attribute statements to roles. (see [below for nested schema](#nestedatt--spec--attributes_to_roles))
 - `audience` (String) Audience uniquely identifies our service provider.
-- `cert` (String) Cert is the identity provider certificate PEM. IDP signs <Response> responses using this certificate.
+- `cert` (String) Cert is the identity provider certificate PEM. IDP signs '<Response>' responses using this certificate.
 - `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
 - `display` (String) Display controls how this connector is displayed.
 - `entity_descriptor` (String) EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.
@@ -97,6 +97,7 @@ Optional:
 Optional:
 
 - `allowed_https_hostnames` (List of String) a list of hostnames allowed for https client redirect URLs
+- `insecure_allowed_cidr_ranges` (List of String) a list of CIDRs allowed for HTTP or HTTPS client redirect URLs
 
 
 <a id="nestedatt--spec--signing_key_pair"></a>
